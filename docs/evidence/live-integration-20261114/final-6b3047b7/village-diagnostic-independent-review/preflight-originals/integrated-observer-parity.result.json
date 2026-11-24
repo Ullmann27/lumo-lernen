@@ -1,0 +1,14 @@
+{
+  "scope": "Four exact journey and source-binding contracts on the integrated reviewed observer; not an Android result",
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticJourneyPreservationTests"
+  ],
+  "exit_code": 0,
+  "seconds": 0.488,
+  "log_bytes": 950
+}

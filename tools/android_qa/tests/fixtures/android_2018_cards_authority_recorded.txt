@@ -1,0 +1,49 @@
+ACTIVITY MANAGER SERVICES (dumpsys activity services)
+  User 0 active services:
+  * ServiceRecord{48ec69c u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.CardsAuthorityService c:dev.ullmann.lumo.lumo_lernen.coachpreview}
+    intent={cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.CardsAuthorityService}
+    packageName=dev.ullmann.lumo.lumo_lernen.coachpreview
+    processName=dev.ullmann.lumo.lumo_lernen.coachpreview
+    targetSdkVersion=36
+    baseDir=/data/app/~~444_x4vO7JmVKRvF4KgPJQ==/dev.ullmann.lumo.lumo_lernen.coachpreview-ZM4N4gQQboj4_9R5YCwpWQ==/base.apk
+    dataDir=/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview
+    app=ProcessRecord{eabbb10 5599:dev.ullmann.lumo.lumo_lernen.coachpreview/u0a209}
+    useNewWiuLogic_forCapabilities()=true
+    useNewWiuLogic_forStart()=true
+    useNewBfslLogic()=true
+    mAllowWiu_noBinding=DENIED
+    mAllowWiu_inBindService=PROC_STATE_TOP
+    mAllowWiu_byBindings=DENIED
+    getFgsAllowWiu_legacy=PROC_STATE_TOP
+    getFgsAllowWiu_new=DENIED
+    getFgsAllowWiu_forStart=DENIED
+    getFgsAllowWiu_forCapabilities=DENIED
+    allowUiJobScheduling=false
+    recentCallingPackage=dev.ullmann.lumo.lumo_lernen.coachpreview
+    recentCallingUid=10209
+    mAllowStart_noBinding=DENIED
+    mAllowStart_inBindService=PROC_STATE_TOP
+    mAllowStart_byBindings=DENIED
+    getFgsAllowStart_legacy=PROC_STATE_TOP
+    getFgsAllowStart_new=DENIED
+    getFgsAllowStart=DENIED
+    startForegroundCount=0
+    infoAllowStartForeground=[callingPackage: dev.ullmann.lumo.lumo_lernen.coachpreview; callingUid: 10209; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.CardsAuthorityService (has extras) }; code:PROC_STATE_TOP; tempAllowListReason:<null>; targetSdkVersion:36; callerTargetSdkVersion:36; startForegroundCount:0; bindFromPackage:null: isBindService:true]
+    createTime=-54s921ms startingBgTimeout=--
+    lastActivity=-54s921ms restartTime=-54s921ms createdFromFg=true
+    Bindings:
+    * IntentBindRecord{f967d67 CREATE}:
+      intent={cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.CardsAuthorityService}
+      binder=android.os.BinderProxy@1f2f714
+      requested=true received=true hasBound=true doRebind=false
+      * Client AppBindRecord{9337bbd ProcessRecord{5b7220e 7348:dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game/u0a209}}
+        Per-process Connections:
+          ConnectionRecord{7d9360f u0 CR dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.CardsAuthorityService:@ca0bf6e flags=0x1}
+    All Connections:
+      ConnectionRecord{7d9360f u0 CR dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.CardsAuthorityService:@ca0bf6e flags=0x1}
+
+  Connection bindings to services:
+  * ConnectionRecord{7d9360f u0 CR dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.CardsAuthorityService:@ca0bf6e flags=0x1}
+    binding=AppBindRecord{9337bbd dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.CardsAuthorityService:dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game}
+    activity=ActivityRecord{ed64dd3 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t9}
+    conn=android.os.BinderProxy@ca0bf6e flags=0x1

@@ -1,0 +1,6 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: Cannot infer the type of "exact" variable because the value doesn't have a set type.
+          at: GDScript::reload (res://scripts/tests/connect_four_small_result_actions_qa.gd:70)
+ERROR: Failed to load script "res://scripts/tests/connect_four_small_result_actions_qa.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)

@@ -1,0 +1,15 @@
+00:00 +0: loading /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart
+00:00 +0: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Minus bis 10: actual controls persist false then correct once, retaining rewards
+00:11 +1: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Zahlen 1-10: actual controls persist false then correct once, retaining rewards
+00:14 +2: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Formen: actual controls persist false then correct once, retaining rewards
+00:17 +3: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Die Uhr: actual controls persist false then correct once, retaining rewards
+00:21 +4: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Geld: actual controls persist false then correct once, retaining rewards
+00:24 +5: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Zahlen bis 100: actual controls persist false then correct once, retaining rewards
+00:26 +6: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Kleines 1×1: actual controls persist false then correct once, retaining rewards
+00:29 +7: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Großes 1×1: actual controls persist false then correct once, retaining rewards
+00:32 +8: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: actual Minus retries wallet then profile, blocks both Back paths and pauses feedback
+00:36 +9: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: actual module unmount during a delayed wallet still stores the learning answer
+00:37 +10: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: actual complete Uhr session persists eight answers and only one separate finish bonus
+00:47 +11: loading /workspace/lumo-lernen/test/learning_modules/plus_bis_10_semantics_test.dart
+00:48 +11: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_semantics_test.dart: Antwortkarten sind Schaltflächen mit eindeutiger Beschriftung
+00:56 +12: All tests passed!

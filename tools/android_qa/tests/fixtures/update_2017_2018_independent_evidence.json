@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "scope": "Exact read-only preferences of the fictional LumoTest child from a real 2017 APK lesson and real install -r 2018 offline launch. This failed gate stopped before Kart.",
+    "repository": "Ullmann27/lumo-lernen",
+    "workflow_run_id": 43395154888,
+    "qa_source": "2d97c8c3991dec6866c58847f3fffe44c9bdd912",
+    "baseline_source": "47889f74a651b073965def70743417cf320b1eb9",
+    "candidate_source": "a31c0070a9c1e9dfbea08f123d7ed77e5f0a8ad9",
+    "baseline_version": 2017,
+    "candidate_version": 2018,
+    "artifact_id": 14022392802,
+    "artifact_sha256": "63e14a7e65ea4d96a1f818c938f4b61ff96c1429654e6984b3c28ee492b0c6fa",
+    "xml_sha256": {
+      "before": "54755eb54ad0456c77ff6fcf213372c5ffee0263f197b4d83ce228d5ef19f5b0",
+      "after": "7dd2cb0d80addf99ada4f0cfbb30f78825dd5865c436bfde40822aa2527337ea"
+    },
+    "skill_preference_key": "flutter.lumo_progress_skills::local-2e3b805ede49a4861bb5ab164daef417",
+    "skill_raw_sha256": {
+      "before": "a69e2478309632326320f1fa30d9ee57d49636ca649e0494f2caee1250376fad",
+      "after": "200d56d22aab92ae8aed626a93f61cba9a5e98598a35f6fd9b0e7d6f64c6d49f"
+    },
+    "source_preferences_modified": false,
+    "snapshot_encoding": "Exact node.text mapping used by creative_android_probe.prefs; non-text XML values remain null and are outside the learning comparison."
+  },
+  "before": {
+    "flutter.lumo.games.curriculum50.local_lumotest_1": "[]",
+    "flutter.lumo_progress_skills::local-2e3b805ede49a4861bb5ab164daef417": "{\"mathematik::plus bis 10\":{\"skillId\":\"mathematik::plus bis 10\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 10\",\"correct\":1,\"wrong\":0,\"hintCount\":0,\"currentStreak\":1,\"currentMisses\":0,\"difficulty\":1,\"lastSeen\":\"2026-11-13T08:47:58.519765\"}}",
+    "flutter.lumo_intro_seen": null,
+    "flutter.lumo_active_profile": "{\"id\":\"1794559640717055\",\"name\":\"LumoTest\",\"age\":7,\"grade\":1,\"createdAt\":\"2026-11-13T08:47:20.717055\",\"lastActiveAt\":\"2026-11-13T08:47:20.717222\"}",
+    "flutter.lumo_game_unlocks_v1": "[\"build\",\"cards\",\"jumpRun\",\"kart\",\"memory\",\"puzzle\",\"rhythm\",\"treasure\"]",
+    "flutter.lumo_progress_daily::local-2e3b805ede49a4861bb5ab164daef417": "{\"2026-11-13\":1}",
+    "flutter.lumo_learning_local_student_id_v1": "local-2e3b805ede49a4861bb5ab164daef417",
+    "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794559678525411-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 10\",\"comp\":\"Addition ohne Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-13T08:47:58.525411\",\"q\":\"1 + 5 = ?\",\"a\":\"6\",\"e\":\"6\"}]",
+    "flutter.lumo_daily_mission_v1::local-2e3b805ede49a4861bb5ab164daef417": "{\"version\":1,\"dayKey\":\"2026-11-13\",\"lastSeenAt\":\"2026-11-13T08:48:12.609352Z\",\"stations\":[{\"subject\":\"Mathematik\",\"completed\":1,\"target\":4},{\"subject\":\"Deutsch\",\"completed\":0,\"target\":4},{\"subject\":\"Sachunterricht\",\"completed\":0,\"target\":4}],\"acceptedTaskIds\":[\"1a5b3c478bc228476cf8d873dbf2d71d8047c38dbd8e8a4dd43714f6c1da62dc\"]}",
+    "flutter.lumo_reward_wallet_v1": "{\"stars\":1,\"xp\":5,\"level\":1,\"streak\":0,\"totalEarnedStars\":1,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+    "flutter.lumo.reward_shop.local_lumotest_1": "{\"availableStars\":1,\"availablePoints\":0,\"redeemed\":[],\"testPhotos\":[],\"approvalRequests\":[]}",
+    "flutter.lumo_progress_journey_v1::local-2e3b805ede49a4861bb5ab164daef417": "{\"version\":1,\"records\":{\"mathematik::plus bis 10\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 10\",\"attempts\":1,\"independentCorrect\":1,\"assistedCorrect\":0,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-14T08:47:58.532313Z\",\"lastSeen\":\"2026-11-13T08:47:58.532313Z\",\"reviewStage\":0,\"needsPractice\":false,\"recentTaskIds\":[\"attempt-8a51fa9bc389f291a1a905b8efc967eb\"],\"independentProblemIds\":[\"problem-bdb5eaca03aa7c777ac0d25bfef4a127953176d85869c85efebd3625327ee2c4\"]}}}",
+    "flutter.lumo_cosmos_v2::local-2e3b805ede49a4861bb5ab164daef417": "{\"items\":[{\"t\":1,\"x\":0.40911769919498764,\"y\":0.7806064990928029,\"s\":1.1339315644557586,\"r\":0.06133920027044107}],\"meta\":{\"c\":1,\"s\":1,\"d\":\"2026-11-13\"}}",
+    "flutter.lumo_progress_last::local-2e3b805ede49a4861bb5ab164daef417": "{\"Mathematik\":\"Plus bis 10\"}",
+    "flutter.lumo.achievements.counters": "{\"starsTotal\":1}"
+  },
+  "after": {
+    "flutter.lumo.games.curriculum50.local_lumotest_1": "[]",
+    "flutter.lumo_progress_skills::local-2e3b805ede49a4861bb5ab164daef417": "{\"mathematik::plus bis 10\":{\"skillId\":\"mathematik::plus bis 10\",\"subject\":\"Mathematik\",\"unit\":\"Plus bis 10\",\"correct\":1,\"wrong\":0,\"hintCount\":0,\"currentStreak\":1,\"currentMisses\":0,\"difficulty\":1,\"lastSeen\":\"2026-11-13T08:47:58.519765\",\"independentEvidence\":{\"version\":1,\"correct\":1,\"wrong\":0,\"correctStreak\":1,\"wrongStreak\":0}}}",
+    "flutter.lumo_intro_seen": null,
+    "flutter.lumo_active_profile": "{\"id\":\"1794559640717055\",\"name\":\"LumoTest\",\"age\":7,\"grade\":1,\"createdAt\":\"2026-11-13T08:47:20.717055\",\"lastActiveAt\":\"2026-11-13T08:47:20.717222\"}",
+    "flutter.lumo_game_unlocks_v1": "[\"build\",\"cards\",\"jumpRun\",\"kart\",\"memory\",\"puzzle\",\"rhythm\",\"treasure\"]",
+    "flutter.lumo_progress_daily::local-2e3b805ede49a4861bb5ab164daef417": "{\"2026-11-13\":1}",
+    "flutter.lumo_learning_local_student_id_v1": "local-2e3b805ede49a4861bb5ab164daef417",
+    "flutter.lumo_attempt_log_v1": "[{\"id\":\"1794559678525411-0\",\"sid\":\"self\",\"sub\":\"Mathematik\",\"unit\":\"Plus bis 10\",\"comp\":\"Addition ohne Zehnerübergang\",\"ok\":true,\"at\":\"2026-11-13T08:47:58.525411\",\"q\":\"1 + 5 = ?\",\"a\":\"6\",\"e\":\"6\"}]",
+    "flutter.lumo_daily_mission_v1::local-2e3b805ede49a4861bb5ab164daef417": "{\"version\":1,\"dayKey\":\"2026-11-13\",\"lastSeenAt\":\"2026-11-13T08:49:47.764655Z\",\"stations\":[{\"subject\":\"Mathematik\",\"completed\":1,\"target\":4},{\"subject\":\"Deutsch\",\"completed\":0,\"target\":4},{\"subject\":\"Sachunterricht\",\"completed\":0,\"target\":4}],\"acceptedTaskIds\":[\"1a5b3c478bc228476cf8d873dbf2d71d8047c38dbd8e8a4dd43714f6c1da62dc\"]}",
+    "flutter.lumo_reward_wallet_v1": "{\"stars\":1,\"xp\":5,\"level\":1,\"streak\":0,\"totalEarnedStars\":1,\"lastDailyKey\":\"\",\"gameResultIds\":[],\"lumoCardsWinStreak\":0}",
+    "flutter.lumo.reward_shop.local_lumotest_1": "{\"availableStars\":1,\"availablePoints\":0,\"redeemed\":[],\"testPhotos\":[],\"approvalRequests\":[]}",
+    "flutter.lumo_progress_journey_v1::local-2e3b805ede49a4861bb5ab164daef417": "{\"version\":1,\"records\":{\"mathematik::plus bis 10\":{\"subject\":\"Mathematik\",\"unit\":\"Plus bis 10\",\"attempts\":1,\"independentCorrect\":1,\"assistedCorrect\":0,\"transferCorrect\":0,\"errorCounts\":{},\"dueAt\":\"2026-11-14T08:47:58.532313Z\",\"lastSeen\":\"2026-11-13T08:47:58.532313Z\",\"reviewStage\":0,\"needsPractice\":false,\"recentTaskIds\":[\"attempt-8a51fa9bc389f291a1a905b8efc967eb\"],\"independentProblemIds\":[\"problem-bdb5eaca03aa7c777ac0d25bfef4a127953176d85869c85efebd3625327ee2c4\"]}}}",
+    "flutter.lumo_cosmos_v2::local-2e3b805ede49a4861bb5ab164daef417": "{\"items\":[{\"t\":1,\"x\":0.40911769919498764,\"y\":0.7806064990928029,\"s\":1.1339315644557586,\"r\":0.06133920027044107}],\"meta\":{\"c\":1,\"s\":1,\"d\":\"2026-11-13\"}}",
+    "flutter.lumo_progress_last::local-2e3b805ede49a4861bb5ab164daef417": "{\"Mathematik\":\"Plus bis 10\"}",
+    "flutter.lumo.achievements.counters": "{\"starsTotal\":1}"
+  }
+}

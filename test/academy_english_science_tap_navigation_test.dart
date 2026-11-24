@@ -15,11 +15,16 @@ void main() {
   tearDown(() => LumoVoice.instance.isEnabled = true);
 
   for (final item in [
-    (grade: 3, subject: 'Sachunterricht',
-        topic: 'Österreich', unit: 'Bundesländer Österreichs'),
+    (
+      grade: 3,
+      subject: 'Sachunterricht',
+      topic: 'Österreich',
+      unit: 'Bundesländer Österreichs'
+    ),
     (grade: 4, subject: 'Englisch', topic: 'Verben', unit: 'Verben'),
   ]) {
-    testWidgets('Academy ${item.grade}: tapping ${item.subject}/${item.topic} starts actual task',
+    testWidgets(
+        'Academy ${item.grade}: tapping ${item.subject}/${item.topic} starts actual task',
         (tester) async {
       await tester.binding.setSurfaceSize(const Size(800, 1280));
       addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -35,19 +40,20 @@ void main() {
       await tester.tap(gradeChip);
       await tester.pump(const Duration(milliseconds: 400));
 
-      final subject = find.text(item.subject).first;
+      final subject = find.byKey(ValueKey('learning-subject-${item.subject}'));
       await tester.ensureVisible(subject);
       await tester.tap(subject);
       await tester.pump(const Duration(milliseconds: 400));
 
       await tester.scrollUntilVisible(
-        find.text(item.topic),
+        find.byKey(ValueKey('learning-unit-${item.subject}-${item.unit}')),
         240,
         scrollable: find.byType(Scrollable).first,
         maxScrolls: 35,
       );
       await tester.pump();
-      await tester.tap(find.text(item.topic));
+      await tester.tap(
+          find.byKey(ValueKey('learning-unit-${item.subject}-${item.unit}')));
       await tester.pump(const Duration(milliseconds: 300));
 
       expect(app.state.grade, item.grade);

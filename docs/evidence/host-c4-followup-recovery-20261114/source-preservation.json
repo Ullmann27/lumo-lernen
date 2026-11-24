@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T08:05:34.224668+00:00",
+  "kind": "READ_ONLY_SOURCE_INSPECTION_NOT_TEST_EXECUTION",
+  "base_head": "b394cd4f73cc4ab3d2e818aa94c0a10b26a55b9e",
+  "source_checks": [
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "old_sha256": "80164a710b8dadedbe05aa7468018c32ae9a60e1e44ef96b2ac6a68309976cc8",
+      "new_sha256": "0c2edfb13be05be32149ec20f1885573fc0e940d7df28656d58bbd93778ab8dd",
+      "removed_definitions": [],
+      "unchanged_existing_definitions": [
+        "checked_artifacts",
+        "checked_bundle",
+        "checked_current",
+        "checked_jobs",
+        "checked_native_results",
+        "checked_pcm_log",
+        "checked_plan",
+        "checked_release",
+        "checked_release_catalog",
+        "checked_tag",
+        "committed_pcm_sources",
+        "digest",
+        "native_module",
+        "read",
+        "record",
+        "regular",
+        "require",
+        "write_new"
+      ],
+      "changed_existing_definitions": [
+        "checked_native",
+        "main",
+        "prepare"
+      ],
+      "added_definitions": [
+        "bind_learning_audit",
+        "checked_learning_audit",
+        "checked_learning_outputs",
+        "checked_native_extension",
+        "checked_native_runner_log",
+        "learning_source_identity"
+      ]
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "old_sha256": "cc82d7e481e0a02e5f919d29947428c52025bc2f08279e6dd253c93a4c18a30f",
+      "new_sha256": "dfeb4cd8aa0b281ee1a31f9bbe02abc82fdb56ef58242d2f5f6a377cf5a0b63e",
+      "removed_definitions": [],
+      "unchanged_existing_definitions": [
+        "NativeOriginalLogTests.setUp",
+        "NativeOriginalLogTests.test_actual_facial_runner_multiline_command_keeps_one_mode",
+        "NativeOriginalLogTests.test_exact_52_order_and_four_additive_modes_are_required",
+        "NativeOriginalLogTests.test_reported_pass_never_overrides_post_pass_engine_error_or_missing_original",
+        "NewReleaseOnlyTests.release",
+        "NewReleaseOnlyTests.setUp",
+        "NewReleaseOnlyTests.test_asset_metadata_must_prove_actual_hash_size_uploaded_state_and_direct_url",
+        "NewReleaseOnlyTests.test_new_draft_then_exact_uploaded_assets_then_publication_are_distinct",
+        "NewReleaseOnlyTests.test_new_version_requires_complete_catalog_and_rejects_any_existing_tag_or_release",
+        "NewReleaseOnlyTests.test_newer_published_family_version_cannot_be_downgraded",
+        "NewReleaseOnlyTests.test_wrong_source_tag_release_identity_or_reused_nonempty_draft_fails",
+        "OriginalAcceptanceTests.check",
+        "OriginalAcceptanceTests.setUp",
+        "OriginalAcceptanceTests.test_each_failure_skip_cancel_and_foreign_attempt_blocks_delivery",
+        "OriginalAcceptanceTests.test_every_original_artifact_requires_exact_source_run_digest_and_availability",
+        "OriginalAcceptanceTests.test_exact_current_six_completed_jobs_and_readonly_preparation_are_required",
+        "OriginalAcceptanceTests.test_incomplete_duplicate_or_extra_jobs_cannot_hide_an_unchecked_gate",
+        "OriginalAcceptanceTests.test_later_publication_requires_complete_success_and_actual_bundle_upload",
+        "OriginalAcceptanceTests.test_reported_job_success_cannot_hide_a_skipped_or_failed_real_gate",
+        "OriginalAcceptanceTests.test_stale_or_foreign_branch_event_or_pull_request_is_rejected",
+        "OriginalBundleTests.check",
+        "OriginalBundleTests.rebuild",
+        "OriginalBundleTests.setUp",
+        "OriginalBundleTests.test_actual_zip_payload_crc_error_is_rejected_even_when_api_digest_matches",
+        "OriginalBundleTests.test_complete_original_zip_crc_hash_and_hidden_member_roundtrip",
+        "OriginalBundleTests.test_extra_missing_changed_or_symlinked_local_member_is_rejected",
+        "OriginalBundleTests.test_unsafe_or_nonregular_original_member_never_matches_a_local_bundle",
+        "OriginalBundleTests.test_wrong_api_source_size_digest_or_identity_cannot_authorize_bundle",
+        "PcmOriginalLogTests.setUp",
+        "PcmOriginalLogTests.test_complete_actual_stdout_contract_is_preserved_with_70_scoped_assertions",
+        "PcmOriginalLogTests.test_missing_marker_unexecuted_method_skip_failure_or_duplicate_completion_fails",
+        "RealFilesAndCommandsTests.complete_asset_fixture",
+        "RealFilesAndCommandsTests.test_active_workflow_never_attempts_publication_and_uploads_complete_separate_bundle",
+        "RealFilesAndCommandsTests.test_cli_receipt_requires_actual_public_file_hash_after_release_and_tag_checks",
+        "RealFilesAndCommandsTests.test_duplicate_json_keys_and_overwriting_prior_delivery_metadata_are_rejected",
+        "RealFilesAndCommandsTests.test_readonly_preparation_and_every_explicit_success_input_are_required",
+        "RealFilesAndCommandsTests.test_staged_bytes_cannot_change_or_hide_extra_or_symlinked_files",
+        "fixture",
+        "job_block"
+      ],
+      "changed_existing_definitions": [
+        "RealFilesAndCommandsTests.preparation_fixture",
+        "RealFilesAndCommandsTests.test_current_publication_gate_replays_completed_source_and_whole_original_bundle",
+        "RealFilesAndCommandsTests.test_preparation_preserves_originals_and_writes_only_unpublished_bundle_inputs",
+        "RealFilesAndCommandsTests.test_prepare_reexecutes_existing_candidate_validator_and_requires_native_before_writes"
+      ],
+      "added_definitions": [
+        "CurrentLearningAuditTests.check",
+        "CurrentLearningAuditTests.setUp",
+        "CurrentLearningAuditTests.test_actual_binding_cli_never_overwrites_a_prior_receipt",
+        "CurrentLearningAuditTests.test_all_original_family_seed_attempt_rows_are_rechecked_without_changing_bytes",
+        "CurrentLearningAuditTests.test_binding_requires_current_committed_bytes_and_clean_tracked_source",
+        "CurrentLearningAuditTests.test_duplicate_missing_or_wrong_family_sample_is_rejected_before_hash_binding",
+        "CurrentLearningAuditTests.test_source_tree_run_attempt_and_workflow_cannot_be_relabelled",
+        "CurrentLearningAuditTests.test_structural_errors_false_approval_and_incomplete_family_roster_are_rejected",
+        "CurrentLearningAuditTests.test_unchanged_report_values_cannot_hide_changed_original_bytes",
+        "NativeSeventeenRasterTests.check",
+        "NativeSeventeenRasterTests.setUp",
+        "NativeSeventeenRasterTests.test_both_current_runner_markers_are_seventeen_and_post_pass_errors_still_fail",
+        "NativeSeventeenRasterTests.test_old_sixteen_images_wrong_identity_and_missing_sidecars_or_movie_fail",
+        "NativeSeventeenRasterTests.test_seventeen_original_rasters_still_require_the_actual_readonly_native_helper",
+        "RealFilesAndCommandsTests.test_preparation_cannot_omit_the_current_source_learning_audit",
+        "learning_fixture",
+        "learning_identity"
+      ]
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "old_sha256": "113ba57248fe3a12dffb9249e9d62c60db023b7861935819a08e9b2d325fb6b0",
+      "new_sha256": "4e4bcc28bd1ac677178d42c16c240c5f0ee890ad520eb1322c4987814a728647",
+      "removed_definitions": [],
+      "unchanged_existing_definitions": [
+        "OriginalUpdateReplayTests.setUp",
+        "OriginalUpdateReplayTests.test_different_uid_version_or_apk_is_rejected",
+        "OriginalUpdateReplayTests.test_existing_migration_and_all_actual_snapshot_contracts_are_replayed",
+        "OriginalUpdateReplayTests.test_missing_restart_original_cannot_be_hidden_by_pass_report",
+        "OriginalUpdateReplayTests.write_report",
+        "WorkflowTests.setUpClass",
+        "WorkflowTests.test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload",
+        "WorkflowTests.test_dedicated_2020_delivery_keeps_every_gate_and_no_2019_receipt_path",
+        "WorkflowTests.test_only_c4_branch_is_added_to_existing_unified_exclusions",
+        "WorkflowTests.test_only_exact_same_repository_c4_pull_request_starts",
+        "WorkflowTests.test_real_runtime_compile_and_existing_build_gates_remain_mandatory",
+        "WorkflowTests.test_source_pin_guard_executes_real_existing_policy",
+        "condition",
+        "job",
+        "step"
+      ],
+      "changed_existing_definitions": [],
+      "added_definitions": [
+        "WorkflowTests.test_actual_original_jump_decode_dependencies_precede_unskipped_script_discovery",
+        "WorkflowTests.test_exact_learning_audit_runs_in_build_and_its_originals_reach_delivery"
+      ]
+    }
+  ],
+  "workflow": {
+    "unchanged_after_removing_only_learning_audit_hooks_and_early_ffmpeg_requirement": true,
+    "old_sha256": "d1d2ee70ef53d83755f7175c07bb5c0d5c6419356948afe80ce3402011de8ad3",
+    "new_sha256": "38f558a1e3c1f40f89f84879b229f3d5400f9d4e761f5474fd621b064d5407a8",
+    "all_prior_job_needs_if_permissions_and_steps_otherwise_exact": true
+  },
+  "jump": {
+    "only_changed_existing_method": "Tour.jump",
+    "other_methods_ast_identical": 49,
+    "removing_demux_arguments_and_new_comment_restores_exact_base_bytes": true,
+    "old_sha256": "a8246afe23edf8de01929af91839bc204e72a55187c84d6ed48ae3c5446541b0",
+    "new_sha256": "4eac8342846bf42561e45d132450ebf90648283f75c7f4333d77b6fd43739e28",
+    "old_test_exact_sha256": "27623fe917ac3946ef3143d97b2358cf21336a11b9e964932d4381f936d4bccd"
+  },
+  "curriculum": {
+    "existing_generator_lines_unchanged": true,
+    "only_insertions": [
+      [
+        "insert",
+        281,
+        281,
+        281,
+        310
+      ]
+    ],
+    "new_product_callers_added": false
+  },
+  "protected_paths_absent_from_changes": [
+    "config/godot-source.json",
+    "pubspec.yaml",
+    "scripts/tests/test_candidate_2011_pin.py",
+    "scripts/verify_legacy_release_pin.py"
+  ],
+  "new_test_execution": false,
+  "old_log_reconstruction": false,
+  "branch_and_worktree_mutation": false
+}

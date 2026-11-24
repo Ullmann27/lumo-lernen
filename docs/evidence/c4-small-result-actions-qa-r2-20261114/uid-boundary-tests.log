@@ -1,0 +1,14 @@
+test_already_tracked_uid_is_not_reinterpreted_as_generated_metadata (__main__.UidMetadataBoundaryTests.test_already_tracked_uid_is_not_reinterpreted_as_generated_metadata) ... ok
+test_changed_or_removed_uid_fails_actual_after_snapshot_check (__main__.UidMetadataBoundaryTests.test_changed_or_removed_uid_fails_actual_after_snapshot_check) ... ok
+test_changed_tracked_source_cannot_authorize_uid (__main__.UidMetadataBoundaryTests.test_changed_tracked_source_cannot_authorize_uid) ... ok
+test_malformed_or_noncanonical_uid_rejected (__main__.UidMetadataBoundaryTests.test_malformed_or_noncanonical_uid_rejected) ... ok
+test_missing_or_untracked_source_cannot_authorize_uid (__main__.UidMetadataBoundaryTests.test_missing_or_untracked_source_cannot_authorize_uid) ... ok
+test_other_uid_suffix_does_not_allow_new_input (__main__.UidMetadataBoundaryTests.test_other_uid_suffix_does_not_allow_new_input) ... ok
+test_regular_sidecars_bind_both_exact_tracked_source_blobs (__main__.UidMetadataBoundaryTests.test_regular_sidecars_bind_both_exact_tracked_source_blobs) ... ok
+test_symlink_sidecar_rejected_even_with_valid_target_bytes (__main__.UidMetadataBoundaryTests.test_symlink_sidecar_rejected_even_with_valid_target_bytes) ... ok
+test_untracked_executable_still_rejected (__main__.UidMetadataBoundaryTests.test_untracked_executable_still_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.282s
+
+OK

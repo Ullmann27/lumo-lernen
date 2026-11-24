@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "base": "1375da193af0152af64f91d86577aa9768cd50db",
+  "kind": "unverified_in_progress_notice_packaging_checkpoint",
+  "tested": false,
+  "tree_entries": [
+    {
+      "path": "config/lumo-notices.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bfb5f7bec41c91af963f47fc80d66977135ab74"
+    },
+    {
+      "path": "scripts/package_notices.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e706edf1d87c4222f17498ff8ef67ade30443dfc"
+    },
+    {
+      "path": "scripts/export_embedded_game.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba"
+    },
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "611e4f37a2be163365ef949ca097895a79f95090"
+    },
+    {
+      "path": "scripts/verify_play_bundle.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a7aac51f55132aac2d607867e3bdee8bf5787ab"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "worktree": "/workspace/scratch/b3485b7bb989/lumo-host-runtime-root-continuity-repair-7b16",
+  "head": "cf0ed7fe743cd8ba067ae7a9adf26745fa7bc628",
+  "source_freeze_sha256": "83f30cad027a125733b53ab072530ceb5ff685dd22763105cdfd5b2236b6f3e9",
+  "files_count": 30,
+  "local_final": {
+    "selected_tests": 83,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "full_discovery_count": 86,
+    "real_unix_tests_environment_blocked": 3,
+    "log_sha256": "1d98e62d99b63e47c73f8217797e98330f8cdde3c9d1c73abeb459de11ae69a3",
+    "source_unchanged": true
+  },
+  "scope": "Local contracts and original failure evidence, not Android acceptance. Root owns all Git/workflow/ref operations.",
+  "workflow_interface_document": "README.md",
+  "source_patch_sha256": "c9cfb976fb61d60efa19d377b4c34a29794a6f455f5674530078925bdef90262",
+  "independent_review": "pending"
+}

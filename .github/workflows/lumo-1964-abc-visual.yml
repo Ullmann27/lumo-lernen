@@ -1,0 +1,64 @@
+name: Lumo 1964 – ABC premium phone and Fold proof
+on:
+  push:
+    branches:
+      - chatgpt/lumo-1964-abc-premium-design-2026-10-16
+    paths:
+      - lib/features/learning/lumo_abc_tafel_screen.dart
+      - test/abc_premium_visual_test.dart
+      - .github/workflows/lumo-1964-abc-visual.yml
+      - pubspec.yaml
+  pull_request:
+    paths:
+      - lib/features/learning/lumo_abc_tafel_screen.dart
+      - test/abc_premium_visual_test.dart
+      - .github/workflows/lumo-1964-abc-visual.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  abc-real-flutter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Locked dependency resolution
+        run: flutter pub get --enforce-lockfile
+      - name: Verify screen and regression suite
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+          flutter test --no-pub --reporter=expanded --timeout=120s test/abc_premium_visual_test.dart
+          python3 - <<'PY'
+          import struct
+          from pathlib import Path
+          sizes = {
+              'phone_390x844': (585, 1266),
+              'fold_cover_320x780': (480, 1170),
+              'fold_open_840x760': (1260, 1140),
+          }
+          for name, expected in sizes.items():
+              p = Path('visual-evidence') / f'abc_premium_{name}.png'
+              data = p.read_bytes()
+              assert data[:8] == b'\x89PNG\r\n\x1a\n', p
+              actual = struct.unpack('>II', data[16:24])
+              assert actual == expected, (p, actual, expected)
+              print(f'REAL_FLUTTER_FRAME {p}: {actual[0]}x{actual[1]}')
+          PY
+          git rev-parse HEAD > visual-evidence/SOURCE-COMMIT.txt
+          sha256sum visual-evidence/abc_premium_*.png > visual-evidence/SHA256SUMS.txt
+          printf 'Actual flutter_test rendering; not physical Android device imagery.\n' > visual-evidence/CAPTURE-TYPE.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1964-abc-phone-fold-proof
+          path: visual-evidence/
+          if-no-files-found: warn
+          retention-days: 21

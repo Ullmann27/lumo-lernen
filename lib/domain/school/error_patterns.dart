@@ -1,4 +1,5 @@
 import 'attempt.dart';
+import '../learning/whole_arithmetic.dart';
 
 /// Erkennt typische, wiederkehrende Fehler aus Aufgabe, Antwort und
 /// Lösung. Liefert einen kurzen deutschen Namen des Musters oder null.
@@ -9,43 +10,37 @@ import 'attempt.dart';
 class ErrorPatternDetector {
   const ErrorPatternDetector();
 
-  static final RegExp _calc = RegExp(r'(\d+)\s*([+\-−–×x·*:÷])\s*(\d+)');
-
   String? detect(Attempt attempt) {
     if (attempt.correct) return null;
     if (attempt.subject == 'Lesen') {
       final word = attempt.given.trim();
       return word.isEmpty ? null : 'schwieriges Wort „$word“';
     }
-    final m = _calc.firstMatch(attempt.prompt);
-    final given = int.tryParse(attempt.given.trim());
-    final expected = int.tryParse(attempt.expected.trim());
-    if (m == null || given == null || expected == null) return null;
-    final a = int.parse(m.group(1)!);
-    final b = int.parse(m.group(3)!);
-    switch (m.group(2)!) {
-      case '+':
-        if (given == expected - 10) return 'Zehner beim Übergang vergessen';
+    if (attempt.subject != 'Mathematik') return null;
+    final calculation =
+        WholeArithmetic.parse(attempt.prompt, expected: attempt.expected);
+    final given = WholeArithmetic.integerAnswer(attempt.given);
+    if (calculation == null || given == null || given == calculation.result) {
+      return null;
+    }
+    final a = calculation.left;
+    final b = calculation.right;
+    final expected = calculation.result;
+    switch (calculation.operation) {
+      case WholeOperation.addition:
+        if (calculation.matchesMissingCarry(given)) return 'Zehner beim Übergang vergessen';
         if (given == (a - b).abs()) return 'Minus statt Plus gerechnet';
         if (_swapped(given, expected)) return 'Ziffern vertauscht';
         if ((given - expected).abs() == 1) return 'um eins verzählt';
-      case '-':
-      case '−':
-      case '–':
+      case WholeOperation.subtraction:
         if (given == a + b) return 'Plus statt Minus gerechnet';
-        if (a >= 10 &&
-            b >= 10 &&
-            a % 10 < b % 10 &&
-            given == ((a ~/ 10) - (b ~/ 10)) * 10 + (b % 10 - a % 10)) {
+        if (calculation.matchesReversedOnes(given)) {
           return 'kleinere Einerziffer von der größeren abgezogen';
         }
-        if (given == expected + 10) return 'Zehner beim Übergang nicht abgezogen';
+        if (calculation.matchesMissingBorrow(given)) return 'Zehner beim Übergang nicht abgezogen';
         if (_swapped(given, expected)) return 'Ziffern vertauscht';
         if ((given - expected).abs() == 1) return 'um eins verzählt';
-      case '×':
-      case 'x':
-      case '·':
-      case '*':
+      case WholeOperation.multiplication:
         if (given == a + b) return 'Plus statt Mal gerechnet';
         if (given == expected + a ||
             given == expected - a ||
@@ -53,8 +48,7 @@ class ErrorPatternDetector {
             given == expected - b) {
           return 'in der Malreihe um einen Schritt verrutscht';
         }
-      case ':':
-      case '÷':
+      case WholeOperation.division:
         if (given == a * b) return 'Mal statt Geteilt gerechnet';
         if ((given - expected).abs() == 1) return 'um eins verzählt';
     }

@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T13:32:41.318200+00:00",
+  "review_kind": "Independent direct visual inspection of six actual Flutter widget PNGs; separate later review, original frozen evidence unchanged",
+  "source_head": "bb97ab6b2e563f3662f1ce5e6141e95cf62d79a7",
+  "source_tree": "e2db771277ed3d181ed34410a7a736252bcdf0df",
+  "original_capture_inventory": {
+    "path": "/workspace/scratch/b3485b7bb989/host-math491-bb97-validation-20261114/capture-inventory.json",
+    "sha256": "9e31748310dceae951319cb8f733aa21a80a1e3543dd357c2080cb66622718fc"
+  },
+  "original_archive": {
+    "path": "/workspace/scratch/b3485b7bb989/host-math491-bb97-validation-20261114/compact-originals.tar.gz",
+    "bytes": 4692443,
+    "sha256": "27394c321116b509b97bbca2736f5c0a84aa29969e4a602fda85a99a4b96ac74"
+  },
+  "independent_result": {
+    "conclusion": "No visible Village-card clipping, overlap or missing title/image in the six inspected original frames.",
+    "common_observations": [
+      "Dorfwirtschaft is fully visible in the first row in all six frames.",
+      "Its title, building image and card border are distinct from the separate Bauwelt tile.",
+      "The fox artwork and adventure action occupy a separate area in wider layouts.",
+      "Some lower content crosses the viewport edge; no Village-card defect is inferred from that scrolling-content boundary."
+    ],
+    "limits": [
+      "Static widget images only; no touch execution, device, Android, native entry/return, FPS, audio or screenreader acceptance.",
+      "No claim that every lower menu item fits into each static viewport.",
+      "No image edit, regeneration, crop or new capture was performed.",
+      "The earlier archive/handoff statement that no visual review had yet occurred remains historically correct and is not rewritten.",
+      "No result transferred to newer Host sources."
+    ]
+  },
+  "images": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-math491-bb97-validation-20261114/village-captures/village-fold-cover.png",
+      "archive_member": "village-captures/village-fold-cover.png",
+      "bytes": 337946,
+      "sha256": "fa00127e0316de2b083ba8d55578f79e01197203cacc2ad5ff3431d0a47b6361",
+      "dimensions": [
+        344,
+        882
+      ],
+      "directly_viewed": true,
+      "viewer": "flutter_integration via view_image, original unedited file",
+      "observations": {
+        "layout": "Two columns in the narrow 344 x 882 viewport.",
+        "village": "Top-right Village card, complete castle/building image and full Dorfwirtschaft label; separate Bauwelt card below.",
+        "viewport_limit": "Additional adventures continue towards/beyond the lower viewport edge; no clipping of the Village card."
+      }
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-math491-bb97-validation-20261114/village-captures/village-fold-landscape.png",
+      "archive_member": "village-captures/village-fold-landscape.png",
+      "bytes": 1102593,
+      "sha256": "213edb9568f70aa0cb1673d06cc5ce242a37385cc29803b69fe5371698ee92ac",
+      "dimensions": [
+        1200,
+        900
+      ],
+      "directly_viewed": true,
+      "viewer": "flutter_integration via view_image, original unedited file",
+      "observations": {
+        "layout": "Three large game columns plus the fox/action area in the 1200 x 900 landscape viewport.",
+        "village": "Village remains fully contained in the second top card; full readable title, no neighbouring-card overlap.",
+        "viewport_limit": "The lower navigation strip is only partly inside this captured viewport; the Village area is unaffected."
+      }
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-math491-bb97-validation-20261114/village-captures/village-fold-open-large-text.png",
+      "archive_member": "village-captures/village-fold-open-large-text.png",
+      "bytes": 600959,
+      "sha256": "a2397df28ac69a41b918a0ea6ffb741bc92b2b7c7cb833874881652bf6ec6d18",
+      "dimensions": [
+        690,
+        829
+      ],
+      "directly_viewed": true,
+      "viewer": "flutter_integration via view_image, original unedited file",
+      "observations": {
+        "layout": "Larger labels and two game columns plus the fox/action area at 690 x 829.",
+        "village": "The enlarged Dorfwirtschaft label still fits completely inside the top-right card, and Bauwelt remains a different card below.",
+        "viewport_limit": "The lower Jump card and its label extend beyond the viewport; the Village card is not clipped."
+      }
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-math491-bb97-validation-20261114/village-captures/village-fold-open.png",
+      "archive_member": "village-captures/village-fold-open.png",
+      "bytes": 595416,
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+      "dimensions": [
+        690,
+        829
+      ],
+      "directly_viewed": true,
+      "viewer": "flutter_integration via view_image, original unedited file",
+      "observations": {
+        "layout": "Three game columns on the left and the fox artwork with a yellow adventure button on the right.",
+        "village": "Village is the middle card in the top row; complete title and image, no overlap with Cards, Kart or the fox.",
+        "viewport_limit": "The additional-adventure row and settings strip are visible; further explanatory text reaches the bottom edge."
+      }
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-math491-bb97-validation-20261114/village-captures/village-fold-wide-min.png",
+      "archive_member": "village-captures/village-fold-wide-min.png",
+      "bytes": 555532,
+      "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9",
+      "dimensions": [
+        640,
+        829
+      ],
+      "directly_viewed": true,
+      "viewer": "flutter_integration via view_image, original unedited file",
+      "observations": {
+        "layout": "Two game columns plus a separate fox/action area at 640 x 829.",
+        "village": "Full Village image and label remain visible in the top row; its border is separated from Kart and the right-side artwork.",
+        "viewport_limit": "The additional-adventure heading reaches the lower edge; more scroll content is outside the frame."
+      }
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-math491-bb97-validation-20261114/village-captures/village-phone.png",
+      "archive_member": "village-captures/village-phone.png",
+      "bytes": 401998,
+      "sha256": "12e3d0ca6f514f12b58106ddb1a197bdaa09a773a2703e5d4708db8d6e710dc7",
+      "dimensions": [
+        412,
+        915
+      ],
+      "directly_viewed": true,
+      "viewer": "flutter_integration via view_image, original unedited file",
+      "observations": {
+        "layout": "Two columns in the 412 x 915 phone viewport.",
+        "village": "Village card is fully visible next to Lumo Kart; title and image remain inside its border and distinct from Bauwelt.",
+        "viewport_limit": "Only the upper part of the additional-adventure row fits at the bottom; this is outside the Village card."
+      }
+    }
+  ],
+  "separate_root_observation": {
+    "provided_by": "/root",
+    "source": "Root collaboration message received after the independent six-image inspection; no separate Root review file/hash was supplied.",
+    "root_reported_direct_view_of_all_six": true,
+    "reported_observations": [
+      "Dorfwirtschaft is fully and clearly visible and separate from Bauwelt in all six frames.",
+      "Original Lumo is visible in the wider layouts.",
+      "Fold-cover and phone show two columns; open fold shows three plus the fox; large text shows two plus the fox.",
+      "Lower edges show continuing scroll content and do not establish a clipped Village-card error.",
+      "No visible Village-card overflow or overlap in these six frames."
+    ],
+    "scope": "Root observation of the same static bb97 widget PNGs, recorded separately from this reviewer findings."
+  }
+}

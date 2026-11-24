@@ -1,0 +1,92 @@
+{
+  "observedAtUtc": "2026-11-16T02:30:09.074649+00:00",
+  "runId": 43790915460,
+  "jobId": 133048886504,
+  "status": "PASS",
+  "flutterSource": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "flutter": {
+    "passed": 2887,
+    "failed": 0,
+    "existingSkipped": 202
+  },
+  "analyzer": {
+    "errors": 0,
+    "warnings": 4,
+    "infos": 274
+  },
+  "hostPythonMethodsPassed": 109,
+  "nestedJvmAssertionsAreNotAdditionalAndroidTests": true,
+  "godotEngine": "4.6.3",
+  "actualGodotImportPassed": true,
+  "nativePrograms": [
+    {
+      "log": "learning_android_host_capability_regression.log",
+      "assertions": 43
+    },
+    {
+      "log": "learning_companion_scope_regression.log",
+      "assertions": 56
+    },
+    {
+      "log": "learning_english_regression.log",
+      "assertions": 7239
+    },
+    {
+      "log": "learning_generation_regression.log",
+      "assertions": 47
+    },
+    {
+      "log": "learning_host_payload_regression.log",
+      "assertions": 135
+    },
+    {
+      "log": "learning_pattern_regression.log",
+      "assertions": 33077
+    },
+    {
+      "log": "learning_sharing_regression.log",
+      "assertions": 1811
+    },
+    {
+      "log": "learning_wonder_details_regression.log",
+      "assertions": 100
+    },
+    {
+      "log": "learning_world_regression.log",
+      "assertions": 5351
+    },
+    {
+      "log": "nextgen_avatar_contract_review.log",
+      "assertions": 300
+    },
+    {
+      "log": "nextgen_learning_base_audio_regression.log",
+      "assertions": 69
+    },
+    {
+      "log": "nextgen_learning_route_review.log",
+      "assertions": 7324
+    }
+  ],
+  "nativeAssertionsTotal": 55552,
+  "projectValidator": {
+    "pass": 118,
+    "warn": 0,
+    "fail": 0
+  },
+  "nativeWarnings": [
+    "ObjectDB instances leaked at exit in isolated nextgen_avatar_contract_review. Original retained; neither proved app leak nor leak-free app run."
+  ],
+  "protectedFilesVerified": 18,
+  "coverageSourceHashesVerified": 248,
+  "apkBuildCompletedAtObservation": false,
+  "androidTourPassedAtObservation": false,
+  "physicalDeviceTest": false,
+  "jobLog": {
+    "bytes": 1659873,
+    "sha256": "982fb3ddd211faff1f01aa14a6629018a1e321973fa3bd0455e2dc66cf92aa29",
+    "gzipSha256": "d840755af6d3173522d85c05b554c65e074c1f3a6454a64dd8b7b9ad28b646d2",
+    "whitespaceNormalized": false
+  }
+}

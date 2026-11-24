@@ -1,0 +1,30 @@
+00:00 +0: loading /home/agent/lumo-play-image-2708/.audit-harness/test/core/lumo_image_generator_test.dart
+00:00 +0: ohne Elternfreigabe wird nie eine Online-Adresse gebaut
+00:00 +1: mit Freigabe: nur Themen der Positivliste, übersetzt, ohne freien Kindertext
+00:00 +2: Orange als einziges Motiv sendet keinen persönlichen Freitext
+00:00 +2 -1: Orange als einziges Motiv sendet keinen persönlichen Freitext [E]
+  Expected: not contains 'SYNTHETIC_NAME_2708'
+    Actual: 'orange-colored Zeig mir orange, ich heiße SYNTHETIC_NAME_2708 und wohne in SYNTHETIC_ADDRESS_2708., cute kid-friendly cartoon style, soft pastel colors, simple shapes, illustration for children'
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/core/lumo_image_generator_test.dart 42:5       main.<fn>
+  
+00:00 +2 -1: Orange ohne weiteres Motiv bleibt die erlaubte Frucht
+00:00 +2 -2: Orange ohne weiteres Motiv bleibt die erlaubte Frucht [E]
+  Expected: a string starting with 'orange, '
+    Actual: 'orange-colored Orange, cute kid-friendly cartoon style, soft pastel colors, simple shapes, illustration for children'
+  Orange
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/core/lumo_image_generator_test.dart 52:7       main.<fn>
+  
+00:00 +2 -2: Farbe und Motiv werden ausschließlich aus festen Werten gebaut
+00:00 +3 -2: Farbe allein und nicht erlaubte Motive erzeugen keine Online-Adresse
+00:00 +4 -2: Orange und Farb-Motiv-Kombinationen benötigen weiterhin Elternfreigabe
+00:00 +5 -2: Some tests failed.
+
+Failing tests:
+  /home/agent/lumo-play-image-2708/.audit-harness/test/core/lumo_image_generator_test.dart: Orange als einziges Motiv sendet keinen persönlichen Freitext
+  /home/agent/lumo-play-image-2708/.audit-harness/test/core/lumo_image_generator_test.dart: Orange ohne weiteres Motiv bleibt die erlaubte Frucht

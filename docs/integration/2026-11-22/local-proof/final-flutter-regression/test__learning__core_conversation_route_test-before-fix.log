@@ -1,0 +1,60 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: actual Core header dialog retains current task and permitted help
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following _TypeError was thrown running a test:
+Null check operator used on a null value
+
+When the exception was thrown, this was the stack:
+#0      main.<anonymous closure> (file:///tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart:147:34)
+<asynchronous suspension>
+#1      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#2      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  actual Core header dialog retains current task and permitted help
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +0 -1: actual Core header dialog retains current task and permitted help [E]
+  Test failed. See exception logs above.
+  The test description was: actual Core header dialog retains current task and permitted help
+  
+00:03 +0 -1: actual Core dialog repeats its last help and accepts trying alone
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following _TypeError was thrown running a test:
+Null check operator used on a null value
+
+When the exception was thrown, this was the stack:
+#0      main.<anonymous closure> (file:///tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart:202:34)
+<asynchronous suspension>
+#1      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#2      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  actual Core dialog repeats its last help and accepts trying alone
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:04 +0 -2: actual Core dialog repeats its last help and accepts trying alone [E]
+  Test failed. See exception logs above.
+  The test description was: actual Core dialog repeats its last help and accepts trying alone
+  
+00:04 +0 -2: foreign overlay withdraws even an owned Core conversation
+00:04 +1 -2: task replacement retires the old dialog and its entry owner
+00:05 +2 -2: actual Core and own dialog survive the shell width breakpoint
+00:06 +3 -2: actual Core dock menu keeps its task through the question action
+00:06 +4 -2: wide Core companion questions and menu use the current owner
+00:07 +5 -2: stop retires a menu selection without an unbound fallback
+00:07 +6 -2: task change during menu closing discards its pending action
+00:08 +7 -2: pause and resume while menu closes retire its pending action
+00:08 +8 -2: (tearDownAll)
+00:08 +8 -2: Some tests failed.
+
+Failing tests:
+  /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core dialog repeats its last help and accepts trying alone
+  /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help

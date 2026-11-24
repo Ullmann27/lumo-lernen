@@ -1,0 +1,774 @@
+{
+  "schema": "lumo.c4-r3-to057-source-equivalence-and-input-review.v1",
+  "status": "completed_read_only_evidence_and_source_review",
+  "historical_run": {
+    "run": 43596764202,
+    "attempt": 1,
+    "job": 132452818400,
+    "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
+    "qa_tree": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4",
+    "production_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "production_host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "production_native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "production_native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+    "artifact": 14114498334,
+    "archive_bytes": 1619461,
+    "archive_sha256": "415ce3b5f51d510983c0184d37e479dc00844fa50f9dcd70c4f0493454228f64",
+    "local_original_root": "/workspace/scratch/2708c7907f28/r3-original-43596764202/original",
+    "existing_archive_rehashed": true,
+    "archive_redownloaded": false,
+    "original_log_result": {
+      "godot": "4.6.3.stable.official.7d41c59c4",
+      "platform": "Linux/X11 Mesa llvmpipe",
+      "godot_checks": 283,
+      "godot_actions": 2,
+      "dart_tests_passed": 1,
+      "godot_exit": 0,
+      "dart_exit": 0
+    }
+  },
+  "current_source": {
+    "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "host_lib_tree": "73b810ba0c1d3982e99a9d2df8eda3389756feef",
+    "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "native_tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+    "native_commit_tree_independently_read": true,
+    "old_host_lib_tree": "659b4f26852dea7911c1a6b820299ed3c38a8a88",
+    "old_host_tools_tree": "d5c23c236dd5476bf7b6a95a983b5ff116919473",
+    "current_host_tools_tree": "3f991712f75b2927403191c84cdbfa7a86786db6",
+    "current_host_test_tree": "1d4d5d3869d6b9d56bed65b6beea9582c4e9bc9c",
+    "all_used_recursive_tree_responses_untruncated": true,
+    "materialized_host_directory": "/workspace/scratch/2708c7907f28/lumo-host-merge-7793-0b7/checkout",
+    "materialized_directory_is_git_repository": false
+  },
+  "input_mechanism": {
+    "helper": {
+      "path": "scripts/tests/connect_four_runtime_regression.gd",
+      "blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99"
+    },
+    "scroll_lines": [
+      131,
+      171
+    ],
+    "scroll": "Programmatically injected Godot InputEventScreenTouch press, eight InputEventScreenDrag steps per swipe, then ScreenTouch release; submitted through Input.parse_input_event and flush_buffered_events. No mouse-wheel event and no direct scroll_vertical assignment.",
+    "tap_lines": [
+      96,
+      128
+    ],
+    "tap": "X11 pointer position is first established with InputEventMouseMotion; then ScreenTouch press/release is injected at the exposed button center.",
+    "boundary": "Rendered Linux/X11 desktop probe with synthetic Godot input events, not physical touch or Android OS MotionEvent/Binder execution.",
+    "viewport_px": [
+      640,
+      360
+    ],
+    "density": 1,
+    "injected_system_insets_px": [
+      0,
+      24,
+      0,
+      24
+    ],
+    "qa_setup_lines": [
+      393,
+      429
+    ],
+    "qa_setup": "Overlay assigns HostBridge options and a MobileRuntime safe-area reader, sets the table's host object to AuditedDartBridge, and loads unchanged production table code.",
+    "logical_frames": 437,
+    "performance_claim": false
+  },
+  "action_records": [
+    {
+      "action": "restart",
+      "request": {
+        "action": "restart",
+        "revision": 18,
+        "roundId": "9cfa9f4fc152e46a41204df44de59d65",
+        "sequence": 11
+      },
+      "before_round": "9cfa9f4fc152e46a41204df44de59d65",
+      "after_round": "d14950fcfa6dea8004ed186de8036654",
+      "before_revision": 18,
+      "after_revision": 19,
+      "before_ack": 10,
+      "after_ack": 11,
+      "state_before_exact_in_Dart": true,
+      "state_after_exact_in_Dart": true,
+      "request_exact_in_Dart": true,
+      "actual_counted_drags": 8,
+      "declared_drags": 8,
+      "scroll_before": 61,
+      "scroll_after": 89,
+      "tap_events": [
+        {
+          "frame": 231,
+          "label": "restart exposed result action",
+          "pressed": true,
+          "screen_px": [
+            316,
+            172
+          ],
+          "snapshot_revision": 18
+        },
+        {
+          "frame": 232,
+          "label": "restart exposed result action",
+          "pressed": false,
+          "screen_px": [
+            316,
+            172
+          ],
+          "snapshot_revision": 18
+        }
+      ],
+      "new_round": true,
+      "fresh_empty_playing": true,
+      "two_players_after": true,
+      "layouts": {
+        "before": {
+          "layout_sequence": 5,
+          "revision": 18,
+          "ack": 10,
+          "roundId": "9cfa9f4fc152e46a41204df44de59d65",
+          "phase": "won",
+          "twoPlayers": true,
+          "columns": [
+            0,
+            6,
+            1,
+            6,
+            2,
+            5,
+            3
+          ],
+          "density": 1,
+          "window_px": [
+            640,
+            360
+          ],
+          "viewport_px": [
+            640,
+            360
+          ],
+          "safe_rect": [
+            0,
+            24,
+            640,
+            312
+          ],
+          "matches_action_state": true
+        },
+        "after": {
+          "layout_sequence": 6,
+          "revision": 19,
+          "ack": 11,
+          "roundId": "d14950fcfa6dea8004ed186de8036654",
+          "phase": "playing",
+          "twoPlayers": true,
+          "columns": [],
+          "density": 1,
+          "window_px": [
+            640,
+            360
+          ],
+          "viewport_px": [
+            640,
+            360
+          ],
+          "safe_rect": [
+            0,
+            24,
+            640,
+            312
+          ],
+          "matches_action_state": true
+        }
+      }
+    },
+    {
+      "action": "mode",
+      "request": {
+        "action": "mode",
+        "revision": 33,
+        "roundId": "d14950fcfa6dea8004ed186de8036654",
+        "sequence": 20,
+        "twoPlayers": false
+      },
+      "before_round": "d14950fcfa6dea8004ed186de8036654",
+      "after_round": "9729b63cc7402806d9c46124770f4f5c",
+      "before_revision": 33,
+      "after_revision": 34,
+      "before_ack": 19,
+      "after_ack": 20,
+      "state_before_exact_in_Dart": true,
+      "state_after_exact_in_Dart": true,
+      "request_exact_in_Dart": true,
+      "actual_counted_drags": 16,
+      "declared_drags": 16,
+      "scroll_before": 59,
+      "scroll_after": 148,
+      "tap_events": [
+        {
+          "frame": 428,
+          "label": "mode exposed result action",
+          "pressed": true,
+          "screen_px": [
+            316,
+            173
+          ],
+          "snapshot_revision": 33
+        },
+        {
+          "frame": 429,
+          "label": "mode exposed result action",
+          "pressed": false,
+          "screen_px": [
+            316,
+            173
+          ],
+          "snapshot_revision": 33
+        }
+      ],
+      "new_round": true,
+      "fresh_empty_playing": true,
+      "two_players_after": false,
+      "layouts": {
+        "before": {
+          "layout_sequence": 9,
+          "revision": 33,
+          "ack": 19,
+          "roundId": "d14950fcfa6dea8004ed186de8036654",
+          "phase": "won",
+          "twoPlayers": true,
+          "columns": [
+            0,
+            6,
+            1,
+            6,
+            2,
+            5,
+            3
+          ],
+          "density": 1,
+          "window_px": [
+            640,
+            360
+          ],
+          "viewport_px": [
+            640,
+            360
+          ],
+          "safe_rect": [
+            0,
+            24,
+            640,
+            312
+          ],
+          "matches_action_state": true
+        },
+        "after": {
+          "layout_sequence": 10,
+          "revision": 34,
+          "ack": 20,
+          "roundId": "9729b63cc7402806d9c46124770f4f5c",
+          "phase": "playing",
+          "twoPlayers": false,
+          "columns": [],
+          "density": 1,
+          "window_px": [
+            640,
+            360
+          ],
+          "viewport_px": [
+            640,
+            360
+          ],
+          "safe_rect": [
+            0,
+            24,
+            640,
+            312
+          ],
+          "matches_action_state": true
+        }
+      }
+    }
+  ],
+  "cross_process_original_consistency": {
+    "all_21_requests_equal_between_native_and_dart": true,
+    "dart_state_events": 35,
+    "before_after_for_both_actions_exactly_match_dart_events": true,
+    "all_four_layouts_match_action_states": true,
+    "awards": [
+      {
+        "resultId": "c4:c6fe0e38855f93fc20490eb88cdc5e23a5ff16cc8fa1330c4c299717bd8f8781:9cfa9f4fc152e46a41204df44de59d65",
+        "stars": 5,
+        "xp": 40
+      },
+      {
+        "resultId": "c4:c6fe0e38855f93fc20490eb88cdc5e23a5ff16cc8fa1330c4c299717bd8f8781:d14950fcfa6dea8004ed186de8036654",
+        "stars": 5,
+        "xp": 40
+      }
+    ],
+    "stars": 10,
+    "xp": 80,
+    "final_state": {
+      "roundId": "9729b63cc7402806d9c46124770f4f5c",
+      "revision": 35,
+      "ack": 21,
+      "paused": true,
+      "exit": true,
+      "twoPlayers": false,
+      "columns": [],
+      "rewarded": false
+    },
+    "final_state_matches": true,
+    "same_process_preferences_reopen": true
+  },
+  "production_source_matrix": {
+    "host": [
+      {
+        "path": "lib/features/games/connect_four/connect_four_engine.dart",
+        "aab": "0ad49aeaab65ea34ceb387e73788cdb886a210db",
+        "current057": "0ad49aeaab65ea34ceb387e73788cdb886a210db",
+        "mode": "100644",
+        "same": true
+      },
+      {
+        "path": "lib/features/games/connect_four/connect_four_round.dart",
+        "aab": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+        "current057": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+        "mode": "100644",
+        "same": true
+      },
+      {
+        "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+        "aab": "fd8efe8e114de656b6802e097b96910535d83c39",
+        "current057": "fd8efe8e114de656b6802e097b96910535d83c39",
+        "mode": "100644",
+        "same": true
+      },
+      {
+        "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+        "aab": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+        "current057": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+        "mode": "100644",
+        "same": true
+      },
+      {
+        "path": "lib/features/games/connect_four/lumo_connect_four_stage.dart",
+        "aab": "84c5ff9949a216331d228128f02415a47833396b",
+        "current057": "84c5ff9949a216331d228128f02415a47833396b",
+        "mode": "100644",
+        "same": true
+      },
+      {
+        "path": "lib/core/reward_wallet_repository.dart",
+        "aab": "63a3d4c4fe6c5c9249f3531e685cc541646747ee",
+        "current057": "63a3d4c4fe6c5c9249f3531e685cc541646747ee",
+        "mode": "100644",
+        "same": true
+      },
+      {
+        "path": "lib/core/legacy_learning_data.dart",
+        "aab": "6de6467fe67ae52e1ac08393c438a4c63311feb1",
+        "current057": "6de6467fe67ae52e1ac08393c438a4c63311feb1",
+        "mode": "100644",
+        "same": true
+      }
+    ],
+    "native": [
+      {
+        "path": "project.godot",
+        "e2_blob": "296b8b1752ebfd526aedd019907ac88efbfd0c02",
+        "a69_blob": "296b8b1752ebfd526aedd019907ac88efbfd0c02",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scenes/games/connect_four_table.tscn",
+        "e2_blob": "e1c14734e2bde85fd9852db3d8ef20f4cd0ca24d",
+        "a69_blob": "e1c14734e2bde85fd9852db3d8ef20f4cd0ca24d",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/games/connect_four/connect_four_table.gd",
+        "e2_blob": "f2ae17e7edf8ac1b2d0d72a0d477d7e1459b1458",
+        "a69_blob": "f2ae17e7edf8ac1b2d0d72a0d477d7e1459b1458",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/app/mobile_runtime.gd",
+        "e2_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f",
+        "a69_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+        "e2_blob": "e4b6a6081a922a137f68491de66f51e096528510",
+        "a69_blob": "e4b6a6081a922a137f68491de66f51e096528510",
+        "mode": "100644",
+        "identical": true
+      },
+      {
+        "path": "scripts/systems/host_bridge.gd",
+        "e2_blob": "dab96a1b918dc754568c0eda14cdda05175c89fb",
+        "a69_blob": "1845617ed2659dd377f433209799b12ddf310deb",
+        "mode": "100644",
+        "identical": false
+      },
+      {
+        "path": "scripts/tests/connect_four_runtime_regression.gd",
+        "e2_blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99",
+        "a69_blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99",
+        "mode": "100644",
+        "identical": true
+      }
+    ]
+  },
+  "native_shared_bridge_exception": {
+    "old_blob": "dab96a1b918dc754568c0eda14cdda05175c89fb",
+    "new_blob": "1845617ed2659dd377f433209799b12ddf310deb",
+    "only_settlement_branch_added": true,
+    "start_line": 40,
+    "last_added_line": 50,
+    "old_allowlist_if_becomes_elif": true,
+    "scope": "Whole file differs, but removing only the new settlement branch at lines40–50 and restoring elif to if reconstructs the exact old file. Existing connect_four allowlist, launch_options, durable_ack and return behavior remain unchanged.",
+    "r3_boundary": "The QA setup assigns HostBridge._options directly and uses an AuditedDartBridge for table requests, so the Android launch-options singleton route is not exercised by R3."
+  },
+  "android_bridge_source_matrix": [
+    {
+      "path": "tools/auto_install/ConnectFourGameActivity.kt",
+      "aab_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984",
+      "host057_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984",
+      "mode": "100644",
+      "identical": true
+    },
+    {
+      "path": "tools/auto_install/ConnectFourAuthorityService.kt",
+      "aab_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3",
+      "host057_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3",
+      "mode": "100644",
+      "identical": true
+    },
+    {
+      "path": "tools/auto_install/ConnectFourBridge.kt",
+      "aab_blob": "f6e41ada005cc01f3b75d05370e5098048188d37",
+      "host057_blob": "f6e41ada005cc01f3b75d05370e5098048188d37",
+      "mode": "100644",
+      "identical": true
+    }
+  ],
+  "android_bridge_limitation": "These three tools/auto_install Kotlin sources are independently byte-bound through the actual aab and057 Git trees. They were not included in the R3 HOST_PATHS source snapshot and were not run as Android/Binder by that desktop test. Byte equality does not establish current APK content or Android interaction success.",
+  "qa_vs_product": {
+    "qa_four_file_identities": [
+      {
+        "path": ".github/workflows/lumo-c4-small-result-actions-qa.yml",
+        "mode": "100644",
+        "git_blob": "5c02a9274bf91b428e1080ff58884af9e89d46a8",
+        "bytes": 4486
+      },
+      {
+        "path": "scripts/run_connect_four_small_result_actions_qa.py",
+        "mode": "100644",
+        "git_blob": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3",
+        "bytes": 21346
+      },
+      {
+        "path": "test/games/connect_four_small_result_actions_qa.dart",
+        "mode": "100644",
+        "git_blob": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
+        "bytes": 9498
+      },
+      {
+        "path": "tools/qa/connect_four_small_result_actions_qa.gd",
+        "mode": "100644",
+        "git_blob": "1b474002b3b93db9cae53a19c90fe75cb80c0604",
+        "bytes": 16823
+      }
+    ],
+    "untracked_overlays": [
+      {
+        "source": "test/games/connect_four_small_result_actions_qa.dart",
+        "destination": "test/games/connect_four_small_result_actions_qa.dart",
+        "blob": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e"
+      },
+      {
+        "source": "tools/qa/connect_four_small_result_actions_qa.gd",
+        "destination": "scripts/tests/connect_four_small_result_actions_qa.gd",
+        "blob": "1b474002b3b93db9cae53a19c90fe75cb80c0604"
+      }
+    ],
+    "file_transport": {
+      "path": "test/games/connect_four_runtime_bridge.dart",
+      "blob": "6ae4695d06f955d5c9501bdce22ed9a83a0a26d0",
+      "current057_test_tree_match": true,
+      "lines": [
+        12,
+        46
+      ]
+    },
+    "transport": "Two real processes exchange input.json and state.json; the unchanged production Dart session/controller process real native submitted requests. The native bridge and Dart FileTransport are QA boundaries.",
+    "native_method_channel": {
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "blob": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "lines": [
+        16,
+        57
+      ],
+      "channel": "lumo_lernen/connect_four",
+      "executed_by_r3": false
+    },
+    "preferences": "SharedPreferences.setMockInitialValues({}) and same-process reopen; no device/process-restart persistence proof.",
+    "profile_boundary": "Synthetic student ID and canUseProfile callback returning true; no actual Android profile-switch proof.",
+    "production_snapshots_before_after": {
+      "bytes": 616879,
+      "sha256": "009c0dd5b9cfde08e3a977249a4db64a0db935a48fde71f819271e5ca9a0490d",
+      "git_blob": "3293e58f3b217793aedb3d5fc013cb2c5097f923",
+      "byte_identical": true
+    }
+  },
+  "source_ranges": [
+    {
+      "path": "scripts/games/connect_four/connect_four_table.gd",
+      "blob": "f2ae17e7edf8ac1b2d0d72a0d477d7e1459b1458",
+      "lines": [
+        [
+          185,
+          211
+        ],
+        [
+          545,
+          572
+        ],
+        [
+          577,
+          612
+        ],
+        [
+          615,
+          649
+        ]
+      ],
+      "purpose": "Real request/ACK flow, ScrollContainer and button MOUSE_FILTER_PASS, layout, result actions."
+    },
+    {
+      "path": "tools/qa/connect_four_small_result_actions_qa.gd",
+      "blob": "1b474002b3b93db9cae53a19c90fe75cb80c0604",
+      "lines": [
+        [
+          52,
+          108
+        ],
+        [
+          112,
+          171
+        ],
+        [
+          198,
+          208
+        ],
+        [
+          266,
+          349
+        ],
+        [
+          353,
+          429
+        ]
+      ],
+      "purpose": "Real input, unchanged state during scroll, exact ACK, fresh rounds, capture binding, QA boundary injection."
+    },
+    {
+      "path": "test/games/connect_four_small_result_actions_qa.dart",
+      "blob": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
+      "lines": [
+        [
+          37,
+          83
+        ],
+        [
+          87,
+          193
+        ]
+      ],
+      "purpose": "Original production controller, independent actual request/state-event cross-check, awards and test-backend reopen."
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "blob": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "lines": [
+        [
+          251,
+          273
+        ]
+      ],
+      "purpose": "Production restart/mode application and subsequent ACK."
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "lines": [
+        [
+          307,
+          316
+        ]
+      ],
+      "purpose": "New round identity, unchanged or selected player mode, empty columns."
+    }
+  ],
+  "original_file_identities": [
+    {
+      "path": "runtime/native-result.json",
+      "bytes": 21697,
+      "sha256": "827dc0314da49c5e593528ce62b5c31b6e29445f0365aac56ecf99797a51680f",
+      "git_blob": "ebb894e4c98a5203c24c4e910fd0f1aeac9226ca",
+      "index_match": true
+    },
+    {
+      "path": "runtime/dart-result.json",
+      "bytes": 24752,
+      "sha256": "736b0205f58ff8409c6a5e4d4e712bef14abc55dd4be4468832a0f5b4bde2a30",
+      "git_blob": "4f908351d8cd1197285063379037c11f97c6fb1b",
+      "index_match": true
+    },
+    {
+      "path": "runtime/source-before.json",
+      "bytes": 616879,
+      "sha256": "009c0dd5b9cfde08e3a977249a4db64a0db935a48fde71f819271e5ca9a0490d",
+      "git_blob": "3293e58f3b217793aedb3d5fc013cb2c5097f923",
+      "index_match": true
+    },
+    {
+      "path": "runtime/source-after.json",
+      "bytes": 616879,
+      "sha256": "009c0dd5b9cfde08e3a977249a4db64a0db935a48fde71f819271e5ca9a0490d",
+      "git_blob": "3293e58f3b217793aedb3d5fc013cb2c5097f923",
+      "index_match": true
+    },
+    {
+      "path": "runtime/source-pristine.json",
+      "bytes": 616205,
+      "sha256": "52fd144722341c9cacd6ee8d564fecbfa9e0208f3673ff5cbc44484c159dce28",
+      "git_blob": "4b3b1727b74573c269db948eddcb6c7b7638b69b",
+      "index_match": true
+    },
+    {
+      "path": "runtime/small-result-actions-gate.json",
+      "bytes": 3809,
+      "sha256": "a9a1ce253f789953bafdc3b88d08326b33479d2e9caeca8de8237d306e5516c2",
+      "git_blob": "5b85003774a4e5790b7c6b66b428ccbad6e36fa2",
+      "index_match": true
+    },
+    {
+      "path": "runtime/done.json",
+      "bytes": 31,
+      "sha256": "44796635b039283e6083984b6731bc7518c41d1cdfc907255c0eeed21df70c21",
+      "git_blob": "2e0d345895d8d2a6fba5a4dedcf2a38e890966bc",
+      "index_match": true
+    },
+    {
+      "path": "runtime/closed.json",
+      "bytes": 44,
+      "sha256": "922b529a830f497aae1e84cb1e1b60f62dea9e64f9d168e45037d94d3ac414b9",
+      "git_blob": "14143da215bd17cf2fc16a3f4393d0e02671d848",
+      "index_match": true
+    },
+    {
+      "path": "runtime/original-godot.log",
+      "bytes": 1447,
+      "sha256": "26d020d5e1ade4a89bc0880d1d963ee34b188771ec13f2940071a88c8d81c48a",
+      "git_blob": "2f5a03b43e3741eb4cad076f33e5a028f3c153f2",
+      "index_match": true
+    },
+    {
+      "path": "runtime/original-dart.log",
+      "bytes": 231,
+      "sha256": "f56ba6d07e71c31adc64fc0bf86578695f9e064699249ecedfecdb38beed35b6",
+      "git_blob": "2bb308b757b3b40679b55da8212bdf5309fd43e5",
+      "index_match": true
+    },
+    {
+      "path": "runtime/small_result_restart_before.layout.json",
+      "bytes": 19747,
+      "sha256": "0ec0375232a0afcc9b679791f2cae9cc5a0d76559671ed0cd0d10357dea1fe41",
+      "git_blob": "947320b44a4850ccdbdfe6093bc0bffd70a05916",
+      "index_match": true
+    },
+    {
+      "path": "runtime/small_result_restart_before.png",
+      "bytes": 21030,
+      "sha256": "1172ea356ab844f357ed0c3eb678a4e07b2c79dcb757077f0a43b6880dbe2352",
+      "git_blob": "d57460775512d80e3c906f0217b32635dd4d6bfe",
+      "index_match": true
+    },
+    {
+      "path": "runtime/small_result_restart_after.layout.json",
+      "bytes": 19708,
+      "sha256": "e345fbce9613c338566259e8077546dbb5afefe1114f519461a8df42ec02689d",
+      "git_blob": "f17c9c6e582ca2032d7c8e206c98195dfe5742c2",
+      "index_match": true
+    },
+    {
+      "path": "runtime/small_result_restart_after.png",
+      "bytes": 29157,
+      "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+      "git_blob": "093d05df37c4033689cffbe08057706740d23072",
+      "index_match": true
+    },
+    {
+      "path": "runtime/small_result_mode_before.layout.json",
+      "bytes": 19746,
+      "sha256": "c607ed9d5f836a5d134cb462d7c46784a03cb47979d6d7d112585726680faf5c",
+      "git_blob": "6fa17005fdc3ee85c221c9797ad554b5924efa32",
+      "index_match": true
+    },
+    {
+      "path": "runtime/small_result_mode_before.png",
+      "bytes": 22337,
+      "sha256": "b76ce45ea178deaaa994821fccd6341793d08c64e859489a0d868220b38dbc6d",
+      "git_blob": "7870c0a298e52724718be1c06ac63520e357d2cc",
+      "index_match": true
+    },
+    {
+      "path": "runtime/small_result_mode_after.layout.json",
+      "bytes": 19707,
+      "sha256": "68046c696d9ce45abf2a1ad245c41d7b811b4d43da465463e1c20ce68c8712ea",
+      "git_blob": "c1b177946bd441e06e3c45236ae03f8297c2ee1b",
+      "index_match": true
+    },
+    {
+      "path": "runtime/small_result_mode_after.png",
+      "bytes": 29157,
+      "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+      "git_blob": "093d05df37c4033689cffbe08057706740d23072",
+      "index_match": true
+    }
+  ],
+  "coverage_judgment": {
+    "established": "Historical R3 did exercise both previously hidden lower controls by real Godot ScreenDrag and ScreenTouch dispatch and matched their resulting production Dart ACK/state changes. These scoped C4 product bytes remain unchanged in057/a69.",
+    "no_duplicate_desktop_requirement": "The reviewed source delta supplies no concrete reason to repeat the same bounded desktop case solely because of this merge. The old evidence remains labeled aab/e2; it is not reclassified as a new057 execution.",
+    "remaining_minimal_question": "Verify the two won-dialog lower actions through actual Android swipe plus tap and the Android/native/Dart boundary on the exact built057 APK in a compact landscape with real density/insets. Bind visible target, action sequence, ACK, new round ID, empty board and correct twoPlayers result.",
+    "android_expected_actions": [
+      "Win a two-player round, scroll Neue Runde fully into view and tap it; require a new empty playable two-player round with matching ACK.",
+      "Win the next two-player round, scroll Gegen Lumo spielen fully into view and tap it; require a new empty playable solo round with matching ACK."
+    ],
+    "execution_scope": "Use the exact existing APK once available/identified. No extra APK build, full52-mode replay, desktop rerun, or workflow/product mutation was performed or initiated by this review.",
+    "current_android_probe_scope": "The parent separately reviewed the current Android tour and reports only portrait drop/pause/resume/return/reopen coverage, not these won-small-landscape actions. This leaf did not reread that separate tour."
+  },
+  "limitations": [
+    "Source equality and historical execution support a bounded compatibility judgment, not a new full-release or Android success claim.",
+    "The render's log phrase actual Android View insets comes from an injected QA reader in this Linux run; it is not physical Android observation.",
+    "No image was newly rendered or newly opened for this audit; the four R3 image files were hashed and their layout/report records inspected.",
+    "No tests, engine, renderer, APK build, downloads of archives, product modifications, or ref changes were executed. Only the final review will be stored as an unreferenced evidence blob."
+  ],
+  "persistence": {
+    "repository": "Ullmann27/lumo-lernen",
+    "path": "docs/evidence/runtime-057a-20261114/r3-source-equivalence-review.json",
+    "kind": "unreferenced_evidence_blob"
+  }
+}

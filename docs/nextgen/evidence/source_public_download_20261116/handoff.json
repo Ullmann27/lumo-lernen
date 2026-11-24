@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "producerCommit": "380f19e6c223ccb8e7df8fb698abab4a84508d14",
+  "producerTree": "9637a8d2e784d86f62675a373e81593113cfe67d",
+  "baseCommit": "328d597db31db0b78e31c7443af6352471d9a2bb",
+  "branch": "fix/lumo-source-public-download-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-2028-replay",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-nextgen-learning-apk.yml",
+      "sha256": "16d77aa4c374f43fa0d60b6d012eb2d586e889d641fe8b4bf69413c5f8fe3fa4"
+    },
+    {
+      "path": "tools/nextgen/public_learning_download.py",
+      "sha256": "662bab0e72ea81baa69ee5acc4e5a120af4339cc2d6d2a6d5db5d7e939c57656"
+    },
+    {
+      "path": "tools/nextgen/test_public_learning_download.py",
+      "sha256": "f987f98f383b3a601d9f8988226e80e24265cf4371eb1170598461c1d47270af"
+    }
+  ],
+  "checks": {
+    "targetedUnitTests": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v tools.nextgen.test_public_learning_download",
+      "pass": 13,
+      "fail": 0,
+      "skip": 0,
+      "log": "public-download-tests.log",
+      "logSha256": "e4a2ebe12f9ff909c09cf811d8cf65c9949f4bc1cf5bf26c41ed881ace745c23"
+    },
+    "pythonAst": "PASS",
+    "workflowYaml": "PASS",
+    "publicationOrder": "prepare -> absent -> create -> verify",
+    "originalValidateBuildAndroidDependenciesPreserved": true,
+    "gitDiffCheck": "PASS",
+    "worktreeClean": true
+  },
+  "outputs": {
+    "artifact": "lumo-nextgen-public-download-proof",
+    "files": [
+      "release/PUBLIC-ABSENCE.json",
+      "release/PUBLIC-DOWNLOAD.json",
+      "release/PUBLIC-TAG.json",
+      "release/PUBLIC-DOWNLOAD-VERIFIED.json",
+      "release/DELIVERY.json",
+      "release/BUILD-PROVENANCE.json"
+    ]
+  },
+  "limits": [
+    "No release or tag created, updated or deleted by this local task.",
+    "No real public APK download executed locally; unit transport bytes are synthetic fixtures.",
+    "Product code, release versions/pins, current source/Android gates and historical replay gates unchanged."
+  ]
+}

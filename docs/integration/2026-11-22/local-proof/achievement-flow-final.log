@@ -1,0 +1,20 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/achievement_flow_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: a real recorded answer unlocks and double-claim pays once without game inflation
+00:00 +1: global legacy balance never unlocks a childs stars badge, owned credits do
+00:00 +2: wrong practice is a learning day but never a solved-task achievement
+00:00 +3: failed wallet write remains unclaimed, retry pays exactly once
+00:00 +4: process loss after wallet commit is reconciled on restart without a second payout
+00:00 +5: a negative native commit with a visible memory receipt still requires positive retry
+00:00 +6: a claim settling during A-to-B hides A immediately and only A owns its receipt
+00:00 +7: delegator refuses locked achievements and receipts for another child
+00:00 +8: existing 150-star catalog bonus is paid in full with a stable profile receipt
+00:00 +9: actual AppState mission hooks respect preceding wrong=false
+00:00 +10: actual AppState mission hooks respect preceding wrong=true
+00:00 +11: achievement storage failure never retries or doubles the canonical school answer
+00:00 +12: accepted participation keeps its captured owner across profile change
+00:00 +13: real wall waits for storage, blocks double taps, and shows durable claimed state
+00:01 +14: actual LIVE speech callback unlocks only after a real result, not on opening
+00:01 +15: all four actual quests reach the saved completion hook through their real answers
+00:04 +16: (tearDownAll)
+00:05 +16: All tests passed!

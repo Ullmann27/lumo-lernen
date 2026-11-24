@@ -1,0 +1,906 @@
+{
+  "utc": "2026-11-16T08:58:39.288114+00:00",
+  "action": "Relocate only this Root worktree ignored package_config rootUri values to an already present exact-version cache",
+  "hostedPackages": 99,
+  "allStoredArchiveHashMarkersMatchLock": true,
+  "fullArchiveOrPackageFileTreeReverification": false,
+  "dependencyOrLockfileChanges": false,
+  "cacheFilesWritten": false,
+  "otherProjectConfigsCopied": false,
+  "beforePackageConfigSha256": "2569bcb4eaba9a6f3e8abc5fd30f47b80b32e0940c89d0499ba39e53241e937e",
+  "afterPackageConfigSha256": "8a7a02a72f5a35b07b35283c6b0c1e9b1b84e70251081894c8619e74add7b7e8",
+  "lockSha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea",
+  "packages": [
+    {
+      "name": "args",
+      "version": "2.7.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/args-2.7.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/args-2.7.0",
+      "storedArchiveHashMarker": "d0481093c50b1da8910eb0bb301626d4d8eb7284aa739614d2b394ee09e3ea04",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "async",
+      "version": "2.13.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/async-2.13.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/async-2.13.1",
+      "storedArchiveHashMarker": "e2eb0491ba5ddb6177742d2da23904574082139b07c1e33b8503b9f46f3e1a37",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "audioplayers",
+      "version": "6.8.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/audioplayers-6.8.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/audioplayers-6.8.1",
+      "storedArchiveHashMarker": "2ba4bb2944baacbdd5372ff8254a8e7feb8c10d7739545e392f5605a8f618745",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "audioplayers_android",
+      "version": "5.3.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/audioplayers_android-5.3.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/audioplayers_android-5.3.0",
+      "storedArchiveHashMarker": "f5ff5b15620fbab8cb0849e9636c48e2b96c3f0f71723bbbe2ad3c761b205f05",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "audioplayers_darwin",
+      "version": "6.5.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/audioplayers_darwin-6.5.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/audioplayers_darwin-6.5.0",
+      "storedArchiveHashMarker": "1ca553add991384ecf421b9569da850f3ab2472ffb83f6970b0416365abc51be",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "audioplayers_linux",
+      "version": "4.3.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/audioplayers_linux-4.3.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/audioplayers_linux-4.3.0",
+      "storedArchiveHashMarker": "15178b726b7cdee5364d0463c8d445630c4e0fb7d26612b73c767e7d25de9417",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "audioplayers_platform_interface",
+      "version": "7.2.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/audioplayers_platform_interface-7.2.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/audioplayers_platform_interface-7.2.0",
+      "storedArchiveHashMarker": "765f6f0e6dca55cb471c9483fc77700564b3484d19198aca4ebb5147c6c85acb",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "audioplayers_web",
+      "version": "5.3.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/audioplayers_web-5.3.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/audioplayers_web-5.3.0",
+      "storedArchiveHashMarker": "ae1e0103c865a03e273f6d13d97b93f5595eac09915729cd5e37ef96e2857319",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "audioplayers_windows",
+      "version": "4.4.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/audioplayers_windows-4.4.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/audioplayers_windows-4.4.1",
+      "storedArchiveHashMarker": "a70ae82bba2dfcb6eb03dd4815d737a2d46d33ea5a96a03f535cfcaac490e413",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "boolean_selector",
+      "version": "2.1.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/boolean_selector-2.1.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/boolean_selector-2.1.2",
+      "storedArchiveHashMarker": "8aab1771e1243a5063b8b0ff68042d67334e3feab9e95b9490f9a6ebf73b42ea",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "characters",
+      "version": "1.4.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/characters-1.4.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/characters-1.4.1",
+      "storedArchiveHashMarker": "faf38497bda5ead2a8c7615f4f7939df04333478bf32e4173fcb06d428b5716b",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "clock",
+      "version": "1.1.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/clock-1.1.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/clock-1.1.2",
+      "storedArchiveHashMarker": "fddb70d9b5277016c77a80201021d40a2247104d9f4aa7bab7157b7e3f05b84b",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "code_assets",
+      "version": "1.2.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/code_assets-1.2.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/code_assets-1.2.1",
+      "storedArchiveHashMarker": "bf394f466ba9205f1812a0433b392d6af280f155f56651eda7c18cc32ed493b8",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "collection",
+      "version": "1.19.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/collection-1.19.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/collection-1.19.1",
+      "storedArchiveHashMarker": "2f5709ae4d3d59dd8f7cd309b4e023046b57d8a6c82130785d2b0e5868084e76",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "cross_file",
+      "version": "0.3.5+5",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/cross_file-0.3.5+5",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/cross_file-0.3.5%2B5",
+      "storedArchiveHashMarker": "f141ea4f277af142a0356955707f6556f37b03947d39d55585981a06ca437bd6",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "crypto",
+      "version": "3.0.7",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/crypto-3.0.7",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/crypto-3.0.7",
+      "storedArchiveHashMarker": "c8ea0233063ba03258fbcf2ca4d6dadfefe14f02fab57702265467a19f27fadf",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "fake_async",
+      "version": "1.3.3",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/fake_async-1.3.3",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/fake_async-1.3.3",
+      "storedArchiveHashMarker": "5368f224a74523e8d2e7399ea1638b37aecfca824a3cc4dfdf77bf1fa905ac44",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "ffi",
+      "version": "2.2.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/ffi-2.2.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/ffi-2.2.0",
+      "storedArchiveHashMarker": "6d7fd89431262d8f3125e81b50d3847a091d846eafcd4fdb88dd06f36d705a45",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "file",
+      "version": "7.0.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/file-7.0.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/file-7.0.1",
+      "storedArchiveHashMarker": "a3b4f84adafef897088c160faf7dfffb7696046cb13ae90b508c2cbc95d3b8d4",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "file_selector_linux",
+      "version": "0.9.4+1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.4+1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/file_selector_linux-0.9.4%2B1",
+      "storedArchiveHashMarker": "da76400e7872ce7637ffdce12749ec24169c25f6195c28372208e65a24bcd2ab",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "file_selector_macos",
+      "version": "0.9.5+1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.5+1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/file_selector_macos-0.9.5%2B1",
+      "storedArchiveHashMarker": "d57c62362766b5e7ae739448650b66c6aab7a68ba7ecc65e04018652645ae0f4",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "file_selector_platform_interface",
+      "version": "2.7.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/file_selector_platform_interface-2.7.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/file_selector_platform_interface-2.7.0",
+      "storedArchiveHashMarker": "35e0bd61ebcdb91a3505813b055b09b79dfdc7d0aee9c09a7ba59ae4bb13dc85",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "file_selector_windows",
+      "version": "0.9.3+6",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+6",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/file_selector_windows-0.9.3%2B6",
+      "storedArchiveHashMarker": "fbefc5fb92c6d3cbe8d284a2cd971b593bb07d2cd6da8557b81a862250b4acec",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "fixnum",
+      "version": "1.1.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/fixnum-1.1.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/fixnum-1.1.1",
+      "storedArchiveHashMarker": "b6dc7065e46c974bc7c5f143080a6764ec7a4be6da1285ececdc37be96de53be",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "flame",
+      "version": "1.38.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/flame-1.38.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/flame-1.38.2",
+      "storedArchiveHashMarker": "b4d7e59b81f35a426f8b39dcec10175180b9c2984b2b2e619021660d8951307c",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "flutter_lints",
+      "version": "4.0.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/flutter_lints-4.0.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/flutter_lints-4.0.0",
+      "storedArchiveHashMarker": "3f41d009ba7172d5ff9be5f6e6e6abb4300e263aab8866d2a0842ed2a70f8f0c",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "flutter_plugin_android_lifecycle",
+      "version": "2.0.35",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.35",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.35",
+      "storedArchiveHashMarker": "3854fe5e3bff0b113c658f260b90c95dea17c92db0f2addeac2e343dd9969785",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "google_mlkit_commons",
+      "version": "0.8.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/google_mlkit_commons-0.8.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/google_mlkit_commons-0.8.1",
+      "storedArchiveHashMarker": "9990a65f407a3ef6bae646bf10143faa93fec126683771465bc6c0b43fb0e6e9",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "google_mlkit_text_recognition",
+      "version": "0.13.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/google_mlkit_text_recognition-0.13.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/google_mlkit_text_recognition-0.13.1",
+      "storedArchiveHashMarker": "179349417066fa2c275d7a6ed6cbceeb7fa265d73aacdb2d732f1a2991face0a",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "hooks",
+      "version": "2.0.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/hooks-2.0.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/hooks-2.0.2",
+      "storedArchiveHashMarker": "9a62a50b50b769a737bc0a8ff381f333529df3ab746b2f6b02e83760231455ba",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "http",
+      "version": "1.6.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/http-1.6.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/http-1.6.0",
+      "storedArchiveHashMarker": "87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "http_parser",
+      "version": "4.1.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/http_parser-4.1.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/http_parser-4.1.2",
+      "storedArchiveHashMarker": "178d74305e7866013777bab2c3d8726205dc5a4dd935297175b19a23a2e66571",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "image_picker",
+      "version": "1.2.3",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/image_picker-1.2.3",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/image_picker-1.2.3",
+      "storedArchiveHashMarker": "d8402284df184bc05f4a2210c6c23983b0720f4cd87cbd05c5390a78af602667",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "image_picker_android",
+      "version": "0.8.13+25",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/image_picker_android-0.8.13+25",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/image_picker_android-0.8.13%2B25",
+      "storedArchiveHashMarker": "8a7823d5d3e884f7780829d85d92110d072bdcd9ed48e2be158d2abe91a912d4",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "image_picker_for_web",
+      "version": "3.1.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/image_picker_for_web-3.1.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/image_picker_for_web-3.1.1",
+      "storedArchiveHashMarker": "66257a3191ab360d23a55c8241c91a6e329d31e94efa7be9cf7a212e65850214",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "image_picker_ios",
+      "version": "0.8.13+9",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.13+9",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/image_picker_ios-0.8.13%2B9",
+      "storedArchiveHashMarker": "815921d05ef87d64dc64e9f7f855967614a9a67086d0c60fa27d47a1cd9a8896",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "image_picker_linux",
+      "version": "0.2.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/image_picker_linux-0.2.2",
+      "storedArchiveHashMarker": "1f81c5f2046b9ab724f85523e4af65be1d47b038160a8c8deed909762c308ed4",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "image_picker_macos",
+      "version": "0.2.2+1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.2+1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/image_picker_macos-0.2.2%2B1",
+      "storedArchiveHashMarker": "86f0f15a309de7e1a552c12df9ce5b59fe927e71385329355aec4776c6a8ec91",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "image_picker_platform_interface",
+      "version": "2.11.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.11.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/image_picker_platform_interface-2.11.1",
+      "storedArchiveHashMarker": "567e056716333a1647c64bb6bd873cff7622233a5c3f694be28a583d4715690c",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "image_picker_windows",
+      "version": "0.2.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/image_picker_windows-0.2.2",
+      "storedArchiveHashMarker": "d248c86554a72b5495a31c56f060cf73a41c7ff541689327b1a7dbccc33adfae",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "jni",
+      "version": "1.1.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/jni-1.1.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/jni-1.1.0",
+      "storedArchiveHashMarker": "6b9ca0602fef0230e83149afbe3f9f8227e94f2bbe84a1da4f14d699742f402d",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "jni_flutter",
+      "version": "1.0.3",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/jni_flutter-1.0.3",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/jni_flutter-1.0.3",
+      "storedArchiveHashMarker": "b2310cdd4c18c65c081ab141a41efa94aa26c65431803703ece51996f174f351",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "jni_util",
+      "version": "1.0.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/jni_util-1.0.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/jni_util-1.0.0",
+      "storedArchiveHashMarker": "1ba86da04a5f2bf18fde2edb235587e70c5b0fc5bd4ba955f46b00942c3fc35f",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "json_annotation",
+      "version": "4.12.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/json_annotation-4.12.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/json_annotation-4.12.0",
+      "storedArchiveHashMarker": "2a743920d81b7910627f68ee2c9ac1fc0bfee32b9fc3403587d7c6791ca12f80",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "leak_tracker",
+      "version": "11.0.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/leak_tracker-11.0.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/leak_tracker-11.0.2",
+      "storedArchiveHashMarker": "33e2e26bdd85a0112ec15400c8cbffea70d0f9c3407491f672a2fad47915e2de",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "leak_tracker_flutter_testing",
+      "version": "3.0.10",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.10",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.10",
+      "storedArchiveHashMarker": "1dbc140bb5a23c75ea9c4811222756104fbcd1a27173f0c34ca01e16bea473c1",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "leak_tracker_testing",
+      "version": "3.0.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.2",
+      "storedArchiveHashMarker": "8d5a2d49f4a66b49744b23b018848400d23e54caf9463f4eb20df3eb8acb2eb1",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "lints",
+      "version": "4.0.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/lints-4.0.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/lints-4.0.0",
+      "storedArchiveHashMarker": "976c774dd944a42e83e2467f4cc670daef7eed6295b10b36ae8c85bcbf828235",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "logging",
+      "version": "1.3.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/logging-1.3.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/logging-1.3.0",
+      "storedArchiveHashMarker": "c8245ada5f1717ed44271ed1c26b8ce85ca3228fd2ffdb75468ab01979309d61",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "matcher",
+      "version": "0.12.19",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/matcher-0.12.19",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/matcher-0.12.19",
+      "storedArchiveHashMarker": "dc0b7dc7651697ea4ff3e69ef44b0407ea32c487a39fff6a4004fa585e901861",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "material_color_utilities",
+      "version": "0.13.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/material_color_utilities-0.13.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/material_color_utilities-0.13.0",
+      "storedArchiveHashMarker": "9c337007e82b1889149c82ed242ed1cb24a66044e30979c44912381e9be4c48b",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "meta",
+      "version": "1.18.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/meta-1.18.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/meta-1.18.0",
+      "storedArchiveHashMarker": "1741988757a65eb6b36abe716829688cf01910bbf91c34354ff7ec1c3de2b349",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "mime",
+      "version": "2.1.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/mime-2.1.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/mime-2.1.0",
+      "storedArchiveHashMarker": "bd47de35f07e27267e69c8c8b22edf9473bfee170a60d60fcc93730c5144b7f6",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "objective_c",
+      "version": "9.5.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/objective_c-9.5.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/objective_c-9.5.0",
+      "storedArchiveHashMarker": "b7fb95a6d9a4f009edd63dc5ac69f07420b23a16161c6dd8660290b59c602e8e",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "ordered_set",
+      "version": "8.0.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/ordered_set-8.0.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/ordered_set-8.0.1",
+      "storedArchiveHashMarker": "ca415a0e28b8e8f5e284af4b7d1b189d2d09af6d2082532ddaec54473f67d226",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "package_config",
+      "version": "3.0.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/package_config-3.0.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/package_config-3.0.0",
+      "storedArchiveHashMarker": "ffcf4cf3d6c0b74ac43708d9f56625506e8a68aa935abe9d267a7330f320eb5d",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/path-1.9.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/path-1.9.1",
+      "storedArchiveHashMarker": "75cca69d1490965be98c73ceaea117e8a04dd21217b37b292c9ddbec0d955bc5",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "path_provider",
+      "version": "2.1.6",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/path_provider-2.1.6",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/path_provider-2.1.6",
+      "storedArchiveHashMarker": "a7f4874f987173da295a61c181b8ee71dab59b332a486b391babf26a1b884825",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "path_provider_android",
+      "version": "2.3.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/path_provider_android-2.3.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/path_provider_android-2.3.1",
+      "storedArchiveHashMarker": "69cbd515a62b94d32a7944f086b2f82b4ac40a1d45bebfc00813a430ab2dabcd",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "path_provider_foundation",
+      "version": "2.6.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/path_provider_foundation-2.6.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/path_provider_foundation-2.6.0",
+      "storedArchiveHashMarker": "2a376b7d6392d80cd3705782d2caa734ca4727776db0b6ec36ef3f1855197699",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "path_provider_linux",
+      "version": "2.2.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/path_provider_linux-2.2.2",
+      "storedArchiveHashMarker": "58c2005f147315b11e9b4a7bc889cd5203e250cba8e3f012dae259b4972b5c16",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "path_provider_platform_interface",
+      "version": "2.1.3",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.3",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.3",
+      "storedArchiveHashMarker": "484838772624c3a4b94f1e44a3e19897fee738f2d5c4ce448443b0417f7c9dda",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "path_provider_windows",
+      "version": "2.3.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/path_provider_windows-2.3.0",
+      "storedArchiveHashMarker": "bd6f00dbd873bfb70d0761682da2b3a2c2fccc2b9e84c495821639601d81afe7",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "platform",
+      "version": "3.2.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/platform-3.2.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/platform-3.2.0",
+      "storedArchiveHashMarker": "a36d119c13416516a7b5913fbe8af8531e11633d784c550b2125f76c758524ec",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "plugin_platform_interface",
+      "version": "2.1.8",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8",
+      "storedArchiveHashMarker": "4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "pub_semver",
+      "version": "2.2.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/pub_semver-2.2.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/pub_semver-2.2.1",
+      "storedArchiveHashMarker": "261236774e8b1d69cfc6b9eabbc96c40f25e7a2d6b171f3385d4f65d5734fb24",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "record_use",
+      "version": "0.6.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/record_use-0.6.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/record_use-0.6.0",
+      "storedArchiveHashMarker": "2551bd8eecfe95d14ae75f6021ad0248be5c27f138c2ec12fcb52b500b3ba1ed",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "shared_preferences",
+      "version": "2.5.5",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/shared_preferences-2.5.5",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/shared_preferences-2.5.5",
+      "storedArchiveHashMarker": "c3025c5534b01739267eb7d76959bbc25a6d10f6988e1c2a3036940133dd10bf",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "shared_preferences_android",
+      "version": "2.4.28",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.28",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/shared_preferences_android-2.4.28",
+      "storedArchiveHashMarker": "1e12aafe408aa50da80edfd679a2a6bf63ba7ab37c7fa98286da459a757b3399",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "shared_preferences_foundation",
+      "version": "2.5.7",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.7",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.7",
+      "storedArchiveHashMarker": "2ec3934efa51e46117f23031cc141b8fc878e8525b94ec1ea4f7f586cf1b47ea",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "shared_preferences_linux",
+      "version": "2.4.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1",
+      "storedArchiveHashMarker": "580abfd40f415611503cae30adf626e6656dfb2f0cee8f465ece7b6defb40f2f",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "shared_preferences_platform_interface",
+      "version": "2.4.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.2",
+      "storedArchiveHashMarker": "649dc798a33931919ea356c4305c2d1f81619ea6e92244070b520187b5140ef9",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "shared_preferences_web",
+      "version": "2.4.3",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3",
+      "storedArchiveHashMarker": "c49bd060261c9a3f0ff445892695d6212ff603ef3115edbb448509d407600019",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "shared_preferences_windows",
+      "version": "2.4.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1",
+      "storedArchiveHashMarker": "94ef0f72b2d71bc3e700e025db3710911bd51a71cefb65cc609dd0d9a982e3c1",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "source_span",
+      "version": "1.10.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/source_span-1.10.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/source_span-1.10.2",
+      "storedArchiveHashMarker": "56a02f1f4cd1a2d96303c0144c93bd6d909eea6bee6bf5a0e0b685edbd4c47ab",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "speech_to_text",
+      "version": "7.5.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/speech_to_text-7.5.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/speech_to_text-7.5.0",
+      "storedArchiveHashMarker": "f2fabd017b5cb07f4e06d496b2d4b957e39534bc848f92b1e6acac80a10f4967",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "speech_to_text_platform_interface",
+      "version": "2.5.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/speech_to_text_platform_interface-2.5.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/speech_to_text_platform_interface-2.5.0",
+      "storedArchiveHashMarker": "7e447356be3074c471223c9d179ef3f822475350b67ca923ec71ab3bf2ede214",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "speech_to_text_windows",
+      "version": "1.0.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/speech_to_text_windows-1.0.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/speech_to_text_windows-1.0.1",
+      "storedArchiveHashMarker": "2d1d10565b23262386b453b33656299608dc7a66784453735d6c1318f13f44d7",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "stack_trace",
+      "version": "1.12.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/stack_trace-1.12.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/stack_trace-1.12.1",
+      "storedArchiveHashMarker": "8b27215b45d22309b5cddda1aa2b19bdfec9df0e765f2de506401c071d38d1b1",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "stream_channel",
+      "version": "2.1.4",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/stream_channel-2.1.4",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/stream_channel-2.1.4",
+      "storedArchiveHashMarker": "969e04c80b8bcdf826f8f16579c7b14d780458bd97f56d107d3950fdbeef059d",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "string_scanner",
+      "version": "1.4.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/string_scanner-1.4.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/string_scanner-1.4.1",
+      "storedArchiveHashMarker": "921cd31725b72fe181906c6a94d987c78e3b98c2e205b397ea399d4054872b43",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "synchronized",
+      "version": "3.4.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/synchronized-3.4.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/synchronized-3.4.2",
+      "storedArchiveHashMarker": "397b146f97613b83d84bdccb439bc8d0f3aebb6c1d14a9641e6f24201c490b2d",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "term_glyph",
+      "version": "1.2.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/term_glyph-1.2.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/term_glyph-1.2.2",
+      "storedArchiveHashMarker": "7f554798625ea768a7518313e58f83891c7f5024f88e46e7182a4558850a4b8e",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "test_api",
+      "version": "0.7.11",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/test_api-0.7.11",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/test_api-0.7.11",
+      "storedArchiveHashMarker": "949a932224383300f01be9221c39180316445ecb8e7547f70a41a35bf421fb9e",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "typed_data",
+      "version": "1.4.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/typed_data-1.4.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/typed_data-1.4.0",
+      "storedArchiveHashMarker": "f9049c039ebfeb4cf7a7104a675823cd72dba8297f264b6637062516699fa006",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "url_launcher",
+      "version": "6.3.3",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/url_launcher-6.3.3",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/url_launcher-6.3.3",
+      "storedArchiveHashMarker": "e8cc955c97e06df9879140a1fe301f3d493f01b7c62dec7f46834be31d7e9fda",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "url_launcher_android",
+      "version": "6.3.33",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.33",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/url_launcher_android-6.3.33",
+      "storedArchiveHashMarker": "611e87fb320b70d1dd721dc46af89c98aceccea9b31fde49e084591414e0c610",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "url_launcher_ios",
+      "version": "6.4.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/url_launcher_ios-6.4.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/url_launcher_ios-6.4.2",
+      "storedArchiveHashMarker": "8faa1aab294f1ab4040b43660c887b0418d5fa4f0cffef76a484e6aa1092eb4a",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "url_launcher_linux",
+      "version": "3.2.3",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/url_launcher_linux-3.2.3",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/url_launcher_linux-3.2.3",
+      "storedArchiveHashMarker": "10f86fef4c2c43563fa6c211ff9cf757adf4d3ab762c56bd430664a947d70cd0",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "url_launcher_macos",
+      "version": "3.2.6",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/url_launcher_macos-3.2.6",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/url_launcher_macos-3.2.6",
+      "storedArchiveHashMarker": "5e835a3b869c2d70325349c81c5a45c28e20791265b67b2669da6b08c5cd5201",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "url_launcher_platform_interface",
+      "version": "2.3.2",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2",
+      "storedArchiveHashMarker": "552f8a1e663569be95a8190206a38187b531910283c3e982193e4f2733f01029",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "url_launcher_web",
+      "version": "2.4.3",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/url_launcher_web-2.4.3",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/url_launcher_web-2.4.3",
+      "storedArchiveHashMarker": "85c81589622fbc87c1c683aaea164d3604a7777495a79d91e39ffcdec39ddb34",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "url_launcher_windows",
+      "version": "3.1.6",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.6",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/url_launcher_windows-3.1.6",
+      "storedArchiveHashMarker": "6c5ad3f22cd4c38e089b81963b3cd7bb83b111b2df5dce008bb066162f42e429",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "uuid",
+      "version": "4.6.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/uuid-4.6.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/uuid-4.6.0",
+      "storedArchiveHashMarker": "9b129329f58692f6e6578329498a8fe9fbe98f090beb764ffbb8ee2eadd01dcd",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "vector_math",
+      "version": "2.2.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/vector_math-2.2.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/vector_math-2.2.0",
+      "storedArchiveHashMarker": "d530bd74fea330e6e364cda7a85019c434070188383e1cd8d9777ee586914c5b",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "vm_service",
+      "version": "15.3.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/vm_service-15.3.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/vm_service-15.3.0",
+      "storedArchiveHashMarker": "5f37239c4851efcef929cea7824e76df7f2f0970aef85d66bbc430afa40e72f0",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "web",
+      "version": "1.1.1",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/web-1.1.1",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/web-1.1.1",
+      "storedArchiveHashMarker": "868d88a33d8a87b18ffc05f9f030ba328ffefba92d6c127917a2ba740f9cfe4a",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "xdg_directories",
+      "version": "1.1.0",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/xdg_directories-1.1.0",
+      "storedArchiveHashMarker": "7a3f37b05d989967cdddcbb571f1ea834867ae2faa29725fd085180e0883aa15",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    },
+    {
+      "name": "yaml",
+      "version": "3.1.4",
+      "oldRootUri": "file:///home/agent/.pub-cache/hosted/pub.dev/yaml-3.1.4",
+      "newRootUri": "file:///dev/shm/lumo-host-2032-pub-cache/hosted/pub.dev/yaml-3.1.4",
+      "storedArchiveHashMarker": "f67cdd8e07d3c6329146aaef1ba043542b3134c12489f553ca9a7435d1068aea",
+      "markerEqualsLock": true,
+      "packageDirectoryExists": true
+    }
+  ]
+}

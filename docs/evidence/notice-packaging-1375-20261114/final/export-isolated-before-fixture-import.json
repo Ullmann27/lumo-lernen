@@ -1,0 +1,1 @@
+{"command": ["python3", "-B", "-m", "unittest", "discover", "-s", "scripts/tests", "-p", "test_export_embedded_game.py", "-v"], "exit_code": 1}

@@ -1,0 +1,30 @@
+{
+  "reviewMode": "independent read-only review by learning agent; no tests, source changes or remote actions",
+  "runId": 43800892196,
+  "jobId": 133080632526,
+  "source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "confirmedTotals": {
+    "flutterPassed": 2896,
+    "flutterSkipped": 202,
+    "flutterFailed": 0,
+    "hostPythonMethods": 143,
+    "nativePrograms": 12,
+    "nativeChecks": 55552,
+    "sourceHashes": 359,
+    "protectedFiles": 18,
+    "originalMembersByteEqualToZipAndManifest": 56
+  },
+  "coreRegressionFile": {
+    "path": "test/learning/core_conversation_route_test.dart",
+    "sha256": "62013e4ea868516db9b81d0f3b496807d60d8505fed70ed667b1239777c89c42",
+    "byteEqualToCiSource": true,
+    "directUnconditionalRegistrations": 9,
+    "skipArguments": 0,
+    "individuallyVisibleNamesInParallelTextLog": 8,
+    "nameNotIndividuallyPrinted": "stop retires a menu selection without an unbound fallback",
+    "coreSectionSkipCounter": 201,
+    "coreSectionSkipCounterChanged": false,
+    "testFileReachedTearDownAll": true
+  },
+  "interpretation": "The complete CI invocation had no name/tag filter and passed. Nine cases are registered without skip, but only eight names are individually visible in the concurrent expanded text reporter. Do not claim nine named log records. The separate final owner run remains 20/20 and is not added to the CI count."
+}

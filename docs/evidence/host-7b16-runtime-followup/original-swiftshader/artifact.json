@@ -1,0 +1,20 @@
+{
+  "id": 14096976074,
+  "node_id": "MDg6QXJ0aWZhY3QxNDA5Njk3NjA3NA==",
+  "name": "lumo-7b16-diagnostic-api37-swiftshader",
+  "size_in_bytes": 39307727,
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14096976074",
+  "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14096976074/zip",
+  "expired": false,
+  "digest": "sha256:9aaa2850bc96b39833a3e5893f020a5ecf19d7038fc326f18affed7448e37055",
+  "created_at": "2026-11-14T03:31:32Z",
+  "updated_at": "2026-11-14T03:31:32Z",
+  "expires_at": "2026-12-14T03:31:30Z",
+  "workflow_run": {
+    "id": 43551424080,
+    "repository_id": 1222433959,
+    "head_repository_id": 1222433959,
+    "head_branch": "qa/lumo-android-runtime-7b16-20261114",
+    "head_sha": "61c94cfb78bda8dfbe191331eca0fd0382deb151"
+  }
+}

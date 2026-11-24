@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "source_host": "51e92fb5afab232a29850ffefef5637359af08f7",
+  "source_host_tree": "a13ab981d917c7788f35318cf10d962c1bf657f7",
+  "source_native": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+  "source_native_tree": "f13dd5fc5540ecb7705c5f18bf3cf8ba6e79d7a6",
+  "cutoff_72h": "2026-11-10T20:38:07Z",
+  "inventory_snapshot": "2026-11-13T20:38:07Z",
+  "recent_pr_rows": 35,
+  "host_pr_rows": 20,
+  "native_pr_rows": 15,
+  "actual_ancestor_pages_per_repo": 2,
+  "actual_ancestor_commits_per_repo": 100,
+  "pr_heads_seen_in_bounded_published_history": 17,
+  "scope": "Two pages of15 updated PRs per repo, including closed PRs; bounded source/ancestry inventory, not all hidden branches or a functional review of every listed PR.",
+  "findings": {
+    "pr472": "All five shared helpers/tests at f63618670359af93a25f84a69cbfab4c583b6c53 match integrated318 bytes; Host51e only adds graphics-matrix context. Additional diagnostic paths bind an older unchanged APK and do not establish current acceptance.",
+    "pr452": "All18 changed paths exist;13 byte-identical. Five evolved files independently read with10 complete immutable sources. Twelve relevant whole code blocks byte-identical; no lost product connection observed in those five files. Original test lines remain and39 lines add remediation checks. No new tests run.",
+    "historical_native_captures": "Two old capture helpers absent; zero active references to their names or full paths. Current required validators/captures are separately identified. No identical camera-composition replacement or old-image approval claimed."
+  },
+  "archive_sha256": "02c17e40b4e571858c7d4fae05a9d1ed1c3cb4f6a457793e181811b992c0a4b4",
+  "limits": [
+    "No source changes, tests, APK/renderer/device runs or integration ref changes in this review",
+    "Original API responses and source bytes are preserved; derived inventory classifications are separate",
+    "Actual Android main43502594333 remains required on Host51e"
+  ]
+}

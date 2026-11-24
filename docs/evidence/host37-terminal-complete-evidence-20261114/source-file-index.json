@@ -1,0 +1,1318 @@
+{
+  "schema": 1,
+  "source_root": "/tmp/host-pr485-37ec6c6a-pipeline-evidence-20261114",
+  "host_sha": "37ec6c6aee67c31ce16550cd59d616c80e80e305",
+  "run_id": 43601673844,
+  "run_attempt": 1,
+  "files": [
+    {
+      "path": "compile-132467549173/metadata/artifacts.original.json",
+      "bytes": 3020,
+      "sha256": "d08f1f82590637567c8a10d2b47abcb8a5247fe951b3c9d1830c49fd1e7d6380"
+    },
+    {
+      "path": "compile-132467549173/metadata/job.original.log",
+      "bytes": 241445,
+      "sha256": "a3914600f2ef586db164ad588297dfc19dfc9218329349b672a86635ef9819b8"
+    },
+    {
+      "path": "compile-132467549173/metadata/jobs.original.json",
+      "bytes": 14203,
+      "sha256": "9b4762569ca3bdd5d0486ed2386b903d988d66cc1e9f81d8e6183ddc98da982f"
+    },
+    {
+      "path": "compile-132467549173/metadata/raw-manifest.json",
+      "bytes": 686,
+      "sha256": "e6396cc3197f4de5a88cea80de5d9763cabd280583331703562943c0a701d825"
+    },
+    {
+      "path": "completed-evidence-review.json",
+      "bytes": 3896,
+      "sha256": "7095c6b7a292cee2a0afec461d38260f6f6249ff32c1220af3766f6c52085b07"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14115569599/14115569599-original.zip",
+      "bytes": 6281,
+      "sha256": "f4f75e1df275e6595dc7a2faa96510f94acad3a54187fd89213de1e61ca558dd"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14115569599/archive-index.json",
+      "bytes": 1489,
+      "sha256": "0dc40ff2b69da2c06746c05871bba24a0e524f0de8d9ef878f7efc725c3a85ac"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14115569599/originals/cards-authority-registry.log",
+      "bytes": 2556,
+      "sha256": "a40aabbf75b49c4bbcdd32d290182ae2ae4a949204486ae60a2f44f7f4967687"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14115569599/originals/compile.log",
+      "bytes": 34085,
+      "sha256": "e91de4efafeab1fd84ab950165f171cf94c1c469f704fab91027a103253d82e3"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14115569599/originals/connect-four-classes.json",
+      "bytes": 927,
+      "sha256": "d88ee7365afc2c7d2e19f02dfa19fc62a46feedeffc4cb0f643eb8ca6bc82416"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14115569599/originals/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14115569599/originals/result.json",
+      "bytes": 2769,
+      "sha256": "c522ccfbd559cc55a428ce95eef5014f6226412f78d416f0f95f06f292b7094e"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14115569599/originals/source-sha.txt",
+      "bytes": 41,
+      "sha256": "a465efa9d1c04678120d2504e8c7d4a73d66da75115f4d41a822ca35345fca77"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14117110954/14117110954-original.zip",
+      "bytes": 212135,
+      "sha256": "b87d906df82a716f20bb813ef4edb77657fb75cf22560aaf3e2c36ef32b28b50"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14117110954/archive-index.json",
+      "bytes": 1688,
+      "sha256": "e3c8b54e30e6fca878c732e08cbf60dfe6847a32cb5cd082e04a07db4ec81922"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14117110954/originals/audit.stderr.log",
+      "bytes": 44,
+      "sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14117110954/originals/audit.stdout.log",
+      "bytes": 372,
+      "sha256": "ac585dfc0dc3b160279d05a38a493a2828569cb7b1e9eb68961f25cb251fa184"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14117110954/originals/issues.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14117110954/originals/source-binding.json",
+      "bytes": 2257,
+      "sha256": "93cde226f77d3db13a5444b43f7e292f9fa23c3e092b894cecac0a9e51fabc68"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14117110954/originals/summary.json",
+      "bytes": 371,
+      "sha256": "018c376e1a7c9b047b0625f90cbb0c27528c2c80ccc4907bca678f107e6c5e67"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14117110954/originals/task-families.json",
+      "bytes": 34450,
+      "sha256": "27431f158ebb1a7bff323f989d4da9064f1ba20c5e7046c46537d805c574d703"
+    },
+    {
+      "path": "completed-small-artifacts/artifact-14117110954/originals/task-samples.jsonl",
+      "bytes": 3174060,
+      "sha256": "271445137ea3a6e8f821cc31f49d876ec1d11aacac47be898638d04c2bcd3051"
+    },
+    {
+      "path": "flutter-failure-14117615115/14117615115-original.zip",
+      "bytes": 336174142,
+      "sha256": "0e45f92561aad071a57612c0efe7dec2278b232cdd8721e1bbc315f949882de7"
+    },
+    {
+      "path": "flutter-failure-14117615115/README.md",
+      "bytes": 1698,
+      "sha256": "8650c57aa13e066a9fee6889382e065a63343f46728551251c157e5469aabc4f"
+    },
+    {
+      "path": "flutter-failure-14117615115/SHA256SUMS",
+      "bytes": 1315,
+      "sha256": "208e3827241ed661ba20cc9a4ca083cdf7af4bbbb239a5ecbb9696480e12f9ed"
+    },
+    {
+      "path": "flutter-failure-14117615115/archive-index.json",
+      "bytes": 133636,
+      "sha256": "55dc58b8f8b0cfe86eb7738c72e420cc4e9f39917c7b0b0d0cc638e004b05fab"
+    },
+    {
+      "path": "flutter-failure-14117615115/archive-roundtrip.json",
+      "bytes": 403,
+      "sha256": "85daac652030c01769b6274028c807fd41d2b3f9522c1677f7414d2820f8c8e3"
+    },
+    {
+      "path": "flutter-failure-14117615115/compact-originals.tar.gz",
+      "bytes": 239473,
+      "sha256": "0a2705bbd775c8b13440d5a97bd996124dbd1f64d3fe2c99038a00be011c5047"
+    },
+    {
+      "path": "flutter-failure-14117615115/handoff.json",
+      "bytes": 1337,
+      "sha256": "dd1f6fc2d2dc1f8002ed9f981e2c3941b6c52ced6a7122fb58a24939824a3a8b"
+    },
+    {
+      "path": "flutter-failure-14117615115/machine-failure-observations.json",
+      "bytes": 112325,
+      "sha256": "f1d55399246969e08bf794820303cdd9e1d74fbd4e7a70890517f3c69cec6668"
+    },
+    {
+      "path": "flutter-failure-14117615115/manifest.json",
+      "bytes": 2374,
+      "sha256": "233a870c1d1fab0cd9d7e072caa0573425f923eeff9ff6f52be652527ad05527"
+    },
+    {
+      "path": "flutter-failure-14117615115/metadata/artifacts.original.json",
+      "bytes": 3775,
+      "sha256": "5855498a4140aa63986feaff5d81fdc677ed2b64d061b9242a16548081733ded"
+    },
+    {
+      "path": "flutter-failure-14117615115/metadata/build-132468566278.original.log",
+      "bytes": 102986,
+      "sha256": "8ded4cda7d69b103e24ba940ab0f615a907c64975e28ec7645754fae9eb6da18"
+    },
+    {
+      "path": "flutter-failure-14117615115/metadata/jobs.original.json",
+      "bytes": 19694,
+      "sha256": "e10b616b0044fa4f2fa7654d2b2e0b2221b9e6168d7c0a683857d724be3368f2"
+    },
+    {
+      "path": "flutter-failure-14117615115/metadata/run.original.json",
+      "bytes": 12990,
+      "sha256": "bdbefad658b80899574ebfcce64fa2aec28af183402342a393b053627fb57d8e"
+    },
+    {
+      "path": "flutter-failure-14117615115/originals/acceptance-summary.json",
+      "bytes": 2484,
+      "sha256": "358d00bd4c84ce6e49dea8e525d60c742fca68356cfff597470e19001e956fd7"
+    },
+    {
+      "path": "flutter-failure-14117615115/originals/flutter-machine.jsonl",
+      "bytes": 1766818,
+      "sha256": "8f1c5d846724ede4a93fc59db33cfc31d3331fd006671e2c2ce5365f27b27fae"
+    },
+    {
+      "path": "flutter-failure-14117615115/source-binding/binding.json",
+      "bytes": 2041,
+      "sha256": "2d5b62b8de7d136501a7c325b8adbb96df27086708ad198be7b94c48f26cf7da"
+    },
+    {
+      "path": "flutter-failure-14117615115/source-binding/raw-manifest.json",
+      "bytes": 460,
+      "sha256": "f980379757f3a98d742cac2f464f5cae8c26019fc6cd172ce3d1524d9e949a52"
+    },
+    {
+      "path": "flutter-failure-14117615115/source-binding/test.original.dart",
+      "bytes": 20825,
+      "sha256": "e648cbb6d83d0a386f6dda15128950ad3974881fe439d270383fa18c25300ca1"
+    },
+    {
+      "path": "initial-20261114T135029Z/api-availability.json",
+      "bytes": 676,
+      "sha256": "46ae95d6a77c51a6bade099a662f92d7ae3a4895262db76daec7e0b2e455800e"
+    },
+    {
+      "path": "initial-20261114T135029Z/artifacts.original.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    {
+      "path": "initial-20261114T135029Z/binding.json",
+      "bytes": 1984,
+      "sha256": "d1889ca323e7bad0a9fc43e0619cfd86a91e5c9da7b58386a407d728bc624d7f"
+    },
+    {
+      "path": "initial-20261114T135029Z/godot-source.original.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50"
+    },
+    {
+      "path": "initial-20261114T135029Z/host-commit.original.json",
+      "bytes": 1214,
+      "sha256": "34adbdba9ba32127d9b4d3d196b48468ff813e48544d110572aaa3bc0639fe43"
+    },
+    {
+      "path": "initial-20261114T135029Z/jobs.original.json",
+      "bytes": 6095,
+      "sha256": "e345e3f2e282c8e1e6b8ea83e7102674c24cc717fd23147cde6807ccd2aa7cfd"
+    },
+    {
+      "path": "initial-20261114T135029Z/pr485.original.json",
+      "bytes": 17888,
+      "sha256": "1e5c2f4f2020ef1f1dc5de5596782019d3e045197e686657feed7f6a2f59891f"
+    },
+    {
+      "path": "initial-20261114T135029Z/raw-manifest.json",
+      "bytes": 1989,
+      "sha256": "365a483ae9defe31ba6f35a71ee24b7ca7ddc7334b00946a9c2925f8a9bda9e9"
+    },
+    {
+      "path": "initial-20261114T135029Z/run.original.json",
+      "bytes": 12985,
+      "sha256": "68ce52e4389444ca4d0abeca41e09cd549c0a35e468f9eaff9e44e4bd1e758e3"
+    },
+    {
+      "path": "initial-20261114T135029Z/workflow.original.yml",
+      "bytes": 49103,
+      "sha256": "72224aca469231aaeb6f3db0b5e5ec7fea9bb32e8d5804ea8cd46509003d879e"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/14117085761-original.zip",
+      "bytes": 22149514,
+      "sha256": "e090fad9e3775557e95ede50b8e76cfea4fe9b9e37a3e336be391e8a8195a0f0"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/archive-index.json",
+      "bytes": 172414,
+      "sha256": "3507ad7b8ac93de09f849311715e0391559b1e58f55475c93440383c6a764680"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/original-import.log",
+      "bytes": 167942,
+      "sha256": "37eac620f96b0e51f56c8e3c02b42b79814b9068d172e4cc3b95ca22ee4cc309"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/return-recovery.log",
+      "bytes": 504,
+      "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/closed.json",
+      "bytes": 44,
+      "sha256": "922b529a830f497aae1e84cb1e1b60f62dea9e64f9d168e45037d94d3ac414b9"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_empty.layout.json",
+      "bytes": 19574,
+      "sha256": "4871159ba38b34d643e55f35186f6d47612c10b4cfd2e15421571486230b7ade"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_fold_landscape.layout.json",
+      "bytes": 20950,
+      "sha256": "8a7609a3d3a3a1712708fd6a25da9a407405ff1201e7b3597258eeeda5b954bf"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_pause.layout.json",
+      "bytes": 19586,
+      "sha256": "88263ab1bb9477c92d29f641875a416a86d6542b11a115f6cf684b7a11e25aff"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_phone_bot_response.layout.json",
+      "bytes": 20996,
+      "sha256": "7670cc20138b465e7f44e0ba6c4ff9843a7a8a54f6385382c9578b97fd8e0968"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_phone_playing.layout.json",
+      "bytes": 20992,
+      "sha256": "1bb1edf84c9a5e7e225ff5df7321776ef629d775067e55c3f2bb35dfb63c729e"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_phone_portrait.layout.json",
+      "bytes": 21036,
+      "sha256": "2a65aada12d7a0bc456dc3daf82045159322dbce2777133205270ca277ae70a5"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_small_landscape.layout.json",
+      "bytes": 19743,
+      "sha256": "04f08fe6141d3f4a2129eaf24c00e82582ac9cceb7aef9b6964761df218deea1"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_small_portrait.layout.json",
+      "bytes": 19745,
+      "sha256": "9abb71b127613569b09f94683e839e6ebab9f32bba3167c89cd246107bd363ae"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_win.layout.json",
+      "bytes": 19620,
+      "sha256": "f66ef88affe2876a45b482fe8ff8ebc13cd5bbb918352d89093f0346fb710c64"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/dart-result.json",
+      "bytes": 20387,
+      "sha256": "f25dfc1cf50c6afc9d2e8166023804f04e95ff607513b83657e0511ccb732137"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/done.json",
+      "bytes": 17,
+      "sha256": "baf7c3be410aa877bd98a1776555e86da13a23212e363e0e87e2040768f24710"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/input.json",
+      "bytes": 221,
+      "sha256": "0da3dcffd6152fdaa3ee1be859743d00645d12522628c7c3effb64ce51fb1efa"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/native-result.json",
+      "bytes": 73209,
+      "sha256": "e2e4515036f1fcc981312375689e47d83e9ecbdf1b3ac3782ed3c1a08d6d791f"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/original-dart.log",
+      "bytes": 325,
+      "sha256": "368b8ee5b21575482c4fbeb742ff3d5c1a927bb8cc45709a5ba3c65bf0dc9133"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/original-godot.log",
+      "bytes": 2551,
+      "sha256": "e107eb01927fd40b21601ef5d8f8bf80392bdc2b5a306300dac5adb48b67fede"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/runtime-gate.json",
+      "bytes": 55426,
+      "sha256": "ed7c4349284c4b97d3d21a44b70a377719ee4d1e07775e963983471cb1074891"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/session.json",
+      "bytes": 164,
+      "sha256": "a13b51e1a4dfb12d083897f52a89da5e676792a2f4bc02d8da94040359828c65"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/source-after.json",
+      "bytes": 480285,
+      "sha256": "246e1f1a7bd7de29e3aba5a63b844ba15534730581aa5b12021f62c842c36856"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/source-before.json",
+      "bytes": 480285,
+      "sha256": "246e1f1a7bd7de29e3aba5a63b844ba15534730581aa5b12021f62c842c36856"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/state.json",
+      "bytes": 594,
+      "sha256": "8b47d335a6e344d0bfeaeaa7a3294dcabfa8ef5ad1c0a8d7a41af00a3b342386"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/03/12b1a8a5199b81ce766c4aa9a3b40a711467f0",
+      "bytes": 32628,
+      "sha256": "0bfccaa1c17ae255eab1864d7febe67d06f250478ebff2e3c78c62e393a6c27b"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/04/90bb0538fd38f7606c8efd0c118bc13b950d45",
+      "bytes": 2914,
+      "sha256": "fe1f12c529df578d5bf00dfb42b919a1a9a81371717823d9380252fd113f1a97"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/04/f82e0dca21b32521941af25ca1e1596dacf5ef",
+      "bytes": 3041,
+      "sha256": "9b5dc9c6e07d58cffa9f5b866d81b91092151e97079643be17c56c2245c7091f"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/07/cd39f32cfefb732c1fe60710d706e988217dcc",
+      "bytes": 25726,
+      "sha256": "ed20d58731998803e6641f9b7d8ca2318504b2e7ea380b919e96f51067432d81"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/0a/08617a4230a2ba9da7ef09366e915da2ddfa68",
+      "bytes": 929,
+      "sha256": "2783e88ce67a28ab458946539da3c5bf0b6c1538045c853cc83a312b8b44a950"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/0e/004e018764a6f32bd3e3b316e01b50249204f2",
+      "bytes": 2909,
+      "sha256": "7568ae49b15ff895270275484b3af65afa15c077a9d8db8a81f6fafb3a5b89f9"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/13/469ffdb515f19648618acdc2a2f12837a08a68",
+      "bytes": 940,
+      "sha256": "98d66dc613d34ff5fc7a6fc0e82ba23631458b6466089fa1f3cd846c91b2ed5f"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/15/6c6d4aa46f06e6249ad27fd4498dc502f6d42e",
+      "bytes": 6137,
+      "sha256": "28c16bbbaa176f93200f1f82a2774f9ff19be5cf375fdb90d7c4bcced8fc2a0b"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/16/393efed741c80f7bf38c0c1a7b68207350cdc1",
+      "bytes": 1035,
+      "sha256": "7eae3a66178e94dff0e7c0dc44292d4dc635b1e01d9dd6a6667d90b6fe964253"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/17/1d64c39ce7c5da5d92c6ed4d7f6fee35b557f5",
+      "bytes": 4228,
+      "sha256": "69fff88ddfc4a0764a09a29c4f556d767195ca6506d99f5ab2ea96e66d1635ac"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/17/d8c7f59c71df6cf37f7f62bc868947b6b69556",
+      "bytes": 27850,
+      "sha256": "d18babae026f30cea6513919379c561ee35487072c2685436197a4940eae6aa4"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/1c/800b55512a77bb901e2c3ef3f87987f789700f",
+      "bytes": 2626,
+      "sha256": "539f566ef53e55618059066c091f073822b1d6f59bffbe9fd031c4bd1aac0b93"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/1d/d403d688bdc2d43131a42ec959b17f8ed74a67",
+      "bytes": 3249,
+      "sha256": "3bb091318617b6fff0a140583256996acd088a3b5f72c25e8d1ea17cb1f3d98e"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/21/40a16c773131888db14de2e2f047e52c346064",
+      "bytes": 811,
+      "sha256": "ba85e7f7d83bbc7aaed7632f8f1e14bcdc1bef7a70da5fea8ac5b60ba3b371c8"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/23/5c4cf6ef9c4651a12a8d57218fd00c724d6dc3",
+      "bytes": 6843,
+      "sha256": "f2e4591d5108ab9d5e5b9f7b2854c112eaa29bb99491486dc49c699c9635c06c"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/25/b8ebb2ae2217641f4fa9ac4a282ac3f05527df",
+      "bytes": 669,
+      "sha256": "44b0f3dd87c6f786b101ab69c0c6fe291ed011d74eac5a390ba2099bc6036dcb"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/26/cb12017e15846342960a2192c0ecd973a50fcd",
+      "bytes": 2015,
+      "sha256": "f6df3ef6d6e1c4f8455df582eea08cf925d040530ef83f50ebcd0886877f86c9"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/27/7b5f0df06082d84444ed048aa94c447899c2a7",
+      "bytes": 669,
+      "sha256": "f46b6059162f7780ae2669368d9247333c1e925d7b9ce346fbff4d2d464f6c97"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/27/f8df3e7186c6a98d0f99425da09901ff26b449",
+      "bytes": 28707,
+      "sha256": "f30e291696b5353ffb37c24b5c80386b0edb7afaf538d53f9d9dcca86ee5fb9c"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/37/0f6b1f887c31154662b2e4a377a7784665107e",
+      "bytes": 413,
+      "sha256": "f60658e96b85f32650ffb8e2685f3f9b4e9f86ca786a9bbb38abbf6fb1adc659"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/37/7c3d75ddc6e95471ccf9823d3a141b5ccba764",
+      "bytes": 884,
+      "sha256": "0d195ef3d35549a9ecc00a3b193b43e3164da4a9f4c4dc1bebd187029a8ac15c"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3a/a9ef93f0f0e476af02136349597f0e9cecfe5a",
+      "bytes": 1671,
+      "sha256": "81afce93bc3f1d8e07ac76d751e513b31ce21fe0579359082880d1bfcc90fe6c"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3a/db8667b0961895b39bae120a928cde4aa9bd07",
+      "bytes": 6909,
+      "sha256": "c965486dbb37ab78cbaa248f1307b5b75e93a5d374f71cd22e4fc799bc8011b7"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3c/1cd9ff28824468599f311bc884bae56f500b6c",
+      "bytes": 3347,
+      "sha256": "ad9c63f14ba48b5188ae26d6bbca7c0dabd5bbf7430c2069df6ff3d21ac4ce16"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3d/a91b540cace43aa145b2ee6e6ef563dc5fbb44",
+      "bytes": 1389,
+      "sha256": "5aee72204359309af3069f4e59704b7aef9c8e9193d0de21455a6dd80e1baa3a"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3e/03b07c49cd9c95316ac1289059528fbafb4d1f",
+      "bytes": 1556,
+      "sha256": "7d79f8f21223d16122ed18b7e501f27a00c5cab6286f3f17e3738f3d3d838fc5"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3e/efcc019456f0759e3923e64660fc368f003bbc",
+      "bytes": 960,
+      "sha256": "6407ac32b04706f222e422290975b9ccdc65b213dae2404a2f356e5c8eb80867"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3f/0f70e9358a66b69a4e64b0d245ec95ecc891e6",
+      "bytes": 1393,
+      "sha256": "9a74d915560574433f8dc7a00dd57bb75009a6809c946cf02aafe3417969ed3e"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/44/3f3355b8491177220d7e80bfcee9d662c145a1",
+      "bytes": 1413,
+      "sha256": "7d017a6cb529794168ef95fa25b2f44948bb67ec9e94a090e6b99429706cdf87"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/44/78e4c04faaf1c7d277e63f81a481b5fb9b558a",
+      "bytes": 20935,
+      "sha256": "1766f70324c5e3e364ca9f86c64d7f4524a46a52cbbbd38e8d175237e28f5041"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/45/9b92f411398a5ab699cf4e67a343e9f0374be5",
+      "bytes": 26076,
+      "sha256": "dcc907e38f335194d8411ed0f54f560475e20f555e65ad6edb5fe45b341e7f5f"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/46/13e4b85bbb0c2cf8dbce5618e87defce042d47",
+      "bytes": 3042,
+      "sha256": "3ee86271bf2f216b0d3fb0f41ed9f2d4bfe1a2cb1af66f14274af017adc32c6a"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/47/c9efe731b5751cb38759f1b65c5d649840e071",
+      "bytes": 2909,
+      "sha256": "d3f0164f30a0847f5254aeb24baaf7f8bb74d2a37103ed6f5ef1a6371ab0e30c"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/47/f638de487471ce398406c27b455fadd8127e60",
+      "bytes": 32962,
+      "sha256": "acbbe9cdbbe9fb84df8acfcf1ba76e5fbb9850853164859a236149f0268d4f4e"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/49/e947da3ee92e07015d7967651465348a24133f",
+      "bytes": 3121,
+      "sha256": "2c28fdddd494c156918a270d3681a1040d5a5673a8a7a7afb4771939d36f568a"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/4b/ce04c0739fe73e04f19ea357a91d9c9b17bf58",
+      "bytes": 21329,
+      "sha256": "3040e5567fc1eaa0e86a450f55c37b43c9c44504dedb385fb85600e994238e59"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/52/fa707669d881d91009952e664aeda3f92efcfd",
+      "bytes": 21369,
+      "sha256": "d4ab5f00d30d382fb198cd23ad655195e855b4fa9736dd9ccb673af6ad65c219"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/54/2925ef0da4b46558a8d87f8cc96d4e9eccbd7e",
+      "bytes": 27785,
+      "sha256": "76a0fef7c43089e35b63dceb227857b874c1c29dc88594f62918f3c0b1b51ea6"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/5d/769de7ca1a0f3a831d6b9221ba3b4d826e2e05",
+      "bytes": 599,
+      "sha256": "9ca888220a60111c6d2b71d573b83fd4e06ccf240f745808345a16f2c3c996f3"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/61/a2b9ba84993f150d61f7830fcfa922b3371468",
+      "bytes": 436,
+      "sha256": "59aced32ce72c466143066f5cab7a68cb1fd3790bb110f6b244b21b7c821e2a4"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/68/49766028709c8bc1160566c3286dc49daf99e9",
+      "bytes": 3145,
+      "sha256": "6bd10f92012a6a9d596f2fbb921a75416d33ea3ded66579b2aca4c0e9c0ca731"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/69/2e72ba179f2a8db1fcb003352ec7c6d5a925c9",
+      "bytes": 3954,
+      "sha256": "a02ccde60f25f7a9758bc82eef0fa1cac9b64cd87b8390edb0d6ab1b2f31df4e"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/6b/5f78b6c63f527328cf5d2cf154adca2cc407e0",
+      "bytes": 746,
+      "sha256": "10a54d85bc842859edcf88096c584951196a17cd3b4cd04b5d47346a3875991b"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/73/431602a1ef019857920fd66de183548ededdd4",
+      "bytes": 714,
+      "sha256": "e06c2c7eb97554bba6d67f678aee03579b2cd723a4d231f09ab9a3dd304d45c0"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/73/d1b36da07b497deb446746b129e1e0d76e35c3",
+      "bytes": 3037,
+      "sha256": "4df926c4a714b88af22ac37f0ee983fcc9c5b2fa02c861e8e134c4bb727657a1"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/74/17f4254415a6a4ec40806e8f123bfed6c05e0b",
+      "bytes": 2805,
+      "sha256": "9a66f37cdf5b0aabf38091c7361bec50912157b70f6f260149980cb9091a4747"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/74/2cf0bd0ce37ebcf804fb51cfd1017f6e7ee4c5",
+      "bytes": 3960,
+      "sha256": "d4c40e7e34e82b1737e4fd19b9f1c6c759e9e6ad89040851368818c51e19cbc1"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/77/25ff7efd1586f4811b7828453ced8d9bd63362",
+      "bytes": 600,
+      "sha256": "5391991402d5e6f88d2cfd09927cd5f152943f7435067486bc7a6a5e46888c96"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/78/366f8fc13c89d530e31814d12c9e431d56cc20",
+      "bytes": 3650,
+      "sha256": "e2a160146ff04a2aeb3a1779722307dc3bd2d76ee34e63a99a620cd8089570c8"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/78/cacca3422220f04db1613da5ec7b742ab2158b",
+      "bytes": 3646,
+      "sha256": "77a4ecf05a294208628e19cf2da5f79a750018e2c43fae7553cbd340f4a14abc"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/7a/7496f3d66c4c7a59fc47d7634d4be7617e1757",
+      "bytes": 4052,
+      "sha256": "ad8f9aab06d6ac50507b0cb264106d4716626b55b7cdb89b72aa8e5f6b6e7c86"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/7d/12fa0f913e8d4bef270f5849a85956fc8e7b12",
+      "bytes": 3677,
+      "sha256": "f5a012c3c678e9eccd56f874cdbcf4fea291a3503d0b1bb3dac44461fd908d40"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/7e/2a3d22e194999ca5472f45d91bc1eaeb2d36f6",
+      "bytes": 3131,
+      "sha256": "afb6a9fdf821262ac8dc6f0e9662b5ea49030b2aa3db492959582faef51cbd65"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/7e/c070dc3852b2ab368bdee764fb9923a805e9d1",
+      "bytes": 963,
+      "sha256": "bca8318ad7bbe68215d96064855d71812b029a5dbb8922bfd5b7bf1302c07ee1"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/80/88cddee3dcb8f65ddcd759a5d74ee715c1d47c",
+      "bytes": 21008,
+      "sha256": "e79ece7208ea14f9c8e8c9f6ea619a853e3d3bfda5c2aa14351b6abfc864bd66"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/81/8ba87b5a3f1b08f0387f3b51754cbc66ad65b6",
+      "bytes": 926,
+      "sha256": "8d9f30386d4ca8d730037c137f557494f31b544d4a80734ee6caea400026a29b"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/82/d827489e7d3c3b239ed1f9a2eb64e665da09ba",
+      "bytes": 4191,
+      "sha256": "c1437da7f9a837864a8b795fd354cdbe9e4229d602606ca1b36b3bccfafc5dee"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/83/e138044d245ca5151652dbd57ff43e148c46ea",
+      "bytes": 602,
+      "sha256": "5a4d7b9e80138f6862ca1c3647c51cf52f24c1261310a822d74c5ecc0492263d"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/84/b72c3b0c8adcfed4190559e4d286a9cd5fd3eb",
+      "bytes": 2520,
+      "sha256": "f4f06f54ccd8658d8cfc84921916f1bda37370bc17ba259f008c1266ee0c47e3"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/8b/df9f0578f106a1da6204b284a7ab79aa74a79f",
+      "bytes": 3954,
+      "sha256": "2799116800e2e0d3dd2dea40394377c465693dc4c6801ff8bdadc3a51a6734db"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/8e/f6cc9112da97b1be0771d98cbc8370d87c9d57",
+      "bytes": 3679,
+      "sha256": "b67aa701efdec3e5b2e5f34aa884b976097e58574bb037d99d25d4273265dce6"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/90/4956f2e2bad4e069cc20a8304f48ca767874d7",
+      "bytes": 6282,
+      "sha256": "e3ec16cd013f60893fc843709f6b278b3021f76cbc86c3ace3a1929f81d3b2fc"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/9d/0b19bf8349ed524bad7f2031c78c5edef4f23c",
+      "bytes": 28012,
+      "sha256": "a9d6212eff6499b7eb2657ff08b159a8b84d7d4dfce7cae03424157874a7d74c"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/9d/da6043cfa83cebda21f8a645fae678dcc11581",
+      "bytes": 2909,
+      "sha256": "d3f0164f30a0847f5254aeb24baaf7f8bb74d2a37103ed6f5ef1a6371ab0e30c"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/9d/eae2485d1e361f4fa48aa97670cb10223401a0",
+      "bytes": 585,
+      "sha256": "cc6d43f36f6771137b7566d70d463332f2afa51fba6f95c824d26947e3ae8343"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/9e/a1e598417170f251fd977e5e369022a683be7a",
+      "bytes": 5766,
+      "sha256": "ffca1b877bf2ade2a0251f257d02db11fb2ebd43a9432e816f185a89352c87e3"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/a9/666a15a974abc892670db995a30c85df704165",
+      "bytes": 1394,
+      "sha256": "38417759435869c796f6c09087bedb53d78a31bc9c42bad8137d655ca5612c4b"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/ad/a7ecbd4e3f3b9cdf3215221c4113eff28ebca8",
+      "bytes": 7007,
+      "sha256": "995e09b17a9dfec5b90848e6a875a0dcb078e660a22f111542cfc1132c3de33e"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/b4/dea8bf2c4ddda60f2c0254391a8a0c556903bb",
+      "bytes": 23433,
+      "sha256": "a8cbab9f420250db57141cda30b1fc6c54c3aee4857704ce431a41e9a82b984b"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/b5/edca3ac5784413e7149d3db9a650c2b40a4ce4",
+      "bytes": 962,
+      "sha256": "fa79aa81f262fc31dab712845b5c83c9b4d46039c11cd8c89f7e543c07c16b04"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c1/21007d8693ef952ed4e1e278e2f6eeb3e0bccd",
+      "bytes": 2963,
+      "sha256": "adb54d760d45fb27fa66d2f0442d1a90b18f86c20b6b76312ba2e4e3fd83b4c9"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c1/33e18255f962b97326608220a25f20315e6a63",
+      "bytes": 3345,
+      "sha256": "c3cac895406de608b0a77de324152dd1971376d3506bc5770756850a8d08496f"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c4/08bcc135b338ebf686560b5e35f4272be6bf1e",
+      "bytes": 550,
+      "sha256": "774a31306871e6dad3daf84c4f7309afde56edc5f0bc4f06055bbf69b01d4cec"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c4/d63922f66f9c5c0141fa5267dfa6f28a1cb192",
+      "bytes": 27969,
+      "sha256": "9c84a9aa7b537ff1f1f0f4482b22313b437a531d8c304f870a4b87b9933aed97"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c7/30c11b1f6faa24e3ec03dcc5e5d64e32eb0732",
+      "bytes": 27755,
+      "sha256": "6ed26a50da0aaca946ef171a08589341ff28ce46f34c5fa71ab011efcc7be131"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c7/4e497e7083f94c1d4fe9adac562f5bdd7c2909",
+      "bytes": 22586,
+      "sha256": "59ad92144fda414688318202d6271da7adc43be38fd8c62dbaa02c25e1a00f9b"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c8/822530dedec552cfd75f19562ab34799737792",
+      "bytes": 22440,
+      "sha256": "ffd2419176f49824121e969bb6538c6b81517598d2f71c9aa7c1247b162fdc5c"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c9/7f3abc2aa9c0afadb24d45f6a31f7e203be77e",
+      "bytes": 601,
+      "sha256": "5d9608bbaf8f92e127cc46dc7c511ca5a7ffd5c22600623615346e074d185899"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/cc/0a1ecae806333e92a4553a092ad236b4f304aa",
+      "bytes": 28390,
+      "sha256": "99f47ef863970ea0f08c270216c86200f18bb1a44bacee063dc3acaf4b3cc693"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/cd/848128f2854bcce8f88790c9cec36a5b81ebcc",
+      "bytes": 497,
+      "sha256": "8427446d81238f4ad4ec6365166f78385b011ac0d45ef2bad3451d3bbcf10afb"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/ce/60862e4caff80212fcb27133fb68cd11ecb942",
+      "bytes": 3760,
+      "sha256": "0144747e3c3348e36ac175f9bf8b9806a23b6d646e48f73a7ffe8537f5997186"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/ce/f69f63e1e68a5f5eb9efa66dd7efa8b2cd8c08",
+      "bytes": 22507,
+      "sha256": "41fc2371a919f0aaf99c379a79527df31bf454ac73be90bb60f0e6d7f2d1e574"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/db/0cd3978242749bd89a0fe7aefd29aaa0557463",
+      "bytes": 3643,
+      "sha256": "b19a32779dbe08f10a6835e6eb94b5bab585fc03d1447d6f3aec8903df47813a"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/dc/ce0949c52b1aec5e827ec47db8f03c6fee6aa6",
+      "bytes": 7008,
+      "sha256": "e4d64fda2d1eff7964955b2a1759714a5b6b43e6b0fa19160c10a65708a6e86d"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/dc/ef4ba7b55fefbcb51cc06532780c8efa88d3ae",
+      "bytes": 4592,
+      "sha256": "2d2ea1df81f854a906d94616a7c9101c0a722ba3a0c36721be553fc02fee3029"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/de/fd57a176ac3a72b3733b7867d9d16f7caf2fc3",
+      "bytes": 27705,
+      "sha256": "91fd61c1618d012bf84f49b8ee8dacbdb5b34a817abfbf017146180e2686c762"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e2/0e8d3ce4996ae8f5bb6f72c9d57d88182fe74b",
+      "bytes": 600,
+      "sha256": "05a8c5ffab4330eec0bf173fc30b747b01a4380cea3eae44804c5c8bfb0d6efa"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e2/fe034add39f05e46d7f94fbe5c07b013cc3cf2",
+      "bytes": 555,
+      "sha256": "e860cfe18904b1a5d43f0d15575e67b6cbbf1cb4f2fd35e938a496382bdb34fa"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e6/223eb8775f16d91d472404ead5b9f346e3c532",
+      "bytes": 3760,
+      "sha256": "3f1b2ae857d6ef4d3195411cf87e18ac38dc55a58c343fa4af124e37184fd152"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e6/82f442a1ccb81a29ad3384adee8e70fecd6acf",
+      "bytes": 720,
+      "sha256": "93f5bb35ed9758b3e1c795d2aac64f1c7eb327372cb5af8b4c8344350b57c72f"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e7/4029da64524a2a28c48c95ce50a73d4f113bc4",
+      "bytes": 832,
+      "sha256": "739552d4ba76c8658494c099a9cb8973ffb3c02d97e20c086e65debff0305435"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e7/63b30c20aa4d4cceae571cbad5399a702b29e2",
+      "bytes": 7932,
+      "sha256": "aeeccc3641e8f0aa1588a20433cb0790c9c8a4a0b7745cede36b1fe924a84334"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/eb/987fbf2586df04230a3418ccc39558e9b5a820",
+      "bytes": 3645,
+      "sha256": "09fd75cf09ec086984203426ef34be1bc2843c815924e2f93170913cd5016b89"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f0/c8b6e01bc9785c007147932c61fb04e4cd96b3",
+      "bytes": 4086,
+      "sha256": "64cb618f5c9fee11d09bf420578eed72d8f15e98b57944b75318ce505a31f817"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f5/85c62c273b6603181db99d72f119b2fa46b0bd",
+      "bytes": 1394,
+      "sha256": "f760a27049bc3a79cff426b04453aaccf9367b4c9b7ce27b19392af1a7bfa563"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f5/b37896edc323f8523cff0ab825e8d359c381c8",
+      "bytes": 962,
+      "sha256": "7e922b50ed1803b3510e9564b0cbbbe376ea10dbb06cd3ca43f4865c4af01608"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f7/1e2c8197257746275ccdced73d36764e25b111",
+      "bytes": 1347,
+      "sha256": "143012de2849c8528750413f3ab2b4cac61f4634c020a2055d916e4be584afd4"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f8/33fb53414867776883b466ea7bbb08f1a3994b",
+      "bytes": 1392,
+      "sha256": "688a5191581934034c0657572ca5ec68a785b5a16ca9c2799bcdddf172b06c9b"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f8/e876bfd3784b2f3a90e590b16949f4ed85b637",
+      "bytes": 1475,
+      "sha256": "ca38e772d5fb62ac08c8512f5ab3e13d13a6d567886512bc0e7351a79a26c887"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/fa/2cf3df18725c5e70abd5625e697843609bf313",
+      "bytes": 2909,
+      "sha256": "7568ae49b15ff895270275484b3af65afa15c077a9d8db8a81f6fafb3a5b89f9"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/ff/47f762b2dd5b92ecd637159d24c8d55adc8ec2",
+      "bytes": 2963,
+      "sha256": "38c7057449b1cc3f919e0a57dece0d92a53a1a7d2b0dae8dc9a610ddd4494918"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/index",
+      "bytes": 1310728,
+      "sha256": "5fd47398e9708a9fc152b5ab01f32833ab010a5cd68343bd3b7272db6446e264"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/marker",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-config/tool_state",
+      "bytes": 21,
+      "sha256": "b74b1eaf3ebb5dec3e407a1a458298f1f4311028f3d6b2e2bd6ba1ef5795c6b5"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2545,
+      "sha256": "f88ba26fecbd69849033c87adcbcf787b1c2ae0a10afd42aee4d6550880a99d5"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/CanvasShaderGLES3/ec4ada8cee357dc1d60cc059a0f84ad21dee27e29d58fa9a87f46f2aef80c3ea/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "bytes": 34246,
+      "sha256": "3b4d4a57811bc71b30201084753b748bf82480f280bbb13df98da41762c7b18a"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/CopyShaderGLES3/d2a6cb0418a1a9d4daa260504f4bcfe1b8f47c80b93a4b02975c6c8e4cdec734/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "bytes": 66022,
+      "sha256": "44c0e41eecd44ca9db714446599a9aca20cf7f4ae8c99868846cbdc64f8fbe5e"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/FeedShaderGLES3/ff8ce52247f567be25a85ee57b249f526c39fe4595e675da7a92cda3482cc47b/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "bytes": 4613,
+      "sha256": "81f4b6668cbc5242cff759625b633b7689ce109fabb67a4a1bef3583ca0414b6"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/PostShaderGLES3/314401684c9d4037d224f17896fb50fc3cae526688b7f2cd4b73d1ce59d68cc7/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "bytes": 10125,
+      "sha256": "262248851ca6f5c238fc440cf4192d81acdeb640520b8c22394516c2c3f6613a"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "bytes": 551608,
+      "sha256": "6272e7c7ce93b473ccb6ad9f3da59199fdc98e2490862e1bb39b80ad70fd31e3"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/75dbda390b4d6b8d1bba67e8943ace8a4f64f756.cache",
+      "bytes": 747326,
+      "sha256": "72f75890991fe0c291882d361519a1f7ce442306e5f1b1c3eb825fc6490b41f2"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/7610c7e24170c9ff2ef8d8f3a542d89520b2e49f.cache",
+      "bytes": 753446,
+      "sha256": "bfa72b78358cf6ba214575ca8adfc6bfdf92cf3f7a8d0400eb5a4642460b2f66"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/77047cd41f429f33ceff24e890e174f5465e755e.cache",
+      "bytes": 532721,
+      "sha256": "34a558c5c1b25e8a9815d7fe5c1f9d67e90149756ffefbeafc74331ed18579e6"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/84366ed46520476083c6b869fefb772ed1a067ee.cache",
+      "bytes": 762974,
+      "sha256": "d931a19e6e322e661014817b7e1c04ea1d7b9ceb83457a62a8b76f39e6f7c40f"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/f2e328ac8a780a17a0c65e242b0c8bc4fc063f03.cache",
+      "bytes": 747110,
+      "sha256": "ae82d51a5f3fb0b7b7e1e2b74dcd9e27a292cc595caeec6a2966f05a3414b766"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SkeletonShaderGLES3/84035b3cefc09f9557dd6bf4f292f5563f0545ca349eba904f9efc23e561e23f/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+      "bytes": 47513,
+      "sha256": "c08a0f38b07ef820b7a0b84e74d81597ca470066da6e63be91548b1f3dca0f79"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/originals/wisps.log",
+      "bytes": 499,
+      "sha256": "2addbad1078d83ba3fe151557f3748812201ed8dffe5675ec741557083b51d39"
+    },
+    {
+      "path": "runtime-132467548948/metadata/artifacts.original.json",
+      "bytes": 778,
+      "sha256": "49a2056d7e9629f372314ce6f1060ea1136156d2e36668171349af411b2e1a61"
+    },
+    {
+      "path": "runtime-132467548948/metadata/job.original.log",
+      "bytes": 290803,
+      "sha256": "f4cd5d8b0dad5954554ee986a681af24452fe825591d32c5a5d416d8595cb270"
+    },
+    {
+      "path": "runtime-132467548948/metadata/jobs.original.json",
+      "bytes": 6592,
+      "sha256": "ce91b1e53448b9f1b8c2ceeed6aadea651e9b81d053a1729f5ad3511303ef852"
+    },
+    {
+      "path": "runtime-132467548948/metadata/raw-manifest.json",
+      "bytes": 684,
+      "sha256": "682d43c618858e537473238a96cd16beee51c227aa2bbdffa2925a5f14b16ddf"
+    },
+    {
+      "path": "snapshots/20261114T135235Z/jobs.original.json",
+      "bytes": 6592,
+      "sha256": "ce91b1e53448b9f1b8c2ceeed6aadea651e9b81d053a1729f5ad3511303ef852"
+    },
+    {
+      "path": "snapshots/20261114T135235Z/observation.json",
+      "bytes": 184,
+      "sha256": "69b3102160534620ac912880bbb7c552b9b6ff768cbfe137ad43a807bee232fe"
+    },
+    {
+      "path": "snapshots/20261114T135235Z/raw-manifest.json",
+      "bytes": 462,
+      "sha256": "7ec8dfb38f0e72ed3f54e3033e28ac8f782271227216a1125c711d8494abd818"
+    },
+    {
+      "path": "snapshots/20261114T135352Z/jobs.original.json",
+      "bytes": 14203,
+      "sha256": "9b4762569ca3bdd5d0486ed2386b903d988d66cc1e9f81d8e6183ddc98da982f"
+    },
+    {
+      "path": "snapshots/20261114T135352Z/observation.json",
+      "bytes": 134,
+      "sha256": "0839c77f6fd56c4aebf24cedd19e4b247b8aa9bb4f53650589e21d6c6193a4e8"
+    },
+    {
+      "path": "snapshots/20261114T135352Z/raw-manifest.json",
+      "bytes": 463,
+      "sha256": "4fba475aec2ba7335a9a60d41f184645b948e69b08f10aa5a1e0c87cf4f1bbac"
+    },
+    {
+      "path": "snapshots/20261114T135758Z/jobs.original.json",
+      "bytes": 14547,
+      "sha256": "1c406d7d6bb58e0197a1eedf1ea7355a01511ab6ea0cc69448db5cf3fc8e3c0f"
+    },
+    {
+      "path": "snapshots/20261114T135758Z/observation.json",
+      "bytes": 158,
+      "sha256": "3c2459ddc55d964ed0d969c518b8739061a3940cfea8a1f6893f98f15e6463ba"
+    },
+    {
+      "path": "snapshots/20261114T135758Z/raw-manifest.json",
+      "bytes": 463,
+      "sha256": "6e03d8975824222cddc214fbf30c1a4007e1efa18b0ff38fc8d317d384b3436c"
+    },
+    {
+      "path": "snapshots/20261114T140233Z/jobs.original.json",
+      "bytes": 14547,
+      "sha256": "1c406d7d6bb58e0197a1eedf1ea7355a01511ab6ea0cc69448db5cf3fc8e3c0f"
+    },
+    {
+      "path": "snapshots/20261114T140233Z/observation.json",
+      "bytes": 77,
+      "sha256": "dde9aad2c4ff3fa92628a85243cbcd1d2d6975e38a1d742f813e19333c60e5b2"
+    },
+    {
+      "path": "snapshots/20261114T140233Z/raw-manifest.json",
+      "bytes": 462,
+      "sha256": "4dbc012a7dd509399c69c9012aebde5a2d2b70b5437817d3545092e2ad3fffc3"
+    },
+    {
+      "path": "terminal-20261114T1409Z/artifacts.original.json",
+      "bytes": 3775,
+      "sha256": "5855498a4140aa63986feaff5d81fdc677ed2b64d061b9242a16548081733ded"
+    },
+    {
+      "path": "terminal-20261114T1409Z/build-132468566278.original.log",
+      "bytes": 102986,
+      "sha256": "8ded4cda7d69b103e24ba940ab0f615a907c64975e28ec7645754fae9eb6da18"
+    },
+    {
+      "path": "terminal-20261114T1409Z/jobs.original.json",
+      "bytes": 19694,
+      "sha256": "e10b616b0044fa4f2fa7654d2b2e0b2221b9e6168d7c0a683857d724be3368f2"
+    },
+    {
+      "path": "terminal-20261114T1409Z/raw-manifest.json",
+      "bytes": 916,
+      "sha256": "1991e2f17febda2cf3e37d1da874fbb228d3d01f4567533b3eb37868fa4c1f26"
+    },
+    {
+      "path": "terminal-20261114T1409Z/run.original.json",
+      "bytes": 12990,
+      "sha256": "bdbefad658b80899574ebfcce64fa2aec28af183402342a393b053627fb57d8e"
+    },
+    {
+      "path": "terminal-summary/raw-manifest.json",
+      "bytes": 244,
+      "sha256": "6effbb76d9a0070c2011868bc9cfee4df7f8f61b7a2826974fb206214d8ba034"
+    },
+    {
+      "path": "terminal-summary/summary.json",
+      "bytes": 2860,
+      "sha256": "d7874ddcd49960b70d4e7860d946b9e1705cdb486bb9eed5a65665e4b652f7dc"
+    }
+  ],
+  "selected_relative_paths": [
+    "compile-132467549173/metadata/artifacts.original.json",
+    "compile-132467549173/metadata/job.original.log",
+    "compile-132467549173/metadata/jobs.original.json",
+    "compile-132467549173/metadata/raw-manifest.json",
+    "completed-evidence-review.json",
+    "completed-small-artifacts/artifact-14115569599/14115569599-original.zip",
+    "completed-small-artifacts/artifact-14115569599/archive-index.json",
+    "completed-small-artifacts/artifact-14115569599/originals/cards-authority-registry.log",
+    "completed-small-artifacts/artifact-14115569599/originals/compile.log",
+    "completed-small-artifacts/artifact-14115569599/originals/connect-four-classes.json",
+    "completed-small-artifacts/artifact-14115569599/originals/flutter-version.txt",
+    "completed-small-artifacts/artifact-14115569599/originals/result.json",
+    "completed-small-artifacts/artifact-14115569599/originals/source-sha.txt",
+    "completed-small-artifacts/artifact-14117110954/14117110954-original.zip",
+    "completed-small-artifacts/artifact-14117110954/archive-index.json",
+    "completed-small-artifacts/artifact-14117110954/originals/audit.stderr.log",
+    "completed-small-artifacts/artifact-14117110954/originals/audit.stdout.log",
+    "completed-small-artifacts/artifact-14117110954/originals/issues.json",
+    "completed-small-artifacts/artifact-14117110954/originals/source-binding.json",
+    "completed-small-artifacts/artifact-14117110954/originals/summary.json",
+    "completed-small-artifacts/artifact-14117110954/originals/task-families.json",
+    "completed-small-artifacts/artifact-14117110954/originals/task-samples.jsonl",
+    "flutter-failure-14117615115/README.md",
+    "flutter-failure-14117615115/SHA256SUMS",
+    "flutter-failure-14117615115/archive-index.json",
+    "flutter-failure-14117615115/archive-roundtrip.json",
+    "flutter-failure-14117615115/handoff.json",
+    "flutter-failure-14117615115/machine-failure-observations.json",
+    "flutter-failure-14117615115/manifest.json",
+    "flutter-failure-14117615115/metadata/artifacts.original.json",
+    "flutter-failure-14117615115/metadata/build-132468566278.original.log",
+    "flutter-failure-14117615115/metadata/jobs.original.json",
+    "flutter-failure-14117615115/metadata/run.original.json",
+    "flutter-failure-14117615115/originals/acceptance-summary.json",
+    "flutter-failure-14117615115/originals/flutter-machine.jsonl",
+    "flutter-failure-14117615115/source-binding/binding.json",
+    "flutter-failure-14117615115/source-binding/raw-manifest.json",
+    "flutter-failure-14117615115/source-binding/test.original.dart",
+    "initial-20261114T135029Z/api-availability.json",
+    "initial-20261114T135029Z/artifacts.original.json",
+    "initial-20261114T135029Z/binding.json",
+    "initial-20261114T135029Z/godot-source.original.json",
+    "initial-20261114T135029Z/host-commit.original.json",
+    "initial-20261114T135029Z/jobs.original.json",
+    "initial-20261114T135029Z/pr485.original.json",
+    "initial-20261114T135029Z/raw-manifest.json",
+    "initial-20261114T135029Z/run.original.json",
+    "initial-20261114T135029Z/workflow.original.yml",
+    "runtime-132467548948/artifact-14117085761/archive-index.json",
+    "runtime-132467548948/artifact-14117085761/originals/original-import.log",
+    "runtime-132467548948/artifact-14117085761/originals/return-recovery.log",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/closed.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_empty.layout.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_fold_landscape.layout.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_pause.layout.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_phone_bot_response.layout.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_phone_playing.layout.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_phone_portrait.layout.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_small_landscape.layout.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_small_portrait.layout.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/connect_four_win.layout.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/dart-result.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/done.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/input.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/native-result.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/original-dart.log",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/original-godot.log",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/runtime-gate.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/session.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/source-after.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/source-before.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/state.json",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/03/12b1a8a5199b81ce766c4aa9a3b40a711467f0",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/04/90bb0538fd38f7606c8efd0c118bc13b950d45",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/04/f82e0dca21b32521941af25ca1e1596dacf5ef",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/07/cd39f32cfefb732c1fe60710d706e988217dcc",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/0a/08617a4230a2ba9da7ef09366e915da2ddfa68",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/0e/004e018764a6f32bd3e3b316e01b50249204f2",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/13/469ffdb515f19648618acdc2a2f12837a08a68",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/15/6c6d4aa46f06e6249ad27fd4498dc502f6d42e",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/16/393efed741c80f7bf38c0c1a7b68207350cdc1",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/17/1d64c39ce7c5da5d92c6ed4d7f6fee35b557f5",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/17/d8c7f59c71df6cf37f7f62bc868947b6b69556",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/1c/800b55512a77bb901e2c3ef3f87987f789700f",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/1d/d403d688bdc2d43131a42ec959b17f8ed74a67",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/21/40a16c773131888db14de2e2f047e52c346064",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/23/5c4cf6ef9c4651a12a8d57218fd00c724d6dc3",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/25/b8ebb2ae2217641f4fa9ac4a282ac3f05527df",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/26/cb12017e15846342960a2192c0ecd973a50fcd",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/27/7b5f0df06082d84444ed048aa94c447899c2a7",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/27/f8df3e7186c6a98d0f99425da09901ff26b449",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/37/0f6b1f887c31154662b2e4a377a7784665107e",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/37/7c3d75ddc6e95471ccf9823d3a141b5ccba764",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3a/a9ef93f0f0e476af02136349597f0e9cecfe5a",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3a/db8667b0961895b39bae120a928cde4aa9bd07",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3c/1cd9ff28824468599f311bc884bae56f500b6c",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3d/a91b540cace43aa145b2ee6e6ef563dc5fbb44",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3e/03b07c49cd9c95316ac1289059528fbafb4d1f",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3e/efcc019456f0759e3923e64660fc368f003bbc",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/3f/0f70e9358a66b69a4e64b0d245ec95ecc891e6",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/44/3f3355b8491177220d7e80bfcee9d662c145a1",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/44/78e4c04faaf1c7d277e63f81a481b5fb9b558a",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/45/9b92f411398a5ab699cf4e67a343e9f0374be5",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/46/13e4b85bbb0c2cf8dbce5618e87defce042d47",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/47/c9efe731b5751cb38759f1b65c5d649840e071",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/47/f638de487471ce398406c27b455fadd8127e60",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/49/e947da3ee92e07015d7967651465348a24133f",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/4b/ce04c0739fe73e04f19ea357a91d9c9b17bf58",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/52/fa707669d881d91009952e664aeda3f92efcfd",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/54/2925ef0da4b46558a8d87f8cc96d4e9eccbd7e",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/5d/769de7ca1a0f3a831d6b9221ba3b4d826e2e05",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/61/a2b9ba84993f150d61f7830fcfa922b3371468",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/68/49766028709c8bc1160566c3286dc49daf99e9",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/69/2e72ba179f2a8db1fcb003352ec7c6d5a925c9",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/6b/5f78b6c63f527328cf5d2cf154adca2cc407e0",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/73/431602a1ef019857920fd66de183548ededdd4",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/73/d1b36da07b497deb446746b129e1e0d76e35c3",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/74/17f4254415a6a4ec40806e8f123bfed6c05e0b",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/74/2cf0bd0ce37ebcf804fb51cfd1017f6e7ee4c5",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/77/25ff7efd1586f4811b7828453ced8d9bd63362",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/78/366f8fc13c89d530e31814d12c9e431d56cc20",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/78/cacca3422220f04db1613da5ec7b742ab2158b",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/7a/7496f3d66c4c7a59fc47d7634d4be7617e1757",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/7d/12fa0f913e8d4bef270f5849a85956fc8e7b12",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/7e/2a3d22e194999ca5472f45d91bc1eaeb2d36f6",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/7e/c070dc3852b2ab368bdee764fb9923a805e9d1",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/80/88cddee3dcb8f65ddcd759a5d74ee715c1d47c",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/81/8ba87b5a3f1b08f0387f3b51754cbc66ad65b6",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/82/d827489e7d3c3b239ed1f9a2eb64e665da09ba",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/83/e138044d245ca5151652dbd57ff43e148c46ea",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/84/b72c3b0c8adcfed4190559e4d286a9cd5fd3eb",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/8b/df9f0578f106a1da6204b284a7ab79aa74a79f",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/8e/f6cc9112da97b1be0771d98cbc8370d87c9d57",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/90/4956f2e2bad4e069cc20a8304f48ca767874d7",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/9d/0b19bf8349ed524bad7f2031c78c5edef4f23c",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/9d/da6043cfa83cebda21f8a645fae678dcc11581",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/9d/eae2485d1e361f4fa48aa97670cb10223401a0",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/9e/a1e598417170f251fd977e5e369022a683be7a",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/a9/666a15a974abc892670db995a30c85df704165",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/ad/a7ecbd4e3f3b9cdf3215221c4113eff28ebca8",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/b4/dea8bf2c4ddda60f2c0254391a8a0c556903bb",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/b5/edca3ac5784413e7149d3db9a650c2b40a4ce4",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c1/21007d8693ef952ed4e1e278e2f6eeb3e0bccd",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c1/33e18255f962b97326608220a25f20315e6a63",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c4/08bcc135b338ebf686560b5e35f4272be6bf1e",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c4/d63922f66f9c5c0141fa5267dfa6f28a1cb192",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c7/30c11b1f6faa24e3ec03dcc5e5d64e32eb0732",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c7/4e497e7083f94c1d4fe9adac562f5bdd7c2909",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c8/822530dedec552cfd75f19562ab34799737792",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/c9/7f3abc2aa9c0afadb24d45f6a31f7e203be77e",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/cc/0a1ecae806333e92a4553a092ad236b4f304aa",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/cd/848128f2854bcce8f88790c9cec36a5b81ebcc",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/ce/60862e4caff80212fcb27133fb68cd11ecb942",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/ce/f69f63e1e68a5f5eb9efa66dd7efa8b2cd8c08",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/db/0cd3978242749bd89a0fe7aefd29aaa0557463",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/dc/ce0949c52b1aec5e827ec47db8f03c6fee6aa6",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/dc/ef4ba7b55fefbcb51cc06532780c8efa88d3ae",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/de/fd57a176ac3a72b3733b7867d9d16f7caf2fc3",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e2/0e8d3ce4996ae8f5bb6f72c9d57d88182fe74b",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e2/fe034add39f05e46d7f94fbe5c07b013cc3cf2",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e6/223eb8775f16d91d472404ead5b9f346e3c532",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e6/82f442a1ccb81a29ad3384adee8e70fecd6acf",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e7/4029da64524a2a28c48c95ce50a73d4f113bc4",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/e7/63b30c20aa4d4cceae571cbad5399a702b29e2",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/eb/987fbf2586df04230a3418ccc39558e9b5a820",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f0/c8b6e01bc9785c007147932c61fb04e4cd96b3",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f5/85c62c273b6603181db99d72f119b2fa46b0bd",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f5/b37896edc323f8523cff0ab825e8d359c381c8",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f7/1e2c8197257746275ccdced73d36764e25b111",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f8/33fb53414867776883b466ea7bbb08f1a3994b",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/f8/e876bfd3784b2f3a90e590b16949f4ed85b637",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/fa/2cf3df18725c5e70abd5625e697843609bf313",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/ff/47f762b2dd5b92ecd637159d24c8d55adc8ec2",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/index",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-cache/mesa_shader_cache/marker",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-config/tool_state",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/CanvasShaderGLES3/ec4ada8cee357dc1d60cc059a0f84ad21dee27e29d58fa9a87f46f2aef80c3ea/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/CopyShaderGLES3/d2a6cb0418a1a9d4daa260504f4bcfe1b8f47c80b93a4b02975c6c8e4cdec734/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/FeedShaderGLES3/ff8ce52247f567be25a85ee57b249f526c39fe4595e675da7a92cda3482cc47b/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/PostShaderGLES3/314401684c9d4037d224f17896fb50fc3cae526688b7f2cd4b73d1ce59d68cc7/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/75dbda390b4d6b8d1bba67e8943ace8a4f64f756.cache",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/7610c7e24170c9ff2ef8d8f3a542d89520b2e49f.cache",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/77047cd41f429f33ceff24e890e174f5465e755e.cache",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/84366ed46520476083c6b869fefb772ed1a067ee.cache",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SceneShaderGLES3/379b6d5785209e37ede487eef03d12e75f5428b8c16d50abfe48d224c95211bf/f2e328ac8a780a17a0c65e242b0c8bc4fc063f03.cache",
+    "runtime-132467548948/artifact-14117085761/originals/runtime/user-data/godot/app_userdata/Lumo 3D/shader_cache/SkeletonShaderGLES3/84035b3cefc09f9557dd6bf4f292f5563f0545ca349eba904f9efc23e561e23f/6bb7c9a2fd1c4a8fa77cb96555b9b4a720209981.cache",
+    "runtime-132467548948/artifact-14117085761/originals/wisps.log",
+    "runtime-132467548948/metadata/artifacts.original.json",
+    "runtime-132467548948/metadata/job.original.log",
+    "runtime-132467548948/metadata/jobs.original.json",
+    "runtime-132467548948/metadata/raw-manifest.json",
+    "snapshots/20261114T135235Z/jobs.original.json",
+    "snapshots/20261114T135235Z/observation.json",
+    "snapshots/20261114T135235Z/raw-manifest.json",
+    "snapshots/20261114T135352Z/jobs.original.json",
+    "snapshots/20261114T135352Z/observation.json",
+    "snapshots/20261114T135352Z/raw-manifest.json",
+    "snapshots/20261114T135758Z/jobs.original.json",
+    "snapshots/20261114T135758Z/observation.json",
+    "snapshots/20261114T135758Z/raw-manifest.json",
+    "snapshots/20261114T140233Z/jobs.original.json",
+    "snapshots/20261114T140233Z/observation.json",
+    "snapshots/20261114T140233Z/raw-manifest.json",
+    "terminal-20261114T1409Z/artifacts.original.json",
+    "terminal-20261114T1409Z/build-132468566278.original.log",
+    "terminal-20261114T1409Z/jobs.original.json",
+    "terminal-20261114T1409Z/raw-manifest.json",
+    "terminal-20261114T1409Z/run.original.json",
+    "terminal-summary/raw-manifest.json",
+    "terminal-summary/summary.json"
+  ],
+  "explicit_exclusions": [
+    {
+      "path": "flutter-failure-14117615115/14117615115-original.zip",
+      "bytes": 336174142,
+      "sha256": "0e45f92561aad071a57612c0efe7dec2278b232cdd8721e1bbc315f949882de7",
+      "reason": "Large complete original ZIP retained at source path and Actions artifact, not duplicated in compact transport"
+    },
+    {
+      "path": "flutter-failure-14117615115/compact-originals.tar.gz",
+      "bytes": 239473,
+      "sha256": "0a2705bbd775c8b13440d5a97bd996124dbd1f64d3fe2c99038a00be011c5047",
+      "reason": "Already generated compact transport; all underlying files are selected separately"
+    },
+    {
+      "path": "runtime-132467548948/artifact-14117085761/14117085761-original.zip",
+      "bytes": 22149514,
+      "sha256": "e090fad9e3775557e95ede50b8e76cfea4fe9b9e37a3e336be391e8a8195a0f0",
+      "reason": "Large complete original ZIP retained at source path and Actions artifact, not duplicated in compact transport"
+    }
+  ]
+}

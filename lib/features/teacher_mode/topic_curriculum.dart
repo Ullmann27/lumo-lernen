@@ -157,7 +157,8 @@ class TopicCurriculum {
           'Erste einfache Woerter: MAMA, PAPA, OMA, OPA, BALL, AUTO, HUND, KATZE. '
           'Buchstaben zusammensetzen zu Woertern.',
       exampleTask:
-          'Mama hat 4 Buchstaben: M-A-M-A. Lies langsam: Em-A-Em-A. Das ergibt MAMA!',
+          'Verbinde die Laute langsam: mmm-a wird ma. Lies dann ma-ma. '
+          'Welches Wort hoerst du?',
       vocabulary: ['Wort', 'Buchstaben', 'lesen', 'MAMA', 'PAPA', 'BALL'],
       forbidden: 'KEIN Rechnen. KEINE schwierigen Woerter. NICHT Grammatik.',
       complexityHint: 'Klasse 1 - Erste 3-4-Buchstaben-Woerter',
@@ -186,8 +187,8 @@ class TopicCurriculum {
       complexityHint: 'Klasse 1 - Erste Tier-Kunde',
       quickQuestions: [
         'Wie macht eine Kuh?',
-        'Zeig mir einen Pinguin',
-        'Wo lebt der Loewe?',
+        'Was frisst ein Schaf?',
+        'Wo lebt ein Fuchs?',
       ],
     ),
     's1_farben': TopicContext(
@@ -448,7 +449,7 @@ class TopicCurriculum {
     'm3_einmaleins_voll': TopicContext(
       grade: 3,
       subject: 'Mathematik',
-      title: 'Großes 1×1',
+      title: '1×1 – alle Reihen',
       detailedScope:
           'Alle Multiplikations-Reihen 1×1 bis 10×10. '
           'Auch Division als Umkehrung: 6×4=24, also 24÷4=6.',
@@ -592,24 +593,24 @@ class TopicCurriculum {
       subject: 'Mathematik',
       title: 'Zahlen bis 1 Million',
       detailedScope:
-          'Sehr grosse Zahlen lesen und schreiben. '
+          'Zahlen bis einschliesslich 1.000.000 lesen und schreiben. '
           'Millionen, Hunderttausender, Zehntausender, Tausender. '
-          'Beispiel: 1.250.000 = eine Million zweihundertfuenfzigtausend. '
-          'Schriftlich addieren/subtrahieren grosser Zahlen.',
+          'Beispiel: 250.000 = zweihundertfuenfzigtausend. '
+          'Stellenwerte erkennen und Zahlen im gewaehlten Zahlenraum vergleichen.',
       exampleTask:
           'Die Zahl 234.567 lesen wir: "Zweihundertvierunddreissigtausend fuenfhundertsiebenundsechzig". '
           'Was ist 100.000 + 50.000? Antwort: 150.000.',
       vocabulary: ['Million', 'Hunderttausender', 'Zehntausender', 'Tausender', 'Stellenwerttafel'],
       forbidden:
           'AUF KEINEN FALL Aufgaben wie "3 Aepfel + 2 Aepfel" - das ist 1. Klasse! '
-          'Es geht um Zahlen ueber 1000!',
+          'KEINE Zahlen ueber 1.000.000. Es geht um grosse Zahlen und Stellenwerte.',
       complexityHint:
           'Klasse 4 - GROSSE Zahlen ueber 1000! Schueler kann Einmaleins + Zahlenraum 1000.',
     ),
     'm4_bruch': TopicContext(
       grade: 4,
       subject: 'Mathematik',
-      title: 'Bruchrechnen',
+      title: 'Brüche erkennen',
       detailedScope:
           'Brueche: 1/2 (eine Haelfte), 1/3 (ein Drittel), 1/4 (ein Viertel), 1/8. '
           'Zaehler oben, Nenner unten. Brueche aus Bildern ablesen (z.B. Pizza in 4 Teile, 1 weg). '
@@ -633,15 +634,17 @@ class TopicCurriculum {
           'Frage erkennen, Rechenweg planen, Antwort als Satz formulieren. '
           'Mit grossen Zahlen oder Multiplikation.',
       exampleTask:
-          'Anna kauft 3 Buecher zu je 8 Euro. Wieviel zahlt sie? '
-          'Rechenweg: 3 × 8 = 24. Antwort: Anna zahlt 24 Euro.',
+          'Anna kauft 3 Buecher zu je 8 Euro und ein Heft fuer 6 Euro. '
+          'Sie bezahlt mit 40 Euro. Wie viel bekommt sie zurueck? '
+          'Erst die Buecher: 3 × 8 = 24 Euro. Dann alles: 24 + 6 = 30 Euro. '
+          'Zuletzt das Rueckgeld: 40 - 30 = 10 Euro. Anna bekommt 10 Euro zurueck.',
       vocabulary: ['Frage', 'Rechenweg', 'Antwort', 'Sachaufgabe'],
       forbidden: 'KEINE einfachen Aufgaben mit 3 Aepfeln. Es muss eine richtige Textaufgabe sein.',
       complexityHint: 'Klasse 4 - Komplexe Textaufgaben mit mehreren Schritten',
       quickQuestions: [
-        'Wie schreibt man eine Million?',
-        'Welche Zahl kommt nach 99999?',
-        'Was sind 10 Tausender?',
+        'Wie finde ich heraus, was in der Sachaufgabe gesucht ist?',
+        'Wie plane ich den ersten Rechenschritt?',
+        'Wie pruefe ich meinen Antwortsatz?',
       ],
     ),
 
@@ -686,9 +689,9 @@ class TopicCurriculum {
       forbidden: 'KEIN Rechnen. NICHT Grammatik analysieren.',
       complexityHint: 'Klasse 4 - Texte schreiben',
       quickQuestions: [
-        'Was ist die Haelfte von 8?',
-        'Was bedeutet 1 Drittel?',
-        'Wie viel ist ein Viertel von 12?',
+        'Was gehoert in die Einleitung einer Erzaehlung?',
+        'Wie mache ich meinen Hauptteil spannend?',
+        'Wie finde ich einen passenden Schluss?',
       ],
     ),
 
@@ -698,21 +701,23 @@ class TopicCurriculum {
     's4_europa': TopicContext(
       grade: 4,
       subject: 'Sachunterricht',
-      title: 'Europa',
+      title: 'Kontinente und Ozeane',
       detailedScope:
-          'Europa ist ein Kontinent. Nachbarlaender Oesterreichs: Deutschland, Schweiz, Italien, Slowenien, '
-          'Ungarn, Slowakei, Tschechien, Liechtenstein. '
-          'Bekannte Hauptstaedte: Berlin, Rom, Paris, London, Madrid.',
+          'Kontinente und Ozeane auf einer Weltkarte unterscheiden. '
+          'Europa, Asien, Afrika, Nordamerika, Suedamerika, Australien und Antarktika benennen. '
+          'Atlantischer, Pazifischer, Indischer, Arktischer und Suedlicher Ozean. '
+          'Oesterreich auf dem Kontinent Europa einordnen.',
       exampleTask:
-          'Oesterreich liegt in Europa und hat 8 Nachbarlaender. Im Norden ist Deutschland mit Berlin als Hauptstadt. '
-          'Welches Land liegt im Sueden von Oesterreich? Italien!',
-      vocabulary: ['Kontinent', 'Europa', 'Nachbarland', 'Hauptstadt', 'Grenze'],
-      forbidden: 'KEIN Rechnen. NICHT EU-Politik. NICHT andere Kontinente.',
-      complexityHint: 'Klasse 4 - Europa-Geografie',
+          'Ein Kontinent ist eine grosse Landflaeche, ein Ozean ein grosses Meer. '
+          'Europa ist ein Kontinent. Der Atlantik ist ein Ozean. '
+          'Ist Afrika ein Kontinent oder ein Ozean?',
+      vocabulary: ['Kontinent', 'Ozean', 'Weltkarte', 'Land', 'Meer'],
+      forbidden: 'KEIN Rechnen. NICHT EU-Politik. KEIN Wechsel zu Hauptstaedte-Quizfragen.',
+      complexityHint: 'Klasse 4 - Kontinente und Ozeane unterscheiden und benennen',
       quickQuestions: [
-        'Welche Laender grenzen an Oesterreich?',
-        'Was ist die Hauptstadt von Italien?',
-        'Was ist die EU?',
+        'Was unterscheidet einen Kontinent von einem Ozean?',
+        'Auf welchem Kontinent liegt Oesterreich?',
+        'Welche Ozeane kennst du?',
       ],
     ),
     's4_geschichte': TopicContext(

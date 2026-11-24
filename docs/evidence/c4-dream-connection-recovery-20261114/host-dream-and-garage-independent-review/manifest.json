@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "storage": "functions.store; no confirmed filesystem write",
+  "files": [
+    {
+      "path": "review.json",
+      "bytes": 9947,
+      "sha256": "aed28c7ef0ec07ba7b0b4e104f1888cf887728f2bfb23827fe33e51ad4159d8c"
+    }
+  ],
+  "scope": "Newly serialized completed read-only review; original source/log bytes and their independent hashes remain unchanged."
+}

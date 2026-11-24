@@ -1,0 +1,21 @@
+{
+  "baseCommit": "428619f45ccd945a11b806765245302aee9bcffb",
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/android_qa/tests -p 'test_nextgen_2031_runtime_cases.py' -v",
+  "exitCode": 1,
+  "registered": 16,
+  "failures": 1,
+  "scope": "Constructed pure-result guard regression against the missing viewport-preparation requirement. Android root cause is separately grounded in original XML/PNG, not fabricated by this test.",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 31882,
+      "sha256": "d02e861e0f16ec4489053e6598765307880d3604690358ac1be3c97f512f9369"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "bytes": 22824,
+      "sha256": "e8e0b1a0637dc6e54059690a11cf2d7f804ae97e247f1b0c2932d4bfc8bb2b5d"
+    }
+  ],
+  "logSha256": "8caa0a3804bf2ebf30278815b1d5939351ce54414ff94f5d0a392fe5d0d91a36"
+}

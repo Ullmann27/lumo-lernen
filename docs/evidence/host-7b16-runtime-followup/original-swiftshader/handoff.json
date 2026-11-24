@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "status": "FROZEN_DIAGNOSIS",
+  "created_at": "2026-11-14T04:28:22.911882+00:00",
+  "summary": "Actual SceneShaderGLES3 and CanvasShaderGLES3 link failures on SwiftShader; separate continuous-logcat failure remains. Additional one-axis SWANGLE diagnosis authorized but not run.",
+  "diagnosis": "diagnosis.json",
+  "primary_sources": "primary-sources.json",
+  "source_binding": "source-binding.json",
+  "transport": "transport-verification.json",
+  "original_log": "memory-originals/originals/logcat.txt",
+  "collector_report": "memory-originals/report.json",
+  "external_originals": "external-originals.json",
+  "no_source_or_git_changes": true,
+  "no_new_tests": true,
+  "new_download_count": 1,
+  "total_new_selected_original_bytes": 2030823,
+  "new_complete_zip_files": 0,
+  "new_png_files": 0,
+  "next_owner": "pipeline_repair implements separate QA workflow/renderer comparison; godot_integration may later read the narrow delta."
+}

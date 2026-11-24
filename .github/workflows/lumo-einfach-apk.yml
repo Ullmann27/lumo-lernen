@@ -1,0 +1,142 @@
+name: "LUMO 2037 – spielbares Memory und 3D-Werkstatt APK"
+on:
+  push:
+    branches: [delivery/lumo-2037-memory-workshop-20261117]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lumo-einfache-apk-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  apk:
+    name: LUMO – eine signierte Android-APK
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+      LUMO_SPLIT_PER_ABI: '0'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;36.0.0'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Identität und Quellstand sichern
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          python3 scripts/verify_legacy_release_pin.py
+          mkdir -p build-proof
+          git rev-parse HEAD > build-proof/FLUTTER-COMMIT.txt
+          cp config/godot-source.json build-proof/GODOT-SOURCE.json
+      - name: Verfügbare Android- und Godot-Werkzeuge einrichten
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh build-proof/ndk
+          bash scripts/install_godot_for_build.sh
+      - name: Fachliche Regression – spielbares Memory, 3D-Werkstatt und Flutter-Einstiege
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter expanded \
+            test/games/memory_native_entry_test.dart \
+            test/games/memory_screen_test.dart \
+            test/games/memory_profile_storage_test.dart \
+            test/home_3d_workshop_entry_test.dart \
+            test/learning/lab_native_entry_test.dart \
+            test/learning/remaining_native_entry_test.dart \
+            test/games/flame_question_coach_test.dart \
+            test/tutoring/native_english_activity_test.dart \
+            test/learning/lab_native_model_contract_test.dart
+      - name: Echte Godot-Laufzeit – Neon-Kart, Memory-Tisch und Lernwelt
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          git clone --filter=blob:none https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
+          git -C build/lumo-godot-qa checkout --detach "$SOURCE"
+          godot --headless --path build/lumo-godot-qa --editor --import --quit
+          godot --headless --path build/lumo-godot-qa --script res://scripts/tests/kart_neon_home_regression.gd
+          godot --headless --path build/lumo-godot-qa --script res://scripts/tests/native_table_boot_regression.gd
+          godot --headless --path build/lumo-godot-qa --script res://scripts/tests/learning_android_host_capability_regression.gd
+      - name: Eine einzige originalsignierte Flutter-Godot-APK bauen
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh
+          test -s dist/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+          mkdir -p release
+          cp dist/Lumo-Lernen-Neu.apk release/Lumo-Lernen-Neu.apk
+          cp dist/BUILD-PROVENANCE.json release/BUILD-PROVENANCE.json
+          cp build-proof/APK-VERIFICATION.json release/APK-VERIFICATION.json
+          (cd release && sha256sum Lumo-Lernen-Neu.apk > SHA256SUMS.txt)
+      - name: Signierte 2037-APK mit belegtem Quellstand für Android ausliefern
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
+          cat > release/README.txt <<EOF
+          LUMO 2037 Android APK - Flutter and Godot
+          Version: $VERSION
+          Flutter commit: $GITHUB_SHA
+          Godot commit: $(python3 -c 'import json;print(json.load(open("config/godot-source.json"))["revision"])')
+          Repairs in 2037: Memory starts as playable Flutter game, optional
+          native 3D Memory table is opened only by an explicit user action.
+          3D learning workshop has direct Home, Academy and lesson entries.
+          Preserved from 2036: neon Kart, guided Bauwelt, six validated
+          native learning models, and existing public Jungle geometry.
+          Regression: Memory, learning, navigation plus native Godot routes.
+          Protected: original app package and signing certificate.
+          Not integrated: Library-only Jungle-V2 and R02 complete
+          source bundles. Full-device acceptance: NOT RUN.
+          EOF
+          TAG="lumo-2037-memory-werkstatt-$GITHUB_RUN_ID"
+          if gh release create "$TAG" \
+            release/Lumo-Lernen-Neu.apk \
+            release/SHA256SUMS.txt \
+            release/APK-VERIFICATION.json \
+            release/BUILD-PROVENANCE.json \
+            release/README.txt \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "LUMO 2037 – Memory und 3D-Lernwerkstatt APK" \
+            --notes "LUMO-2037-Testkandidat mit spielbarem Flutter-Memory, optionalem 3D-Tisch und sichtbaren 3D-Lernatelier-Zugaengen in Start, Akademie und Aufgaben. Bauwelt und Neon-Kart aus der 2036-Quelle; separat gespeicherte Dschungel-V2/R02-Dateien sind noch nicht im GitHub-Quellstand und werden nicht als enthalten ausgegeben." \
+            --prerelease --latest=false; then
+            URL="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url)"
+            echo "APK-Release: $URL" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::warning::GitHub hat Release-Veröffentlichung nicht erlaubt; die signierte APK ist trotzdem im Actions-Artefakt." >&2
+            echo "Signierte APK im Actions-Artefakt dieses Laufs: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: APK auch als Actions-Artefakt sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-EINFACH-APK-${{ github.run_id }}
+          path: |
+            release/
+            build-proof/
+          if-no-files-found: warn
+          retention-days: 30
+          compression-level: 0

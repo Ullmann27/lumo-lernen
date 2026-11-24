@@ -1,0 +1,29 @@
+{
+  "status": "FROZEN_ACTUAL_IMPORT_FAILURE_AND_SEPARATE_6_CONTRACT_PASS",
+  "root": "/workspace/scratch/b3485b7bb989/native-ce909c4-import-validation-20261114",
+  "report": {
+    "path": "report.json",
+    "bytes": 2476,
+    "sha256": "50c1e174a76b57c65351fed721c1bee7fbceb934ee57b5ba0dddf752ce0fd154",
+    "git_blob": "50126a42f9c3b0d6506a8ecb1f0178af6dc1dd5c"
+  },
+  "manifest": {
+    "path": "manifest.json",
+    "bytes": 13133,
+    "sha256": "34e4e30fc9b185a21bb6236e572cf580b0c0c5e39ba84b08def1701e0d2798d7",
+    "git_blob": "17a91683a11cda43c1fbb2db2ff5dccc9c7ac294"
+  },
+  "archive": {
+    "path": "native-ce909c4-import-originals.tar.gz",
+    "bytes": 2086628,
+    "sha256": "b867fd8e2e7b0bcebbe293dbf5f4fec6ab9b446944deb8a321b4f330f086cb5a",
+    "git_blob": "084791f04ce3632b5cab7a9d2c85bbcc92ebbe65",
+    "member_count": 55
+  },
+  "source_count": 34,
+  "full_tracked_count": 3742,
+  "import_exit": -9,
+  "python_methods": 6,
+  "python_exit": 0,
+  "no_retry": true
+}

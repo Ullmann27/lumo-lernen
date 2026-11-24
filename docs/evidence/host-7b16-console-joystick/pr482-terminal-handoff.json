@@ -1,0 +1,1187 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T05:37:11.974549+00:00",
+  "status": "TERMINAL_ORIGINALS_FROZEN_OVERALL_FAILURE",
+  "qa": {
+    "run_id": 43558497857,
+    "attempt": 1,
+    "head": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+    "tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+    "branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+    "workflow": ".github/workflows/lumo-android-runtime-7b16-followup.yml",
+    "conclusion": "failure"
+  },
+  "unchanged_application": {
+    "host": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "host_tree": "fe430b86449e4f4e221cadfc802f42db639f3133",
+    "native": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+    "original_build_run": 43540111465,
+    "candidate_artifact": 14093773196,
+    "apk_x86_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+    "pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d"
+  },
+  "final_original_metadata": [
+    {
+      "path": "snapshots/20261114T052313Z/run.json",
+      "bytes": 13028,
+      "sha256": "58264a0a2736075b7be4e2855b8156c2db3eb7f0d9f1deb13e846c6ad758f8f8"
+    },
+    {
+      "path": "snapshots/20261114T052313Z/jobs.json",
+      "bytes": 28391,
+      "sha256": "f74b9055079e151aa302325e4d203c7513e3f7a82281f6543b5291f4e17bb317"
+    },
+    {
+      "path": "snapshots/20261114T052313Z/artifacts.json",
+      "bytes": 4566,
+      "sha256": "90b4296e1cfd29bff7e97d9b97edda3d3231de50fa0d30186b2616d03148931f"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 132336672934,
+      "name": "followup-diagnostic-probe-contracts",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T04:49:05Z",
+      "completed_at": "2026-11-14T04:49:48Z",
+      "original_full_job_log": {
+        "path": "jobs/followup-diagnostic-probe-contracts-132336672934.log",
+        "bytes": 76494,
+        "sha256": "6211a9bbcc1cc66319e9d935e40db7de139023d6d89c7a4ff5270e30c4f63f3d"
+      },
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T04:49:05Z",
+          "completed_at": "2026-11-14T04:49:06Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T04:49:06Z",
+          "completed_at": "2026-11-14T04:49:28Z"
+        },
+        {
+          "name": "Read the exact upstream action for the existing adapter contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T04:49:28Z",
+          "completed_at": "2026-11-14T04:49:29Z"
+        },
+        {
+          "name": "Verify repaired observations and strict diagnostic bindings",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T04:49:29Z",
+          "completed_at": "2026-11-14T04:49:45Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T04:49:45Z",
+          "completed_at": "2026-11-14T04:49:46Z"
+        },
+        {
+          "name": "Post Read the exact upstream action for the existing adapter contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T04:49:46Z",
+          "completed_at": "2026-11-14T04:49:46Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T04:49:46Z",
+          "completed_at": "2026-11-14T04:49:46Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T04:49:46Z",
+          "completed_at": "2026-11-14T04:49:46Z"
+        }
+      ]
+    },
+    {
+      "id": 132336853139,
+      "name": "unchanged-apk-followup-api37-host",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-14T04:49:49Z",
+      "completed_at": "2026-11-14T04:53:51Z",
+      "original_full_job_log": {
+        "path": "jobs/api37-host-132336853139.log",
+        "bytes": 143600,
+        "sha256": "d23cc67501fbe7b66be1a2659ef97c09587922b050799097dd8a55fe8c93cb27"
+      },
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T04:49:50Z",
+          "completed_at": "2026-11-14T04:49:51Z"
+        },
+        {
+          "name": "Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T04:49:51Z",
+          "completed_at": "2026-11-14T04:50:15Z"
+        },
+        {
+          "name": "Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T04:50:15Z",
+          "completed_at": "2026-11-14T04:50:16Z"
+        },
+        {
+          "name": "Checkout the exact upstream Android17 action",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T04:50:16Z",
+          "completed_at": "2026-11-14T04:50:16Z"
+        },
+        {
+          "name": "Download the original successful build artifact without rebuilding",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T04:50:16Z",
+          "completed_at": "2026-11-14T04:50:22Z"
+        },
+        {
+          "name": "Download the original 2017 baseline only for the update",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-11-14T04:50:22Z",
+          "completed_at": "2026-11-14T04:50:22Z"
+        },
+        {
+          "name": "Install the unchanged live UI reader dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T04:50:22Z",
+          "completed_at": "2026-11-14T04:50:40Z"
+        },
+        {
+          "name": "Save authentic candidate and diagnostic API metadata separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T04:50:40Z",
+          "completed_at": "2026-11-14T04:50:44Z"
+        },
+        {
+          "name": "Bind both sources, exact build job, artifact, APK and actual embedded PCK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T04:50:44Z",
+          "completed_at": "2026-11-14T04:50:46Z"
+        },
+        {
+          "name": "Enable the same disposable KVM emulator",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T04:50:46Z",
+          "completed_at": "2026-11-14T04:50:46Z"
+        },
+        {
+          "name": "Start the same software display for both renderer cases",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T04:50:46Z",
+          "completed_at": "2026-11-14T04:50:53Z"
+        },
+        {
+          "name": "Preserve the original tools and install the same verified official CLI22",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-14T04:50:53Z",
+          "completed_at": "2026-11-14T04:52:24Z"
+        },
+        {
+          "name": "Bind the actual new observer and the unchanged original APK separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-14T04:52:24Z",
+          "completed_at": "2026-11-14T04:52:25Z"
+        },
+        {
+          "name": "Run the actual API35 tour or complete update with the repaired driver observation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14,
+          "started_at": "2026-11-14T04:52:25Z",
+          "completed_at": "2026-11-14T04:52:25Z"
+        },
+        {
+          "name": "Run the Android17 renderer comparison with continuous ANR observation",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 15,
+          "started_at": "2026-11-14T04:52:25Z",
+          "completed_at": "2026-11-14T04:53:47Z"
+        },
+        {
+          "name": "Preserve generated Android17 hardware even after a failed guard or tour",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-14T04:53:47Z",
+          "completed_at": "2026-11-14T04:53:47Z"
+        },
+        {
+          "name": "Close any remaining startup monitor after action cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-14T04:53:47Z",
+          "completed_at": "2026-11-14T04:53:47Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T04:53:47Z",
+          "completed_at": "2026-11-14T04:53:49Z"
+        },
+        {
+          "name": "Post Checkout the exact upstream Android17 action",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-11-14T04:53:49Z",
+          "completed_at": "2026-11-14T04:53:49Z"
+        },
+        {
+          "name": "Post Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-11-14T04:53:49Z",
+          "completed_at": "2026-11-14T04:53:49Z"
+        },
+        {
+          "name": "Post Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-14T04:53:49Z",
+          "completed_at": "2026-11-14T04:53:49Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-14T04:53:49Z",
+          "completed_at": "2026-11-14T04:53:49Z"
+        }
+      ]
+    },
+    {
+      "id": 132336853154,
+      "name": "unchanged-apk-followup-api35",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T04:49:49Z",
+      "completed_at": "2026-11-14T05:22:40Z",
+      "original_full_job_log": {
+        "path": "jobs/api35-132336853154.log",
+        "bytes": 1978752,
+        "sha256": "1437f6ebb92fdd7d9df4efcdd544f1cdb9bb59818af6bf5d302a4980c5e182cf"
+      },
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T04:49:50Z",
+          "completed_at": "2026-11-14T04:49:51Z"
+        },
+        {
+          "name": "Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T04:49:51Z",
+          "completed_at": "2026-11-14T04:50:12Z"
+        },
+        {
+          "name": "Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T04:50:12Z",
+          "completed_at": "2026-11-14T04:50:13Z"
+        },
+        {
+          "name": "Checkout the exact upstream Android17 action",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-11-14T04:50:13Z",
+          "completed_at": "2026-11-14T04:50:13Z"
+        },
+        {
+          "name": "Download the original successful build artifact without rebuilding",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T04:50:13Z",
+          "completed_at": "2026-11-14T04:50:20Z"
+        },
+        {
+          "name": "Download the original 2017 baseline only for the update",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-11-14T04:50:20Z",
+          "completed_at": "2026-11-14T04:50:20Z"
+        },
+        {
+          "name": "Install the unchanged live UI reader dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T04:50:20Z",
+          "completed_at": "2026-11-14T04:50:39Z"
+        },
+        {
+          "name": "Save authentic candidate and diagnostic API metadata separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T04:50:39Z",
+          "completed_at": "2026-11-14T04:50:41Z"
+        },
+        {
+          "name": "Bind both sources, exact build job, artifact, APK and actual embedded PCK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T04:50:41Z",
+          "completed_at": "2026-11-14T04:50:43Z"
+        },
+        {
+          "name": "Enable the same disposable KVM emulator",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T04:50:43Z",
+          "completed_at": "2026-11-14T04:50:43Z"
+        },
+        {
+          "name": "Start the same software display for both renderer cases",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T04:50:43Z",
+          "completed_at": "2026-11-14T04:50:48Z"
+        },
+        {
+          "name": "Preserve the original tools and install the same verified official CLI22",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-11-14T04:50:48Z",
+          "completed_at": "2026-11-14T04:50:48Z"
+        },
+        {
+          "name": "Bind the actual new observer and the unchanged original APK separately",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13,
+          "started_at": "2026-11-14T04:50:48Z",
+          "completed_at": "2026-11-14T04:50:48Z"
+        },
+        {
+          "name": "Run the actual API35 tour or complete update with the repaired driver observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-14T04:50:48Z",
+          "completed_at": "2026-11-14T05:22:31Z"
+        },
+        {
+          "name": "Run the Android17 renderer comparison with continuous ANR observation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15,
+          "started_at": "2026-11-14T05:22:31Z",
+          "completed_at": "2026-11-14T05:22:31Z"
+        },
+        {
+          "name": "Preserve generated Android17 hardware even after a failed guard or tour",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-11-14T05:22:31Z",
+          "completed_at": "2026-11-14T05:22:31Z"
+        },
+        {
+          "name": "Close any remaining startup monitor after action cleanup",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 17,
+          "started_at": "2026-11-14T05:22:31Z",
+          "completed_at": "2026-11-14T05:22:31Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T05:22:31Z",
+          "completed_at": "2026-11-14T05:22:38Z"
+        },
+        {
+          "name": "Post Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-11-14T05:22:38Z",
+          "completed_at": "2026-11-14T05:22:39Z"
+        },
+        {
+          "name": "Post Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-14T05:22:39Z",
+          "completed_at": "2026-11-14T05:22:39Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-14T05:22:39Z",
+          "completed_at": "2026-11-14T05:22:39Z"
+        }
+      ]
+    },
+    {
+      "id": 132336853164,
+      "name": "unchanged-apk-followup-update2017",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T04:49:49Z",
+      "completed_at": "2026-11-14T05:07:06Z",
+      "original_full_job_log": {
+        "path": "jobs/update2017-132336853164.log",
+        "bytes": 308566,
+        "sha256": "bb5ced90622d3b95bf2fa961c6cba2ea17c4f610d83451b520b61b9a05af10b9"
+      },
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T04:49:50Z",
+          "completed_at": "2026-11-14T04:49:51Z"
+        },
+        {
+          "name": "Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T04:49:51Z",
+          "completed_at": "2026-11-14T04:50:12Z"
+        },
+        {
+          "name": "Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T04:50:12Z",
+          "completed_at": "2026-11-14T04:50:13Z"
+        },
+        {
+          "name": "Checkout the exact upstream Android17 action",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-11-14T04:50:13Z",
+          "completed_at": "2026-11-14T04:50:13Z"
+        },
+        {
+          "name": "Download the original successful build artifact without rebuilding",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T04:50:13Z",
+          "completed_at": "2026-11-14T04:50:20Z"
+        },
+        {
+          "name": "Download the original 2017 baseline only for the update",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T04:50:20Z",
+          "completed_at": "2026-11-14T04:50:26Z"
+        },
+        {
+          "name": "Install the unchanged live UI reader dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T04:50:26Z",
+          "completed_at": "2026-11-14T04:50:45Z"
+        },
+        {
+          "name": "Save authentic candidate and diagnostic API metadata separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T04:50:45Z",
+          "completed_at": "2026-11-14T04:50:47Z"
+        },
+        {
+          "name": "Bind both sources, exact build job, artifact, APK and actual embedded PCK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T04:50:47Z",
+          "completed_at": "2026-11-14T04:50:50Z"
+        },
+        {
+          "name": "Enable the same disposable KVM emulator",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T04:50:50Z",
+          "completed_at": "2026-11-14T04:50:50Z"
+        },
+        {
+          "name": "Start the same software display for both renderer cases",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T04:50:50Z",
+          "completed_at": "2026-11-14T04:50:50Z"
+        },
+        {
+          "name": "Preserve the original tools and install the same verified official CLI22",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-11-14T04:50:50Z",
+          "completed_at": "2026-11-14T04:50:50Z"
+        },
+        {
+          "name": "Bind the actual new observer and the unchanged original APK separately",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13,
+          "started_at": "2026-11-14T04:50:50Z",
+          "completed_at": "2026-11-14T04:50:50Z"
+        },
+        {
+          "name": "Run the actual API35 tour or complete update with the repaired driver observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-14T04:50:50Z",
+          "completed_at": "2026-11-14T05:07:00Z"
+        },
+        {
+          "name": "Run the Android17 renderer comparison with continuous ANR observation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15,
+          "started_at": "2026-11-14T05:07:00Z",
+          "completed_at": "2026-11-14T05:07:00Z"
+        },
+        {
+          "name": "Preserve generated Android17 hardware even after a failed guard or tour",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-11-14T05:07:00Z",
+          "completed_at": "2026-11-14T05:07:00Z"
+        },
+        {
+          "name": "Close any remaining startup monitor after action cleanup",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 17,
+          "started_at": "2026-11-14T05:07:00Z",
+          "completed_at": "2026-11-14T05:07:00Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T05:07:00Z",
+          "completed_at": "2026-11-14T05:07:05Z"
+        },
+        {
+          "name": "Post Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-11-14T05:07:05Z",
+          "completed_at": "2026-11-14T05:07:05Z"
+        },
+        {
+          "name": "Post Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-14T05:07:05Z",
+          "completed_at": "2026-11-14T05:07:05Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-14T05:07:05Z",
+          "completed_at": "2026-11-14T05:07:05Z"
+        }
+      ]
+    },
+    {
+      "id": 132336853178,
+      "name": "unchanged-apk-followup-api37-swangle",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-14T04:49:50Z",
+      "completed_at": "2026-11-14T04:53:41Z",
+      "original_full_job_log": {
+        "path": "jobs/api37-swangle-132336853178.log",
+        "bytes": 104882,
+        "sha256": "10bf9dfa8ee9a9503eec0ed4a75e15573a58fc9b4053f4a3504fa04ead6b56ce"
+      },
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T04:49:50Z",
+          "completed_at": "2026-11-14T04:49:52Z"
+        },
+        {
+          "name": "Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T04:49:52Z",
+          "completed_at": "2026-11-14T04:50:13Z"
+        },
+        {
+          "name": "Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T04:50:13Z",
+          "completed_at": "2026-11-14T04:50:14Z"
+        },
+        {
+          "name": "Checkout the exact upstream Android17 action",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T04:50:14Z",
+          "completed_at": "2026-11-14T04:50:15Z"
+        },
+        {
+          "name": "Download the original successful build artifact without rebuilding",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T04:50:15Z",
+          "completed_at": "2026-11-14T04:50:38Z"
+        },
+        {
+          "name": "Download the original 2017 baseline only for the update",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-11-14T04:50:38Z",
+          "completed_at": "2026-11-14T04:50:38Z"
+        },
+        {
+          "name": "Install the unchanged live UI reader dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T04:50:38Z",
+          "completed_at": "2026-11-14T04:50:57Z"
+        },
+        {
+          "name": "Save authentic candidate and diagnostic API metadata separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T04:50:57Z",
+          "completed_at": "2026-11-14T04:50:59Z"
+        },
+        {
+          "name": "Bind both sources, exact build job, artifact, APK and actual embedded PCK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T04:50:59Z",
+          "completed_at": "2026-11-14T04:51:01Z"
+        },
+        {
+          "name": "Enable the same disposable KVM emulator",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T04:51:01Z",
+          "completed_at": "2026-11-14T04:51:01Z"
+        },
+        {
+          "name": "Start the same software display for both renderer cases",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T04:51:01Z",
+          "completed_at": "2026-11-14T04:51:05Z"
+        },
+        {
+          "name": "Preserve the original tools and install the same verified official CLI22",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-14T04:51:05Z",
+          "completed_at": "2026-11-14T04:52:07Z"
+        },
+        {
+          "name": "Bind the actual new observer and the unchanged original APK separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-14T04:52:07Z",
+          "completed_at": "2026-11-14T04:52:07Z"
+        },
+        {
+          "name": "Run the actual API35 tour or complete update with the repaired driver observation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14,
+          "started_at": "2026-11-14T04:52:07Z",
+          "completed_at": "2026-11-14T04:52:07Z"
+        },
+        {
+          "name": "Run the Android17 renderer comparison with continuous ANR observation",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 15,
+          "started_at": "2026-11-14T04:52:07Z",
+          "completed_at": "2026-11-14T04:53:36Z"
+        },
+        {
+          "name": "Preserve generated Android17 hardware even after a failed guard or tour",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-14T04:53:36Z",
+          "completed_at": "2026-11-14T04:53:36Z"
+        },
+        {
+          "name": "Close any remaining startup monitor after action cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-14T04:53:36Z",
+          "completed_at": "2026-11-14T04:53:36Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T04:53:36Z",
+          "completed_at": "2026-11-14T04:53:38Z"
+        },
+        {
+          "name": "Post Checkout the exact upstream Android17 action",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-11-14T04:53:38Z",
+          "completed_at": "2026-11-14T04:53:38Z"
+        },
+        {
+          "name": "Post Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-11-14T04:53:38Z",
+          "completed_at": "2026-11-14T04:53:38Z"
+        },
+        {
+          "name": "Post Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-14T04:53:38Z",
+          "completed_at": "2026-11-14T04:53:39Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-14T04:53:39Z",
+          "completed_at": "2026-11-14T04:53:39Z"
+        }
+      ]
+    },
+    {
+      "id": 132336853183,
+      "name": "unchanged-apk-followup-api37-swiftshader",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-14T04:49:50Z",
+      "completed_at": "2026-11-14T04:54:46Z",
+      "original_full_job_log": {
+        "path": "jobs/api37-swiftshader-132336853183.log",
+        "bytes": 104232,
+        "sha256": "5a6500cbdf2f628352b877231d22eb14128d773913920cac033c359efb76c8c4"
+      },
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T04:49:51Z",
+          "completed_at": "2026-11-14T04:49:54Z"
+        },
+        {
+          "name": "Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T04:49:54Z",
+          "completed_at": "2026-11-14T04:50:26Z"
+        },
+        {
+          "name": "Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T04:50:26Z",
+          "completed_at": "2026-11-14T04:50:27Z"
+        },
+        {
+          "name": "Checkout the exact upstream Android17 action",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T04:50:27Z",
+          "completed_at": "2026-11-14T04:50:27Z"
+        },
+        {
+          "name": "Download the original successful build artifact without rebuilding",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T04:50:27Z",
+          "completed_at": "2026-11-14T04:51:16Z"
+        },
+        {
+          "name": "Download the original 2017 baseline only for the update",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-11-14T04:51:16Z",
+          "completed_at": "2026-11-14T04:51:16Z"
+        },
+        {
+          "name": "Install the unchanged live UI reader dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T04:51:16Z",
+          "completed_at": "2026-11-14T04:51:55Z"
+        },
+        {
+          "name": "Save authentic candidate and diagnostic API metadata separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-14T04:51:55Z",
+          "completed_at": "2026-11-14T04:52:00Z"
+        },
+        {
+          "name": "Bind both sources, exact build job, artifact, APK and actual embedded PCK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-14T04:52:00Z",
+          "completed_at": "2026-11-14T04:52:01Z"
+        },
+        {
+          "name": "Enable the same disposable KVM emulator",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-14T04:52:01Z",
+          "completed_at": "2026-11-14T04:52:01Z"
+        },
+        {
+          "name": "Start the same software display for both renderer cases",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-14T04:52:01Z",
+          "completed_at": "2026-11-14T04:52:08Z"
+        },
+        {
+          "name": "Preserve the original tools and install the same verified official CLI22",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-14T04:52:08Z",
+          "completed_at": "2026-11-14T04:53:24Z"
+        },
+        {
+          "name": "Bind the actual new observer and the unchanged original APK separately",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-14T04:53:24Z",
+          "completed_at": "2026-11-14T04:53:24Z"
+        },
+        {
+          "name": "Run the actual API35 tour or complete update with the repaired driver observation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14,
+          "started_at": "2026-11-14T04:53:24Z",
+          "completed_at": "2026-11-14T04:53:24Z"
+        },
+        {
+          "name": "Run the Android17 renderer comparison with continuous ANR observation",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 15,
+          "started_at": "2026-11-14T04:53:24Z",
+          "completed_at": "2026-11-14T04:54:39Z"
+        },
+        {
+          "name": "Preserve generated Android17 hardware even after a failed guard or tour",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-14T04:54:39Z",
+          "completed_at": "2026-11-14T04:54:40Z"
+        },
+        {
+          "name": "Close any remaining startup monitor after action cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-14T04:54:40Z",
+          "completed_at": "2026-11-14T04:54:40Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-14T04:54:40Z",
+          "completed_at": "2026-11-14T04:54:42Z"
+        },
+        {
+          "name": "Post Checkout the exact upstream Android17 action",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-11-14T04:54:42Z",
+          "completed_at": "2026-11-14T04:54:42Z"
+        },
+        {
+          "name": "Post Checkout the unchanged APK source independently",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-11-14T04:54:42Z",
+          "completed_at": "2026-11-14T04:54:42Z"
+        },
+        {
+          "name": "Post Checkout the actual repaired probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-14T04:54:42Z",
+          "completed_at": "2026-11-14T04:54:42Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-14T04:54:42Z",
+          "completed_at": "2026-11-14T04:54:42Z"
+        }
+      ]
+    }
+  ],
+  "independent_reviews": [
+    {
+      "path": "api35-original-review.json",
+      "bytes": 60302,
+      "sha256": "17ae450108cf6a3f4af1cfcad8ff66944f7b8151d4dccfa9833426a1393275b2"
+    },
+    {
+      "path": "update-original-review.json",
+      "bytes": 30716,
+      "sha256": "e7affec074330c2666c3c0bf5c760b5b863ca55c150c79f8727fd38adac2aec4"
+    },
+    {
+      "path": "api37-original-failure-review.json",
+      "bytes": 46988,
+      "sha256": "53167d9f2d29ed3ab7c4e23bc1e742775d7b1a9557add64446455b00e479415d"
+    }
+  ],
+  "archives": [
+    {
+      "id": 14100386232,
+      "name": "lumo-7b16-followup-diagnostic-api35",
+      "size_in_bytes": 188751664,
+      "digest": "sha256:fe10071607c89693da948eb057870b8b91ba4b5ccd2a05054a5bb7bf51c5226c",
+      "expired": false,
+      "created_at": "2026-11-14T05:22:38Z",
+      "updated_at": "2026-11-14T05:22:38Z",
+      "workflow_run": {
+        "id": 43558497857,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+        "head_sha": "e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+      }
+    },
+    {
+      "id": 14099497429,
+      "name": "lumo-7b16-followup-diagnostic-update2017",
+      "size_in_bytes": 118182104,
+      "digest": "sha256:f515f4e8cfcc582eed83e7208705914e352ecad296130121b55c704ece5ceb7c",
+      "expired": false,
+      "created_at": "2026-11-14T05:07:05Z",
+      "updated_at": "2026-11-14T05:07:05Z",
+      "workflow_run": {
+        "id": 43558497857,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+        "head_sha": "e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+      }
+    },
+    {
+      "id": 14099605898,
+      "name": "lumo-7b16-followup-diagnostic-api37-host",
+      "size_in_bytes": 1600288,
+      "digest": "sha256:db8cbc80bee73025dddf1119d22e7f1f6cca7ac1696b05c16ec6ba1ec6354999",
+      "expired": false,
+      "created_at": "2026-11-14T04:53:49Z",
+      "updated_at": "2026-11-14T04:53:49Z",
+      "workflow_run": {
+        "id": 43558497857,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+        "head_sha": "e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+      }
+    },
+    {
+      "id": 14099915399,
+      "name": "lumo-7b16-followup-diagnostic-api37-swangle",
+      "size_in_bytes": 1755569,
+      "digest": "sha256:a7f8a7c25ebcafa0f4842d62531d0307dced3801f043c597f848e62a172ba105",
+      "expired": false,
+      "created_at": "2026-11-14T04:53:38Z",
+      "updated_at": "2026-11-14T04:53:38Z",
+      "workflow_run": {
+        "id": 43558497857,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+        "head_sha": "e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+      }
+    },
+    {
+      "id": 14099222913,
+      "name": "lumo-7b16-followup-diagnostic-api37-swiftshader",
+      "size_in_bytes": 1667428,
+      "digest": "sha256:111a3a05cbfbddfac160d2e0650182f43528892bafb651c34208855264dc5796",
+      "expired": false,
+      "created_at": "2026-11-14T04:54:42Z",
+      "updated_at": "2026-11-14T04:54:42Z",
+      "workflow_run": {
+        "id": 43558497857,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+        "head_sha": "e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+      }
+    }
+  ],
+  "observed_results": {
+    "contracts": "Actual 163 contracts completed successfully in the original Contract job. No local rerun by this review.",
+    "api35": "Actual main tour and learning/cards native surfaces PASS: source/APK/PCK binding, observed Garage/Fahrer return, race HUD/real gas/pause/continue/Flutter return, five learning touches and completed native speech, Cards IPC/draw/layout/pause/same-round return/reopen. Independent report states exact scope.",
+    "update2017": "Actual 2017-to-2019 upgrade PASS with original baseline, unchanged package/signature, retained installation identity/profile/learning/rewards/offline/restart state and observed native Kart/Flutter roundtrip. Independent report binds original values.",
+    "api37": "All three GPU-request variants fail in after-root logger continuity before APK installation. Exact direct failure is missing original session PID /proc stat. Due to set -e the subsequent child logger PID check was not reached; this is not proof of child termination cause, GPU comparison, application failure or ANR-free runtime."
+  },
+  "transport": {
+    "complete_zips_kept_on_local_disk": false,
+    "complete_original_zip_location": "Original GitHub Actions artifacts, subject to their existing retention policies",
+    "all_five_archives_size_digest_all_member_crc_sha_verified_in_ram": true,
+    "only_explicit_selected_original_members_materialized": true,
+    "api35_selection_count": 1186,
+    "api35_selection_bytes": 17068168,
+    "api35_local_failed_selection_attempt_retained": {
+      "path": "artifacts/14100386232/local-selection-orchestration-error.json",
+      "bytes": 877,
+      "sha256": "f6f3b98336578277b5363915f9e5b7a9d19196bbf4b50bb70759fd26fc630c41"
+    },
+    "metadata_and_full_job_logs_local": true
+  },
+  "limits": [
+    "No new test, emulator operation, source repair, APK build, rerun, ref or publication action.",
+    "API35 and Update do not turn the overall failed PR482 run into success.",
+    "No physical Fold 7, 60 FPS, audible voice/lip-sync, complete two-lap race/reward, API37 application/GPU acceptance, or C4 acceptance.",
+    "Only explicitly listed original images were opened by this agent. Later Root image review is separate.",
+    "PR481 Creative originals and its failed Jump are preserved separately and not renamed as PR482 evidence."
+  ],
+  "freeze": "Existing originals, earlier frozen reviews and initial/ are unchanged. This handoff and manifest add derived source-bound summaries only."
+}

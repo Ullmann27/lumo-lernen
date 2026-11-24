@@ -1,0 +1,34 @@
+{
+  "files": {
+    ".github/workflows/lumo-c4-small-result-actions-qa.yml": {
+      "git_blob": "5c4b9ef0d35c73934030e472d50157c92db468fa",
+      "sha256": "4740f0e46c98b8feebfd49b5e28ebbc2a2846d57cec6eddbd3a1440447b6bd34",
+      "bytes": 4480
+    },
+    "scripts/run_connect_four_small_result_actions_qa.py": {
+      "git_blob": "d5038a4e41c5cbf45b7df7e40f936f3091cf40c5",
+      "sha256": "8fcd13fe421b9dce90fbbae6d47b6a22a23df4670004cb7cec45acd181cc0435",
+      "bytes": 18764
+    },
+    "test/games/connect_four_small_result_actions_qa.dart": {
+      "git_blob": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
+      "sha256": "427d21556c3597ca363ed16c2799bd9f933a0b3583ddead7b32464ce63c75b4b",
+      "bytes": 9498
+    },
+    "tools/qa/connect_four_small_result_actions_qa.gd": {
+      "git_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+      "sha256": "2c0e7d1aedec11140dd6004c4023a63e8671de973c2cd67986f6f6efb5c44469",
+      "bytes": 16807
+    }
+  },
+  "unchanged_host_qa_files": 3,
+  "only_change_since_initial_static_snapshot": {
+    "path": "tools/qa/connect_four_small_result_actions_qa.gd",
+    "old_blob": "92368c1e776c3b32ed2147127ea0c5d52f66df70",
+    "new_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+    "old": "var exact := (",
+    "new": "var exact: bool = (",
+    "reason": "Actual Godot check-only rejected Variant-derived type inference; explicit bool annotation only."
+  },
+  "note": "Initial source-before/source-after remain the true pre-fix snapshot. Their Python/workflow/Dart checks apply byte-identically to the three unchanged files."
+}

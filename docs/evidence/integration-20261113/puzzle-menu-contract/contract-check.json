@@ -1,0 +1,35 @@
+{
+  "checked_at_utc": "2026-11-13T17:56:53.526378+00:00",
+  "native_local_head": "a4de0e68a76ab37109cef5fd1bf499ff94464d10",
+  "host_local_base": "fd0d777e6a8bdb489d58efd93d42d08cee0f65f2",
+  "native_host_probe_pairs_equal": true,
+  "core_probe_pairs": 43,
+  "studio_pngs": 24,
+  "village_pngs": 4,
+  "puzzle_menu_pngs": 6,
+  "touch_probe_pairs": 6,
+  "touch_pngs": 32,
+  "native_tests": {
+    "tests": 15,
+    "result": "PASS",
+    "seconds": 43.453
+  },
+  "host_affected_tests": {
+    "tests": 76,
+    "result": "PASS",
+    "seconds": 64.257
+  },
+  "preimplementation_negative_tests": {
+    "native": {
+      "tests": 2,
+      "failures": 2,
+      "seconds": 8.352
+    },
+    "host": {
+      "tests": 2,
+      "failures": 2,
+      "seconds": 1.698
+    }
+  },
+  "scope": "Synthetic contract tests and exact source-binding equality only. Current-source rendered Puzzle acceptance remains pending. Published producer renderer evidence and local engine tests are stored separately."
+}

@@ -6,6 +6,7 @@ import '../features/agent/lumo_agent_content.dart';
 import '../widgets/fox/lumo_companion_requests.dart';
 import '../widgets/fox/lumo_animated_fox.dart';
 import '../widgets/fox/lumo_free_companion.dart';
+import '../widgets/fox/stage/lumo_actor_library.dart';
 import 'app_state.dart';
 
 /// Connects the visible fox to real learning records and existing app actions.
@@ -23,9 +24,11 @@ class LumoCompanionHost extends StatelessWidget {
     this.onExplainTask,
     this.onSuggestTask,
     this.onAskLumo,
+    this.menuPresenter,
     this.offerOnly = false,
     this.taskUnit,
     this.guide,
+    this.stageAware = false,
   });
 
   final LumoAppState appState;
@@ -38,15 +41,23 @@ class LumoCompanionHost extends StatelessWidget {
   final VoidCallback? onExplainTask;
   final VoidCallback? onSuggestTask;
   final VoidCallback? onAskLumo;
+  final LumoCompanionMenuPresenter? menuPresenter;
   final bool offerOnly;
   final String? taskUnit;
   final LumoCompanionGuide? guide;
 
+  /// Im Aufgabenbildschirm: Steht Lumo dort als ganze Figur auf der Bühne,
+  /// bleibt dieser Begleiter unsichtbar und öffnet nur noch sein Menü.
+  final bool stageAware;
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: Listenable.merge(
-          [appState, LumoCompanionRequests.instance.taskContext]),
+      animation: Listenable.merge([
+        appState,
+        LumoCompanionRequests.instance.taskContext,
+        if (stageAware) LumoActorLibrary.shared,
+      ]),
       builder: (context, _) {
         final state = appState.state;
         final requestedSection = section ?? state.section.name;
@@ -79,7 +90,9 @@ class LumoCompanionHost extends StatelessWidget {
           preferredSubject: subject,
         );
         return LumoFreeCompanion(
+          headless: stageAware && LumoActorLibrary.shared.value != null,
           guide: guide,
+          menuPresenter: menuPresenter,
           offerOnly: offerOnly,
           proactive: offerOnly
               ? taskContext != null && taskContext.lastCorrect == false
@@ -171,10 +184,37 @@ class LumoCompanionHost extends StatelessWidget {
   }
 }
 
+/// Presents only the menu route. The lesson owns its task lease and must
+/// revalidate it before dispatching the returned action.
+Future<LumoCompanionAction?> showLumoCompanionMenu(
+  BuildContext context, {
+  required WidgetBuilder builder,
+  required ValueChanged<ModalRoute<dynamic>?> onRouteChanged,
+}) async {
+  final navigator = Navigator.of(context);
+  final localizations = MaterialLocalizations.of(context);
+  final route = _LumoConversationRoute<LumoCompanionAction>(
+    builder: builder,
+    capturedThemes:
+        InheritedTheme.capture(from: context, to: navigator.context),
+    barrierLabel: localizations.scrimLabel,
+    barrierOnTapHint:
+        localizations.scrimOnTapHint(localizations.bottomSheetLabel),
+    modalBarrierColor: Theme.of(context).bottomSheetTheme.modalBarrierColor,
+    onRouteChanged: onRouteChanged,
+    // The existing menu builder already contains its SafeArea.
+    useSafeArea: false,
+  );
+  final action = await navigator.push<LumoCompanionAction>(route);
+  await route.completed;
+  return action;
+}
+
 Future<void> showLumoConversation(
   BuildContext context, {
   required LumoAppState appState,
   required ValueChanged<LumoSection> onSection,
+  ValueChanged<ModalRoute<dynamic>?>? onRouteChanged,
 }) async {
   final state = appState.state;
   final assessment = state.section == LumoSection.tests ||
@@ -197,40 +237,124 @@ Future<void> showLumoConversation(
             ));
     return;
   }
-  await showModalBottomSheet<void>(
-    context: context,
-    isScrollControlled: true,
-    useSafeArea: true,
-    showDragHandle: true,
-    builder: (sheetContext) => Padding(
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(sheetContext).bottom),
-      child: SizedBox(
-        height: MediaQuery.sizeOf(sheetContext).height * .82,
-        child: Column(children: [
-          Row(children: [
-            const SizedBox(width: 20),
-            const Expanded(
-                child: Text('Mit Lumo sprechen',
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.w700))),
-            IconButton(
-              tooltip: 'Zurück zur Aufgabe',
-              onPressed: () => Navigator.pop(sheetContext),
-              icon: const Icon(Icons.close),
-            ),
+  Widget buildSheet(BuildContext sheetContext) => Padding(
+        padding: EdgeInsets.only(
+            bottom: MediaQuery.viewInsetsOf(sheetContext).bottom),
+        child: SizedBox(
+          height: MediaQuery.sizeOf(sheetContext).height * .82,
+          child: Column(children: [
+            Row(children: [
+              const SizedBox(width: 20),
+              const Expanded(
+                  child: Text('Mit Lumo sprechen',
+                      style: TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w700))),
+              IconButton(
+                tooltip: 'Zurück zur Aufgabe',
+                onPressed: () => Navigator.pop(sheetContext),
+                icon: const Icon(Icons.close),
+              ),
+            ]),
+            Expanded(
+                child: LumoAgentContent(
+              appState: appState,
+              onSection: (section) {
+                Navigator.pop(sheetContext);
+                onSection(section);
+              },
+            )),
           ]),
-          Expanded(
-              child: LumoAgentContent(
-            appState: appState,
-            onSection: (section) {
-              Navigator.pop(sheetContext);
-              onSection(section);
-            },
-          )),
-        ]),
-      ),
-    ),
-  );
-  await LumoVoice.instance.stop();
+        ),
+      );
+  if (onRouteChanged == null) {
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      showDragHandle: true,
+      builder: buildSheet,
+    );
+    // The agent releases only its own audio during disposal. A global stop
+    // after this await could cut a new page's already accepted speech request.
+  } else {
+    final navigator = Navigator.of(context);
+    final localizations = MaterialLocalizations.of(context);
+    final route = _LumoConversationRoute<void>(
+      builder: buildSheet,
+      capturedThemes:
+          InheritedTheme.capture(from: context, to: navigator.context),
+      barrierLabel: localizations.scrimLabel,
+      barrierOnTapHint:
+          localizations.scrimOnTapHint(localizations.bottomSheetLabel),
+      modalBarrierColor: Theme.of(context).bottomSheetTheme.modalBarrierColor,
+      onRouteChanged: onRouteChanged,
+    );
+    await navigator.push<void>(route);
+    // Keep the caller's closing lease until the old agent has been disposed;
+    // its cancellation must not hit an already reactivated lesson receiver.
+    await route.completed;
+    // The disposed agent has already released its audio. Do not issue another
+    // global stop here: a new page may have claimed the transport meanwhile.
+  }
+}
+
+/// Reports this exact sheet synchronously when another route covers it. A
+/// lesson can retain its own conversation without accepting unrelated overlays.
+class _LumoConversationRoute<T> extends ModalBottomSheetRoute<T> {
+  _LumoConversationRoute({
+    required super.builder,
+    required super.capturedThemes,
+    required super.barrierLabel,
+    required super.barrierOnTapHint,
+    required super.modalBarrierColor,
+    required this.onRouteChanged,
+    super.useSafeArea = true,
+  }) : super(isScrollControlled: true, showDragHandle: true);
+
+  final ValueChanged<ModalRoute<dynamic>?> onRouteChanged;
+  bool? _reportedCurrent;
+  bool _completed = false;
+
+  void _report() {
+    if (_completed || _reportedCurrent == isCurrent) return;
+    _reportedCurrent = isCurrent;
+    onRouteChanged(this);
+  }
+
+  @override
+  TickerFuture didPush() {
+    final result = super.didPush();
+    _report();
+    return result;
+  }
+
+  @override
+  void didChangeNext(Route<dynamic>? nextRoute) {
+    super.didChangeNext(nextRoute);
+    _report();
+  }
+
+  @override
+  void didPopNext(Route<dynamic> nextRoute) {
+    super.didPopNext(nextRoute);
+    _report();
+  }
+
+  void _complete() {
+    if (_completed) return;
+    _completed = true;
+    onRouteChanged(null);
+  }
+
+  @override
+  void didComplete(T? result) {
+    _complete();
+    super.didComplete(result);
+  }
+
+  @override
+  void dispose() {
+    _complete();
+    super.dispose();
+  }
 }

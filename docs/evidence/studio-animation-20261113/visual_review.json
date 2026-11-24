@@ -1,0 +1,75 @@
+{
+  "kind": "offline_studio_animation_visual_check",
+  "video_file": "Lumo-Original-Studio-Walk-Sprint.mp4",
+  "video_sha256": "5fffbecb6ef858d562d2d3ef5a6fabac085d27ea7a38e906120f30188397cc5f",
+  "render_provenance_sha256": "5afc78368ac54e02737d2ce935cba3879e2aab1850e120e4ab4ce8241dfef76c",
+  "video_provenance_sha256": "2d12f686907154e93a7b1d34faf8e666ce5a75ad665ffbc59942f6fe63426ee0",
+  "status": "no_visible_blocker_in_reviewed_frame_samples",
+  "individually_viewed_full_resolution_frames": [
+    {
+      "file": "studio_walk/0000.png",
+      "sha256": "46ea9f411412b586bd250879a5310046b531cd1734c9d624afcd9b47f254ffe3"
+    },
+    {
+      "file": "studio_walk/0006.png",
+      "sha256": "d36386739b67b28325fcdb58fe0e04b8f383d017f5186f5e90034136d2262293"
+    },
+    {
+      "file": "studio_walk/0012.png",
+      "sha256": "9a93aacf3becca09896d395be3da2d9ecace87532f2cf9d1d9bd20963b1891bd"
+    },
+    {
+      "file": "studio_walk/0018.png",
+      "sha256": "81eca0fc09859312256baafd389b0cfe8c236d14e34972af7ff64f6adf9e1a14"
+    },
+    {
+      "file": "studio_sprint/0000.png",
+      "sha256": "49929e4bc4d682074301e9dcb099b4e17114f2260c1d6e9906f21fdf5ca71bf1"
+    },
+    {
+      "file": "studio_sprint/0004.png",
+      "sha256": "428fc58a903beb82baca995774bad8ab229fb8ca576e57e6a79788d39baa1638"
+    },
+    {
+      "file": "studio_sprint/0008.png",
+      "sha256": "05b7d717054746b8ff022dedcaf522d6fd52fb30d0780ecef28f797494a8b9aa"
+    },
+    {
+      "file": "studio_sprint/0012.png",
+      "sha256": "ef5482f8b970bae782bb099a8a9ad0c8cde0bbf5675a682efb90dc22deaf1dec"
+    }
+  ],
+  "decoded_video_contact_sheet": {
+    "file": "studio-video-preview.png",
+    "sha256": "5cf96e067e86499517bed50ce5c7c8723036a55eebc78e1b36760c904a5e5aa1",
+    "actually_viewed": true,
+    "source": "decoded final MP4, not separately generated poses",
+    "encoded_frame_numbers_in_row_order": [
+      0,
+      6,
+      12,
+      18,
+      50,
+      54,
+      58,
+      62
+    ]
+  },
+  "observations": [
+    "The original orange-and-white fox, aviator goggles, dark suit, ears and tail are intact in the reviewed full-resolution PNGs and decoded-video preview.",
+    "Alternating leg lift, knee bend, arm motion and tail motion are visible across the sampled walk and sprint phases. Shoes remain complete; no visible limb stretching or cropped body parts in those samples.",
+    "The studio floor receives real rendered shadows. The character stays in place, as expected from the stored Actions without root motion.",
+    "The 2-second cut switches from independent walk loops to independent sprint loops. No transition animation is claimed.",
+    "Fine Cycles sampling noise remains in the offline render; no denoising or image-generation step was used."
+  ],
+  "completed_checks": {
+    "all_40_source_png_hashes_matched_before_encoding": true,
+    "final_mp4_full_decode_without_errors": true,
+    "ffprobe_512_square_25_fps_95_frames_3_8_seconds": true,
+    "native_input_hashes_unchanged_after_render": true
+  },
+  "review_limits": [
+    "Visual review consisted of eight full-resolution rendered frame samples and an eight-sample contact sheet decoded from the final MP4; no claim of interactive video-player playback.",
+    "This offline studio film is not a native gameplay capture, temporal animation regression, physical Android test, or 60-FPS measurement."
+  ]
+}

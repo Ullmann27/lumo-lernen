@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "archive": {
+    "path": "originals.tar.gz",
+    "bytes": 184466,
+    "sha256": "9495d5103d806ca9af3a5656695abc580145f2c4755d0e3bb8edc78baf190090"
+  },
+  "file_count": 10,
+  "files": [
+    {
+      "path": "run_scripts.py",
+      "bytes": 8174,
+      "sha256": "53d4ece17dc094492eb2029a163b1f922191f6e9a395ff2a5905442b3d8d7508"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 224073,
+      "sha256": "165c2cb5e6f2735950062884421d3eec70b4d3cf0e0f89018c34ec6ba320d28c"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 224073,
+      "sha256": "165c2cb5e6f2735950062884421d3eec70b4d3cf0e0f89018c34ec6ba320d28c"
+    },
+    {
+      "path": "run-metadata.json",
+      "bytes": 5174,
+      "sha256": "48a6a7c920814b3926ba846298513b71cd00ca704c0b8595b270e51fb6f10dcb"
+    },
+    {
+      "path": "git-status-before.txt",
+      "bytes": 13240,
+      "sha256": "1d5061d342579067e7d3d861e82ad78cb3ac6a0a1c043aa57c790f72afd04965"
+    },
+    {
+      "path": "git-status-after.txt",
+      "bytes": 16663,
+      "sha256": "77441374d67c5c22c9f732138b7a0fc29dfdb868b542d46a24a04516a3803cff"
+    },
+    {
+      "path": "scripts-tests.log",
+      "bytes": 116496,
+      "sha256": "2f3fc3aea2852af3778aa563357a8bd4a2c2610c91f2800d573b38325222437c"
+    },
+    {
+      "path": "result.json",
+      "bytes": 1258,
+      "sha256": "9f2e335171b36c9797c5cfdadc22d36f53f91636a1bbb866a6cafc20d4641ee4"
+    },
+    {
+      "path": "source-summary.json",
+      "bytes": 1118,
+      "sha256": "349d6068420e75307705311bd17fdf9bc2b70dd2c4ff868d7e3eb75294ffa9e0"
+    },
+    {
+      "path": "reference/run_combined.py",
+      "bytes": 7734,
+      "sha256": "a4d5fb31b06bbde91594181b0c868cb7f4f443ca058754c3a37836b0ad029513"
+    }
+  ]
+}

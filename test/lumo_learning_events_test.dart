@@ -12,6 +12,7 @@ void main() {
   setUp(() {
     SharedPreferences.setMockInitialValues({});
     requests.clearLearningScope();
+    LumoCompanionRequests.instance.tutor.activateProfile(0);
     LumoVoice.instance.isEnabled = false;
   });
   tearDown(requests.clearLearningScope);

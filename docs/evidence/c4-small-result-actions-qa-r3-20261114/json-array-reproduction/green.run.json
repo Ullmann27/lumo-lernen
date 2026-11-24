@@ -1,0 +1,143 @@
+{
+  "label": "green",
+  "command": [
+    "/usr/local/bin/godot",
+    "--headless",
+    "--path",
+    "/workspace/scratch/2708c7907f28/c4-json-type-r3-2708",
+    "--script",
+    "res://new/float_expectations.gd"
+  ],
+  "started_utc": "2026-11-14T12:45:58.536203+00:00",
+  "elapsed_seconds": 0.408284,
+  "exit_code": 0,
+  "stdout": {
+    "bytes": 8624,
+    "sha256": "da7ad81ef0a3bc68e31cf2d14fb1a56f5cbccd24f9df10f66d586c57f7348a03",
+    "git_blob": "793a00369883c15ffdacaec150252f3e5ac34952"
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "result": {
+    "cases": [
+      {
+        "accepted": true,
+        "expected": true,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+        "name": "exact_geometry",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[641,360]}",
+        "name": "window_width_wrong",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640,361]}",
+        "name": "window_height_wrong",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[639,360],\"window_px\":[640.0,360.0]}",
+        "name": "viewport_width_wrong",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640,359],\"window_px\":[640.0,360.0]}",
+        "name": "viewport_height_wrong",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[1,24,640,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+        "name": "safe_left_wrong",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,25,640,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+        "name": "safe_top_wrong",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24,639,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+        "name": "safe_width_wrong",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24,640,311],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+        "name": "safe_height_wrong",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.25,360]}",
+        "name": "fractional_window",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640,360.25],\"window_px\":[640.0,360.0]}",
+        "name": "fractional_viewport",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24.25,640,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+        "name": "fractional_safe_rect",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640,360,0]}",
+        "name": "window_extra_element",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24,640,\"312\"],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+        "name": "safe_string_element",
+        "passed": true
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"window_px\":[640.0,360.0]}",
+        "name": "viewport_missing",
+        "passed": true
+      }
+    ],
+    "checks": 15,
+    "failures": 0,
+    "float_type_id": 3,
+    "input_number_type_ids": [
+      3,
+      3,
+      3
+    ],
+    "scope": "isolated JSON/type reproduction, synthetic layout values, no game/render/input",
+    "source_overlay_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "status": "FROZEN_AND_LOCALLY_TESTED_PENDING_FRESH_FULL_APK_ACCEPTANCE",
+  "scope": "Build event de-duplication, exact original navigation, bounded title scroll after preserved return, Cards current-readiness probe; no application/native/pin/version edits.",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-nextgen-2018.yml",
+      "sha256": "4a07374c4360c78e26fe37ca6975a3aac97ff3f9a1daf62e1abb3eb1c147fb8a",
+      "bytes": 34675
+    },
+    {
+      "path": ".github/workflows/lumo-unified-integration-2026.yml",
+      "sha256": "a93cd262dc3c22517d86cd19e57e7a163b209a336b2bdd372058c3231bbf58b6",
+      "bytes": 81391
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+      "sha256": "cacb21b9ed9663e95c47a2c616fbda00fa31540376714efd5a20b18bf7f7b148",
+      "bytes": 28724
+    },
+    {
+      "path": "scripts/tests/test_nextgen_workflow_contract.py",
+      "sha256": "fe9dc32df728034561252690ef0b49d7e85be8a1ceeda44011f810b911f68057",
+      "bytes": 10325
+    },
+    {
+      "path": "scripts/tests/test_action_2017_delivery.py",
+      "sha256": "147a8de6342bfca6fa75baeefb633e6ebd0f7f97756d02b6817601540da11bb1",
+      "bytes": 15946
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_learning_route.py",
+      "sha256": "56cda5be53aeb962b6abc1790378ed13093bfef45e031a0a72d0a8a72d9ce75f",
+      "bytes": 7535
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_cards_readiness.py",
+      "sha256": "bddab8e69b11a4f82c6afaa7fd78e38c6d1d0a6756401518fef64ea4bd514129",
+      "bytes": 11104
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/android_2018_academy_tools_closed.xml",
+      "sha256": "628173ef8035b0e9d4cbd2723c225b2de8ef7b2676ba84ba25042bbc8c8cef92",
+      "bytes": 28440
+    }
+  ],
+  "validation": {
+    "android_probe_tests": 684,
+    "android_probe_failed": 0,
+    "android_probe_skipped": 0,
+    "release_workflow_tests": 92,
+    "release_workflow_failed": 0,
+    "release_workflow_skipped": 0,
+    "yaml_parsed": [
+      "lumo-nextgen-2018.yml",
+      "lumo-unified-integration-2026.yml"
+    ],
+    "audited_apk_build_jobs": 39,
+    "automatic_nextgen_push_apk_jobs": 0,
+    "automatic_nextgen_pr_apk_jobs": 1,
+    "build_contract_tests": 304,
+    "build_contract_failed": 0,
+    "build_contract_skipped": 0,
+    "build_contract_source_files_unchanged": 49
+  },
+  "evidence": [
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/route-regression-before.log",
+      "sha256": "82f320be3f29c728b1a9b8e50c65dbd200e6715343f71bba34ed4d3ad86f02d5",
+      "bytes": 1684
+    },
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/route-regression-after.log",
+      "sha256": "8aab27982c5f3805d0c518d1f08627d3631a069aea2cc0d458b32046ac04bb7e",
+      "bytes": 655
+    },
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/route-return-scroll-before.log",
+      "sha256": "685991a5031dde54c739501f65d70a4028003ebc3c2724b398051f90f03cae7b",
+      "bytes": 2566
+    },
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/route-return-scroll-after.log",
+      "sha256": "fd8fe834d5a6b934a7ff48c3fee846b74ce6c667883af4eff3a2f57f12c6f5a3",
+      "bytes": 1055
+    },
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/workflow-duplicates-before.log",
+      "sha256": "4983eff6a349bfe98cc4489c70c19a0b129eb766ed0840d05ba9b21144802212",
+      "bytes": 10272
+    },
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/workflow-duplicates-after.log",
+      "sha256": "69745b8105ff1ae028ec0230039bc274ce4a53d57f4cdf1ebaa9306fbe2ff58c",
+      "bytes": 1884
+    },
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/probe-regressions-recovery-final.log",
+      "sha256": "994fb4b52ca34a05c3a1d60467026c5d30ecb83f4af6fba30157a7ee77d1590e",
+      "bytes": 135069
+    },
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/workflow-release-contracts-final.log",
+      "sha256": "b71566b91b7f5c88c1a45ab08b90f130649f23a8ff5aa4a258e2151a23a58248",
+      "bytes": 18273
+    },
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/workflow-trigger-audit.json",
+      "sha256": "4b8e18c1956366cf21bc989cb4db858930a6f320f08b1dbbd4f5c730be8b36f2",
+      "bytes": 21279
+    },
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/full-build-contracts-recovery-final.log",
+      "sha256": "96349a0a217532d0d6d964659a19227bedbededf9245c481509af7061933064d",
+      "bytes": 61403
+    },
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/full-build-contracts-recovery-final.json",
+      "sha256": "f6c00b91b7a893651611398a5bfbec920b90a908b2ec9dc0056589dd47ae235d",
+      "bytes": 399
+    },
+    {
+      "path": "docs/evidence/build2018-recovery-20261113/full-build-contracts-source-before.json",
+      "sha256": "ad766677eecb6f6c9662a117dbb0535f423099723436c81b2f66391311d5ebf5",
+      "bytes": 5769
+    }
+  ],
+  "native_return_product_fix": "Owned by B/A/Root; requires actual fresh APK and full Android tour/update.",
+  "runtime_limitations": [
+    "Local Python contracts and actual JVM Kotlin store tests do not replace the new Android APK compilation or on-device lifecycle tour.",
+    "The previous APK 8f remains unaccepted; its original run stays failed.",
+    "The approved Godot 51fb source and visual receipt were not changed."
+  ]
+}

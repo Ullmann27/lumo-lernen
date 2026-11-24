@@ -1,0 +1,72 @@
+{
+  "kind": "local-committed-source-check",
+  "ci_runtime_executed": false,
+  "qa_workflow_run": null,
+  "commit": "eab96422d13e986e10d5cf28cda995cd03d1c2cc",
+  "tree": "0db92d99d263f16fd42f27ed0865893c13f56518",
+  "parent": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "changes": [
+    {
+      "status": "A",
+      "path": ".github/probes/lumo_nextgen_2029_native_diagnostic.py"
+    },
+    {
+      "status": "A",
+      "path": ".github/probes/run_lumo_nextgen_2029_native_diagnostic.sh"
+    },
+    {
+      "status": "A",
+      "path": ".github/workflows/lumo-nextgen-2029-native-diagnostic.yml"
+    },
+    {
+      "status": "A",
+      "path": "docs/nextgen/NATIVE_DIAGNOSTIC_2029.md"
+    },
+    {
+      "status": "A",
+      "path": "tools/android_qa/tests/test_nextgen_2029_native_diagnostic.py"
+    }
+  ],
+  "runtime_source_changed": false,
+  "existing_acceptance_gates_changed": false,
+  "branch": "qa/lumo-nextgen-2029-native-diagnostic-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-2029-native-diagnostic",
+  "files": {
+    ".github/probes/lumo_nextgen_2029_native_diagnostic.py": "e59c476d03b19812f46e89f23a105d924b10a9df53ab3f4a7e6c58803a21e62c",
+    ".github/probes/run_lumo_nextgen_2029_native_diagnostic.sh": "8125a7e89df536115c46fbf4d88833a41e9dcf3b22cb27e40ff2eeb297ed6b86",
+    ".github/workflows/lumo-nextgen-2029-native-diagnostic.yml": "ecfeedc3f588b27fe0ac975a28564356c799811f43568e0da0616d852ba2e931",
+    "docs/nextgen/NATIVE_DIAGNOSTIC_2029.md": "0e362653e2d3b46d8d9872975d6de3626964258d478893d66b0f49e609daae61",
+    "tools/android_qa/tests/test_nextgen_2029_native_diagnostic.py": "6f78fcf5a0152ded4f37283dd914d02ca69e895146dc29682938bbdf708d77a3"
+  },
+  "logs": {
+    "checkers-first.log": "f64a3fd47e1f9c8276dbb54e142d1f435884c6d7d8c5622cb824df8f14123e65",
+    "checkers-green.log": "0c17bc7e524bbdd08cdf2a8d953d9ad8fc2f64f7ff9217ba65bb0d994a138bc4",
+    "local-source-check.json": "37c32162b1c6be5607ef0ded7843c11a4bd73daa90f492ed042d8e65fbecda04"
+  },
+  "tests": {
+    "passed": 12,
+    "failed": 0,
+    "skipped": 0,
+    "log": "checkers-green.log",
+    "first_attempt": "11 passed, 1 test selected the historical 2027 identity wrapper; corrected to unchanged shared verify_complete_original"
+  },
+  "checks": [
+    "Python AST",
+    "YAML parsed",
+    "exact branch/read-only permissions/matrix max-parallel 2",
+    "bash -n",
+    "actual wrapper stub exit 0/17",
+    "git diff --check",
+    "actual committed tree source binding"
+  ],
+  "artifact_names": [
+    "lumo-nextgen-2029-native-diagnostic-banana",
+    "lumo-nextgen-2029-native-diagnostic-pattern",
+    "lumo-nextgen-2029-native-diagnostic-bridge"
+  ],
+  "result_path": "diagnostic-android/diagnostic-android-result.json",
+  "status": "PREPARED_NOT_EXECUTED",
+  "release_eligible": false,
+  "remote_actions_performed": false,
+  "apk_downloaded_locally": false
+}

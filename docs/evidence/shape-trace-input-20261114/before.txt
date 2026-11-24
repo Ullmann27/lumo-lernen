@@ -1,0 +1,59 @@
+00:00 +0: loading /home/agent/lumo-quality-2708/touch/test/shape_trace_input_regression_test.dart
+00:00 +0: vertical shape strokes keep the lesson stationary
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <0>
+  Actual: <90.0>
+A shape stroke must never drag the surrounding lesson.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///home/agent/lumo-quality-2708/touch/test/shape_trace_input_regression_test.dart:71:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///home/agent/lumo-quality-2708/touch/test/shape_trace_input_regression_test.dart line 71
+The test description was:
+  vertical shape strokes keep the lesson stationary
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -1: vertical shape strokes keep the lesson stationary [E]
+  Test failed. See exception logs above.
+  The test description was: vertical shape strokes keep the lesson stationary
+
+00:00 +0 -1: a second finger cannot replace or finish the active shape stroke
+00:00 +1 -1: cancelling a pointer discards its unfinished shape stroke
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: false
+  Actual: <true>
+Interrupted strokes are not completed answers.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///home/agent/lumo-quality-2708/touch/test/shape_trace_input_regression_test.dart:118:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///home/agent/lumo-quality-2708/touch/test/shape_trace_input_regression_test.dart line 118
+The test description was:
+  cancelling a pointer discards its unfinished shape stroke
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +1 -2: cancelling a pointer discards its unfinished shape stroke [E]
+  Test failed. See exception logs above.
+  The test description was: cancelling a pointer discards its unfinished shape stroke
+
+00:00 +1 -2: Some tests failed.
+
+Failing tests:
+  /home/agent/lumo-quality-2708/touch/test/shape_trace_input_regression_test.dart: cancelling a pointer discards its unfinished shape stroke
+  /home/agent/lumo-quality-2708/touch/test/shape_trace_input_regression_test.dart: vertical shape strokes keep the lesson stationary

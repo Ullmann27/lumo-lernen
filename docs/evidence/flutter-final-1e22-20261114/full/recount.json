@@ -1,0 +1,223 @@
+{
+  "schema": 1,
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "host": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "run": 43596913210,
+    "attempt": 1,
+    "job": 132454178537,
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "workflow_blob": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6",
+    "runner": "scripts/run_full_flutter_acceptance.py",
+    "runner_blob": "f6db83c08db2a89c8d422f33a874fde8a0b62f72",
+    "artifact_id": 14115282912,
+    "artifact_size": 363833462,
+    "artifact_sha256": "81132f79c596df4a70f87f4a39b3cebe8fb3405384d34a471cb40c8416d4b6ab",
+    "primary_scope": "Complete unfiltered Flutter suite with captures enabled; not an APK or Android acceptance.",
+    "full_job_log_owner": "android_qa will fetch the terminal complete build log exactly once; not fetched here.",
+    "no_new_test_execution": true
+  },
+  "independent_event_counts": {
+    "passed": 2627,
+    "failed": [],
+    "skipped": [],
+    "done": true
+  },
+  "original_summary": {
+    "status": "PASS",
+    "passed": 2627,
+    "failed": [],
+    "skipped": [],
+    "capture_error_files": [],
+    "flutter_exit_code": 0,
+    "runner_completed_successfully": true,
+    "runner_errors": [],
+    "scope": [
+      "complete Flutter suite; capture outputs recorded below"
+    ],
+    "capture_png_counts": {
+      "LUMO_VILLAGE_CAPTURES": {
+        "directory": "village",
+        "pngs": 6
+      },
+      "LUMO_1989_CARD_CAPTURES": {
+        "directory": "home-premium",
+        "pngs": 8
+      },
+      "LUMO_NEXTGEN_CAPTURES": {
+        "directory": "home-nextgen",
+        "pngs": 6
+      },
+      "LUMO_TUTORING_CAPTURE_DIR": {
+        "directory": "tutoring",
+        "pngs": 6
+      },
+      "LUMO_RIG_STRESS": {
+        "directory": "rig-stress",
+        "pngs": 27
+      },
+      "LUMO_CARDS_OPPONENT_CAPTURE": {
+        "directory": "cards-opponents",
+        "pngs": 4
+      },
+      "LUMO_STREAM_E_CAPTURE": {
+        "directory": "cards-memory",
+        "pngs": 8
+      },
+      "LUMO_NAVIGATION_CAPTURES": {
+        "directory": "navigation",
+        "pngs": 26
+      },
+      "LUMO_GUIDED_CAPTURE_DIR": {
+        "directory": "guided-learning",
+        "pngs": 170
+      },
+      "LUMO_VISUAL_CAPTURE_DIR": {
+        "directory": "reasoning",
+        "pngs": 15
+      },
+      "LUMO_TOUR_DIR": {
+        "directory": "tour",
+        "pngs": 62
+      },
+      "LUMO_FLUTTER_GAMES_CAPTURE": {
+        "directory": "games",
+        "pngs": 16
+      },
+      "LUMO_LEARNING_CAPTURE_DIR": {
+        "directory": "learning-adventure",
+        "pngs": 80
+      },
+      "LUMO_COMPANION_CAPTURE_DIR": {
+        "directory": "companion",
+        "pngs": 6
+      },
+      "LUMO_SPATIAL_CAPTURES": {
+        "directory": "reading",
+        "pngs": 12
+      },
+      "LUMO_CAPTURE_DIR": {
+        "directory": "modernization",
+        "pngs": 42
+      },
+      "LUMO_CARD_FACE_EXPORT_DIR": {
+        "directory": "card-face-exports",
+        "pngs": 56
+      },
+      "LUMO_NEXTGEN_READING_CAPTURES": {
+        "directory": "nextgen-reading",
+        "pngs": 6
+      },
+      "LUMO_READING_CAPTURES": {
+        "directory": "reading-passages",
+        "pngs": 3
+      },
+      "LUMO_ASSISTED_LEARNING_CAPTURES": {
+        "directory": "assisted-learning",
+        "pngs": 2
+      },
+      "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+        "directory": "native-profiles",
+        "pngs": 4
+      }
+    },
+    "capture_file_outputs": {
+      "LUMO_CARDS_CUP_CAPTURE": {
+        "path": "cards-cup/trophy.png",
+        "created": true
+      }
+    },
+    "rendered_png_count": 566
+  },
+  "critical_actual_test_events": {
+    "d1_woerter real registry answer": [
+      {
+        "id": 3269,
+        "name": "d1_woerter real registry answer persists its exact subject and topic",
+        "testDone": {
+          "testID": 3269,
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "type": "testDone",
+          "time": 571833
+        }
+      }
+    ],
+    "actual Diktat canvas and duplicate self-ratings": [
+      {
+        "id": 3346,
+        "name": "actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+        "testDone": {
+          "testID": 3346,
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "type": "testDone",
+          "time": 582927
+        }
+      }
+    ],
+    "two complete actual Diktat sessions": [
+      {
+        "id": 3358,
+        "name": "two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+        "testDone": {
+          "testID": 3358,
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "type": "testDone",
+          "time": 593645
+        }
+      }
+    ],
+    "all allowed cumulative math topics preserve exact selection": [
+      {
+        "id": 614,
+        "name": "all allowed cumulative math topics preserve exact selection",
+        "testDone": {
+          "testID": 614,
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "type": "testDone",
+          "time": 98572
+        }
+      }
+    ],
+    "Four in a row delayed native refusal": [
+      {
+        "id": 166,
+        "name": "Four in a row delayed native refusal unlocks the real Flutter board",
+        "testDone": {
+          "testID": 166,
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "type": "testDone",
+          "time": 32106
+        }
+      }
+    ]
+  },
+  "done_events": [
+    {
+      "line": 8429,
+      "event": {
+        "success": true,
+        "type": "done",
+        "time": 687426
+      }
+    }
+  ],
+  "all_zip_member_crcs_verified": true,
+  "png_count_independently_recounted": 566,
+  "original_machine_sha256": "5ae8d271b4357cab4f2883720e25b9257cc06f52c63b4aae211de461de9300dc",
+  "original_summary_sha256": "23b017d6306e582242e1b5d84097ed29b43e100b2b4b0a262fd0c515ffe260fa",
+  "raw_machine_git_blob": "91663763be8b17b59c907503d417399790c8bb17",
+  "raw_summary_git_blob": "4af95e8d4ef0cedb4b402c99cab6f8475e94f857",
+  "no_new_flutter_execution": true
+}

@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "run": 43596913210,
+  "attempt": 1,
+  "scope": "Ten byte-identical original PNGs plus two newly packaged selections containing all 488 original text members, including complete logcat/OCR/TSV/XML/JSON. No image changes or synthetic frames.",
+  "files": [
+    {
+      "artifact_id": 14119041396,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14119041396/originals/main/21_stage_garage-section-visible-0.png",
+      "git_blob": "a1af461b7e3597220b5c549a2d5b1410b35d346d",
+      "bytes": 1157371,
+      "sha256": "7144f2f3ca789efc241f2d10a950d7909dfc8d486ae74bc1446834d4bb0cce45",
+      "original_member": true
+    },
+    {
+      "artifact_id": 14119041396,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14119041396/originals/main/21_stage_garage-section-visible-1.png",
+      "git_blob": "d466a7debc353d54854d844547371ebdf90a0a8b",
+      "bytes": 787475,
+      "sha256": "f494adf94a44319d844e377b11ff1b3ba453272f20c90ac39e2d1c9293bdc35b",
+      "original_member": true
+    },
+    {
+      "artifact_id": 14119041396,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14119041396/originals/main/21_stage_select_comet-1.png",
+      "git_blob": "1b6a8bb6b826d2b13b841fe4861dabf3cd2dee2e",
+      "bytes": 787623,
+      "sha256": "abd9f6f60b97c846c9f31c715df4946ae89892dcbbbcc5810ff991ed9000c38a",
+      "original_member": true
+    },
+    {
+      "artifact_id": 14119041396,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14119041396/originals/main/21_stage_select_gecko_velo-0.png",
+      "git_blob": "d32146de353274bd19c4fbc458161c72755ea432",
+      "bytes": 788919,
+      "sha256": "2c5214fe0ae35668c6e547dabcf14772a6e06101e52edd5e13bf01e99c7ab290",
+      "original_member": true
+    },
+    {
+      "artifact_id": 14119041396,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14119041396/originals/main/21_stage_select_gecko_velo-1.png",
+      "git_blob": "d66c0813f69d486ee24d22cc537efce46eb8706f",
+      "bytes": 792428,
+      "sha256": "72b7daf2f72af853c02f32eae564aa35d1619313d33682ab5a5462eb4e0e98ec",
+      "original_member": true
+    },
+    {
+      "artifact_id": 14119041396,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14119041396/originals/main/21_stage_select_gecko_velo-2.png",
+      "git_blob": "1bf7cb619b38e551c973928bc7587d00a354baa9",
+      "bytes": 784389,
+      "sha256": "33ff8013d1541f6c1d0367caba494a4f8cd29578cd2d6c783d636d75386a6549",
+      "original_member": true
+    },
+    {
+      "artifact_id": 14118638414,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14118638414/originals/21_stage_select_comet-1.png",
+      "git_blob": "41bd074ad920de408516e1a8d15c09666e8bffae",
+      "bytes": 765682,
+      "sha256": "524678cb647e536612ac7ce109033b04748dbc96ad083c7f26509ed1e5d04394",
+      "original_member": true
+    },
+    {
+      "artifact_id": 14118638414,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14118638414/originals/21_stage_select_gecko_velo-2.png",
+      "git_blob": "eb6b3651f6e1013b82cb759781550c38b79e4493",
+      "bytes": 760982,
+      "sha256": "b3ce33bfffbca15d696adada0045f8edd52ff2db30c85f0b4f20fac084f3627f",
+      "original_member": true
+    },
+    {
+      "artifact_id": 14118638414,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14118638414/originals/99_fehler.png",
+      "git_blob": "e481a6faec6867fbafc124ccaacf67bdf1f25049",
+      "bytes": 760310,
+      "sha256": "6ea957b794bfef42b16a705379d8aa37a4da363685ffda3092e63a394e21f674",
+      "original_member": true
+    },
+    {
+      "artifact_id": 14118638414,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14118638414/originals/updated-profile-offline.png",
+      "git_blob": "52eca6c578ef4801f822e940fe7a75f3c4e4881a",
+      "bytes": 3091108,
+      "sha256": "d167901ae56a1622fbd569019c7f16298c88fd7189e1e3a9dd574f0f87f4a364",
+      "original_member": true
+    },
+    {
+      "artifact_id": 14119041396,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14119041396/original-text-evidence-selection.zip",
+      "git_blob": "3dddd2a9a29bd659f23cf064799d97ecbc0bd954",
+      "bytes": 596722,
+      "sha256": "4854467e31f4359f5b6fa9b83f776eb91d2e1bb1146c14276c8ff747275d23f9",
+      "original_member": false
+    },
+    {
+      "artifact_id": 14118638414,
+      "path": "docs/evidence/live-integration-20261114/final-1e22d245/emulator-failures/14118638414/original-text-evidence-selection.zip",
+      "git_blob": "be59c46874e7742f19a56d3449553d5a8bb716a6",
+      "bytes": 1781759,
+      "sha256": "846960e682f8936e34f6d819f7af5b9f1104b488405c0209ad379cf1e139ece8",
+      "original_member": false
+    }
+  ],
+  "zip_selection_manifests": [
+    {
+      "artifact_id": 14119041396,
+      "path": "14119041396/original-text-evidence-selection-manifest.json"
+    },
+    {
+      "artifact_id": 14118638414,
+      "path": "14118638414/original-text-evidence-selection-manifest.json"
+    }
+  ],
+  "actually_viewed": [
+    {
+      "path": "14119041396/originals/main/21_stage_select_comet-1.png",
+      "finding": "Complete visible Comet vehicle card is selected in the left list; original fox and vehicle preview are visible."
+    },
+    {
+      "path": "14119041396/originals/main/21_stage_select_gecko_velo-2.png",
+      "finding": "Scrolled left list clips the green vehicle name above the viewport and Boru Rally at the bottom. No crash dialog."
+    },
+    {
+      "path": "14118638414/originals/21_stage_select_gecko_velo-2.png",
+      "finding": "Same clipped-name intermediate garage state; preserved one-star wallet visible. No crash dialog."
+    },
+    {
+      "path": "14118638414/originals/updated-profile-offline.png",
+      "finding": "Actual updated offline Flutter home shows LumoTest, Level1/1.Klasse, one star and5/400XP, visible learning/play/reward controls. This precedes the failing native Kart selection."
+    }
+  ],
+  "remaining_acceptance": "Both emulator jobs failed. No Village, Connect Four, completed updated Kart race, post-update restart/fold or Delivery acceptance is inferred from these partial originals.",
+  "binary_integrity": "Each remote create_blob result equals Git SHA1 computed from the complete original local bytes; ZIP CRC and each selected text member hash were validated locally. PNGs were never transformed."
+}

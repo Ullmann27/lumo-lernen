@@ -11,7 +11,12 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:crypto/crypto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../domain/rewards/reward_shop.dart';
+import '../domain/room/lumo_room.dart';
+import 'achievements/achievement_claim.dart';
 
 /// Aktueller Wallet-Zustand (Snapshot).
 class RewardWallet {
@@ -24,6 +29,10 @@ class RewardWallet {
     this.lastDailyKey = '',
     this.gameResultIds = const <String>[],
     this.lumoCardsWinStreak = 0,
+    this.shopRedemptions = const <RewardShopRedemption>[],
+    this.roomActions = const <LumoRoomActionReceipt>[],
+    this.achievementClaims = const <AchievementClaim>[],
+    this.earnedStarsByOwner = const <String, int>{},
   });
 
   final int stars;
@@ -41,6 +50,13 @@ class RewardWallet {
   /// Consecutive Cards wins share the same transaction as their Stars and XP.
   final int lumoCardsWinStreak;
 
+  /// A debit and its immutable receipt are one durable wallet snapshot.
+  /// These are not game results and never inflate the played-games counter.
+  final List<RewardShopRedemption> shopRedemptions;
+  final List<LumoRoomActionReceipt> roomActions;
+  final List<AchievementClaim> achievementClaims;
+  final Map<String, int> earnedStarsByOwner;
+
   RewardWallet copyWith({
     int? stars,
     int? xp,
@@ -50,6 +66,10 @@ class RewardWallet {
     String? lastDailyKey,
     List<String>? gameResultIds,
     int? lumoCardsWinStreak,
+    List<RewardShopRedemption>? shopRedemptions,
+    List<LumoRoomActionReceipt>? roomActions,
+    List<AchievementClaim>? achievementClaims,
+    Map<String, int>? earnedStarsByOwner,
   }) {
     return RewardWallet(
       stars: stars ?? this.stars,
@@ -60,6 +80,18 @@ class RewardWallet {
       lastDailyKey: lastDailyKey ?? this.lastDailyKey,
       gameResultIds: gameResultIds ?? this.gameResultIds,
       lumoCardsWinStreak: lumoCardsWinStreak ?? this.lumoCardsWinStreak,
+      shopRedemptions: shopRedemptions == null
+          ? this.shopRedemptions
+          : List.unmodifiable(shopRedemptions),
+      roomActions: roomActions == null
+          ? this.roomActions
+          : List.unmodifiable(roomActions),
+      achievementClaims: achievementClaims == null
+          ? this.achievementClaims
+          : List.unmodifiable(achievementClaims),
+      earnedStarsByOwner: earnedStarsByOwner == null
+          ? this.earnedStarsByOwner
+          : Map.unmodifiable(earnedStarsByOwner),
     );
   }
 
@@ -72,6 +104,10 @@ class RewardWallet {
         'lastDailyKey': lastDailyKey,
         'gameResultIds': gameResultIds,
         'lumoCardsWinStreak': lumoCardsWinStreak,
+        'shopRedemptions': shopRedemptions.map((v) => v.toJson()).toList(),
+        'roomActions': roomActions.map((v) => v.toJson()).toList(),
+        'achievementClaims': achievementClaims.map((v) => v.toJson()).toList(),
+        'earnedStarsByOwner': earnedStarsByOwner,
       };
 
   factory RewardWallet.fromJson(Map<String, dynamic> j) => RewardWallet(
@@ -87,7 +123,71 @@ class RewardWallet {
         lumoCardsWinStreak: j['lumoCardsWinStreak'] is int
             ? (j['lumoCardsWinStreak'] as int).clamp(0, 999999)
             : 0,
+        shopRedemptions: _shopReceipts(j['shopRedemptions']),
+        roomActions: _roomReceipts(j['roomActions']),
+        achievementClaims: _claims(j['achievementClaims']),
+        earnedStarsByOwner: _ownerStars(j['earnedStarsByOwner']),
       );
+
+  static List<RewardShopRedemption> _shopReceipts(Object? raw) {
+    if (raw == null) return const [];
+    if (raw is! List) {
+      throw const FormatException('Ungültige Gutschein-Historie');
+    }
+    final ids = <String>{};
+    final values = raw
+        .map((v) =>
+            RewardShopRedemption.fromJson((v as Map).cast<String, Object?>()))
+        .toList();
+    for (final value in values) {
+      final owner = sha256.convert(utf8.encode(value.ownerId)).toString();
+      if (!value.transactionId.startsWith('shop:$owner:') ||
+          !ids.add(value.transactionId)) {
+        throw const FormatException('Widersprüchliche Gutschein-Historie');
+      }
+    }
+    return List.unmodifiable(values);
+  }
+
+  static List<LumoRoomActionReceipt> _roomReceipts(Object? raw) {
+    if (raw == null) return const [];
+    if (raw is! List) throw const FormatException('Ungültige Zimmer-Historie');
+    final ids = <String>{};
+    final values = raw
+        .map((v) =>
+            LumoRoomActionReceipt.fromJson((v as Map).cast<String, Object?>()))
+        .toList();
+    if (values.any((v) => !ids.add(v.request.actionId))) {
+      throw const FormatException('Doppelte Zimmer-Historie');
+    }
+    return List.unmodifiable(values);
+  }
+
+  static List<AchievementClaim> _claims(Object? raw) {
+    if (raw == null) return const [];
+    if (raw is! List) {
+      throw const FormatException('Ungültige Auszeichnungsbelege');
+    }
+    final values = raw.map(AchievementClaim.fromJson).toList();
+    if (values.map((v) => v.claimId).toSet().length != values.length) {
+      throw const FormatException('Doppelte Auszeichnungsbelege');
+    }
+    return List.unmodifiable(values);
+  }
+
+  static Map<String, int> _ownerStars(Object? raw) {
+    if (raw == null) return const {};
+    if (raw is! Map ||
+        raw.entries.any((v) =>
+            v.key is! String ||
+            (v.key as String).trim().isEmpty ||
+            (v.key as String).length > 160 ||
+            v.value is! int ||
+            (v.value as int) < 0)) {
+      throw const FormatException('Ungültige profilgebundene Sterne');
+    }
+    return Map.unmodifiable(raw.cast<String, int>());
+  }
 
   @override
   String toString() =>
@@ -96,8 +196,10 @@ class RewardWallet {
 
 /// Persistente Wallet mit Lazy-Load + Write-Through.
 class RewardWalletRepository {
-  RewardWalletRepository();
+  RewardWalletRepository({DateTime Function()? clock})
+      : _clock = clock ?? DateTime.now;
   static final RewardWalletRepository instance = RewardWalletRepository();
+  final DateTime Function() _clock;
 
   static const _storageKey = 'lumo_reward_wallet_v1';
   static const _legacyStarsKey = 'lumo_legacy_stars';
@@ -108,7 +210,7 @@ class RewardWalletRepository {
   Future<RewardWallet>? _loadFuture;
   // Every balance change shares this queue. A failed transaction cannot roll
   // back a later lesson reward, reset, or another completed game.
-  Future<void> _mutations = Future<void>.value();
+  Future<void>? _mutations;
   final _controller = StreamController<RewardWallet>.broadcast();
 
   /// Stream, der bei jeder Aenderung den neuen Wallet-Stand emittiert.
@@ -117,12 +219,17 @@ class RewardWalletRepository {
 
   RewardWallet get snapshot => _wallet;
 
-  /// Laedt die Wallet aus SharedPreferences. Sicher: bei Fehlern Defaults.
+  /// Reads the wallet without replacing damaged or temporarily unreadable
+  /// saved data. Callers can retry; no mutation may overwrite an unread wallet.
   /// Wenn keine Wallet existiert, aber Legacy-Stars/XP gefunden werden,
   /// migriert sie diese.
   Future<RewardWallet> load() {
     if (_loaded) return Future<RewardWallet>.value(_wallet);
-    return _loadFuture ??= _loadFromDisk();
+    return _loadFuture ??= _loadFromDisk().then((value) => value,
+        onError: (Object error, StackTrace stack) {
+      _loadFuture = null;
+      Error.throwWithStackTrace(error, stack);
+    });
   }
 
   Future<RewardWallet> _loadFromDisk() async {
@@ -130,13 +237,10 @@ class RewardWalletRepository {
       final prefs = await SharedPreferences.getInstance();
       final raw = prefs.getString(_storageKey);
       if (raw != null && raw.isNotEmpty) {
-        // Defensive JSON-Parsing
-        try {
-          final map = _decode(raw);
-          _wallet = RewardWallet.fromJson(map);
-        } catch (_) {
-          _wallet = const RewardWallet();
-        }
+        // A malformed receipt must not turn an existing balance into an empty
+        // wallet that the next transaction would overwrite.
+        final map = _decode(raw);
+        _wallet = RewardWallet.fromJson(map);
       } else {
         // Legacy-Migration falls vorhanden
         final storedStars = prefs.getInt(_legacyStarsKey) ?? 0;
@@ -162,8 +266,7 @@ class RewardWalletRepository {
         }
       }
     } catch (_) {
-      // Bei jeglichem Fehler: leere Wallet, App startet trotzdem
-      _wallet = const RewardWallet();
+      rethrow;
     }
     _loaded = true;
     return _wallet;
@@ -181,16 +284,108 @@ class RewardWalletRepository {
   Future<RewardWallet> applyRewardDelta({
     int starsDelta = 0,
     int xpDelta = 0,
+    String? ownerId,
   }) =>
       _transaction((current) async {
         if (starsDelta == 0 && xpDelta == 0) return current;
         final nextXp = (current.xp + xpDelta).clamp(0, 9999999);
         return _commit(current.copyWith(
           stars: (current.stars + starsDelta).clamp(0, 999999),
+          earnedStarsByOwner: _creditOwner(current, ownerId,
+              (current.stars + starsDelta).clamp(0, 999999) - current.stars),
           totalEarnedStars:
               current.totalEarnedStars + (starsDelta > 0 ? starsDelta : 0),
           xp: nextXp,
           level: 1 + nextXp ~/ 400,
+        ));
+      });
+
+  /// Only a positively confirmed write counts as redemption. Retrying the
+  /// identical receipt also persists it again, including after an uncertain
+  /// native SharedPreferences reply or after process restart.
+  Future<RewardWallet> redeemShopReward({
+    required RewardShopRedemption redemption,
+    required void Function() validateOwner,
+  }) =>
+      _transaction((current) async {
+        validateOwner();
+        redemption.validate();
+        final owner =
+            sha256.convert(utf8.encode(redemption.ownerId)).toString();
+        if (!redemption.transactionId.startsWith('shop:$owner:')) {
+          throw ArgumentError('Einlösung gehört zu einem anderen Kinderprofil');
+        }
+        for (final receipt in current.shopRedemptions) {
+          if (receipt.transactionId != redemption.transactionId) continue;
+          if (jsonEncode(receipt.toJson()) != jsonEncode(redemption.toJson())) {
+            throw StateError(
+                'Eine bestätigte Einlösung darf sich nicht ändern');
+          }
+          await _persist(current);
+          return current;
+        }
+        if (current.level < redemption.minLevel) {
+          throw StateError(
+              'Dieser Gutschein wird erst ab Level ${redemption.minLevel} frei');
+        }
+        if (current.stars < redemption.cost) {
+          throw StateError('Für diesen Gutschein fehlen noch Sterne');
+        }
+        return _commit(current.copyWith(
+          stars: current.stars - redemption.cost,
+          shopRedemptions: [...current.shopRedemptions, redemption],
+        ));
+      });
+
+  /// Exact original room actions: praise +5 stars at most once per five
+  /// minutes and child; snack -10 stars/+20 XP in one durable transaction.
+  Future<RewardWallet> performLumoRoomAction({
+    required LumoRoomActionRequest request,
+    required void Function() validateOwner,
+  }) =>
+      _transaction((current) async {
+        validateOwner();
+        request.validate();
+        for (final receipt in current.roomActions) {
+          if (receipt.request.actionId != request.actionId) continue;
+          if (receipt.request.ownerId != request.ownerId ||
+              receipt.request.kind != request.kind) {
+            throw StateError(
+                'Eine bestätigte Zimmeraktion darf sich nicht ändern.');
+          }
+          await _persist(current);
+          return current;
+        }
+        final now = _clock().toUtc();
+        if (request.kind == LumoRoomActionKind.pet) {
+          final next = lumoRoomNextPraise(request.ownerId, current.roomActions);
+          if (next != null && now.isBefore(next)) {
+            throw const LumoRoomActionUnavailable(
+                'Lumo wurde gerade gelobt. Der nächste Sternbonus ist später wieder bereit.');
+          }
+          if (current.stars > 999994) {
+            throw const LumoRoomActionUnavailable(
+                'Deine Sternetasche ist gerade voll.');
+          }
+        } else if (current.stars < 10) {
+          throw const LumoRoomActionUnavailable(
+              'Für den Fuchs-Snack brauchst du 10 Sterne.');
+        } else if (current.xp > 9999979) {
+          throw const LumoRoomActionUnavailable(
+              'Dein Lernstand hat die aktuelle Obergrenze erreicht.');
+        }
+        final receipt =
+            LumoRoomActionReceipt(request: request, performedAt: now);
+        final xp = current.xp + receipt.xpDelta;
+        return _commit(current.copyWith(
+          stars: current.stars + receipt.starsDelta,
+          xp: xp,
+          level: 1 + xp ~/ 400,
+          totalEarnedStars: current.totalEarnedStars +
+              (receipt.starsDelta > 0 ? receipt.starsDelta : 0),
+          earnedStarsByOwner:
+              _creditOwner(current, request.ownerId, receipt.starsDelta),
+          roomActions: [...current.roomActions, receipt],
         ));
       });
 
@@ -199,6 +394,7 @@ class RewardWalletRepository {
     required String resultId,
     required int stars,
     required int xp,
+    String? ownerId,
   }) =>
       _transaction((current) async {
         if (resultId.isEmpty ||
@@ -209,10 +405,15 @@ class RewardWalletRepository {
             xp > 1000) {
           throw ArgumentError('Ungültiges Spielergebnis');
         }
-        if (current.gameResultIds.contains(resultId)) return current;
+        if (current.gameResultIds.contains(resultId)) {
+          await _persist(current);
+          return current;
+        }
         final nextXp = (current.xp + xp).clamp(0, 9999999);
         return _commit(current.copyWith(
           stars: (current.stars + stars).clamp(0, 999999),
+          earnedStarsByOwner: _creditOwner(current, ownerId,
+              (current.stars + stars).clamp(0, 999999) - current.stars),
           totalEarnedStars: current.totalEarnedStars + stars,
           xp: nextXp,
           level: 1 + nextXp ~/ 400,
@@ -220,9 +421,47 @@ class RewardWalletRepository {
         ));
       });
 
-  /// Cards reward, win sequence, and XP either all persist or all remain pending.
-  Future<RewardWallet> awardLumoCardsResult({required bool won}) =>
+  /// The quiz authority uses its original milestone amounts with no XP.
+  /// This keeps the generic native-game reward cap unchanged.
+  Future<RewardWallet> awardQuizResult({
+    required String resultId,
+    required int stars,
+    String? ownerId,
+  }) =>
       _transaction((current) async {
+        if (!RegExp(r'^quiz:[a-f0-9]{64}:[a-f0-9]{32}$').hasMatch(resultId) ||
+            !const {50, 200, 800, 5000}.contains(stars)) {
+          throw ArgumentError('Ungültiges Quizergebnis');
+        }
+        if (current.gameResultIds.contains(resultId)) {
+          await _persist(current);
+          return current;
+        }
+        return _commit(current.copyWith(
+          stars: (current.stars + stars).clamp(0, 999999),
+          earnedStarsByOwner: _creditOwner(current, ownerId,
+              (current.stars + stars).clamp(0, 999999) - current.stars),
+          totalEarnedStars: current.totalEarnedStars + stars,
+          gameResultIds: [...current.gameResultIds, resultId],
+        ));
+      });
+
+  /// Cards reward, win sequence, and XP either all persist or all remain pending.
+  Future<RewardWallet> awardLumoCardsResult({
+    required bool won,
+    String? resultId,
+    String? ownerId,
+  }) =>
+      _transaction((current) async {
+        if (resultId != null) {
+          if (resultId.isEmpty || resultId.length > 160) {
+            throw ArgumentError('Ungültiges Kartenergebnis');
+          }
+          if (current.gameResultIds.contains(resultId)) {
+            await _persist(current);
+            return current;
+          }
+        }
         final nextStreak =
             won ? (current.lumoCardsWinStreak + 1).clamp(0, 999999) : 0;
         final stars = won ? (2 + nextStreak).clamp(3, 6) : 1;
@@ -230,12 +469,55 @@ class RewardWalletRepository {
         final nextXp = (current.xp + xp).clamp(0, 9999999);
         return _commit(current.copyWith(
           stars: (current.stars + stars).clamp(0, 999999),
+          earnedStarsByOwner: _creditOwner(current, ownerId,
+              (current.stars + stars).clamp(0, 999999) - current.stars),
           totalEarnedStars: current.totalEarnedStars + stars,
           xp: nextXp,
           level: 1 + nextXp ~/ 400,
           lumoCardsWinStreak: nextStreak,
+          gameResultIds: resultId == null
+              ? current.gameResultIds
+              : [...current.gameResultIds, resultId],
         ));
       });
+
+  Future<RewardWallet> claimAchievement({
+    required AchievementClaim claim,
+    required void Function() validateOwner,
+  }) =>
+      _transaction((current) async {
+        validateOwner();
+        claim.validate();
+        if (current.achievementClaims.any((v) => v.claimId == claim.claimId)) {
+          await _persist(current);
+          return current;
+        }
+        final stars = claim.stars;
+        if (stars < 0 || current.stars > 999999 - stars) {
+          throw StateError('Deine Sternetasche ist gerade voll.');
+        }
+        return _commit(current.copyWith(
+          stars: current.stars + stars,
+          totalEarnedStars: current.totalEarnedStars + stars,
+          earnedStarsByOwner: _creditOwner(current, claim.ownerId, stars),
+          achievementClaims: [...current.achievementClaims, claim],
+        ));
+      });
+
+  Map<String, int> _creditOwner(
+      RewardWallet current, String? ownerId, int stars) {
+    if (ownerId == null || stars <= 0) return current.earnedStarsByOwner;
+    if (ownerId.isEmpty ||
+        ownerId.trim() != ownerId ||
+        ownerId.length > 160 ||
+        ownerId.runes.any((v) => v < 32)) {
+      throw ArgumentError('Ungültiger Sterne-Eigentümer');
+    }
+    return {
+      ...current.earnedStarsByOwner,
+      ownerId: (current.earnedStarsByOwner[ownerId] ?? 0) + stars
+    };
+  }
 
   /// Markiere heutigen Lerntag - aktualisiert Streak.
   Future<RewardWallet> markDailyActivity() => _transaction((current) async {
@@ -266,14 +548,24 @@ class RewardWalletRepository {
   Future<RewardWallet> _transaction(
     Future<RewardWallet> Function(RewardWallet current) operation,
   ) {
-    final pending = _mutations.then((_) async {
+    // An idle queue starts in the actual caller's zone. Keep a live
+    // predecessor until all of its writes have completed.
+    final previous = _mutations ?? Future<void>.value();
+    final pending = previous.then((_) async {
       await load();
       return operation(_wallet);
     });
-    // A failed operation is reported to its caller but must not poison the
-    // queue: later rewards and replay of the failed native event still run.
-    _mutations =
-        pending.then<void>((_) {}, onError: (Object _, StackTrace __) {});
+    late final Future<void> tail;
+    void release() {
+      // A younger transaction may already own the queue.
+      if (identical(_mutations, tail)) _mutations = null;
+    }
+
+    // Preserve the original result/error for the caller, but release an idle
+    // tail on either outcome so it cannot retain a completed caller's zone.
+    tail = pending.then<void>((_) => release(),
+        onError: (Object _, StackTrace __) => release());
+    _mutations = tail;
     return pending;
   }
 
@@ -310,9 +602,21 @@ class RewardWalletRepository {
 
   Future<void> _persist(RewardWallet snapshot) async {
     final prefs = await SharedPreferences.getInstance();
-    final saved =
-        await prefs.setString(_storageKey, _encode(snapshot.toJson()));
-    if (!saved) throw StateError('Belohnung konnte nicht gespeichert werden');
+    try {
+      final saved =
+          await prefs.setString(_storageKey, _encode(snapshot.toJson()));
+      if (!saved) throw StateError('Belohnung konnte nicht gespeichert werden');
+    } catch (error, stack) {
+      // setString updates the Dart cache before the platform acknowledges it.
+      // Reload removes a rejected Dart-only value. An uncertain native cache
+      // still requires the identical receipt's positive persistence retry.
+      try {
+        await prefs.reload();
+      } catch (_) {
+        // Preserve the original failure; never report an unconfirmed write.
+      }
+      Error.throwWithStackTrace(error, stack);
+    }
   }
 
   void _emit() {

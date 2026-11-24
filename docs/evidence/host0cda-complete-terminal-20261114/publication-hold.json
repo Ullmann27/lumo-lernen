@@ -1,0 +1,61 @@
+{
+  "recorded_at_utc": "2026-11-14T20:48:11.163499+00:00",
+  "status": "PUBLICATION_BLOCKED_ACTUAL_FULL_FLUTTER_FAILURE",
+  "host_sha": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "run_id": 43637785992,
+  "attempt": 1,
+  "run_conclusion": "failure",
+  "jobs": [
+    {
+      "id": 132578338582,
+      "name": "android-host-compile",
+      "conclusion": "success"
+    },
+    {
+      "id": 132578338806,
+      "name": "connect-four-runtime",
+      "conclusion": "success"
+    },
+    {
+      "id": 132579589188,
+      "name": "verify-and-build",
+      "conclusion": "failure"
+    },
+    {
+      "id": 132582600578,
+      "name": "update-2020-from-2017",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132582600964,
+      "name": "android-c4",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132582601480,
+      "name": "verify-c4-candidate",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132582601541,
+      "name": "prepare-c4-delivery",
+      "conclusion": "skipped"
+    }
+  ],
+  "build_original": {
+    "file": "/tmp/host0cda-c4-run43637785992-evidence-20261114/terminal-build-20261114T2046Z/job-132579589188.original.log",
+    "bytes": 127862,
+    "sha256": "534a5bb9e7ee81cf6942e3274ad9df1b6bb3ace859c1ca9a690e8f2c634164aa"
+  },
+  "actual_summary": {
+    "passed": 2732,
+    "failed": [
+      "Lifecycle pause during reward retry defers the settled result"
+    ],
+    "skipped": [],
+    "flutter_exit_code": 1
+  },
+  "contract_upload_failure": "Skipped producer step; .ci-results/build-contracts.log did not exist.",
+  "source_repair_not_yet_qualified": true,
+  "public_apk_available": false
+}

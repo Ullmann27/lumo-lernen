@@ -1,0 +1,25 @@
+test_nextgen_native_reader (unittest.loader._FailedTest.test_nextgen_native_reader) ... ERROR
+
+======================================================================
+ERROR: test_nextgen_native_reader (unittest.loader._FailedTest.test_nextgen_native_reader)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_nextgen_native_reader
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/4fa97167812c/agent-nextgen-pattern-reader/tools/android_qa/tests/test_nextgen_native_reader.py", line 19, in <module>
+    import creative_android_probe as historical
+  File "/workspace/scratch/4fa97167812c/agent-nextgen-pattern-reader/.github/probes/creative_android_probe.py", line 40, in <module>
+    import pr207_android_ui_probe as live
+  File "/workspace/scratch/4fa97167812c/agent-nextgen-pattern-reader/scripts/probes/pr207_android_ui_probe.py", line 16, in <module>
+    import uiautomator2 as u2
+ModuleNotFoundError: No module named 'uiautomator2'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

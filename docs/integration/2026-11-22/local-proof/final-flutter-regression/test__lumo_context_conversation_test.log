@@ -1,0 +1,13 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/lumo_context_conversation_test.dart
+00:00 +0: local question uses the real task and never mutates progress
+00:00 +1: parent chat-only consent never releases task details or answers
+00:00 +2: rejected lesson commands never leak stored help or publish gestures
+00:00 +3: assessment forbids cloud help even through a direct controller call
+00:00 +4: unclassified task question cannot bypass unavailable help through proxy
+00:00 +5: explicit assessment repeat and slower read only the visible prompt
+00:00 +6: legacy assessment defaults do not grant instruction narration
+00:00 +7: task change cancels a pending answer and discards its memory
+00:00 +8: pause cancels a pending answer; resume never activates microphone
+00:00 +9: memory is at most four exchanges and clears on real navigation
+00:00 +10: private or oversized questions never enter conversation memory
+00:00 +11: All tests passed!

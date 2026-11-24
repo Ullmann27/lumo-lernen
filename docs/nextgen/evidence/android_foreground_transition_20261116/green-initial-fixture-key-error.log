@@ -1,0 +1,23 @@
+test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_app_remaining_foreground_fails_at_bounded_deadline_with_raw_evidence) ... ok
+test_empty_malformed_or_ambiguous_foreground_never_passes (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_empty_malformed_or_ambiguous_foreground_never_passes) ... ok
+test_observation_returning_after_deadline_cannot_pass (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_observation_returning_after_deadline_cannot_pass) ... ok
+test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_one_home_waits_for_observed_launcher_and_retains_every_raw_dump) ... ok
+test_original_zero_duration_video_cannot_mask_primary_home_failure (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_original_zero_duration_video_cannot_mask_primary_home_failure) ... ERROR
+test_original_zero_duration_video_still_fails_an_otherwise_successful_body (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_original_zero_duration_video_still_fails_an_otherwise_successful_body) ... ok
+test_original_single_frame_is_still_rejected_by_actual_recording_gate (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_original_single_frame_is_still_rejected_by_actual_recording_gate) ... ok
+test_recording_and_initial_view_precede_every_wm_change (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_recording_and_initial_view_precede_every_wm_change) ... ok
+test_target_pixel_and_progress_gates_still_fail_and_restore_display (tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest.test_target_pixel_and_progress_gates_still_fail_and_restore_display) ... ok
+
+======================================================================
+ERROR: test_original_zero_duration_video_cannot_mask_primary_home_failure (tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest.test_original_zero_duration_video_cannot_mask_primary_home_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-foreground-transition/tools/android_qa/tests/test_nextgen_learning_android_probe.py", line 322, in test_original_zero_duration_video_cannot_mask_primary_home_failure
+    self.assertEqual(float(raw['format']['duration']), 0)
+                           ~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'duration'
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.356s
+
+FAILED (errors=1)

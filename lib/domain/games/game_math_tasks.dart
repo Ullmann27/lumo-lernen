@@ -7,16 +7,57 @@ import 'game_level_model.dart';
 /// older child revisits it. No fallback to an unrelated classroom topic.
 abstract class GameMathTasks {
   static MathConcreteTask starsPath(GameLevel level, int index) {
+    if (level.miniType != GameMiniType.starsPath || index < 0) {
+      throw ArgumentError('Diese Stufe gehört nicht zum Rechenpfad.');
+    }
+    final task = _starsPath(level, index);
+    if (!isValidStarsTask(level, task)) {
+      throw StateError('Die Rechenaufgabe wurde nicht freigegeben.');
+    }
+    return task;
+  }
+
+  /// Independent arithmetic/quantity verification before a variant is shown.
+  /// An unrelated fallback must never silently change the level's goal.
+  static bool isValidStarsTask(GameLevel level, MathConcreteTask task) {
+    if (task.prompt.trim().isEmpty ||
+        task.explanation.trim().isEmpty ||
+        task.choices.length < 2 ||
+        task.choices.toSet().length != task.choices.length ||
+        task.choices.where((value) => value == task.answer).length != 1) {
+      return false;
+    }
+    final answer = int.tryParse(task.answer);
+    if (answer == null || answer < 0) return false;
+    if (level.id == 4) {
+      return RegExp('●').allMatches(task.prompt).length == answer;
+    }
+    final operands = RegExp(r'\d+')
+        .allMatches(task.prompt)
+        .map((match) => int.parse(match.group(0)!))
+        .toList();
+    if (operands.length != 2) return false;
+    final a = operands[0], b = operands[1];
+    if (level.id == 6) return a != b && answer == max(a, b);
+    if (task.prompt.contains('+')) return answer == a + b;
+    if (task.prompt.contains('−') || task.prompt.contains('-'))
+      return answer == a - b;
+    if (task.prompt.contains('×') || task.prompt.contains('·'))
+      return answer == a * b;
+    return false;
+  }
+
+  static MathConcreteTask _starsPath(GameLevel level, int index) {
     final random = Random(level.id * 1000 + index * 17);
     final grade = level.gradeFloor;
+    // Die Karten kommen aus derselben Quelle wie beim Üben: Die Lösung
+    // liegt der Größe nach an wechselnder Stelle, falsche Karten sind
+    // typische Fehler. Früher war sie immer die zweitkleinste Karte.
     MathConcreteTask numeric(String prompt, int answer, String explanation,
-        {String visual = 'dots'}) {
-      final choices = <int>{answer};
-      for (final delta in [1, -1, 2, -2, 3, -3]) {
-        if (answer + delta >= 0) choices.add(answer + delta);
-        if (choices.length == 4) break;
-      }
-      final shuffled = choices.map((n) => '$n').toList()..shuffle(random);
+        {String visual = 'dots', List<int> typical = const <int>[]}) {
+      final shuffled = MathTaskTemplates.numberChoices(
+          answer, random.nextInt(1 << 30),
+          typical: typical, max: grade == 1 ? 20 : null);
       return MathConcreteTask(
           unit: level.title,
           prompt: prompt,
@@ -59,7 +100,8 @@ abstract class GameMathTasks {
           a + b,
           index.isEven
               ? 'Verdopple $a: $a + $a = ${a + a}.'
-              : 'Der Nachbartrick: $a + $a = ${a + a}. Passe um ${b - a} an: ${a + b}.');
+              : 'Der Nachbartrick: $a + $a = ${a + a}. Passe um ${b - a} an: ${a + b}.',
+          typical: MathTaskTemplates.additionErrors(a, b));
     }
     if ([41, 42, 46].contains(id)) {
       final row = id == 42
@@ -69,8 +111,17 @@ abstract class GameMathTasks {
               : (index.isEven ? 10 : 4);
       final multiplier = 1 + random.nextInt(10);
       return numeric('$row × $multiplier = ?', row * multiplier,
-          '$multiplier Gruppen mit je $row: ${List.filled(multiplier, '$row').join(' + ')} = ${row * multiplier}.',
-          visual: 'groups');
+          // Dieselbe Deutung wie im Einmaleins-Modul und in den Tipps:
+          // a × b heißt „a-mal die b“.
+          '$row × $multiplier heißt $row-mal die $multiplier: ${List.filled(row, '$multiplier').join(' + ')} = ${row * multiplier}.',
+          visual: 'groups',
+          typical: <int>[
+            row * (multiplier - 1),
+            row * (multiplier + 1),
+            (row - 1) * multiplier,
+            (row + 1) * multiplier,
+            row + multiplier,
+          ]);
     }
     if (id == 48 || id == 49) {
       final unit =
@@ -108,10 +159,16 @@ abstract class GameMathTasks {
         subtract
             ? 'Nimm von $a genau $b weg. Es bleiben $answer.'
             : 'Zu $a kommen $b dazu. Zusammen sind es $answer.',
-        visual: subtract ? 'line' : 'dots');
+        visual: subtract ? 'line' : 'dots',
+        typical: subtract
+            ? MathTaskTemplates.subtractionErrors(a, b)
+            : MathTaskTemplates.additionErrors(a, b));
   }
 
   static GameHouseTask numberHouse(GameLevel level, int index) {
+    if (level.miniType != GameMiniType.numberHouse || index < 0) {
+      throw ArgumentError('Diese Stufe gehört nicht zum Rechenhaus.');
+    }
     final random = Random(level.id * 1000 + index * 31);
     final roof = switch (level.id) {
       7 => 7,
@@ -127,20 +184,22 @@ abstract class GameMathTasks {
         : level.id == 15
             ? (roof - 9) + random.nextInt(19 - roof)
             : 1 + random.nextInt(roof - 1);
-    final values = <int>{answer};
-    for (final delta in [1, -1, 2, -2, 3]) {
-      if (answer + delta >= 0 && answer + delta <= roof) {
-        values.add(answer + delta);
-      }
-      if (values.length == 4) break;
-    }
-    final choices = values.toList()..shuffle(random);
-    return GameHouseTask(
+    // Typisch: das sichtbare Zimmer oder die Dachzahl nennen, sich verzählen.
+    final choices = <int>[
+      for (final value in MathTaskTemplates.numberChoices(
+          answer, random.nextInt(1 << 30),
+          typical: <int>[roof - answer, roof, answer - 1, answer + 1],
+          max: roof))
+        int.parse(value),
+    ];
+    final task = GameHouseTask(
         roof: roof,
         visibleRoom: roof - answer,
         answer: answer,
         missingLeft: random.nextBool(),
         choices: choices);
+    if (!task.isValid) throw StateError('Das Rechenhaus ist nicht lösbar.');
+    return task;
   }
 }
 
@@ -156,4 +215,15 @@ class GameHouseTask {
   final int answer;
   final bool missingLeft;
   final List<int> choices;
+
+  bool get isValid =>
+      roof >= 1 &&
+      roof <= 100 &&
+      visibleRoom >= 0 &&
+      answer >= 0 &&
+      visibleRoom + answer == roof &&
+      choices.length >= 2 &&
+      choices.toSet().length == choices.length &&
+      choices.every((value) => value >= 0 && value <= roof) &&
+      choices.where((value) => value == answer).length == 1;
 }

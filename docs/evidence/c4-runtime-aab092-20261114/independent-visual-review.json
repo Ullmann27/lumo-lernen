@@ -1,0 +1,102 @@
+{
+  "scope": "Independent visual inspection of exactly four current unmodified desktop-runtime PNG originals; read-only, no engine or tests run",
+  "source_binding_from_parent": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "run": 43590864772,
+    "attempt": 1,
+    "artifact": 14112302039,
+    "archive_bytes": 22153295,
+    "archive_sha256": "77a8c42b2674c1a5de875b9ded796fd17f6778dbf2aa4a4f9f893ab62614962f",
+    "binding_verified_by": "parent learning_ux_lead; this reviewer independently verified only the four local original file identities below"
+  },
+  "originals": [
+    {
+      "path": "/home/agent/lumo-runtime-aab092-14112302039/original/runtime/connect_four_empty.png",
+      "bytes": 82537,
+      "width": 960,
+      "height": 540,
+      "sha256": "aa1bde4d9f074b6d509024f064f14e27a40866d344657a7d522005bb60e52fd8",
+      "expected_match": true
+    },
+    {
+      "path": "/home/agent/lumo-runtime-aab092-14112302039/original/runtime/connect_four_win.png",
+      "bytes": 84544,
+      "width": 960,
+      "height": 540,
+      "sha256": "c1ae15494092fa78aed6d074196b60bd9bfeac8b145a4d2b0dfecae866767e1a",
+      "expected_match": true
+    },
+    {
+      "path": "/home/agent/lumo-runtime-aab092-14112302039/original/runtime/connect_four_phone_portrait.png",
+      "bytes": 170661,
+      "width": 1080,
+      "height": 2400,
+      "sha256": "0d22adcedf99e68060f7091a3cb9bf8b99abea7c9415c724e2ef81a0b7600de1",
+      "expected_match": true
+    },
+    {
+      "path": "/home/agent/lumo-runtime-aab092-14112302039/original/runtime/connect_four_small_landscape.png",
+      "bytes": 22915,
+      "width": 640,
+      "height": 360,
+      "sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55",
+      "expected_match": true
+    }
+  ],
+  "observations": [
+    {
+      "file": "connect_four_empty.png",
+      "findings": [
+        "Seven columns and six rows are visible in the blue board.",
+        "Title, Back and Pause controls, the 'Gespeichert · Cyan ist dran' status and all seven numbered column controls are readable and within the frame.",
+        "Fox avatar is visible beside the board; no visible label/control overlap is established."
+      ],
+      "limitations": [
+        "This still does not establish persistence, input response, minimum dp size or performance."
+      ]
+    },
+    {
+      "file": "connect_four_win.png",
+      "findings": [
+        "Four adjacent cyan discs along the bottom left row are highlighted with white outlines.",
+        "'Cyan gewinnt!' is readable and matches the visibly highlighted row.",
+        "Seven column controls are visibly dimmed; Back and Menu remain within the frame."
+      ],
+      "limitations": [
+        "Dimming is a visible state only; input disabling and restart behavior are not proved by this still."
+      ]
+    },
+    {
+      "file": "connect_four_phone_portrait.png",
+      "findings": [
+        "This is the winning overlay state, not an unobstructed active portrait board.",
+        "'Cyan gewinnt!', 'Vier in einer Reihe!', 'Brett ansehen', 'Neue Runde' and 'Gegen Lumo spielen' are readable and within their panels.",
+        "The bottom status and all seven column labels remain visible; the board is dimly visible behind the large overlay."
+      ],
+      "limitations": [
+        "The active portrait-board layout cannot be accepted from this overlay screenshot alone.",
+        "The large result panel leaves substantial blank vertical space, which is a visible layout observation rather than a demonstrated functional failure."
+      ]
+    },
+    {
+      "file": "connect_four_small_landscape.png",
+      "findings": [
+        "Header labels, bottom 'Cyan gewinnt!' status and all seven dimmed column controls are visible.",
+        "The central result viewport shows 'Vier in einer Reihe!' and 'Brett ansehen'; a vertical scrollbar is visible at its right edge.",
+        "'Neue Runde' and 'Gegen Lumo spielen' are not visible in this captured scroll position."
+      ],
+      "limitations": [
+        "The screenshot does not prove whether the additional actions are reachable by scrolling.",
+        "The board is obscured by the result interface, so active small-landscape gameplay is not assessed here."
+      ]
+    }
+  ],
+  "conclusion": "No clipped visible label or overlapping visible control is established by these four originals. The small-landscape result state requires separate interaction evidence for its offscreen actions; it is not recorded as proof that those actions are absent.",
+  "exclusions": [
+    "No prior 803/32 result was reused.",
+    "No APK/device, touch, dp measurement, measured FPS, audio or complete runtime-gate approval.",
+    "No 24-FPS recording setting is treated as a measured runtime rate.",
+    "No files, tests, code or refs were changed."
+  ]
+}

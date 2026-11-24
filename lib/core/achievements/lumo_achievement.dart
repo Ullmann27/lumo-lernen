@@ -59,15 +59,16 @@ class LumoAchievementProgress {
     required this.current,
     required this.unlocked,
     this.unlockedAt,
+    this.claimed = false,
   });
 
   final LumoAchievement achievement;
   final int current;
   final bool unlocked;
   final DateTime? unlockedAt;
+  final bool claimed;
 
-  double get progressPercent =>
-      (current / achievement.target).clamp(0.0, 1.0);
+  double get progressPercent => (current / achievement.target).clamp(0.0, 1.0);
 }
 
 class LumoAchievementCatalog {
@@ -79,7 +80,7 @@ class LumoAchievementCatalog {
       id: 'first_steps',
       emoji: '👣',
       title: 'Erste Schritte',
-      description: 'Loese deine erste Aufgabe.',
+      description: 'Löse deine erste Aufgabe.',
       metric: AchievementMetric.totalTasks,
       target: 1,
       rewardStars: 5,
@@ -89,7 +90,7 @@ class LumoAchievementCatalog {
       id: 'ten_tasks',
       emoji: '🎯',
       title: '10er-Knacker',
-      description: 'Loese 10 Aufgaben - egal welches Fach.',
+      description: 'Löse 10 Aufgaben - egal welches Fach.',
       metric: AchievementMetric.totalTasks,
       target: 10,
       rewardStars: 15,
@@ -131,7 +132,7 @@ class LumoAchievementCatalog {
       id: 'math_master_25',
       emoji: '🧮',
       title: 'Mathe-Meister',
-      description: 'Loese 25 Mathe-Aufgaben richtig.',
+      description: 'Löse 25 Mathe-Aufgaben richtig.',
       metric: AchievementMetric.mathCorrect,
       target: 25,
       rewardStars: 30,
@@ -141,7 +142,7 @@ class LumoAchievementCatalog {
       id: 'german_master_25',
       emoji: '📖',
       title: 'Sprach-Profi',
-      description: 'Loese 25 Deutsch-Aufgaben richtig.',
+      description: 'Löse 25 Deutsch-Aufgaben richtig.',
       metric: AchievementMetric.germanCorrect,
       target: 25,
       rewardStars: 30,
@@ -203,7 +204,7 @@ class LumoAchievementCatalog {
       id: 'all_quests',
       emoji: '🦊',
       title: 'Quest-Champion',
-      description: 'Bestehe alle 4 Lumo Quests deiner Klasse.',
+      description: 'Bestehe die vier Lumo Quests von Klasse 1 bis 4.',
       metric: AchievementMetric.questsCompleted,
       target: 4,
       rewardStars: 100,

@@ -1,0 +1,181 @@
+{
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "host": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "run": 43596913210,
+    "attempt": 1,
+    "job": 132454178537,
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "workflow_blob": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6",
+    "runner": "scripts/run_full_flutter_acceptance.py",
+    "runner_blob": "f6db83c08db2a89c8d422f33a874fde8a0b62f72",
+    "artifact_id": 14115282912,
+    "artifact_size": 363833462,
+    "artifact_sha256": "81132f79c596df4a70f87f4a39b3cebe8fb3405384d34a471cb40c8416d4b6ab",
+    "primary_scope": "Complete unfiltered Flutter suite with captures enabled; not an APK or Android acceptance.",
+    "full_job_log_owner": "android_qa will fetch the terminal complete build log exactly once; not fetched here.",
+    "no_new_test_execution": true
+  },
+  "original_jsonl_sha256": "5ae8d271b4357cab4f2883720e25b9257cc06f52c63b4aae211de461de9300dc",
+  "total_warnings": 30,
+  "by_test_id": {
+    "1321": 7,
+    "1324": 8,
+    "1330": 7,
+    "1333": 8
+  },
+  "events": [
+    {
+      "jsonl_line": 2643,
+      "test_id": 1321,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-mode-true'>]: ["
+    },
+    {
+      "jsonl_line": 2644,
+      "test_id": 1321,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-3'>]: ["
+    },
+    {
+      "jsonl_line": 2645,
+      "test_id": 1321,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-2'>]: ["
+    },
+    {
+      "jsonl_line": 2646,
+      "test_id": 1321,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-3'>]: ["
+    },
+    {
+      "jsonl_line": 2647,
+      "test_id": 1321,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-2'>]: ["
+    },
+    {
+      "jsonl_line": 2648,
+      "test_id": 1321,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-4'>]: ["
+    },
+    {
+      "jsonl_line": 2649,
+      "test_id": 1321,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-5'>]: ["
+    },
+    {
+      "jsonl_line": 2656,
+      "test_id": 1324,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-mode-true'>]: ["
+    },
+    {
+      "jsonl_line": 2657,
+      "test_id": 1324,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-0'>]: ["
+    },
+    {
+      "jsonl_line": 2658,
+      "test_id": 1324,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-6'>]: ["
+    },
+    {
+      "jsonl_line": 2659,
+      "test_id": 1324,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-1'>]: ["
+    },
+    {
+      "jsonl_line": 2660,
+      "test_id": 1324,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-6'>]: ["
+    },
+    {
+      "jsonl_line": 2661,
+      "test_id": 1324,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-2'>]: ["
+    },
+    {
+      "jsonl_line": 2662,
+      "test_id": 1324,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-6'>]: ["
+    },
+    {
+      "jsonl_line": 2663,
+      "test_id": 1324,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-3'>]: ["
+    },
+    {
+      "jsonl_line": 2676,
+      "test_id": 1330,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-mode-true'>]: ["
+    },
+    {
+      "jsonl_line": 2677,
+      "test_id": 1330,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-3'>]: ["
+    },
+    {
+      "jsonl_line": 2678,
+      "test_id": 1330,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-2'>]: ["
+    },
+    {
+      "jsonl_line": 2679,
+      "test_id": 1330,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-3'>]: ["
+    },
+    {
+      "jsonl_line": 2680,
+      "test_id": 1330,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-2'>]: ["
+    },
+    {
+      "jsonl_line": 2681,
+      "test_id": 1330,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-4'>]: ["
+    },
+    {
+      "jsonl_line": 2682,
+      "test_id": 1330,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-5'>]: ["
+    },
+    {
+      "jsonl_line": 2689,
+      "test_id": 1333,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-mode-true'>]: ["
+    },
+    {
+      "jsonl_line": 2690,
+      "test_id": 1333,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-0'>]: ["
+    },
+    {
+      "jsonl_line": 2691,
+      "test_id": 1333,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-6'>]: ["
+    },
+    {
+      "jsonl_line": 2692,
+      "test_id": 1333,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-1'>]: ["
+    },
+    {
+      "jsonl_line": 2693,
+      "test_id": 1333,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-6'>]: ["
+    },
+    {
+      "jsonl_line": 2694,
+      "test_id": 1333,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-2'>]: ["
+    },
+    {
+      "jsonl_line": 2695,
+      "test_id": 1333,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-6'>]: ["
+    },
+    {
+      "jsonl_line": 2696,
+      "test_id": 1333,
+      "message_start": "Warning: A call to tap() with finder \"Found 1 widget with key [<'connect-column-3'>]: ["
+    }
+  ]
+}

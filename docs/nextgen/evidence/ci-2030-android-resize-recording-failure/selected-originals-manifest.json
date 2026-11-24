@@ -1,0 +1,270 @@
+{
+  "artifactId": 14192539626,
+  "archiveSha256": "e7ca12c47729ece9ca880db91a80beea0dec63cc5d82f5d7c0c975e3c9885b35",
+  "allSelectedBytesEqualArchiveAndExtractedOriginals": true,
+  "files": [
+    {
+      "path": "selected-originals/learning-android-result.json",
+      "bytes": 12380,
+      "sha256": "2aa5dafdf5886934a90069338575bd0d7091fa9967838d4d59c98df9f7351450",
+      "archiveMember": "original-android/learning-android-result.json",
+      "crc32": "ba64c627"
+    },
+    {
+      "path": "selected-originals/candidate-BUILD-PROVENANCE.json",
+      "bytes": 9642,
+      "sha256": "5cb366e780d28ff3d7a5943b69618db174a1592ec6050d3e41b85dcd30b55d50",
+      "archiveMember": "original-android/candidate-BUILD-PROVENANCE.json",
+      "crc32": "4f253e6a"
+    },
+    {
+      "path": "selected-originals/display-original.json",
+      "bytes": 79,
+      "sha256": "106c7b42ae13a2d7eb0ba87f5e2f9cdce4af8a3f8f1209c6bc6295203e7f21d2",
+      "archiveMember": "original-android/display-original.json",
+      "crc32": "355dac36"
+    },
+    {
+      "path": "selected-originals/0150-conversation-return-touch.json",
+      "bytes": 101,
+      "sha256": "d71ad5270342ee224e0e496b0ad7b0761d366f3ed756953cce746d3b20a15ea0",
+      "archiveMember": "original-android/0150-conversation-return-touch.json",
+      "crc32": "c421cbdd"
+    },
+    {
+      "path": "selected-originals/0151-conversation-returned-task.xml",
+      "bytes": 26648,
+      "sha256": "15af0ec7f54adc0da5ffb9f7dfb316572202cf216303abefd2809aa1ecfb1edf",
+      "archiveMember": "original-android/0151-conversation-returned-task.xml",
+      "crc32": "d0ded376"
+    },
+    {
+      "path": "selected-originals/0153-conversation-learning-after-preferences.xml",
+      "bytes": 3107,
+      "sha256": "d0d3d2dfe66b4f6ed8bcdfd3c92cc23021086883ef1f19a8ee43bd25fe0e0c06",
+      "archiveMember": "original-android/0153-conversation-learning-after-preferences.xml",
+      "crc32": "7cd6cce0"
+    },
+    {
+      "path": "selected-originals/0154-bridge-move-one.xml",
+      "bytes": 26648,
+      "sha256": "15af0ec7f54adc0da5ffb9f7dfb316572202cf216303abefd2809aa1ecfb1edf",
+      "archiveMember": "original-android/0154-bridge-move-one.xml",
+      "crc32": "d0ded376"
+    },
+    {
+      "path": "selected-originals/0155-bridge-move-one-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "archiveMember": "original-android/0155-bridge-move-one-scroll-search.json",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "selected-originals/0156-bridge-move-one-touch.json",
+      "bytes": 117,
+      "sha256": "7ee7e3a265ab7fa49ce43dbf20c6d3c126177ce1aeecf6968506234f4518ee05",
+      "archiveMember": "original-android/0156-bridge-move-one-touch.json",
+      "crc32": "4a53fd1a"
+    },
+    {
+      "path": "selected-originals/0157-bridge-checkpoint-preferences.xml",
+      "bytes": 3107,
+      "sha256": "f658d3c7dfb8336ab5c923cc47e5ef0ad30057913f29e3023fa2bce56259433b",
+      "archiveMember": "original-android/0157-bridge-checkpoint-preferences.xml",
+      "crc32": "fd9a203e"
+    },
+    {
+      "path": "selected-originals/0159-bridge-before-roundtrips-preferences.xml",
+      "bytes": 3107,
+      "sha256": "f658d3c7dfb8336ab5c923cc47e5ef0ad30057913f29e3023fa2bce56259433b",
+      "archiveMember": "original-android/0159-bridge-before-roundtrips-preferences.xml",
+      "crc32": "fd9a203e"
+    },
+    {
+      "path": "selected-originals/0160-bridge-pause-return-video.json",
+      "bytes": 345,
+      "sha256": "67b3d6b39945ec66dad0f78bafc7cdb20ea6d1374a3e71cab0bb61ca33dc2d45",
+      "archiveMember": "original-android/0160-bridge-pause-return-video.json",
+      "crc32": "1c6a7743"
+    },
+    {
+      "path": "selected-originals/0161-bridge-before-pause-render-readiness.json",
+      "bytes": 558,
+      "sha256": "43334cdf626e51c68fb5b9b09a88ac671dcfe448c9e52a0e34dc410bf2d0b5f4",
+      "archiveMember": "original-android/0161-bridge-before-pause-render-readiness.json",
+      "crc32": "c720edb7"
+    },
+    {
+      "path": "selected-originals/0161-bridge-before-pause.png",
+      "bytes": 514424,
+      "sha256": "6fabd63e660ded5d63113fe7bab1e1297a839cb08e2925b3f60a489e0d30727c",
+      "archiveMember": "original-android/0161-bridge-before-pause.png",
+      "crc32": "d72ed5ff"
+    },
+    {
+      "path": "selected-originals/0162-bridge-paused-activity.txt",
+      "bytes": 225,
+      "sha256": "22444535b2de78a8a4cb3752608e81ccf692244c9d0f007288b01b924a2ee879",
+      "archiveMember": "original-android/0162-bridge-paused-activity.txt",
+      "crc32": "4e4171e8"
+    },
+    {
+      "path": "selected-originals/0163-bridge-resume-launch.txt",
+      "bytes": 547,
+      "sha256": "060f8929f7d545d708e91d948b34db4431a93bf537d5b59ca311ad739c9539cc",
+      "archiveMember": "original-android/0163-bridge-resume-launch.txt",
+      "crc32": "10f368c9"
+    },
+    {
+      "path": "selected-originals/0164-bridge-resumed-task.xml",
+      "bytes": 26709,
+      "sha256": "beac814e85f3c1913eead49f02c210fd40c48f4f927c38e42fc20ba0e33b4777",
+      "archiveMember": "original-android/0164-bridge-resumed-task.xml",
+      "crc32": "e51bccdf"
+    },
+    {
+      "path": "selected-originals/0166-bridge-after-pause-render-readiness.json",
+      "bytes": 556,
+      "sha256": "3634eb3fa5f82951ad6a2021297c89ceb1eca391d28cb3bcf52b9ea4630487e5",
+      "archiveMember": "original-android/0166-bridge-after-pause-render-readiness.json",
+      "crc32": "65e09cef"
+    },
+    {
+      "path": "selected-originals/0166-bridge-after-pause.png",
+      "bytes": 514424,
+      "sha256": "6fabd63e660ded5d63113fe7bab1e1297a839cb08e2925b3f60a489e0d30727c",
+      "archiveMember": "original-android/0166-bridge-after-pause.png",
+      "crc32": "d72ed5ff"
+    },
+    {
+      "path": "selected-originals/0168-bridge-after-pause-preferences.xml",
+      "bytes": 3107,
+      "sha256": "f658d3c7dfb8336ab5c923cc47e5ef0ad30057913f29e3023fa2bce56259433b",
+      "archiveMember": "original-android/0168-bridge-after-pause-preferences.xml",
+      "crc32": "fd9a203e"
+    },
+    {
+      "path": "selected-originals/0172-bridge-reenter-touch.json",
+      "bytes": 100,
+      "sha256": "cd4aaa1926a2cd78fd0c678f72be01398f4d826ec68327ac42892345c5472027",
+      "archiveMember": "original-android/0172-bridge-reenter-touch.json",
+      "crc32": "3be67352"
+    },
+    {
+      "path": "selected-originals/0173-bridge-reopened-prompt.xml",
+      "bytes": 24596,
+      "sha256": "ead10624f39987c0ed3e0b9d4b1549a1d3fb771e0e92080a267b16ca262e4727",
+      "archiveMember": "original-android/0173-bridge-reopened-prompt.xml",
+      "crc32": "d0130b51"
+    },
+    {
+      "path": "selected-originals/0176-bridge-after-return-preferences.xml",
+      "bytes": 3107,
+      "sha256": "f658d3c7dfb8336ab5c923cc47e5ef0ad30057913f29e3023fa2bce56259433b",
+      "archiveMember": "original-android/0176-bridge-after-return-preferences.xml",
+      "crc32": "fd9a203e"
+    },
+    {
+      "path": "selected-originals/0177-bridge-same-model-after-return-render-readiness.json",
+      "bytes": 580,
+      "sha256": "d61d6723e281a80db01f72ca0bea69a46c9ed1fbe00160bbed964936dbd3bc81",
+      "archiveMember": "original-android/0177-bridge-same-model-after-return-render-readiness.json",
+      "crc32": "b5e6c687"
+    },
+    {
+      "path": "selected-originals/0177-bridge-same-model-after-return.png",
+      "bytes": 751299,
+      "sha256": "b1e6b4489b99034d3ab3e1ff45b2be5e752516e6f4c2aaf6ea065c0fdd25f477",
+      "archiveMember": "original-android/0177-bridge-same-model-after-return.png",
+      "crc32": "cfe5be9a"
+    },
+    {
+      "path": "selected-originals/0179-bridge-before-resize-preferences.xml",
+      "bytes": 3107,
+      "sha256": "f658d3c7dfb8336ab5c923cc47e5ef0ad30057913f29e3023fa2bce56259433b",
+      "archiveMember": "original-android/0179-bridge-before-resize-preferences.xml",
+      "crc32": "fd9a203e"
+    },
+    {
+      "path": "selected-originals/0180-compact-display.json",
+      "bytes": 258,
+      "sha256": "da494a9b3efd76113d9f8c21210e009bcc086534311392a09c0dcbf0a632df8a",
+      "archiveMember": "original-android/0180-compact-display.json",
+      "crc32": "04ba96a6"
+    },
+    {
+      "path": "selected-originals/0181-bridge-resize-compact-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archiveMember": "original-android/0181-bridge-resize-compact-screenrecord.txt",
+      "crc32": "00000000"
+    },
+    {
+      "path": "selected-originals/0181-bridge-resize-compact.mp4",
+      "bytes": 93539,
+      "sha256": "8f436741a6b25fbccef4ee7784ef54ae41786bcbbc5e4c342352db9355c0300a",
+      "archiveMember": "original-android/0181-bridge-resize-compact.mp4",
+      "crc32": "f92bf38e"
+    },
+    {
+      "path": "selected-originals/0182-bridge-compact-prompt.xml",
+      "bytes": 23165,
+      "sha256": "001d28cb552e9f92465a5e8afd23afe2d051dd935b41ee6b9eae425285173fde",
+      "archiveMember": "original-android/0182-bridge-compact-prompt.xml",
+      "crc32": "d0e79a4d"
+    },
+    {
+      "path": "selected-originals/0183-bridge-compact-prompt-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "archiveMember": "original-android/0183-bridge-compact-prompt-scroll-search.json",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "selected-originals/0184-bridge-compact-model.xml",
+      "bytes": 23165,
+      "sha256": "001d28cb552e9f92465a5e8afd23afe2d051dd935b41ee6b9eae425285173fde",
+      "archiveMember": "original-android/0184-bridge-compact-model.xml",
+      "crc32": "d0e79a4d"
+    },
+    {
+      "path": "selected-originals/0185-bridge-compact-model-scroll-search.json",
+      "bytes": 130,
+      "sha256": "f37a01110621b9e7871615253f1051a182a6e6f7fc69e52f070baa558afb7f2e",
+      "archiveMember": "original-android/0185-bridge-compact-model-scroll-search.json",
+      "crc32": "8d3d2619"
+    },
+    {
+      "path": "selected-originals/0186-bridge-compact-render-readiness.json",
+      "bytes": 547,
+      "sha256": "aaf00f337c967e3b53fc121506f76051eb780bd840913223ee818e9b76192e2c",
+      "archiveMember": "original-android/0186-bridge-compact-render-readiness.json",
+      "crc32": "4b24513b"
+    },
+    {
+      "path": "selected-originals/0186-bridge-compact.png",
+      "bytes": 380051,
+      "sha256": "7c1f82e316bfcaeca28383fa0d18d5e866c11e45711eddcecc6fb7d9fd0ea847",
+      "archiveMember": "original-android/0186-bridge-compact.png",
+      "crc32": "90fe29a3"
+    },
+    {
+      "path": "selected-originals/0187-compact-prefs-preferences.xml",
+      "bytes": 3107,
+      "sha256": "f658d3c7dfb8336ab5c923cc47e5ef0ad30057913f29e3023fa2bce56259433b",
+      "archiveMember": "original-android/0187-compact-prefs-preferences.xml",
+      "crc32": "fd9a203e"
+    },
+    {
+      "path": "selected-originals/0188-bridge-checkpoint-preferences.xml",
+      "bytes": 3107,
+      "sha256": "f658d3c7dfb8336ab5c923cc47e5ef0ad30057913f29e3023fa2bce56259433b",
+      "archiveMember": "original-android/0188-bridge-checkpoint-preferences.xml",
+      "crc32": "fd9a203e"
+    }
+  ],
+  "bytes": 2455949,
+  "pngBytes": 2160198,
+  "videoBytes": 93539,
+  "note": "Selected originals are exact duplicates for inspection. Every omitted member, including the pause/return video referenced by its selected metadata, remains in the complete ZIP parts."
+}

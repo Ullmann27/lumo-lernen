@@ -1,0 +1,20 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 2.8811172059995442,
+  "command": [
+    "/tmp/lumo-2078/runtime/Godot_v4.6.3-stable_linux.x86_64",
+    "--path",
+    "/tmp/lumo-neon-repair",
+    "--display-driver",
+    "x11",
+    "--audio-driver",
+    "Dummy",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/cards_character_roster_regression.gd",
+    "--"
+  ],
+  "source_commit": "0cebbbb2a2fb74d5005361d82876de3f80d557b2",
+  "scope": "Godot 4.6.3 Compatibility desktop software renderer; no physical Android result"
+}

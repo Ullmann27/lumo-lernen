@@ -1,0 +1,216 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T06:38:59.495102+00:00",
+  "published_host_sha": "8dd2ad1fc2f04a8a116c15147436da3c15102b87",
+  "published_host_tree": "37ac9221832bc4ec8d0b2faf98bcd1360f2d103c",
+  "source_freeze_sha256": "552e3dca4aab9b2bca250c5c827218448168db1f6b50e6c4994251de6054ff80",
+  "entry_count": 40,
+  "total_original_bytes": 295570,
+  "files": [
+    {
+      "path": "before/scripts/prepare_android.py",
+      "bytes": 8781,
+      "sha256": "552aba5a06cc3ad403e61e47f7d1e4f43592dae028baadcec09bd4130173bae5"
+    },
+    {
+      "path": "before/scripts/tests/test_prepare_android.py",
+      "bytes": 9815,
+      "sha256": "5362b51a1e4985cde746c7711b7a6839271cc7698bbf430e8324127c42f14899"
+    },
+    {
+      "path": "before/tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 7039,
+      "sha256": "3353e4dd04fd96fa0e4e2b79dac1d7ecfc2b87fe5c2c4cfbeca472a481a5a06c"
+    },
+    {
+      "path": "final-source/scripts/prepare_android.py",
+      "bytes": 8826,
+      "sha256": "e80c31269ba8d15fc5db171dd46e1c45cb418f1ff799b03292e89e45b7e4dc6f"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/LearningSpeechBuildContract.kt",
+      "bytes": 4948,
+      "sha256": "484d242949a9f96c315eb8a6853a303988200f4d5f45c20251d6aae94a5fabf8"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt",
+      "bytes": 4342,
+      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt",
+      "bytes": 4381,
+      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/apfel.wav",
+      "bytes": 40970,
+      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+      "bytes": 462,
+      "sha256": "86c558d488458ecb25dec947fd0935114cfbe9c69b35c08b45ce592536c930c6"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/platform/Channel.kt",
+      "bytes": 172,
+      "sha256": "c42bc41b86360bc28f84f59fbec760a633460ffab930439921c344cafc093950"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/platform/Context.kt",
+      "bytes": 318,
+      "sha256": "bfadda67fce0bcfd940e6d275f0e4184c2a592febb7ab3c5639a40c1f6ec21ac"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/platform/Handler.kt",
+      "bytes": 992,
+      "sha256": "2baa97b0f65a6a7cc59a26f5f80e823608d5e18f546236db7850d902c7963dce"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+      "bytes": 964,
+      "sha256": "457539a65101608c93b64b1fab0705406814d4fc7c7da64ed0914c94f815d1b9"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
+      "bytes": 73,
+      "sha256": "d9bef1b203ec4e7cfe515061ee7cae2d333c7bce7fdee8e460e8554c00ec43e6"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/platform/Media.kt",
+      "bytes": 1466,
+      "sha256": "26dadd1a5347836a72d034e925f3098221a86055ede2c4e80906fb41893dd962"
+    },
+    {
+      "path": "final-source/scripts/tests/fixtures/speech_envelope_contract/provenance.json",
+      "bytes": 5131,
+      "sha256": "f24e2f2007e4a88a98b8aebae423e7e746b34bd5a33ddbeb734df2d49826fda3"
+    },
+    {
+      "path": "final-source/scripts/tests/test_prepare_android.py",
+      "bytes": 9930,
+      "sha256": "9fa4421ab6647ef884039797929fdebc4c8023a15cd59a919bfd075f63eb9ce9"
+    },
+    {
+      "path": "final-source/scripts/tests/test_speech_envelope_contract.py",
+      "bytes": 3660,
+      "sha256": "30f75c17006c47c4410d0309a79193a0a97024d479d8b93e94e7d706b0632a3f"
+    },
+    {
+      "path": "final-source/tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 8921,
+      "sha256": "ff154885806c7c8fcf0fe730367b8fd2d25760584037ea6f5e0851324bd2c1e0"
+    },
+    {
+      "path": "final-source/tools/auto_install/LumoSpeechEnvelope.kt",
+      "bytes": 4697,
+      "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8"
+    },
+    {
+      "path": "java-version.log",
+      "bytes": 181,
+      "sha256": "0fc83381287ccbc8623d257bce2b0d03997ba0e85ff4492d38b409aea37a8aa9"
+    },
+    {
+      "path": "producer-originals/host/tools/auto_install/LumoLearningSpeech.kt",
+      "bytes": 8902,
+      "sha256": "13bf313696c626a3453cddacdd8e95fb20b4075d84ddaeb8a5c0054d68e43f8d"
+    },
+    {
+      "path": "published-source-binding-after.json",
+      "bytes": 8448,
+      "sha256": "7d339fd7594b65ecc65435f89947ef207c3e6af2fca0acc90bb4ad5d47b46027"
+    },
+    {
+      "path": "published-source-binding-before.json",
+      "bytes": 8263,
+      "sha256": "0e4ca33fee043e4340248c977def133bdb4f36ca26cd9179756609ea2a46c55c"
+    },
+    {
+      "path": "run_targeted_validation.py",
+      "bytes": 4891,
+      "sha256": "0ce94dff3c382a1c0acd27a90435e6e4b433b966b179055976ed07ff293741e6"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 8884,
+      "sha256": "552e3dca4aab9b2bca250c5c827218448168db1f6b50e6c4994251de6054ff80"
+    },
+    {
+      "path": "toolchain.json",
+      "bytes": 8522,
+      "sha256": "6f035cbf237fd1bd8d6b7460ac0ed0bbfcbb7b659b40acc8f76a425c6e246ae8"
+    },
+    {
+      "path": "unchanged-test-inputs/tools/auto_install/LumoOfflineSpeechBridge.kt",
+      "bytes": 8395,
+      "sha256": "91e5d2dcafd1f04c7d116b05785f4ca284cbe31457ed1777e7c057d60becd62f"
+    },
+    {
+      "path": "unchanged-test-inputs/tools/auto_install/LumoOfflineSpeechEngine.java",
+      "bytes": 15809,
+      "sha256": "e2fd0ac015a1957053bde4b15d1fe5c518581e423d3d7573698bbbf8c22fdd72"
+    },
+    {
+      "path": "unchanged-test-inputs/tools/auto_install/MainActivity.kt",
+      "bytes": 17671,
+      "sha256": "831fa3580a3330583d3f4a92e0cf9882a703224e3d0f3a65f666e67f52c4c946"
+    },
+    {
+      "path": "unchanged-test-inputs/tools/auto_install/lumo_file_paths.xml",
+      "bytes": 263,
+      "sha256": "5adc65ba583b3a16bfb9b755b21ef3c86d5757a5f47eb8db27799ce2c61e5e29"
+    },
+    {
+      "path": "validation/installer-green/original.log",
+      "bytes": 2772,
+      "sha256": "d31b43ce3b8be9cf415001e9b824be246bab95859856cd02c4781a410fe2aa41"
+    },
+    {
+      "path": "validation/installer-green/result.json",
+      "bytes": 8116,
+      "sha256": "73a70bbf7a3df2914a6770e86ce7d59b6a38ed3d95dedf8b3b64b28bb8503111"
+    },
+    {
+      "path": "validation/installer-red/original.log",
+      "bytes": 4368,
+      "sha256": "731b570b613d4a87701eab2bb62e3029e3a68e0a8c71bce3c6d68d7e8beb6245"
+    },
+    {
+      "path": "validation/installer-red/result.json",
+      "bytes": 8222,
+      "sha256": "3c351d41ec5e1e52a89766bd11cc5b787ad4744b1f3e9081c8ba522b6ec4074b"
+    },
+    {
+      "path": "validation/merged-pcm-green/original.log",
+      "bytes": 857,
+      "sha256": "55effd039d490c64dba93574c00ed5b711b50181be1ef816725bb7985be28c55"
+    },
+    {
+      "path": "validation/merged-pcm-green/result.json",
+      "bytes": 8250,
+      "sha256": "6bf492a550925a688d76add2c10a9a38593a4d696ddee1ebf18866fdb96b8e33"
+    },
+    {
+      "path": "validation/producer-learning-only-red/original.log",
+      "bytes": 2148,
+      "sha256": "3d8eaed63b810462d5b48a1ab8dbf5aef3531c050b0b96f874f96267660b3580"
+    },
+    {
+      "path": "validation/producer-learning-only-red/result.json",
+      "bytes": 8264,
+      "sha256": "3bb406af3defb21a4649f8c64aac2c9c439b82c017a237f5ff9ffd3301dcf109"
+    },
+    {
+      "path": "validation/result.json",
+      "bytes": 36456,
+      "sha256": "b211356cce4e9be09950ccf177e39b6495f5851f3b6ba99b264a01f7c9ba6e15"
+    }
+  ],
+  "excluded": [
+    "compiler temporary classes (already automatically removed by TemporaryDirectory)",
+    "Repeated per-phase source copies; complete per-phase hashes remain in each result.json and original source variants are included once",
+    "Installed toolchain binaries and Kotlin jars"
+  ]
+}

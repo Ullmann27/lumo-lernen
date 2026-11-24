@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "qa_run": 43551424080,
+  "qa_attempt": 1,
+  "qa_source": "61c94cfb78bda8dfbe191331eca0fd0382deb151",
+  "qa_tree": "a648b206aba761fc96d0d0c95085981f6da53568",
+  "apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "original_conclusion": "failure",
+  "sources": {
+    "snapshots/20261114T035024Z/run.json": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/snapshots/20261114T035024Z/run.json",
+      "bytes": 12966,
+      "sha256": "dd1dcf73c4c2d1dc94b7cb282db088a1d4c76b4f2f153595cf1601f2247af8d0"
+    },
+    "snapshots/20261114T035024Z/jobs.json": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/snapshots/20261114T035024Z/jobs.json",
+      "bytes": 23000,
+      "sha256": "9824239173587464e03dc681c2414f06b2de7774dd1d06c020138c94230b5f63"
+    },
+    "snapshots/20261114T035024Z/artifacts.json": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/snapshots/20261114T035024Z/artifacts.json",
+      "bytes": 3722,
+      "sha256": "593325150a8dad007e57504af099891811f4af419dd9ac3624cd31af0fe4c15f"
+    },
+    "jobs/api37-swiftshader-132314688434.log": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/jobs/api37-swiftshader-132314688434.log",
+      "bytes": 1112812,
+      "sha256": "d290df4c39b38a945a3b44934ce59f6fd068a4b294ea1b540b944eafba8a9671"
+    },
+    "jobs/api37-host-132314688505.log": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/jobs/api37-host-132314688505.log",
+      "bytes": 1583793,
+      "sha256": "4d2b35829958ec31a092ec52e4965a38655947b4d0b6375125e23a79fbab5dfe"
+    },
+    "artifacts/api37-swiftshader-14096976074/verification.json": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/verification.json",
+      "bytes": 134675,
+      "sha256": "82468a4c5310de7283b15637dde342237ebf1eff0fe26dd5b98b887a46a10ab0"
+    },
+    "artifacts/api37-host-14096004123/verification.json": {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-host-14096004123/verification.json",
+      "bytes": 258403,
+      "sha256": "21c049fb8245ceefb15b57a9d4199810e89e58e2859aa7d230192a5cf0b9e773"
+    }
+  },
+  "findings": {
+    "swiftshader": {
+      "job": 132314688434,
+      "artifact": 14096976074,
+      "monitor_returncode": 255,
+      "monitor_command_finished_at": "2026-11-14T03:27:54.009510+00:00",
+      "root_command_observed": true,
+      "root_absolute_timestamp_recorded": false,
+      "actual_uid_after": "0",
+      "endpoint_anr_found": false,
+      "whole_interval_anr_free_proven": false
+    },
+    "host": {
+      "job": 132314688505,
+      "artifact": 14096004123,
+      "monitor_returncode": 255,
+      "monitor_command_finished_at": "2026-11-14T03:30:10.432011+00:00",
+      "root_command_observed": true,
+      "root_absolute_timestamp_recorded": false,
+      "actual_uid_after": "0",
+      "actual_gms_anr_logcat_time": "11-14 03:30:24.984",
+      "whole_interval_anr_free_proven": false
+    }
+  },
+  "limits": [
+    "The prior root helper records monotonic offsets, not an absolute UTC root-command receipt. Timing is not invented.",
+    "Both original device jobs remain FAIL. The new protocol does not reinterpret them.",
+    "This patch preserves evidence across the explicitly prepared root transition; it does not repair GMS/renderer/product failures."
+  ],
+  "primary_references": [
+    {
+      "url": "https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/docs/dev/root.md",
+      "basis": "Official description of adbd restart for root/unroot; actual current job and UID observations are separately bound above."
+    },
+    {
+      "url": "https://android.googlesource.com/platform/system/logging/+/7e79c6d75743f4a54f0359f6dccccb348e3a9918/logcat/logcat.cpp",
+      "basis": "Official source for stdout flush and optional ANDROID_LOG_TAGS filtering. The new device script explicitly unsets that variable."
+    }
+  ]
+}

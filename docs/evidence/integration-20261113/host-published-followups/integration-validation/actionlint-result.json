@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+    ".github/workflows/lumo-1999-update-gate.yml"
+  ],
+  "started_utc": "2026-11-13T17:57:30.446353+00:00",
+  "seconds": 0.054,
+  "exit_code": 0,
+  "source_sha256": "b93d551e00116f5e936be15afd5487a8cd206185a5c2e0e4b028891680a050ce",
+  "source_unchanged": true,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

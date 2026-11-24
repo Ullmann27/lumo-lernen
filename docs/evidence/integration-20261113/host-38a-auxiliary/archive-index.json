@@ -1,0 +1,453 @@
+{
+  "schema": 1,
+  "source_head": "38a49f7dda404923da3955592ccb213871f2027d",
+  "source_tree": "625b7940d9e8a4ddf32203126721efd97b3e8c2e",
+  "archive": "original-evidence.tar.gz",
+  "archive_bytes": 430230,
+  "archive_sha256": "a73b6ff511ab86052ff2499e36cdb70f9f93f2a759f6bb00c28b34e4e5c54ac6",
+  "member_count": 88,
+  "original_bytes": 707268,
+  "roundtrip": "Every member byte-identical to frozen original evidence",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 6020,
+      "sha256": "a8e1acacab2b57ca22e30fa542746f6ad7f6e6c344e2edc88f5431e8801fd6b8"
+    },
+    {
+      "path": "app-script-14073430687.zip",
+      "bytes": 14070,
+      "sha256": "d1a4b7dcb5da29a2950542af803140db1dc1ab872df859b55e349af50b5209b4"
+    },
+    {
+      "path": "app-script-artifact-verification.json",
+      "bytes": 306,
+      "sha256": "6013d5e100d8e4d5cc160aa4929ebe83dc940bc043904e370b16d7bc1bd74b84"
+    },
+    {
+      "path": "initial/jobs-43497828939.json.gz",
+      "bytes": 838,
+      "sha256": "6061e1e5e5e12edb31b7c6fc0583c2f079ba3cee0b00a45edac2244f19ecdeba"
+    },
+    {
+      "path": "initial/jobs-43498405358.json.gz",
+      "bytes": 972,
+      "sha256": "90aa6cbd7fe36a7988774de1524881e29b4abb5b5dc24a61004074f1e4a992e5"
+    },
+    {
+      "path": "initial/workflow-runs-checkpoint.json.gz",
+      "bytes": 5892,
+      "sha256": "af496f16835f1b4b09347fa20732e92928527bd6c897b602129c5dd705b0d6a8"
+    },
+    {
+      "path": "initial/workflow-runs.json.gz",
+      "bytes": 5927,
+      "sha256": "2f101aee62ded5c711c3a4ad1cea8ebe0127ffd1331ebceac4489ee0491c99a3"
+    },
+    {
+      "path": "job-132135469557.log.gz",
+      "bytes": 12751,
+      "sha256": "6657fd8335687fd9fd8fbc04e6ff62491d2f70a961739b7b32954e244b78ad24"
+    },
+    {
+      "path": "job-132135469969.log.gz",
+      "bytes": 24316,
+      "sha256": "2a564fa1f094489cd38647f2594dec72a9651d73839ad0234eac31be9f246c31"
+    },
+    {
+      "path": "job-132135470168-flutter-skips.json",
+      "bytes": 49084,
+      "sha256": "8db20afeba514ee54c384d97051ab2b1672d6208a70f8ed40f9d8b29f938fbab"
+    },
+    {
+      "path": "job-132135470168.log.gz",
+      "bytes": 76661,
+      "sha256": "29aeffa7782cd520ce9c1dd4725cf8c16543cf66e265155465cdf67e27ac118c"
+    },
+    {
+      "path": "job-132135470271.log.gz",
+      "bytes": 5739,
+      "sha256": "02f12e1ba891518f2fde905d6deaaccf195168f53026fa15a6a44b04bc055e2e"
+    },
+    {
+      "path": "job-132135470808.log.gz",
+      "bytes": 5298,
+      "sha256": "b8b2b419d0387c2635e709be47b048f894c037648a8dd2ae8f8954752dd5dd44"
+    },
+    {
+      "path": "job-132135470864.log.gz",
+      "bytes": 6972,
+      "sha256": "ad24b1321fcb3d1fff860172a9817479e9bee40c4101ad71bf0044efa9b2e32f"
+    },
+    {
+      "path": "job-132135470889.log.gz",
+      "bytes": 4124,
+      "sha256": "5550df6cbe8b55540b4729f63f500c6f02f88a635b78ec45244083c6dd541034"
+    },
+    {
+      "path": "job-132135471223.log.gz",
+      "bytes": 11890,
+      "sha256": "15fd7d4233ce624d7a540e0821f9464006772244240d7c4b77ed5045a110700e"
+    },
+    {
+      "path": "job-132135471295.log.gz",
+      "bytes": 1973,
+      "sha256": "b2786721cbd013eef89535b93ecc638732ab74735ee4bd70d6e7f281e53a8e91"
+    },
+    {
+      "path": "job-132135636646.log.gz",
+      "bytes": 5361,
+      "sha256": "ed08f1e51c0cbf5478308dec71d76ffa25f5b5f88a4405c4975d67ac34fc9490"
+    },
+    {
+      "path": "job-132135998263.log.gz",
+      "bytes": 1989,
+      "sha256": "7636c672be71051dfd3137ebdf133273ae14a2ad7766c5b5c108caaf46f7dc0d"
+    },
+    {
+      "path": "job-132136131382-flutter-skips.json",
+      "bytes": 550,
+      "sha256": "973671bfdf2375b50c65032d74c676049f6e11d738673729a1c90471412816eb"
+    },
+    {
+      "path": "job-132136131382.log.gz",
+      "bytes": 20448,
+      "sha256": "745a7413f1038e264497831283d866161155ea72cef380f3dbacceeee48e02e1"
+    },
+    {
+      "path": "job-132137601699.log.gz",
+      "bytes": 1975,
+      "sha256": "8242c4684402fc1cacee8bd7724f415107c893fe45509c8786ce23e764f65a05"
+    },
+    {
+      "path": "job-132137727264-flutter-skips.json",
+      "bytes": 49046,
+      "sha256": "4ac007eead1cbba7cd5f5e0fadc4839320f112f361c3297b2a4da1170aedbbd7"
+    },
+    {
+      "path": "job-132137727264.log.gz",
+      "bytes": 75026,
+      "sha256": "098a227e2ef1572f009727a5483be1ee0d5157980bae196f2be8052671bfecc3"
+    },
+    {
+      "path": "job-132142707200.log.gz",
+      "bytes": 2105,
+      "sha256": "a003aec48f68aef96bfda838ea51deb67d1f5fce3977bccd538d819a87afc604"
+    },
+    {
+      "path": "jobs-43497828785.json.gz",
+      "bytes": 471,
+      "sha256": "eca93068a8790e73724c4c8e7295b6ccc5198dd745b8f1a5b935f06dca99b1d8"
+    },
+    {
+      "path": "jobs-43497828805.json.gz",
+      "bytes": 468,
+      "sha256": "8e4ecef21f7d591634c46c21e0b0e8ed77f6e42881634405bbe35a92ccb7f526"
+    },
+    {
+      "path": "jobs-43497828811.json.gz",
+      "bytes": 759,
+      "sha256": "2a7665e79584da39d1c5dd315574916c614be1ff869222cf3a3890ec6fbcdfdf"
+    },
+    {
+      "path": "jobs-43497828916.json.gz",
+      "bytes": 476,
+      "sha256": "37252e92db0a5da0ff0ccd46a72e5ef5c150dd0146b4d131cc8ab5cb72de05ac"
+    },
+    {
+      "path": "jobs-43497828918.json.gz",
+      "bytes": 815,
+      "sha256": "17ac591612b78795d66b31f839ec937d15cd9962d14f5dcae94645076ddd3868"
+    },
+    {
+      "path": "jobs-43497828939.json.gz",
+      "bytes": 834,
+      "sha256": "7f1ea682c57d6db9b348b352589d66b3279a7b1933049456f661a30b56c72bd4"
+    },
+    {
+      "path": "jobs-43497829017.json.gz",
+      "bytes": 475,
+      "sha256": "0a9871e279548fafb413b2e090d3343694ff5294123ab49e1e022e8c8db274cf"
+    },
+    {
+      "path": "jobs-43497829047.json.gz",
+      "bytes": 780,
+      "sha256": "3089d464d3d7d470a2fd2df8a9cb20a31157ace096d7e8e9adb33558eb8a199c"
+    },
+    {
+      "path": "jobs-43497829075.json.gz",
+      "bytes": 713,
+      "sha256": "2d9aaf426323603b696b2ce5c949caf3cb9c0f7ed0ebc9c58398c4c8a167632b"
+    },
+    {
+      "path": "jobs-43497829077.json.gz",
+      "bytes": 749,
+      "sha256": "d85d974e9f7efa47877254979f841787180af81a4a97bba7965a5d9c620d0122"
+    },
+    {
+      "path": "jobs-43497829096.json.gz",
+      "bytes": 968,
+      "sha256": "04184da7358d33151a0925b8f4270ac1ab6857c871d3e90c10d474238d5c5466"
+    },
+    {
+      "path": "jobs-43497829110.json.gz",
+      "bytes": 659,
+      "sha256": "8aadaac333559e69f0abe276282747ee060ed2ae003f04cf8233cbf7a595fbda"
+    },
+    {
+      "path": "jobs-43497829123.json.gz",
+      "bytes": 618,
+      "sha256": "a208c0db259b76cc5b843f3391079844e829c2c75733753384951e0d0137128c"
+    },
+    {
+      "path": "jobs-43497829163.json.gz",
+      "bytes": 474,
+      "sha256": "abdb7f871745fad09abeb9c3a2baaedf3a0a3368b0be3110de8b1966e463201f"
+    },
+    {
+      "path": "jobs-43497829178.json.gz",
+      "bytes": 764,
+      "sha256": "254c12babcf6d2e6b93972c7862cd8ef1e5f5a6c48efb12edb83c866ed22a40e"
+    },
+    {
+      "path": "jobs-43497829193.json.gz",
+      "bytes": 470,
+      "sha256": "ed8c31757eeb2c0ec408a2b5bec13e50bd0de0998f5a9e78bd2853d6850852d2"
+    },
+    {
+      "path": "jobs-43497829266.json.gz",
+      "bytes": 1055,
+      "sha256": "db7a0b0aabd32d3179cf1aefe315d5c51d27cc4075de5aa59fcb692cebb6007a"
+    },
+    {
+      "path": "jobs-43497966045.json.gz",
+      "bytes": 1077,
+      "sha256": "f25bbfe1ef242dfb0ba52e98fe62fdb418bcb34436cb403aafc4a7e2c99b6c27"
+    },
+    {
+      "path": "jobs-43498405358.json.gz",
+      "bytes": 1091,
+      "sha256": "1330a6fc1935c2c5ba43807f7be463277f3fdae435237e1c82b6eff067ec3f4b"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 22595,
+      "sha256": "55820d79a87ab332893f9c9649c0d2efac620b26ea43ea25bf5704a530b444f1"
+    },
+    {
+      "path": "pr-merge-commit.json.gz",
+      "bytes": 1249,
+      "sha256": "b5970844f36c8cec78adc29630f950b7c3d216efbbc363abca42dd227f0f4cce"
+    },
+    {
+      "path": "pull-465-final.json.gz",
+      "bytes": 4130,
+      "sha256": "dcdba501943dda25dd8560987c0d04e2c167bfebfca8f434b576671b78921937"
+    },
+    {
+      "path": "pull-465-initial.json.gz",
+      "bytes": 4064,
+      "sha256": "7054e8e06ab5d257b1061896bf05bdc94cdb9aca1dbbde04384c608c284ae14e"
+    },
+    {
+      "path": "script-recovery-artifacts.json.gz",
+      "bytes": 457,
+      "sha256": "889c128ff3343b4a32dce6e01b4cc7f62e8f0eb50dc77abedba342a709b81cf5"
+    },
+    {
+      "path": "scroll-contract-repair/README.md",
+      "bytes": 2642,
+      "sha256": "df3f832c4b6595366f57939e525555eac64831889272889e810244c31a535311"
+    },
+    {
+      "path": "scroll-contract-repair/after-manifest.json",
+      "bytes": 2872,
+      "sha256": "010e17772568b19a507310d891f6b6affa837c38deb286d4c8c5570225b0758d"
+    },
+    {
+      "path": "scroll-contract-repair/after-status.txt",
+      "bytes": 4428,
+      "sha256": "dd8f9d719c0a842e444a301aa883d775fd103f5e489ba5045bea96a61bf7d526"
+    },
+    {
+      "path": "scroll-contract-repair/after/scripts/tests/test_android_voice_scroll.py",
+      "bytes": 8466,
+      "sha256": "2b70a1c753bc8fdb591bcbcfe5b0dbd69baca0eb42b7c9548b71bc24dcaab18e"
+    },
+    {
+      "path": "scroll-contract-repair/before-manifest.json",
+      "bytes": 3628,
+      "sha256": "580fe4a64b8cc572595c0f065121c0e79dd84df9b197d712d78b746047b42605"
+    },
+    {
+      "path": "scroll-contract-repair/before-status.txt",
+      "bytes": 4382,
+      "sha256": "b7659af4143d15fde0f8ed79664a532c8ac7d9909910cb049bdfa64ec39d59c7"
+    },
+    {
+      "path": "scroll-contract-repair/before-tracked.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scroll-contract-repair/before/.github/probes/creative_android_probe.py",
+      "bytes": 52523,
+      "sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e"
+    },
+    {
+      "path": "scroll-contract-repair/before/scripts/tests/test_android_voice_scroll.py",
+      "bytes": 7590,
+      "sha256": "b8b56d1673fd70db30e264db124663acd6a233c08c8460b62e5fd230f5ba806d"
+    },
+    {
+      "path": "scroll-contract-repair/before/tools/android_qa/tests/test_flutter_tap_scroll_budget.py",
+      "bytes": 5556,
+      "sha256": "886247df7bcf68e811b401db6f804b502d4e8e9b06aabba072606b1035600781"
+    },
+    {
+      "path": "scroll-contract-repair/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scroll-contract-repair/manifest.json",
+      "bytes": 4750,
+      "sha256": "337e63551a46c08a92b6615d253acd15c2d79ed4f8ae717f30e1084adf5bcc63"
+    },
+    {
+      "path": "scroll-contract-repair/targeted-green-result.json",
+      "bytes": 3239,
+      "sha256": "3aadcea81c365732b3f043547542389be1609162bd47a32f2c1ebe609b7bf900"
+    },
+    {
+      "path": "scroll-contract-repair/targeted-green.log",
+      "bytes": 2828,
+      "sha256": "a30f0f17709637cf71d355c4bd4ec04b7a81c378c3ba69ab79af87dd4571d6c8"
+    },
+    {
+      "path": "scroll-contract-repair/targeted-red-result.json",
+      "bytes": 530,
+      "sha256": "51da39fa8006415f0c7e46b4ef727f667fe860992874afd4cfec07b9a05dc8d4"
+    },
+    {
+      "path": "scroll-contract-repair/targeted-red.log",
+      "bytes": 908,
+      "sha256": "641f13807ebf6966eb75c032e57e34244a66e32aa1f66574b963638fed043e01"
+    },
+    {
+      "path": "scroll-contract-repair/test-voice-scroll.patch",
+      "bytes": 2001,
+      "sha256": "d744db1fdde221d55cdb99e89e6bb4d07196ca650e8843e0d202a9906de8bc1f"
+    },
+    {
+      "path": "source-commit.json.gz",
+      "bytes": 519,
+      "sha256": "fb50ab7d79c2e2b3313d906754c0b2c6bae1b0a8f760b85d032be31a726a66e1"
+    },
+    {
+      "path": "source-ref.json.gz",
+      "bytes": 276,
+      "sha256": "ace0c65bd7afd44054a70e9eedbbdebab2477b1c8430639201e52928504bd8b0"
+    },
+    {
+      "path": "verification-summary.json",
+      "bytes": 39321,
+      "sha256": "20f7f08cb7233af46dd001e8f37374dd8515acea85b9a472d414fe82cf013aad"
+    },
+    {
+      "path": "workflow-runs-final.json.gz",
+      "bytes": 6049,
+      "sha256": "f8df84963df218dc154b7fb596d73cdef374e3cafe0a7b071803b34ba48eff62"
+    },
+    {
+      "path": "workflow-source-index.json",
+      "bytes": 67692,
+      "sha256": "288be4a9eab437086c9ff8eb42ee52ae3d68dec5f15f3b02f971214f0411fae3"
+    },
+    {
+      "path": "workflow-source/lumo-1954-tour-cli-contract.yml.gz",
+      "bytes": 445,
+      "sha256": "013a8d272db70e6ac84b1dc8f9827d49ce9acfd469b4265995dcf8b68c64543a"
+    },
+    {
+      "path": "workflow-source/lumo-1965-cards-reference-hub.yml.gz",
+      "bytes": 1148,
+      "sha256": "19f7fec3250ec7f3a79026b90a4bf34c92dbe8e3a6811e5c53c8d26c619be937"
+    },
+    {
+      "path": "workflow-source/lumo-1966-cards-route-kart-qa.yml.gz",
+      "bytes": 911,
+      "sha256": "7fe1df4c5b8020c110f1887a914d5b9caebe658d8289f8d8be16f6025e3eb1af"
+    },
+    {
+      "path": "workflow-source/lumo-1999-update-gate.yml.gz",
+      "bytes": 2487,
+      "sha256": "241b158fe17a28df69ab49ea64422cddd86f0682f886bb40b88c4247e2a6fa9a"
+    },
+    {
+      "path": "workflow-source/lumo-2000-actual-update-gate.yml.gz",
+      "bytes": 2995,
+      "sha256": "4d27601da5655ffbf618e7932d4cc75438f92403dacb736a8b6390c984079047"
+    },
+    {
+      "path": "workflow-source/lumo-2001-actual-update-gate.yml.gz",
+      "bytes": 2991,
+      "sha256": "d5fa995a6c9b6ac368b2f4f579e3c4bf3c47e72e9d040c710997723426885477"
+    },
+    {
+      "path": "workflow-source/lumo-2002-actual-update-gate.yml.gz",
+      "bytes": 2995,
+      "sha256": "8dfc304d39b88b18d3f5d18f42e173e127f0d7e116e1763e572c32a7c1fe16c8"
+    },
+    {
+      "path": "workflow-source/lumo-2003-actual-update-gate.yml.gz",
+      "bytes": 2991,
+      "sha256": "f0bf42a23ea3b81aed8bd1651d288977f57dacc303320617cdb787ee12417a29"
+    },
+    {
+      "path": "workflow-source/lumo-2003-direct-release.yml.gz",
+      "bytes": 2969,
+      "sha256": "8e32bee4fe150881199fa16efe341ec1a9245b8c724e8a4501eb042672cef329"
+    },
+    {
+      "path": "workflow-source/lumo-astra-script-recovery.yml.gz",
+      "bytes": 824,
+      "sha256": "d90e713987b02e4568999a60341f4ec26ed1ffaa337f5dd6c8d476d0004673d9"
+    },
+    {
+      "path": "workflow-source/lumo-change-review.yml.gz",
+      "bytes": 3298,
+      "sha256": "b08cb45f3d3a519c3dac5005466d1a78a40a63455ed66621257278292590ea68"
+    },
+    {
+      "path": "workflow-source/lumo-family-draft-release.yml.gz",
+      "bytes": 2344,
+      "sha256": "01e2102b727a59477ecc0c0bfbb38a4532d538334790fb3f758740a2f386eded"
+    },
+    {
+      "path": "workflow-source/lumo-living-intelligence-core.yml.gz",
+      "bytes": 1213,
+      "sha256": "9858c4d2a30c9d28c5744a8e6b6d22f3594384e082b557ea3972f738e0cc87ef"
+    },
+    {
+      "path": "workflow-source/lumo-living-workshop-visual-qa.yml.gz",
+      "bytes": 1319,
+      "sha256": "631e07e06794cde21f40e8551324a50c548bcd4e1db70bdaaf2af4bd14c192c1"
+    },
+    {
+      "path": "workflow-source/lumo-real-race-hud-ocr.yml.gz",
+      "bytes": 612,
+      "sha256": "63e2d46dc5874a54d1b5742596fa655d4d9833931280d1839530fb615e188c35"
+    },
+    {
+      "path": "workflow-source/lumo-studio-2019.yml.gz",
+      "bytes": 8639,
+      "sha256": "e64dbc56d15b721bee350fcf70e67957cf7e5ddc63ce3963cf548b43289627a9"
+    },
+    {
+      "path": "workflow-source/lumo-unified-integration-2026.yml.gz",
+      "bytes": 13343,
+      "sha256": "d44d644b50e8ef4cce30fb832876f1550ff75467682a41f97f2b833e391c8e19"
+    }
+  ]
+}

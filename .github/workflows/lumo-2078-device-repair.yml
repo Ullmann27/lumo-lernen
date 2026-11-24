@@ -1,0 +1,419 @@
+name: LUMO 2078 device repairs, real views and verified Android APK
+
+on:
+  push:
+    branches: [repair/lumo-device-bugs-2078]
+    paths:
+      - .github/workflows/lumo-2078-device-repair.yml
+      - config/godot-source.json
+      - pubspec.yaml
+      - scripts/export_embedded_game.py
+      - scripts/tests/test_export_embedded_game.py
+      - scripts/verify_kart_driver_package.py
+      - scripts/tests/test_verify_kart_driver_package.py
+      - .github/probes/lumo_kart_driver_assets_probe.gd
+      - .github/probes/creative_android_probe.py
+      - scripts/probes/pr207_android_ui_probe.py
+      - tools/android_qa/tests/test_live_reader_recovery.py
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-2078-device-repair
+  cancel-in-progress: true
+
+jobs:
+  native:
+    name: Verify the repaired game and render actual device layouts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify source identity and install exact engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          cfg=json.loads(Path('config/godot-source.json').read_text())
+          assert cfg['repository']=='https://github.com/Ullmann27/lumo-godot.git'
+          assert re.fullmatch('[0-9a-f]{40}',cfg['revision'])
+          assert cfg['revision']!='410327bfd5d1a66c54e3d75f772895d320daa5d6'
+          assert cfg['engine']=='4.6.3'
+          assert re.search(r'^version:\s*0\.14\.6\+2078\s*$',Path('pubspec.yaml').read_text(),re.M)
+          PY
+          python3 -m unittest tools.android_qa.tests.test_live_reader_recovery -v
+          bash scripts/install_godot_for_build.sh
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb xauth libgl1-mesa-dri python3-pil python3-numpy
+          SOURCE="$(python3 -c 'import json;print(json.load(open("config/godot-source.json"))["revision"])')"
+          git clone --filter=blob:none --no-checkout https://github.com/Ullmann27/lumo-godot.git native-source
+          git -C native-source sparse-checkout set --no-cone '/assets/' '/art/lumo_kart/meshy/20261123/drivers/' '/scripts/' '/scenes/' '/config/' '/tools/' '/project.godot' '/export_presets.cfg' '/icon.svg' '/.gitignore' '!*.blend' '!*.blend1' '!*.zip' '!*.mp4' '!*.psd'
+          git -C native-source checkout --detach "$SOURCE"
+          test "$(git -C native-source rev-parse HEAD)" = "$SOURCE"
+          mkdir -p device-proof
+          printf '%s\n' "$SOURCE" > device-proof/GODOT-COMMIT.txt
+          printf '%s\n' "$GITHUB_SHA" > device-proof/FLUTTER-COMMIT.txt
+      - name: Import and run geometry, selection, World and layout regressions
+        env:
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 native-source/tools/run_godot_probe.py --log device-proof/import.log --timeout 900 --required 'Godot Engine v4.6.3' -- \
+            godot --headless --single-threaded-scene --path native-source --editor --import --quit
+          /usr/bin/python3 native-source/tools/lumo_kart_art/drivers/validate_meshy_rigs.py \
+            --root native-source --output device-proof/meshy-rigs.json
+          for probe in lumo_world_regression lumo_world_hud_regression lumo_world_device_regression lumo_world_camera_regression kart_extra_drivers_regression kart_spatial_menu_regression kart_lan_entry_layout_regression kart_neon_home_regression; do
+            python3 native-source/tools/run_godot_probe.py --log "device-proof/$probe.log" --timeout 600 -- \
+              godot --headless --path native-source --script "res://scripts/tests/$probe.gd"
+          done
+          python3 native-source/tools/run_godot_probe.py --log device-proof/lumo_rival_rig_contract_regression.log --timeout 600 --required '[RivalRig] checks=' -- \
+            godot --headless --path native-source --script res://scripts/tests/lumo_rival_rig_contract_regression.gd
+          python3 native-source/tools/run_godot_probe.py --log device-proof/lumo_kart_production_driver_regression.log --timeout 600 --required '[ProductionDriver] checks=' -- \
+            godot --headless --path native-source --script res://scripts/tests/lumo_kart_production_driver_regression.gd
+          python3 native-source/tools/run_godot_probe.py --log device-proof/kart_driver_gesture_regression.log --timeout 600 --required DRIVER_GESTURE_PASS -- \
+            godot --headless --path native-source --script res://scripts/tests/kart_driver_gesture_regression.gd
+          python3 native-source/tools/run_godot_probe.py --log device-proof/kart_meshy_assets_regression.log --timeout 600 -- \
+            xvfb-run -a -s '-screen 0 1600x1600x24 -nolisten tcp' godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
+              --script res://scripts/tests/kart_meshy_assets_regression.gd
+          python3 native-source/tools/run_godot_probe.py --log device-proof/cards_character_roster_regression.log --timeout 600 --required '[CardsCharacters] checks=' -- \
+            xvfb-run -a -s '-screen 0 1600x1600x24 -nolisten tcp' godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
+              --script res://scripts/tests/cards_character_roster_regression.gd
+      - name: Render the actual garage, home menu and World in Fold viewports
+        env:
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        shell: bash
+        run: |
+          set -euo pipefail
+          export LUMO_PRODUCT_SHA="$(cat device-proof/GODOT-COMMIT.txt)"
+          for capture_density in 1 2; do
+            capture_folder=kart
+            if [ "$capture_density" = 2 ]; then capture_folder=kart-density2; fi
+            python3 native-source/tools/run_godot_probe.py --log "device-proof/$capture_folder-capture.log" --timeout 1200 --required '[KartDeviceFix] checks=' -- \
+              xvfb-run -a -s '-screen 0 1600x1600x24 -nolisten tcp' godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
+                --script res://scripts/tests/kart_device_fix_capture.gd -- --capture --all --density="$capture_density" "$PWD/device-proof/$capture_folder"
+          done
+          python3 native-source/tools/run_godot_probe.py --log device-proof/driver-fit-capture.log --timeout 900 --required '[DriverFit] PASS' -- \
+            xvfb-run -a -s '-screen 0 1600x1600x24 -nolisten tcp' godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
+              --script res://scripts/tests/kart_driver_fit_capture.gd -- "$PWD/device-proof/drivers.png"
+          python3 native-source/tools/run_godot_probe.py --log device-proof/world-capture.log --timeout 1200 -- \
+            xvfb-run -a -s '-screen 0 1600x1600x24 -nolisten tcp' godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
+              --script res://scripts/tests/lumo_world_capture.gd -- --out="$PWD/device-proof/world"
+          test -s device-proof/kart/capture.json
+          test -s device-proof/kart-density2/capture.json
+          test -s device-proof/world/world-capture.json
+      - name: Verify actual renderer images and their source-bound reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          from PIL import Image
+          proof=Path('device-proof')
+          revision=json.loads(Path('config/godot-source.json').read_text())['revision']
+          assert (proof/'GODOT-COMMIT.txt').read_text().strip()==revision
+          inventory=json.loads(Path('native-source/assets/kart/production/meshy/manifest.json').read_text())
+          fleet={row['id'] for row in inventory['vehicles']}
+          assert len(fleet)==14
+          images=[]
+          def image_record(folder,filename,dimensions=None):
+              assert Path(filename).name==filename
+              path=folder/filename
+              assert path.is_file() and path.stat().st_size>256
+              with Image.open(path) as image:
+                  image.load()
+                  size=list(image.size)
+                  assert image.format in ('PNG','WEBP') and min(size)>0
+                  if dimensions is not None: assert size==dimensions,(str(path),size,dimensions)
+              images.append({'file':str(path.relative_to(proof)),'dimensions':size,
+                             'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
+          for name,density in (('kart',1.0),('kart-density2',2.0)):
+              folder=proof/name
+              report=json.loads((folder/'capture.json').read_text())
+              assert report['failures']==[] and report['checks']>0
+              frames=report['frames']
+              assert len(frames)==16 and len({row['name'] for row in frames})==16
+              assert {row['kart'] for row in frames if row['name'].startswith('garage-')}==fleet
+              assert {row['name'] for row in frames if row['name'].startswith('home-')}=={'home-comet-1384x1400','home-selected-1384x1400'}
+              for row in frames:
+                  assert row['viewport']==[1384,1400] and row['display_density']==density
+                  assert row['renderer']=='gl_compatibility' and row['physical_android_device'] is False
+                  assert row['touch_targets']['undersized']==[] and row['touch_targets']['outside_viewport']==[]
+                  image_record(folder,row['image'],[1384,1400])
+                  image_record(folder,row['name']+'-preview.png')
+          folder=proof/'world'
+          world=json.loads((folder/'world-capture.json').read_text())
+          assert world['sourceCommit']==revision and world['renderer']=='gl_compatibility'
+          assert world['originalLumo'] is True and world['sameVillageSave'] is True
+          assert len(world['captures'])==8 and len({row['file'] for row in world['captures']})==8
+          for row in world['captures']:
+              assert row['sampledColors']>=10 and row['vegetationClearance']['rendererVerified'] is True
+              image_record(folder,row['file'],[row['width'],row['height']])
+          driver_manifest=json.loads(Path('native-source/assets/kart/production/drivers/manifest.json').read_text())
+          expected_models={row['file']:row['sha256'] for driver in driver_manifest['drivers'] for row in driver['lods'] if row['level']=='lod0'}
+          marker='[DriverFit] PASS '
+          passes=[line.removeprefix(marker) for line in (proof/'driver-fit-capture.log').read_text().splitlines() if line.startswith(marker)]
+          assert len(passes)==1
+          driver_sheet=json.loads(passes[0])
+          assert set(driver_sheet['drivers'])=={'fox','cat','rabbit','frog','lion','owl','squirrel','turtle','otter','badger'}
+          actual_models={row['path'].removeprefix('res://'):row['sha256'] for row in driver_sheet['models']}
+          assert len(driver_sheet['models'])==9 and actual_models==expected_models
+          image_record(proof,'drivers.png',[2100,2520])
+          (proof/'IMAGE-VERIFICATION.json').write_text(json.dumps({'status':'PASS','godot_revision':revision,
+              'scope':'Actual desktop renderer captures in declared viewports; no physical Android performance claim',
+              'images':images},indent=2)+'\n')
+          print('DEVICE_IMAGE_PASS:',len(images),'real renderer images decoded and source-bound')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: LUMO-2078-DEVICE-VIEWS-${{ github.run_id }}
+          path: device-proof/
+          if-no-files-found: error
+          retention-days: 30
+
+  apk:
+    name: Build the complete signed APK from the exact repaired source
+    needs: native
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve locked dependencies and install Godot
+        run: |
+          flutter pub get --enforce-lockfile
+          bash scripts/install_godot_for_build.sh
+      - name: Verify exporter and build complete APK
+        run: |
+          python3 -m unittest scripts.tests.test_export_embedded_game scripts.tests.test_verify_kart_driver_package -v
+          bash scripts/build_unified_apk.sh
+      - name: Verify Android package, signing, ABIs and exact provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a --abi x86_64
+          sha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256.txt
+          cp config/godot-source.json dist/GODOT-SOURCE.json
+          grep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt
+          test -s dist/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          proof=json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
+          assert proof['flutter_source_commit']==os.environ['GITHUB_SHA']
+          assert proof['tracked_source_clean'] is True
+          PY
+      - name: Load all 27 repaired driver variants from the actual APK pack
+        run: |
+          python3 scripts/verify_kart_driver_package.py \
+            --apk dist/Lumo-Lernen-Neu.apk --source build/godot-source \
+            --out dist/KART-DRIVER-PACKAGE.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2078-APK-${{ github.run_id }}
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/APK-SHA256.txt
+            dist/SHA256SUMS.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            dist/GODOT-SOURCE.json
+            dist/APP-VERSION.txt
+            dist/KART-DRIVER-PACKAGE.json
+            dist/KART-DRIVER-PACKAGE.log
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+
+  android-tour:
+    name: Install the same APK and exercise Android return paths and backup
+    needs: apk
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-2078-APK-${{ github.run_id }}
+          path: dist/x86_64
+      - name: Prepare accelerated Android and renderer
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo chmod a+rw /dev/kvm
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr-deu tesseract-ocr-eng
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          # The same universal APK is installed on the x86_64 runner. Keep the
+          # shared tour's exact candidate path and the checksum from the build.
+          (cd dist/x86_64 && sha256sum -c SHA256SUMS.txt)
+          awk '{print $1 "  dist/x86_64/Lumo-Lernen-Neu.apk"}' dist/x86_64/SHA256SUMS.txt > dist/x86_64/ANDROID-TOUR-SHA256SUMS.txt
+      - name: Start the real Mesa display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -Fi 'llvmpipe' tour/mesa-renderer.txt
+      - uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          LUMO_NATIVE_START_DIAGNOSTICS: '1'
+          LUMO_NATIVE_START_WAIT: '35'
+          LUMO_NATIVE_START_BUDGET: '1200'
+          LUMO_ANDROID_SKYPOST_PROBE: '1'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          ram-size: 4096M
+          emulator-build: '14472402'
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk dist/x86_64/Lumo-Lernen-Neu.apk --provenance dist/x86_64/BUILD-PROVENANCE.json --sums dist/x86_64/ANDROID-TOUR-SHA256SUMS.txt --out tour
+            .probe-venv/bin/python .github/probes/lumo_local_backup_android_probe.py --apk dist/x86_64/Lumo-Lernen-Neu.apk --provenance dist/x86_64/BUILD-PROVENANCE.json --sums dist/x86_64/ANDROID-TOUR-SHA256SUMS.txt --out tour/local-backup
+      - name: Require every observed native start and the completed backup roundtrip
+        run: |
+          python3 scripts/verify_native_start_diagnostics.py tour/native-starts.json --out tour/NATIVE-GAME-STARTS.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          backup=json.loads(Path('tour/local-backup/backup-result.json').read_text())
+          assert backup.get('status')=='PASS'
+          expected={'apk-identity','fictional-profile','saf-export','export-archive','changed-setting','saf-review','process-closed','restore-and-preservation'}
+          passed={row['step'] for row in backup.get('steps',[]) if row.get('ok') is True}
+          assert expected<=passed
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: LUMO-2078-ANDROID-${{ github.run_id }}
+          path: tour/
+          if-no-files-found: error
+          retention-days: 30
+
+  publish:
+    name: Publish the verified APK as a new immutable test release
+    needs: [native, apk, android-tour]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-2078-APK-${{ github.run_id }}
+          path: release
+      - name: Publish only the tested bytes under a fresh tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="lumo-0.14.6-2078-${GITHUB_RUN_ID}"
+          ASSET=Lumo-Lernen-0.14.6-2078.apk
+          EXPECTED="$(cut -d' ' -f1 release/SHA256SUMS.txt)"
+          printf '%s  %s\n' "$EXPECTED" release/Lumo-Lernen-Neu.apk | sha256sum -c -
+          mv release/Lumo-Lernen-Neu.apk "release/$ASSET"
+          printf '%s  %s\n' "$EXPECTED" "$ASSET" > release/SHA256SUMS.txt
+          NATIVE="$(python3 -c 'import json;print(json.load(open("release/GODOT-SOURCE.json"))["revision"])')"
+          cat > release/RELEASE-NOTES.md <<EOF
+          ## Lumo 0.14.6+2078 — korrigierte Testversion
+
+          Neue vollständige Android-Test-APK mit reparierter Kartmontage, freier Garagenansicht,
+          korrigierter Dorf-/Stadtgrenze und geprüften Fold-Bedienelementen.
+          Alle neun originalen Meshy-Gegner besitzen nun Körper- und Gesichtsrigs mit
+          26 Knochen, zwölf Animationen und drei expliziten Detailstufen pro Figur.
+
+          Flutter-Commit: $GITHUB_SHA
+          Godot-Commit: $NATIVE
+          APK SHA-256: $EXPECTED
+
+          Geometrie-, World- und Menüprüfungen, echte Rendereransichten sowie Android-Rundgang
+          und Sicherungs-/Wiederherstellungsprüfung dieses Builds sind erfolgreich abgeschlossen.
+          Testsignatur; kein Play-Store-Release. Die Bildrate wurde nicht auf einem physischen Fold7 gemessen.
+          EOF
+          REMOTE_TAG="$(git ls-remote --tags origin "refs/tags/$TAG" | cut -f1)"
+          if [ -n "$REMOTE_TAG" ]; then
+            test "$REMOTE_TAG" = "$GITHUB_SHA"
+          else
+            git tag "$TAG" "$GITHUB_SHA"
+            git push origin "refs/tags/$TAG"
+          fi
+          test "$(git ls-remote --tags origin "refs/tags/$TAG" | cut -f1)" = "$GITHUB_SHA"
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo 'Existing release is retained; verify its immutable assets before resuming.' >&2
+            exit 1
+          fi
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --prerelease \
+            --title 'Lumo 0.14.6+2078 — Gerätefehler korrigiert' --notes-file release/RELEASE-NOTES.md \
+            "release/$ASSET" release/APK-VERIFICATION.json release/BUILD-PROVENANCE.json release/GODOT-SOURCE.json \
+            release/KART-DRIVER-PACKAGE.json release/SHA256SUMS.txt
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" > release/RELEASE.json
+          python3 - "$ASSET" <<'PY'
+          import json,sys
+          from pathlib import Path
+          release=json.loads(Path('release/RELEASE.json').read_text())
+          assert release['draft'] is False
+          matches=[a for a in release['assets'] if a['name']==sys.argv[1]]
+          assert len(matches)==1 and matches[0]['state']=='uploaded'
+          assert matches[0]['size']==(Path('release')/sys.argv[1]).stat().st_size
+          Path('release/DOWNLOAD-URL.txt').write_text(matches[0]['browser_download_url']+'\n')
+          PY
+          curl -fIL --retry 3 "$(cat release/DOWNLOAD-URL.txt)" > release/PUBLIC-DOWNLOAD-HEAD.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: LUMO-2078-DELIVERY-${{ github.run_id }}
+          path: |
+            release/RELEASE.json
+            release/DOWNLOAD-URL.txt
+            release/PUBLIC-DOWNLOAD-HEAD.txt
+            release/RELEASE-NOTES.md
+          if-no-files-found: warn

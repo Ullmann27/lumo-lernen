@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "id": 14204544628,
+      "name": "lumo-nextgen-2031-replay-evidence",
+      "size_in_bytes": 136444327,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14204544628",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14204544628/zip",
+      "expired": false,
+      "created_at": "2026-11-16T07:16:32Z",
+      "expires_at": "2026-12-16T07:16:27Z",
+      "updated_at": "2026-11-16T07:16:32Z",
+      "digest": "sha256:4becebd332755f1046d945f61dcfcf4317316d617d568c685576edcd69bcee9f",
+      "workflow_run": {
+        "id": 43819768411,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-nextgen-2031-android-20261116",
+        "head_sha": "ae6c27c81d41342179a0bf6e60fedbcafacb63a4"
+      }
+    }
+  ]
+}

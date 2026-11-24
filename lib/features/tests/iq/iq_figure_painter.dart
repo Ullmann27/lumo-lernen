@@ -69,8 +69,10 @@ Path iqShapePath(IqShape shape, double r) {
       final points = <Offset>[
         for (var k = 0; k < 10; k++)
           Offset(
-            math.cos(-math.pi / 2 + k * math.pi / 5) * (k.isEven ? r * 1.2 : r * .55),
-            math.sin(-math.pi / 2 + k * math.pi / 5) * (k.isEven ? r * 1.2 : r * .55),
+            math.cos(-math.pi / 2 + k * math.pi / 5) *
+                (k.isEven ? r * 1.2 : r * .55),
+            math.sin(-math.pi / 2 + k * math.pi / 5) *
+                (k.isEven ? r * 1.2 : r * .55),
           ),
       ];
       return _centered(_roundedPolygon(points, r * .12));
@@ -78,7 +80,8 @@ Path iqShapePath(IqShape shape, double r) {
       final big = r * 1.08;
       return _roundedPolygon([
         for (var k = 0; k < 6; k++)
-          Offset(math.cos(k * math.pi / 3) * big, math.sin(k * math.pi / 3) * big),
+          Offset(
+              math.cos(k * math.pi / 3) * big, math.sin(k * math.pi / 3) * big),
       ], r * .17);
     case IqShape.plus:
       final a = r * 1.02;
@@ -122,10 +125,19 @@ const _dice = <int, (double, List<Offset>)>{
   1: (.46, [Offset(0, 0)]),
   2: (.25, [Offset(-.23, -.23), Offset(.23, .23)]),
   3: (.165, [Offset(-.30, -.30), Offset(0, 0), Offset(.30, .30)]),
-  4: (.20, [Offset(-.25, -.25), Offset(.25, -.25), Offset(-.25, .25), Offset(.25, .25)]),
+  4: (
+    .20,
+    [Offset(-.25, -.25), Offset(.25, -.25), Offset(-.25, .25), Offset(.25, .25)]
+  ),
   5: (
     .165,
-    [Offset(-.28, -.28), Offset(.28, -.28), Offset(0, 0), Offset(-.28, .28), Offset(.28, .28)]
+    [
+      Offset(-.28, -.28),
+      Offset(.28, -.28),
+      Offset(0, 0),
+      Offset(-.28, .28),
+      Offset(.28, .28)
+    ]
   ),
   6: (
     .13,
@@ -187,7 +199,10 @@ void paintIqShape(
         ..shader = ui.Gradient.linear(
           gloss.topCenter,
           gloss.bottomCenter,
-          [Colors.white.withValues(alpha: .58), Colors.white.withValues(alpha: .02)],
+          [
+            Colors.white.withValues(alpha: .58),
+            Colors.white.withValues(alpha: .02)
+          ],
         ),
     );
     final low = Rect.fromLTWH(bounds.left - 1, bounds.top + bounds.height * .56,
@@ -268,11 +283,11 @@ class IqFigurePainter extends CustomPainter {
     final (radius, slots) = _dice[figure.count.clamp(1, 6)]!;
     final r = radius * side * k;
     final colors = iqTintColors(figure.tint);
-    final angle = figure.shape.directional ? (figure.turns % 8) * math.pi / 4 : 0.0;
+    final angle =
+        figure.shape.directional ? (figure.turns % 8) * math.pi / 4 : 0.0;
     final base = iqShapePath(figure.shape, r);
-    final shape = angle == 0
-        ? base
-        : base.transform(Matrix4.rotationZ(angle).storage);
+    final shape =
+        angle == 0 ? base : base.transform(Matrix4.rotationZ(angle).storage);
     for (final slot in slots) {
       paintIqShape(
         canvas,
@@ -298,12 +313,33 @@ class IqFigureView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tintName = switch (figure.tint) {
+      IqTint.orange => 'orange',
+      IqTint.cyan => 'türkis',
+      IqTint.violet => 'lila',
+      IqTint.green => 'grün',
+      IqTint.pink => 'rosa',
+      IqTint.gold => 'gelb',
+    };
+    // The same visible label accompanies every tint in clues and choices.
+    // Colour recognition is therefore never the only way to compare figures.
     final paint = RepaintBoundary(
-      child: CustomPaint(
-        painter: IqFigurePainter(figure),
-        size: Size.infinite,
-      ),
-    );
+        child: Stack(fit: StackFit.expand, children: [
+      Padding(
+          padding: const EdgeInsets.only(bottom: 13),
+          child: CustomPaint(
+              painter: IqFigurePainter(figure), size: Size.infinite)),
+      Align(
+          alignment: Alignment.bottomCenter,
+          child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(tintName,
+                  style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 10.5,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800)))),
+    ]));
     final side = size;
     return Semantics(
       image: true,
@@ -371,9 +407,8 @@ void paintIqBlock(Canvas canvas, Rect rect, IqTintColors colors) {
         const [0, .5, 1],
       ),
   );
-  final shine = Rect.fromLTWH(
-      inner.left + inner.width * .1, inner.top + inner.height * .08,
-      inner.width * .55, inner.height * .26);
+  final shine = Rect.fromLTWH(inner.left + inner.width * .1,
+      inner.top + inner.height * .08, inner.width * .55, inner.height * .26);
   canvas.drawRRect(
     RRect.fromRectAndRadius(shine, Radius.circular(shine.height / 2)),
     Paint()..color = Colors.white.withValues(alpha: .3),
@@ -411,7 +446,8 @@ class IqPolyominoPainter extends CustomPainter {
     final colors = iqTintColors(tint);
     final rects = [
       for (final (x, y) in piece.cells)
-        Rect.fromLTWH(origin.dx + x * cs, origin.dy + y * cs, cs, cs).deflate(gap),
+        Rect.fromLTWH(origin.dx + x * cs, origin.dy + y * cs, cs, cs)
+            .deflate(gap),
     ];
     final union = Path();
     for (final rect in rects) {

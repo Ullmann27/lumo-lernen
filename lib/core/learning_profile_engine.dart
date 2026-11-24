@@ -1,4 +1,8 @@
 import 'discovery_progress.dart';
+import '../domain/learning_intelligence/scene_memory.dart';
+import '../domain/learning_intelligence/lesson_scene_engine.dart';
+import '../domain/learning_intelligence/learning_scene_contract.dart';
+import 'learning_journey.dart';
 import 'progress_repository.dart';
 import 'recommendation_engine.dart';
 import 'weakness_detection_engine.dart';
@@ -48,9 +52,126 @@ class LearningProfileEngine {
   bool _discoveryDirty = false;
   int _discoveryRevision = 0;
   bool _discoveryPermissionPending = false;
+  LearningJourney _journey = LearningJourney();
+  bool _journeyLoaded = false;
+  Future<void>? _journeyLoading;
+  bool _journeyDirty = false;
+  int _journeyRevision = 0;
+  SceneMemory _sceneMemory = SceneMemory();
+  bool _sceneLoaded = false, _sceneDirty = false;
+  Future<void>? _sceneLoading;
+  int _sceneRevision = 0;
+  PendingSceneReceipt? _pendingSceneReceipt;
+  bool _pendingSceneSaved = false;
+  Future<void>? _sceneRecovery;
+  Future<void> _sceneCompletionTail = Future<void>.value();
+  SceneMemory get sceneMemory => _sceneMemory;
+  bool get isSceneMemoryLoaded => _sceneLoaded;
+  bool get hasPendingSceneReceipt => _pendingSceneReceipt != null;
+
+  Future<void> loadSceneMemory() {
+    if (_sceneLoaded) return _recoverSceneReceipt();
+    return _sceneLoading ??= () async {
+      try {
+        final loaded = await _repo.loadSceneMemory();
+        final pending = await _repo.loadPendingSceneReceipt();
+        _sceneMemory = loaded;
+        _pendingSceneReceipt = pending;
+        _pendingSceneSaved = pending != null;
+        _sceneLoaded = true;
+        await _recoverSceneReceipt();
+      } finally {
+        _sceneLoading = null;
+      }
+    }();
+  }
+
+  Future<void> recordSceneObservation(SceneObservation observation) async {
+    await loadSceneMemory();
+    final next = _sceneMemory.record(observation);
+    if (!identical(next, _sceneMemory)) {
+      _sceneMemory = next;
+      _sceneRevision++;
+      _sceneDirty = true;
+    }
+    await _persistScenes();
+  }
+
+  Future<void> recordSceneCompletion(
+      {required String subject,
+      required String unit,
+      required SceneCompletion proof,
+      required ExplanationMethod method}) {
+    Future<void> save() async {
+      await loadSceneMemory();
+      await loadJourney();
+      final receipt = PendingSceneReceipt.completed(
+          subject: subject, unit: unit, proof: proof, method: method);
+      // Reject conflicting retries before replacing a durable pending receipt.
+      _sceneMemory.record(receipt.observation);
+      _pendingSceneReceipt = receipt;
+      _pendingSceneSaved = false;
+      await _recoverSceneReceipt();
+    }
+
+    final operation = _sceneCompletionTail.then((_) => save(),
+        onError: (Object _, StackTrace __) => save());
+    _sceneCompletionTail = operation;
+    return operation;
+  }
+
+  Future<void> _recoverSceneReceipt() {
+    if (_pendingSceneReceipt == null) return Future.value();
+    if (_sceneRecovery != null) return _sceneRecovery!;
+    return _sceneRecovery = () async {
+      try {
+        final receipt = _pendingSceneReceipt!;
+        if (!_pendingSceneSaved) {
+          await _repo.savePendingSceneReceipt(receipt);
+          _pendingSceneSaved = true;
+        }
+        await loadJourney();
+        final nextMemory = _sceneMemory.record(receipt.observation);
+        if (!identical(nextMemory, _sceneMemory)) {
+          _sceneMemory = nextMemory;
+          _sceneRevision++;
+          _sceneDirty = true;
+        }
+        final nextJourney = _journey.recordEvidence(
+            subject: receipt.subject,
+            unit: receipt.unit,
+            evidence: receipt.evidence,
+            now: receipt.observation.at);
+        if (!identical(nextJourney, _journey)) {
+          _journey = nextJourney;
+          _journeyRevision++;
+          _journeyDirty = true;
+        }
+        await _persistJourney();
+        await _persistScenes();
+        await _repo.clearPendingSceneReceipt();
+        _pendingSceneReceipt = null;
+        _pendingSceneSaved = false;
+      } finally {
+        _sceneRecovery = null;
+      }
+    }();
+  }
+
+  Future<void> _persistScenes() => _enqueueSave(() async {
+        if (!_sceneLoaded || !_sceneDirty) return;
+        final revision = _sceneRevision;
+        await _repo.saveSceneMemory(_sceneMemory);
+        if (revision == _sceneRevision) _sceneDirty = false;
+      });
 
   Future<String> get studentId => _repo.studentId;
-  bool get hasUnsavedChanges => _dirty || _discoveryDirty;
+  bool get hasUnsavedChanges =>
+      _dirty ||
+      _discoveryDirty ||
+      _journeyDirty ||
+      _sceneDirty ||
+      _pendingSceneReceipt != null;
   Future<void> _saveTail = Future<void>.value();
 
   bool get isLoaded => _loaded;
@@ -60,6 +181,57 @@ class LearningProfileEngine {
   bool get isDiscoveryLoaded => _discoveryLoaded;
   DiscoveryProgress get discovery => _discovery;
   bool get discoveryPermissionPending => _discoveryPermissionPending;
+  bool get isJourneyLoaded => _journeyLoaded;
+  LearningJourney get journey => _journey;
+
+  Future<void> loadJourney() {
+    if (_journeyLoaded) return Future<void>.value();
+    return _journeyLoading ??= _loadJourney();
+  }
+
+  Future<void> _loadJourney() async {
+    try {
+      final loaded = await _repo.loadJourney();
+      _journey = loaded;
+      _journeyLoaded = true;
+    } finally {
+      _journeyLoading = null;
+    }
+  }
+
+  /// Accept once in memory, then queue an immutable snapshot. On save failure,
+  /// retry [flushJourney] rather than submitting a new attempt identity.
+  Future<JourneySkill> recordJourneyEvidence({
+    required String subject,
+    required String unit,
+    required LearningEvidence evidence,
+    DateTime? now,
+  }) async {
+    await loadJourney();
+    final updated = _journey.recordEvidence(
+      subject: subject,
+      unit: unit,
+      evidence: evidence,
+      now: now ?? DateTime.now(),
+    );
+    if (!identical(updated, _journey)) {
+      _journey = updated;
+      _journeyRevision++;
+      _journeyDirty = true;
+    }
+    await _persistJourney();
+    return _journey.records[SkillRecord.makeId(subject, unit)]!;
+  }
+
+  Future<void> flushJourney() => _persistJourney();
+
+  Future<void> _persistJourney() => _enqueueSave(() async {
+        if (!_journeyLoaded || !_journeyDirty) return;
+        final revision = _journeyRevision;
+        final snapshot = _journey;
+        await _repo.saveJourney(snapshot);
+        if (revision == _journeyRevision) _journeyDirty = false;
+      });
 
   /// An in-memory grant after a rejected native write is not an effective
   /// permission. A pending revocation blocks immediately as well.
@@ -183,21 +355,27 @@ class LearningProfileEngine {
     final id = SkillRecord.makeId(subject, unit);
     final existing =
         _skills[id] ?? SkillRecord(skillId: id, subject: subject, unit: unit);
+    // Snapshot any legacy attribution before changing its practice totals.
+    final evidence = existing.assessed;
 
     if (isCorrect) {
       existing.correct++;
-      existing.currentStreak++;
-      existing.currentMisses = 0;
     } else {
       existing.wrong++;
-      existing.currentMisses++;
-      existing.currentStreak = 0;
     }
     if (hintUsed) {
       existing.hintCount++;
     }
+    existing.independentEvidence =
+        hintUsed ? evidence : evidence.record(isCorrect);
+    existing.currentStreak = existing.assessed.correctStreak;
+    existing.currentMisses = existing.assessed.wrongStreak;
     existing.lastSeen = DateTime.now();
-    existing.difficulty = _detector.suggestDifficulty(existing);
+    // "Sicher" needs tasks solved alone on at least two different days.
+    if (isCorrect && !hintUsed) existing.noteIndependentDay(_todayKey());
+    if (!hintUsed) {
+      existing.difficulty = _detector.suggestDifficulty(existing);
+    }
 
     _skills[id] = existing;
     _lastTopics[subject] = unit;
@@ -253,10 +431,51 @@ class LearningProfileEngine {
   Map<String, List<String>> weaknessesBySubject() =>
       _detector.weaknessesBySubject(_skills);
 
+  /// Clears tutor assessments only, after the owner has confirmed deletion.
+  Future<void> resetTutorObservations() async {
+    for (final operation in [
+      _journeyLoading,
+      _sceneLoading,
+      _sceneCompletionTail,
+      _saveTail,
+    ]) {
+      try {
+        await operation;
+      } catch (_) {
+        // Confirmed deletion supersedes retry of these tutor observations.
+      }
+    }
+    try {
+      await _repo.resetTutorObservations();
+    } finally {
+      // Never let a stale retry restore observations after a confirmed reset.
+      // On storage failure, loading completes the durable reset marker first.
+      _journey = LearningJourney();
+      _journeyLoaded = false;
+      _journeyDirty = false;
+      _journeyRevision++;
+      _sceneMemory = SceneMemory();
+      _sceneLoaded = false;
+      _sceneDirty = false;
+      _sceneRevision++;
+      _pendingSceneReceipt = null;
+      _pendingSceneSaved = false;
+    }
+  }
+
   /// Setzt alle Lerndaten zurück. Vorher ausdrücklich bestätigen lassen.
   Future<void> reset() async {
     if (_loading != null) await _loading;
     if (_discoveryLoading != null) await _discoveryLoading;
+    if (_journeyLoading != null) await _journeyLoading;
+    if (_sceneLoading != null) {
+      try {
+        await _sceneLoading;
+      } catch (_) {}
+    }
+    try {
+      await _sceneCompletionTail;
+    } catch (_) {}
     try {
       await _saveTail;
     } catch (_) {}
@@ -271,6 +490,16 @@ class LearningProfileEngine {
     _discoveryDirty = false;
     _discoveryPermissionPending = false;
     _discoveryRevision++;
+    _journey = LearningJourney();
+    _journeyLoaded = true;
+    _journeyDirty = false;
+    _journeyRevision++;
+    _sceneMemory = SceneMemory();
+    _sceneLoaded = true;
+    _sceneDirty = false;
+    _sceneRevision++;
+    _pendingSceneReceipt = null;
+    _pendingSceneSaved = false;
   }
 
   // ── interne helpers ───────────────────────────────────────
@@ -278,6 +507,9 @@ class LearningProfileEngine {
     // A discovery-only engine must not overwrite unloaded school progress.
     if (_loaded || _dirty) await _persist();
     await _persistDiscovery();
+    await _persistJourney();
+    await _persistScenes();
+    await _recoverSceneReceipt();
   }
 
   Future<void> _persist() {

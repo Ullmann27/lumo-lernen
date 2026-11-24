@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "status": "READ_ONLY_DEPENDENCY_CLARIFICATION_NOT_NEW_SOURCE_OR_TEST",
+  "base_host": "b394cd4f73cc4ab3d2e818aa94c0a10b26a55b9e",
+  "source_freeze_sha256": "da9b218fa0323f802105d9bf1f3d9caf3e89de3f185f8bc9c54ecb3464f324e4",
+  "frozen_pack_unchanged": true,
+  "clarification": "The existing Python modules list in fixture-dependencies.json is non-exhaustive. test_kart_graphics_delivery.py is not the fixture imported by the C4 pipeline module; its real inherited fixture is test_update_preservation.py and update_2017_2018_independent_evidence.json, listed here with exact immutable identities.",
+  "additional_runtime_requirement": "Pillow, already installed in the unchanged existing .ci-python dependency step. No installation performed here.",
+  "actual_existing_dependency_paths": [
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "bytes": 10811,
+      "sha256": "c8a6b714a330c564bde68c619b07a342eb3eedf7e6191f9f3a3deacc98e594e1",
+      "git_blob": "67ae17290e898a995003f065ce3a7c97202509ab"
+    },
+    {
+      "path": "scripts/release_pipeline_gates.py",
+      "bytes": 9853,
+      "sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946",
+      "git_blob": "4c8097ce7643e189f37815c38214dd650e022d8c"
+    },
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "bytes": 12075,
+      "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382",
+      "git_blob": "455a69423b887843efc4477568d5f2cd094d6088"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "bytes": 10697,
+      "sha256": "70a1b243b7de814087addf5b05a0aa2f1c2579527eaad14bdf41fcaa252a5633",
+      "git_blob": "7e610fbdf43f0c52416761d7f2327e85bdd3a24e"
+    },
+    {
+      "path": "scripts/run_connect_four_runtime.py",
+      "bytes": 15683,
+      "sha256": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+      "git_blob": "36d93ed0908705e339346bf5ef451cf047b641b5"
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 36130,
+      "sha256": "a7813515958ec53e3418fdbc6ebd3dc605a9c9828746de016eb66979a92491b7",
+      "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa"
+    },
+    {
+      "path": "tools/android_qa/native_surface_readiness.py",
+      "bytes": 4401,
+      "sha256": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+      "git_blob": "541d891c82fcb8fd902e73fe4cc1bfaffb2335e4"
+    },
+    {
+      "path": "tools/android_qa/update_preservation.py",
+      "bytes": 10258,
+      "sha256": "73ea7f8155c65e4bd648ab99dd2baaa6261db2c380bcb435c0cb0761730f990a",
+      "git_blob": "3ddcc5e17b21e48408e6cd854f7e40eeadbddce2"
+    },
+    {
+      "path": "tools/android_qa/tests/test_update_preservation.py",
+      "bytes": 16766,
+      "sha256": "09d02454fd1eefb4ded1b47c81e2130147278211eb6f6c0e80ec4a0bedd93809",
+      "git_blob": "b2463c175c2beafcb44c11e40f061e2018c2c406"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/update_2017_2018_independent_evidence.json",
+      "bytes": 7585,
+      "sha256": "8815f517552ebdde7908ff98b1bb389147a4857ccb4a75cabd65e2142eb3338a",
+      "git_blob": "dc3792760859e23561d13988350de3353d832577"
+    }
+  ]
+}

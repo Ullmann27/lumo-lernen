@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-14T18:58:16.143062+00:00",
+  "scope": "Only exact hash-bound archives with every uncompressed original freshly CRC-verified were deleted; no source or original file deleted",
+  "actions": [
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-6b3047b7/arm64-14125561696/original-artifact-14125561696.zip",
+      "sha256": "4019515f9c9a6dadfdc00b2f504f68f559d5b1855e5bf8676675c9e4a9219de6",
+      "bytes": 331381619,
+      "all_extracted_originals_crc_rechecked": 6,
+      "status": "REMOVED_DUPLICATE_ARCHIVE_ONLY",
+      "originals_retained": "/workspace/scratch/909ddb52fe7b/android-artifacts-6b3047b7/arm64-14125561696/originals"
+    },
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-6b3047b7/android-14125719765/original-artifact-14125719765.zip",
+      "sha256": "fb3733ea6b97851aa2def5adbf25b9f94438ea5e894de2a841df9c83f8f52afc",
+      "bytes": 137718662,
+      "all_extracted_originals_crc_rechecked": 1253,
+      "status": "REMOVED_DUPLICATE_ARCHIVE_ONLY",
+      "originals_retained": "/workspace/scratch/909ddb52fe7b/android-artifacts-6b3047b7/android-14125719765/originals"
+    },
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/android-artifacts-6b3047b7/update-14125789358/original-artifact-14125789358.zip",
+      "sha256": "fa29fc23aa2be2112e81b107245237d5bc466e26d73cc98a17c15865a02b18d3",
+      "bytes": 119921837,
+      "all_extracted_originals_crc_rechecked": 835,
+      "status": "REMOVED_DUPLICATE_ARCHIVE_ONLY",
+      "originals_retained": "/workspace/scratch/909ddb52fe7b/android-artifacts-6b3047b7/update-14125789358/originals"
+    },
+    {
+      "path": "/workspace/scratch/909ddb52fe7b/native-host-6b-original-review/native-6b-14125605621-original.zip",
+      "sha256": "f85d5adcab871653b641420aa70c9bbfb3f574fb1716ca997d57daf690957af1",
+      "bytes": 226754945,
+      "all_extracted_originals_crc_rechecked": 6106,
+      "status": "REMOVED_DUPLICATE_ARCHIVE_ONLY",
+      "originals_retained": "/workspace/scratch/909ddb52fe7b/native-host-6b-original-review/originals"
+    }
+  ],
+  "workspace_free_bytes": 1180643328,
+  "tmp_free_bytes": 5181321216
+}

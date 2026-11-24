@@ -1,0 +1,21 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: d2_artikel real registry answer persists its exact subject and topic
+00:01 +1: d2_mehrzahl real registry answer persists its exact subject and topic
+00:02 +2: d3_wortarten real registry answer persists its exact subject and topic
+00:02 +3: d3_zeitformen real registry answer persists its exact subject and topic
+00:03 +4: d1_woerter real registry answer persists its exact subject and topic
+00:04 +5: s1_tiere real registry answer persists its exact subject and topic
+00:04 +6: s1_farben real registry answer persists its exact subject and topic
+00:05 +7: s2_jahreszeiten real registry answer persists its exact subject and topic
+00:05 +8: s2_wetter real registry answer persists its exact subject and topic
+00:06 +9: s2_verkehr real registry answer persists its exact subject and topic
+00:06 +10: visible noun determines right and wrong articles and only right advances Daily
+00:07 +11: article wallet rejection blocks Back and task change; duplicate retries save one answer
+00:08 +12: article learning-save rejection retries existing counters without another reward
+00:09 +13: pending wrong article rejects a second answer until learning storage finishes
+00:10 +14: saved article feedback waits for foreground before showing the next word
+00:11 +15: actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word
+00:12 +16: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily
+00:19 +17: (tearDownAll)
+00:19 +17: All tests passed!

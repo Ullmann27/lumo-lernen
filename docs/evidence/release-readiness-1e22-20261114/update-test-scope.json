@@ -1,0 +1,12 @@
+{
+  "source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "reviewed_files": [
+    ".github/probes/lumo_2020_update_android_probe.py",
+    ".github/probes/lumo_2003_update_android_probe.py",
+    "tools/android_qa/update_preservation.py",
+    "tools/android_qa/kart_tour_evidence.py"
+  ],
+  "requires": "Real baseline learning answer with earned stars and XP, same Android installation identity after install -r, approved2017→2020 independentEvidence migration, exact existing profile and learning-prefix values after offline Kart/restart/fold.",
+  "limit": "Journal/writing prefixes are compared if present. The baseline scripted journey does not explicitly create nonempty journal or writing content; inspect actual baseline prefs before asserting that specific persisted-content proof.",
+  "runtime_status": "PENDING_REAL_ANDROID_JOB"
+}

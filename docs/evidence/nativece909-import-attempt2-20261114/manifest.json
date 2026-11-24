@@ -1,0 +1,149 @@
+{
+  "status": "FROZEN",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1551,
+      "sha256": "56b27407b8786d6ec8de0a720a5479f24fc2e1624cf4ce72dba0cfcb93e52564",
+      "git_blob": "2fddd6d868b9cff74c1866e86909922b64c93fb2"
+    },
+    {
+      "path": "generated-uid-import-inventory.json",
+      "bytes": 143317,
+      "sha256": "a7ff912a388654b81172880e54ab771d401cecb61fc8f8c9a800c8c1bebe2bd5",
+      "git_blob": "9c91ee7175fe5615aa1a86487a80c6ee5bc593fd"
+    },
+    {
+      "path": "generated-uid-import-originals.tar.gz",
+      "bytes": 21136,
+      "sha256": "e56600974153275c5a72779c7ab1a7263a9d0b61ea42e9e425f31acf9c469f82",
+      "git_blob": "c22ac784290c99a993c8c7e66d680cfb45254ddc"
+    },
+    {
+      "path": "git-index-after.bin",
+      "bytes": 548612,
+      "sha256": "83936c685fd385fb86509b61b3d5c70ece3266779993ad595051a96a361b9f20",
+      "git_blob": "aeda2f1ff0b4eb6b27d4b1126438081c3c5f2f1f"
+    },
+    {
+      "path": "git-index-before.bin",
+      "bytes": 548612,
+      "sha256": "83936c685fd385fb86509b61b3d5c70ece3266779993ad595051a96a361b9f20",
+      "git_blob": "aeda2f1ff0b4eb6b27d4b1126438081c3c5f2f1f"
+    },
+    {
+      "path": "git-status-after.bin",
+      "bytes": 19407,
+      "sha256": "b9e5c373d57427fd41994f45991a420717adfe0e365d94179faadac8146e7ff4",
+      "git_blob": "34544d9012883b32723a1c89f7ca2c8ab7db1f47"
+    },
+    {
+      "path": "git-status-before.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "git-tracked-diff.patch",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "import-cache-after.json",
+      "bytes": 23445,
+      "sha256": "c3fddec40e1e63f09761114d52ca27863c3a1a24d1384dd30878977b6b62c19d",
+      "git_blob": "7d76b6938baeda6f5608686cf3dd1382cc7480d6"
+    },
+    {
+      "path": "import-cache-before.json",
+      "bytes": 422,
+      "sha256": "9da4009fc4ce146dcfaf081ec5491e3886bbac460b1aad6a3a9e2440d688fc29",
+      "git_blob": "5a2870ec2c97cc1eeca2563aaa54f46d5f8d6dcb"
+    },
+    {
+      "path": "import.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "import.stdout",
+      "bytes": 125751,
+      "sha256": "8a8d791f929ff58b69a846717ade8ecc8f5d620fd8b6e9a7185402bf8f546350",
+      "git_blob": "5ed49926545aa9204ee2895124fdfc107defef1d"
+    },
+    {
+      "path": "invocation.json",
+      "bytes": 1884,
+      "sha256": "c8123335caeb473388d0673bd3795dbb63812a6bae39bd28c5c4b2525b893359",
+      "git_blob": "51bb94d378d20e1408bce4ff1398f3cafa799153"
+    },
+    {
+      "path": "meminfo-after.txt",
+      "bytes": 1447,
+      "sha256": "443a414725d45a5fd0f482fc6e54cd5fad0533db39912f83095d47a92e8ca982",
+      "git_blob": "190fccfd315293ce1fd1116197fd2057970f2889"
+    },
+    {
+      "path": "meminfo-before.txt",
+      "bytes": 1447,
+      "sha256": "1ebda8da5591cd7e4ce7e6ede0dcf5dcc6cd1e1f0f8349001e65183d6c1e91f1",
+      "git_blob": "6522eb3aec487daba46b39ccedae10464122b7eb"
+    },
+    {
+      "path": "report.json",
+      "bytes": 1332,
+      "sha256": "b9888724da401c1f5fdd9f16b2bfc0a3461a19e1f2db58d4c0c76c135a82117f",
+      "git_blob": "79ff72c338e732584f7aa82e027133b7228a4b1b"
+    },
+    {
+      "path": "result.json",
+      "bytes": 486,
+      "sha256": "f56e477a12a381423abcd60be80f2ba23c661f57db8fdcf36e41fb6e41567d1a",
+      "git_blob": "98cfafe2eb1547af695bea46a7d4c817d7461c93"
+    },
+    {
+      "path": "run_import_once.py",
+      "bytes": 5733,
+      "sha256": "5b03e1dd887e40f5df85c37327501f726867ea87f2650162e3ba8e2b9d48191d",
+      "git_blob": "a4f5377ee351b193b1bf2b673de65eaa79212728"
+    },
+    {
+      "path": "snapshot-helper-original.py",
+      "bytes": 20254,
+      "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d",
+      "git_blob": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+    },
+    {
+      "path": "source-invariance.json",
+      "bytes": 219,
+      "sha256": "b2731f47706ca2af8b3b90271b0e687d3ff1f861eaf51c5440d6e8ccc8fac6d2",
+      "git_blob": "ccab90c1ff05dca71c1afe8dc91c00f313911e19"
+    },
+    {
+      "path": "source-inventory-after.json",
+      "bytes": 1703494,
+      "sha256": "16627e4a54c042bf1478e9d3d59191abb7d23d502ac33ced2da932523f2c1ece",
+      "git_blob": "ec516eb4fde9cf8d82246225c7abfa39b07f9622"
+    },
+    {
+      "path": "source-inventory-before.json",
+      "bytes": 1553014,
+      "sha256": "cf8bc0241187b99dc3f46d0524367cc67fe8b39faaf0f6a6f729c8abd9948b14",
+      "git_blob": "d31aa7c79222471a2666386f614d07b424800f08"
+    }
+  ],
+  "archive": {
+    "path": "native-ce909c4-import-attempt2-originals.tar.gz",
+    "bytes": 1065554,
+    "sha256": "dd8f93dfd39118c52c6507be41c5350fc7791a61e5dda838e9ebff59764a5a25",
+    "git_blob": "8922f9aab9e6cf1780c966f0804593380be64341",
+    "member_count": 22
+  },
+  "exclusions": [
+    "External exact checkout unchanged tracked sources",
+    "Actual ignored .godot cache payloads remain in recorded checkout; complete before/after inventory included",
+    "Temporary XDG/TMP directories"
+  ]
+}

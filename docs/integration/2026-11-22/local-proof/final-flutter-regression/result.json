@@ -1,0 +1,977 @@
+{
+  "startedAt": "2026-11-22T19:52:08.446602+00:00",
+  "baseHead": "5cf738e20634aaf3c135dee160a91e2cad278866",
+  "worktree": true,
+  "excludedAlreadyCoveredPaths": [
+    "test/achievement_flow_test.dart",
+    "test/achievement_repository_test.dart",
+    "test/live_pro_question_coach_test.dart",
+    "test/pin_free_access_test.dart",
+    "test/restart_regression_test.dart",
+    "test/reward_wallet_dedup_confirmation_test.dart",
+    "test/reward_wallet_queue_zone_test.dart",
+    "test/reward_wallet_transaction_test.dart",
+    "test/rewards/custom_reward_repository_test.dart",
+    "test/rewards/custom_rewards_flow_test.dart",
+    "test/rewards/legacy_reward_history_owner_test.dart",
+    "test/rewards/reward_shop_redemption_test.dart",
+    "test/room/lumo_room_flow_test.dart",
+    "test/room/lumo_room_wallet_test.dart",
+    "test/state_persistence_regression_test.dart",
+    "test/story_answer_retry_test.dart",
+    "test/story_completion_storage_test.dart",
+    "test/story_nextgen_flow_test.dart"
+  ],
+  "plannedPaths": [
+    "test/games/memory_native_entry_test.dart",
+    "test/games/memory_screen_test.dart",
+    "test/games/memory_result_frame_test.dart",
+    "test/quiz_native_roundtrip_lifecycle_test.dart",
+    "test/quiz_show_meister_test.dart",
+    "test/home_3d_workshop_entry_test.dart",
+    "test/learning/lab_native_entry_test.dart",
+    "test/learning/remaining_native_entry_test.dart",
+    "test/tutoring/native_english_activity_test.dart",
+    "test/learning/lab_native_model_contract_test.dart",
+    "test/profile_target_layout_test.dart",
+    "test/smoke_main_screens_test.dart",
+    "test/learning/math_explanation_film_test.dart",
+    "test/math_explanation_facts_test.dart",
+    "test/language_example_board_test.dart",
+    "test/tutoring/lumo_nachhilfe_test.dart",
+    "test/tutoring/lumo_nachhilfe_entry_test.dart",
+    "test/tutoring/lumo_nachhilfe_3d_test.dart",
+    "test/lumo_learning_dialogue_contract_test.dart",
+    "test/lumo_context_conversation_test.dart",
+    "test/learning/core_conversation_route_test.dart",
+    "test/learning/nextgen_answer_payload_test.dart",
+    "test/learning/nextgen_lab_bus_integration_test.dart",
+    "test/learning/nextgen_task_quality_test.dart",
+    "test/learning/nextgen_task_hint_precision_test.dart",
+    "test/learning/module_frame_practical_links_test.dart",
+    "test/tutoring/guided_coach_binding_test.dart",
+    "test/parent_task_repository_test.dart",
+    "test/parent_task_flow_test.dart",
+    "test/recognized_task_parser_test.dart",
+    "test/recognized_task_flow_test.dart",
+    "test/learning_answer_reward_test.dart",
+    "test/local_backup_format_test.dart",
+    "test/local_backup_flow_test.dart",
+    "test/app_state_student_identity_test.dart",
+    "test/learning_profile_isolation_test.dart",
+    "test/profile_fail_closed_regression_test.dart",
+    "test/design/learning_adventure_layout_test.dart",
+    "test/games/connect_four_native_session_test.dart",
+    "test/games/flame_adventure_flow_test.dart",
+    "test/learning_modules/bruchrechnen_answers_test.dart",
+    "test/learning_modules/deutsch_sach_module_progress_test.dart",
+    "test/learning_modules/learning_module_progress_test.dart",
+    "test/learning_modules/plus_bis_10_persistence_test.dart",
+    "test/legacy_learning_data_test.dart",
+    "test/writing_word_progress_test.dart"
+  ],
+  "runs": [
+    {
+      "path": "test/games/memory_native_entry_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/games/memory_native_entry_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 6.18,
+      "passed": true,
+      "cases": 9,
+      "log": "test__games__memory_native_entry_test.log",
+      "sha256": "a220f601f5ae0a7581985ad9f0cd5d0f37f1986c69cfc085798097ecdb31bc5a"
+    },
+    {
+      "path": "test/games/memory_screen_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/games/memory_screen_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 6.25,
+      "passed": true,
+      "cases": 6,
+      "log": "test__games__memory_screen_test.log",
+      "sha256": "6e5d67c2ec36ccdd5ba26f5724913c4c9e2771670249bd3529d627822acf8a6e"
+    },
+    {
+      "path": "test/games/memory_result_frame_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/games/memory_result_frame_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 3.59,
+      "passed": true,
+      "cases": 1,
+      "log": "test__games__memory_result_frame_test.log",
+      "sha256": "0ac4008c7ac23631e7d9a44ea8eca1e39f6018f16a0a3c4f7acd835369c89526"
+    },
+    {
+      "path": "test/quiz_native_roundtrip_lifecycle_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/quiz_native_roundtrip_lifecycle_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.3,
+      "passed": true,
+      "cases": 5,
+      "log": "test__quiz_native_roundtrip_lifecycle_test.log",
+      "sha256": "5bbcf4eefdda71797ec070fa10d44b75ab0f6371058b8211be4b5208dba8277d"
+    },
+    {
+      "path": "test/quiz_show_meister_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/quiz_show_meister_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.17,
+      "passed": true,
+      "cases": 6,
+      "log": "test__quiz_show_meister_test.log",
+      "sha256": "e183a068fea82e97c7aa07ac68666ecac58ddff71c1d79dd6abe02c7ded0ec4c"
+    },
+    {
+      "path": "test/home_3d_workshop_entry_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/home_3d_workshop_entry_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 3.43,
+      "passed": true,
+      "cases": 1,
+      "log": "test__home_3d_workshop_entry_test.log",
+      "sha256": "253d39c79e4edc59d989158c8516f3bbdc028f204aa4e894da28454129fbdceb"
+    },
+    {
+      "path": "test/learning/lab_native_entry_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning/lab_native_entry_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 6.51,
+      "passed": true,
+      "cases": 8,
+      "log": "test__learning__lab_native_entry_test.log",
+      "sha256": "c969d33c9d43cb1728f59a7488b211c8c636732fda780aa471e63cc1bedf98a3"
+    },
+    {
+      "path": "test/learning/remaining_native_entry_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning/remaining_native_entry_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 5.4,
+      "passed": true,
+      "cases": 8,
+      "log": "test__learning__remaining_native_entry_test.log",
+      "sha256": "efefacd4f1b0799dc0adfd638db6afec1abb19a4fc21950854464323c946c4eb"
+    },
+    {
+      "path": "test/tutoring/native_english_activity_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/tutoring/native_english_activity_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.69,
+      "passed": true,
+      "cases": 4,
+      "log": "test__tutoring__native_english_activity_test.log",
+      "sha256": "8771e64cbf1cfbbaa2c8034f08f49ca2b0574e0a993b5b52022339fe3d4a72af"
+    },
+    {
+      "path": "test/learning/lab_native_model_contract_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning/lab_native_model_contract_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.59,
+      "passed": true,
+      "cases": 3,
+      "log": "test__learning__lab_native_model_contract_test.log",
+      "sha256": "aaa2fe6e886d8e4650194a404a42184608ab5a65d3557ed0645e658e873a4da4"
+    },
+    {
+      "path": "test/profile_target_layout_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/profile_target_layout_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.79,
+      "passed": true,
+      "cases": 14,
+      "log": "test__profile_target_layout_test.log",
+      "sha256": "0d51a553f6ea14b01d011535f25b5a167ce9c169930a7a51e986b405dec7be56"
+    },
+    {
+      "path": "test/smoke_main_screens_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/smoke_main_screens_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.9,
+      "passed": true,
+      "cases": 9,
+      "log": "test__smoke_main_screens_test.log",
+      "sha256": "ba8a2f8e5c190d7e900c99db9fd97a0512535334781eca8c6f5e7f1d58c8cc47"
+    },
+    {
+      "path": "test/learning/math_explanation_film_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning/math_explanation_film_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.68,
+      "passed": true,
+      "cases": 11,
+      "log": "test__learning__math_explanation_film_test.log",
+      "sha256": "d707810ac5c4c18ab1a966757ec909ff58dfc37cbd8aac28f11de6f009665afd"
+    },
+    {
+      "path": "test/math_explanation_facts_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/math_explanation_facts_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.42,
+      "passed": true,
+      "cases": 11,
+      "log": "test__math_explanation_facts_test.log",
+      "sha256": "8afd68a057b7cb30538fdac3d50242f2015712ce4353cb3a79d2f1ebacd7ca7a"
+    },
+    {
+      "path": "test/language_example_board_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/language_example_board_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.23,
+      "passed": true,
+      "cases": 16,
+      "log": "test__language_example_board_test.log",
+      "sha256": "97c125f3ac20a3cdc20d830301651ebf045bb186e161c5027dc2fc1707933fa8"
+    },
+    {
+      "path": "test/tutoring/lumo_nachhilfe_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/tutoring/lumo_nachhilfe_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.08,
+      "passed": true,
+      "cases": 13,
+      "log": "test__tutoring__lumo_nachhilfe_test.log",
+      "sha256": "879798301e908ea9eba59b8aa7d07d396f0ebae6acca96f6866ad4c344ff1816"
+    },
+    {
+      "path": "test/tutoring/lumo_nachhilfe_entry_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/tutoring/lumo_nachhilfe_entry_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 3.99,
+      "passed": true,
+      "cases": 2,
+      "log": "test__tutoring__lumo_nachhilfe_entry_test.log",
+      "sha256": "2f2364f877a4aec348dbebc583c7d6d81976c9489d9a2f038d1d97e0d9e83f1f"
+    },
+    {
+      "path": "test/tutoring/lumo_nachhilfe_3d_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/tutoring/lumo_nachhilfe_3d_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 3.98,
+      "passed": true,
+      "cases": 4,
+      "log": "test__tutoring__lumo_nachhilfe_3d_test.log",
+      "sha256": "95ed18d3c7c1859e194a04c3f271ae7b679fa3e0acb0e7307782252bb6253106"
+    },
+    {
+      "path": "test/lumo_learning_dialogue_contract_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/lumo_learning_dialogue_contract_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.23,
+      "passed": true,
+      "cases": 16,
+      "log": "test__lumo_learning_dialogue_contract_test.log",
+      "sha256": "5d2ce17ae1afbba1b93012ad174b97a36681108b4e829dbd8fd58c226728dffb"
+    },
+    {
+      "path": "test/lumo_context_conversation_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/lumo_context_conversation_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.33,
+      "passed": true,
+      "cases": 11,
+      "log": "test__lumo_context_conversation_test.log",
+      "sha256": "0eb7c453c797394d021b4cd0cca3f9f7743df6128b6d4b3314a2702deee2f50e"
+    },
+    {
+      "path": "test/learning/core_conversation_route_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning/core_conversation_route_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": null,
+      "passed": true,
+      "cases": 11,
+      "log": "../achievement-core-route-final.log",
+      "sha256": "ef193a77c21a1804d1f1111fda006f9ce5ae0f63483e1c22fe97593a9170b8a0",
+      "verificationSource": "kart_audit focused rerun after modal-burst fix, exit 0 reported by executor"
+    },
+    {
+      "path": "test/learning/nextgen_answer_payload_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning/nextgen_answer_payload_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 3.87,
+      "passed": true,
+      "cases": 10,
+      "log": "test__learning__nextgen_answer_payload_test.log",
+      "sha256": "365c3080911f604cf5852049b4efa9e56ab253bc74de49a43309c4388280b7c9"
+    },
+    {
+      "path": "test/learning/nextgen_lab_bus_integration_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning/nextgen_lab_bus_integration_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 7.0,
+      "passed": true,
+      "cases": 9,
+      "log": "test__learning__nextgen_lab_bus_integration_test.log",
+      "sha256": "ff974b41f50a396bc5e670ce4d672a995d77ba6280a2cc64540440fac72887de"
+    },
+    {
+      "path": "test/learning/nextgen_task_quality_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning/nextgen_task_quality_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.27,
+      "passed": true,
+      "cases": 14,
+      "log": "test__learning__nextgen_task_quality_test.log",
+      "sha256": "38d5739409725f361595733a41ad9cae4c59481bd5f3a205740aace5da06db39"
+    },
+    {
+      "path": "test/learning/nextgen_task_hint_precision_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning/nextgen_task_hint_precision_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.57,
+      "passed": true,
+      "cases": 9,
+      "log": "test__learning__nextgen_task_hint_precision_test.log",
+      "sha256": "ad7a4056aa87e6900b1de9204e067b45980052252c6d9b9d6fa1c2f92ba59640"
+    },
+    {
+      "path": "test/learning/module_frame_practical_links_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning/module_frame_practical_links_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.18,
+      "passed": true,
+      "cases": 2,
+      "log": "test__learning__module_frame_practical_links_test.log",
+      "sha256": "007809d2fd57896232217d4c29d6706cdbdf1d19d8c77770df0dffbb24588d12"
+    },
+    {
+      "path": "test/tutoring/guided_coach_binding_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/tutoring/guided_coach_binding_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.64,
+      "passed": true,
+      "cases": 4,
+      "log": "test__tutoring__guided_coach_binding_test.log",
+      "sha256": "91c4a0cea6438b7f8fb0d267f29a9d1c4edf85d506b1b10956b17cfb68e6d657"
+    },
+    {
+      "path": "test/parent_task_repository_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/parent_task_repository_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.13,
+      "passed": true,
+      "cases": 10,
+      "log": "test__parent_task_repository_test.log",
+      "sha256": "230bf06b5faaa9bbde69cae7d1d254a8339b2d66165f1b5ea3908d3781e79f8d"
+    },
+    {
+      "path": "test/parent_task_flow_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/parent_task_flow_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 3.58,
+      "passed": true,
+      "cases": 5,
+      "log": "test__parent_task_flow_test.log",
+      "sha256": "0a32c84aa2f684be9305d4a52d82e4b3c0a6d5a4c67356cf0a735f6531980c51"
+    },
+    {
+      "path": "test/recognized_task_parser_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/recognized_task_parser_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.98,
+      "passed": true,
+      "cases": 36,
+      "log": "test__recognized_task_parser_test.log",
+      "sha256": "8c56de9cefe3e39ec1f205f73b695b32621abbde9ae42e8603113ccb53bef2de"
+    },
+    {
+      "path": "test/recognized_task_flow_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/recognized_task_flow_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 3.33,
+      "passed": true,
+      "cases": 9,
+      "log": "test__recognized_task_flow_test.log",
+      "sha256": "b2b4be740811aefe420de2e068051aa9be036e28dd11b91ecba230f6360ec367"
+    },
+    {
+      "path": "test/learning_answer_reward_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning_answer_reward_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.34,
+      "passed": true,
+      "cases": 4,
+      "log": "test__learning_answer_reward_test.log",
+      "sha256": "fe50c62800536e1b987e1ff89c909eed1e80b0e2fc8949a5353e716aab1d771d"
+    },
+    {
+      "path": "test/local_backup_format_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/local_backup_format_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.13,
+      "passed": true,
+      "cases": 10,
+      "log": "test__local_backup_format_test.log",
+      "sha256": "22fff43da731d753e8ce09cceafb353d1b06d1b49993632944cff9e29868a17d"
+    },
+    {
+      "path": "test/local_backup_flow_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/local_backup_flow_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.58,
+      "passed": true,
+      "cases": 10,
+      "log": "test__local_backup_flow_test.log",
+      "sha256": "ffa6f713e92c41c48fcda738310fb59d67203f7df1f0c86f01d998d0d759fc74"
+    },
+    {
+      "path": "test/app_state_student_identity_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/app_state_student_identity_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.09,
+      "passed": true,
+      "cases": 3,
+      "log": "test__app_state_student_identity_test.log",
+      "sha256": "de143d3e98969b336f6174311d8bb6cca1643adda066f16bdc3b919d737e04fd"
+    },
+    {
+      "path": "test/learning_profile_isolation_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning_profile_isolation_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.93,
+      "passed": true,
+      "cases": 7,
+      "log": "test__learning_profile_isolation_test.log",
+      "sha256": "d381907956e53e15959528170feb6cb7809ce324493c9390d553bb726e55f59d"
+    },
+    {
+      "path": "test/profile_fail_closed_regression_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/profile_fail_closed_regression_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.89,
+      "passed": true,
+      "cases": 3,
+      "log": "test__profile_fail_closed_regression_test.log",
+      "sha256": "767cbc5dff3e41ca73b0c16ae90da34f5ea7ff4b63e73af6a5ea71336db0f1d4"
+    },
+    {
+      "path": "test/design/learning_adventure_layout_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/design/learning_adventure_layout_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 15.99,
+      "passed": true,
+      "cases": 83,
+      "log": "test__design__learning_adventure_layout_test.log",
+      "sha256": "7918db033583ec6960c928c4b9d0248996103e68d4fe5d8ee45b636e66ed4149"
+    },
+    {
+      "path": "test/games/connect_four_native_session_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/games/connect_four_native_session_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.82,
+      "passed": true,
+      "cases": 25,
+      "log": "test__games__connect_four_native_session_test.log",
+      "sha256": "710695f8c244fd66b7acdf3e9db51652bf05e45ec510a010e071eb6f5116d5d4"
+    },
+    {
+      "path": "test/games/flame_adventure_flow_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/games/flame_adventure_flow_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 6.29,
+      "passed": true,
+      "cases": 3,
+      "log": "test__games__flame_adventure_flow_test.log",
+      "sha256": "776707eb9e9ea0d4ada1b962af67118fa04755a1169c249a35bb338f8e84afd7"
+    },
+    {
+      "path": "test/learning_modules/bruchrechnen_answers_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning_modules/bruchrechnen_answers_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 8.5,
+      "passed": true,
+      "cases": 3,
+      "log": "test__learning_modules__bruchrechnen_answers_test.log",
+      "sha256": "d3c7244ce1d2798489222fcc3cc978f19c5da4d7280931dd986a94958e371c8a"
+    },
+    {
+      "path": "test/learning_modules/deutsch_sach_module_progress_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning_modules/deutsch_sach_module_progress_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 22.0,
+      "passed": true,
+      "cases": 17,
+      "log": "test__learning_modules__deutsch_sach_module_progress_test.log",
+      "sha256": "452a98785f14bffcc8a271d923f98c6d29c31996cba2e298c9d8b0bfec4a3727"
+    },
+    {
+      "path": "test/learning_modules/learning_module_progress_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning_modules/learning_module_progress_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.32,
+      "passed": true,
+      "cases": 10,
+      "log": "test__learning_modules__learning_module_progress_test.log",
+      "sha256": "798cd0ec64c6626c07cdfb33004026b926f68ff880cab5e424427b5768dccdde"
+    },
+    {
+      "path": "test/learning_modules/plus_bis_10_persistence_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning_modules/plus_bis_10_persistence_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 17.03,
+      "passed": true,
+      "cases": 8,
+      "log": "test__learning_modules__plus_bis_10_persistence_test.log",
+      "sha256": "fdd6758f01c91821d25ba1f06cc7184e8b8e230a072dcdd5ad0b2dadb1f038b2"
+    },
+    {
+      "path": "test/legacy_learning_data_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/legacy_learning_data_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.33,
+      "passed": true,
+      "cases": 14,
+      "log": "test__legacy_learning_data_test.log",
+      "sha256": "d27466cd37702723dd370ebede07228f5b6b228159ea493c4d41978da38b0b3b"
+    },
+    {
+      "path": "test/writing_word_progress_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/writing_word_progress_test.dart"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 7.2,
+      "passed": true,
+      "cases": 7,
+      "log": "test__writing_word_progress_test.log",
+      "sha256": "ca2b835d91114862a63c44be349f88457cca585ac50d755e8822751d0721ef35"
+    }
+  ],
+  "supersededAttempts": [
+    {
+      "path": "test/learning/core_conversation_route_test.dart",
+      "command": [
+        "/home/agent/lumo-tools/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "--concurrency=1",
+        "test/learning/core_conversation_route_test.dart"
+      ],
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 13.14,
+      "passed": false,
+      "cases": null,
+      "log": "test__learning__core_conversation_route_test-before-fix.log",
+      "sha256": "887bbe22958bc82cf81b2636954f07c2c1a12c74fc99d154c3528fddaca5a756"
+    }
+  ],
+  "resumedAt": [
+    "2026-11-22T20:02:58.386221+00:00"
+  ],
+  "status": "PASS",
+  "completedAt": "2026-11-22T20:05:11.372646+00:00",
+  "totalCases": 484
+}

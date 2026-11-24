@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "parent": "2b586530db4f2cb20c28f426e2549342316151bf",
+  "parent_tree": "bffa6832adf0e5205a93ff964cc69d19457f7a8e",
+  "native_pin": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "source_count": 22,
+  "files": [
+    {
+      "path": "config/godot-source.json",
+      "before_blob": "72dc631c9e27885cb3ab38ce446a66416f818ebb",
+      "after_blob": "a07c0176806321daf8e7a0d6df5c8697f82ba3b2",
+      "sha256": "bdd44f24660ab13cee297c65238238d6181fc60d7fad22ad456f1633955db767",
+      "bytes": 145,
+      "origin": "/tmp/lumo-root-recovery-0900/host-final-gates"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "before_blob": "28f3aee40eb0028c5a4aa80196749f5867cbffc4",
+      "after_blob": "fc050358bce96db9e6cb1ffec77a4ea9e53c1cbb",
+      "sha256": "b5f98f3356887328946059945bd893e242fbca6fa5647bf44c1e3e65fc7a2984",
+      "bytes": 10697,
+      "origin": "/tmp/lumo-root-recovery-0900/host-final-gates"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "before_blob": "6367ea2cb9b562f56056623ff289c3e71de28157",
+      "after_blob": "3f3a74806b29f07b18bcc3ecc88da982bb28f3c1",
+      "sha256": "1dfbd8cc20e203db0bf1338437d14ae36eb598fea36a235f092a191866a4c711",
+      "bytes": 17393,
+      "origin": "/tmp/lumo-root-recovery-0900/host-final-gates"
+    },
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "before_blob": "83546f7e1fed0ce6943128167aada51a73ee0251",
+      "after_blob": "cda9b0f8ab09ea9f20d07e672ef2b99462e146af",
+      "sha256": "43112c519b6f3377474cec788ba08d022036f219c3dbd03136e57d7cfb7afeaa",
+      "bytes": 43922,
+      "origin": "/tmp/lumo-root-recovery-0900/host-final-gates"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "before_blob": "528e70ec56a5d990faa7ce6d10e61345870c7aee",
+      "after_blob": "eb35329baf46efa5cdf17af1187e8c460d93c752",
+      "sha256": "b981836528b83c339e3e6fac16712786619905cb0159016f0a021ee447be6800",
+      "bytes": 51208,
+      "origin": "/tmp/lumo-root-recovery-0900/host-final-gates"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "before_blob": "5760ec96f3002a782708b13c9b2f019a26109c33",
+      "after_blob": "c7b9461ed056521a5da1fb528afe614b7cdeecee",
+      "sha256": "bd7637f769064c3cf13dd910c04b917cc90ad5c04b7b761021a5e0128f826b8a",
+      "bytes": 54097,
+      "origin": "/tmp/lumo-root-recovery-0900/host-final-gates"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "before_blob": "4d2bb14a89f0988e8d61567225403ee9416cf681",
+      "after_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+      "sha256": "c2de19c0f7d628434a9af9f04e391a5df4d234b59659a3e709288ba90ec58d9b",
+      "bytes": 43222,
+      "origin": "/tmp/host-c4-pressed-target-followup-2b586530-20261114"
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "before_blob": "8ea60303632a0ff1f25c240244deb1c95a1e4621",
+      "after_blob": "390bcc219e636e63177f1d36613ee78de0a68db2",
+      "sha256": "57063af997b5a27ee35b8c4a7974237224fdb378fbf92c357d7a91d754792b4c",
+      "bytes": 6322,
+      "origin": "/tmp/host-c4-pressed-target-followup-2b586530-20261114"
+    },
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "before_blob": "92956444dee338921853aea037ca32033bcd3b2e",
+      "after_blob": "d5e847507275b67d6d3aa4bdbaf2991f01817bca",
+      "sha256": "c8e25c3561e3d505036d14b49dd1d7b586e601762cc687d7a6eeafb2b54d9ebc",
+      "bytes": 4409,
+      "origin": "/tmp/host-c4-pressed-target-followup-2b586530-20261114"
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "before_blob": "59d99f0568a122742abaa0d07fa8a91b0e2af041",
+      "after_blob": "e234c15a45d5ced14b605290e30927baafc0c25d",
+      "sha256": "9d6a283c6e64a80b0d1d25a3e45ae16a3c402ad5a1be4dce6160dbf2850d6797",
+      "bytes": 14954,
+      "origin": "/tmp/host-c4-pressed-target-followup-2b586530-20261114"
+    },
+    {
+      "path": "lib/core/lumo_image_generator.dart",
+      "before_blob": "c9e8e01014362f2d1f9ab1b8dd1de893928fe3b4",
+      "after_blob": "d8f14f1c344e7c3721f6f337b733fded012db897",
+      "sha256": "0ef4a90b39fe41a6e28f2e3348a3e3e4fabd73ebf32c3c77e11e3f00787178c6",
+      "bytes": 16216,
+      "origin": "/tmp/host-privacy-historical2019-followup-2b586530-20261114"
+    },
+    {
+      "path": "test/core/lumo_image_generator_test.dart",
+      "before_blob": "a6d7315ecf417519126ae0536bdf1321b1c61fb5",
+      "after_blob": "59fe89a46a5d52e2f97529a21832240ecf2a8a46",
+      "sha256": "5657def9a23642db265916ea3fa22c8ab577f466ab7b800980404b1f541be55f",
+      "bytes": 4448,
+      "origin": "/tmp/host-privacy-historical2019-followup-2b586530-20261114"
+    },
+    {
+      "path": "tools/android_qa/tests/test_update_2019_preservation.py",
+      "before_blob": "fdafce627a7399fa30d7bae933afe779f8ff3365",
+      "after_blob": "b9c667de8d9d9fd3ec158141d17d09d899aea2b6",
+      "sha256": "c0575842654050432bd87a7f701af0821b881c1839eeecc923a57940ddb89a38",
+      "bytes": 12156,
+      "origin": "/tmp/host-privacy-historical2019-followup-2b586530-20261114"
+    },
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "before_blob": "2daf7b3c84495a60aef2bf4459cab697549bca88",
+      "after_blob": "c996a022d388632ed13965b392181aef773d9025",
+      "bytes": 65137,
+      "sha256": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+      "origin": "Published QA1cc5cf4fb7da382fb9833b9d52cf53540306b405; two production before blobs exactly match2b"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "before_blob": "60c6341da4b249fe142a1289599ad02475326c33",
+      "after_blob": "3eedf585448f1c844a3b6f1dddd95fa0b31101bc",
+      "bytes": 71930,
+      "sha256": "d98eeb982344bb09762a783aeb71bef2c93cc8ed30d5e932a96712fe382673db",
+      "origin": "Published QA1cc5cf4fb7da382fb9833b9d52cf53540306b405; two production before blobs exactly match2b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0-ocr.json",
+      "before_blob": null,
+      "after_blob": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623",
+      "bytes": 1682,
+      "sha256": "63e651f95bfaf92ad84a611115e3f497fb883459fc9a0131391b302920ec4a04",
+      "origin": "Published QA1cc5cf4fb7da382fb9833b9d52cf53540306b405; two production before blobs exactly match2b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-0.png",
+      "before_blob": null,
+      "after_blob": "f4050401ac73ada62cb3517ec7204f33916517b8",
+      "bytes": 857960,
+      "sha256": "472138fabf87a063f46a97e772c1118c8751d180f930a85c27fabd3c86967236",
+      "origin": "Published QA1cc5cf4fb7da382fb9833b9d52cf53540306b405; two production before blobs exactly match2b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1-ocr.json",
+      "before_blob": null,
+      "after_blob": "bf8a15e6de77a51ab1ed1c32c037970b4cea8623",
+      "bytes": 1682,
+      "sha256": "63e651f95bfaf92ad84a611115e3f497fb883459fc9a0131391b302920ec4a04",
+      "origin": "Published QA1cc5cf4fb7da382fb9833b9d52cf53540306b405; two production before blobs exactly match2b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-1.png",
+      "before_blob": null,
+      "after_blob": "7c4702094de7317487568ccdd875b874d243a0bd",
+      "bytes": 858521,
+      "sha256": "4d4d4e52bf2d5f2b536b4cf3049db6783097ea94ea90e50acf3dc25f41b1e7fd",
+      "origin": "Published QA1cc5cf4fb7da382fb9833b9d52cf53540306b405; two production before blobs exactly match2b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/21_continue_touch-surface-readiness.json",
+      "before_blob": null,
+      "after_blob": "35b5cdb2d5e6c55d2083bbb41aafc34611d5ebfe",
+      "bytes": 2747,
+      "sha256": "1147bae3acb44a1eec0e323599c07f9f5c8c5cf9092fffec9bfae1bfa127a9ce",
+      "origin": "Published QA1cc5cf4fb7da382fb9833b9d52cf53540306b405; two production before blobs exactly match2b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-continue-08e/provenance.json",
+      "before_blob": null,
+      "after_blob": "f63d6917ba8b5404d4deb1209a75486c33e90caf",
+      "bytes": 1776,
+      "sha256": "5e53c5c9a62d0ee732acf5df20fc9e558ae596fa8df80a847ca1a4ec69c26a8b",
+      "origin": "Published QA1cc5cf4fb7da382fb9833b9d52cf53540306b405; two production before blobs exactly match2b"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_continue_caption.py",
+      "before_blob": null,
+      "after_blob": "1d02ca8663998dcbddb6c02107148672c5882b52",
+      "bytes": 8453,
+      "sha256": "fb7ff4ed94b61bd266b9eb2ec6dd2d1fb9de6c08891a909cf875af40165101e9",
+      "origin": "Published QA1cc5cf4fb7da382fb9833b9d52cf53540306b405; two production before blobs exactly match2b"
+    }
+  ],
+  "pending": "Whole combined source requires its own actual C4 workflow and focused local Python checks."
+}

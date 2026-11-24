@@ -1,0 +1,45 @@
+{
+  "producer_commit": "ff2bf662d5f31d851671135c67c73ef3ec9560d0",
+  "tree": "4a18ea1b77b6207d03d776a77a55496d0981d291",
+  "base": "a73d515f26afcdd220b0d68ff6a81ae2421cffd5",
+  "files": {
+    "lib/app/lumo_companion_host.dart": {
+      "bytes": 12781,
+      "sha256": "bfcab61255f60e62826ba60558f75b1341a125eee78a9a92704fe8502e63fd18",
+      "changed_in_this_commit": true
+    },
+    "lib/widgets/fox/lumo_free_companion.dart": {
+      "bytes": 27242,
+      "sha256": "a361c60177ef9e8f7a011178b74d135604a135659839e0c3edf9d300ee5f2643",
+      "changed_in_this_commit": false
+    }
+  },
+  "checks": [
+    {
+      "command": [
+        "/workspace/scratch/c5a7dadab95f/toolchain/flutter/bin/dart",
+        "format",
+        "--language-version=3.4",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib/app/lumo_companion_host.dart"
+      ],
+      "exit_code": 0,
+      "stdout": "Formatted 1 file (0 changed) in 0.01 seconds.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "flutter_tests_run": false,
+  "flutter_analysis_run": false,
+  "purpose": "Only forward the unchanged useSafeArea=true default using a superparameter; owned menu still explicitly passes false."
+}

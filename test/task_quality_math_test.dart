@@ -62,14 +62,24 @@ void main() {
   });
 
   test('sound checks distinguish phonemes from the last written letter', () {
+    // Fachprüfung 2026-11 (D-S2): Lautfragen zu Wörtern mit
+    // Auslautverhärtung (Hund: gesprochen t, geschrieben d) sind nicht
+    // eindeutig und werden abgewiesen, egal welche Antwort hinterlegt ist.
+    for (final answer in <String>['T', 'D']) {
+      expect(
+          guard.problems(task(
+              'Mit welchem Laut endet Hund?', answer, ['T', 'D', 'N'],
+              subject: 'Deutsch')),
+          contains('final_sound_conflicts_with_spelling'));
+    }
     expect(
         guard.problems(task(
-            'Mit welchem Laut endet Hund?', 'T', ['T', 'D', 'N'],
+            'Mit welchem Laut endet Tisch?', 'Sch', ['Sch', 'S', 'H'],
             subject: 'Deutsch')),
         isEmpty);
     expect(
         guard.problems(task(
-            'Mit welchem Laut endet Hund?', 'D', ['T', 'D', 'N'],
+            'Mit welchem Laut endet Tisch?', 'H', ['Sch', 'S', 'H'],
             subject: 'Deutsch')),
         contains('answer_wrong_final_sound'));
     expect(

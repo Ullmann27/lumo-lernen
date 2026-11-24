@@ -1,0 +1,373 @@
+{
+  "status": "PASS",
+  "scope": "The actual 30 focused feature cases only",
+  "source_sha": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+  "run_id": 43616035099,
+  "run_attempt": 1,
+  "job_id": 132511176199,
+  "passed": 30,
+  "failed": [],
+  "skipped": [],
+  "cases": [
+    {
+      "name": "actual WortDiktat vertical stroke stays stationary at Size(430.0, 600.0)",
+      "test_id": 6,
+      "result": "success",
+      "skipped": false,
+      "start_line": 13,
+      "done_line": 20,
+      "suite_id": 0
+    },
+    {
+      "name": "Live word magic offers explanations without a picture promise",
+      "test_id": 8,
+      "result": "success",
+      "skipped": false,
+      "start_line": 18,
+      "done_line": 23,
+      "suite_id": 2
+    },
+    {
+      "name": "actual WortDiktat vertical stroke stays stationary at Size(640.0, 360.0)",
+      "test_id": 9,
+      "result": "success",
+      "skipped": false,
+      "start_line": 21,
+      "done_line": 25,
+      "suite_id": 0
+    },
+    {
+      "name": "Live safari displays its existing animal and advances the round",
+      "test_id": 10,
+      "result": "success",
+      "skipped": false,
+      "start_line": 24,
+      "done_line": 27,
+      "suite_id": 2
+    },
+    {
+      "name": "WortDiktat keeps its first contact across rows; foreign ends first=true",
+      "test_id": 11,
+      "result": "success",
+      "skipped": false,
+      "start_line": 26,
+      "done_line": 29,
+      "suite_id": 0
+    },
+    {
+      "name": "Live photo quiz checks camera consent before capture",
+      "test_id": 12,
+      "result": "success",
+      "skipped": false,
+      "start_line": 28,
+      "done_line": 31,
+      "suite_id": 2
+    },
+    {
+      "name": "Live photo quiz cancellation keeps capture ready without rewards",
+      "test_id": 14,
+      "result": "success",
+      "skipped": false,
+      "start_line": 32,
+      "done_line": 33,
+      "suite_id": 2
+    },
+    {
+      "name": "WortDiktat keeps its first contact across rows; foreign ends first=false",
+      "test_id": 13,
+      "result": "success",
+      "skipped": false,
+      "start_line": 30,
+      "done_line": 35,
+      "suite_id": 0
+    },
+    {
+      "name": "Live photo quiz recovers from a native camera rejection",
+      "test_id": 15,
+      "result": "success",
+      "skipped": false,
+      "start_line": 34,
+      "done_line": 37,
+      "suite_id": 2
+    },
+    {
+      "name": "a WortDiktat tap alone is not a completed writing attempt",
+      "test_id": 16,
+      "result": "success",
+      "skipped": false,
+      "start_line": 36,
+      "done_line": 39,
+      "suite_id": 0
+    },
+    {
+      "name": "Live photo quiz offers a spoken answer only after a real photo",
+      "test_id": 17,
+      "result": "success",
+      "skipped": false,
+      "start_line": 38,
+      "done_line": 41,
+      "suite_id": 2
+    },
+    {
+      "name": "a cancelled WortDiktat stroke is not a completed attempt",
+      "test_id": 18,
+      "result": "success",
+      "skipped": false,
+      "start_line": 40,
+      "done_line": 43,
+      "suite_id": 0
+    },
+    {
+      "name": "Live photo quiz discards a pending capture after a mode round trip",
+      "test_id": 19,
+      "result": "success",
+      "skipped": false,
+      "start_line": 42,
+      "done_line": 45,
+      "suite_id": 2
+    },
+    {
+      "name": "WortDiktat cancel preserves completed strokes in other rows",
+      "test_id": 20,
+      "result": "success",
+      "skipped": false,
+      "start_line": 44,
+      "done_line": 47,
+      "suite_id": 0
+    },
+    {
+      "name": "Live photo quiz rejects a delayed camera error after profile change",
+      "test_id": 21,
+      "result": "success",
+      "skipped": false,
+      "start_line": 46,
+      "done_line": 52,
+      "suite_id": 2
+    },
+    {
+      "name": "Live photo quiz rejects a delayed camera error after lease reset",
+      "test_id": 25,
+      "result": "success",
+      "skipped": false,
+      "start_line": 53,
+      "done_line": 54,
+      "suite_id": 2
+    },
+    {
+      "name": "Live photo quiz rejects a delayed camera error after mode round trip",
+      "test_id": 26,
+      "result": "success",
+      "skipped": false,
+      "start_line": 55,
+      "done_line": 56,
+      "suite_id": 2
+    },
+    {
+      "name": "Live Pro opens without initializing microphone; denied tap stays local",
+      "test_id": 27,
+      "result": "success",
+      "skipped": false,
+      "start_line": 57,
+      "done_line": 58,
+      "suite_id": 2
+    },
+    {
+      "name": "Photo lesson checks saved camera consent before opening the scanner",
+      "test_id": 28,
+      "result": "success",
+      "skipped": false,
+      "start_line": 59,
+      "done_line": 62,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during word magic",
+      "test_id": 29,
+      "result": "success",
+      "skipped": false,
+      "start_line": 63,
+      "done_line": 64,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+      "test_id": 30,
+      "result": "success",
+      "skipped": false,
+      "start_line": 65,
+      "done_line": 69,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+      "test_id": 33,
+      "result": "success",
+      "skipped": false,
+      "start_line": 70,
+      "done_line": 71,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during profile change",
+      "test_id": 34,
+      "result": "success",
+      "skipped": false,
+      "start_line": 72,
+      "done_line": 73,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during word magic",
+      "test_id": 35,
+      "result": "success",
+      "skipped": false,
+      "start_line": 74,
+      "done_line": 75,
+      "suite_id": 2
+    },
+    {
+      "name": "Profil zeigt echte Werte und führt in Einstellungen und Laden",
+      "test_id": 32,
+      "result": "success",
+      "skipped": false,
+      "start_line": 68,
+      "done_line": 77,
+      "suite_id": 23
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during safari round trip",
+      "test_id": 36,
+      "result": "success",
+      "skipped": false,
+      "start_line": 76,
+      "done_line": 79,
+      "suite_id": 2
+    },
+    {
+      "name": "Profil-Extras öffnet die vorhandenen Einstellungen als echte Schaltfläche",
+      "test_id": 37,
+      "result": "success",
+      "skipped": false,
+      "start_line": 78,
+      "done_line": 81,
+      "suite_id": 23
+    },
+    {
+      "name": "Level-Titel steigen mit dem Level",
+      "test_id": 39,
+      "result": "success",
+      "skipped": false,
+      "start_line": 82,
+      "done_line": 83,
+      "suite_id": 23
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during unchanged safari",
+      "test_id": 38,
+      "result": "success",
+      "skipped": false,
+      "start_line": 80,
+      "done_line": 84,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during profile change",
+      "test_id": 40,
+      "result": "success",
+      "skipped": false,
+      "start_line": 85,
+      "done_line": 86,
+      "suite_id": 2
+    }
+  ],
+  "safari_cases": [
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during word magic",
+      "test_id": 29,
+      "result": "success",
+      "skipped": false,
+      "start_line": 63,
+      "done_line": 64,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during safari round trip",
+      "test_id": 30,
+      "result": "success",
+      "skipped": false,
+      "start_line": 65,
+      "done_line": 69,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during unchanged safari",
+      "test_id": 33,
+      "result": "success",
+      "skipped": false,
+      "start_line": 70,
+      "done_line": 71,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari correct answer keeps its delayed continuation bound during profile change",
+      "test_id": 34,
+      "result": "success",
+      "skipped": false,
+      "start_line": 72,
+      "done_line": 73,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during word magic",
+      "test_id": 35,
+      "result": "success",
+      "skipped": false,
+      "start_line": 74,
+      "done_line": 75,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during safari round trip",
+      "test_id": 36,
+      "result": "success",
+      "skipped": false,
+      "start_line": 76,
+      "done_line": 79,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during unchanged safari",
+      "test_id": 38,
+      "result": "success",
+      "skipped": false,
+      "start_line": 80,
+      "done_line": 84,
+      "suite_id": 2
+    },
+    {
+      "name": "Live safari wrong answer keeps its delayed continuation bound during profile change",
+      "test_id": 40,
+      "result": "success",
+      "skipped": false,
+      "start_line": 85,
+      "done_line": 86,
+      "suite_id": 2
+    }
+  ],
+  "non_event_lines": [
+    7,
+    8,
+    14,
+    15,
+    60,
+    61
+  ],
+  "source_unchanged": true,
+  "tracked_files": 4975,
+  "bound_product_blob": "f42eb9e1f206fe87c64008906c6b911d59a49fe4",
+  "bound_test_blob": "d94777b95461c9e0a3d8b7dd51e8698553d7f9a2",
+  "red_evidence_commit": "c4a6692e97b6a1e47edc40d70e05f7a0ca76a435",
+  "one_line_repair_commit": "407e3503c2777b76647c841867d278977160cbba",
+  "limitations": "No full Flutter, Native, Android or release acceptance is inferred from this focused feature result."
+}

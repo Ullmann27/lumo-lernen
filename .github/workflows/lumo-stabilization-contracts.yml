@@ -1,0 +1,67 @@
+name: Lumo stabilization - source contracts
+on:
+  push:
+    branches:
+      - chatgpt/lumo-stabilisierung-nativehash-fix-2026-10-17
+    paths:
+      - tools/android_qa/native_lap_evidence_recovery.py
+      - tools/android_qa/native_handoff_evidence_recovery.py
+      - scripts/verify_legacy_release_pin.py
+      - scripts/tests/test_native_source_bindings.py
+      - scripts/tests/test_legacy_release_pin.py
+      - .github/workflows/lumo-1950-unified-visual-apk.yml
+      - .github/workflows/lumo-1951-writing-apk.yml
+      - .github/workflows/lumo-1952-child-writing-apk.yml
+      - .github/workflows/lumo-stabilization-contracts.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Run targeted fail-closed unit tests
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s scripts/tests -p 'test_native_source_bindings.py' -v
+          python3 -m unittest discover -s scripts/tests -p 'test_legacy_release_pin.py' -v
+          python3 scripts/verify_legacy_release_pin.py
+      - name: Check six production bindings against pinned, fetched Godot bytes
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, subprocess, tempfile, sys, hashlib
+          from pathlib import Path
+          root = Path.cwd()
+          qa = root / 'tools/android_qa'
+          sys.path.insert(0, str(qa))
+          import native_lap_evidence_recovery as lap
+          import native_handoff_evidence_recovery as handoff
+          cfg = json.loads((root / 'config/godot-source.json').read_text())
+          checks = {
+              'scripts/games/kart_island.gd': (lap.SOURCE_SHA256, handoff.SOURCE_SHA256),
+              'scripts/tests/kart_race_continuity_regression.gd': (lap.LAP_PROBE_SHA256, handoff.PROBE_SHA256),
+              'scripts/tests/kart_lap_session_fixtures.gd': (lap.FIXTURE_PROBE_SHA256,),
+              'scripts/tests/kart_complete_flow_regression.gd': (lap.FLOW_PROBE_SHA256,),
+              'scripts/tests/kart_time_format_regression.gd': (lap.TIME_PROBE_SHA256,),
+              'scripts/tests/kart_handoff_lifecycle_fixtures.gd': (handoff.HELPER_SHA256,),
+          }
+          with tempfile.TemporaryDirectory() as work:
+              subprocess.run(['git', 'init', '-q', work], check=True)
+              subprocess.run(['git', '-C', work, 'remote', 'add', 'origin', cfg['repository']], check=True)
+              subprocess.run(['git', '-C', work, 'fetch', '-q', '--depth', '1', 'origin', cfg['revision']], check=True)
+              subprocess.run(['git', '-C', work, 'checkout', '-q', '--detach', 'FETCH_HEAD'], check=True)
+              sha = subprocess.check_output(['git', '-C', work, 'rev-parse', 'HEAD'], text=True).strip()
+              assert sha == cfg['revision'], (sha, cfg['revision'])
+              for path, expected in checks.items():
+                  source = Path(work) / path
+                  assert source.is_file(), f'Missing pinned file: {path}'
+                  actual = hashlib.sha256(source.read_bytes()).hexdigest()
+                  for digest in expected:
+                      assert actual == digest, f'Native source drift at {path}: {digest} != {actual}'
+                  print(f'PASS {path}: {actual}')
+          PY

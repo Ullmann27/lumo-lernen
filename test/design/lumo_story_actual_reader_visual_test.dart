@@ -26,7 +26,7 @@ void main() {
       home: LumoStorySetupScreen(appState: state, initialGrade: 2),
     ));
     await _frames(tester);
-    expect(find.text('Lumo erfindet dir eine Geschichte!'), findsOneWidget);
+    expect(find.text('Lumos Bücher und Leseabenteuer'), findsOneWidget);
     final library = find.byKey(const ValueKey('lumo-story-open-library'));
     expect(library, findsOneWidget);
     await tester.ensureVisible(library);

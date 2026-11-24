@@ -23,14 +23,14 @@ class RechentricksMentorCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            accent.withOpacity(0.19),
-            accent.withOpacity(0.12),
+            const Color(0xF0112449),
+            const Color(0xF5123A59),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: accent.withOpacity(0.45), width: 1.5),
+        border: Border.all(color: const Color(0xFF56CEFA).withOpacity(0.65), width: 1.5),
         boxShadow: [
           BoxShadow(
             color: accent.withOpacity(0.18),
@@ -100,7 +100,7 @@ class RechentricksMentorCard extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 13.5,
                         fontWeight: FontWeight.w800,
-                        color: const Color(0xFF254263),
+                        color: Colors.white,
                         height: 1.2,
                       ),
                     ),
@@ -114,7 +114,7 @@ class RechentricksMentorCard extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: const Color(0xFF193F60),
               borderRadius: BorderRadius.circular(LumoRadius.md),
               border: Border.all(color: accent.withOpacity(0.35)),
             ),
@@ -124,7 +124,7 @@ class RechentricksMentorCard extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 16,
                 fontWeight: FontWeight.w900,
-                color: const Color(0xFF142747),
+                color: Colors.white,
               ),
             ),
           ),
@@ -140,7 +140,8 @@ class RechentricksMentorCard extends StatelessWidget {
           const SizedBox(height: 10),
           Row(
             children: [
-              Container(
+              Flexible(
+                  child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
                 decoration: BoxDecoration(
@@ -157,21 +158,27 @@ class RechentricksMentorCard extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.check_circle_rounded,
-                        size: 18, color: Colors.white),
+                    Icon(
+                        explanation.resultHidden
+                            ? Icons.edit_rounded
+                            : Icons.check_circle_rounded,
+                        size: 18,
+                        color: Colors.white),
                     const SizedBox(width: 6),
-                    Text(
-                      explanation.resultText,
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 13,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
+                    Flexible(
+                      child: Text(
+                        explanation.resultText,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 13,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ),
+              )),
             ],
           ),
         ],
@@ -202,8 +209,8 @@ class _StepLine extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: accent.withOpacity(0.18),
-            border: Border.all(color: accent.withOpacity(0.7), width: 1.2),
+            color: const Color(0xFF1B4A68),
+            border: Border.all(color: accent.withOpacity(0.85), width: 1.2),
           ),
           child: Text(
             '$index',
@@ -211,7 +218,7 @@ class _StepLine extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: 13,
               fontWeight: FontWeight.w900,
-              color: accent,
+              color: Colors.white,
             ),
           ),
         ),
@@ -225,7 +232,7 @@ class _StepLine extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 14,
                 fontWeight: FontWeight.w800,
-                color: const Color(0xFF254263),
+                color: Colors.white,
                 height: 1.25,
               ),
             ),

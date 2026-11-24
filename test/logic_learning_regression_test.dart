@@ -34,7 +34,9 @@ void main() {
                 .toList();
             expect(sequence, hasLength(4));
             final step = sequence[1] - sequence[0];
-            expect(step, greaterThan(0));
+            // Seit Befund M25 gehen Zahlenmuster auch zurück; Schritt 0 und 1
+            // (reines Weiterzählen) kommen nicht vor.
+            expect(step.abs(), greaterThanOrEqualTo(2));
             expect(sequence[2] - sequence[1], step);
             expect(sequence[3] - sequence[2], step);
             expect(int.parse(task.answer), sequence.last + step);
@@ -44,9 +46,13 @@ void main() {
                 .allMatches(task.prompt)
                 .map((m) => int.parse(m[0]!))
                 .toList();
-            final matching = task.choices
-                .map(int.parse)
-                .where((n) => n > limits[0] && n < limits[1] && n.isEven);
+            // Die dritte Regel wechselt seit Befund M25.
+            final property = RegExp(r'und (gerade|ungerade|in der [345]er-Reihe)\?')
+                .firstMatch(task.prompt)![1]!;
+            final matching = task.choices.map(int.parse).where((n) =>
+                n > limits[0] &&
+                n < limits[1] &&
+                combinedRuleProperty(property, n));
             expect(matching.toList(), [int.parse(task.answer)]);
           }
         }
@@ -92,7 +98,11 @@ void main() {
       onAnswered: (answer) => result = answer,
     )))));
     expect(find.text('Logik'), findsOneWidget);
-    await tester.tap(find.text(task.answer));
+    final correctOption =
+        instance.options.singleWhere((option) => '${option.payload ?? option.label}' == '${instance.correctAnswer}');
+    await tester.tap(
+      find.byKey(ValueKey('answer-option-${correctOption.id}')),
+    );
     await tester.pump();
     expect(result?.correct, isTrue);
     expect(result?.answer, instance.correctAnswer);

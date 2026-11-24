@@ -2,7 +2,10 @@ import hashlib
 import importlib.util
 import io
 import json
+import os
 from pathlib import Path
+import shutil
+import subprocess
 import tarfile
 import tempfile
 import unittest
@@ -11,6 +14,61 @@ PATH = Path(__file__).resolve().parents[1] / "prepare_offline_voice.py"
 SPEC = importlib.util.spec_from_file_location("prepare_offline_voice", PATH)
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
+
+
+class OfflineSpeechTokenizerTest(unittest.TestCase):
+    """Actual Java normalization/tokenization; synthetic ONNX, no model inference."""
+
+    @classmethod
+    def setUpClass(cls):
+        root = PATH.parents[1]
+        cls.fixtures = Path(__file__).parent / 'fixtures/offline_voice_tokenizer'
+        cls.expected_indexer = json.loads(
+            (root / 'config/lumo-offline-voice.json').read_text()
+        )['file_sha256']['unicode_indexer.bin']
+        cls.java = cls.tool('java')
+        javac = cls.tool('javac')
+        cls.temp = tempfile.TemporaryDirectory(prefix='lumo-offline-tokenizer-')
+        cls.addClassCleanup(cls.temp.cleanup)
+        cls.classes = Path(cls.temp.name) / 'classes'
+        cls.classes.mkdir()
+        sources = [root / 'tools/auto_install/LumoOfflineSpeechEngine.java',
+                   root / 'scripts/voice/LumoOfflineSpeechEngineProbe.java',
+                   cls.fixtures / 'OfflineVoiceTokenizerContract.java',
+                   *sorted((cls.fixtures / 'onnx').rglob('*.java'))]
+        cls.run_checked([javac, '-encoding', 'UTF-8', '-d', str(cls.classes),
+                         *map(str, sources)])
+
+    @staticmethod
+    def tool(name):
+        configured = Path(os.environ.get('JAVA_HOME', '/nonexistent')) / 'bin' / name
+        selected = str(configured) if configured.is_file() else shutil.which(name)
+        if not selected:
+            raise RuntimeError('Use the existing JDK; no compiler download')
+        return selected
+
+    @staticmethod
+    def run_checked(command):
+        result = subprocess.run(command, capture_output=True, text=True, timeout=60)
+        if result.returncode:
+            raise AssertionError(result.stdout + result.stderr)
+        return result
+
+    def test_original_banana_sentence_with_exact_pinned_tokenizer(self):
+        with tempfile.TemporaryDirectory(prefix='lumo-tokenizer-model-boundary-') as models:
+            result = self.run_checked([
+                self.java, '-cp', str(self.classes), 'OfflineVoiceTokenizerContract',
+                str(self.fixtures / 'unicode_indexer.bin'), self.expected_indexer, models,
+            ])
+        self.assertIn('LUMO_OFFLINE_TOKENIZER_PASS checks=11 ', result.stdout)
+        print(result.stdout, end='')
+
+    def test_existing_java_voice_guards(self):
+        result = self.run_checked([
+            self.java, '-cp', str(self.classes), 'LumoOfflineSpeechEngineProbe', '--unit-only',
+        ])
+        self.assertIn('PASS local voice Java guards: 11', result.stdout)
+        print(result.stdout, end='')
 
 
 class OfflineModelPackagingTest(unittest.TestCase):

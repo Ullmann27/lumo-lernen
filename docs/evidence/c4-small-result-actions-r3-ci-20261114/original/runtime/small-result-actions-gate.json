@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "passed": true,
+  "preflight_only": false,
+  "started_utc": "2026-11-14T12:52:41.406858+00:00",
+  "scope": "two real scrolled desktop result actions; local file transport and test preferences; no Android/FPS claim",
+  "godot_version": "4.6.3.stable.official.7d41c59c4",
+  "commands": {
+    "dart": [
+      "flutter",
+      "test",
+      "--no-pub",
+      "--reporter=expanded",
+      "test/games/connect_four_small_result_actions_qa.dart"
+    ],
+    "godot": [
+      "xvfb-run",
+      "-a",
+      "-s",
+      "-screen 0 960x540x24 -nolisten tcp",
+      "godot",
+      "--path",
+      "/home/runner/work/lumo-lernen/lumo-lernen/frozen-native",
+      "--fixed-fps",
+      "24",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "640x360",
+      "--script",
+      "res://scripts/tests/connect_four_small_result_actions_qa.gd",
+      "--",
+      "--capture"
+    ]
+  },
+  "fixed_fps_argument_is_not_a_measurement": true,
+  "session": {
+    "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "owner": "c6fe0e38855f93fc20490eb88cdc5e23a5ff16cc8fa1330c4c299717bd8f8781",
+    "roundId": "76116f2b615755ffa4d4d7b059713496"
+  },
+  "original_godot_log": {
+    "bytes": 1447,
+    "sha256": "26d020d5e1ade4a89bc0880d1d963ee34b188771ec13f2940071a88c8d81c48a",
+    "errors": []
+  },
+  "results": {
+    "verified_actions": [
+      "restart",
+      "mode"
+    ],
+    "native_checks": 283,
+    "images": [
+      {
+        "path": "small_result_mode_after.png",
+        "width": 640,
+        "height": 360,
+        "bytes": 29157,
+        "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+        "git_blob": "093d05df37c4033689cffbe08057706740d23072"
+      },
+      {
+        "path": "small_result_mode_before.png",
+        "width": 640,
+        "height": 360,
+        "bytes": 22337,
+        "sha256": "b76ce45ea178deaaa994821fccd6341793d08c64e859489a0d868220b38dbc6d",
+        "git_blob": "7870c0a298e52724718be1c06ac63520e357d2cc"
+      },
+      {
+        "path": "small_result_restart_after.png",
+        "width": 640,
+        "height": 360,
+        "bytes": 29157,
+        "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+        "git_blob": "093d05df37c4033689cffbe08057706740d23072"
+      },
+      {
+        "path": "small_result_restart_before.png",
+        "width": 640,
+        "height": 360,
+        "bytes": 21030,
+        "sha256": "1172ea356ab844f357ed0c3eb678a4e07b2c79dcb757077f0a43b6880dbe2352",
+        "git_blob": "d57460775512d80e3c906f0217b32635dd4d6bfe"
+      }
+    ],
+    "layouts": [
+      {
+        "path": "small_result_restart_before.layout.json",
+        "bytes": 19747,
+        "sha256": "0ec0375232a0afcc9b679791f2cae9cc5a0d76559671ed0cd0d10357dea1fe41",
+        "git_blob": "947320b44a4850ccdbdfe6093bc0bffd70a05916"
+      },
+      {
+        "path": "small_result_restart_after.layout.json",
+        "bytes": 19708,
+        "sha256": "e345fbce9613c338566259e8077546dbb5afefe1114f519461a8df42ec02689d",
+        "git_blob": "f17c9c6e582ca2032d7c8e206c98195dfe5742c2"
+      },
+      {
+        "path": "small_result_mode_before.layout.json",
+        "bytes": 19746,
+        "sha256": "c607ed9d5f836a5d134cb462d7c46784a03cb47979d6d7d112585726680faf5c",
+        "git_blob": "6fa17005fdc3ee85c221c9797ad554b5924efa32"
+      },
+      {
+        "path": "small_result_mode_after.layout.json",
+        "bytes": 19707,
+        "sha256": "68046c696d9ce45abf2a1ad245c41d7b811b4d43da465463e1c20ce68c8712ea",
+        "git_blob": "c1b177946bd441e06e3c45236ae03f8297c2ee1b"
+      }
+    ],
+    "input_events": 98,
+    "android_or_measured_fps_claim": false
+  },
+  "exit_codes": {
+    "dart": 0,
+    "godot": 0
+  },
+  "completed_utc": "2026-11-14T12:53:14.245495+00:00"
+}

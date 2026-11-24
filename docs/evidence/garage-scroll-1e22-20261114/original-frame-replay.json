@@ -1,0 +1,430 @@
+[
+  {
+    "series": "android",
+    "frame_index": 0,
+    "source_sha256": "2c5214fe0ae35668c6e547dabcf14772a6e06101e52edd5e13bf01e99c7ab290",
+    "original_recorded_recovery": {
+      "status": "WAITING_FOR_SECOND_LIST_FRAME",
+      "gesture": [
+        374,
+        486,
+        374,
+        341
+      ],
+      "card": {
+        "text": "Comet",
+        "bounds": [
+          313.5,
+          471.0,
+          434.0,
+          500.0
+        ],
+        "variant": "raw"
+      },
+      "header_bottom": 323.0,
+      "footer_top": 899.0,
+      "scope": "Scroll gesture only; target caption and actual saved selection remain mandatory"
+    },
+    "new_plan": {
+      "gesture": [
+        374,
+        498,
+        374,
+        473
+      ],
+      "card": {
+        "text": "Comet",
+        "bounds": [
+          313.5,
+          471.0,
+          434.0,
+          500.0
+        ],
+        "variant": "raw",
+        "source_tsv": "21_stage_select_gecko_velo-0-ocr-raw.tsv",
+        "line_identity": [
+          "1",
+          "15",
+          "1",
+          "1"
+        ],
+        "word_numbers": [
+          1
+        ]
+      },
+      "anchor_kind": "current-caption",
+      "anchor_caption": "comet",
+      "anchor_bounds": [
+        314.0,
+        472.0,
+        434.0,
+        499.0
+      ],
+      "header_bottom": 323.0,
+      "workshop_top": 727.0,
+      "footer_top": 899.0,
+      "context_bounds": {
+        "karts": [
+          [
+            1153.0,
+            295.0,
+            1246.0,
+            323.0
+          ],
+          [
+            1154.0,
+            296.0,
+            1245.0,
+            323.0
+          ],
+          [
+            1154.0,
+            296.0,
+            1245.0,
+            323.0
+          ]
+        ],
+        "workshop": [
+          [
+            213.0,
+            727.0,
+            594.0,
+            762.0
+          ],
+          [
+            213.0,
+            727.0,
+            594.0,
+            762.0
+          ]
+        ]
+      },
+      "scope": "Scroll inside current caption only; exact target and saved selection remain mandatory"
+    },
+    "scope": "Offline geometry only; no ADB or vehicle selection"
+  },
+  {
+    "series": "android",
+    "frame_index": 2,
+    "source_sha256": "33ff8013d1541f6c1d0367caba494a4f8cd29578cd2d6c783d636d75386a6549",
+    "original_recorded_recovery": null,
+    "new_plan": {
+      "gesture": [
+        396,
+        497,
+        396,
+        424
+      ],
+      "bars": [
+        [
+          312,
+          421,
+          549,
+          428
+        ],
+        [
+          312,
+          439,
+          549,
+          447
+        ],
+        [
+          312,
+          458,
+          481,
+          465
+        ],
+        [
+          312,
+          476,
+          583,
+          484
+        ],
+        [
+          312,
+          494,
+          481,
+          502
+        ]
+      ],
+      "anchor_bounds": [
+        313,
+        421,
+        480,
+        502
+      ],
+      "anchor_kind": "current-stat-bars",
+      "pixel_source": {
+        "file": "21_stage_select_gecko_velo-2.png",
+        "sha256": "33ff8013d1541f6c1d0367caba494a4f8cd29578cd2d6c783d636d75386a6549",
+        "bytes": 784389,
+        "pixels": [
+          2400,
+          1080
+        ],
+        "base_rgb": [
+          95,
+          227,
+          255
+        ],
+        "highlight_rgb": [
+          130,
+          233,
+          255
+        ],
+        "channel_tolerance": 2,
+        "max_tick_gap_pixels": 3,
+        "minimum_row_coverage": 0.95
+      },
+      "scope": "Current pixel geometry for scrolling only; no vehicle name or selection inferred",
+      "header_bottom": 323.0,
+      "workshop_top": 727.0,
+      "footer_top": 899.0,
+      "context_bounds": {
+        "karts": [
+          [
+            1153.0,
+            295.0,
+            1246.0,
+            323.0
+          ],
+          [
+            1154.0,
+            296.0,
+            1245.0,
+            323.0
+          ],
+          [
+            1154.0,
+            296.0,
+            1245.0,
+            323.0
+          ]
+        ],
+        "workshop": [
+          [
+            213.0,
+            727.0,
+            594.0,
+            762.0
+          ],
+          [
+            213.0,
+            727.0,
+            594.0,
+            762.0
+          ]
+        ]
+      }
+    },
+    "scope": "Offline geometry only; no ADB or vehicle selection"
+  },
+  {
+    "series": "update",
+    "frame_index": 0,
+    "source_sha256": "22b2311774c6fdd87c331c52eef39eb9bced9d99aab5723bf7ed4164fe42c0a4",
+    "original_recorded_recovery": {
+      "status": "WAITING_FOR_SECOND_LIST_FRAME",
+      "gesture": [
+        510,
+        486,
+        510,
+        351
+      ],
+      "card": {
+        "text": "Comet",
+        "bounds": [
+          450.0,
+          472.0,
+          570.0,
+          499.0
+        ],
+        "variant": "contrast"
+      },
+      "header_bottom": 323.0,
+      "footer_top": 899.0,
+      "scope": "Scroll gesture only; target caption and actual saved selection remain mandatory"
+    },
+    "new_plan": {
+      "gesture": [
+        510,
+        498,
+        510,
+        473
+      ],
+      "card": {
+        "text": "Comet",
+        "bounds": [
+          449.5,
+          471.0,
+          571.0,
+          500.0
+        ],
+        "variant": "raw",
+        "source_tsv": "21_stage_select_gecko_velo-0-ocr-raw.tsv",
+        "line_identity": [
+          "1",
+          "14",
+          "1",
+          "1"
+        ],
+        "word_numbers": [
+          3
+        ]
+      },
+      "anchor_kind": "current-caption",
+      "anchor_caption": "comet",
+      "anchor_bounds": [
+        450.0,
+        472.0,
+        570.0,
+        499.0
+      ],
+      "header_bottom": 323.0,
+      "workshop_top": 727.0,
+      "footer_top": 899.0,
+      "context_bounds": {
+        "karts": [
+          [
+            1223.0,
+            296.0,
+            1314.0,
+            323.0
+          ],
+          [
+            1223.0,
+            296.0,
+            1314.0,
+            323.0
+          ]
+        ],
+        "workshop": [
+          [
+            328.0,
+            727.0,
+            709.0,
+            762.0
+          ],
+          [
+            328.0,
+            727.0,
+            709.0,
+            762.0
+          ]
+        ]
+      },
+      "scope": "Scroll inside current caption only; exact target and saved selection remain mandatory"
+    },
+    "scope": "Offline geometry only; no ADB or vehicle selection"
+  },
+  {
+    "series": "update",
+    "frame_index": 2,
+    "source_sha256": "b3ce33bfffbca15d696adada0045f8edd52ff2db30c85f0b4f20fac084f3627f",
+    "original_recorded_recovery": null,
+    "new_plan": {
+      "gesture": [
+        524,
+        506,
+        524,
+        433
+      ],
+      "bars": [
+        [
+          448,
+          430,
+          661,
+          437
+        ],
+        [
+          448,
+          448,
+          661,
+          456
+        ],
+        [
+          448,
+          467,
+          600,
+          474
+        ],
+        [
+          448,
+          485,
+          691,
+          493
+        ],
+        [
+          448,
+          503,
+          600,
+          511
+        ]
+      ],
+      "anchor_bounds": [
+        449,
+        430,
+        599,
+        511
+      ],
+      "anchor_kind": "current-stat-bars",
+      "pixel_source": {
+        "file": "21_stage_select_gecko_velo-2.png",
+        "sha256": "b3ce33bfffbca15d696adada0045f8edd52ff2db30c85f0b4f20fac084f3627f",
+        "bytes": 760982,
+        "pixels": [
+          2400,
+          1080
+        ],
+        "base_rgb": [
+          95,
+          227,
+          255
+        ],
+        "highlight_rgb": [
+          130,
+          233,
+          255
+        ],
+        "channel_tolerance": 2,
+        "max_tick_gap_pixels": 3,
+        "minimum_row_coverage": 0.95
+      },
+      "scope": "Current pixel geometry for scrolling only; no vehicle name or selection inferred",
+      "header_bottom": 323.0,
+      "workshop_top": 727.0,
+      "footer_top": 899.0,
+      "context_bounds": {
+        "karts": [
+          [
+            1223.0,
+            296.0,
+            1314.0,
+            323.0
+          ],
+          [
+            1223.0,
+            296.0,
+            1314.0,
+            323.0
+          ]
+        ],
+        "workshop": [
+          [
+            328.0,
+            727.0,
+            709.0,
+            762.0
+          ],
+          [
+            328.0,
+            727.0,
+            709.0,
+            762.0
+          ]
+        ]
+      }
+    },
+    "scope": "Offline geometry only; no ADB or vehicle selection"
+  }
+]

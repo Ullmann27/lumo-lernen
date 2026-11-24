@@ -1,0 +1,11 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_native_entry_test.dart
+00:00 +0: Child-facing Memory remains playable until native 3D is explicitly requested
+00:00 +1: Missing native plugin leaves real Flutter cards usable with no cover or snackbar
+00:00 +2: A real Flutter pair resolves while optional native Open is still pending
+00:01 +3: Two immediate real card taps keep their order through durable saves
+00:01 +4: An unfinished round reopens paused with the same card and explicit Resume
+00:01 +5: Lifecycle pause saves the current pair phase and does not silently resume
+00:01 +6: Pause accounts for monotonic elapsed time without an intervening frame
+00:01 +7: Profile change removes the old round and leaves its original bytes separate
+00:01 +8: A delayed optional haptic reply cannot block the second card or durable Pause
+00:01 +9: All tests passed!

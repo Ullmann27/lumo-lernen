@@ -1,0 +1,5 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/profile_fail_closed_regression_test.dart
+00:00 +0: a damaged previous profile cannot be overwritten by onboarding
+00:00 +1: reading an older valid profile never silently rewrites its raw data
+00:00 +2: explicit saving a valid profile preserves its identity and grade
+00:00 +3: All tests passed!

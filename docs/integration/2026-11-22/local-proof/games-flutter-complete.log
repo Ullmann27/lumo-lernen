@@ -1,0 +1,231 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_native_entry_test.dart
+00:00 +0: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_native_entry_test.dart: Child-facing Memory remains playable until native 3D is explicitly requested
+00:00 +1: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Tippen dreht die Karte um (3D-Flip) und zeigt das Motiv
+00:00 +2: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Tippen dreht die Karte um (3D-Flip) und zeigt das Motiv
+00:01 +3: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Tippen dreht die Karte um (3D-Flip) und zeigt das Motiv
+00:01 +4: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Tippen dreht die Karte um (3D-Flip) und zeigt das Motiv
+00:01 +5: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_native_entry_test.dart: An unfinished round reopens paused with the same card and explicit Resume
+00:01 +6: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Stufenwahl startet ein neues Brett in der richtigen Größe
+00:01 +7: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_native_entry_test.dart: Lifecycle pause saves the current pair phase and does not silently resume
+00:01 +8: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Die eigene zuletzt gespielte Stufe wird wiederhergestellt
+00:01 +9: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_native_entry_test.dart: Pause accounts for monotonic elapsed time without an intervening frame
+00:01 +10: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Kein Überlauf auf Handy, Fold, Querformat und kleinem Display
+00:01 +11: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Kein Überlauf auf Handy, Fold, Querformat und kleinem Display
+00:01 +12: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Kein Überlauf auf Handy, Fold, Querformat und kleinem Display
+00:03 +13: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Kein Überlauf auf Handy, Fold, Querformat und kleinem Display
+00:03 +14: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Kein Überlauf auf Handy, Fold, Querformat und kleinem Display
+00:03 +15: /tmp/lumo-integration-20261122/lumo-lernen/test/games/memory_screen_test.dart: Kein Überlauf auf Handy, Fold, Querformat und kleinem Display
+00:03 +16: /tmp/lumo-integration-20261122/lumo-lernen/test/quiz_native_roundtrip_lifecycle_test.dart: Android opens a playable saved quiz before starting the optional studio
+00:04 +17: /tmp/lumo-integration-20261122/lumo-lernen/test/quiz_native_roundtrip_lifecycle_test.dart: Android opens a playable saved quiz before starting the optional studio
+00:04 +18: /tmp/lumo-integration-20261122/lumo-lernen/test/quiz_native_roundtrip_lifecycle_test.dart: Android opens a playable saved quiz before starting the optional studio
+00:04 +19: /tmp/lumo-integration-20261122/lumo-lernen/test/quiz_native_roundtrip_lifecycle_test.dart: Native selection, Flutter return and reopen keep one saved round
+00:04 +20: /tmp/lumo-integration-20261122/lumo-lernen/test/quiz_native_roundtrip_lifecycle_test.dart: Native selection, Flutter return and reopen keep one saved round
+00:04 +21: /tmp/lumo-integration-20261122/lumo-lernen/test/quiz_native_roundtrip_lifecycle_test.dart: Native selection, Flutter return and reopen keep one saved round
+00:04 +22: /tmp/lumo-integration-20261122/lumo-lernen/test/quiz_native_roundtrip_lifecycle_test.dart: Native selection, Flutter return and reopen keep one saved round
+00:04 +23: /tmp/lumo-integration-20261122/lumo-lernen/test/quiz_native_roundtrip_lifecycle_test.dart: Native selection, Flutter return and reopen keep one saved round
+00:04 +24: /tmp/lumo-integration-20261122/lumo-lernen/test/quiz_native_roundtrip_lifecycle_test.dart: Native selection, Flutter return and reopen keep one saved round
+00:04 +25: /tmp/lumo-integration-20261122/lumo-lernen/test/quiz_native_roundtrip_lifecycle_test.dart: Native selection, Flutter return and reopen keep one saved round
+00:04 +26: /tmp/lumo-integration-20261122/lumo-lernen/test/quiz_native_roundtrip_lifecycle_test.dart: App pause cancels the Flutter answer lock without resolving it
+00:05 +27: /tmp/lumo-integration-20261122/lumo-lernen/test/home_3d_workshop_entry_test.dart: 3D workshop is directly reachable from the real home on Fold
+00:06 +28: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/lab_native_entry_test.dart: bridge: visible native entry preserves the exact task
+00:07 +29: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/lab_native_entry_test.dart: word: visible native entry preserves the exact task
+00:07 +30: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/remaining_native_entry_test.dart: cross: real native entry preserves exact task through pause and return
+00:07 +31: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/remaining_native_entry_test.dart: cross: real native entry preserves exact task through pause and return
+00:07 +32: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/remaining_native_entry_test.dart: cross: real native entry preserves exact task through pause and return
+00:08 +33: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/remaining_native_entry_test.dart: cross: real native entry preserves exact task through pause and return
+00:08 +34: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/lab_native_entry_test.dart: pattern: visible native entry preserves the exact task
+00:08 +35: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/remaining_native_entry_test.dart: cross: stopped or replaced proposal cannot use an old confirm callback
+00:09 +36: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/lab_native_entry_test.dart: native return before resume keeps an ungraded recall candidate
+00:09 +37: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/lab_native_entry_test.dart: native return before resume keeps an ungraded recall candidate
+00:09 +38: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/remaining_native_entry_test.dart: photo: stopped or replaced proposal cannot use an old confirm callback
+00:09 +39: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/lab_native_entry_test.dart: native pattern proposal cannot move the hidden step or survive Stop
+00:09 +40: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/lab_native_entry_test.dart: native pattern proposal cannot move the hidden step or survive Stop
+00:10 +41: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/lab_native_entry_test.dart: native pattern proposal cannot move the hidden step or survive Stop
+00:10 +42: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/remaining_native_entry_test.dart: mini: real native entry preserves exact task through pause and return
+00:10 +43: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/remaining_native_entry_test.dart: mini: stopped or replaced proposal cannot use an old confirm callback
+00:10 +44: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: actual generator, task ownership and malformed descriptor contracts
+00:10 +45: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: actual generator, task ownership and malformed descriptor contracts
+00:10 +46: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: actual generator, task ownership and malformed descriptor contracts
+00:10 +47: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: actual generator, task ownership and malformed descriptor contracts
+00:12 +48: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: actual generator, task ownership and malformed descriptor contracts
+00:12 +49: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: actual generator, task ownership and malformed descriptor contracts
+Shell: PASS actual generator and unchanged checked adapter reach all fourteen words
+Shell: PASS both first school grades retain all ten real school objects
+Shell: PASS multiword objects require the exact prompt and actual answer
+Shell: PASS fallback prompt remains bound to its actual German answer
+Shell: PASS unknown words, text injection and wrong meanings fail closed
+Shell: PASS missing, duplicate or misleading visible answer choices fail closed
+Shell: PASS stable task chooses stable positions without always revealing the first slot
+Shell: PASS launch maps cannot mutate retained task descriptor
+Shell: PASS existing arithmetic descriptors retain the same operands
+Shell: PASS existing German syllable descriptor remains exact
+Shell: NATIVE_ENGLISH_DART_PASS cases=10 checks=2887
+00:12 +50: /tmp/lumo-integration-20261122/lumo-lernen/test/profile_target_layout_test.dart: neu verdiente Sterne und Spiele erscheinen ohne Neuaufbau
+00:12 +51: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: all reviewed English descriptors use the existing learning bridge
+00:12 +52: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: all reviewed English descriptors use the existing learning bridge
+00:12 +53: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: all reviewed English descriptors use the existing learning bridge
+00:12 +54: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: all reviewed English descriptors use the existing learning bridge
+00:12 +55: /tmp/lumo-integration-20261122/lumo-lernen/test/profile_target_layout_test.dart: kein Überlauf, Tippflächen ab 48 dp: Handy 390×844, Schrift 1,3
+00:12 +56: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: English help preserves the actual parent voice and license gates
+00:12 +57: /tmp/lumo-integration-20261122/lumo-lernen/test/profile_target_layout_test.dart: kein Überlauf, Tippflächen ab 48 dp: Fold offen 840×760
+00:12 +58: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: late English return cannot attach to another profile generation
+00:12 +59: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: late English return cannot attach to another profile generation
+00:12 +60: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: late English return cannot attach to another profile generation
+00:13 +61: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart: late English return cannot attach to another profile generation
+00:13 +62: /tmp/lumo-integration-20261122/lumo-lernen/test/profile_target_layout_test.dart: alle Wege des Profils führen zu echten Bereichen
+00:13 +63: /tmp/lumo-integration-20261122/lumo-lernen/test/profile_target_layout_test.dart: „Animationen reduzieren“ hält das Profil ruhig
+00:13 +64: /tmp/lumo-integration-20261122/lumo-lernen/test/profile_target_layout_test.dart: ohne Reduzierung lebt das Profil: Leisten und Avatar bewegen sich
+00:13 +65: /tmp/lumo-integration-20261122/lumo-lernen/test/profile_target_layout_test.dart: (tearDownAll)
+00:13 +65: /tmp/lumo-integration-20261122/lumo-lernen/test/smoke_main_screens_test.dart: AppState lasst sich erstellen und disposen
+00:13 +66: /tmp/lumo-integration-20261122/lumo-lernen/test/smoke_main_screens_test.dart: RewardWallet kann geladen werden ohne Crash
+00:13 +67: /tmp/lumo-integration-20261122/lumo-lernen/test/smoke_main_screens_test.dart: RewardWallet addStars erhoeht persistent
+00:13 +68: /tmp/lumo-integration-20261122/lumo-lernen/test/smoke_main_screens_test.dart: RewardWallet addXp erhoeht und Level steigt
+00:13 +69: /tmp/lumo-integration-20261122/lumo-lernen/test/smoke_main_screens_test.dart: LumoAkademieScreen baut ohne harten Crash
+00:14 +70: /tmp/lumo-integration-20261122/lumo-lernen/test/smoke_main_screens_test.dart: LumoAkademieScreen baut ohne harten Crash
+00:14 +71: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 1 enters its real lesson, plays, pauses and steps
+00:14 +72: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 1 enters its real lesson, plays, pauses and steps
+00:14 +73: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 1 enters its real lesson, plays, pauses and steps
+00:14 +74: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 1 enters its real lesson, plays, pauses and steps
+00:14 +75: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 1 enters its real lesson, plays, pauses and steps
+00:15 +76: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 2 enters its real lesson, plays, pauses and steps
+00:15 +77: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 2 enters its real lesson, plays, pauses and steps
+00:15 +78: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 2 enters its real lesson, plays, pauses and steps
+00:15 +79: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 2 enters its real lesson, plays, pauses and steps
+00:15 +80: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 2 enters its real lesson, plays, pauses and steps
+00:15 +81: /tmp/lumo-integration-20261122/lumo-lernen/test/math_explanation_facts_test.dart: M5: „Wie oft passt 5 in 50?“ statt „Wie oft 5 ist 50?“
+00:15 +82: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 3 enters its real lesson, plays, pauses and steps
+00:15 +83: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 3 enters its real lesson, plays, pauses and steps
+00:15 +84: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 3 enters its real lesson, plays, pauses and steps
+00:15 +85: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 3 enters its real lesson, plays, pauses and steps
+00:15 +86: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 3 enters its real lesson, plays, pauses and steps
+00:15 +87: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 3 enters its real lesson, plays, pauses and steps
+00:15 +88: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 3 enters its real lesson, plays, pauses and steps
+00:15 +89: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 4 enters its real lesson, plays, pauses and steps
+00:15 +90: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/math_explanation_film_test.dart: grade 4 enters its real lesson, plays, pauses and steps
+00:16 +91: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: English animal illustrations are bound to their real current words
+00:16 +92: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: English animal illustrations are bound to their real current words
+00:16 +93: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: English animal illustrations are bound to their real current words
+00:16 +94: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: English animal illustrations are bound to their real current words
+00:16 +95: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: English animal illustrations are bound to their real current words
+00:16 +96: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: English animal illustrations are bound to their real current words
+00:16 +97: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: English animal illustrations are bound to their real current words
+00:16 +98: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +99: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +100: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +101: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +102: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +103: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +104: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +105: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +106: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +107: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +108: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +109: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +110: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +111: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Picture cards reveal one word and report a help action
+00:16 +112: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Grade 1 sees and explores the example in the real workspace
+00:16 +113: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Grade 2 sees and explores the example in the real workspace
+00:16 +114: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Grade 3 sees and explores the example in the real workspace
+00:16 +115: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Grade 4 sees and explores the example in the real workspace
+00:17 +116: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Normal lesson demonstrates Deutsch 1 / Silben
+00:17 +117: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Normal lesson demonstrates Englisch 1 / Zahlen
+00:17 +118: /tmp/lumo-integration-20261122/lumo-lernen/test/language_example_board_test.dart: Normal lesson demonstrates Deutsch 2 / Tunwoerter
+00:17 +119: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_entry_test.dart: Plus-Aufgabe bietet Schritt für Schritt mit Lumo an; Rückkehr lässt Aufgabe, Sterne und XP unverändert
+00:17 +120: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_entry_test.dart: Plus-Aufgabe bietet Schritt für Schritt mit Lumo an; Rückkehr lässt Aufgabe, Sterne und XP unverändert
+00:17 +121: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_entry_test.dart: Plus-Aufgabe bietet Schritt für Schritt mit Lumo an; Rückkehr lässt Aufgabe, Sterne und XP unverändert
+00:17 +122: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_entry_test.dart: Plus-Aufgabe bietet Schritt für Schritt mit Lumo an; Rückkehr lässt Aufgabe, Sterne und XP unverändert
+00:17 +123: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_entry_test.dart: Plus-Aufgabe bietet Schritt für Schritt mit Lumo an; Rückkehr lässt Aufgabe, Sterne und XP unverändert
+00:17 +124: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_entry_test.dart: Plus-Aufgabe bietet Schritt für Schritt mit Lumo an; Rückkehr lässt Aufgabe, Sterne und XP unverändert
+00:17 +125: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_entry_test.dart: Plus-Aufgabe bietet Schritt für Schritt mit Lumo an; Rückkehr lässt Aufgabe, Sterne und XP unverändert
+00:18 +126: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Startweg der 3D-Nachhilfe: echter launchLumo3D-Payload übersteht Codec und JSON (Fixture für Godot)
+00:18 +127: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Startweg der 3D-Nachhilfe: echter launchLumo3D-Payload übersteht Codec und JSON (Fixture für Godot)
+00:19 +128: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Rückgabe der 3D-Nachhilfe: nur Hilfestufe und Zwilling, nie das Original
+00:19 +129: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +130: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +131: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +132: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +133: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +134: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +135: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +136: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +137: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +138: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +139: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +140: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +141: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +142: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +143: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +144: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +145: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +146: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +147: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +148: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +149: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +150: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +151: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +152: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +153: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +154: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +155: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:19 +156: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:20 +157: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart: 3D-Start scheitert: die 2D-Nachhilfe bleibt offen
+00:21 +158: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: (setUpAll)
+00:21 +158: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:21 +159: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:21 +160: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:21 +161: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:21 +162: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:21 +163: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:21 +164: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:21 +165: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:22 +166: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:22 +167: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:22 +168: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core header dialog retains current task and permitted help
+00:23 +169: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_lab_bus_integration_test.dart: own lab conversation keeps the stopped task and explains why two
+00:24 +170: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core dialog repeats its last help and accepts trying alone
+00:24 +171: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_lab_bus_integration_test.dart: own conversation completion preserves a newer voice request
+00:25 +172: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: foreign overlay withdraws even an owned Core conversation
+00:25 +173: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_lab_bus_integration_test.dart: own lab conversation rejects late reply after foreign route
+00:26 +174: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: task replacement retires the old dialog and its entry owner
+00:26 +175: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_lab_bus_integration_test.dart: own lab conversation rejects late reply after pause
+00:26 +176: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core and own dialog survive the shell width breakpoint
+00:27 +177: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_lab_bus_integration_test.dart: own lab conversation rejects late reply after profile
+00:27 +178: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core dock menu keeps its task through the question action
+00:27 +179: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: actual Core dock menu keeps its task through the question action
+00:27 +180: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_lab_bus_integration_test.dart: lab retires hidden bindings and restores the same model
+00:28 +181: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: wide Core companion questions and menu use the current owner
+00:28 +182: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: wide Core companion questions and menu use the current owner
+00:28 +183: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_lab_bus_integration_test.dart: reopening the lab restores its saved model without new rewards
+00:28 +184: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: stop retires a menu selection without an unbound fallback
+00:28 +185: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart: task change during menu closing discards its pending action
+00:29 +186: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: every grade and selectable cumulative topic reaches a checked variant
+00:29 +187: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: every grade and selectable cumulative topic reaches a checked variant
+00:29 +188: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: every grade and selectable cumulative topic reaches a checked variant
+00:29 +189: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: every grade and selectable cumulative topic reaches a checked variant
+00:29 +190: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: every grade and selectable cumulative topic reaches a checked variant
+00:29 +191: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: every grade and selectable cumulative topic reaches a checked variant
+00:29 +192: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: every grade and selectable cumulative topic reaches a checked variant
+00:29 +193: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: every grade and selectable cumulative topic reaches a checked variant
+00:29 +194: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: every grade and selectable cumulative topic reaches a checked variant
+00:29 +195: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: every grade and selectable cumulative topic reaches a checked variant
+00:29 +196: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: every grade and selectable cumulative topic reaches a checked variant
+00:30 +197: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: the required five-shape sequence has the proved next element
+00:30 +198: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: non-repeating and insufficient sequences are never guessed
+00:30 +199: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: number patterns check every gap and combination rules every card
+00:30 +200: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: wrong derived math answers fail independent arithmetic checks
+00:30 +201: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: comparisons, clocks and money are checked against the visible question
+00:30 +202: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: expanding a fraction checks the requested factor, not just its value
+00:30 +203: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: fallback keeps the selected logic lesson and all task identity
+00:30 +204: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: decimal, clock, measurement and fraction cards remain distinct
+00:30 +205: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: equivalent card labels use exactly the same scoring payload
+00:30 +206: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: fractional expressions never become unrelated integer counter groups
+00:30 +207: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: the visible quantities and syllables are taken from the actual problem
+00:30 +208: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: first help does not reuse a complete worked solution
+00:30 +209: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_task_quality_test.dart: plant focus is supplied only for the curated question-answer pair
+00:30 +210: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/module_frame_practical_links_test.dart: method help records assistance through the real module scope
+00:31 +211: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/guided_coach_binding_test.dart: guided speech is editable and only confirmation grades
+00:31 +212: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/module_frame_practical_links_test.dart: practical cards open existing exact practice and protected journal
+00:32 +213: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/module_frame_practical_links_test.dart: practical cards open existing exact practice and protected journal
+00:33 +214: /tmp/lumo-integration-20261122/lumo-lernen/test/learning/module_frame_practical_links_test.dart: practical cards open existing exact practice and protected journal
+00:33 +215: /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/guided_coach_binding_test.dart: native guided pause retains owner and returns an ungraded proposal
+00:33 +216: All tests passed!

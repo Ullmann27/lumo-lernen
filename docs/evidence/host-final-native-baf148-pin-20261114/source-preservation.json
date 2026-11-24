@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "kind": "read_only_static_source_preservation",
+  "exact_three_inverse_byte_replacements": true,
+  "historical_pin_count": 50,
+  "historical_pin_values_identical": true,
+  "policy_ast_identical_except_approved_2020_literal": true,
+  "candidate_ast_identical_except_connect_four_2020_revision_literal": true,
+  "candidate_methods_preserved": 24,
+  "config_other_keys_values_identical": true,
+  "workflow_budget_version_engine_changes": false,
+  "test_execution": false,
+  "source_execution": false,
+  "git_or_remote_mutations": false,
+  "patch_identity": {
+    "bytes": 1394,
+    "sha256": "6822ee5991926ebe77a3b3e7c11c6213fb7e7f6b3d58132effe9302051a44a4b",
+    "git_blob": "cb7719af2f47f9e59cc8f6fbe763ef56cf19e47a"
+  },
+  "source_freeze_identity": {
+    "bytes": 3143,
+    "sha256": "d20139e28668013163da22a48b896f4a097bef6262f17984bbc611cc1731a5fd",
+    "git_blob": "b0f6b95f244ebf4342bbb9ce7b963a7afd4f8623"
+  }
+}

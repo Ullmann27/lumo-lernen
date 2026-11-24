@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches",
+    "-v"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 0.094,
+  "source_blob": "0c8809fe6aa4fcb8d64eb9dd0678e1e796dc066e",
+  "source_sha256": "a70febad7969ed6baba5aec9f62619585232bab86d66a8514fe77b464ac6113e",
+  "raw_log_sha256": "d9c47849ebbfb9045494bf91b58f0a51628c471fd64436ee73d2155c59c7a96e",
+  "all_seven_original_cases": true
+}

@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T04:15:12.430036+00:00",
+  "status": "READ_ONLY_SOURCE_DEPENDENCY_RESOLVED",
+  "scope": "Independent source and existing-original-log review only; no new tests, SDK/emulator/device invocation, code edit or Android acceptance.",
+  "prior_review": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-diagnostic-independent-review/final-root-freeze-binding.json",
+    "bytes": 2605,
+    "sha256": "356f14a1ad7e9e8caddeb29929343eb863ae84e59b85ab83df9f1b8f8f829b90"
+  },
+  "loading_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-loading-frame-followup/source-freeze.json",
+    "bytes": 4510,
+    "sha256": "385d1d3bc3d5546700c9eb939fdc5f933a34d40c8690ab6a065f2ba3dcb783d8"
+  },
+  "root_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-qa-preparation/root-adapter-source-freeze.json",
+    "bytes": 2559,
+    "sha256": "a90d62a6dfd5dec6d25ad5877fb12c4b6a737f1b016d1d2598d1ce5fd21cf614"
+  },
+  "caller": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-creative-qa-preparation/final-source/.github/probes/lumo_studio_surfaces_android_probe.py",
+    "bytes": 48262,
+    "sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34"
+  },
+  "checked_loading_sources": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/.github/probes/creative_android_probe.py",
+      "bytes": 61575,
+      "sha256": "e31118906b577cdb1bca5312d47d227378786b273de13b559847339cd79744c2"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause-contrast.tsv",
+      "bytes": 1441,
+      "sha256": "e73b5be3297013f6d68a2dc138decdc40b0cd061c8769061075824fb03dbeb78"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-final-return-pause.png",
+      "bytes": 519505,
+      "sha256": "4283c19ae6f0d19e9679c7ecc818a40a5763a0f0406289f06bb9c5ac5cf30880"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause-contrast.tsv",
+      "bytes": 1441,
+      "sha256": "6d6b684e4812a6409c8fcfed8f1fef6bba8a403259c7bc651a13f985c392963e"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android35-first-return-pause.png",
+      "bytes": 519056,
+      "sha256": "bdb7ee1e84a45e467df088f705c455e20ae23e83863953a57b1f0a5ab6aad5f9"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-eventual-pause.png",
+      "bytes": 520559,
+      "sha256": "8d3c5afffbcd4abebbd58155dccc06accc40a580a4e5c4b1257cd01395a89d71"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading-contrast.tsv",
+      "bytes": 6071,
+      "sha256": "8e8271a857d5197ab201d68c2d5455b5bd72c226564580417e523affa1f48a56"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/android37-loading.png",
+      "bytes": 2673455,
+      "sha256": "c47ac13048c0b878ef669554aff16875b1295da0396ebc30743bbda54500cfcf"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/fixtures/flutter_loading_frame_3e08/manifest.json",
+      "bytes": 4818,
+      "sha256": "31fa110427af3528835df32174a07acb71cc7e3bd86f94fab1213752204daee0"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/replay_flutter_loading_frame_ocr.py",
+      "bytes": 4793,
+      "sha256": "4c8f154a259ce22b734977ef5c2dd7257d8ed4968cf370abf8dd62a09e853d81"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_flutter_loading_frame_rejection.py",
+      "bytes": 9631,
+      "sha256": "4cb4ba9c25293f46534ff5b90ee712f866f6f12d23ee58b3db32d39844390529"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/tools/android_qa/tests/test_flutter_loading_frame_source_binding.py",
+      "bytes": 1893,
+      "sha256": "4b7e77db13e6320bdc8f3ac33d20d51bcbf5336e08212aa8a7fbcf4c4ed4d1f5"
+    }
+  ],
+  "findings": [
+    "The immutable Root surfaces caller uses the exact reject_captions keyword now implemented by the frozen helper.",
+    "Only image_lines changed relative to Godot earlier freeze; opt-in negative observation preserves source hash/deadline and cannot confer a positive return.",
+    "Default callers retain empty reject_captions and prior behavior. The two-fresh-Flutter-frame, activity/PID, visible caption and deadline gates remain required.",
+    "The previously recorded missing-keyword dependency is resolved for this pair of exact source bytes. Pipeline later logger/speech modifications are not reviewed or accepted by this addendum."
+  ],
+  "existing_validation_read": {
+    "recorded_source_tests": {
+      "count": 21,
+      "errors": 0,
+      "skips": 0,
+      "log": "focused-green.log",
+      "sha256": "ee022534931c26abdf5a57fda2bb304b6dbe5ebbc73f1e320c2fa786753ff6f9"
+    },
+    "actual_tesseract_replays": {
+      "count": 6,
+      "errors": 0,
+      "skips": 0,
+      "log": "actual-green.log",
+      "scope": "Published original PNGs from Producer3e08/4ab/Native803e, not a new7b Android result",
+      "sha256": "bc4f56fe8f865436938070f0d5354b3e26d4662b65c701978681e9f9312ec412"
+    },
+    "behavioral_red": {
+      "log": "baseline-red.log",
+      "actual_original_png": true,
+      "failure": "RuntimeError not raised: reader accepted observed positive title despite observed opted-in loading caption",
+      "sha256": "fc395d720506e3164bc1ffcc24d4257232691dcb306a26a2ab287512868ec7ef"
+    },
+    "source_guard_extension": "Early negative branch checks unchanged screenshot hash and unexpired deadline before journaling; ordinary successful readers retain early success; default reject_captions is empty",
+    "scope": "Opted-in negative frame never grants input, readiness or positive return acceptance"
+  },
+  "remaining_boundaries": [
+    "The existing 21 tests and six original-image replays are read from Godot logs, not rerun by this reviewer.",
+    "A clean committed-source binder gate and genuine device run are separate requirements; no Android PASS is asserted."
+  ]
+}

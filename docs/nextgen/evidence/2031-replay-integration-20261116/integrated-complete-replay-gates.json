@@ -1,0 +1,23 @@
+{
+  "source": "e6dfb1a44bbbdf86db0227dbf607784916783fa1",
+  "tree": "87f9038dbaa6da335f4febe546869dd9f21e550b",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "tools.android_qa.tests.test_nextgen_learning_android_probe",
+    "tools.android_qa.tests.test_nextgen_reference_android_probe",
+    "tools.android_qa.tests.test_nextgen_current_candidate",
+    "tools.android_qa.tests.test_nextgen_native_reader",
+    "tools.android_qa.tests.test_nextgen_2031_replay",
+    "tools.nextgen.test_prepare_2031_learning_replay_release",
+    "tools.nextgen.test_public_learning_download",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/4fa97167812c/lumo-lernen",
+  "exitCode": 0,
+  "elapsedSeconds": 0.739,
+  "logBytes": 36103,
+  "logSha256": "0c651e18d67cc250530810a5eadb3639695156507284422b80ff4366f4c06715",
+  "scope": "Integrated exact seven host gate modules used by2031 replay CI; no new Android test. Overlaps earlier81 and24; do not add those counts."
+}

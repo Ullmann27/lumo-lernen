@@ -1,0 +1,11 @@
+{
+  "recorded_at": "2026-11-13T16:33:27.098045+00:00",
+  "upstream_revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "upstream_path": "tools/android_qa/tests/test_update_preservation.py",
+  "upstream_blob": "b0f825dc3e077851f7a773cc295ea60170d045a4",
+  "target": "tools/android_qa/tests/test_update_2019_preservation.py",
+  "original_sha256": "40d2b8fdc7592c14761681521272db8d7d35dce6ee3bfc0695bc39063d102a90",
+  "final_sha256": "36b01206da32e40d9ab769ed61bf8ae66d5a9ce7655a0a780c163c97fbe56778",
+  "added_class_sha256": "06b67204ce083bfd4922b20e114b8b6fff12f306db0ccc3e3636127e3c1209dd",
+  "scope": "Published actual-wrapper execution and rejection tests only. Existing distinct allow_2018/allow_2019 switches, all runtime validators, existing 2018/2019 invariant cases and receipt pins are preserved. Fixtures stop at mocked Android boundary and never claim an APK/device result."
+}

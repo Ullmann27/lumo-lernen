@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "scope": "Replay of 32 actual Godot 4.6.3 importer outputs from existing renderer worktree against an isolated tracked 16-model inventory; not a full PCK or APK build",
+  "native_revision": "21a76bcda69c20ea3a427a63098cb2fc736eb881",
+  "exporter_commit": "94f5ad9873c0b56f38d9dc8c6d324806c031273c",
+  "verified_source_files": 17,
+  "removed_new_import_outputs": 32,
+  "tracked_source_bytes_preserved": true,
+  "source_sha256": {
+    "assets/kart/production/meshy/manifest.json": "763df5822780b995ceff8b87d927341374141fb3aa8b3a3d6dda4add49c25f31",
+    "assets/kart/production/meshy/blitz.glb": "90bb0b38c788c32b5ec7169df12a08d898eb09c09dd8a0cb5bfe7165a025860f",
+    "assets/kart/production/meshy/boru_rally.glb": "f5bffd23d3a95dbe002fccca5c1f0a591f2efb28d0957e48201661273a0bb107",
+    "assets/kart/production/meshy/comet.glb": "8feb17e921ee2c64a1cfafdb2fff305701d24256ffdc054726d7d743f0669381",
+    "assets/kart/production/meshy/gecko_velo.glb": "a939ce258d2a4774f1337c5050df291e616abce5eae4521b363e8bde028fbc13",
+    "assets/kart/production/meshy/glider.glb": "7bfd4d5358f84d9648dd920c3ff30bbdb2655814f91b67ce9f70fe5aff888000",
+    "assets/kart/production/meshy/iva_aurora.glb": "adf80a9760556277ce334ebe7e210926fef0cc9576eba6a8ba3b54a21c57451c",
+    "assets/kart/production/meshy/koloss.glb": "9f2a475faed1f2dbac01254508ae5f6ed6c9c373828341caa72cc79cefbdae1a",
+    "assets/kart/production/meshy/nala_comet.glb": "bf1891545681b6ae1ce368de2f4a2837fe0145f511fdf4bdcdd6c2192779f99f",
+    "assets/kart/production/meshy/noa_tide.glb": "06bb5b26551146fc82b4decb47cee26948765e4a43d2ca8004255209a1126d1d",
+    "assets/kart/production/meshy/phantom.glb": "6b1bdb9e2d9348719ebb30a866bb8f40daeba8f2f4a89ca9f3fb73cd1b8f6a8d",
+    "assets/kart/production/meshy/stella.glb": "ea9cd38d226a3d8394fb7156b9bf980d5d64585adf112e7dd067ed14c92d2ab0",
+    "assets/kart/production/meshy/terra.glb": "4ba213e5cb6a57f4eb7ccfc19f35f9a5a17053c80bee6fe9aabb424064edef28",
+    "assets/kart/production/meshy/turbo.glb": "67ab2519fab0fdc080af68efcb269d50332bb0398a233e06fab48e2f44ce0f13",
+    "assets/kart/production/meshy/zuri_volt.glb": "5a26928fa92938b38a6081251331e31f8700fbd235995d2e197a69ed0b7fe2c6",
+    "assets/kart/production/garage/meshy_tool_workbench.glb": "1e72824dfd63c15236c9da29561540c610513c52d6bba710a09568936f59b1eb",
+    "assets/kart/production/garage/meshy_turntable.glb": "01084ade55885e9936f1de3a4369d540f0325a16fda130b2db7c389fff9f7edb"
+  }
+}

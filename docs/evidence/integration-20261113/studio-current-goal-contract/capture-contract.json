@@ -1,0 +1,56 @@
+{
+  "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "native_tree": "8df22766bd0dbae31aacaa26c0228811c027686e",
+  "host_producer_revision": "76d15fa6dae9959e75f56ef724e41d07e3c08c14",
+  "host_producer_tree": "f5f261c75e73703589cf48cf07ed70f3701fd3e6",
+  "source_based_contract_only": true,
+  "build_images": 12,
+  "touch_images": 32,
+  "core_probe_pairs": 37,
+  "core_studio_images": 24,
+  "touch_probe_pairs": 6,
+  "new_originals": [
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-2400x1080-current-goal.png",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-current-goal.png",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-2176x1812-current-goal.png",
+      "dimensions": [
+        2176,
+        1812
+      ]
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "dimensions": [
+        640,
+        360
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "path": "scripts/tests/build_dialog_density_regression.gd",
+      "blob": "9dba35338e6dde89c51760f20eda3f45e4932a1b",
+      "sha256": "eb918398c01f3c0fe7a2a344017ea159dc3ef667bb186fc091bd6350327edea3",
+      "bytes": 21985
+    },
+    {
+      "path": "tools/validate_studio_touch.sh",
+      "blob": "7adda6cc0e8682bb6f9c89507343ea6e998b0ed8",
+      "sha256": "4a517be7f757c16bd724c4fa9aa3b34b4e89cc873d32b4acc60f0c1f3408dc53",
+      "bytes": 3840
+    }
+  ]
+}

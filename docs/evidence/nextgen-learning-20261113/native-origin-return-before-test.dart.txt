@@ -1,0 +1,264 @@
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:lumo_lernen/app/app_shell.dart';
+import 'package:lumo_lernen/app/app_state.dart';
+import 'package:lumo_lernen/app/app_theme.dart';
+import 'package:lumo_lernen/core/app_settings.dart';
+import 'package:lumo_lernen/core/lumo_music.dart';
+import 'package:lumo_lernen/core/lumo_sound.dart';
+import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
+import 'package:lumo_lernen/core/user_profile.dart';
+import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_screen.dart';
+import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
+import 'package:lumo_lernen/features/tutoring/guided_learning_hub.dart';
+import 'package:lumo_lernen/features/tutoring/guided_lesson_screen.dart';
+import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
+
+const _bridge = MethodChannel('lumo_lernen/bridge');
+const _cards = MethodChannel('lumo_lernen/cards_table');
+
+class _Routes extends NavigatorObserver {
+  final removed = <Route<dynamic>>[];
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    removed.add(route);
+  }
+
+  @override
+  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    removed.add(route);
+  }
+}
+
+/// Only the Android boundary is controlled. AppShell, its actual private
+/// EmbeddedGameService, route navigation, lesson, Cards and persistence run.
+class _AndroidReturn {
+  final result = Completer<Map<String, Object?>>();
+  final calls = <MethodCall>[];
+  final events = <String, Object?>{'results': <Object?>[]};
+  Map<String, dynamic>? launch;
+  int returnReads = 0;
+  int returnAcks = 0;
+
+  Future<Object?> handle(MethodCall call) async {
+    calls.add(call);
+    switch (call.method) {
+      case 'launch3D':
+        launch = Map<String, dynamic>.from(call.arguments as Map);
+        return result.future;
+      case 'pendingGameEvents':
+        if (events.containsKey('destination')) returnReads++;
+        return jsonEncode(events);
+      case 'acknowledgeGameEvents':
+        final args = Map<String, dynamic>.from(call.arguments as Map);
+        if (args['destination'] != null &&
+            args['destination'] == events['destination']) {
+          events.remove('destination');
+          returnAcks++;
+        }
+        return true;
+      default:
+        return null;
+    }
+  }
+}
+
+Future<void> _frames(WidgetTester tester, [int count = 24]) async {
+  for (var frame = 0; frame < count; frame++) {
+    await tester.pump(const Duration(milliseconds: 32));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+  }
+}
+
+Future<void> _tap(WidgetTester tester, Finder finder) async {
+  await tester.ensureVisible(finder);
+  await _frames(tester, 10);
+  expect(finder.hitTestable(), findsOneWidget);
+  await tester.tap(finder);
+  await _frames(tester);
+}
+
+Future<LumoAppState> _shell(WidgetTester tester, _Routes observer) async {
+  await tester.binding.setSurfaceSize(const Size(690, 1100));
+  final date = DateTime(2026, 11, 13);
+  await tester.pumpWidget(MaterialApp(
+      theme: LumoAppTheme.light(),
+      navigatorObservers: [observer],
+      home: AppShell(
+          profile: UserProfile(
+              id: 'native-return-synthetic-child',
+              name: 'Testkind',
+              age: 7,
+              grade: 1,
+              createdAt: date,
+              lastActiveAt: date),
+          initialSection: LumoSection.learn)));
+  await _frames(tester, 50);
+  final app = tester
+      .widget<LumoAkademieScreen>(find.byType(LumoAkademieScreen))
+      .appState;
+  expect(app.settingsLoaded, isTrue);
+  return app;
+}
+
+Future<void> _nativeReturn(WidgetTester tester, _AndroidReturn android,
+    String destination, bool resultBeforeResume) async {
+  expect(android.launch, isNotNull,
+      reason:
+          'The actual production button must first launch its native scene.');
+  tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+  tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+  // This is exactly the current GameEventStore.recordReturn JSON contract.
+  // No scored game result, learning answer, reward, navigation callback or
+  // service is substituted; only the native transport returns its contract.
+  android.events['destination'] = destination;
+  if (resultBeforeResume) {
+    android.result.complete({'destination': destination});
+  }
+  tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+  await _frames(tester, 30);
+  if (!resultBeforeResume) {
+    android.result.complete({'destination': destination});
+    await _frames(tester, 30);
+  }
+  expect(android.returnReads, greaterThanOrEqualTo(1),
+      reason: 'The real EmbeddedGameService consumes the resume event.');
+  expect(android.returnAcks, 1,
+      reason: 'The durable destination is actually acknowledged.');
+}
+
+void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  late _AndroidReturn android;
+
+  setUp(() async {
+    android = _AndroidReturn();
+    SharedPreferences.setMockInitialValues({
+      'lumo_3d_save_salt_v1': 'native-return-synthetic-salt',
+      'lumo_music_muted': true,
+      'lumo_sfx_muted': true,
+      'lumo_app_settings_v1': jsonEncode(const AppSettings(
+              voiceEnabled: false,
+              autoReadEnabled: false,
+              soundEnabled: false,
+              aiProxyEnabled: false,
+              reduceAnimations: true)
+          .toJson()),
+    });
+    LumoVoice.instance.isEnabled = false;
+    LumoMusic.instance.muted = true;
+    LumoSound.instance.muted = true;
+    await RewardWalletRepository.instance.reset();
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(_bridge, android.handle);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(_cards, (call) async {
+      if (call.method == 'poll') return '{}';
+      return true;
+    });
+  });
+
+  tearDown(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(_bridge, null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(_cards, null);
+  });
+
+  for (final resultBeforeResume in [true, false]) {
+    for (final scene in ['learning', 'cards']) {
+      testWidgets(
+          '$scene native return retains actual origin route; result before resume=$resultBeforeResume',
+          (tester) async {
+        debugDefaultTargetPlatformOverride = TargetPlatform.android;
+        final observer = _Routes();
+        try {
+          final app = await _shell(tester, observer);
+          late State originState;
+          late Route originRoute;
+          String? taskId;
+          if (scene == 'learning') {
+            await _tap(
+                tester, find.byKey(const ValueKey('learning-advanced-entry')));
+            await _tap(
+                tester, find.byKey(const ValueKey('akademie-guided-learning')));
+            expect(find.byType(GuidedLearningHub), findsOneWidget);
+            await _tap(
+                tester, find.byKey(const ValueKey('guided-open-bridge_ten')));
+            await _tap(tester, find.byKey(const ValueKey('guided-continue')));
+            await _tap(tester, find.byKey(const ValueKey('guided-answer-6')));
+            await _tap(tester, find.byKey(const ValueKey('guided-continue')));
+            expect(find.text('Acht und fünf'), findsOneWidget);
+            originState = tester.state(find.byType(GuidedLessonScreen));
+            originRoute =
+                ModalRoute.of(tester.element(find.byType(GuidedLessonScreen)))!;
+            taskId = LumoCompanionRequests.instance.taskContext.value!.taskId;
+            await _tap(tester, find.byKey(const ValueKey('guided-open-3d')));
+          } else {
+            // A real Navigator push keeps the same production shell and its
+            // service below the actual Cards controller/persistence screen.
+            app.setSection(LumoSection.games);
+            await _frames(tester);
+            unawaited(Navigator.of(tester.element(find.byType(AppShell)))
+                .push<void>(MaterialPageRoute(
+                    builder: (_) => LumoCardsScreen(
+                        appState: app, seed: 20, skipIntro: true))));
+            await _frames(tester, 50);
+            expect(find.byType(LumoCardsScreen), findsOneWidget);
+            originState = tester.state(find.byType(LumoCardsScreen));
+            originRoute =
+                ModalRoute.of(tester.element(find.byType(LumoCardsScreen)))!;
+            await _tap(
+                tester, find.byKey(const ValueKey('cards-native-table')));
+          }
+          expect(android.launch?['scene'], scene);
+          expect(originRoute.isCurrent, isTrue);
+          final destination = scene == 'learning' ? 'learn' : 'games';
+          await _nativeReturn(tester, android, destination, resultBeforeResume);
+          debugPrint(
+              '[NativeOriginReturn] scene=$scene resultBeforeResume=$resultBeforeResume '
+              'eventReads=${android.returnReads} acknowledged=${android.returnAcks} '
+              'originCurrent=${originRoute.isCurrent} '
+              'originRemoved=${observer.removed.contains(originRoute)} '
+              'originMounted=${originState.mounted}');
+          expect(originRoute.isCurrent, isTrue,
+              reason:
+                  'Native illustration/table return must preserve its originating route.');
+          expect(originState.mounted, isTrue);
+          expect(observer.removed, isNot(contains(originRoute)));
+          if (scene == 'learning') {
+            expect(find.text('Acht und fünf'), findsOneWidget);
+            expect(tester.state(find.byType(GuidedLessonScreen)),
+                same(originState));
+            expect(LumoCompanionRequests.instance.taskContext.value!.taskId,
+                taskId);
+          } else {
+            expect(
+                tester.state(find.byType(LumoCardsScreen)), same(originState));
+          }
+          expect(tester.takeException(), isNull);
+        } finally {
+          if (!android.result.isCompleted) {
+            android.result.complete(
+                {'destination': scene == 'learning' ? 'learn' : 'games'});
+          }
+          tester.binding
+              .handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+          await _frames(tester, 10);
+          await tester.pumpWidget(const SizedBox.shrink());
+          await _frames(tester, 10);
+          await tester.binding.setSurfaceSize(null);
+          debugDefaultTargetPlatformOverride = null;
+        }
+      }, timeout: const Timeout(Duration(seconds: 60)));
+    }
+  }
+}

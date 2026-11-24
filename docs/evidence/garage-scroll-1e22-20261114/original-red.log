@@ -1,0 +1,24 @@
+test_real_original_sources_keep_every_drag_inside_the_visible_caption (test_kart_garage_observed_scroll.RealGarageScrollObservationsTests.test_real_original_sources_keep_every_drag_inside_the_visible_caption) ... 
+  test_real_original_sources_keep_every_drag_inside_the_visible_caption (test_kart_garage_observed_scroll.RealGarageScrollObservationsTests.test_real_original_sources_keep_every_drag_inside_the_visible_caption) (original='android') ... FAIL
+  test_real_original_sources_keep_every_drag_inside_the_visible_caption (test_kart_garage_observed_scroll.RealGarageScrollObservationsTests.test_real_original_sources_keep_every_drag_inside_the_visible_caption) (original='update') ... FAIL
+
+======================================================================
+FAIL: test_real_original_sources_keep_every_drag_inside_the_visible_caption (test_kart_garage_observed_scroll.RealGarageScrollObservationsTests.test_real_original_sources_keep_every_drag_inside_the_visible_caption) (original='android')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/909ddb52fe7b/garage-probe-repair-1e22/tools/android_qa/tests/test_kart_garage_observed_scroll.py", line 53, in test_real_original_sources_keep_every_drag_inside_the_visible_caption
+    self.assertTrue(y0 < end < start < y1,
+AssertionError: False is not true : android: [374, 486, 374, 341] leaves observed caption [313.5, 471.0, 434.0, 500.0]
+
+======================================================================
+FAIL: test_real_original_sources_keep_every_drag_inside_the_visible_caption (test_kart_garage_observed_scroll.RealGarageScrollObservationsTests.test_real_original_sources_keep_every_drag_inside_the_visible_caption) (original='update')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/909ddb52fe7b/garage-probe-repair-1e22/tools/android_qa/tests/test_kart_garage_observed_scroll.py", line 53, in test_real_original_sources_keep_every_drag_inside_the_visible_caption
+    self.assertTrue(y0 < end < start < y1,
+AssertionError: False is not true : update: [510, 486, 510, 351] leaves observed caption [450.0, 472.0, 570.0, 499.0]
+
+----------------------------------------------------------------------
+Ran 1 test in 0.033s
+
+FAILED (failures=2)

@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "status": "HEADLESS_PASS_RENDER_SETUP_BLOCKED",
+  "head": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "tree": "35492eec16cac6774bc546b6e57628900bef61cb",
+  "engine_import": {
+    "success": true,
+    "seconds": 9.592106
+  },
+  "headless_cases": [
+    {
+      "probe": "treasure_wisp_regression",
+      "seconds": 0.46508,
+      "pass_lines": [
+        "[TreasureWisp] PASS checks=14"
+      ],
+      "strict_error_lines": [],
+      "warnings": [],
+      "returncode": 0,
+      "success": true
+    },
+    {
+      "probe": "treasure_exploration_regression",
+      "seconds": 1.877838,
+      "pass_lines": [
+        "[TreasureExploration] PASS 92 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      ],
+      "strict_error_lines": [],
+      "warnings": [],
+      "returncode": 0,
+      "success": true
+    },
+    {
+      "probe": "learning_world_regression",
+      "seconds": 19.722632,
+      "pass_lines": [
+        "[LearningWorld] PASS checks=5347"
+      ],
+      "strict_error_lines": [],
+      "warnings": [],
+      "returncode": 0,
+      "success": true
+    }
+  ],
+  "materialized_sources": 1439,
+  "sparse_absent_entries": 2139,
+  "before_after_source_and_index_equal": {
+    "head": true,
+    "tree": true,
+    "tracked_status": true,
+    "index_sha256": true,
+    "materialized_files": true,
+    "sparse_absent_files": true
+  },
+  "after_render_attempt_source_and_index_equal": {
+    "head": true,
+    "tree": true,
+    "tracked_status": true,
+    "index_sha256": true,
+    "materialized_files": true,
+    "sparse_absent_files": true
+  },
+  "uid_count": 330,
+  "render": {
+    "status": "BLOCKED_BEFORE_GODOT",
+    "probe_started": false,
+    "images_created": 0,
+    "expected_images": [
+      "treasure_choose_route.png",
+      "treasure_garden_first.png",
+      "treasure_route_complete.png"
+    ],
+    "original_error": "Unable to open socket for local/unix; Cannot establish any listening sockets.",
+    "errno_not_reported_by_original": true,
+    "server_display": ":186",
+    "own_server_stopped": true,
+    "private_cookie_removed": true,
+    "no_retry": true,
+    "no_installation": true,
+    "tcp_listening_disabled": true
+  },
+  "no_c4_return_repetition": true,
+  "no_52_mode_repetition": true,
+  "unchanged_52_mode_17_raster_contract": true,
+  "device_fps_or_visual_acceptance": false,
+  "future_requirement": "Fresh combined rendered evidence from an environment that can start the real display; no prior Producer PNGs substituted."
+}

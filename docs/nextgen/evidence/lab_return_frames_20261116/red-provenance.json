@@ -1,0 +1,23 @@
+{
+  "base": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "passed": 1,
+  "failed": 2,
+  "files": [
+    {
+      "path": "lib/features/learning/lab/learning_lab_screen.dart",
+      "sha256": "9ba19a3101125f1ae111c3ec963758a4edd914367ba8c31c69237055e2e9ab45",
+      "bytes": 56163
+    },
+    {
+      "path": "test/learning/lab_conversation_return_test.dart",
+      "sha256": "f3f6856d394e72cff189f4c5b5d5df437144bfcfa5f9e8c8ec3c90788ac67f52",
+      "bytes": 10314
+    },
+    {
+      "path": ".ci-results/lab-requested-return-frame/red.log",
+      "sha256": "07e49297b2788d0e8e728dbfd2803e678e8f59db65d442f078312c111cdadbed",
+      "bytes": 5060
+    }
+  ],
+  "product_source_unchanged": true
+}

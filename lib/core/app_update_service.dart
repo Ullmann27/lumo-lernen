@@ -16,6 +16,7 @@ class AppUpdateInfo {
     required this.releaseName,
     required this.commitSha,
     this.error,
+    this.distribution = AppDistribution.family,
   });
 
   final bool available;
@@ -26,12 +27,21 @@ class AppUpdateInfo {
   final String releaseName;
   final String commitSha;
   final String? error;
+  final AppDistribution distribution;
+
+  bool get managedByPlay => distribution == AppDistribution.play;
 
   bool get hasUsableDownload => apkUrl.toString().isNotEmpty;
 }
 
 class AppUpdateService {
-  const AppUpdateService();
+  const AppUpdateService(
+      {AppInstallHelper installer = const AppInstallHelper()})
+      : _installer = installer;
+
+  final AppInstallHelper _installer;
+  static final Uri playStoreUrl = Uri.https('play.google.com',
+      '/store/apps/details', {'id': 'dev.ullmann.lumo.lumo_lernen'});
 
   /// Build-Nummer wird zur Compile-Zeit ueber --dart-define gesetzt.
   /// Der Release-Workflow uebergibt:
@@ -85,12 +95,13 @@ class AppUpdateService {
       const prefix = 'coachpreview-build-';
       if (!tag.startsWith(prefix)) continue;
       final digits = tag.substring(prefix.length);
-      if (digits.isEmpty ||
-          digits.codeUnits.any((c) => c < 48 || c > 57)) continue;
+      if (digits.isEmpty || digits.codeUnits.any((c) => c < 48 || c > 57))
+        continue;
       final build = int.tryParse(digits);
       if (build == null || build <= 0) continue;
       final assets = (raw['assets'] as List<dynamic>? ?? const [])
-          .whereType<Map<String, dynamic>>().toList(growable: false);
+          .whereType<Map<String, dynamic>>()
+          .toList(growable: false);
       final asset = preferredApkAsset(assets, sideBySide: true);
       if (asset == null) continue;
       final apkUrl =
@@ -113,18 +124,37 @@ class AppUpdateService {
         commitSha: raw['target_commitish']?.toString() ?? '',
       );
     }
-    return newest ?? AppUpdateInfo(
-      available: false,
-      currentBuildNumber: installed,
-      latestBuildNumber: installed,
-      releaseUrl: familyReleasesUrl,
-      apkUrl: Uri(),
-      releaseName: 'Noch kein freigegebenes Familien-Update',
-      commitSha: '',
-    );
+    return newest ??
+        AppUpdateInfo(
+          available: false,
+          currentBuildNumber: installed,
+          latestBuildNumber: installed,
+          releaseUrl: familyReleasesUrl,
+          apkUrl: Uri(),
+          releaseName: 'Noch kein freigegebenes Familien-Update',
+          commitSha: '',
+        );
   }
 
   Future<AppUpdateInfo> checkLatest() async {
+    final distribution = await _installer.distribution();
+    if (distribution != AppDistribution.family) {
+      return AppUpdateInfo(
+        available: false,
+        currentBuildNumber: currentBuildNumber,
+        latestBuildNumber: currentBuildNumber,
+        releaseUrl: distribution == AppDistribution.play ? playStoreUrl : Uri(),
+        apkUrl: Uri(),
+        releaseName: distribution == AppDistribution.play
+            ? 'Aktualisierungen über Google Play'
+            : 'Updatekanal nicht verfügbar',
+        commitSha: '',
+        distribution: distribution,
+        error: distribution == AppDistribution.unavailable
+            ? 'Der Updatekanal konnte nicht sicher ermittelt werden.'
+            : null,
+      );
+    }
     // Manuelles Redirect-Following: jedes Redirect-Ziel wird gegen die
     // Whitelist geprueft. Damit kann ein boeswillig manipulierter
     // 302-Location-Header NICHT auf eine fremde Domain umleiten.
@@ -328,6 +358,11 @@ class AppUpdateService {
       (!uri.hasPort || uri.port == 443);
 
   Future<bool> openUpdate(AppUpdateInfo info) async {
+    final distribution = await _installer.distribution();
+    if (distribution == AppDistribution.play) {
+      return launchUrl(playStoreUrl, mode: LaunchMode.externalApplication);
+    }
+    if (distribution != AppDistribution.family) return false;
     final url = info.hasUsableDownload ? info.apkUrl : info.releaseUrl;
     if (url.toString().isEmpty || _trustedUri(url.toString()) == null) {
       return false;
@@ -348,8 +383,18 @@ class AppUpdateService {
   Future<AppUpdateDownloadResult> downloadAndInstall(
     AppUpdateInfo info, {
     ValueChanged<double>? onProgress,
-    AppInstallHelper installer = const AppInstallHelper(),
+    AppInstallHelper? installer,
   }) async {
+    final installHelper = installer ?? _installer;
+    final distribution = await installHelper.distribution();
+    if (distribution != AppDistribution.family) {
+      return AppUpdateDownloadResult(
+        success: false,
+        error: distribution == AppDistribution.play
+            ? 'Bitte aktualisiere Lumo über Google Play.'
+            : 'Der Updatekanal konnte nicht sicher ermittelt werden.',
+      );
+    }
     if (!Platform.isAndroid) {
       return const AppUpdateDownloadResult(
         success: false,
@@ -369,9 +414,9 @@ class AppUpdateService {
         error: 'Download-URL ist nicht aus dem offiziellen GitHub-Repo.',
       );
     }
-    final canInstall = await installer.canInstall();
+    final canInstall = await installHelper.canInstall();
     if (!canInstall) {
-      await installer.requestInstallPermission();
+      await installHelper.requestInstallPermission();
       return const AppUpdateDownloadResult(
         success: false,
         error:
@@ -386,7 +431,7 @@ class AppUpdateService {
         error: 'Download der neuen Version fehlgeschlagen.',
       );
     }
-    final started = await installer.install(tempPath);
+    final started = await installHelper.install(tempPath);
     if (!started) {
       return AppUpdateDownloadResult(
         success: false,

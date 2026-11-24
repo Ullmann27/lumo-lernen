@@ -1,0 +1,29 @@
+{
+  "collected_at_utc": "2026-11-13T12:47:53.526657+00:00",
+  "baseline": "3c712129fef8f144d8946fad567b9ed11c628a60",
+  "results": {
+    "flutter_tests": 47,
+    "new_flutter_tests": 9,
+    "host_preparation_tests": 4,
+    "analyze": "No issues found"
+  },
+  "commands": [
+    "flutter --no-version-check test --no-pub test/tutoring/native_sharing_activity_test.dart test/tutoring/native_learning_launch_test.dart test/premium_visual_renderer_test.dart test/tutoring/learning_profile_boundaries_test.dart",
+    "flutter --no-version-check analyze --no-pub lib/domain/tutoring/native_learning_activity.dart lib/features/learning/adapters/legacy_lumo_task_adapter.dart lib/features/learning/renderers/lumo_premium_visuals.dart test/tutoring/native_sharing_activity_test.dart",
+    "python3 -m unittest scripts.tests.test_studio_learning_contract scripts.tests.test_prepare_android"
+  ],
+  "source_sha256": {
+    "lib/domain/tutoring/native_learning_activity.dart": "eafc477d639b59a1d5215a8934c1088e4563d84aaffc2795e57b7299085632ed",
+    "lib/features/learning/adapters/legacy_lumo_task_adapter.dart": "e7f6455b679352b71025266e4c616647ebbd8510db2014e73ce56a6a37e46786",
+    "lib/features/learning/renderers/lumo_premium_visuals.dart": "138735f766360109b12b05b860ac8e608064c767e23f4c34febde4065504d478",
+    "tools/auto_install/MainActivity.kt": "7930a0eec8566bbd85c509f09cd15a9508b5781ce09e53a158d43e26c4567953",
+    "scripts/tests/test_studio_learning_contract.py": "20e76daadfdb7a38d6e9cf8e559140dbc231606e23cd7559b56fb1e4788d9c0e",
+    "test/tutoring/native_sharing_activity_test.dart": "23aa35bffa4a78fc173167eabb1d4dec41d80fe30453a51544f6989e8b56855f"
+  },
+  "log_sha256": {
+    "flutter-tests.log": "2a7ea207dc88ed610500564e5936bd6cdc472029d8099b3542ebf29b035fcd5b",
+    "flutter-analyze.log": "0ed32a6a70e399ace51677fbeb5497e1e8ddeed126e52a6e08e6001abc353402",
+    "host-preparation.log": "b5e70faea33f0ed89cfd53b251db497ad678e7de4d199a066c98c7c91e090a05"
+  },
+  "evidence_scope": "Local targeted tests and source hashes. Final integrated CI, real renderer and Android evidence remain a separate integration gate."
+}

@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14 19:14:21 UTC",
+  "run": 43630160654,
+  "attempt": 1,
+  "job": 132554757738,
+  "qa_source": "1f84f069b832f25cdb1896ba76d2164b21e7e1c8",
+  "host_checkout": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "result": "SUCCESS",
+  "root_log_recount": {
+    "started_tests": 27,
+    "unique_names": 27,
+    "inline_ok": 24,
+    "standalone_ok": 3,
+    "summaries": [
+      {
+        "tests": 24,
+        "seconds": 0.14
+      },
+      {
+        "tests": 3,
+        "seconds": 0.029
+      }
+    ],
+    "ok_summaries": 2,
+    "bound": [
+      {
+        "bytes": 19877,
+        "git_blob": "0028aac49374245c85da27a69d1ae4113e87c1a9",
+        "path": "original_replay.py",
+        "sha256": "9108b78d04c412b2362656d469b2998d2436c5abf53e15ab2fba09ecb3c65e65"
+      },
+      {
+        "bytes": 9292,
+        "git_blob": "11c5ad2de2ce556a66273c776da2947ad23de8cd",
+        "path": "test_original_replay.py",
+        "sha256": "a0e8b60079c6138c56c0e9c08951d71e0f5bf33f3e5fa545c39df626c494cf97"
+      },
+      {
+        "bytes": 8713,
+        "git_blob": "88388945e5e31eaefb2dad69f400b93f65a6b94a",
+        "path": "original_png_transport.py",
+        "sha256": "39d0e2dba3ac3f1352b652963a246020d3938f1ab265f5aa7725ad467aa8e30a"
+      },
+      {
+        "bytes": 7061,
+        "git_blob": "313fdb2c57f018cf251be00b6171fccb3c2bfa67",
+        "path": "test_original_png_transport.py",
+        "sha256": "fb7a8ca75ad1148f02c088bf4fc5f235b2863546367dca04f3d3012c0cadec0c"
+      },
+      {
+        "bytes": 29605,
+        "git_blob": "7779c3d5f90269104be3f289865d744b3e788d11",
+        "path": "review-workflow.yml",
+        "sha256": "5b4a55c602a4d208dcde9759515998cf5b96ee76cab3d4304a2d3e6a3471b1e3"
+      },
+      {
+        "bytes": 30052,
+        "git_blob": "712529847807e1d0a7135654703a13b7a63a1e1e",
+        "path": "publisher-reviewed.yml",
+        "sha256": "2e795b172b6533d3a22c68a2006114be1b60a5b28acc5ef35f342cd733f3cb35"
+      }
+    ],
+    "syntax": {
+      "bash_blocks": 11,
+      "original_acceptance_executed": false,
+      "original_publisher_steps_unchanged": 7,
+      "python_heredocs": 6,
+      "standalone_python_files": 4,
+      "status": "PASS_STATIC_SOURCE_AND_SYNTAX",
+      "write_permissions": false
+    }
+  },
+  "failures": 0,
+  "skips": 0,
+  "log_count_detail": "Three real source-integrity fixtures print git diff output between their test label and final ok; there are 24 inline ok and three standalone ok, 27 unique test labels, and successful 24 + 3 terminal summaries.",
+  "independent_source_review_commit": "1dbf11115923fa5c2ef8f30d8a2ecf990d91e5db",
+  "independent_source_review_blob": "1f939796d533ef28703a6002eedbb17708fff7a7",
+  "scope": "Actual original reader selftest only; no actual game, Android journey, APK replay or release."
+}

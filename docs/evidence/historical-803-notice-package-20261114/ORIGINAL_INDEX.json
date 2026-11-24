@@ -1,0 +1,49 @@
+{
+  "archive": {
+    "bytes": 330999378,
+    "sha256": "4042322c815dac4d1829ff80b2f1889db4104d557e38b408fcd71a40b7706ccc",
+    "git_blob": "d4bd4386988a501dfa322be78de5323a85ffa066"
+  },
+  "zip_crc_valid": true,
+  "canonical_paths": true,
+  "file_count": 6,
+  "members": [
+    {
+      "path": "Lumo-Lernen-Neu.apk",
+      "bytes": 330988965,
+      "sha256": "6c380ea99a0ee9119b3179b36df714336936247654216cec1f2188f34a96f164",
+      "git_blob": "397c447d3908a0585c966c576ac5f392fb0e9edf"
+    },
+    {
+      "path": "APK-VERIFICATION.json",
+      "bytes": 1779,
+      "sha256": "187402be00e07018d752f606e4e1219f35e58bd0900b9764036abc2947e65d2d",
+      "git_blob": "ce5d7529b52613a9456dd9dd9c537db6d131c8c6"
+    },
+    {
+      "path": "APK-SHA256.txt",
+      "bytes": 91,
+      "sha256": "9dc067295b695c9ac2f2e2e0526176d753f2418e3cf05cbcda0abdd4e6dfcbc3",
+      "git_blob": "54d44fe3d0629f7c94f96d4b25b044f77fdcd8f1"
+    },
+    {
+      "path": "BUILD-PROVENANCE.json",
+      "bytes": 7589,
+      "sha256": "cd6ea276de268ed402fcef68cc0d92da596c3e8b4fae9a6c50fe6b9398efceba",
+      "git_blob": "89c7a322f9c13d72a47d1e80b78c94343487faa2"
+    },
+    {
+      "path": "GODOT-SOURCE.json",
+      "bytes": 145,
+      "sha256": "d12f94f96ebbe18005a1db79b294c4c4de9841bf4b2ab860868c7a3c05bdfa82",
+      "git_blob": "72dc631c9e27885cb3ab38ce446a66416f818ebb"
+    },
+    {
+      "path": "APP-VERSION.txt",
+      "bytes": 21,
+      "sha256": "c013ca7f211e5bc15f7449705ab8c325c7e41164828301f8b0f2c51174ac8f68",
+      "git_blob": "ec57ab30d1189b2a3ab2ef00d59eb6a159b750a5"
+    }
+  ],
+  "archive_code_executed": false
+}

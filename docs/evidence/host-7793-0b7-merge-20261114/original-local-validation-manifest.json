@@ -1,0 +1,129 @@
+{
+  "path": "/workspace/scratch/2708c7907f28/lumo-host-merge-7793-0b7/original-local-validation.zip",
+  "bytes": 823599,
+  "sha256": "47396b300d17c0dbe8bbf117672e6f6d220e3a9e2b81345ff5cbb43197180880",
+  "git_blob": "ff982a492e772c334ceda29ff98895d3a00d15bd",
+  "members": [
+    {
+      "path": "overlap-inputs.json",
+      "bytes": 8493,
+      "sha256": "44f1fb2fe61d458edb42068b4f3805197a3ddb31fe6c3d2b09362935ec2becc6"
+    },
+    {
+      "path": "merge-results.json",
+      "bytes": 1224,
+      "sha256": "13acb4d5701132360a8a4374fc547e28b6f5a6a0cc9534ddce972410f594d95d"
+    },
+    {
+      "path": "resolved-overlap-manifest.json",
+      "bytes": 2544,
+      "sha256": "33bd96a149b380a432cf6a86b6a7c3b0592ea5808149914ccecab03260293c6c"
+    },
+    {
+      "path": "documentation-union-proof.json",
+      "bytes": 797,
+      "sha256": "5106fb3ab82e3f9941f4aaa3d2eef2abd64d6114f5a35a0e9b16aa39d9f72ec3"
+    },
+    {
+      "path": "native-pin-resolution.json",
+      "bytes": 860,
+      "sha256": "75ef617b821d16bc7fdb2240559adc9c2d5f92e5a14dd9d98e44f3c0fc101770"
+    },
+    {
+      "path": "workflow-merge-preflight.json",
+      "bytes": 8900,
+      "sha256": "e3739197f981231fece945f261f409ea1cfe705e9895e837faf57f0e73cce298"
+    },
+    {
+      "path": "catalog-materialization-proof.json",
+      "bytes": 372,
+      "sha256": "74dfb02b37dfe0d7dd3937a8b5d3175ea6abb9564eac54a504364d61d15acbc1"
+    },
+    {
+      "path": "validation-summary.json",
+      "bytes": 1579,
+      "sha256": "c71a3a6629078430886837521790e9a44478269a8fff11b3723faf69fb635e02"
+    },
+    {
+      "path": "root-final-integration-review.json",
+      "bytes": 20530,
+      "sha256": "a0d3c5c9128a07f45fdaeb1ab6a4891620b089af766da4a6f45f6d2e8f2490cc"
+    },
+    {
+      "path": "validation/execution.json",
+      "bytes": 1766,
+      "sha256": "3b6a29ee1c39d810688630707b4de0b4274e23743081802f47afc84dc45d6772"
+    },
+    {
+      "path": "validation/stdout.log",
+      "bytes": 5127,
+      "sha256": "14ef3035a026d75a89b8dbeb81675d99f07d59f4e0548a66cdf60751f31ae843"
+    },
+    {
+      "path": "validation/stderr.log",
+      "bytes": 42825,
+      "sha256": "61605ba12cd601b8d064831f3c1f6ff73235778213611e0df5c0f7e8dd645463"
+    },
+    {
+      "path": "validation/source-before.json",
+      "bytes": 388329,
+      "sha256": "f00cde3217fc24858cc6b8aec01c0db580d8d4780ac78d6ebc66b65de77b5e92"
+    },
+    {
+      "path": "validation/source-after.json",
+      "bytes": 388329,
+      "sha256": "f00cde3217fc24858cc6b8aec01c0db580d8d4780ac78d6ebc66b65de77b5e92"
+    },
+    {
+      "path": "validation-import-correction/execution.json",
+      "bytes": 1667,
+      "sha256": "03e95d0918e580d18bed2792042828623d0c274846fb25c8ea4ac867e4d85a26"
+    },
+    {
+      "path": "validation-import-correction/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation-import-correction/stderr.log",
+      "bytes": 14346,
+      "sha256": "8843ffd7463ad8fd456759decfd6d6cb730b9e560f1cff4e0bf60caf4f5934a5"
+    },
+    {
+      "path": "validation-import-correction/source-before.json",
+      "bytes": 388329,
+      "sha256": "f00cde3217fc24858cc6b8aec01c0db580d8d4780ac78d6ebc66b65de77b5e92"
+    },
+    {
+      "path": "validation-import-correction/source-after.json",
+      "bytes": 388329,
+      "sha256": "f00cde3217fc24858cc6b8aec01c0db580d8d4780ac78d6ebc66b65de77b5e92"
+    },
+    {
+      "path": "validation-catalog-restoration/execution.json",
+      "bytes": 1419,
+      "sha256": "c75e0e5ad80a4cb5532ecc72de94008c2cb92341ba4d6629636b6f51cf999cf1"
+    },
+    {
+      "path": "validation-catalog-restoration/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation-catalog-restoration/stderr.log",
+      "bytes": 299,
+      "sha256": "aa69c70138bb045fd0f21dca97b44d75da1f988d4d6c4eab6a3cb9a608e09b09"
+    },
+    {
+      "path": "validation-catalog-restoration/source-before.json",
+      "bytes": 388556,
+      "sha256": "3df6f85a10caad01bf043c40f7bb751abb5e02eaa043038188b3f5420b9d13d0"
+    },
+    {
+      "path": "validation-catalog-restoration/source-after.json",
+      "bytes": 388556,
+      "sha256": "3df6f85a10caad01bf043c40f7bb751abb5e02eaa043038188b3f5420b9d13d0"
+    }
+  ],
+  "verified_original_roundtrip": true
+}

@@ -1,0 +1,184 @@
+name: Lumo Modernisierung – Prüfung, APK und Android-Rundgang
+# Exact head of the modernization branch: full Flutter suite, real render
+# captures, signed unified Flutter+Godot APK (arm64 + x86_64) with hashes and
+# provenance, then the x86_64 APK installed and toured on an emulator.
+# No release, no main merge.
+on:
+  push:
+    branches:
+      - claude/lumo-lernen-kart-modernisierung-ild8i2
+    paths:
+      - lib/**
+      - test/**
+      - assets/**
+      - config/**
+      - scripts/**
+      - pubspec.yaml
+      - pubspec.lock
+      - .github/workflows/lumo-modernization-apk.yml
+      - .github/probes/modernization_android_tour.py
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-modernization-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Locked dependencies and analysis
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Complete Flutter test suite
+        run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+      - name: Real render captures of the reworked screens
+        run: |
+          set -euo pipefail
+          LUMO_CAPTURE_DIR="$PWD/captures" flutter test --no-pub \
+            test/design/lumo_modernization_capture_test.dart
+          ls captures | wc -l
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-modernization-flutter-captures
+          path: captures/
+          if-no-files-found: error
+          retention-days: 30
+  apk:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Record exact sources
+        run: |
+          set -euo pipefail
+          mkdir -p release-proof
+          git rev-parse HEAD | tee release-proof/FLUTTER-SOURCE.txt
+          cp config/godot-source.json release-proof/GODOT-SOURCE.json
+          grep '^version:' pubspec.yaml | tee release-proof/APP-VERSION.txt
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Flutter and Android toolchain
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh release-proof/ndk
+      - name: Exact Godot engine
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build signed unified Flutter and Godot APKs
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh
+          for apk in dist/Lumo-Lernen-Neu.apk dist/x86_64/Lumo-Lernen-Neu.apk; do
+            test -s "$apk"
+          done
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > release-proof/VERIFICATION-arm64.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > release-proof/VERIFICATION-x86_64.json
+          sha256sum dist/Lumo-Lernen-Neu.apk dist/x86_64/Lumo-Lernen-Neu.apk | tee release-proof/SHA256SUMS.txt
+          cp dist/BUILD-PROVENANCE.json release-proof/BUILD-PROVENANCE.json
+          cp dist/x86_64/BUILD-PROVENANCE.json release-proof/BUILD-PROVENANCE-x86_64.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-modernization-android-apk
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/x86_64/Lumo-Lernen-Neu.apk
+            release-proof/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+  android-tour:
+    needs: apk
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-modernization-android-apk
+          path: candidate/
+      - name: Live UI reader
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/modernization_android_tour.py
+          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Install and tour the exact APK
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out tour
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-modernization-android-tour
+          path: tour/
+          retention-days: 30

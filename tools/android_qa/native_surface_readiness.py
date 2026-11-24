@@ -12,7 +12,9 @@ from pathlib import Path
 from PIL import Image
 
 
-def inspect_surface(source: Path) -> dict:
+def inspect_surface(source: Path, *, orientation: str = 'landscape') -> dict:
+    if orientation not in ('landscape', 'responsive'):
+        raise ValueError('Unknown native surface orientation policy')
     raw = source.read_bytes()
     with Image.open(source) as original:
         image = original.convert('RGB')
@@ -27,13 +29,17 @@ def inspect_surface(source: Path) -> dict:
     left = next((index for index, value in enumerate(blank) if not value), width)
     right = next((index for index, value in enumerate(reversed(blank)) if not value), width)
     reasons = []
-    if width <= height:
+    # Kart/Creative must still finish their landscape activity handoff. Learning
+    # and Cards explicitly support either orientation; their full portrait
+    # viewport is not a stale landscape frame. All completeness checks remain.
+    if orientation == 'landscape' and width <= height:
         reasons.append('native landscape surface has not arrived')
     if max(left, right) >= width * .20:
         reasons.append('observed blank edge band occupies at least20% of native surface')
     return {'source': source.name, 'source_sha256': hashlib.sha256(raw).hexdigest(),
             'source_bytes': len(raw),
-            'pixels': [width, height], 'sample_rows': rows,
+            'pixels': [width, height], 'orientation_policy': orientation,
+            'sample_rows': rows,
             'blank_edge_columns': {'left': left, 'right': right},
             'blank_threshold_rgb_max': 8, 'blank_required_rows': 7,
             'acceptable_for_target_sampling': not reasons, 'reasons': reasons,

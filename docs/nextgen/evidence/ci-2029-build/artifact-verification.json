@@ -1,0 +1,40 @@
+{
+  "artifactId": 14191640442,
+  "workflowRun": 43785937519,
+  "archiveBytes": 63014,
+  "archiveSha256": "46adb115d52fbbcc2cab9490a34576bc467cef0e9dc66a64de4bf2fdfca3dfbc",
+  "allMemberCRCsVerified": true,
+  "archiveRetainedLocally": true,
+  "members": [
+    {
+      "path": "VERIFY-arm64.json",
+      "bytes": 3835,
+      "sha256": "0e3976accc10243921ecb8198d523b434c57e5ef3eb663d2dcf885f5a21c27eb",
+      "crc32": "244b2018"
+    },
+    {
+      "path": "build.log",
+      "bytes": 727198,
+      "sha256": "5e2ed4d8b141a7e0a62b31a7e494c40470355343e467bc9f529fa0c64b25761e",
+      "crc32": "bff32366"
+    },
+    {
+      "path": "VERIFY-x86.json",
+      "bytes": 3832,
+      "sha256": "3a35b91f703113fb40fff6f2a770b8a208e51a2bd79b87f740a28921aac35c26",
+      "crc32": "3215ebe7"
+    },
+    {
+      "path": "ndk/ndk-28.2.13676358.5kVU0t/clang-1.log",
+      "bytes": 338,
+      "sha256": "205100126882343afcaa1f95956f7fc53d0c72a521402d4963239c9d4f18e677",
+      "crc32": "ee9f2086"
+    },
+    {
+      "path": "ndk/ndk-28.2.13676358.5kVU0t/sdkmanager-install-1.log",
+      "bytes": 7373,
+      "sha256": "ee5600cb059f810efeab9316b2703dc28beede3caf6cf50acd900b2e7871c749",
+      "crc32": "a14ba713"
+    }
+  ]
+}

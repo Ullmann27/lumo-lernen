@@ -1,0 +1,365 @@
+{
+  "schema": 1,
+  "kind": "independent-four-original-runtime-visual-review",
+  "date_utc": "2026-11-14",
+  "source": {
+    "host": "1375da193af0152af64f91d86577aa9768cd50db",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "run_id": 43599456596,
+    "run_attempt": 1,
+    "job_id": 132460874104,
+    "run_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43599456596",
+    "job_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43599456596/job/132460874104",
+    "job_status_reported_by_parent": "success",
+    "job_completed_utc_reported_by_parent": "2026-11-14T13:25:21Z",
+    "artifact_id": 14115597521,
+    "archive_bytes": 22157468,
+    "archive_sha256": "dec176c035f5183ce2fbd33f78e95cdb55d7b9b58f16841e3ac34bfee80be836",
+    "archive_file_count_reported_by_parent": 399,
+    "local_original_root": "/workspace/scratch/2708c7907f28/runtime-1375-original-14115597521/original",
+    "provenance_scope": "Parent owns the exclusive download, ZIP CRC/path validation, complete source/manifest/frame binding and API job verification. This reviewer independently opened these four original PNGs, recomputed their file identities and compared them with the shared archive-index.json; paired layout files and the native-result summary were read."
+  },
+  "images": [
+    {
+      "path": "runtime/connect_four_empty.png",
+      "bytes": 82537,
+      "sha256": "aa1bde4d9f074b6d509024f064f14e27a40866d344657a7d522005bb60e52fd8",
+      "git_blob": "e2ca2570863ef418c7cf93e443cb176c776b045f",
+      "width": 960,
+      "height": 540,
+      "independently_opened_original": true,
+      "archive_index_match": true,
+      "layout": {
+        "path": "runtime/connect_four_empty.layout.json",
+        "sha256": "164520da5a84dfd6488a84d4e4fcd0e1b5418dc7ff08b2dc3856760c014d9e9d",
+        "layout_sequence": 6,
+        "safe_rect": [
+          0,
+          0,
+          960,
+          540
+        ],
+        "viewport_px": [
+          960,
+          540
+        ],
+        "window_px": [
+          960,
+          540
+        ],
+        "state": {
+          "phase": "playing",
+          "paused": false,
+          "twoPlayers": true,
+          "rewarded": false,
+          "canDrop": true,
+          "revision": 7,
+          "ack": 3,
+          "settled": true,
+          "density": 1,
+          "ui_visible": true,
+          "pending": 0
+        }
+      },
+      "visible": [
+        "Vollständiges leeres Brett mit sieben Spalten und sechs Reihen.",
+        "Zurück, Pause, Titel und alle sieben Spaltenflächen sind im Bild und lesbar.",
+        "Die Statuszeile lautet „Gespeichert · Cyan ist dran“; Lumo ist rechts neben dem Brett sichtbar."
+      ],
+      "limits": [
+        "Kein offener Ergebnisdialog; keine Interaktion aus dem Standbild abgeleitet."
+      ]
+    },
+    {
+      "path": "runtime/connect_four_win.png",
+      "bytes": 84544,
+      "sha256": "c1ae15494092fa78aed6d074196b60bd9bfeac8b145a4d2b0dfecae866767e1a",
+      "git_blob": "5165b197e9b7deb677975e4bdf0ce6cf0737076f",
+      "width": 960,
+      "height": 540,
+      "independently_opened_original": true,
+      "archive_index_match": true,
+      "layout": {
+        "path": "runtime/connect_four_win.layout.json",
+        "sha256": "9f605b67fc7906f69e31655ba6d7a6f78146fdf4fe4098181db7c3697b7d87fb",
+        "layout_sequence": 14,
+        "safe_rect": [
+          0,
+          0,
+          960,
+          540
+        ],
+        "viewport_px": [
+          960,
+          540
+        ],
+        "window_px": [
+          960,
+          540
+        ],
+        "state": {
+          "phase": "won",
+          "paused": false,
+          "twoPlayers": true,
+          "rewarded": true,
+          "canDrop": false,
+          "revision": 24,
+          "ack": 14,
+          "settled": true,
+          "density": 1,
+          "ui_visible": true,
+          "pending": 0
+        }
+      },
+      "visible": [
+        "Vollständiges Brett mit vier hervorgehobenen cyanfarbenen Steinen nebeneinander in der untersten Reihe.",
+        "„Cyan gewinnt!“ ist lesbar; Zurück, Menü und sieben ausgegraute Spaltenflächen liegen im Bild.",
+        "Lumo ist rechts neben dem Brett sichtbar."
+      ],
+      "limits": [
+        "Kein geöffneter Ergebnisdialog in dieser Aufnahme; Spielregeln und Eingaben werden durch diesen Bildbefund nicht neu verifiziert."
+      ]
+    },
+    {
+      "path": "runtime/connect_four_phone_portrait.png",
+      "bytes": 170661,
+      "sha256": "0d22adcedf99e68060f7091a3cb9bf8b99abea7c9415c724e2ef81a0b7600de1",
+      "git_blob": "328038c8271f171e9575a021145fd090b83e9307",
+      "width": 1080,
+      "height": 2400,
+      "independently_opened_original": true,
+      "archive_index_match": true,
+      "layout": {
+        "path": "runtime/connect_four_phone_portrait.layout.json",
+        "sha256": "a7f0b62827963bf21b46191f661e2842c04f97c2a93679472149be9ab628248f",
+        "layout_sequence": 16,
+        "safe_rect": [
+          0,
+          136,
+          1080,
+          2201
+        ],
+        "viewport_px": [
+          411,
+          914
+        ],
+        "window_px": [
+          1080,
+          2400
+        ],
+        "state": {
+          "phase": "won",
+          "paused": true,
+          "twoPlayers": true,
+          "rewarded": true,
+          "canDrop": false,
+          "revision": 25,
+          "ack": 15,
+          "settled": true,
+          "density": 2.625,
+          "ui_visible": true,
+          "pending": 0
+        },
+        "result_actions": [
+          {
+            "clipped": false,
+            "enabled": true,
+            "hit_rect_px": [
+              57.8102188110352,
+              532.498901367188,
+              964.379577636719,
+              136.542663574219
+            ],
+            "id": "resume",
+            "rect_px": [
+              57.8102188110352,
+              532.498901367188,
+              964.379577636719,
+              136.542678833008
+            ],
+            "text": "Brett ansehen",
+            "visible": true
+          },
+          {
+            "clipped": false,
+            "enabled": true,
+            "hit_rect_px": [
+              57.8102188110352,
+              690.048156738281,
+              964.379577636719,
+              136.542663574219
+            ],
+            "id": "restart",
+            "rect_px": [
+              57.8102188110352,
+              690.048156738281,
+              964.379577636719,
+              136.542678833008
+            ],
+            "text": "Neue Runde",
+            "visible": true
+          },
+          {
+            "clipped": false,
+            "enabled": true,
+            "hit_rect_px": [
+              57.8102188110352,
+              847.597412109375,
+              964.379577636719,
+              136.542663574219
+            ],
+            "id": "mode",
+            "rect_px": [
+              57.8102188110352,
+              847.597412109375,
+              964.379577636719,
+              136.542678833008
+            ],
+            "text": "Gegen Lumo spielen",
+            "visible": true
+          }
+        ]
+      },
+      "visible": [
+        "Geöffneter Ergebnisdialog mit „Cyan gewinnt!“ und „Vier in einer Reihe!“.",
+        "Brett ansehen, Neue Runde und Gegen Lumo spielen sind vollständig sichtbar und lesbar.",
+        "Header und untere Status-/Spaltenleiste sind sichtbar; der große Dialog überlagert das Brett."
+      ],
+      "limits": [
+        "Dies ist eine Aufnahme mit geöffnetem Dialog, keine Freigabe der vollständigen Brettdarstellung im Portrait-Spielzustand.",
+        "Sichtbarkeit ist kein Nachweis der tatsächlichen Betätigung."
+      ]
+    },
+    {
+      "path": "runtime/connect_four_small_landscape.png",
+      "bytes": 22915,
+      "sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55",
+      "git_blob": "ec730039bb8e2ec4fea8ed293c914cff24d81289",
+      "width": 640,
+      "height": 360,
+      "independently_opened_original": true,
+      "archive_index_match": true,
+      "layout": {
+        "path": "runtime/connect_four_small_landscape.layout.json",
+        "sha256": "f1b11ce15442e2e106c51b0854446e59b99db00ff2cb797c6efb7927b007d364",
+        "layout_sequence": 20,
+        "safe_rect": [
+          0,
+          24,
+          640,
+          312
+        ],
+        "viewport_px": [
+          640,
+          360
+        ],
+        "window_px": [
+          640,
+          360
+        ],
+        "state": {
+          "phase": "won",
+          "paused": true,
+          "twoPlayers": true,
+          "rewarded": true,
+          "canDrop": false,
+          "revision": 29,
+          "ack": 19,
+          "settled": true,
+          "density": 1,
+          "ui_visible": true,
+          "pending": 0
+        },
+        "result_actions": [
+          {
+            "clipped": false,
+            "enabled": true,
+            "hit_rect_px": [
+              22,
+              146,
+              588,
+              52
+            ],
+            "id": "resume",
+            "rect_px": [
+              22,
+              146,
+              588,
+              52
+            ],
+            "text": "Brett ansehen",
+            "visible": true
+          },
+          {
+            "clipped": true,
+            "enabled": true,
+            "hit_rect_px": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "id": "restart",
+            "rect_px": [
+              22,
+              206,
+              588,
+              52
+            ],
+            "text": "Neue Runde",
+            "visible": true
+          },
+          {
+            "clipped": true,
+            "enabled": true,
+            "hit_rect_px": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "id": "mode",
+            "rect_px": [
+              22,
+              266,
+              588,
+              52
+            ],
+            "text": "Gegen Lumo spielen",
+            "visible": true
+          }
+        ]
+      },
+      "visible": [
+        "Header, „Vier in einer Reihe!“, die vollständig sichtbare Aktion Brett ansehen, Scrollleiste und untere Gewinn-/Spaltenleiste sind erkennbar.",
+        "Neue Runde und Gegen Lumo spielen sind in diesem Standbild nicht sichtbar."
+      ],
+      "limits": [
+        "Das Layout meldet für restart und mode clipped=true und hit_rect_px=[0,0,0,0] bei Revision 29 und ACK 19.",
+        "Der Capturezustand belegt weder das Freiscrollen noch das Betätigen der beiden unteren Aktionen.",
+        "Der getrennte R3-Nachweis wird diesem Standardruntime-Lauf nicht zugerechnet."
+      ]
+    }
+  ],
+  "native_result_summary": {
+    "path": "runtime/native-result.json",
+    "bytes": 73209,
+    "sha256": "22be109bf62d81148e3b96b9c54932ca5de0b4e2fdf323269436a069b7cef748",
+    "passed": true,
+    "checks": 170,
+    "errors": [],
+    "scope": "Observed report values only; no independent replay or full native event audit by this reviewer."
+  },
+  "conclusion": {
+    "visible_obstructing_regression_found_in_four_images": false,
+    "statement": "Die vier gezeigten Zustände sind visuell nachvollziehbar. Die vollständige Sichtbarkeit aller Ergebnisaktionen gilt für die Portrait-Aufnahme. In 640×360 ist allein Brett ansehen vollständig im aktuellen Scrollausschnitt sichtbar; die beiden unteren Aktionen bleiben außerhalb dieses Ausschnitts.",
+    "completion_limit": "Der Standardruntime-Bildbefund weist die zwei gezielten Small-Result-Bedienaktionen nicht erneut nach. Der separate R3-Nachweis bleibt separat.",
+    "exclusions": [
+      "Keine neue Engine-, Renderer-, Test- oder Eingabeausführung.",
+      "Keine Aussage zu gemessenen FPS, Android-Gerät, APK, Audio oder Play-Store-Reife.",
+      "Keine Ableitung von Scroll-Erreichbarkeit oder Touch-Erfolg aus Standbildern.",
+      "Keine vollständige Prüfung sämtlicher Filmframes oder des gesamten Main-Workflows durch diesen Reviewer."
+    ]
+  },
+  "operations": "Read-only original-file inspection and creation of this evidence Git blob only; no artifact download, original-file mutation, product change, commit or ref update."
+}

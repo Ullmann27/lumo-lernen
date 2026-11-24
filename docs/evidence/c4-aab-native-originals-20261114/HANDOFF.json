@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "base_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "kind": "complete_native_original_runner_and_archive_inventory",
+  "tree_entries": [
+    {
+      "path": "docs/evidence/c4-aab-native-originals-20261114/originals/nextgen-runner.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ff7099e25259c7e01ec0c59cfab652225bee791"
+    },
+    {
+      "path": "docs/evidence/c4-aab-native-originals-20261114/originals/dream-runner.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a07b0c16f8b0c4b86f83ec28d7170dc3909f49b7"
+    },
+    {
+      "path": "docs/evidence/c4-aab-native-originals-20261114/originals/connect-four-return.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "186e8fa528a9138ea17a0a1395010f440192a280"
+    },
+    {
+      "path": "docs/evidence/c4-aab-native-originals-20261114/originals/source-sha.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5010efa40eff1e722991b5118da28b62623e51b"
+    },
+    {
+      "path": "docs/evidence/c4-aab-native-originals-20261114/originals/nextgen/results.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db0de72ce9ada78bbe039dc96745928e0b5fd30a"
+    },
+    {
+      "path": "docs/evidence/c4-aab-native-originals-20261114/originals/dream/results.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03d9d027d45a2fc1610e35db1c1186bd8f39c943"
+    },
+    {
+      "path": "docs/evidence/c4-aab-native-originals-20261114/archive-index.json.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bead498b145a64d0ee3faafc9a3eeced180701df"
+    },
+    {
+      "path": "docs/evidence/c4-aab-native-originals-20261114/archive-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d1bae43fcb2829a0773c9bf18a1158f2bc939af"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "observedAtUtc": "2026-11-16T07:53:12.488868+00:00",
+  "scope": "Frozen local QA working copy only, after exact remote publication and CI activation; no active local agent, remote CI source, branch, commit or history changed",
+  "records": [
+    {
+      "worktree": "/workspace/scratch/4fa97167812c/qa-2031-replay",
+      "branch": "qa/lumo-nextgen-2031-android-20261116",
+      "commit": "59ab8cd000d4cca1c9c414920ccebf9fc5d1c7ba",
+      "treeUnchanged": "79f623d398e7c64275d8f3b894f169c2d29b54c4",
+      "priorSparseSelection": "/*\n!/*/\n/.github/\n!/.github/*/\n/tools/\n!/tools/*/\n/.github/probes/\n/.github/workflows/\n/config/\n/scripts/\n/tools/android_qa/\n/tools/nextgen/\n",
+      "currentSparseSelection": "/AGENTS.md\n/.github/probes/\n/.github/workflows/\n/tools/nextgen/*.py\n/config/nextgen-2031-replay.json\n",
+      "workingCopyBytesBefore": 67416608,
+      "workingCopyBytesAfter": 2722228,
+      "allCommittedObjectsPreserved": true,
+      "remoteHeadVerifiedBeforeTrim": true
+    }
+  ]
+}

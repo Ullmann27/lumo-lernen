@@ -1,0 +1,35 @@
+{
+  "status": "BLOCKED_PENDING_CORRECTION",
+  "scope": "Actual instantiated production control rectangles including Canvas and viewport transforms; software harness with supplied Android display density, no physical-device measurement.",
+  "native_revision": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+  "surface_pixels": [
+    2400,
+    1080
+  ],
+  "display_density": 2.625,
+  "route": "Kart landing -> Garage -> Lack, Teile & Effekte",
+  "confirmed_target_dp": 48,
+  "measured_dp": {
+    "WorkshopBack": [
+      49.523811340332,
+      24.0
+    ],
+    "WorkshopDynoStart": [
+      419.428558349609,
+      28.5714282989502
+    ],
+    "Upgrade": [
+      57.1428565979004,
+      32.5714302062988
+    ],
+    "Swatch_werk": [
+      24.380952835083,
+      22.8571434020996
+    ]
+  },
+  "known_good_scopes": "Main garage48/52dp, Jump header48/jump136/stick152dp, learning actions52dp in this measured layout. Does not assert all screens or densities.",
+  "corrective_owner": "Agent learning_worlds",
+  "log": "initial-production-measurements.log",
+  "sha256": "b8bf8383edfdb7c4ee88bc9f81b517c1fb0e5a5fb1e3420c3aa98e56d440c7ec",
+  "recorded_at": "2026-11-13T13:54:38.274606+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "originalRun": 43753810844,
+  "originalFlutterSource": "e3c0735cedd48adf625c23391d2818580712e7a9",
+  "flutterAndHostStep": "passed",
+  "nativeJobBeforeReplacement": "in_progress_without_completed_result",
+  "originalNativeSource": "332307fafa2f68a1aa3667d81b7c90d3683c5c45",
+  "integratedNativeSource": "ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb",
+  "producerProductionCommit": "5498a651b5ee0b67fb1536580f51b07123aac55e",
+  "nativeChecks": {
+    "learning_pattern_regression": 33077,
+    "learning_world_regression": 5351,
+    "learning_sharing_regression": 1811,
+    "learning_host_payload_regression": 135,
+    "learning_generation_regression": 47,
+    "learning_companion_scope_regression": 56,
+    "learning_wonder_details_regression": 100,
+    "nextgen_avatar_contract_review": 300,
+    "nextgen_learning_route_review": 7324,
+    "nextgen_learning_base_audio_regression": 69,
+    "learning_english_regression": 7239
+  },
+  "nativeTotalChecks": 55509,
+  "nativeEvidence": "https://github.com/Ullmann27/lumo-godot/tree/ec702dad29def7ea3db6f62f2ead7b8ca6bca2bb/docs/nextgen/evidence/native-ci-05",
+  "actualSourceHashesVerifiedByRoot": {
+    "scripts/learning/learning_world.gd": "aee5c931cb8b29447699ea4b63499b3df2847cd9a9e8b1eac711252be168c509",
+    "scripts/lumo_next/learning_world_next.gd": "61b4704288a4fd7334c08cead12c9c2c4a5b22901f3b7766e3100165425834db",
+    "scripts/lumo_next/learning_lumo_actor.gd": "3bf21847f6384873ab22aae368cf3a2fb2826f09efa0bd19cab274055fbe521b",
+    "scripts/lumo_next/avatar_director.gd": "f3d805d4decf7cc9f0b90c52e44151bdafbef58c14ef97755af3563f0029441e",
+    "scripts/learning/learning_activity.gd": "5b59e33fa78c7e8edfb61c427b6d8ac37dd838fd9fd748a7e13182a91099a7fe",
+    "scripts/learning/learning_companion_scope.gd": "d498c1dbae91462a40f4afeb3a512df9c616506c9c3ba519133814e9677d0612",
+    "scenes/learning/learning_world.tscn": "fe7a004d16558b6f017dbb3ec10b27a3f7682da7e3d6469e8166fd957e953d97",
+    "scripts/tests/learning_pattern_regression.gd": "233357ed40a34473d66f87ddfec909ce3b98338f7e7ce00a2ddf5058b0d679f5",
+    "scripts/tests/learning_world_regression.gd": "b4973a08060832d18f72b3f8a93d794bff45877fd2886df644b9051d11f6a774",
+    "scripts/tests/learning_sharing_regression.gd": "2d829cf28cd7b9fdd1396d0dda7e9dd20d14c5285d25940943c15bccc55fa9f3",
+    "scripts/tests/learning_host_payload_regression.gd": "53b39da402746d7998e707e07f2ff7bf4803c0c332be5fd0dbd9dc48ad4b7eea",
+    "scripts/tests/learning_generation_regression.gd": "e16ed1b966042ab3a478b7ac3ed2d813055a6c420acc09d6223158ce1bd03d1e",
+    "scripts/tests/learning_companion_scope_regression.gd": "c9de1834eeeab841ecbc4e7cfb6d0ac44355d930bde8281ea4f0b530db3e3bc3",
+    "scripts/tests/learning_wonder_details_regression.gd": "d44f89c76759eb23529291264680ffd5619a6b1b3b9c96a2dfae86e4c3342858",
+    "scripts/tests/nextgen_avatar_contract_review.gd": "9b0f2fb8b54232fd74f9764d7e8e5f71a88dca49dd2db0cf9d03cbedebdbfb5f",
+    "scripts/tests/nextgen_learning_route_review.gd": "e110bd0c372f9df35fffce77ac778e3be26248ed0db4f411e53a90e1ae4aad42",
+    "scripts/tests/nextgen_learning_base_audio_regression.gd": "2ea3116afa0902928382243920f045cdf14892118461bc93383ad22d94386311",
+    "scripts/tests/learning_english_regression.gd": "c6ce712d4b8539c6cb08e0accbd94853cc7c53aa87f43c16342055073f5578e9"
+  },
+  "gateAsset": {
+    "path": "assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb",
+    "bytes": 4444536,
+    "sha256": "8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d"
+  },
+  "androidProof": false,
+  "hardwareProof": false,
+  "fpsProof": false,
+  "nextFullRun": "pending",
+  "releasePinRegression": {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "-v",
+      "scripts.tests.test_export_embedded_game",
+      "scripts.tests.test_legacy_release_pin"
+    ],
+    "sourceHead": "0726187cf488cb1362dc00209d4fafa736c08993",
+    "exitCode": 0,
+    "testsPassed": 63,
+    "log": "release-pin-tests.log",
+    "sourceHashes": {
+      "scripts/export_embedded_game.py": "fb35663e5c251b53c34187af0cd2fd84d4ab594f6801c65f9073bd94f0fedd41",
+      "scripts/verify_legacy_release_pin.py": "76d5252c80494c82bc3564e8352f43d310dc0e44c9302c25839f7dfafd32258b"
+    }
+  }
+}

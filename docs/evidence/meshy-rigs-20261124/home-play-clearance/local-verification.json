@@ -1,0 +1,211 @@
+{
+  "source": {
+    "commit": "c737db6437d3762a054879c32e2426ff1155cff7",
+    "files": {
+      "scripts/games/kart_neon_layout.gd": "35b739225e1b17957bd123b76d28136bd71c1d12ac4377b7b923b121aadd019e",
+      "scripts/tests/kart_neon_home_regression.gd": "d31a1608911cea3e7196f602b6212302e296e571f98224257015ba0d6914283a"
+    },
+    "baseline_test_log_sha256": "6077342ebb8296e55ec6eb802d827937b521b14bf7b99a8a7ed6c738fe7bd9bb",
+    "fixed_test_log_sha256": "15cda0d2fb43f80c6ed0df6e189e24dafc577a6a786fccebecc829d3f5cd25c5"
+  },
+  "before_controls": [
+    {
+      "density": 1.0,
+      "hero_canvas": "[P: (383.0, 208.0), S: (304.0, 368.0)]",
+      "next_canvas": "[P: (596.0, 350.0), S: (84.0, 84.0)]",
+      "play_canvas": "[P: (603.1165, 492.1165), S: (69.90289, 69.90289)]",
+      "play_gap_dp": 33.2561688164824,
+      "window": "(412, 915)"
+    },
+    {
+      "density": 2.0,
+      "hero_canvas": "[P: (386.0, 238.0), S: (296.0, 156.0)]",
+      "next_canvas": "[P: (591.0, 275.0), S: (96.0, 96.0)]",
+      "play_canvas": "[P: (0.0, 0.0), S: (0.0, 0.0)]",
+      "play_gap_dp": -1.0,
+      "window": "(720, 1280)"
+    },
+    {
+      "density": 1.0,
+      "hero_canvas": "[P: (644.0, 109.0), S: (603.0, 616.0)]",
+      "next_canvas": "[P: (1200.0, 395.0), S: (44.0, 44.0)]",
+      "play_canvas": "[P: (1203.114, 681.1143), S: (36.57141, 36.57141)]",
+      "play_gap_dp": 264.812469482422,
+      "window": "(1384, 1400)"
+    },
+    {
+      "density": 2.0,
+      "hero_canvas": "[P: (656.0, 217.0), S: (574.0, 217.0)]",
+      "next_canvas": "[P: (1135.0, 282.0), S: (88.0, 88.0)]",
+      "play_canvas": "[P: (1142.229, 346.2286), S: (73.14282, 73.14285)]",
+      "play_gap_dp": -12.9999971389771,
+      "window": "(1384, 1400)"
+    },
+    {
+      "density": 2.0,
+      "hero_canvas": "[P: (1008.0, 267.0), S: (437.0, 178.0)]",
+      "next_canvas": "[P: (1303.0, 292.0), S: (171.0, 171.0)]",
+      "play_canvas": "[P: (0.0, 0.0), S: (0.0, 0.0)]",
+      "play_gap_dp": -1.0,
+      "window": "(1280, 720)"
+    }
+  ],
+  "after_controls": [
+    {
+      "density": 1.0,
+      "hero_canvas": "[P: (383.0, 208.0), S: (304.0, 368.0)]",
+      "next_canvas": "[P: (596.0, 350.0), S: (84.0, 84.0)]",
+      "play_canvas": "[P: (603.1165, 492.1165), S: (69.90289, 69.90289)]",
+      "play_gap_dp": 33.2561688164824,
+      "window": "(412, 915)"
+    },
+    {
+      "density": 2.0,
+      "hero_canvas": "[P: (386.0, 238.0), S: (296.0, 156.0)]",
+      "next_canvas": "[P: (578.0, 268.0), S: (96.0, 96.0)]",
+      "play_canvas": "[P: (0.0, 0.0), S: (0.0, 0.0)]",
+      "play_gap_dp": -1.0,
+      "window": "(720, 1280)"
+    },
+    {
+      "density": 1.0,
+      "hero_canvas": "[P: (644.0, 109.0), S: (603.0, 616.0)]",
+      "next_canvas": "[P: (1200.0, 395.0), S: (44.0, 44.0)]",
+      "play_canvas": "[P: (1203.114, 681.1143), S: (36.57141, 36.57141)]",
+      "play_gap_dp": 264.812469482422,
+      "window": "(1384, 1400)"
+    },
+    {
+      "density": 2.0,
+      "hero_canvas": "[P: (656.0, 217.0), S: (574.0, 217.0)]",
+      "next_canvas": "[P: (1135.0, 244.0), S: (88.0, 88.0)]",
+      "play_canvas": "[P: (1142.229, 346.2286), S: (73.14282, 73.14285)]",
+      "play_gap_dp": 7.78125286102295,
+      "window": "(1384, 1400)"
+    },
+    {
+      "density": 2.0,
+      "hero_canvas": "[P: (1008.0, 267.0), S: (437.0, 178.0)]",
+      "next_canvas": "[P: (1260.0, 270.0), S: (171.0, 171.0)]",
+      "play_canvas": "[P: (0.0, 0.0), S: (0.0, 0.0)]",
+      "play_gap_dp": -1.0,
+      "window": "(1280, 720)"
+    }
+  ],
+  "gles_capture": {
+    "run": {
+      "exit_code": 0,
+      "elapsed_seconds": 68.32364778499868,
+      "command": [
+        "/tmp/lumo-2078/runtime/Godot_v4.6.3-stable_linux.x86_64",
+        "--path",
+        "/tmp/lumo-neon-repair",
+        "--display-driver",
+        "x11",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--script",
+        "/tmp/lumo-home-overlap-proof/capture_with_bounds.gd",
+        "--",
+        "--capture",
+        "--density=2",
+        "/tmp/lumo-home-overlap-proof/fixed-images"
+      ],
+      "source_commit": "c737db6437d3762a054879c32e2426ff1155cff7",
+      "scope": "Godot 4.6.3 Compatibility desktop software renderer; no physical Android result"
+    },
+    "checks": 72,
+    "failures": [],
+    "engine_errors": 0,
+    "homes": [
+      {
+        "camera_transform": "[X: (-0.972579, 0.0, -0.232573), Y: (-0.0458, 0.980418, 0.191526), Z: (0.228019, 0.196925, -0.953534), O: (1.880619, 2.474171, -7.864408)]",
+        "display_density": 2.0,
+        "driver": "fox",
+        "featured_controls": {
+          "gap_dp": 8.23006750701461,
+          "hero_pixels": "[P: (717.95, 238.0217), S: (628.2062, 236.9397)]",
+          "next_pixels": "[P: (1241.275, 266.1515), S: (96.23125, 96.29057)]",
+          "play_pixels": "[P: (1250.156, 378.9022), S: (79.99995, 80.04932)]",
+          "source_commit": "c737db6437d3762a054879c32e2426ff1155cff7"
+        },
+        "fov": 40.0,
+        "image": "home-comet-1384x1400.png",
+        "kart": "comet",
+        "name": "home-comet-1384x1400",
+        "offset": [
+          1.45896232128143,
+          -1.26139831542969
+        ],
+        "optical_origin": "(0.519435, 1.237473, -8.445313)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "room_obstructions": {},
+        "section": 0,
+        "stage_region": "[P: (0.014451, 0.114356), S: (0.479769, 0.351087)]",
+        "touch_targets": {
+          "count": 26,
+          "density": 2.0,
+          "minimum_dp": [
+            48.1156234741211,
+            48.1452865600586
+          ],
+          "outside_viewport": [],
+          "undersized": []
+        },
+        "viewport": [
+          1384,
+          1400
+        ]
+      },
+      {
+        "camera_transform": "[X: (-0.972579, 0.0, -0.232573), Y: (-0.0458, 0.980418, 0.191526), Z: (0.228019, 0.196925, -0.953534), O: (2.031069, 2.604105, -8.49356)]",
+        "display_density": 2.0,
+        "driver": "fox",
+        "featured_controls": {
+          "gap_dp": 8.23006750701461,
+          "hero_pixels": "[P: (717.95, 238.0217), S: (628.2062, 236.9397)]",
+          "next_pixels": "[P: (1241.275, 266.1515), S: (96.23125, 96.29057)]",
+          "play_pixels": "[P: (1250.156, 378.9022), S: (79.99995, 80.04932)]",
+          "source_commit": "c737db6437d3762a054879c32e2426ff1155cff7"
+        },
+        "fov": 40.0,
+        "image": "home-selected-1384x1400.png",
+        "kart": "phantom",
+        "name": "home-selected-1384x1400",
+        "offset": [
+          1.57567930221558,
+          -1.36231029033661
+        ],
+        "optical_origin": "(0.560989, 1.268471, -9.120938)",
+        "physical_android_device": false,
+        "renderer": "gl_compatibility",
+        "room_obstructions": {},
+        "section": 0,
+        "stage_region": "[P: (0.014451, 0.114356), S: (0.479769, 0.351087)]",
+        "touch_targets": {
+          "count": 26,
+          "density": 2.0,
+          "minimum_dp": [
+            48.1156234741211,
+            48.1452865600586
+          ],
+          "outside_viewport": [],
+          "undersized": []
+        },
+        "viewport": [
+          1384,
+          1400
+        ]
+      }
+    ]
+  },
+  "proof_files": {
+    "fixed-density2/probe.log": "c7b2ad36ac249d0b91f0f6de6925a8088303bd812d8180e2b15c0d5888f7f88e",
+    "fixed-images/capture.json": "0b21ea00e55c887da5ac8b6146ef661e9dcd6f23c4ad8e61e116cfba4fce8543",
+    "fixed-images/home-comet-1384x1400.png": "9c00af602994004e061ccfdc7eb5911492d72980c51e95f8382702a34afeb549",
+    "fixed-images/home-selected-1384x1400.png": "43f9c3e3dbf221e8f83a38ac5861b60387ebd1b923da870481216a699b20209c"
+  }
+}

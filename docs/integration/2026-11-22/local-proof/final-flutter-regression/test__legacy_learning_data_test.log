@@ -1,0 +1,16 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/legacy_learning_data_test.dart
+00:00 +0: local identity is stable across service instances and profile renames
+00:00 +1: unowned legacy remains visible for an explicit parent decision
+00:00 +2: explicit assignment moves visibility to exactly one child and preserves originals
+00:00 +3: assignment refuses to overwrite a child who already learned
+00:00 +4: opening an untouched child world still allows explicit assignment
+00:00 +5: failed local identity persistence can retry on the same repository
+00:00 +6: interrupted staging can only resume for its reserved child
+00:00 +7: malformed original data is retained and cannot be blindly assigned
+00:00 +8: a pending accepted module answer blocks assignment during its wallet write
+00:00 +9: a failed final claim stays reserved across restart until the same owner retries
+00:00 +10: a failed reservation exposes no ownership and permits a later deliberate choice
+00:00 +11: sole local history is retained but a school directory prevents automatic claiming
+00:00 +12: an earned Cosmos destination cannot be overwritten by a legacy assignment
+00:00 +13: decoded legacy fields that cannot be loaded are retained without claiming
+00:00 +14: All tests passed!

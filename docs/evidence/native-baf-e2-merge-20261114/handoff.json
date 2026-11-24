@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "kind": "native-three-way-inert-merge-handoff",
+  "evidence_repository": "Ullmann27/lumo-lernen",
+  "native_repository": "Ullmann27/lumo-godot",
+  "source": {
+    "common_ancestor": "bd0712259bb64908a5649ee1999638826c9eb597",
+    "commit": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+    "parents_ordered": [
+      "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "baf148b03a7a32c6ad9f737d731f900eb9113ea1"
+    ]
+  },
+  "result": "Complete source/entry preservation and independent review found no static integration blocker. Actual committed tree is all3689 baf entries unchanged plus32 original e2 evidence files; both shared modified blobs were already identical.",
+  "verified_commit_readback": true,
+  "verified_commit_compare_only32_original_evidence_additions": true,
+  "product_source_byte_identical_to": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "notice_policy_compatible": true,
+  "scope": {
+    "inert_commit_only": true,
+    "ref_updated": false,
+    "host_pin_changed": false,
+    "new_tests": false,
+    "new_engine_run": false,
+    "new_rendering": false,
+    "new_build": false,
+    "new_runtime_acceptance": false,
+    "historical_e2_results_relabelled": false,
+    "remaining": "Root source integration and actual complete candidate execution."
+  },
+  "entries": [
+    {
+      "path": "docs/evidence/native-baf-e2-merge-20261114/source-integration-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a4a9cf2452a71ed0c54c8959dfdc4a153fa9e0a"
+    },
+    {
+      "path": "docs/evidence/native-baf-e2-merge-20261114/independent-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26f655dc0057f5a62707799d570f9085a81111bf"
+    }
+  ]
+}

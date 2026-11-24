@@ -1,0 +1,21 @@
+{
+  "recorded_at_utc": "2026-11-14T12:08:57.836042+00:00",
+  "artifact_id": 14112728895,
+  "run_id": 43590864772,
+  "run_attempt": 1,
+  "candidate_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "archive_bytes": 28108,
+  "archive_sha256": "ad1bf6dc03024c4bb3e6dd2f92d565861b7438aa6aa8d740dc3018b63a01f668",
+  "crc_verified": true,
+  "archive_path": "/home/agent/lumo-aab-build-contracts-2708/artifact.zip",
+  "original_directory": "/home/agent/lumo-aab-build-contracts-2708/originals",
+  "members": [
+    {
+      "path": "build-contracts.log",
+      "bytes": 180241,
+      "sha256": "847b4ddc6a1a1814efa9976bb9bef6dfbabdc7aea8fefeb1d610d0d7b8a2c337"
+    }
+  ],
+  "download_url_persisted": false,
+  "scope": "Actual original archive identity, CRC, safe extraction and per-member byte identities. No application execution or release approval."
+}

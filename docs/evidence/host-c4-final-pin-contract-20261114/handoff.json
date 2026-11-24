@@ -1,0 +1,21 @@
+{
+  "base_host": "3857966d5b88a10b0309d5e93a9591ec7fe31e9d",
+  "files": [
+    "scripts/tests/test_candidate_2011_pin.py"
+  ],
+  "git_mutations": false,
+  "history_preservation": {
+    "bytes": 5858,
+    "git_blob": "767e6f24e5f862f3a74442a568644bd191163e86",
+    "sha256": "03d614b76a84caa819d1dbdd8b7f8ce13c2e02609af1e10eec4c326e99adc4ef"
+  },
+  "schema": 1,
+  "source_freeze": {
+    "bytes": 1933,
+    "git_blob": "6e2d35213900ccb6c3b40160d666d2d64d0e6bfc",
+    "sha256": "08f07215379e4bbc7c1673bbc2a035428d494fb5af106db9dc7124ac55775bf2"
+  },
+  "status": "FROZEN_SOURCE_NOT_YET_TESTED",
+  "tests_run": false,
+  "worktree_writes": false
+}

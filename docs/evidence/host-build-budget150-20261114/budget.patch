@@ -1,0 +1,31 @@
+--- a/.github/workflows/lumo-connect-four-2020.yml
++++ b/.github/workflows/lumo-connect-four-2020.yml
+@@ -175,7 +175,7 @@
+       github.event.pull_request.head.repo.full_name == github.repository &&
+       github.head_ref == 'integration/lumo-c4-connections-20261114')
+     runs-on: ubuntu-latest
+-    timeout-minutes: 120
++    timeout-minutes: 150
+     outputs:
+       candidate-artifact-id: ${{ steps.upload-candidate.outputs.artifact-id }}
+       candidate-artifact-digest: ${{ steps.upload-candidate.outputs.artifact-digest }}
+--- a/scripts/tests/test_connect_four_delivery.py
++++ b/scripts/tests/test_connect_four_delivery.py
+@@ -535,7 +535,7 @@
+         step = build[begin:end]
+         self.assertLess(build.index('LUMO_NEXTGEN_LOG_DIR='), begin)
+         self.assertLess(end, build.index('      - name: Build unified real Android APK'))
+-        self.assertIn('    timeout-minutes: 120\n', build)
++        self.assertIn('    timeout-minutes: 150\n', build)
+         self.assertIn('set -euo pipefail', step)
+         self.assertIn('export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"', step)
+         self.assertLess(step.index('export PATH='), step.index('cd "$native_source"'))
+@@ -735,7 +735,7 @@
+         self.assertLess(build.index('LUMO_NEXTGEN_LOG_DIR='), build.index('      - name: '+delivery.DREAM_STEP))
+         self.assertLess(build.index('bash tools/validate_dream_connections.sh'), begin)
+         self.assertLess(end, build.index('      - name: Build unified real Android APK'))
+-        self.assertIn('    timeout-minutes: 120\n', build)
++        self.assertIn('    timeout-minutes: 150\n', build)
+         for wanted in ('set -euo pipefail', 'export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"',
+                        'native_source="$RUNNER_TEMP/lumo-native-acceptance"',
+                        'native_logs="$GITHUB_WORKSPACE/acceptance-native"',

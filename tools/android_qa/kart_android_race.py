@@ -451,6 +451,53 @@ def wait_for_frame(capture, label, predicate, error_message, *, timeout=90,
                        f'Last captured OCR: {last_text!r}')
 
 
+def focused_race_hud_text(path: Path) -> str:
+    """OCR only the *visible* center HUD ribbon of the original Android PNG.
+
+    Standard full-frame OCR missed the clearly rendered 'RUNDE 1/2' in the
+    genuine 1978 run (2400x1080 PNG), while Tesseract psm 7 on the upper
+    center ribbon read it exactly. No fabricated labels or saved race edits.
+    The caller separately verifies a fresh, running native Godot session.
+    """
+    from PIL import Image
+
+    with Image.open(path) as image:
+        frame = image.convert('RGB')
+    width, height = frame.size
+    if width < 640 or height < 320 or width <= height:
+        raise RuntimeError('Native race HUD needs a real landscape frame')
+    # Exclude the app status row and central countdown overlay. The current
+    # 2019 ribbon's letters extend to y=187 in the original 2400x1080 Android
+    # captures; the former 15% edge cut them at y=162. Keep the full upper
+    # 20% ribbon, without changing the original pixels or HUD predicates.
+    box = (round(width * .25), round(height * .035),
+           round(width * .75), round(height * .20))
+    strip = frame.crop(box)
+    strip = strip.resize((strip.width * 3, strip.height * 3))
+    buffer = io.BytesIO()
+    strip.save(buffer, format='PNG')
+    result = subprocess.run(
+        ['tesseract', 'stdin', 'stdout', '-l', 'eng', '--psm', '7'],
+        input=buffer.getvalue(), capture_output=True, check=True, timeout=20)
+    return result.stdout.decode('utf-8', errors='replace').strip()
+
+
+def focused_race_hud_visible(text: str) -> bool:
+    """Require *three* independent visual HUD features, not 'RUNDE' alone.
+
+    Tesseract can transcribe a zero as 'O': the 1978 real HUD returned
+    'RUNDE 1/2 PLATZ6/6 Okm/h x0'. A pause/countdown screen must still be
+    rejected by the tour's existing separate state and overlay gates.
+    """
+    normalized = folded(text).replace('\n', ' ').upper()
+    lap = re.search(r'\bRUNDE\s*([1-9]\d*)\s*/\s*([1-9]\d*)', normalized)
+    rank = re.search(r'\bPLATZ\s*([1-9]\d*)\s*/\s*([1-9]\d*)', normalized)
+    speed = re.search(r'\b[0-9O]{1,3}\s*KM\s*/\s*H\b', normalized)
+    return bool(lap and rank and speed
+                and int(lap.group(1)) <= int(lap.group(2))
+                and int(rank.group(1)) <= int(rank.group(2)))
+
+
 def race_view_visible(frame):
     return bool(marker(frame, 'RUNDE')) and not any(marker(frame, caption) for caption in
         ('Weiterfahren', 'Kleine Pause', 'geschafft', 'Noch ein Rennen'))

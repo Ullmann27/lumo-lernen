@@ -1,0 +1,53 @@
+{
+  "sourceParent": "cc4197e622c42dc5387ba06b7e57ac4964e1a07b",
+  "testedWorkingTreeChanges": [
+    "pubspec.yaml",
+    "scripts/verify_legacy_release_pin.py"
+  ],
+  "versionName": "0.13.19",
+  "versionCode": 2031,
+  "native": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "results": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "-v",
+        "scripts.tests.test_legacy_release_pin"
+      ],
+      "exitCode": 0,
+      "log": "release-pin-tests.log",
+      "bytes": 8003,
+      "sha256": "ee45b386624f607153487cb747c4be02a30e9d142a52147161d715acc6252232"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/verify_legacy_release_pin.py"
+      ],
+      "exitCode": 0,
+      "log": "release-pin-check.log",
+      "bytes": 97,
+      "sha256": "870b171c4221a93002e55e488bafe55b00c948d31c50f0d735084723255051a6"
+    }
+  ],
+  "sourceHashes": {
+    "pubspec.yaml": {
+      "bytes": 2719,
+      "sha256": "cecd01ee00b7a400b212eba9de7a56387cc231304f110ec0ccd55759ab36b863"
+    },
+    "scripts/verify_legacy_release_pin.py": {
+      "bytes": 12424,
+      "sha256": "8a73b4fc2c638f2a2c68e3e03f923ca92084c43fd74dee1ec719164dfa83af47"
+    },
+    "scripts/tests/test_legacy_release_pin.py": {
+      "bytes": 28597,
+      "sha256": "4b81239264d913e1ce97c90bd5de6c82e44d672e4324d1462baddece52855939"
+    },
+    "config/godot-source.json": {
+      "bytes": 145,
+      "sha256": "a72508734f3e5ce27156dd7a5e70e0c21da701d49b8e014a33e334ffba63662b"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "sourceHead": "394f9f7574f6e6b20e979a26bdae4c5a60fb742d",
+  "outcome": "FAILED_DURING_TEST_LOADING_THEN_WRAPPER_INTERRUPTED",
+  "wrapperExitCode": 130,
+  "interruptedUtc": "2026-11-16T09:00:11Z",
+  "observedError": "The Dart compiler exited unexpectedly; subsequent TestCompiler null-check stack trace",
+  "compilerExitCause": "NOT_ESTABLISHED",
+  "flutterFinalExitCode": "NOT_OBSERVED",
+  "catalogCreated": false,
+  "sourceOrLockedDependencyChanges": false,
+  "log": {
+    "bytes": 6418,
+    "sha256": "49e212de57af22d198c57bbb5b752ee54acdf1597c8599f67a28958a1065c470"
+  },
+  "followup": "No unchanged local retry. Export the same real Dart catalog through a new isolated CI job using pinned Flutter 3.44.9 and --enforce-lockfile. Existing APK validation gates stay required."
+}

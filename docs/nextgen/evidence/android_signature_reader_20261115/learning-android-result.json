@@ -1,0 +1,22 @@
+{
+  "schema": "lumo.nextgen.learning.android.probe",
+  "version": 1,
+  "status": "FAIL",
+  "run_id": "543924bb7b7f4fc086485139f8509f36",
+  "started_utc": "2026-11-15T21:15:16Z",
+  "probe_sha256": "b4583b962b35355b382fcad90312733cef14e4173919ce9c17ae720c9d0cebc8",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "synthetic_profile": "LumoNextTest",
+  "error": "Actual APK signing certificate differs from expected certificate",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1048, in main\n    probe.run()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 1010, in run\n    self.identify_and_install()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 538, in identify_and_install\n    verify_manifest_and_signer(badging, signer, identity)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 124, in verify_manifest_and_signer\n    require(len(certificates) == 1 and certificates[0].lower() == identity[\"signingCertificateSha256\"],\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_learning_android_probe.py\", line 70, in require\n    raise RuntimeError(message)\nRuntimeError: Actual APK signing certificate differs from expected certificate\n",
+  "screenshots": [
+    {
+      "file": "0001-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "ca2e7ef708be4e086e78c6921ab25cbd9b871744c1c983089c7de250f7104528"
+    }
+  ],
+  "finished_utc": "2026-11-15T21:15:19Z"
+}

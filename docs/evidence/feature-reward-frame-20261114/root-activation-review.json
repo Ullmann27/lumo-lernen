@@ -1,0 +1,22 @@
+{
+  "source": "407e3503c2777b76647c841867d278977160cbba",
+  "tree": "bd1dec0c43dc95adf681edf20f61c8fc2e8afaab",
+  "parent": "93bd9b7804e2c352303d58552cc48e0a89a1c3cb",
+  "files": 4974,
+  "only_changed_path": "test/feature_permission_regression_test.dart",
+  "old_blob": "c3867fac07d8835b3364cf7eb751a365f60e8829",
+  "new_blob": "d94777b95461c9e0a3d8b7dd51e8698553d7f9a2",
+  "exact_change": "Insert await tester.pump(); immediately after the existing await tester.tap(reward);",
+  "all_other_bytes_modes_preserved": true,
+  "remaining_delays_and_assertions_byte_preserved": true,
+  "product_blob": "f42eb9e1f206fe87c64008906c6b911d59a49fe4",
+  "widgets": "NOT_RUN on corrected source yet",
+  "red_evidence_commit": "c4a6692e97b6a1e47edc40d70e05f7a0ca76a435",
+  "red_run": 43615128301,
+  "red_attempt": 1,
+  "red_result": {
+    "passed": 26,
+    "failed": 4,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1938,
+      "sha256": "2f12f4420582e62189255e0abf21c109881b662c4f6d4618f7162536a91aa2fe"
+    },
+    {
+      "path": "after/tools/android_qa/kart_android_race.py",
+      "bytes": 39513,
+      "sha256": "9777542758deae314531c4da7bccd4168eb4c730dacc0844f84bab6f6ec3b81a"
+    },
+    {
+      "path": "after/tools/android_qa/tests/fixtures/kart-hud-61c/provenance.json",
+      "bytes": 3813,
+      "sha256": "7ea39342fcb1ec28faa7a2b8ac955a94c6a2f28537d5120e70e95039166d336c"
+    },
+    {
+      "path": "after/tools/android_qa/tests/test_focused_race_hud_current.py",
+      "bytes": 5656,
+      "sha256": "735ac3864f9f5203c02273ab1251c60a2bf6bd20a3e36ce9f35ec6ed8bdc7e73"
+    },
+    {
+      "path": "before/tools/android_qa/kart_android_race.py",
+      "bytes": 39356,
+      "sha256": "a46adfb61eac227eff359cd6aceeeaef2eb1da4ce172cd2625c3281327a39e26"
+    },
+    {
+      "path": "before-sources.json",
+      "bytes": 866,
+      "sha256": "6997e2b6dd817531b7f1e532095b710f96ba8e43e978d0a8c5d3000d7d9a5ccf"
+    },
+    {
+      "path": "focused-green.json",
+      "bytes": 1937,
+      "sha256": "630172196351fe81b26688cdae3a6437bb542bfa082bb6c6f4ac3ad5c2ac9a48"
+    },
+    {
+      "path": "focused-green.log",
+      "bytes": 2071,
+      "sha256": "2dfba5e0f64f5a9e70c3b05e3b22f90de777763a892c917a00f4731878a95505"
+    },
+    {
+      "path": "original-crop-red.json",
+      "bytes": 1737,
+      "sha256": "cb1625d0214ee731ef5716b8c9619da3c3c9d569c54eb5c268322fbdfc255cbf"
+    },
+    {
+      "path": "original-crop-red.log",
+      "bytes": 3652,
+      "sha256": "d96f5e22d5b2eaaac449c4b40437fca0f21352719a99c4cfc071df64e9e0f455"
+    },
+    {
+      "path": "repair.patch",
+      "bytes": 1008,
+      "sha256": "5203f08002188f24f8c93e9b68ad8e806d8d5a0bc13ba59acda0017c15f27f91"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 4606,
+      "sha256": "7e0f8f3742f557845e31a55c3b213715fc8e5ff45834fce390cf07690fcc8375"
+    }
+  ],
+  "file_count": 12,
+  "total_bytes": 106153,
+  "source_freeze_sha256": "7e0f8f3742f557845e31a55c3b213715fc8e5ff45834fce390cf07690fcc8375"
+}

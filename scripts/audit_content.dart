@@ -9,6 +9,7 @@ import 'package:lumo_lernen/domain/tutoring/guided_lesson_catalog.dart';
 void main() {
   var checked = 0;
   final errors = <String>[];
+  final threeStepShapesSeen = <String>{};
   for (final template in MathTaskTemplates.templates) {
     for (var seed = 0; seed < 300; seed++) {
       final t = template.concretize(seed);
@@ -34,14 +35,28 @@ void main() {
         }
       }
       if (template.kind == MathTemplateKind.wordProblemThreeStep) {
-        final nums = RegExp(r'\b\d+\b')
-            .allMatches(t.prompt)
-            .map((m) => int.parse(m.group(0)!))
-            .toList();
-        if (nums.length != 3 ||
-            t.answer != '${2 * (nums[0] + nums[1]) - nums[2]}') {
-          errors.add(
-              '${template.id}: story does not match calculation: ${t.prompt}');
+        // Read the story itself, independent of the generator: each story
+        // shape has its own reading of the numbers and its own calculation.
+        final readings = [
+          for (final story in _threeStepStoryReadings)
+            if (story.read(t.prompt) case final result?) (story.name, result),
+        ];
+        if (readings.length != 1) {
+          errors.add('${template.id}: story shape not recognised exactly once '
+              '(${readings.map((r) => r.$1).toList()}): ${t.prompt}');
+        } else {
+          final (name, result) = readings.single;
+          threeStepShapesSeen.add(name);
+          if (result.problem != null) {
+            errors.add('${template.id}/$name: ${result.problem}: ${t.prompt}');
+          } else if (t.answer != '${result.answer}' || result.answer <= 0) {
+            errors.add('${template.id}/$name: story does not match calculation '
+                '(story gives ${result.answer}, task says ${t.answer}): '
+                '${t.prompt}');
+          } else if (!t.explanation.endsWith('= ${t.answer}.')) {
+            errors.add('${template.id}/$name: explanation does not end with '
+                'the answer: ${t.explanation}');
+          }
         }
       }
       if (template.promptPattern == 'sachaufgabe-wegnehmen') {
@@ -69,6 +84,14 @@ void main() {
         }
       }
     }
+  }
+  // Every story shape must really be produced, otherwise a reading above
+  // could silently go untested.
+  final missingShapes = {
+    for (final story in _threeStepStoryReadings) story.name
+  }.difference(threeStepShapesSeen);
+  if (missingShapes.isNotEmpty) {
+    errors.add('g4_three_step: story shapes never generated: $missingShapes');
   }
   for (final template in MathTaskTemplates.templates
       .where((t) => t.id == 'g1_word_problem' || t.id == 'g2_sub_story')) {
@@ -181,3 +204,121 @@ void main() {
   stdout.writeln(
       'PASS: exact answers, distinct options, declared number ranges, three-step story calculations.');
 }
+
+/// Result of reading one three-step story: the answer the story itself
+/// demands, or why the story cannot be solved sensibly by a child.
+class _StoryResult {
+  const _StoryResult(this.answer, [this.problem]);
+  final int answer;
+  final String? problem;
+}
+
+class _StoryReading {
+  const _StoryReading(this.name, this.pattern, this.solve);
+  final String name;
+  final RegExp pattern;
+  final _StoryResult Function(List<int> n) solve;
+
+  _StoryResult? read(String prompt) {
+    final match = pattern.firstMatch(prompt);
+    if (match == null) return null;
+    return solve([
+      for (var i = 1; i <= match.groupCount; i++) int.parse(match.group(i)!)
+    ]);
+  }
+}
+
+/// Checks that every intermediate result a child writes down is a
+/// non-negative whole number, then returns the final result.
+_StoryResult _steps(List<int> intermediate) {
+  for (final value in intermediate) {
+    if (value < 0) {
+      return _StoryResult(value, 'negative intermediate result $value');
+    }
+  }
+  return _StoryResult(intermediate.last);
+}
+
+// One reading per story the generator can tell. The patterns are anchored
+// to the whole prompt, so a changed or new story fails the audit until its
+// calculation is described here as well.
+final List<_StoryReading> _threeStepStoryReadings = [
+  _StoryReading(
+    'Obstkiste',
+    RegExp(r'^In einer Kiste liegen (\d+) Äpfel und (\d+) Birnen\. Eine zweite '
+        r'Kiste ist genau gleich gefüllt\. (\d+) Früchte werden gegessen\. '
+        r'Wie viele Früchte bleiben\?$'),
+    (n) => _steps([n[0] + n[1], (n[0] + n[1]) * 2, (n[0] + n[1]) * 2 - n[2]]),
+  ),
+  _StoryReading(
+    'Sterne',
+    RegExp(r'^Die Klasse bastelt an (\d+) Tagen jeden Tag (\d+) gelbe und '
+        r'(\d+) blaue Sterne\. (\d+) Sterne werden verschenkt\. '
+        r'Wie viele Sterne bleiben\?$'),
+    (n) => _steps(
+        [n[1] + n[2], (n[1] + n[2]) * n[0], (n[1] + n[2]) * n[0] - n[3]]),
+  ),
+  _StoryReading(
+    'Flaschen',
+    RegExp(r'^Für das Schulfest gibt es (\d+) Kisten mit je (\d+) Flaschen '
+        r'Saft und (\d+) Kisten mit je (\d+) Flaschen Wasser\. (\d+) '
+        r'Flaschen bleiben übrig\. Wie viele Flaschen wurden getrunken\?$'),
+    (n) => _steps([
+      n[0] * n[1],
+      n[2] * n[3],
+      n[0] * n[1] + n[2] * n[3],
+      n[0] * n[1] + n[2] * n[3] - n[4],
+    ]),
+  ),
+  _StoryReading(
+    'Bücherei',
+    RegExp(r'^In der Bücherei stehen (\d+) Bücher\. Am Montag werden (\d+) '
+        r'ausgeliehen, am Dienstag (\d+)\. Am Mittwoch kommen (\d+) zurück\. '
+        r'Wie viele Bücher stehen jetzt in der Bücherei\?$'),
+    (n) => n[3] > n[1] + n[2]
+        ? const _StoryResult(0, 'more books returned than were borrowed')
+        : _steps([n[0] - n[1], n[0] - n[1] - n[2], n[0] - n[1] - n[2] + n[3]]),
+  ),
+  _StoryReading(
+    'Sportfest',
+    RegExp(r'^Beim Sportfest starten (\d+) Gruppen mit je (\d+) Kindern\. '
+        r'(\d+) Kinder kommen später dazu, (\d+) Kinder hören früher auf\. '
+        r'Wie viele Kinder kommen ins Ziel\?$'),
+    (n) => _steps([n[0] * n[1], n[0] * n[1] + n[2], n[0] * n[1] + n[2] - n[3]]),
+  ),
+  _StoryReading(
+    'Einkauf',
+    RegExp(r'^Tim kauft (\d+) Hefte um je (\d+) € und ein Buch um (\d+) €\. '
+        r'Er zahlt mit einem (\d+)-€-Schein\. '
+        r'Wie viele Euro bekommt er zurück\?$'),
+    (n) {
+      final total = n[0] * n[1] + n[2];
+      if (n[3] != 50 && n[3] != 100) {
+        return _StoryResult(0, 'no such banknote: ${n[3]} €');
+      }
+      // A child pays with the smallest note that is enough.
+      if (n[3] == 100 && total < 50) {
+        return const _StoryResult(0, 'pays with 100 € although 50 € suffice');
+      }
+      return _steps([n[0] * n[1], total, n[3] - total]);
+    },
+  ),
+  _StoryReading(
+    'Karten',
+    RegExp(r'^(\d+) Sammelkarten werden gerecht an (\d+) Kinder verteilt\. '
+        r'Jedes Kind verschenkt (\d+) Karten und bekommt später (\d+) dazu\. '
+        r'Wie viele Karten hat jedes Kind dann\?$'),
+    (n) => n[1] == 0 || n[0] % n[1] != 0
+        ? const _StoryResult(0, 'cards cannot be shared fairly')
+        : _steps(
+            [n[0] ~/ n[1], n[0] ~/ n[1] - n[2], n[0] ~/ n[1] - n[2] + n[3]]),
+  ),
+  _StoryReading(
+    'Zug',
+    // The number of wagons is a deliberately superfluous detail.
+    RegExp(r'^In einem Zug mit \d+ Waggons sitzen (\d+) Erwachsene und (\d+) '
+        r'Kinder\. Am Bahnhof steigen (\d+) Personen aus und (\d+) ein\. '
+        r'Wie viele Personen sitzen jetzt im Zug\?$'),
+    (n) => _steps([n[0] + n[1], n[0] + n[1] - n[2], n[0] + n[1] - n[2] + n[3]]),
+  ),
+];

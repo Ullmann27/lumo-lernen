@@ -23,6 +23,7 @@ import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
+import '../../writing/widgets/lumo_ink_surface.dart';
 import '../learning_module_progress.dart';
 import '../lumo_phrases.dart';
 
@@ -85,6 +86,8 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
     <List<Offset>>[],
     <List<Offset>>[],
   ];
+  int? _activeRow;
+  List<Offset>? _activeStroke;
 
   bool _answerAccepted = false;
   bool _showReveal = false; // wird auf true wenn 'Fertig' gedrueckt
@@ -136,9 +139,39 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
   void _clearAllStrokes() {
     HapticFeedback.lightImpact();
     setState(() {
+      _activeRow = null;
+      _activeStroke = null;
       for (final r in _rows) {
         r.clear();
       }
+    });
+  }
+
+  void _startStroke(int row, Offset position) {
+    // The four surfaces share one writing contact for the whole screen.
+    if (_activeRow != null) return;
+    setState(() {
+      _activeRow = row;
+      _activeStroke = [position];
+    });
+  }
+
+  void _updateStroke(int row, Offset position) {
+    final stroke = _activeStroke;
+    if (_activeRow != row || stroke == null || stroke.last == position) return;
+    setState(() => stroke.add(position));
+  }
+
+  void _finishStroke(int row, {required bool cancelled}) {
+    if (_activeRow != row) return;
+    final stroke = _activeStroke;
+    setState(() {
+      // A tap or cancelled contact is not a completed writing attempt.
+      if (!cancelled && stroke != null && stroke.length > 1) {
+        _rows[row].add(stroke);
+      }
+      _activeRow = null;
+      _activeStroke = null;
     });
   }
 
@@ -207,6 +240,8 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
       for (final r in _rows) {
         r.clear();
       }
+      _activeRow = null;
+      _activeStroke = null;
     });
     _entryCtrl.forward(from: 0);
     _sayWord();
@@ -378,14 +413,14 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
             Expanded(
               child: _WritingRow(
                 gradient: _gradient,
-                strokes: _rows[row],
-                onPanStart: (offset) {
-                  setState(() => _rows[row].add([offset]));
-                },
-                onPanUpdate: (offset) {
-                  if (_rows[row].isEmpty) return;
-                  setState(() => _rows[row].last.add(offset));
-                },
+                strokes: [
+                  ..._rows[row],
+                  if (_activeRow == row && _activeStroke != null) _activeStroke!,
+                ],
+                onStart: (position) => _startStroke(row, position),
+                onUpdate: (position) => _updateStroke(row, position),
+                onEnd: () => _finishStroke(row, cancelled: false),
+                onCancel: () => _finishStroke(row, cancelled: true),
               ),
             ),
             if (row < 3) const SizedBox(height: 8),
@@ -613,13 +648,17 @@ class _WritingRow extends StatelessWidget {
   const _WritingRow({
     required this.gradient,
     required this.strokes,
-    required this.onPanStart,
-    required this.onPanUpdate,
+    required this.onStart,
+    required this.onUpdate,
+    required this.onEnd,
+    required this.onCancel,
   });
   final List<Color> gradient;
   final List<List<Offset>> strokes;
-  final ValueChanged<Offset> onPanStart;
-  final ValueChanged<Offset> onPanUpdate;
+  final ValueChanged<Offset> onStart;
+  final ValueChanged<Offset> onUpdate;
+  final VoidCallback onEnd;
+  final VoidCallback onCancel;
 
   @override
   Widget build(BuildContext context) {
@@ -631,15 +670,20 @@ class _WritingRow extends StatelessWidget {
       ),
       child: LayoutBuilder(
         builder: (context, c) {
+          Offset clamp(Offset point) => Offset(
+                point.dx.clamp(0.0, c.maxWidth),
+                point.dy.clamp(0.0, c.maxHeight),
+              );
           return Stack(children: [
             CustomPaint(
               size: Size(c.maxWidth, c.maxHeight),
               painter: _SchoolLinesPainter(),
             ),
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onPanStart: (d) => onPanStart(d.localPosition),
-              onPanUpdate: (d) => onPanUpdate(d.localPosition),
+            LumoInkSurface(
+              onStart: (point) => onStart(clamp(point)),
+              onUpdate: (point) => onUpdate(clamp(point)),
+              onEnd: onEnd,
+              onCancel: onCancel,
               child: CustomPaint(
                 size: Size(c.maxWidth, c.maxHeight),
                 painter: _StrokesPainter(strokes: strokes, color: gradient[0]),

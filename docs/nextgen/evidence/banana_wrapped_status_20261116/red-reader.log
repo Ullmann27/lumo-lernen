@@ -1,0 +1,35 @@
+test_actual_reading_order_and_single_line_remain_supported (test_nextgen_native_reader.AdjacentPhraseTests.test_actual_reading_order_and_single_line_remain_supported) ... ok
+test_capture_does_not_extend_the_existing_frame_budget (test_nextgen_native_reader.AdjacentPhraseTests.test_capture_does_not_extend_the_existing_frame_budget) ... ok
+test_changed_screenshot_is_rejected_even_when_ocr_words_match (test_nextgen_native_reader.AdjacentPhraseTests.test_changed_screenshot_is_rejected_even_when_ocr_words_match) ... ok
+test_distinct_phrase_regions_are_ambiguous (test_nextgen_native_reader.AdjacentPhraseTests.test_distinct_phrase_regions_are_ambiguous) ... ok
+test_far_columns_intervening_rows_and_invalid_bounds_are_rejected (test_nextgen_native_reader.AdjacentPhraseTests.test_far_columns_intervening_rows_and_invalid_bounds_are_rejected) ... ok
+test_missing_words_wrong_order_and_cross_variant_are_rejected (test_nextgen_native_reader.AdjacentPhraseTests.test_missing_words_wrong_order_and_cross_variant_are_rejected) ... ok
+test_override_remains_limited_to_complete_nonexact_observed_labels (test_nextgen_native_reader.AdjacentPhraseTests.test_override_remains_limited_to_complete_nonexact_observed_labels) ... ok
+test_separate_observations_never_supply_each_others_missing_line (test_nextgen_native_reader.AdjacentPhraseTests.test_separate_observations_never_supply_each_others_missing_line) ... ok
+test_current_dispatch_reads_whole_banana_status_from_one_original_frame (test_nextgen_native_reader.BananaOriginalFrameTests.test_current_dispatch_reads_whole_banana_status_from_one_original_frame) ... ERROR
+test_fixture_retains_exact_failed_reference_and_original_frame (test_nextgen_native_reader.BananaOriginalFrameTests.test_fixture_retains_exact_failed_reference_and_original_frame) ... ok
+test_historical_reader_reproduces_the_original_banana_failure (test_nextgen_native_reader.BananaOriginalFrameTests.test_historical_reader_reproduces_the_original_banana_failure) ... ok
+test_missing_last_word_or_wrong_syllable_count_is_not_accepted (test_nextgen_native_reader.BananaOriginalFrameTests.test_missing_last_word_or_wrong_syllable_count_is_not_accepted) ... ok
+test_current_candidate_reads_complete_question_from_actual_wrapped_frame (test_nextgen_native_reader.OriginalFrameTests.test_current_candidate_reads_complete_question_from_actual_wrapped_frame) ... ok
+test_fixture_is_byte_identical_to_the_original_failed_diagnostic (test_nextgen_native_reader.OriginalFrameTests.test_fixture_is_byte_identical_to_the_original_failed_diagnostic) ... ok
+test_historical_reader_still_rejects_this_original_frame (test_nextgen_native_reader.OriginalFrameTests.test_historical_reader_still_rejects_this_original_frame) ... ok
+
+======================================================================
+ERROR: test_current_dispatch_reads_whole_banana_status_from_one_original_frame (test_nextgen_native_reader.BananaOriginalFrameTests.test_current_dispatch_reads_whole_banana_status_from_one_original_frame)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/lumo-lernen/tools/android_qa/tests/test_nextgen_native_reader.py", line 240, in test_current_dispatch_reads_whole_banana_status_from_one_original_frame
+    probe.native_see(BANANA_STATUS, "banana-syllable-status-3")
+  File "/workspace/scratch/4fa97167812c/lumo-lernen/.github/probes/lumo_nextgen_current_reference_android_probe.py", line 75, in native_see
+    return super().native_see(label, tag, exact=exact)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/lumo-lernen/.github/probes/lumo_nextgen_reference_android_probe.py", line 417, in native_see
+    self.reader.native_text(self.out, label, self.fresh(tag), exact=exact, orientation="responsive")
+  File "/workspace/scratch/4fa97167812c/lumo-lernen/.github/probes/creative_android_probe.py", line 695, in native_text
+    raise RuntimeError('Current native screenshot lacks '+label)
+RuntimeError: Current native screenshot lacks Das Wort hat 3 Silben
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.068s
+
+FAILED (errors=1)

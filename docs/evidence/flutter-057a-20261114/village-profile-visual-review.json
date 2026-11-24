@@ -1,0 +1,232 @@
+{
+  "schema": "lumo.flutter-selected-original-visual-review.v1",
+  "review_date_utc": "2026-11-14",
+  "reviewer": "touch_worker",
+  "status": "completed_bounded_visual_review",
+  "subject": {
+    "repository": "Ullmann27/lumo-lernen",
+    "host_commit": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "workflow_run_id": 43607156921,
+    "run_attempt": 1,
+    "artifact_id": 14119611994,
+    "archive": {
+      "bytes": 336114687,
+      "sha256": "5ec602547df2553ba1c8ac496d850560f2cf32b9ad69e3742583de343627d0a8",
+      "git_blob": "3c4de14e54ea8a7b33527642e635d01947197d76"
+    },
+    "original_base": "/workspace/scratch/2708c7907f28/flutter-057a-originals-14119611994/original"
+  },
+  "provenance_boundary": {
+    "original_download": "Bereits von Root geladen; kein Download durch diesen Reviewer.",
+    "parent_reported_existing_execution": {
+      "tests_passed": 2612,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "parser_exit_code": 0,
+      "png_files": 552,
+      "archive_files": 554,
+      "readonly_replay_blob": "6bd2839df4d15748e094ba972e83680cd22a216b",
+      "acceptance_summary_blob": "54e86d71866fc3945957a894065adb2cb04b4b1d",
+      "execution_manifest_blob": "27a4d5ac971f86a47838528daed08c52e7096400",
+      "qualification": "Diese Lauf-/Parserzahlen wurden vom Parent/Root übergeben; dieser Reviewer hat weder Tests noch Parser erneut ausgeführt."
+    },
+    "independently_performed": [
+      "Vorhandenen aktuellen Originalindex und den bisherigen 1375-Index gelesen und PNG-Pfadmengen verglichen.",
+      "Alle sieben ausgewählten PNGs einzeln als Originalbilder geöffnet und visuell gelesen.",
+      "Dateigröße, SHA256, Git-Blob-Hash und PNG-Abmessungen vor sowie nach der Sichtprüfung gelesen; Originalindex und Vorher/Nachher stimmen jeweils überein.",
+      "Die zwei zuständigen materialisierten Capture-Testdateien gegen ihre echten Git-Blob-Einträge im unveränderlichen 057-Testbaum abgeglichen."
+    ]
+  },
+  "selection": {
+    "current_png_records": 552,
+    "historical_comparison_commit": "1375da193af0152af64f91d86577aa9768cd50db",
+    "historical_png_records": 546,
+    "added_png_paths": [
+      "village/village-fold-cover.png",
+      "village/village-fold-landscape.png",
+      "village/village-fold-open-large-text.png",
+      "village/village-fold-open.png",
+      "village/village-fold-wide-min.png",
+      "village/village-phone.png"
+    ],
+    "removed_png_paths": [],
+    "selected_additional_profile": "tour/phone_profile.png",
+    "unique_images_reviewed": 7,
+    "excluded": "Keine Schreibcoach-, Journal- oder Reading-Bilder; keine weiteren aktuellen oder historischen Bilder geöffnet."
+  },
+  "capture_sources": [
+    {
+      "path": "test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "git_blob": "935ca225a6fa67df73f520494d61480943435595",
+      "materialized_bytes_match_immutable_057": true,
+      "lines": {
+        "17-25": "Capture-Verzeichnis/Fonts, Gerätegrößen und zusätzlicher Textmaßstab 1.2.",
+        "30-39": "SharedPreferences und lumo_lernen/bridge-MethodChannel werden im Test gemockt.",
+        "45-58": "GamesContent wird als Flutter-Inhalt aufgebaut.",
+        "65-104": "Village-Kachel wird sichtbar gemacht, Titel-/Größenbedingungen stehen im Test; PNG wird vor dem späteren Tap erstellt.",
+        "105+": "Nachfolgende Tap-/Launch-Prüfung gehört zum vorhandenen Test; hier nicht erneut ausgeführt."
+      },
+      "interpretation": "Die sechs Village-PNGs zeigen die native Spielstart-Kachel im Flutter-Spieleportal, nicht die native Dorfwirtschaft-Szene oder deren tatsächlichen Android-Start."
+    },
+    {
+      "path": "test/design/app_tour_capture_test.dart",
+      "git_blob": "c475fbb29f19355bdf76fd190b375f56c94eb3f4",
+      "materialized_bytes_match_immutable_057": true,
+      "lines": {
+        "61-73": "Telefonprofil 412x915 und profilbezogene Abschnittsauswahl.",
+        "78-104": "Bestehende Test-Fontladung, Mock-Einstellungen und deaktivierte optionale Funktionen.",
+        "148-end": "AppShell mit Testprofil und angefordertem Profilabschnitt; Dateinamensbildung phone_profile."
+      },
+      "interpretation": "Aktuelle Flutter-Profilaufnahme im Capture-Test, kein Android-Gerätenachweis."
+    }
+  ],
+  "images": [
+    {
+      "path": "village/village-phone.png",
+      "bytes": 401998,
+      "sha256": "12e3d0ca6f514f12b58106ddb1a197bdaa09a773a2703e5d4708db8d6e710dc7",
+      "git_blob": "0a4702d753a41185aa207931e8492f6413bdf8f1",
+      "dimensions": [
+        412,
+        915
+      ],
+      "regular_file": true,
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/flutter-057a-originals-14119611994/original/village/village-phone.png",
+      "personally_viewed": true,
+      "visible_findings": [
+        "Zweispaltiger Spieleportal-Ausschnitt. Dorfwirtschaft-Motiv und vollständiger weißer Titel sind innerhalb ihrer Kachel sichtbar.",
+        "Lumo Kart, Cards, Bauwelt, Puzzle, Memory und Jump & Run sind lesbar getrennt. Unter 'Noch mehr Abenteuer' sind die nächsten Karten am unteren Bildrand nur teilweise zu sehen."
+      ]
+    },
+    {
+      "path": "village/village-fold-cover.png",
+      "bytes": 337946,
+      "sha256": "fa00127e0316de2b083ba8d55578f79e01197203cacc2ad5ff3431d0a47b6361",
+      "git_blob": "a965cb7e56c44af30bf2aee36ede7e3ddc62fe25",
+      "dimensions": [
+        344,
+        882
+      ],
+      "regular_file": true,
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/flutter-057a-originals-14119611994/original/village/village-fold-cover.png",
+      "personally_viewed": true,
+      "visible_findings": [
+        "Auch bei 344 Pixel Bildbreite bleibt 'Dorfwirtschaft' vollständig einzeilig innerhalb der rechten Kachel; keine sichtbare Ellipse oder Kollision mit ihrem Rand.",
+        "Die zwei Karten-Spalten bleiben getrennt. Rhythm und Schatzsuche sind zusätzlich sichtbar; der weiterführende Seiteninhalt liegt teilweise unterhalb des Bildrandes."
+      ]
+    },
+    {
+      "path": "village/village-fold-open.png",
+      "bytes": 595416,
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+      "git_blob": "8d52f1bce929ab0f6f81b221a0d51705d6f9c2ed",
+      "dimensions": [
+        690,
+        829
+      ],
+      "regular_file": true,
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/flutter-057a-originals-14119611994/original/village/village-fold-open.png",
+      "personally_viewed": true,
+      "visible_findings": [
+        "Dreispaltiger oberer Kartenbereich mit vollständig sichtbarer Dorfwirtschaft-Kachel. Rechts sind Fuchsfigur und 'Auf ins Abenteuer!'-Schaltfläche voneinander getrennt sichtbar.",
+        "Rhythm, Schatzsuche, 4 Gewinnt und Quizshow sowie die Leiste Elternbereich/Fortschritt/Einstellungen sind lesbar. Der Textblock ganz unten ist durch den Bildrand angeschnitten."
+      ]
+    },
+    {
+      "path": "village/village-fold-open-large-text.png",
+      "bytes": 600959,
+      "sha256": "a2397df28ac69a41b918a0ea6ffb741bc92b2b7c7cb833874881652bf6ec6d18",
+      "git_blob": "8602020dec10da3f5b6119955e52f3a6e905205d",
+      "dimensions": [
+        690,
+        829
+      ],
+      "regular_file": true,
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/flutter-057a-originals-14119611994/original/village/village-fold-open-large-text.png",
+      "personally_viewed": true,
+      "visible_findings": [
+        "Der obere Kartenbereich hat zwei Spalten; Dorfwirtschaft-Motiv und größerer vollständiger Titel passen sichtbar in die Kachel.",
+        "Fuchs und rechts liegende 'Auf ins Abenteuer!'-Schaltfläche bleiben getrennt. Der untere Jump-&-Run-Eintrag wird vom unteren Bildrand angeschnitten; weitere Inhalte sind in diesem Standbild nicht sichtbar."
+      ]
+    },
+    {
+      "path": "village/village-fold-wide-min.png",
+      "bytes": 555532,
+      "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9",
+      "git_blob": "f79c4cd22905a8a7ebf9aef4429fd7f63a40a4b2",
+      "dimensions": [
+        640,
+        829
+      ],
+      "regular_file": true,
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/flutter-057a-originals-14119611994/original/village/village-fold-wide-min.png",
+      "personally_viewed": true,
+      "visible_findings": [
+        "Dorfwirtschaft ist im zweispaltigen Kartenbereich vollständig sichtbar, ohne beobachtete Überschneidung mit dem rechten Fuchs-/Startbereich.",
+        "Die sieben Hauptangebote bis Jump & Run sind lesbar. 'Noch mehr Abenteuer' steht erst am unteren Rand; dessen Karten sind im Bild nicht enthalten."
+      ]
+    },
+    {
+      "path": "village/village-fold-landscape.png",
+      "bytes": 1102593,
+      "sha256": "213edb9568f70aa0cb1673d06cc5ce242a37385cc29803b69fe5371698ee92ac",
+      "git_blob": "2c3942884d85b5989fd7d27dee7ef0ae897cd12b",
+      "dimensions": [
+        1200,
+        900
+      ],
+      "regular_file": true,
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/flutter-057a-originals-14119611994/original/village/village-fold-landscape.png",
+      "personally_viewed": true,
+      "visible_findings": [
+        "Dreispaltiger oberer Spielebereich und getrennte rechte Fuchs-/Startdarstellung. Dorfwirtschaft-Motiv und vollständiger Titel sind sichtbar.",
+        "Die vier Karten unter 'Noch mehr Abenteuer' sind vollständig lesbar. Die darunter beginnende Fußleiste liegt nur teilweise im Bild."
+      ]
+    },
+    {
+      "path": "tour/phone_profile.png",
+      "bytes": 488879,
+      "sha256": "7d17c5fef873b87aef94cb896cf17b6d30fa9047ac517561010124365b5d7478",
+      "git_blob": "b6a05852b8dbd0d2c496f10305a1a7256a15fad9",
+      "dimensions": [
+        412,
+        915
+      ],
+      "regular_file": true,
+      "index_match": true,
+      "unchanged_since_preopen": true,
+      "absolute_path": "/workspace/scratch/2708c7907f28/flutter-057a-originals-14119611994/original/tour/phone_profile.png",
+      "personally_viewed": true,
+      "visible_findings": [
+        "Sichtbarer oberer Profilbereich mit Lumo-Figur, Level 1, Klasse 2, 0/400 XP, 'Profil bearbeiten', Abzeichen, Lernserie, nächstem Ziel, Belohnungen und Lernbericht.",
+        "Die genannten Überschriften und Schaltflächentexte sind lesbar und zeigen in diesem Ausschnitt keine beobachtete gegenseitige Überdeckung. Hilfe-&-Ideen-Leiste und die untere Navigation sind sichtbar.",
+        "Weiterer Profilinhalt setzt sich unterhalb des sichtbaren Bereichs fort. Eine gesonderte 'Dein Profil'-Kachel ist hier nicht sichtbar; ihre Darstellung oder Erreichbarkeit wird damit nicht bestätigt."
+      ]
+    }
+  ],
+  "conclusion": {
+    "village_target": "Dorfwirtschaft-Motiv und vollständiger Titel sind in allen sechs tatsächlich neuen Aufnahmen sichtbar. Im gezeigten Kachelbereich wurde kein abgeschnittener Titel oder Überlappungsfehler beobachtet.",
+    "profile": "Im einen geprüften oberen Profilbild sind die beschriebenen Status-, Bearbeitungs-, Belohnungs- und Lernberichtbereiche lesbar. Der ganze Profilumfang ist nicht abgebildet.",
+    "viewport_boundary": "Mehrere Standbilder schneiden weiter unten liegende Karten oder Fußbereiche am Bildrand ab. Aus diesen Bildern wird weder deren Scroll-Erreichbarkeit noch ein funktionaler Fehler abgeleitet.",
+    "blocking_visual_findings_in_selected_scope": [],
+    "limitations": [
+      "Sichtprüfung von genau sieben Originalbildern, keine Freigabe sämtlicher 552 PNGs.",
+      "Keine Aussage zur nativen Village-Szene, zu Android-Ausführung, Touch-Erreichbarkeit, mindestens 48-dp-Hitflächen oder einer gemessenen Bildrate.",
+      "Kein eigener Test-/Renderer-/Engine-/Parserlauf; keine Übertragung früherer Laufresultate.",
+      "Keine Produkt-, Workflow-, Commit- oder Refänderung; nur dieser inerte Evidenzbericht wird gesichert."
+    ]
+  }
+}

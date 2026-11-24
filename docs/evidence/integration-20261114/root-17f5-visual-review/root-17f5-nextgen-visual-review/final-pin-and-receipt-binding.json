@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "nextgen_run": 43532048311,
+  "images": 29,
+  "files": {
+    "config/godot-source.json": {
+      "sha256": "dfcacccb96d5a4b730e3df7b834aa5e78a69a0cf48122ec8242dfcb377caf7cb",
+      "bytes": 145
+    },
+    "scripts/verify_legacy_release_pin.py": {
+      "sha256": "3b12e319b9c2c8a64299d42b117481eebe2912005393cdeb2a04cd908d52a4bb",
+      "bytes": 10415
+    },
+    "scripts/tests/test_candidate_2011_pin.py": {
+      "sha256": "5a8f5c63cfd55dc25d4e7cd25d48622a9869f666be9d68c6b2a1ed27971614c8",
+      "bytes": 17080
+    },
+    "config/nextgen-2019-visual-review.json": {
+      "sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "bytes": 28462
+    },
+    "config/kart-graphics-2019-visual-review.json": {
+      "sha256": "355b6878f5d833aed4010fa49c5efb49759bbe9f8e4f185a75ca894ad9c6bf99",
+      "bytes": 9167
+    }
+  },
+  "scope": "Only 2019 native identity updated; historical release pins unchanged. Static/native gates do not constitute Android or APK release approval."
+}

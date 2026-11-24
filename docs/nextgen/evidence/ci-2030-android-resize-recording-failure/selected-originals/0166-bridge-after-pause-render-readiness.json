@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "0166-bridge-after-pause",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "0166-bridge-after-pause-render-candidate-1.png",
+      "sha256": "6fabd63e660ded5d63113fe7bab1e1297a839cb08e2925b3f60a489e0d30727c",
+      "width": 1080,
+      "height": 2340,
+      "content_entropy_bits": 6.034,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 0.554
+}

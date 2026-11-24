@@ -1,0 +1,22 @@
+# Current integration readiness — exact Host1e22 / Nativee9a9
+
+Recorded 2026-11-14 15:03:29 UTC. This is a blocked acceptance checkpoint, not Android or public-release approval.
+
+## Completed
+
+- Host `1e22d2455937e2640d1e44e153d290746f3afe49`, tree `7fcc3748f8178bff91176ff27f11f7e86ca165ca`; Native `e9a9f60f20403ffa6b2b26d1437f958b2704d2aa`, tree `1c2b5da7a4485cb8b911adcac2b567481cf902b5`.
+- Run43596913210, attempt1: C4 two-process runtime, actual Android host compilation, and full verify-and-build job succeeded. Main job132454178537 finished at14:53:43UTC.
+- Full Flutter:2627PASS,0FAIL,0SKIP,566generatedPNGs. The566count is not a claim that every image was visually inspected. All five dedicated current C4 images were viewed; four old generic C4 images remain excluded from board/move/win proof and their actual warnings remain preserved.
+- Script/build suite:932PASS,0SKIP. The same suite also passed in the separate Astra run; this is not1864distinct tests.
+- Current native original archive:14118079396,226400623bytes, SHA256`ff250719d53ed02c3e13900c4771975bbf8661e74059b9757133891f96804457`. Godot reviewer checked all6074ZIPmembers/CRCs and188PNGs in the inventory, and found the current original52/17, Return21, Dream5/7/2, Live9/7 and Discovery10/38 end markers. Independent unchanged verifier replay passed:52probes/17StudioPNGs,3sidecars/movie,Return21,Dream5/7/2,Live9/7,Discovery10/38, plus the four existing raster readers. Root read the local replay reports; all6074original file hashes remained unchanged, all188PNGs decoded. Local reader CPython3.12.14/Pillow13.0.0; actual CI usedPillow12.3.0. Durable Native archival is still being completed.
+- Current original Jump normal-path marker states that the original65-boneGLB is visible, grounded, moving, paused and resumed. This is not an Android or physical-device visibility approval.
+- ARM64 APK built:331354629bytes, version0.13.8+2020, SHA256`44faa59620955d58fc43e7b6a6488222fe70f8445884384c17c6b379f775d5bd`. Its two original CI verification reports are identical. The separate original x86_64 APK reports also match each other. Full parsed facts and signing fingerprint are in`apk-original-ci-facts.json`.
+- The full original main log is Git blob`511fdb28b35703da777e38f6eda83722c4ca9d17` in this repository. Root read it independently and parsed all four APK fact reports. The original ARM64 artifact14118379876 was downloaded once: its exact APK bytes/SHA, all outer/inner ZIP CRCs, actual embedded PCK and Host1e22/clean-source provenance match the original CI reports. Root read the original provenance and verified complete JSON equality. No local apksigner execution is claimed; CI performed the signature checks and the publisher must repeat them.
+
+## Material limits and pending work
+
+The current native project check is117PASS/7WARN/0FAIL. Six missing optional model-manifest targets have no executable consumers in the reviewed tree; the web-build script lacks its executable bit but both workflows invoke it through Bash. Standalone Home, ReadingHub, four reading games and Stars still use the older primitive character. The exact current embedded Host entry/return graph bypasses those routes; Jump retains a conditional fallback whose normal path is covered by the current probe. Full source review: Native evidence commit`bca73b31e277be2a4797594b495ce8130b914f65`, review blob`321ca4ab23c9b81b22cfe2ca92ebbf001d65a27a`.
+
+The actual Android current-app job132484382995 and2017-to2020 update job132484382954 both FAILED, freshly observed15:03:29UTC. Candidate verification132486880104 and delivery132486881001 were SKIPPED. QA is obtaining the two original terminal logs. The cause is not yet known, and no speculative repair or rerun has been made. The update must preserve real baseline learning answers, earned stars and XP through install-r, offline Kart, restart and Fold sizes. Writing/journal prefixes are compared only if actually present; the scripted baseline does not explicitly create a nonempty writing/journal item. No claim about such seeded content is made before inspecting original snapshots.
+
+The original candidate and delivery replay, all seven successful jobs, immutable release creation and public APK-byte verification are still required. The prepared publisher9448 remains inactive. No public APK URL is approved. Existing main refs and accepted source files are unchanged. No physical ARM64/60FPS or audible-playback approval is claimed; the certificate is the existing test certificate.

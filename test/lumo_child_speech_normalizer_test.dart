@@ -5,6 +5,15 @@ void main() {
   const normalizer = LumoChildSpeechNormalizer();
 
   group('LumoChildSpeechNormalizer', () {
+    test('reads missing-number questions, not raw symbol sequences', () {
+      expect(LumoChildSpeechNormalizer.forSpeech('7 + ? = 12'),
+          'sieben plus wie viel ist zwoelf?');
+      expect(LumoChildSpeechNormalizer.forSpeech('15 - ? = 9'),
+          'fuenfzehn minus wie viel ist neun?');
+      expect(LumoChildSpeechNormalizer.forSpeech('3 + 4 = ?'),
+          contains('plus vier. Was kommt heraus?'));
+    });
+
     test('normalizes umlauts and number words', () {
       expect(normalizer.normalizeText('Ich glaube fünf.'), 'ich glaube 5');
       expect(normalizer.normalizeText('ZWÖLF Sterne'), '12 sterne');

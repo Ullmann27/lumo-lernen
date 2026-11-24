@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-13T15:04:31.864000+00:00",
+  "base_head": "973466dfa49d6dd88d6852eeb37bb25a4ce39a3b",
+  "scope": "New Graphics2019 recorder CLI and its focused regression tests only",
+  "files": [
+    {
+      "path": "scripts/record_kart_graphics_review.py",
+      "bytes": 13649,
+      "sha256": "f579ad149e56a896d9e45e56d6e8674b01aa41d00b155b47f483d6ea6539ff85",
+      "git_blob": "49d855caa24408a9cac34f8f2f749bd64748cf68"
+    },
+    {
+      "path": "scripts/tests/test_record_kart_graphics_review.py",
+      "bytes": 16706,
+      "sha256": "cc16e35587e58a0fd4b2eeef3dd363ab9a55dc7d97d6c25829195abcb8a6b797",
+      "git_blob": "f4761fa459bd885774bc004f82fda4c574e01844"
+    }
+  ],
+  "tests": {
+    "status": "PASS",
+    "new_recorder_tests": 12,
+    "existing_verifier_tests": 7,
+    "total": 19,
+    "skips": 0,
+    "seconds": 1.81,
+    "log": "/workspace/scratch/b3485b7bb989/graphics-recorder-evidence/recorder-contracts.log",
+    "sha256": "424ce7332d86958a056a6eae5c1d18fa601fc93df3d3b9cafe970da6c4fb132e"
+  },
+  "real_zip_structure_check": {
+    "path": "/workspace/scratch/b3485b7bb989/graphics-recorder-evidence/original-zip-structure.json",
+    "sha256": "b45ba4fd5994fbd10fe351dabfbbe78b796d46c376f8ed9db2eb3b8da9bd0c0e",
+    "visual_or_workflow_approval": false
+  },
+  "unchanged_existing_paths": [
+    "scripts/verify_kart_graphics_review.py",
+    "scripts/verify_kart_graphics_delivery.py",
+    "scripts/verify_studio_delivery.py",
+    "scripts/record_studio_visual_review.py",
+    "scripts/tests/test_kart_graphics_review.py",
+    "config/godot-source.json",
+    "scripts/verify_legacy_release_pin.py",
+    "scripts/tests/test_candidate_2011_pin.py",
+    "pubspec.yaml",
+    ".github/workflows/lumo-kart-graphics-2019.yml"
+  ],
+  "production_receipt_created": false,
+  "staged_or_committed_by_agent": false
+}

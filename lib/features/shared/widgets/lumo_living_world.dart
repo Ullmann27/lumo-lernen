@@ -1,8 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
-import '../../../app/app_theme.dart';
-
 /// Lumo's lebendige Welt - der animierte Hintergrund, der diese App
 /// von jeder anderen Lern-App unterscheidet.
 ///

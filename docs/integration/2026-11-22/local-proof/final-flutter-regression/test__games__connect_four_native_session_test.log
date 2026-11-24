@@ -1,0 +1,27 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/games/connect_four_native_session_test.dart
+00:00 +0: Two stable child IDs have distinct durable rounds, even with the same presentation
+00:00 +1: Class/name changes do not change stable ID save keys
+00:00 +2: Completed round reopens without a second reward; repeated result is idempotent
+00:00 +3: Process interruption after wallet commit before round ACK retries the same result ID
+00:00 +4: Failed move save never installs a visible piece or advances its turn
+00:00 +5: Profile switch during a held bot write cannot replace either child round
+00:00 +6: Profile switch during reward allows no stale round ACK or foreign ownership
+00:00 +7: Native bot uses unchanged leicht policy and legal replay
+00:00 +8: Native bot uses unchanged mittel policy and legal replay
+00:00 +9: Native bot uses unchanged schlau policy and legal replay
+00:00 +10: Corrupt, post-win and foreign-owner saves fail without modifying bytes
+00:00 +11: Existing unrelated preferences remain byte-identical
+00:00 +12: AppState rejects foreign result ID, stale lease and changed reward amounts
+00:00 +13: A stale child result is never enqueued behind an existing held wallet write
+00:00 +14: Loaded round determines the announcement for restored bot, local Gold and finished game
+00:00 +15: An invalid new-round seed cannot create an undecodable saved record
+00:00 +16: Actual session drop is durable before ACK; duplicate sequence cannot add a piece
+00:00 +17: Pause, stale heartbeat and explicit resume preserve bot/round history
+00:00 +18: Render stall with fresh lifecycle keeps authoritative session live
+00:00 +19: Pause epoch while no render poll requires explicit resume
+00:00 +20: Foreign token, round, revision, opcode, column cannot change existing board
+00:00 +21: Save failure gives negative result, no ACK, and explicit retry is safe
+00:00 +22: Accepted drop invalidated by Activity pause releases slot for Resume
+00:00 +23: Old profile lease closes transport before processing pending human/bot input
+00:00 +24: Exit stores same round; reopen has new session token and explicit active lease
+00:00 +25: All tests passed!

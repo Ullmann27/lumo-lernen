@@ -1,0 +1,26 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-conversation/test/reading_audio_owner_regression_test.dart
+00:00 +0: /workspace/scratch/4fa97167812c/agent-conversation/test/reading_audio_owner_regression_test.dart: reading companion stop preserves a newer voice owner
+00:01 +1: /workspace/scratch/4fa97167812c/agent-conversation/test/reading_audio_owner_regression_test.dart: reading companion stop preserves a newer voice owner
+00:01 +2: /workspace/scratch/4fa97167812c/agent-conversation/test/reading_buddy_assessment_test.dart: recognition never grades: empty
+00:02 +3: /workspace/scratch/4fa97167812c/agent-conversation/test/reading_buddy_assessment_test.dart: recognition never grades: empty
+00:02 +4: /workspace/scratch/4fa97167812c/agent-conversation/test/reading_buddy_assessment_test.dart: recognition never grades: empty
+00:03 +5: /workspace/scratch/4fa97167812c/agent-conversation/test/reading_buddy_assessment_test.dart: recognition never grades: empty
+00:03 +6: /workspace/scratch/4fa97167812c/agent-conversation/test/reading_buddy_assessment_test.dart: recognition never grades: empty
+00:04 +7: /workspace/scratch/4fa97167812c/agent-conversation/test/reading_buddy_assessment_test.dart: recognition never grades: empty
+00:04 +8: /workspace/scratch/4fa97167812c/agent-conversation/test/reading_buddy_assessment_test.dart: recognition never grades: falsches Geräusch ohne Bezug zum Text
+00:05 +9: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: home opens free story creation without changing profile grade
+00:05 +10: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: home opens free story creation without changing profile grade
+00:06 +11: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: home opens free story creation without changing profile grade
+00:07 +12: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: home opens free story creation without changing profile grade
+00:08 +13: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: home opens free story creation without changing profile grade
+00:11 +14: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: home opens free story creation without changing profile grade
+00:12 +15: /workspace/scratch/4fa97167812c/agent-conversation/test/reading_buddy_assessment_test.dart: reading dialogue proposes an editable answer and requires confirmation
+00:13 +16: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: deutsch opens free story creation without changing profile grade
+00:14 +17: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: deutsch opens free story creation without changing profile grade
+00:15 +18: /workspace/scratch/4fa97167812c/agent-conversation/test/reading_buddy_assessment_test.dart: partial sentence followed by no-match never becomes an accepted answer
+00:16 +19: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: reading opens free story creation without changing profile grade
+00:18 +20: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: learning path forwards its selected grade as a fixed story grade
+00:21 +21: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: story entries survive display resize and large text
+00:37 +22: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: a pending microphone start cannot restart behind the library
+00:38 +23: /workspace/scratch/4fa97167812c/agent-conversation/test/story_entry_navigation_test.dart: (tearDownAll)
+00:38 +23: All tests passed!

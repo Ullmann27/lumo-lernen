@@ -1,0 +1,41 @@
+{
+  "workflow_other_bytes_identical": true,
+  "python_definitions": {
+    "scripts/verify_connect_four_delivery.py": {
+      "removed": [],
+      "changed": [
+        "checked_native",
+        "prepare"
+      ],
+      "added": [
+        "checked_native_dream"
+      ],
+      "existing_test_methods": 0,
+      "final_test_methods": 0
+    },
+    "scripts/tests/test_connect_four_delivery.py": {
+      "removed": [],
+      "changed": [],
+      "added": [
+        "DreamRequiredStepTests.test_missing_duplicate_or_skipped_dream_step_cannot_hide_in_a_successful_build",
+        "DreamRequiredStepTests.test_workflow_keeps_exact_pin_fresh_output_and_absolute_python_after_native_gate",
+        "DreamOriginalBoundaryTests.setUp",
+        "DreamOriginalBoundaryTests.check",
+        "DreamOriginalBoundaryTests.test_real_approved_reader_identity_is_fixed_before_any_dynamic_import",
+        "DreamOriginalBoundaryTests.test_complete_original_binding_uses_readonly_checkout_reader_without_mutating_bytes",
+        "DreamOriginalBoundaryTests.test_changed_missing_or_wrong_committed_reader_is_rejected_before_import",
+        "DreamOriginalBoundaryTests.test_matching_but_foreign_or_reduced_manifests_cannot_authorize_the_current_pin",
+        "DreamOriginalBoundaryTests.test_fresh_decoder_difference_or_failure_is_not_overridden_by_a_stored_pass",
+        "DreamOriginalBoundaryTests.test_changed_missing_or_symlinked_original_is_rejected_before_replay",
+        "DreamOriginalBoundaryTests.test_duplicate_or_escaping_index_records_are_rejected_without_reading_other_files",
+        "DreamOriginalBoundaryTests.test_complete_runner_requires_unique_endings_and_clean_post_pass_output",
+        "DreamOriginalBoundaryTests.test_even_same_value_manifest_rewrite_by_a_decoder_is_rejected"
+      ],
+      "existing_test_methods": 45,
+      "final_test_methods": 56
+    }
+  },
+  "existing_core_and_extension_functions_unchanged": true,
+  "source_syntax": "Python AST parsing only, no test execution",
+  "active_sources_unchanged": true
+}

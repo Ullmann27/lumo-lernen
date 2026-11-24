@@ -1,0 +1,208 @@
+{
+  "head": "{\n  \"repository\": \"https://github.com/Ullmann27/lumo-godot.git\",\n  \"revision\": \"e9a9f60f20403ffa6b2b26d1437f958b2704d2aa\",\n  \"engine\": \"4.6.3\"\n}",
+  "actual_identity": [
+    "ccc4c20f87878151bc18eb13de370851ce7c792c",
+    "34506c87f4d66f97612caf95d345b4fa5186655f",
+    "1e22d2455937e2640d1e44e153d290746f3afe49 057a4e8d067872c4f3514b126aa04c3706d2e5b5"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "git_blob": "194eb13a604f074af978eee724a13b3049c7e2d1",
+      "sha256": "145a13157a0afea804664ce8de99943ed310356052ffaa26ad71d1e29ccbed5d"
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "git_blob": "42d54aa5293750f64f1c0307b5d97aace354471d",
+      "sha256": "b4c0ebc834507c060b79622187d6c9ba4527b43653d95c775507451a05e19673"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "git_blob": "c67747b50c232213128f5bea15dc556e3a08eb76",
+      "sha256": "9ac6733ab5f433c0954dde0c8bf6cf6f4a18c1f59b8d890578cfb1d3614c5087"
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "git_blob": "cebdfa2ba332e3d7d753838a1370d59f1fb5a02a",
+      "sha256": "ca07d497cacc0e37aacd76d27af13acfb7d04542003cbd74e0dc06c48ecfb9eb"
+    }
+  ],
+  "old_function_count": 33,
+  "unchanged_old_functions": [
+    "require",
+    "regular",
+    "digest",
+    "record",
+    "read",
+    "write_new",
+    "checked_jobs",
+    "checked_artifacts",
+    "checked_pcm_log",
+    "learning_source_identity",
+    "checked_learning_outputs",
+    "bind_learning_audit",
+    "checked_learning_audit",
+    "checked_release_catalog",
+    "checked_tag",
+    "checked_release",
+    "native_module",
+    "checked_native_results",
+    "checked_native_runner_log",
+    "checked_native_extension",
+    "checked_connection_logs",
+    "connection_capture_records",
+    "checked_connection_images",
+    "checked_native_dream",
+    "checked_additional_native_logs",
+    "committed_pcm_sources",
+    "checked_plan",
+    "checked_bundle",
+    "checked_current",
+    "main"
+  ],
+  "changed_old_functions": [
+    "checked_native",
+    "checked_native_connections",
+    "prepare"
+  ],
+  "new_functions": [
+    "checked_native_discovery"
+  ],
+  "discovery_function_exact_upstream": true,
+  "dream_function_unchanged": true,
+  "required_steps": [
+    {
+      "job": "connect-four-runtime",
+      "name": "Import the exact configured native source in its own directory",
+      "occurrences": 1
+    },
+    {
+      "job": "connect-four-runtime",
+      "name": "Retry the acknowledged native exit after a transient Android refusal",
+      "occurrences": 1
+    },
+    {
+      "job": "connect-four-runtime",
+      "name": "Require the additional pinned native Treasure wisp regression",
+      "occurrences": 1
+    },
+    {
+      "job": "connect-four-runtime",
+      "name": "Require the actual production Dart and rendered Godot two-process gate",
+      "occurrences": 1
+    },
+    {
+      "job": "android-host-compile",
+      "name": "Compile actual current Android host before native release pin approval",
+      "occurrences": 1
+    },
+    {
+      "job": "android-host-compile",
+      "name": "Bind actual compiled C4 Activity bridge and Binder bytecode",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Audit every exact current-grade learning family on this candidate",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Full Flutter regression suite including every capture",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Verify all build and preservation contracts",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Code-level Android probe regression with verified image dependencies",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Require actual gameplay gates on the exact pinned native source",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Verify connected dream ambience and garden on exact native source",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Require acknowledged Connect Four return retry",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Require actual Dream gates on the exact pinned native source",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Require actual Discovery gates on the exact pinned native source",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Build unified real Android APK",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Verify APK archive and collect reproducible source hashes",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-and-build",
+      "name": "Upload exact candidate (no release or synthetic screenshots)",
+      "occurrences": 1
+    },
+    {
+      "job": "android-c4",
+      "name": "Install and tour the exact APK",
+      "occurrences": 1
+    },
+    {
+      "job": "update-2020-from-2017",
+      "name": "Preserve actual 2017 learning through an in-place 2020 upgrade",
+      "occurrences": 1
+    },
+    {
+      "job": "verify-c4-candidate",
+      "name": "Reverify both signed APKs and every mandatory current C4 and update proof",
+      "occurrences": 1
+    }
+  ],
+  "collector_calls": 1,
+  "old_discovery_runner_calls": 0,
+  "live_runner_calls": 1,
+  "new_discovery_tests_exact_upstream": true,
+  "validation": "Read-only source/AST/byte comparison. No test or engine execution.",
+  "live_negative_test_names": [
+    "test_all_9_live_probes_and_7_pngs_require_real_git_bound_helper_and_preserve_inputs",
+    "test_missing_or_changed_png_cannot_reuse_an_original_manifest",
+    "test_extra_or_symlinked_png_is_rejected",
+    "test_wrong_source_counts_fps_and_incomplete_image_records_fail",
+    "test_wrong_dimensions_path_and_duplicate_images_fail_even_with_matching_png_bytes",
+    "test_full_exact_probe_and_final_markers_are_required_in_originals_and_complete_logs",
+    "test_post_pass_errors_and_leaks_never_count_as_success",
+    "test_capture_pass_paths_must_agree_and_cannot_be_truncated",
+    "test_helper_must_match_the_actual_git_blob",
+    "test_each_actual_helper_result_must_equal_the_unchanged_original_manifest"
+  ],
+  "review_conclusion": "No concrete connection blocker found in the four reviewed Host files.",
+  "scope": "Independent read-only source, AST and byte comparison; no duplicate tests, engine runs or Android acceptance.",
+  "explicit_boundary": "Native pin e9a9 is intentionally provisional. The next Native union must contain the five helper blobs already confirmed by the Native owner; no runtime acceptance of ccc4 is claimed.",
+  "preserved_live_gate": "All 9 probe markers, 7 PNGs, actual committed helper bytes, temporary-copy heredoc replay, original manifest/result equality and original input immutability retained.",
+  "native_owner_confirmed_helper_blobs": [
+    "c00ca9873106c974d66282cddfdcfaf5eb3bbebc",
+    "1ebdec66300dfb87bf9287d194525d3c374c8aee",
+    "219e691fc8aa119cc80221b3db6c77e63caf8bfe",
+    "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+    "c23859ece2d62101d000d7a89556fda5d3fe4105"
+  ]
+}

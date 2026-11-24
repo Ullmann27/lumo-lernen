@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "scope": "Unchanged am_anr event lines extracted byte-for-byte from the actual failed API37 startup stream. Surrounding ready-window/service test records are synthetic, not original pre-ANR observations.",
+  "host": "84865ce2880360d909cef88efea28a6335989586",
+  "native": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+  "run_id": 43515640224,
+  "job_id": 132228429171,
+  "artifact_id": 14084772947,
+  "archive_sha256": "7d432c04cb4645d32e19557ec40a4b65e781e9e9d8db39dc4fe4cead1794f2d0",
+  "original_member": "framework-start/logcat-all.stdout",
+  "original_member_bytes": 4990121,
+  "original_member_sha256": "08b701886bde0f6911ca52232380aab7aa102a7db0d26a27d2ad4917d175422c",
+  "original_lines_1_based": [
+    30664,
+    33561
+  ],
+  "fixture": "original-am-anr-events.txt",
+  "fixture_bytes": 615,
+  "fixture_sha256": "a2c1878d2a1758ad90e7db76605f84b140518ee3939576a756f3d8a717c0143c"
+}

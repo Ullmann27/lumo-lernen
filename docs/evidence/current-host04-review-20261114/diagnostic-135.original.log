@@ -1,0 +1,440 @@
+﻿2026-11-14T18:59:07.4701593Z Current runner version: '2.338.2'
+2026-11-14T18:59:07.4729149Z ##[group]Runner Image Provisioner
+2026-11-14T18:59:07.4730102Z Hosted Compute Agent
+2026-11-14T18:59:07.4730834Z Version: 20261103.629
+2026-11-14T18:59:07.4731635Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T18:59:07.4732493Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T18:59:07.4733393Z Worker ID: {5f9cf2a2-0c36-4ceb-acaf-f08837c65c68}
+2026-11-14T18:59:07.4734260Z Region: eastus2
+2026-11-14T18:59:07.4734973Z Cloud: Azure
+2026-11-14T18:59:07.4735639Z ##[endgroup]
+2026-11-14T18:59:07.4737435Z ##[group]Operating System
+2026-11-14T18:59:07.4738288Z Ubuntu
+2026-11-14T18:59:07.4738948Z 24.04.5
+2026-11-14T18:59:07.4740434Z LTS
+2026-11-14T18:59:07.4741258Z ##[endgroup]
+2026-11-14T18:59:07.4741947Z ##[group]Runner Image
+2026-11-14T18:59:07.4742748Z Image: ubuntu-24.04
+2026-11-14T18:59:07.4743467Z Version: 20261111.370.1
+2026-11-14T18:59:07.4745512Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T18:59:07.4747765Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T18:59:07.4749101Z ##[endgroup]
+2026-11-14T18:59:07.4750585Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T18:59:07.4753194Z Actions: read
+2026-11-14T18:59:07.4753933Z Contents: read
+2026-11-14T18:59:07.4754644Z Metadata: read
+2026-11-14T18:59:07.4755404Z ##[endgroup]
+2026-11-14T18:59:07.4757922Z Secret source: Actions
+2026-11-14T18:59:07.4759162Z Cache mode: write
+2026-11-14T18:59:07.4760518Z Prepare workflow directory
+2026-11-14T18:59:07.5190356Z Prepare all required actions
+2026-11-14T18:59:07.5229267Z Getting action download info
+2026-11-14T18:59:07.7093112Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T18:59:07.8408423Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T18:59:08.0890072Z Complete job name: unchanged-6b-probe-contracts
+2026-11-14T18:59:08.1532584Z ##[group]Run actions/checkout@v4
+2026-11-14T18:59:08.1533260Z with:
+2026-11-14T18:59:08.1533628Z   persist-credentials: false
+2026-11-14T18:59:08.1534089Z   ref: 91b5aece4060cd625b27e4cfa967122b5d4b5b92
+2026-11-14T18:59:08.1534584Z   repository: Ullmann27/lumo-lernen
+2026-11-14T18:59:08.1537724Z   token: ***
+2026-11-14T18:59:08.1538095Z   ssh-strict: true
+2026-11-14T18:59:08.1538463Z   ssh-user: git
+2026-11-14T18:59:08.1538811Z   clean: true
+2026-11-14T18:59:08.1539182Z   sparse-checkout-cone-mode: true
+2026-11-14T18:59:08.1539611Z   fetch-depth: 1
+2026-11-14T18:59:08.1539972Z   fetch-tags: false
+2026-11-14T18:59:08.1540343Z   show-progress: true
+2026-11-14T18:59:08.1540707Z   lfs: false
+2026-11-14T18:59:08.1541053Z   submodules: false
+2026-11-14T18:59:08.1541427Z   set-safe-directory: true
+2026-11-14T18:59:08.1541845Z   allow-unsafe-pr-checkout: false
+2026-11-14T18:59:08.1542412Z env:
+2026-11-14T18:59:08.1542767Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T18:59:08.1543283Z   QA_SOURCE: 91b5aece4060cd625b27e4cfa967122b5d4b5b92
+2026-11-14T18:59:08.1543849Z   CANDIDATE_SOURCE: 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+2026-11-14T18:59:08.1544433Z   NATIVE_SOURCE: 84789d0c2c6fb4b6ecd2897ce1951b89f958b604
+2026-11-14T18:59:08.1544916Z ##[endgroup]
+2026-11-14T18:59:08.4984937Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T18:59:08.4986557Z ##[group]Getting Git version info
+2026-11-14T18:59:08.4987517Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T18:59:08.4988467Z [command]/usr/bin/git version
+2026-11-14T18:59:08.5087013Z git version 2.56.1
+2026-11-14T18:59:08.5104279Z ##[endgroup]
+2026-11-14T18:59:08.5118470Z Temporarily overriding HOME='/home/runner/work/_temp/dc0760a8-80d9-467f-b4e5-badcbe9d634a' before making global git config changes
+2026-11-14T18:59:08.5120495Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T18:59:08.5125457Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T18:59:08.5173984Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T18:59:08.5178015Z ##[group]Initializing the repository
+2026-11-14T18:59:08.5182708Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T18:59:08.5282175Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T18:59:08.5283136Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T18:59:08.5283978Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T18:59:08.5284621Z hint: call:
+2026-11-14T18:59:08.5284977Z hint:
+2026-11-14T18:59:08.5285454Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T18:59:08.5285999Z hint:
+2026-11-14T18:59:08.5286518Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T18:59:08.5287805Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T18:59:08.5288991Z hint:
+2026-11-14T18:59:08.5289595Z hint: 	git branch -m <name>
+2026-11-14T18:59:08.5290314Z hint:
+2026-11-14T18:59:08.5291245Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T18:59:08.5292790Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T18:59:08.5306453Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T18:59:08.5343702Z ##[endgroup]
+2026-11-14T18:59:08.5344837Z ##[group]Disabling automatic garbage collection
+2026-11-14T18:59:08.5347049Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T18:59:08.5374518Z ##[endgroup]
+2026-11-14T18:59:08.5375563Z ##[group]Setting up auth
+2026-11-14T18:59:08.5380220Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T18:59:08.5411489Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T18:59:08.6305859Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T18:59:08.6336574Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T18:59:08.6530642Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T18:59:08.6559940Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T18:59:08.6758258Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T18:59:08.6793075Z ##[endgroup]
+2026-11-14T18:59:08.6793787Z ##[group]Fetching the repository
+2026-11-14T18:59:08.6803531Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 91b5aece4060cd625b27e4cfa967122b5d4b5b92
+2026-11-14T18:59:19.4669938Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T18:59:19.4670484Z  * branch            91b5aece4060cd625b27e4cfa967122b5d4b5b92 -> FETCH_HEAD
+2026-11-14T18:59:19.4672628Z ##[endgroup]
+2026-11-14T18:59:19.4673171Z ##[group]Determining the checkout info
+2026-11-14T18:59:19.4679584Z ##[endgroup]
+2026-11-14T18:59:19.4681128Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T18:59:19.4730716Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T18:59:19.4756658Z ##[group]Checking out the ref
+2026-11-14T18:59:19.4760269Z [command]/usr/bin/git checkout --progress --force 91b5aece4060cd625b27e4cfa967122b5d4b5b92
+2026-11-14T18:59:20.4858833Z Updating files:  67% (3396/5001)
+2026-11-14T18:59:20.5097692Z Updating files:  68% (3401/5001)
+2026-11-14T18:59:20.5127451Z Updating files:  69% (3451/5001)
+2026-11-14T18:59:20.5160674Z Updating files:  70% (3501/5001)
+2026-11-14T18:59:20.5191630Z Updating files:  71% (3551/5001)
+2026-11-14T18:59:20.5227379Z Updating files:  72% (3601/5001)
+2026-11-14T18:59:20.5272956Z Updating files:  73% (3651/5001)
+2026-11-14T18:59:20.5313620Z Updating files:  74% (3701/5001)
+2026-11-14T18:59:20.5351366Z Updating files:  75% (3751/5001)
+2026-11-14T18:59:20.5383682Z Updating files:  76% (3801/5001)
+2026-11-14T18:59:20.5416560Z Updating files:  77% (3851/5001)
+2026-11-14T18:59:20.5440006Z Updating files:  78% (3901/5001)
+2026-11-14T18:59:20.5462558Z Updating files:  79% (3951/5001)
+2026-11-14T18:59:20.5584568Z Updating files:  80% (4001/5001)
+2026-11-14T18:59:20.5613902Z Updating files:  81% (4051/5001)
+2026-11-14T18:59:20.5647017Z Updating files:  82% (4101/5001)
+2026-11-14T18:59:20.5671340Z Updating files:  83% (4151/5001)
+2026-11-14T18:59:20.5693665Z Updating files:  84% (4201/5001)
+2026-11-14T18:59:20.5715596Z Updating files:  85% (4251/5001)
+2026-11-14T18:59:20.5735996Z Updating files:  86% (4301/5001)
+2026-11-14T18:59:20.5759290Z Updating files:  87% (4351/5001)
+2026-11-14T18:59:20.5780776Z Updating files:  88% (4401/5001)
+2026-11-14T18:59:20.5802150Z Updating files:  89% (4451/5001)
+2026-11-14T18:59:20.5823419Z Updating files:  90% (4501/5001)
+2026-11-14T18:59:20.5854582Z Updating files:  91% (4551/5001)
+2026-11-14T18:59:20.6164263Z Updating files:  92% (4601/5001)
+2026-11-14T18:59:20.6397783Z Updating files:  93% (4651/5001)
+2026-11-14T18:59:20.6540429Z Updating files:  94% (4701/5001)
+2026-11-14T18:59:20.6708842Z Updating files:  95% (4751/5001)
+2026-11-14T18:59:20.6740703Z Updating files:  96% (4801/5001)
+2026-11-14T18:59:20.6869103Z Updating files:  97% (4851/5001)
+2026-11-14T18:59:20.6898358Z Updating files:  98% (4901/5001)
+2026-11-14T18:59:20.6924110Z Updating files:  99% (4951/5001)
+2026-11-14T18:59:20.6924429Z Updating files: 100% (5001/5001)
+2026-11-14T18:59:20.6924752Z Updating files: 100% (5001/5001), done.
+2026-11-14T18:59:20.6970032Z Note: switching to '91b5aece4060cd625b27e4cfa967122b5d4b5b92'.
+2026-11-14T18:59:20.6970614Z 
+2026-11-14T18:59:20.6971156Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T18:59:20.6971551Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T18:59:20.6971921Z state without impacting any branches by switching back to a branch.
+2026-11-14T18:59:20.6972142Z 
+2026-11-14T18:59:20.6972319Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T18:59:20.6972681Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T18:59:20.6972875Z 
+2026-11-14T18:59:20.6972975Z   git switch -c <new-branch-name>
+2026-11-14T18:59:20.6973108Z 
+2026-11-14T18:59:20.6973199Z Or undo this operation with:
+2026-11-14T18:59:20.6973327Z 
+2026-11-14T18:59:20.6973398Z   git switch -
+2026-11-14T18:59:20.6973500Z 
+2026-11-14T18:59:20.6973663Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T18:59:20.6973897Z 
+2026-11-14T18:59:20.6974122Z HEAD is now at 91b5aec qa: exercise unchanged 6b Village return and C4 with separately bound observer
+2026-11-14T18:59:20.7075973Z ##[endgroup]
+2026-11-14T18:59:20.7118098Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T18:59:20.7140750Z 91b5aece4060cd625b27e4cfa967122b5d4b5b92
+2026-11-14T18:59:20.7149474Z ##[group]Removing auth
+2026-11-14T18:59:20.7153016Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T18:59:20.7187829Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T18:59:20.7393565Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T18:59:20.7418262Z http.https://github.com/.extraheader
+2026-11-14T18:59:20.7424410Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T18:59:20.7454301Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T18:59:20.7655056Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T18:59:20.7682351Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T18:59:20.7884415Z ##[endgroup]
+2026-11-14T18:59:20.8103303Z ##[group]Run set -euo pipefail
+2026-11-14T18:59:20.8103648Z [36;1mset -euo pipefail[0m
+2026-11-14T18:59:20.8103879Z [36;1mpython3 -m venv .probe-venv[0m
+2026-11-14T18:59:20.8104302Z [36;1m.probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0[0m
+2026-11-14T18:59:20.8104788Z [36;1mbash -n scripts/run_unchanged_6b_village_diagnostic.sh[0m
+2026-11-14T18:59:20.8105103Z [36;1m.probe-venv/bin/python -B -m unittest -v \[0m
+2026-11-14T18:59:20.8105437Z [36;1m  scripts.tests.test_verify_unchanged_6b_village_diagnostic \[0m
+2026-11-14T18:59:20.8105808Z [36;1m  tools.android_qa.tests.test_kart_garage_evidence \[0m
+2026-11-14T18:59:20.8106131Z [36;1m  tools.android_qa.tests.test_kart_garage_observed_scroll \[0m
+2026-11-14T18:59:20.8106460Z [36;1m  tools.android_qa.tests.test_kart_scroll_word_evidence \[0m
+2026-11-14T18:59:20.8107042Z [36;1m  tools.android_qa.tests.test_kart_driver_word_evidence \[0m
+2026-11-14T18:59:20.8107460Z [36;1m  tools.android_qa.tests.test_village_android_evidence \[0m
+2026-11-14T18:59:20.8107775Z [36;1m  scripts.tests.test_6b_roundtrip_diagnostic \[0m
+2026-11-14T18:59:20.8108048Z [36;1m  2>&1 | tee diagnostic-contracts.log[0m
+2026-11-14T18:59:20.8108380Z [36;1mif grep -Eq '^OK \(skipped=|^FAILED.*skipped=' diagnostic-contracts.log; then[0m
+2026-11-14T18:59:20.8108741Z [36;1m  echo 'Diagnostic contracts cannot be skipped.' >&2[0m
+2026-11-14T18:59:20.8109003Z [36;1m  exit 1[0m
+2026-11-14T18:59:20.8109168Z [36;1mfi[0m
+2026-11-14T18:59:20.8130106Z shell: /usr/bin/bash -e {0}
+2026-11-14T18:59:20.8130336Z env:
+2026-11-14T18:59:20.8130518Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T18:59:20.8130762Z   QA_SOURCE: 91b5aece4060cd625b27e4cfa967122b5d4b5b92
+2026-11-14T18:59:20.8131061Z   CANDIDATE_SOURCE: 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+2026-11-14T18:59:20.8131376Z   NATIVE_SOURCE: 84789d0c2c6fb4b6ecd2897ce1951b89f958b604
+2026-11-14T18:59:20.8131744Z   PYTHONPATH: /home/runner/work/lumo-lernen/lumo-lernen/tools/android_qa/tests
+2026-11-14T18:59:20.8132057Z ##[endgroup]
+2026-11-14T18:59:23.7407331Z Collecting uiautomator2==3.7.0
+2026-11-14T18:59:23.7831220Z   Downloading uiautomator2-3.7.0-py3-none-any.whl.metadata (44 kB)
+2026-11-14T18:59:23.7911254Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.5/44.5 kB 5.5 MB/s eta 0:00:00
+2026-11-14T18:59:23.9823336Z Collecting Pillow==12.3.0
+2026-11-14T18:59:23.9895833Z   Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-14T18:59:24.0444634Z Collecting adbutils<3,>=2.11.0 (from uiautomator2==3.7.0)
+2026-11-14T18:59:24.0581691Z   Downloading adbutils-2.12.0-py3-none-manylinux1_x86_64.whl.metadata (1.1 kB)
+2026-11-14T18:59:24.1669059Z Collecting click (from uiautomator2==3.7.0)
+2026-11-14T18:59:24.1738660Z   Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-14T18:59:24.3917750Z Collecting lxml (from uiautomator2==3.7.0)
+2026-11-14T18:59:24.3996629Z   Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+2026-11-14T18:59:24.4420161Z Collecting requests (from uiautomator2==3.7.0)
+2026-11-14T18:59:24.4489876Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-11-14T18:59:24.4740954Z Collecting retry2<0.10.0,>=0.9.5 (from uiautomator2==3.7.0)
+2026-11-14T18:59:24.4900867Z   Downloading retry2-0.9.5-py2.py3-none-any.whl.metadata (6.4 kB)
+2026-11-14T18:59:24.5481306Z Collecting deprecation<3.0,>=2.0.6 (from adbutils<3,>=2.11.0->uiautomator2==3.7.0)
+2026-11-14T18:59:24.5547662Z   Downloading deprecation-2.1.0-py2.py3-none-any.whl.metadata (4.6 kB)
+2026-11-14T18:59:24.7117903Z Collecting decorator>=3.4.2 (from retry2<0.10.0,>=0.9.5->uiautomator2==3.7.0)
+2026-11-14T18:59:24.7207557Z   Downloading decorator-5.3.1-py3-none-any.whl.metadata (3.9 kB)
+2026-11-14T18:59:24.8528108Z Collecting charset_normalizer<4,>=2 (from requests->uiautomator2==3.7.0)
+2026-11-14T18:59:24.8603160Z   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-11-14T18:59:24.8637075Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.4/46.4 kB 18.6 MB/s eta 0:00:00
+2026-11-14T18:59:24.8961276Z Collecting idna<4,>=2.5 (from requests->uiautomator2==3.7.0)
+2026-11-14T18:59:24.9028419Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-11-14T18:59:24.9502370Z Collecting urllib3<3,>=1.26 (from requests->uiautomator2==3.7.0)
+2026-11-14T18:59:24.9573647Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+2026-11-14T18:59:25.0802543Z Collecting certifi>=2023.5.7 (from requests->uiautomator2==3.7.0)
+2026-11-14T18:59:25.0872733Z   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+2026-11-14T18:59:25.1946064Z Collecting packaging (from deprecation<3.0,>=2.0.6->adbutils<3,>=2.11.0->uiautomator2==3.7.0)
+2026-11-14T18:59:25.2017607Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-14T18:59:25.2237588Z Downloading uiautomator2-3.7.0-py3-none-any.whl (5.2 MB)
+2026-11-14T18:59:25.2795031Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 95.6 MB/s eta 0:00:00
+2026-11-14T18:59:25.2920469Z Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+2026-11-14T18:59:25.3810381Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 79.5 MB/s eta 0:00:00
+2026-11-14T18:59:25.4132613Z Downloading adbutils-2.12.0-py3-none-manylinux1_x86_64.whl (3.6 MB)
+2026-11-14T18:59:25.4393627Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.6/3.6 MB 146.6 MB/s eta 0:00:00
+2026-11-14T18:59:25.4461469Z Downloading retry2-0.9.5-py2.py3-none-any.whl (6.0 kB)
+2026-11-14T18:59:25.4545967Z Downloading click-8.5.1-py3-none-any.whl (126 kB)
+2026-11-14T18:59:25.4579031Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 126.2/126.2 kB 59.3 MB/s eta 0:00:00
+2026-11-14T18:59:25.4647651Z Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+2026-11-14T18:59:25.4998913Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 155.6 MB/s eta 0:00:00
+2026-11-14T18:59:25.5077031Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-11-14T18:59:25.5106079Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.1/73.1 kB 39.2 MB/s eta 0:00:00
+2026-11-14T18:59:25.5181842Z Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+2026-11-14T18:59:25.5214370Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 135.1/135.1 kB 65.3 MB/s eta 0:00:00
+2026-11-14T18:59:25.5300518Z Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+2026-11-14T18:59:25.5344784Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 257.6/257.6 kB 78.2 MB/s eta 0:00:00
+2026-11-14T18:59:25.5415944Z Downloading decorator-5.3.1-py3-none-any.whl (10 kB)
+2026-11-14T18:59:25.5505369Z Downloading deprecation-2.1.0-py2.py3-none-any.whl (11 kB)
+2026-11-14T18:59:25.5590441Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-11-14T18:59:25.5619777Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.6/69.6 kB 36.7 MB/s eta 0:00:00
+2026-11-14T18:59:25.5686238Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-11-14T18:59:25.5716812Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 135.7/135.7 kB 69.2 MB/s eta 0:00:00
+2026-11-14T18:59:25.5781382Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-14T18:59:25.5877235Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 130.0/130.0 kB 14.7 MB/s eta 0:00:00
+2026-11-14T18:59:25.6496918Z Installing collected packages: urllib3, Pillow, packaging, lxml, idna, decorator, click, charset_normalizer, certifi, retry2, requests, deprecation, adbutils, uiautomator2
+2026-11-14T18:59:26.6071948Z Successfully installed Pillow-12.3.0 adbutils-2.12.0 certifi-2026.10.23 charset_normalizer-3.5.2 click-8.5.1 decorator-5.3.1 deprecation-2.1.0 idna-3.20 lxml-6.1.3 packaging-26.3 requests-2.34.2 retry2-0.9.5 uiautomator2-3.7.0 urllib3-2.8.0
+2026-11-14T18:59:27.2328357Z test_another_apk_digest_fails_without_relabeling_qa_source (scripts.tests.test_verify_unchanged_6b_village_diagnostic.ApkContracts.test_another_apk_digest_fails_without_relabeling_qa_source) ... ok
+2026-11-14T18:59:27.2351691Z test_changed_pck_bytes_fail_even_when_synthetic_outer_apk_matches (scripts.tests.test_verify_unchanged_6b_village_diagnostic.ApkContracts.test_changed_pck_bytes_fail_even_when_synthetic_outer_apk_matches) ... ok
+2026-11-14T18:59:27.4531386Z test_duplicate_checksum_and_missing_pck_are_rejected (scripts.tests.test_verify_unchanged_6b_village_diagnostic.ApkContracts.test_duplicate_checksum_and_missing_pck_are_rejected) ... ok
+2026-11-14T18:59:27.4563206Z test_duplicate_pck_and_crc_corruption_are_rejected (scripts.tests.test_verify_unchanged_6b_village_diagnostic.ApkContracts.test_duplicate_pck_and_crc_corruption_are_rejected) ... ok
+2026-11-14T18:59:27.4576183Z test_existing_identity_verifier_uses_candidate_cwd_and_actual_pck_bytes (scripts.tests.test_verify_unchanged_6b_village_diagnostic.ApkContracts.test_existing_identity_verifier_uses_candidate_cwd_and_actual_pck_bytes) ... ok
+2026-11-14T18:59:48.0527663Z test_real_git_checkouts_and_actual_imports_bind_both_sources (scripts.tests.test_verify_unchanged_6b_village_diagnostic.ApkContracts.test_real_git_checkouts_and_actual_imports_bind_both_sources) ... ok
+2026-11-14T18:59:48.0578059Z test_wrong_provenance_source_native_abi_or_signer_is_rejected (scripts.tests.test_verify_unchanged_6b_village_diagnostic.ApkContracts.test_wrong_provenance_source_native_abi_or_signer_is_rejected) ... ok
+2026-11-14T18:59:48.0592437Z test_failed_historical_publisher_does_not_replace_original_successful_build (scripts.tests.test_verify_unchanged_6b_village_diagnostic.BaselineContracts.test_failed_historical_publisher_does_not_replace_original_successful_build) ... ok
+2026-11-14T18:59:48.0622199Z test_modified_apk_and_duplicate_pck_are_rejected (scripts.tests.test_verify_unchanged_6b_village_diagnostic.BaselineContracts.test_modified_apk_and_duplicate_pck_are_rejected) ... ok
+2026-11-14T18:59:48.0731141Z test_wrong_source_artifact_attempt_and_build_are_rejected (scripts.tests.test_verify_unchanged_6b_village_diagnostic.BaselineContracts.test_wrong_source_artifact_attempt_and_build_are_rejected) ... ok
+2026-11-14T18:59:48.0735382Z test_nonfinite_json_and_foreign_qa_event_are_rejected (scripts.tests.test_verify_unchanged_6b_village_diagnostic.DiagnosticScopeContracts.test_nonfinite_json_and_foreign_qa_event_are_rejected) ... ok
+2026-11-14T18:59:48.0739500Z test_only_main_roundtrip_case_and_immutable_source_downloads (scripts.tests.test_verify_unchanged_6b_village_diagnostic.DiagnosticScopeContracts.test_only_main_roundtrip_case_and_immutable_source_downloads) ... ok
+2026-11-14T18:59:48.0742479Z test_failed_different_or_incomplete_build_is_not_accepted (scripts.tests.test_verify_unchanged_6b_village_diagnostic.MetadataContracts.test_failed_different_or_incomplete_build_is_not_accepted) ... ok
+2026-11-14T18:59:48.0744485Z test_failed_original_android_run_retains_exact_successful_build (scripts.tests.test_verify_unchanged_6b_village_diagnostic.MetadataContracts.test_failed_original_android_run_retains_exact_successful_build) ... ok
+2026-11-14T18:59:48.0745663Z test_incomplete_or_duplicate_original_collections_are_rejected (scripts.tests.test_verify_unchanged_6b_village_diagnostic.MetadataContracts.test_incomplete_or_duplicate_original_collections_are_rejected) ... ok
+2026-11-14T18:59:48.0747380Z test_original_source_attempt_tree_and_artifact_mismatches_are_rejected (scripts.tests.test_verify_unchanged_6b_village_diagnostic.MetadataContracts.test_original_source_attempt_tree_and_artifact_mismatches_are_rejected) ... ok
+2026-11-14T18:59:48.0750155Z test_pr_merge_sha_other_workflow_and_stale_qa_attempt_are_rejected (scripts.tests.test_verify_unchanged_6b_village_diagnostic.MetadataContracts.test_pr_merge_sha_other_workflow_and_stale_qa_attempt_are_rejected) ... ok
+2026-11-14T18:59:48.0752595Z test_qa_run_and_each_allowed_job_are_distinct_from_apk_source (scripts.tests.test_verify_unchanged_6b_village_diagnostic.MetadataContracts.test_qa_run_and_each_allowed_job_are_distinct_from_apk_source) ... ok
+2026-11-14T18:59:48.0962211Z test_atomic_report_never_overwrites_existing_bytes (scripts.tests.test_verify_unchanged_6b_village_diagnostic.OutputContracts.test_atomic_report_never_overwrites_existing_bytes) ... ok
+2026-11-14T18:59:48.0972272Z test_cli_failure_creates_no_report_or_bound_marker (scripts.tests.test_verify_unchanged_6b_village_diagnostic.OutputContracts.test_cli_failure_creates_no_report_or_bound_marker) ... ok
+2026-11-14T18:59:48.0986172Z test_actual_git_root_sha_tree_and_tracked_clean_are_required (scripts.tests.test_verify_unchanged_6b_village_diagnostic.SourceContracts.test_actual_git_root_sha_tree_and_tracked_clean_are_required) ... ok
+2026-11-14T18:59:48.0993292Z test_committed_helper_rejects_changed_working_bytes (scripts.tests.test_verify_unchanged_6b_village_diagnostic.SourceContracts.test_committed_helper_rejects_changed_working_bytes) ... ok
+2026-11-14T18:59:48.0997350Z test_json_duplicates_and_input_symlinks_are_rejected (scripts.tests.test_verify_unchanged_6b_village_diagnostic.SourceContracts.test_json_duplicates_and_input_symlinks_are_rejected) ... ok
+2026-11-14T18:59:48.2551637Z test_actual_wide_and_compact_cup_captions_both_require_two_observed_targets (tools.android_qa.tests.test_kart_garage_evidence.CupObservedLabelTests.test_actual_wide_and_compact_cup_captions_both_require_two_observed_targets) ... ok
+2026-11-14T18:59:48.4565708Z test_caption_change_needs_two_new_observations_even_at_identical_bounds (tools.android_qa.tests.test_kart_garage_evidence.CupObservedLabelTests.test_caption_change_needs_two_new_observations_even_at_identical_bounds) ... ok
+2026-11-14T18:59:48.5919449Z test_landing_return_accepts_only_the_observed_caption_without_an_extra_touch (tools.android_qa.tests.test_kart_garage_evidence.CupObservedLabelTests.test_landing_return_accepts_only_the_observed_caption_without_an_extra_touch) ... ok
+2026-11-14T18:59:48.9981561Z test_missing_wrong_or_conflicting_cup_captions_never_trigger_a_fallback_touch (tools.android_qa.tests.test_kart_garage_evidence.CupObservedLabelTests.test_missing_wrong_or_conflicting_cup_captions_never_trigger_a_fallback_touch) ... ok
+2026-11-14T18:59:49.1324487Z test_replaced_cup_screenshot_prevents_the_touch (tools.android_qa.tests.test_kart_garage_evidence.CupObservedLabelTests.test_replaced_cup_screenshot_prevents_the_touch) ... ok
+2026-11-14T18:59:49.1353464Z test_continue_does_not_pass_for_a_static_or_replaced_saved_race (tools.android_qa.tests.test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_continue_does_not_pass_for_a_static_or_replaced_saved_race) ... ok
+2026-11-14T18:59:49.1364993Z test_continue_requires_touch_then_physical_drive_and_retains_original_evidence (tools.android_qa.tests.test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_continue_requires_touch_then_physical_drive_and_retains_original_evidence) ... ok
+2026-11-14T18:59:49.1502127Z test_current_mandatory_pause_phase_requires_continue_and_a_second_real_pause (tools.android_qa.tests.test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_current_mandatory_pause_phase_requires_continue_and_a_second_real_pause) ... ok
+2026-11-14T18:59:49.1509395Z test_previous_race_identity_comes_only_from_an_existing_read_only_save (tools.android_qa.tests.test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_previous_race_identity_comes_only_from_an_existing_read_only_save) ... ok
+2026-11-14T18:59:49.1528943Z test_raw_session_is_read_only_and_later_selection_or_identity_changes_fail (tools.android_qa.tests.test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_raw_session_is_read_only_and_later_selection_or_identity_changes_fail) ... ok
+2026-11-14T18:59:49.1537391Z test_selection_needs_a_successful_observed_native_touch_receipt (tools.android_qa.tests.test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_selection_needs_a_successful_observed_native_touch_receipt) ... ok
+2026-11-14T18:59:49.1543271Z test_selection_wait_reads_old_and_new_snapshots_without_accepting_wrong_new_car (tools.android_qa.tests.test_kart_garage_evidence.CurrentGarageProbeWiringTests.test_selection_wait_reads_old_and_new_snapshots_without_accepting_wrong_new_car) ... ok
+2026-11-14T18:59:49.1547701Z test_driver_requires_current_tabs_footer_and_one_exact_left_card (tools.android_qa.tests.test_kart_garage_evidence.DriverObservedTargetTests.test_driver_requires_current_tabs_footer_and_one_exact_left_card) ... ok
+2026-11-14T18:59:49.2964490Z test_driver_touch_refuses_screenshot_replacement_after_ocr (tools.android_qa.tests.test_kart_garage_evidence.DriverObservedTargetTests.test_driver_touch_refuses_screenshot_replacement_after_ocr) ... ok
+2026-11-14T18:59:49.5642447Z test_logo_first_reader_reproduces_old_mistouch_but_driver_card_is_selected (tools.android_qa.tests.test_kart_garage_evidence.DriverObservedTargetTests.test_logo_first_reader_reproduces_old_mistouch_but_driver_card_is_selected) ... ok
+2026-11-14T18:59:49.7672307Z test_missing_wrong_or_ambiguous_driver_never_sends_a_touch (tools.android_qa.tests.test_kart_garage_evidence.DriverObservedTargetTests.test_missing_wrong_or_ambiguous_driver_never_sends_a_touch) ... ok
+2026-11-14T18:59:49.9669135Z test_moved_driver_needs_two_new_stable_bounds (tools.android_qa.tests.test_kart_garage_evidence.DriverObservedTargetTests.test_moved_driver_needs_two_new_stable_bounds) ... ok
+2026-11-14T18:59:49.9670785Z test_ocr_variants_of_one_card_and_merged_tab_text_remain_one_observed_target (tools.android_qa.tests.test_kart_garage_evidence.DriverObservedTargetTests.test_ocr_variants_of_one_card_and_merged_tab_text_remain_one_observed_target) ... ok
+2026-11-14T18:59:50.6349498Z test_unsettled_driver_target_times_out_without_touch (tools.android_qa.tests.test_kart_garage_evidence.DriverObservedTargetTests.test_unsettled_driver_target_times_out_without_touch) ... ok
+2026-11-14T18:59:50.6360950Z test_actual_scroll_needs_two_stable_frames_and_unchanged_screenshot (tools.android_qa.tests.test_kart_garage_evidence.GarageObservedScrollTests.test_actual_scroll_needs_two_stable_frames_and_unchanged_screenshot) ... ok
+2026-11-14T18:59:50.6362491Z test_current_hidden_title_layout_uses_only_the_tab_footer_and_left_card (tools.android_qa.tests.test_kart_garage_evidence.GarageObservedScrollTests.test_current_hidden_title_layout_uses_only_the_tab_footer_and_left_card) ... ok
+2026-11-14T18:59:50.6363863Z test_missing_anchors_incomplete_frames_and_right_preview_are_rejected (tools.android_qa.tests.test_kart_garage_evidence.GarageObservedScrollTests.test_missing_anchors_incomplete_frames_and_right_preview_are_rejected) ... ok
+2026-11-14T18:59:50.6365318Z test_continue_requires_same_race_and_vehicle_plus_new_distance_and_time (tools.android_qa.tests.test_kart_garage_evidence.GarageSelectionEvidenceTests.test_continue_requires_same_race_and_vehicle_plus_new_distance_and_time) ... ok
+2026-11-14T18:59:50.6367009Z test_only_the_previous_snapshot_can_wait_before_the_first_new_identity (tools.android_qa.tests.test_kart_garage_evidence.GarageSelectionEvidenceTests.test_only_the_previous_snapshot_can_wait_before_the_first_new_identity) ... ok
+2026-11-14T18:59:50.6368808Z test_only_the_requested_free_vehicle_in_a_new_real_race_is_accepted (tools.android_qa.tests.test_kart_garage_evidence.GarageSelectionEvidenceTests.test_only_the_requested_free_vehicle_in_a_new_real_race_is_accepted) ... ok
+2026-11-14T18:59:51.3252368Z test_missing_partial_misaligned_and_irregular_blocks_are_rejected (tools.android_qa.tests.test_kart_garage_observed_scroll.GaragePixelAnchorRejectionTests.test_missing_partial_misaligned_and_irregular_blocks_are_rejected) ... ok
+2026-11-14T18:59:51.6017099Z test_right_hand_and_duplicate_left_blocks_are_rejected (tools.android_qa.tests.test_kart_garage_observed_scroll.GaragePixelAnchorRejectionTests.test_right_hand_and_duplicate_left_blocks_are_rejected) ... ok
+2026-11-14T18:59:51.7402687Z test_synthetic_control_has_one_geometry_only_anchor (tools.android_qa.tests.test_kart_garage_observed_scroll.GaragePixelAnchorRejectionTests.test_synthetic_control_has_one_geometry_only_anchor) ... ok
+2026-11-14T18:59:51.9813464Z test_wrong_color_and_missing_local_context_are_rejected (tools.android_qa.tests.test_kart_garage_observed_scroll.GaragePixelAnchorRejectionTests.test_wrong_color_and_missing_local_context_are_rejected) ... ok
+2026-11-14T18:59:52.3044322Z test_both_actual_clipped_name_frames_have_a_complete_current_pixel_anchor (tools.android_qa.tests.test_kart_garage_observed_scroll.RealGarageScrollObservationsTests.test_both_actual_clipped_name_frames_have_a_complete_current_pixel_anchor) ... ok
+2026-11-14T18:59:52.5511176Z test_changed_anchor_kind_needs_two_current_observations_before_any_drag (tools.android_qa.tests.test_kart_garage_observed_scroll.RealGarageScrollObservationsTests.test_changed_anchor_kind_needs_two_current_observations_before_any_drag) ... ok
+2026-11-14T18:59:52.5615615Z test_existing_five_gesture_limit_and_deadline_are_still_hard_boundaries (tools.android_qa.tests.test_kart_garage_observed_scroll.RealGarageScrollObservationsTests.test_existing_five_gesture_limit_and_deadline_are_still_hard_boundaries) ... ok
+2026-11-14T18:59:52.5643679Z test_real_original_sources_keep_every_drag_inside_the_visible_caption (tools.android_qa.tests.test_kart_garage_observed_scroll.RealGarageScrollObservationsTests.test_real_original_sources_keep_every_drag_inside_the_visible_caption) ... ok
+2026-11-14T18:59:52.5662241Z test_unbound_original_png_never_supplies_a_pixel_fallback (tools.android_qa.tests.test_kart_garage_observed_scroll.RealGarageScrollObservationsTests.test_unbound_original_png_never_supplies_a_pixel_fallback) ... ok
+2026-11-14T18:59:52.5709479Z test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job) ... ok
+2026-11-14T18:59:52.5769385Z test_distant_columns_or_disjoint_word_rows_are_not_joined (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_distant_columns_or_disjoint_word_rows_are_not_joined) ... ok
+2026-11-14T18:59:52.5850776Z test_duplicate_real_regions_and_conflicting_names_are_ambiguous (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_duplicate_real_regions_and_conflicting_names_are_ambiguous) ... ok
+2026-11-14T18:59:52.6363448Z test_five_gesture_limit_remains_hard_after_word_recovery (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_five_gesture_limit_remains_hard_after_word_recovery) ... ok
+2026-11-14T18:59:52.6426272Z test_invalid_or_outside_word_rectangles_are_rejected (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_invalid_or_outside_word_rectangles_are_rejected) ... ok
+2026-11-14T18:59:52.6461805Z test_known_complete_names_keep_case_whitespace_and_longest_caption (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_known_complete_names_keep_case_whitespace_and_longest_caption) ... ok
+2026-11-14T18:59:52.6795008Z test_missing_anchors_or_incomplete_surface_never_activate_word_recovery (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_missing_anchors_or_incomplete_surface_never_activate_word_recovery) ... ok
+2026-11-14T18:59:52.6975420Z test_original_boru_frame_recovers_only_scroll_after_two_bound_frames (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_original_boru_frame_recovers_only_scroll_after_two_bound_frames) ... ok
+2026-11-14T18:59:52.7002348Z test_original_line_failure_and_existing_exact_comet_path_are_preserved (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_original_line_failure_and_existing_exact_comet_path_are_preserved) ... ok
+2026-11-14T18:59:52.7266562Z test_partial_interrupted_cross_line_and_word_number_gap_are_rejected (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_partial_interrupted_cross_line_and_word_number_gap_are_rejected) ... ok
+2026-11-14T18:59:52.7353520Z test_right_preview_header_and_footer_captions_cannot_be_scroll_cards (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_right_preview_header_and_footer_captions_cannot_be_scroll_cards) ... ok
+2026-11-14T18:59:52.7396341Z test_same_card_ocr_variants_remain_one_region_and_top_card_order_is_preserved (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_same_card_ocr_variants_remain_one_region_and_top_card_order_is_preserved) ... ok
+2026-11-14T18:59:52.7659039Z test_unstable_words_need_a_new_pair_and_changed_png_or_deadline_never_swipe (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_unstable_words_need_a_new_pair_and_changed_png_or_deadline_never_swipe) ... ok
+2026-11-14T18:59:52.7707021Z test_word_confidence_and_original_tsv_presence_remain_mandatory (tools.android_qa.tests.test_kart_scroll_word_evidence.GarageOriginalWordSequenceTests.test_word_confidence_and_original_tsv_presence_remain_mandatory) ... ok
+2026-11-14T18:59:52.8905824Z test_actual_api35_icon_line_uses_exact_word_after_two_original_frames (tools.android_qa.tests.test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_actual_api35_icon_line_uses_exact_word_after_two_original_frames) ... ok
+2026-11-14T18:59:53.0104848Z test_actual_update_overlapping_icon_line_uses_exact_word_after_two_original_frames (tools.android_qa.tests.test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_actual_update_overlapping_icon_line_uses_exact_word_after_two_original_frames) ... ok
+2026-11-14T18:59:53.0121357Z test_all_twenty_original_fixture_bytes_are_bound_to_both_failed_jobs (tools.android_qa.tests.test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_all_twenty_original_fixture_bytes_are_bound_to_both_failed_jobs) ... ok
+2026-11-14T18:59:53.0742215Z test_existing_ocr_confidence_floor_remains_required (tools.android_qa.tests.test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_existing_ocr_confidence_floor_remains_required) ... ok
+2026-11-14T18:59:53.1322856Z test_missing_real_footer_does_not_activate_a_word_fallback (tools.android_qa.tests.test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_missing_real_footer_does_not_activate_a_word_fallback) ... ok
+2026-11-14T18:59:53.1936598Z test_only_logo_and_nonexact_driver_words_cannot_produce_a_touch (tools.android_qa.tests.test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_only_logo_and_nonexact_driver_words_cannot_produce_a_touch) ... ok
+2026-11-14T18:59:53.1956297Z test_original_line_only_failures_remain_reproducible_and_distinct (tools.android_qa.tests.test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_original_line_only_failures_remain_reproducible_and_distinct) ... ok
+2026-11-14T18:59:53.2570988Z test_real_second_card_region_is_still_ambiguous_after_word_recovery (tools.android_qa.tests.test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_real_second_card_region_is_still_ambiguous_after_word_recovery) ... ok
+2026-11-14T18:59:53.3196628Z test_word_in_right_preview_cannot_become_a_driver_card (tools.android_qa.tests.test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_word_in_right_preview_cannot_become_a_driver_card) ... ok
+2026-11-14T18:59:53.7029691Z test_a_single_stale_return_frame_cannot_establish_a_touch (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_a_single_stale_return_frame_cannot_establish_a_touch) ... ok
+2026-11-14T18:59:54.0298927Z test_command_stderr_or_wrong_source_cannot_count_as_observation (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_command_stderr_or_wrong_source_cannot_count_as_observation) ... ok
+2026-11-14T18:59:54.4903755Z test_complete_original_fixture_replays_actual_gates_without_device_claim (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_complete_original_fixture_replays_actual_gates_without_device_claim) ... ok
+2026-11-14T18:59:54.9498051Z test_current_flutter_pixels_and_semantics_required_after_native_exit (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_current_flutter_pixels_and_semantics_required_after_native_exit) ... ok
+2026-11-14T18:59:55.3270036Z test_declared_hud_without_matching_original_tsv_is_rejected (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_declared_hud_without_matching_original_tsv_is_rejected) ... ok
+2026-11-14T18:59:55.7098152Z test_duplicate_marker_keys_and_nonfinite_json_cannot_override_real_values (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_duplicate_marker_keys_and_nonfinite_json_cannot_override_real_values) ... ok
+2026-11-14T18:59:56.0162249Z test_duplicate_report_and_registry_keys_fail_closed (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_duplicate_report_and_registry_keys_fail_closed) ... ok
+2026-11-14T18:59:56.3372448Z test_exact_api35_original_is_required (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_exact_api35_original_is_required) ... ok
+2026-11-14T18:59:56.6335501Z test_extra_missing_symlinked_or_duplicate_originals_are_rejected (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_extra_missing_symlinked_or_duplicate_originals_are_rejected) ... ok
+2026-11-14T18:59:57.3460888Z test_fallback_ocr_rejects_changed_crop_pixels_or_source_binding (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_fallback_ocr_rejects_changed_crop_pixels_or_source_binding) ... ok
+2026-11-14T18:59:57.8091048Z test_fatal_android_log_cannot_be_hidden_by_empty_reported_errors (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_fatal_android_log_cannot_be_hidden_by_empty_reported_errors) ... ok
+2026-11-14T18:59:58.0952936Z test_host_pid_and_foreground_must_return_to_original_flutter (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_host_pid_and_foreground_must_return_to_original_flutter) ... ok
+2026-11-14T18:59:58.9681955Z test_incorrect_scene_owner_slot_host_return_and_model_are_rejected (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_incorrect_scene_owner_slot_host_return_and_model_are_rejected) ... ok
+2026-11-14T18:59:59.4650195Z test_legitimate_component_and_tile_ocr_replay_their_original_source_offsets (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_legitimate_component_and_tile_ocr_replay_their_original_source_offsets) ... ok
+2026-11-14T18:59:59.8441378Z test_marker_pid_cannot_be_another_or_unattributed_process (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_marker_pid_cannot_be_another_or_unattributed_process) ... ok
+2026-11-14T19:00:00.1647223Z test_missing_or_changed_original_png_is_rejected (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_missing_or_changed_original_png_is_rejected) ... ok
+2026-11-14T19:00:00.5460736Z test_missing_or_duplicate_actual_ready_marker_is_rejected (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_missing_or_duplicate_actual_ready_marker_is_rejected) ... ok
+2026-11-14T19:00:00.8202051Z test_missing_or_failed_report_is_rejected (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_missing_or_failed_report_is_rejected) ... ok
+2026-11-14T19:00:01.8382181Z test_native_exit_without_fresh_successful_games_host_ack_is_rejected (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_native_exit_without_fresh_successful_games_host_ack_is_rejected) ... ok
+2026-11-14T19:00:02.2716159Z test_native_force_stop_cannot_substitute_for_the_visible_return (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_native_force_stop_cannot_substitute_for_the_visible_return) ... ok
+2026-11-14T19:00:02.5590940Z test_native_must_end_after_touch_without_replacing_host (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_native_must_end_after_touch_without_replacing_host) ... ok
+2026-11-14T19:00:02.8442051Z test_native_pid_must_be_distinct_and_alive (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_native_pid_must_be_distinct_and_alive) ... ok
+2026-11-14T19:00:03.1237360Z test_native_process_must_be_absent_before_real_flutter_tap (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_native_process_must_be_absent_before_real_flutter_tap) ... ok
+2026-11-14T19:00:03.5774418Z test_old_ack_before_visible_return_cannot_count_as_fresh_success (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_old_ack_before_visible_return_cannot_count_as_fresh_success) ... ok
+2026-11-14T19:00:03.8669094Z test_other_source_native_attempt_or_apk_is_rejected (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_other_source_native_attempt_or_apk_is_rejected) ... ok
+2026-11-14T19:00:04.1783143Z test_profile_learning_and_new_learning_keys_cannot_change (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_profile_learning_and_new_learning_keys_cannot_change) ... ok
+2026-11-14T19:00:04.5007709Z test_raw_student_hash_cannot_replace_registered_native_child_key (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_raw_student_hash_cannot_replace_registered_native_child_key) ... ok
+2026-11-14T19:00:04.8268268Z test_reported_marker_must_equal_original_json (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_reported_marker_must_equal_original_json) ... ok
+2026-11-14T19:00:05.2908761Z test_restored_developed_village_can_have_no_residents_in_current_camera (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_restored_developed_village_can_have_no_residents_in_current_camera) ... ok
+2026-11-14T19:00:05.5767083Z test_same_native_pid_must_survive_until_the_visible_return (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_same_native_pid_must_survive_until_the_visible_return) ... ok
+2026-11-14T19:00:05.9570671Z test_wrong_visible_return_or_substituted_touch_is_rejected (tools.android_qa.tests.test_village_android_evidence.VillageOriginalEvidenceTests.test_wrong_visible_return_or_substituted_touch_is_rejected) ... ok
+2026-11-14T19:00:05.9578591Z test_arrival_exactly_at_deadline_is_rejected_like_existing_c4_return (tools.android_qa.tests.test_village_android_evidence.VillageProcessDeadlineTests.test_arrival_exactly_at_deadline_is_rejected_like_existing_c4_return) ... ok
+2026-11-14T19:00:05.9582361Z test_late_process_arrival_is_rejected_while_global_budget_remains (tools.android_qa.tests.test_village_android_evidence.VillageProcessDeadlineTests.test_late_process_arrival_is_rejected_while_global_budget_remains) ... ok
+2026-11-14T19:00:05.9586474Z test_timely_arrival_returns_the_same_process_observation (tools.android_qa.tests.test_village_android_evidence.VillageProcessDeadlineTests.test_timely_arrival_returns_the_same_process_observation) ... ok
+2026-11-14T19:00:07.4224484Z test_accepted_copy_preserves_actual_component_and_tile_source_binding (tools.android_qa.tests.test_village_android_evidence.VillageVisibleReturnObservationTests.test_accepted_copy_preserves_actual_component_and_tile_source_binding) ... ok
+2026-11-14T19:00:09.9729182Z test_caption_alone_cannot_accept_wrong_disabled_or_native_accessibility (tools.android_qa.tests.test_village_android_evidence.VillageVisibleReturnObservationTests.test_caption_alone_cannot_accept_wrong_disabled_or_native_accessibility) ... ok
+2026-11-14T19:00:12.0585522Z test_capture_ocr_ui_and_final_process_success_at_deadline_is_rejected (tools.android_qa.tests.test_village_android_evidence.VillageVisibleReturnObservationTests.test_capture_ocr_ui_and_final_process_success_at_deadline_is_rejected) ... ok
+2026-11-14T19:00:12.7078370Z test_native_transition_frame_is_preserved_before_current_flutter_passes (tools.android_qa.tests.test_village_android_evidence.VillageVisibleReturnObservationTests.test_native_transition_frame_is_preserved_before_current_flutter_passes) ... ok
+2026-11-14T19:00:12.9865326Z test_never_overwrites_an_existing_canonical_return_frame (tools.android_qa.tests.test_village_android_evidence.VillageVisibleReturnObservationTests.test_never_overwrites_an_existing_canonical_return_frame) ... ok
+2026-11-14T19:00:13.7253077Z test_permanent_native_or_missing_caption_fails_with_original_frames (tools.android_qa.tests.test_village_android_evidence.VillageVisibleReturnObservationTests.test_permanent_native_or_missing_caption_fails_with_original_frames) ... ok
+2026-11-14T19:00:14.1031933Z test_success_that_reaches_deadline_while_copying_is_never_reported_pass (tools.android_qa.tests.test_village_android_evidence.VillageVisibleReturnObservationTests.test_success_that_reaches_deadline_while_copying_is_never_reported_pass) ... ok
+2026-11-14T19:00:14.4730706Z test_time_spent_across_phases_is_one_shared_90_second_budget (tools.android_qa.tests.test_village_android_evidence.VillageVisibleReturnObservationTests.test_time_spent_across_phases_is_one_shared_90_second_budget) ... ok
+2026-11-14T19:00:14.8526912Z test_timely_first_current_frame_does_not_need_an_extra_action (tools.android_qa.tests.test_village_android_evidence.VillageVisibleReturnObservationTests.test_timely_first_current_frame_does_not_need_an_extra_action) ... ok
+2026-11-14T19:00:14.8538051Z test_actual_fixture_bytes_and_distinct_sources_produce_diagnostic_only_scope (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticBoundaryTests.test_actual_fixture_bytes_and_distinct_sources_produce_diagnostic_only_scope) ... ok
+2026-11-14T19:00:14.8549422Z test_apk_symlink_is_rejected_even_when_target_bytes_match (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticBoundaryTests.test_apk_symlink_is_rejected_even_when_target_bytes_match) ... ok
+2026-11-14T19:00:14.8559442Z test_changed_observer_receipt_cannot_drive_a_diagnostic (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticBoundaryTests.test_changed_observer_receipt_cannot_drive_a_diagnostic) ... ok
+2026-11-14T19:00:14.8582178Z test_missing_failed_foreign_or_relabelled_binding_is_rejected (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticBoundaryTests.test_missing_failed_foreign_or_relabelled_binding_is_rejected) ... ok
+2026-11-14T19:00:14.8594725Z test_modified_actual_fixture_apk_bytes_are_rejected (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticBoundaryTests.test_modified_actual_fixture_apk_bytes_are_rejected) ... ok
+2026-11-14T19:00:14.8603866Z test_same_source_cannot_impersonate_separate_qa (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticBoundaryTests.test_same_source_cannot_impersonate_separate_qa) ... ok
+2026-11-14T19:00:14.8628079Z test_source_attempt_artifact_digest_and_boolean_integer_substitutions_are_rejected (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticBoundaryTests.test_source_attempt_artifact_digest_and_boolean_integer_substitutions_are_rejected) ... ok
+2026-11-14T19:00:14.8639165Z test_wrong_candidate_working_directory_is_rejected (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticBoundaryTests.test_wrong_candidate_working_directory_is_rejected) ... ok
+2026-11-14T19:00:14.8640753Z test_actual_original_apk_bindings_are_exact (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticJourneyPreservationTests.test_actual_original_apk_bindings_are_exact) ... ok
+2026-11-14T19:00:14.8769102Z test_c4_keeps_every_original_drop_bot_pause_reopen_and_return_check (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticJourneyPreservationTests.test_c4_keeps_every_original_drop_bot_pause_reopen_and_return_check) ... ok
+2026-11-14T19:00:14.8853500Z test_village_keeps_every_original_touch_process_profile_and_final_evidence_check (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticJourneyPreservationTests.test_village_keeps_every_original_touch_process_profile_and_final_evidence_check) ... ok
+2026-11-14T19:00:14.8855434Z test_workflow_only_runs_main_village_c4_and_cannot_publish (scripts.tests.test_6b_roundtrip_diagnostic.DiagnosticJourneyPreservationTests.test_workflow_only_runs_main_village_c4_and_cannot_publish) ... ok
+2026-11-14T19:00:14.8856422Z 
+2026-11-14T19:00:14.8856592Z ----------------------------------------------------------------------
+2026-11-14T19:00:14.8857232Z Ran 135 tests in 47.655s
+2026-11-14T19:00:14.8857405Z 
+2026-11-14T19:00:14.8857489Z OK
+2026-11-14T19:00:14.9153834Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T19:00:14.9154074Z with:
+2026-11-14T19:00:14.9154310Z   name: lumo-6b-roundtrip-diagnostic-probe-contracts
+2026-11-14T19:00:14.9154581Z   path: diagnostic-contracts.log
+2026-11-14T19:00:14.9154807Z   if-no-files-found: error
+2026-11-14T19:00:14.9154995Z   retention-days: 30
+2026-11-14T19:00:14.9155169Z   compression-level: 6
+2026-11-14T19:00:14.9155344Z   overwrite: false
+2026-11-14T19:00:14.9155520Z   include-hidden-files: false
+2026-11-14T19:00:14.9155716Z env:
+2026-11-14T19:00:14.9155878Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-14T19:00:14.9156107Z   QA_SOURCE: 91b5aece4060cd625b27e4cfa967122b5d4b5b92
+2026-11-14T19:00:14.9156410Z   CANDIDATE_SOURCE: 6b3047b7979dfb86d837e74a21b0fd890e4f9e66
+2026-11-14T19:00:14.9156878Z   NATIVE_SOURCE: 84789d0c2c6fb4b6ecd2897ce1951b89f958b604
+2026-11-14T19:00:14.9157138Z ##[endgroup]
+2026-11-14T19:00:15.0562512Z (node:2736) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T19:00:15.0563149Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T19:00:15.0600949Z With the provided path, there will be 1 file uploaded
+2026-11-14T19:00:15.0605493Z Artifact name is valid!
+2026-11-14T19:00:15.0606015Z Root directory input is valid!
+2026-11-14T19:00:15.3043775Z Beginning upload of artifact content to blob storage
+2026-11-14T19:00:15.3305658Z (node:2736) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T19:00:15.3845478Z Uploaded bytes 4447
+2026-11-14T19:00:15.4034288Z Finished uploading artifact content to blob storage!
+2026-11-14T19:00:15.4034884Z SHA256 digest of uploaded artifact zip is 0235ec90a05ad07644e37b32b265074fb386e28e9dc89ab611283ad5a21e35b0
+2026-11-14T19:00:15.4036188Z Finalizing artifact upload
+2026-11-14T19:00:15.7305416Z Artifact lumo-6b-roundtrip-diagnostic-probe-contracts.zip successfully finalized. Artifact ID 14127387054
+2026-11-14T19:00:15.7307352Z Artifact lumo-6b-roundtrip-diagnostic-probe-contracts has been successfully uploaded! Final size is 4447 bytes. Artifact ID is 14127387054
+2026-11-14T19:00:15.7310662Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43629575654/artifacts/14127387054
+2026-11-14T19:00:15.7521846Z Post job cleanup.
+2026-11-14T19:00:15.8232054Z [command]/usr/bin/git version
+2026-11-14T19:00:15.8265901Z git version 2.56.1
+2026-11-14T19:00:15.8293718Z Temporarily overriding HOME='/home/runner/work/_temp/80f869d8-09fe-4889-b2a3-8e9848b5a782' before making global git config changes
+2026-11-14T19:00:15.8294704Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T19:00:15.8299026Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T19:00:15.8332030Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T19:00:15.8387167Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T19:00:15.8594003Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T19:00:15.8622229Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T19:00:15.8819859Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T19:00:15.8847489Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T19:00:15.9182939Z Cleaning up orphan processes
+2026-11-14T19:00:15.9536664Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

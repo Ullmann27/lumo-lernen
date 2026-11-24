@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T16:16:29.194610+00:00",
+  "old_run": 43604903064,
+  "old_attempt": 1,
+  "old_host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "old_native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "terminal_conclusion": "cancelled",
+  "terminal_updated_at": "2026-11-14T16:09:32Z",
+  "activation_successor": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+  "new_run": 43614047730,
+  "jobs": [
+    {
+      "id": 132477340646,
+      "name": "connect-four-runtime",
+      "conclusion": "success",
+      "started_at": "2026-11-14T14:26:53Z",
+      "completed_at": "2026-11-14T14:29:15Z",
+      "failure_steps": []
+    },
+    {
+      "id": 132477340791,
+      "name": "android-host-compile",
+      "conclusion": "success",
+      "started_at": "2026-11-14T14:26:53Z",
+      "completed_at": "2026-11-14T14:31:24Z",
+      "failure_steps": []
+    },
+    {
+      "id": 132478533146,
+      "name": "verify-and-build",
+      "conclusion": "success",
+      "started_at": "2026-11-14T14:31:26Z",
+      "completed_at": "2026-11-14T16:03:00Z",
+      "failure_steps": []
+    },
+    {
+      "id": 132503293886,
+      "name": "android-c4",
+      "conclusion": "cancelled",
+      "started_at": "2026-11-14T16:03:02Z",
+      "completed_at": "2026-11-14T16:09:31Z",
+      "failure_steps": []
+    },
+    {
+      "id": 132503293896,
+      "name": "update-2020-from-2017",
+      "conclusion": "cancelled",
+      "started_at": "2026-11-14T16:03:02Z",
+      "completed_at": "2026-11-14T16:09:30Z",
+      "failure_steps": []
+    },
+    {
+      "id": 132505133797,
+      "name": "verify-c4-candidate",
+      "conclusion": "cancelled",
+      "started_at": "2026-11-14T16:09:31Z",
+      "completed_at": "2026-11-14T16:09:31Z",
+      "failure_steps": []
+    },
+    {
+      "id": 132505134197,
+      "name": "prepare-c4-delivery",
+      "conclusion": "cancelled",
+      "started_at": "2026-11-14T16:09:31Z",
+      "completed_at": "2026-11-14T16:09:31Z",
+      "failure_steps": []
+    }
+  ],
+  "original_log_review": [
+    {
+      "file": "android-132503293886.original.log",
+      "bytes": 215937,
+      "sha256": "0db280bcf3d8840732376113cd7638cde61928648c3c4426e396005da893a1e8",
+      "line_count": 2229,
+      "selected_error_markers": [
+        {
+          "line": 2174,
+          "text": "2026-11-14T16:09:25.9557127Z ##[error]The operation was canceled."
+        }
+      ],
+      "last_capture": {
+        "line": 2173,
+        "text": "2026-11-14T16:09:18.6170270Z [AndroidCapture] 21_stage_mode_cup-1.png"
+      }
+    },
+    {
+      "file": "update-132503293896.original.log",
+      "bytes": 239578,
+      "sha256": "510e3b464e1999493c2ac9a563d52dba4d5f5c32f4fc7a3846945e670360a09c",
+      "line_count": 2526,
+      "selected_error_markers": [
+        {
+          "line": 2473,
+          "text": "2026-11-14T16:09:25.9374350Z ##[error]The operation was canceled."
+        }
+      ],
+      "last_capture": {
+        "line": 2472,
+        "text": "2026-11-14T16:09:25.6504499Z [AndroidCapture] 20_spiele-render-candidate-1.png"
+      }
+    }
+  ],
+  "findings": [
+    "The two full terminal Android logs each contain the Actions cancellation message as their sole occurrence of the explicitly searched exception/failure/exit-code markers.",
+    "The main tour reached the21_stage_mode_cup capture before cancellation; update reached20_spiele-render-candidate. Neither tour completed.",
+    "Original libunwind/platform diagnostics remain unchanged in the full logs; no warning-free or exhaustive device-log inspection is claimed.",
+    "Runtime, compile and build remain actual predecessor successes. No complete old candidate verification, delivery, Android or update success is inferred."
+  ],
+  "artifact_payloads_downloaded_here": false
+}

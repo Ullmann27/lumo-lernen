@@ -1,0 +1,20 @@
+test_native_paths_and_duplicate_entries_fail_closed (test_local_backup_android_probe.BackupArchiveContracts.test_native_paths_and_duplicate_entries_fail_closed) ... ok
+test_only_wallet_proven_event_ack_and_navigation_removal_are_allowed (test_local_backup_android_probe.BackupArchiveContracts.test_only_wallet_proven_event_ack_and_navigation_removal_are_allowed) ... ok
+test_payload_checksum_and_native_checksum_are_independent_required_checks (test_local_backup_android_probe.BackupArchiveContracts.test_payload_checksum_and_native_checksum_are_independent_required_checks) ... ok
+test_profile_wallet_and_setting_must_really_match_export (test_local_backup_android_probe.BackupArchiveContracts.test_profile_wallet_and_setting_must_really_match_export) ... ok
+test_real_format_hashes_utf8_payload_and_preserves_exact_native_bytes (test_local_backup_android_probe.BackupArchiveContracts.test_real_format_hashes_utf8_payload_and_preserves_exact_native_bytes) ... ok
+test_remote_read_does_not_strip_newlines_or_mix_stderr_into_archive (test_local_backup_android_probe.BackupArchiveContracts.test_remote_read_does_not_strip_newlines_or_mix_stderr_into_archive) ... ok
+test_wrong_version_duplicate_keys_invalid_types_and_no_kart_fail (test_local_backup_android_probe.BackupArchiveContracts.test_wrong_version_duplicate_keys_invalid_types_and_no_kart_fail) ... ok
+test_downloads_child_uses_its_real_clickable_ancestor (test_local_backup_android_probe.DocumentsUiContracts.test_downloads_child_uses_its_real_clickable_ancestor) ... ok
+test_foreign_or_ambiguous_or_disabled_native_controls_cannot_be_tapped (test_local_backup_android_probe.DocumentsUiContracts.test_foreign_or_ambiguous_or_disabled_native_controls_cannot_be_tapped) ... ok
+test_identity_failure_produces_nonzero_fail_report_not_a_partial_pass (test_local_backup_android_probe.DocumentsUiContracts.test_identity_failure_produces_nonzero_fail_report_not_a_partial_pass) ... [LocalBackupResult] {"status": "FAIL", "steps": [{"step": "apk-identity", "ok": false, "error": "wrong candidate"}], "scope": "Real API35 Android SAF round trip", "not_tested": ["restoration of a running native game process", "physical user devices"], "error": "RuntimeError: wrong candidate"}
+ok
+test_missing_first_settings_write_is_polled_not_inferred_as_false (test_local_backup_android_probe.DocumentsUiContracts.test_missing_first_settings_write_is_polled_not_inferred_as_false) ... ok
+test_saf_intent_must_belong_to_current_resumed_activity (test_local_backup_android_probe.DocumentsUiContracts.test_saf_intent_must_belong_to_current_resumed_activity) ... ok
+test_suggested_name_is_read_from_unique_current_edittext (test_local_backup_android_probe.DocumentsUiContracts.test_suggested_name_is_read_from_unique_current_edittext) ... ok
+test_touch_rereads_bounds_and_never_uses_changed_old_coordinates (test_local_backup_android_probe.DocumentsUiContracts.test_touch_rereads_bounds_and_never_uses_changed_old_coordinates) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.005s
+
+OK

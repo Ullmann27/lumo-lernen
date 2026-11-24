@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T11:41:14.705514+00:00",
+  "reviewer": "pipeline_repair",
+  "scope": "Independent read-only review of one proposed feature workflow and its existing source/reference contracts. No execution or mutation.",
+  "result": "NO_CONCRETE_SOURCE_BLOCKER_IN_ONE_WORKFLOW_SCOPE",
+  "freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/source-freeze.json",
+    "bytes": 4387,
+    "sha256": "67aa517d6d58772c8d525d05816208a9294db6f2d436aa3022a3923fba3afe65",
+    "git_blob": "7b0f6ddf7f6911c290a12ccd4b42f673e837b313"
+  },
+  "workflow": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/final-source/.github/workflows/lumo-feature-connections.yml",
+    "repository_path": ".github/workflows/lumo-feature-connections.yml",
+    "bytes": 11982,
+    "sha256": "7e63176552cd978bde34aa15f23fec998799d998e8c6ae4dced249269140c3ae",
+    "git_blob": "41dec34d4e04a07f006c62bba8c00f6937fb48a5"
+  },
+  "product_checkpoint": {
+    "sha": "a118409930ecdf605743382051e88f7e0898b8e9",
+    "tree": "68573f0c40ce641a6443a5648fd664bc44ca6c95",
+    "parent": "3d91bd8355a539c3c2413760959684cd3fee985a"
+  },
+  "product_review": {
+    "path": "/workspace/scratch/b3485b7bb989/host-pr502-independent-review-20261114/review.json",
+    "sha256": "d11ea76231aead14608315a43b18f67baedd53559ab78490423e839c294fdc22"
+  },
+  "references_byte_checked": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/reference-source/.github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 43922,
+      "sha256": "43112c519b6f3377474cec788ba08d022036f219c3dbd03136e57d7cfb7afeaa",
+      "git_blob": "cda9b0f8ab09ea9f20d07e672ef2b99462e146af"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/reference-source/.github/workflows/android-debug-apk.yml",
+      "bytes": 11066,
+      "sha256": "1b656f8140c0d7845cf48e963e2b011319b12a0041ad6fe483155bcfa7f4c17c",
+      "git_blob": "31a75d48c6ca8d3b2bf03c84d950142bfdc756cd"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/reference-source/.github/workflows/release-apk.yml",
+      "bytes": 21983,
+      "sha256": "d8703a8f193c51540691aa2d7bbca873c579d3eb041da730ba86a467cc44e8ba",
+      "git_blob": "7db04919bdc8777389a8538c32202b9b77a4d4db"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/reference-source/.github/workflows/lumo-unified-integration-2026.yml",
+      "bytes": 82301,
+      "sha256": "2dc3e1506b1abb0784fb246a32135a76fedf43284bee7df346232e0eba68b096",
+      "git_blob": "28979e437797b723a3f5a514734f1a118ef8f4d3"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/reference-source/scripts/run_full_flutter_acceptance.py",
+      "bytes": 6483,
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72"
+    }
+  ],
+  "findings": [
+    {
+      "area": "Route and rights",
+      "conclusion": "The only trigger is push to integration/lumo-feature-connections-20261114. The job repeats the exact repository/event/ref guard, checks out github.sha and disables persisted credentials. contents:read is the only granted permission. There is no APK, release, dispatch or pull_request job in the proposed file. Referenced Android-debug/unified/release push allowlists do not include this branch; no global claim about all other repository workflows is made."
+    },
+    {
+      "area": "Source provenance",
+      "conclusion": "The before step creates a fresh evidence directory under RUNNER_TEMP. It records HEAD, tree, complete staged-entry bytes and tracked-only status, then hashes every tracked regular file or symlink against its index blob and executable mode. A dirty index/working tree, unknown type/stage or mismatched expected push head fails. The always after step compares head/tree/staged-index representation and full file inventory and repeats clean status. This is semantic staged-index content, not a claim about raw .git/index container bytes."
+    },
+    {
+      "area": "Dependencies and assets",
+      "conclusion": "Flutter3.44.9, external Python venv/Pillow12.3.0 and enforce-lockfile match the existing source contract. Original two images and four font files require six exact Git blobs; images also undergo PNG structural verification. This is asset identity verification, not a new visual render or a claim of independently decoded production captures. pubspec files belong to the complete tracked inventory."
+    },
+    {
+      "area": "Execution and errors",
+      "conclusion": "Exactly the three specified test files run once with no-pub, machine output, concurrency2 and60s per test, within20 minutes. stdout/stderr remain separate unfiltered originals and the actual exit is stored and propagated. The poststep runs even after a failed executed Flutter step. The existing summarize function requires zero failed/skipped cases, successful done event and exit0; the additional check requires exactly22 non-hidden successes and zero error events. Missing output/result falls closed. Non-JSON stdout line numbers are recorded, not mistaken for successful cases."
+    },
+    {
+      "area": "Evidence and source after failure",
+      "conclusion": "The always after-source step remains required after successful initial binding, even when tests fail. Upload always preserves the evidence outside the checkout, includes hidden files and rejects a missing evidence directory. Setup failures preserve both streams and an actual return code. A failure is never converted to PASS by later report or upload steps."
+    },
+    {
+      "area": "Limits",
+      "conclusion": "This source review finds no concrete blocker. It neither executes nor certifies the22 widget cases, package resolution, genuine camera/native behavior or CI success. Existing functional source/pins/receipts/workflows were not edited. The author-executed single Actionlint result is separately original-bound and not rerun by this reviewer."
+    }
+  ],
+  "author_actionlint": {
+    "result_path": "/workspace/scratch/b3485b7bb989/host-pr502-feature-workflow-20261114/actionlint-result.json",
+    "bytes": 714,
+    "sha256": "f835c20a9f9f421a8070cc4fdccb66b16e2684628de6f19e90f1850e6b8ca812",
+    "git_blob": "16bb2defb28043de2b3899daa3846f138f6410b6",
+    "exit_code": 0,
+    "stdout_empty": true,
+    "stderr_empty": true,
+    "reviewer_reran": false
+  },
+  "mutations": {
+    "source": false,
+    "worktree": false,
+    "git": false,
+    "tests_or_ci": false
+  }
+}

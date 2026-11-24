@@ -1,0 +1,300 @@
+{
+  "checks": 72,
+  "failures": [],
+  "frames": [
+    {
+      "camera_transform": "[X: (-0.972579, 0.0, -0.232573), Y: (-0.0458, 0.980418, 0.191526), Z: (0.228019, 0.196925, -0.953534), O: (1.880619, 2.474171, -7.864408)]",
+      "display_density": 2.0,
+      "driver": "fox",
+      "featured_controls": {
+        "gap_dp": 8.23006750701461,
+        "hero_pixels": "[P: (717.95, 238.0217), S: (628.2062, 236.9397)]",
+        "next_pixels": "[P: (1241.275, 266.1515), S: (96.23125, 96.29057)]",
+        "play_pixels": "[P: (1250.156, 378.9022), S: (79.99995, 80.04932)]",
+        "source_commit": "c737db6437d3762a054879c32e2426ff1155cff7"
+      },
+      "fov": 40.0,
+      "image": "home-comet-1384x1400.png",
+      "kart": "comet",
+      "name": "home-comet-1384x1400",
+      "offset": [
+        1.45896232128143,
+        -1.26139831542969
+      ],
+      "optical_origin": "(0.519435, 1.237473, -8.445313)",
+      "physical_android_device": false,
+      "renderer": "gl_compatibility",
+      "room_obstructions": {
+
+      },
+      "section": 0,
+      "stage_region": "[P: (0.014451, 0.114356), S: (0.479769, 0.351087)]",
+      "touch_targets": {
+        "count": 26,
+        "density": 2.0,
+        "minimum_dp": [
+          48.1156234741211,
+          48.1452865600586
+        ],
+        "outside_viewport": [],
+        "undersized": []
+      },
+      "viewport": [
+        1384,
+        1400
+      ]
+    },
+    {
+      "camera_transform": "[X: (-0.944497, 0.0, -0.328521), Y: (-0.054544, 0.986121, 0.156815), Z: (0.323961, 0.16603, -0.931388), O: (5.010874, 3.357348, -15.3669)]",
+      "display_density": 2.0,
+      "driver": "fox",
+      "fov": 40.0,
+      "image": "garage-comet-1384x1400.png",
+      "kart": "comet",
+      "name": "garage-comet-1384x1400",
+      "offset": [
+        0.0,
+        -1.4056590795517
+      ],
+      "optical_origin": "(5.087545, 1.971199, -15.58733)",
+      "physical_android_device": false,
+      "renderer": "gl_compatibility",
+      "room_obstructions": {
+
+      },
+      "section": 2,
+      "stage_region": "[P: (0.011561, 0.297326), S: (0.976879, 0.171103)]",
+      "touch_targets": {
+        "count": 26,
+        "density": 2.0,
+        "minimum_dp": [
+          103.999992370605,
+          48.0295906066895
+        ],
+        "outside_viewport": [],
+        "undersized": []
+      },
+      "viewport": [
+        1384,
+        1400
+      ]
+    },
+    {
+      "camera_transform": "[X: (-0.944497, 0.0, -0.328521), Y: (-0.054544, 0.986121, 0.156815), Z: (0.323961, 0.16603, -0.931388), O: (5.010874, 3.357348, -15.3669)]",
+      "display_density": 2.0,
+      "driver": "fox",
+      "fov": 40.0,
+      "image": "garage-boru_rally-1384x1400.png",
+      "kart": "boru_rally",
+      "name": "garage-boru_rally-1384x1400",
+      "offset": [
+        0.0,
+        -1.4056590795517
+      ],
+      "optical_origin": "(5.087545, 1.971199, -15.58733)",
+      "physical_android_device": false,
+      "renderer": "gl_compatibility",
+      "room_obstructions": {
+
+      },
+      "section": 2,
+      "stage_region": "[P: (0.011561, 0.297326), S: (0.976879, 0.171103)]",
+      "touch_targets": {
+        "count": 26,
+        "density": 2.0,
+        "minimum_dp": [
+          103.999992370605,
+          48.0295906066895
+        ],
+        "outside_viewport": [],
+        "undersized": []
+      },
+      "viewport": [
+        1384,
+        1400
+      ]
+    },
+    {
+      "camera_transform": "[X: (-0.944497, 0.0, -0.328521), Y: (-0.054544, 0.986121, 0.156815), Z: (0.323961, 0.16603, -0.931388), O: (4.990731, 3.357348, -15.3669)]",
+      "display_density": 2.0,
+      "driver": "fox",
+      "fov": 40.0,
+      "image": "garage-gecko_velo-1384x1400.png",
+      "kart": "gecko_velo",
+      "name": "garage-gecko_velo-1384x1400",
+      "offset": [
+        0.0,
+        -1.4056590795517
+      ],
+      "optical_origin": "(5.067401, 1.971199, -15.58733)",
+      "physical_android_device": false,
+      "renderer": "gl_compatibility",
+      "room_obstructions": {
+
+      },
+      "section": 2,
+      "stage_region": "[P: (0.011561, 0.297326), S: (0.976879, 0.171103)]",
+      "touch_targets": {
+        "count": 26,
+        "density": 2.0,
+        "minimum_dp": [
+          103.999992370605,
+          48.0295906066895
+        ],
+        "outside_viewport": [],
+        "undersized": []
+      },
+      "viewport": [
+        1384,
+        1400
+      ]
+    },
+    {
+      "camera_transform": "[X: (-0.944497, 0.0, -0.328521), Y: (-0.054544, 0.986121, 0.156815), Z: (0.323961, 0.16603, -0.931388), O: (5.041483, 3.357348, -15.38239)]",
+      "display_density": 2.0,
+      "driver": "fox",
+      "fov": 40.0,
+      "image": "garage-glider-1384x1400.png",
+      "kart": "glider",
+      "name": "garage-glider-1384x1400",
+      "offset": [
+        0.0,
+        -1.4056590795517
+      ],
+      "optical_origin": "(5.118154, 1.971199, -15.60282)",
+      "physical_android_device": false,
+      "renderer": "gl_compatibility",
+      "room_obstructions": {
+
+      },
+      "section": 2,
+      "stage_region": "[P: (0.011561, 0.297326), S: (0.976879, 0.171103)]",
+      "touch_targets": {
+        "count": 26,
+        "density": 2.0,
+        "minimum_dp": [
+          103.999992370605,
+          48.0295906066895
+        ],
+        "outside_viewport": [],
+        "undersized": []
+      },
+      "viewport": [
+        1384,
+        1400
+      ]
+    },
+    {
+      "camera_transform": "[X: (-0.944497, 0.0, -0.328521), Y: (-0.054544, 0.986121, 0.156815), Z: (0.323961, 0.16603, -0.931388), O: (5.033256, 3.357348, -15.39844)]",
+      "display_density": 2.0,
+      "driver": "fox",
+      "fov": 40.0,
+      "image": "garage-blitz-1384x1400.png",
+      "kart": "blitz",
+      "name": "garage-blitz-1384x1400",
+      "offset": [
+        0.0,
+        -1.4056590795517
+      ],
+      "optical_origin": "(5.109927, 1.971199, -15.61887)",
+      "physical_android_device": false,
+      "renderer": "gl_compatibility",
+      "room_obstructions": {
+
+      },
+      "section": 2,
+      "stage_region": "[P: (0.011561, 0.297326), S: (0.976879, 0.171103)]",
+      "touch_targets": {
+        "count": 26,
+        "density": 2.0,
+        "minimum_dp": [
+          103.999992370605,
+          48.0295906066895
+        ],
+        "outside_viewport": [],
+        "undersized": []
+      },
+      "viewport": [
+        1384,
+        1400
+      ]
+    },
+    {
+      "camera_transform": "[X: (-0.944497, 0.0, -0.328521), Y: (-0.054544, 0.986121, 0.156815), Z: (0.323961, 0.16603, -0.931388), O: (5.033256, 3.357348, -15.37111)]",
+      "display_density": 2.0,
+      "driver": "fox",
+      "fov": 40.0,
+      "image": "garage-phantom-1384x1400.png",
+      "kart": "phantom",
+      "name": "garage-phantom-1384x1400",
+      "offset": [
+        0.0,
+        -1.4056590795517
+      ],
+      "optical_origin": "(5.109927, 1.971199, -15.59153)",
+      "physical_android_device": false,
+      "renderer": "gl_compatibility",
+      "room_obstructions": {
+
+      },
+      "section": 2,
+      "stage_region": "[P: (0.011561, 0.297326), S: (0.976879, 0.171103)]",
+      "touch_targets": {
+        "count": 26,
+        "density": 2.0,
+        "minimum_dp": [
+          103.999992370605,
+          48.0295906066895
+        ],
+        "outside_viewport": [],
+        "undersized": []
+      },
+      "viewport": [
+        1384,
+        1400
+      ]
+    },
+    {
+      "camera_transform": "[X: (-0.972579, 0.0, -0.232573), Y: (-0.0458, 0.980418, 0.191526), Z: (0.228019, 0.196925, -0.953534), O: (2.031069, 2.604105, -8.49356)]",
+      "display_density": 2.0,
+      "driver": "fox",
+      "featured_controls": {
+        "gap_dp": 8.23006750701461,
+        "hero_pixels": "[P: (717.95, 238.0217), S: (628.2062, 236.9397)]",
+        "next_pixels": "[P: (1241.275, 266.1515), S: (96.23125, 96.29057)]",
+        "play_pixels": "[P: (1250.156, 378.9022), S: (79.99995, 80.04932)]",
+        "source_commit": "c737db6437d3762a054879c32e2426ff1155cff7"
+      },
+      "fov": 40.0,
+      "image": "home-selected-1384x1400.png",
+      "kart": "phantom",
+      "name": "home-selected-1384x1400",
+      "offset": [
+        1.57567930221558,
+        -1.36231029033661
+      ],
+      "optical_origin": "(0.560989, 1.268471, -9.120938)",
+      "physical_android_device": false,
+      "renderer": "gl_compatibility",
+      "room_obstructions": {
+
+      },
+      "section": 0,
+      "stage_region": "[P: (0.014451, 0.114356), S: (0.479769, 0.351087)]",
+      "touch_targets": {
+        "count": 26,
+        "density": 2.0,
+        "minimum_dp": [
+          48.1156234741211,
+          48.1452865600586
+        ],
+        "outside_viewport": [],
+        "undersized": []
+      },
+      "viewport": [
+        1384,
+        1400
+      ]
+    }
+  ]
+}

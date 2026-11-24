@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14 19:14:21 UTC",
+  "source": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "source_tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+  "checkpoint": "1dbf11115923fa5c2ef8f30d8a2ecf990d91e5db",
+  "tree": "fae2b113809611fd7dd28704d8ba7d2a2e3e378c",
+  "source_files_unchanged": 4986,
+  "added": 40,
+  "total": 5026,
+  "manifest_file_count": 38,
+  "all_manifest_entries_exact": true,
+  "only_workflow_and_evidence_added": true,
+  "activation": false,
+  "root_exact_independent_reconstruction": true,
+  "workflow_blob": "712529847807e1d0a7135654703a13b7a63a1e1e",
+  "only_seven_binding_value_substitutions": [
+    [
+      "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "04a8e850d4c198e16ff758df614ce6e53eab4524"
+    ],
+    [
+      "43616038272",
+      "43628840534"
+    ],
+    [
+      "43616035099",
+      "43628830465"
+    ],
+    [
+      "132511176199",
+      "132550661600"
+    ],
+    [
+      "14122252221",
+      "14126808268"
+    ],
+    [
+      "1167242",
+      "1169894"
+    ],
+    [
+      "aa3acbb92e89b5e8c3723d35ffb0ea8e07f6405b8dbe7821a6a3ce9b085b9075",
+      "a6ae2c6ae9e4b0e8b600bdd54687288ec6d229ae2cf20b28df128c28658de805"
+    ]
+  ],
+  "original_51_case_log_blob": "c634d08669c56d24cc3c38ad92f462f65d778726",
+  "root_original_pass_count": 51,
+  "failed": 0,
+  "skipped": 0,
+  "reported_seconds": 0.012,
+  "actionlint_exit_code": 0,
+  "bash_blocks": 8,
+  "python_heredocs": 4,
+  "tests_and_native_binding_unchanged": true,
+  "actual_main_acceptance": "PENDING",
+  "reader_complete_original_replay": "NOT_ACTIVATED",
+  "publisher": "NOT_ACTIVATED"
+}

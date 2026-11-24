@@ -1,0 +1,24 @@
+{
+  "native_source": "51fb026f0b0e7a43b3aad30cc0fcdc144050c724",
+  "version": "0.13.6+2018",
+  "tests": [
+    {
+      "file": "build-contracts-2018-activation.log",
+      "passed": 289,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 21.354,
+      "sha256": "fbc1571012d58a28c01cccb33ae7282a38d4b18d21b0a83a959763eb154b8c48",
+      "scope": "Actual live-checkout contract test run; not an Android device execution"
+    },
+    {
+      "file": "android-probe-contracts-2018-activation.log",
+      "passed": 667,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 19.153,
+      "sha256": "7c2bde3c24f6990f0adf4dbc0cf910091069cc9688364726b130a540e62efbed",
+      "scope": "Actual live-checkout contract test run; not an Android device execution"
+    }
+  ]
+}

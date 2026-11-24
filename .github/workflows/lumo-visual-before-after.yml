@@ -1,0 +1,104 @@
+name: Lumo Visual QA – echte Vorher-Nachher-Screenshots
+on:
+  pull_request:
+    paths:
+      - 'lib/features/tests/**'
+      - 'lib/widgets/design/**'
+      - 'test/design/denkprofil_knobel_before_after_capture_test.dart'
+      - 'scripts/visual_before_after_report.py'
+      - '.github/workflows/lumo-visual-before-after.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-real-visual-evidence-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  visual-before-after:
+    # This fixed 1986-vs-1987 golden comparison must not block subsequent
+    # feature releases by asserting every future pubspec is version 1987.
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.ref == 'chatgpt/lumo-1987-denkprofil-knobel-unified-2026-10-19'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out immutable original 1986 release
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: lumo-v0.12.74-1986-integrated-reading
+          path: before
+
+      - name: Check out exact new PR code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: after
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Verify original and new source; copy identical capture harness
+        run: |
+          set -euo pipefail
+          BEFORE="$(git -C before rev-parse HEAD)"
+          AFTER="$(git -C after rev-parse HEAD)"
+          test "$BEFORE" != "$AFTER"
+          test "$(grep '^version:' before/pubspec.yaml)" = 'version: 0.12.74+1986'
+          test "$(grep '^version:' after/pubspec.yaml)" = 'version: 0.12.75+1987'
+          test -s after/test/design/denkprofil_knobel_before_after_capture_test.dart
+          cp after/test/design/denkprofil_knobel_before_after_capture_test.dart before/test/design/
+          mkdir -p visual/before visual/after visual/vergleich
+          printf 'baseline=%s\ncandidate=%s\n' "$BEFORE" "$AFTER"             | tee visual/PROVENANCE.txt
+
+      - name: Install dependencies for original 1986 screens
+        working-directory: before
+        run: flutter pub get --enforce-lockfile
+
+      - name: Capture REAL 1986 screens on phone, Fold cover and Fold open
+        working-directory: before
+        env:
+          LUMO_VISUAL_CAPTURE_DIR: ../visual/before
+        run: |
+          flutter test --no-pub --reporter=expanded --timeout=120s \
+            test/design/denkprofil_knobel_before_after_capture_test.dart
+
+      - name: Install dependencies for 1987 PR screens
+        working-directory: after
+        run: flutter pub get --enforce-lockfile
+
+      - name: Capture REAL 1987 screens on same three devices
+        working-directory: after
+        env:
+          LUMO_VISUAL_CAPTURE_DIR: ../visual/after
+        run: |
+          flutter test --no-pub --reporter=expanded --timeout=120s \
+            test/design/denkprofil_knobel_before_after_capture_test.dart
+
+      - name: Make side-by-side PNGs and offline HTML gallery
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet 'Pillow==11.3.0'
+          python3 after/scripts/visual_before_after_report.py \
+            visual "$(git -C before rev-parse HEAD)" "$(git -C after rev-parse HEAD)"
+          test "$(find visual/before -name '*.png' | wc -l)" -eq 15
+          test "$(find visual/after -name '*.png' | wc -l)" -eq 15
+          test "$(find visual/vergleich -name '*.png' | wc -l)" -eq 15
+          test -s visual/index.html
+          test -s visual/MANIFEST.json
+          find visual -type f -name '*.png' -printf '%p (%s bytes)\n' | sort
+
+      - name: Upload genuine before/after screenshots + comparison gallery
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1987-denkprofil-knobel-vorher-nachher-${{ github.run_id }}
+          path: visual/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 90

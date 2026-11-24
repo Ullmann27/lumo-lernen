@@ -1,0 +1,149 @@
+{
+  "commit": "ececc0f7f782a76c584c2c87fd1ce192d3dc7648",
+  "tree": "4f2d40dab8765d91dd905a6baa6f5746906b179f",
+  "parent": "9cfa4b0760403ac4b489bea440d3ea6040e09dc0",
+  "branch": "qa/lumo-2031-lab-runtime-cases-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-2031-runtime-cases",
+  "base_qa_commit": "51a3bfdedf4d6a745fb574ae9186c1094eb11abf",
+  "first_component_commit": "9cfa4b0760403ac4b489bea440d3ea6040e09dc0",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 31882,
+      "sha256": "d02e861e0f16ec4489053e6598765307880d3604690358ac1be3c97f512f9369"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/README.md",
+      "bytes": 7292,
+      "sha256": "4df56328e8e75753328275713f44f75d48f9fcc40d48bfc3e8f85549b7764b42"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-green.log",
+      "bytes": 3172,
+      "sha256": "92e3f7dd4ac6ac8e7f9610c9029c1279f552cd289e75c5d41b873efc6bb70cbf"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red-source.json",
+      "bytes": 801,
+      "sha256": "50b2454667be13eb1b99309c3454aa625ef080aa4109091b1252447dcf251630"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red-test.patch",
+      "bytes": 1827,
+      "sha256": "dfaff6f304946c6ce92a99f13d8cee7b8dd0af4f53b45a69d4aa4324ba118b98"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red.log",
+      "bytes": 4044,
+      "sha256": "4b30eb4c19fb9b861c128859808d8f1cc5c7f5f4848f2f515505c928eb58f2b2"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-source.json",
+      "bytes": 2725,
+      "sha256": "f64a4c575fbb0618436c1047a76aa09ea99303cf08ffc40993bfb330dff68ce4"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "bytes": 22211,
+      "sha256": "45455bd9ced8b57ad8541b7882c1b75d66c4953e5912cb6b87294071bb97441d"
+    }
+  ],
+  "complete_component_files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 31882,
+      "sha256": "d02e861e0f16ec4489053e6598765307880d3604690358ac1be3c97f512f9369"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/README.md",
+      "bytes": 7292,
+      "sha256": "4df56328e8e75753328275713f44f75d48f9fcc40d48bfc3e8f85549b7764b42"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-green.log",
+      "bytes": 3172,
+      "sha256": "92e3f7dd4ac6ac8e7f9610c9029c1279f552cd289e75c5d41b873efc6bb70cbf"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red-source.json",
+      "bytes": 801,
+      "sha256": "50b2454667be13eb1b99309c3454aa625ef080aa4109091b1252447dcf251630"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red-test.patch",
+      "bytes": 1827,
+      "sha256": "dfaff6f304946c6ce92a99f13d8cee7b8dd0af4f53b45a69d4aa4324ba118b98"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red.log",
+      "bytes": 4044,
+      "sha256": "4b30eb4c19fb9b861c128859808d8f1cc5c7f5f4848f2f515505c928eb58f2b2"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-source.json",
+      "bytes": 2725,
+      "sha256": "f64a4c575fbb0618436c1047a76aa09ea99303cf08ffc40993bfb330dff68ce4"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-final-14.log",
+      "bytes": 2974,
+      "sha256": "b693381043e48004a96bafde179502ae7c51b2c4c6b6f09d5411130ad581aa9c"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-final.log",
+      "bytes": 2794,
+      "sha256": "e2e4eff1ce09d7aa1bb1ec600931c2083a322fc9e2823994bc979d82f2280627"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-first.log",
+      "bytes": 2558,
+      "sha256": "8e7a3786a51aeaea715760d0e16b16f5289d9d977a713cad78989412f864bf91"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/source.json",
+      "bytes": 3826,
+      "sha256": "88a74b774013cb2295ab8cc66d7e73821dcbf91f271de248214ad05aa75c126a"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/syntax-cli.json",
+      "bytes": 1770,
+      "sha256": "fd8880aa4efab67f1816f665d64526a49ee35b461cd3d7a19408843429404b88"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "bytes": 22211,
+      "sha256": "45455bd9ced8b57ad8541b7882c1b75d66c4953e5912cb6b87294071bb97441d"
+    }
+  ],
+  "tests": {
+    "red": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-red.log",
+    "red_registered": 14,
+    "red_failures": 1,
+    "green": "docs/nextgen/evidence/runtime_cases_2031_20261116/capture-age-green.log",
+    "green_passed": 15,
+    "green_failed": 0,
+    "green_skipped": 0,
+    "scope": "focused synthetic Python/ET.Element/transport and pure-result verifier, no Android; native verifier dependency isolated"
+  },
+  "freshness": {
+    "capture_begin_before_live_nodes": true,
+    "bounded_capture_through_requested_touch": true,
+    "search_seconds_max": 45,
+    "capture_to_requested_touch_seconds_max": 1,
+    "deadline_increased": false,
+    "late_capture_fails_closed": true,
+    "physical_input_delivery_time_measured": false
+  },
+  "worktree_clean": true,
+  "all_files_equal_committed_blobs": true,
+  "product_changed": false,
+  "shared_probe_changed": false,
+  "remote_action": false,
+  "runtime_pass_claimed": false,
+  "release_eligible": false,
+  "remaining_integration": [
+    "Root config/workflow",
+    "Conversation native helper 9f9aa391e61720feb920bc908f448b6daf70a9e7",
+    "Root current-candidate final Banane-caption reader correction"
+  ]
+}

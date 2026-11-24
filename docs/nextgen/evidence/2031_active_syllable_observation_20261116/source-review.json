@@ -1,0 +1,89 @@
+{
+  "baseCommit": "428619f45ccd945a11b806765245302aee9bcffb",
+  "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "originalRun": 43812538819,
+  "originalQaCommit": "e4c9b16751b4db2b1486fd58361000954f89fa11",
+  "artifactId": 14201531176,
+  "archiveSha256": "8290ce1dfcd5779df8e2de1c3900fb8eada31ed6f48cf7236c23ad666da1dac8",
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 46301,
+      "sha256": "2869bba0ac0c9a028653254cbd4627b961b2dbc7cf9a580b429cdf40f1face90"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "bytes": 35464,
+      "sha256": "79d5ba3ebf954ccdd48a4264f58017cf69e7f172fd30c3acbe5c69e02bb40c43"
+    }
+  ],
+  "logs": [
+    {
+      "file": "viewport-red.log",
+      "bytes": 4216,
+      "sha256": "8caa0a3804bf2ebf30278815b1d5939351ce54414ff94f5d0a392fe5d0d91a36"
+    },
+    {
+      "file": "viewport-green-first.log",
+      "bytes": 4436,
+      "sha256": "ebcb622b9b831f8ac8e775fefcf8c8fa4c6ee83472f953f343527fdc6852c9ba"
+    },
+    {
+      "file": "viewport-fixture-followup-failure.log",
+      "bytes": 9021,
+      "sha256": "589cb6a88e303be5b79387ad29f2e2052b1076b71eab8c216eb63e15f5e03d4e"
+    },
+    {
+      "file": "viewport-green-final.log",
+      "bytes": 4436,
+      "sha256": "16b897ece9971180df0b7b0f276f9c2c830305104da4b6c9d0f519e36f78cff6"
+    }
+  ],
+  "unchangedChecks": [
+    {
+      "function": "verify_numeric_submission",
+      "sourceSha256": "5d47aace34f3d2870c94c9da2f0a18dbab0271d3b5dd2a6e517f9311afe14850",
+      "byteIdenticalToBase": true
+    },
+    {
+      "function": "verify_word_switch",
+      "sourceSha256": "56bafc1bbf5d5a911e68ae1a2f34159ebc462763f9838cc9b51028603db4d240",
+      "byteIdenticalToBase": true
+    },
+    {
+      "function": "numeric_wrong_then_correct",
+      "sourceSha256": "9f276b28b3923436fa2719d20498e4984585497c1f21d344c3c980d2cdc8858e",
+      "byteIdenticalToBase": true
+    },
+    {
+      "function": "switch_on_active_syllable",
+      "sourceSha256": "3eb48a86156c23dad502eafa134d8e23f229ebc41e8192f7ed6cf60b0537bf7f",
+      "byteIdenticalToBase": true
+    }
+  ],
+  "testCommand": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/android_qa/tests -p 'test_nextgen_2031_runtime_cases.py' -v",
+  "red": {
+    "registered": 16,
+    "failures": 1,
+    "exitCode": 1
+  },
+  "finalGreen": {
+    "passed": 21,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0
+  },
+  "astParsed": true,
+  "gitDiffCheck": "PASS",
+  "productChanged": false,
+  "sharedRecorderChanged": false,
+  "remoteActions": false,
+  "androidExecuted": false,
+  "originalStatus": "FAIL",
+  "newRuntimeStatus": "NOT_RUN",
+  "limits": [
+    "Original root cause concerns offscreen observation; no missing-audio inference.",
+    "Active45s and full-capture-to-requested-touch1s checks are unchanged.",
+    "Only the future actual run can establish the temporary320dpi joint view and successful restoration."
+  ]
+}

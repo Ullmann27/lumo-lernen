@@ -1,0 +1,129 @@
+{
+  "sourceCommit": "ebe55026148c4a656150a5ad38a08f5f00168838",
+  "recordedUtc": "2026-11-16T06:23:55.871802+00:00",
+  "componentFiles": 17,
+  "committedAndWorktreeBytesVerified": true,
+  "handoffs": [
+    {
+      "path": "original-component-handoff.json",
+      "bytes": 5768,
+      "sha256": "de8f15448466248a717c60273a5f40ca2dce747d9acf48c9fcbfdf6552e9de43"
+    },
+    {
+      "path": "final-component-handoff.json",
+      "bytes": 6723,
+      "sha256": "7720a3ddfe9ce696166775ec9efaca532c4ce55ec8efd79ee27c400938cf3edf"
+    }
+  ],
+  "runs": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_learning_android_probe.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "tests": 87
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_reference_android_probe.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "tests": 27
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_current_candidate.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "tests": 12
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_native_reader.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "tests": 15
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_nextgen_2031*.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "tests": 48
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/nextgen",
+        "-p",
+        "test_prepare_2031_learning_replay_release.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "tests": 9
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/nextgen",
+        "-p",
+        "test_public_learning_download.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "tests": 13
+    }
+  ],
+  "AndroidExecution": false,
+  "testsPassed": 211,
+  "logBytes": 42469,
+  "logSha256": "de6b16eeb37348d0c580629e47718d81e61071a6156aad7abadc1f303fb5fd35"
+}

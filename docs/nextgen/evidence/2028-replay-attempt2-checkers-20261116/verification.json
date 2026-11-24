@@ -1,0 +1,45 @@
+{
+  "totalTestMethods": 132,
+  "logs": [
+    {
+      "path": "original-gates.log",
+      "tests": 72,
+      "bytes": 14026,
+      "sha256": "cc7860e3e3863833aaff83454be8fe87e224b52db8b47d1e38c839cdfbae17d1",
+      "status": "PASS"
+    },
+    {
+      "path": "reference-gates.log",
+      "tests": 27,
+      "bytes": 5274,
+      "sha256": "8280d20c319f66dce0e585537ba23dd867953b1e5ba5bf19cef2def1ffc21b41",
+      "status": "PASS"
+    },
+    {
+      "path": "current-gates.log",
+      "tests": 12,
+      "bytes": 2382,
+      "sha256": "e2536d94089f29dc50609a8976c1d7b26b5c4298530132ee3c1bbc4fdcd56eb9",
+      "status": "PASS"
+    },
+    {
+      "path": "replay-gates.log",
+      "tests": 14,
+      "bytes": 2620,
+      "sha256": "f537db1bf6276ccf2b95bd93fd0411a639896ee31662835226f8076c42f921de",
+      "status": "PASS"
+    },
+    {
+      "path": "publication-gates.log",
+      "tests": 7,
+      "bytes": 1476,
+      "sha256": "4d3845f4fb8365fcedb43fc767e1720a739b73ef5dfe59babf5b74640ade8b31",
+      "status": "PASS"
+    }
+  ],
+  "apkSource": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "productFilesUnchanged": true,
+  "independentReadOnlyReview": "No blocker in 752fb29; original deadline and outcome gates preserved. Reviewer read original GREEN without re-running optional tests.",
+  "androidReplay": "Not yet executed for this snapshot"
+}

@@ -24,14 +24,14 @@ class WeaknessDetectionEngine {
 
   /// Markiert ob ein Skill aktuell als Schwäche gilt.
   bool isWeak(SkillRecord r) {
-    if (r.currentMisses >= 3) return true;
-    if (r.attempts >= 3 && r.weaknessScore >= 0.5) return true;
+    if (r.assessed.wrongStreak >= 3) return true;
+    if (r.assessed.attempts >= 3 && r.weaknessScore >= 0.5) return true;
     return false;
   }
 
   /// Markiert ob ein Skill als gemeistert gilt.
   bool isMastered(SkillRecord r) {
-    return r.currentStreak >= 5 && r.mastery >= 75;
+    return r.assessed.correctStreak >= 5 && r.mastery >= 75;
   }
 
   /// Liefert alle Schwächen aus den Records, sortiert nach Dringlichkeit.
@@ -39,7 +39,7 @@ class WeaknessDetectionEngine {
     final weak = skills.values.where(isWeak).toList();
     weak.sort((a, b) {
       // Jüngste Misses zuerst
-      final missCmp = b.currentMisses.compareTo(a.currentMisses);
+      final missCmp = b.assessed.wrongStreak.compareTo(a.assessed.wrongStreak);
       if (missCmp != 0) return missCmp;
       // Dann höchster weaknessScore
       return b.weaknessScore.compareTo(a.weaknessScore);
@@ -57,9 +57,9 @@ class WeaknessDetectionEngine {
   /// difficulty zurück, wenn keine Anpassung nötig ist.
   int suggestDifficulty(SkillRecord r) {
     var newDifficulty = r.difficulty;
-    if (r.currentStreak >= 5 && newDifficulty < 5) {
+    if (r.assessed.correctStreak >= 5 && newDifficulty < 5) {
       newDifficulty++;
-    } else if (r.currentMisses >= 3 && newDifficulty > 1) {
+    } else if (r.assessed.wrongStreak >= 3 && newDifficulty > 1) {
       newDifficulty--;
     }
     return newDifficulty;

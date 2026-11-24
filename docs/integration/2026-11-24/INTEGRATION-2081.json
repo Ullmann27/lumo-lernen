@@ -1,0 +1,71 @@
+{
+  "version": "0.14.8+2081",
+  "base_flutter": "a0fdd4031ba9a5637d9b943729a5f0df794071bc",
+  "base_godot": "c3f459eca88f659da1a9e4af1c990c804e715528",
+  "godot": "c814e35249e4038f903d1fca3e19bb4751040a43",
+  "integrated_flutter_sources": {
+    "adaptive_tutor": "97ac9c19a8573f8d201d4cd14735610c22062337",
+    "intro_android_qa": "809a649ac6f1bfa183079ba1857e3dba3f789aca",
+    "guarded_chess_and_coverage": "65bc96d3a8feeac431048dd5ebb79c16410120a0",
+    "recognition_voice": "222460d8e5a9de3a23c855e8fbbbcc82bcdc243a"
+  },
+  "integrated_native_sources": {
+    "world_quests_cards_dialogues": "e0f70a3afa134df895989fbab132470419f70341",
+    "kart_first_entry_and_ground": "6c8371aa46ac2cb30113a5bc25b80f557e5cba92",
+    "combined_native": "c814e35249e4038f903d1fca3e19bb4751040a43"
+  },
+  "cancelled_2080_run": 45421319160,
+  "preserved_android_package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+  "preserved_certificate_sha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "scope": "All identified accessible developed changes compared with existing source; obsolete versions retained in their origin branches. Other unavailable private workspaces cannot be claimed recovered.",
+  "local_checks": {
+    "android_qa_unit_tests": 47,
+    "flutter_targeted_tests": 58,
+    "flutter_targeted_failures": 0,
+    "flutter_targeted_skips": 0,
+    "godot_checks": 1098,
+    "godot_65_bone_gait": "PASS",
+    "recognition_voice_regression": {
+      "passed": 74,
+      "failed": 0,
+      "skipped": 0,
+      "new_widget_tests_included": 11,
+      "analysis_errors": 0,
+      "analysis_warnings": 0,
+      "analysis_infos": 0,
+      "evidence": "docs/evidence/build-2081-flutter-20261124/recognition-voice/"
+    },
+    "export_contract_tests": {
+      "passed": 45,
+      "failed": 0,
+      "scope": "Reviewed current pin, source/manifest tamper rejection, exact newly generated outputs, import fault handling."
+    },
+    "actual_import_reproduction": {
+      "import": "passed",
+      "new_meshy_outputs_removed": 32,
+      "source_unchanged": true,
+      "export": "interrupted by SIGKILL9; cause not established; no completed local PCK claimed",
+      "evidence": "docs/evidence/build-2081-flutter-20261124/export-fix/reproduction/RESULT.json"
+    }
+  },
+  "apk_acceptance": "Pending exact-source GitHub APK build and real Android emulator tour. Local source tests do not certify an APK or physical-device performance.",
+  "previous_intermediate_flutter": "5c086af2fa967f743d5801b4be23c15efbbb88ba",
+  "superseded_intermediate_run": 45433091440,
+  "legacy_prototype_audit": {
+    "coverage": "Developed core modules compared with accessible earlier reports and executable HTML prototypes. Writing trainer, journal, profiles and writing progress remain byte-identical to the 2080 baseline.",
+    "recovered_feature": "Direct dictation of a custom task in the recognition screen, using the existing speech service and confirmation flow.",
+    "excluded_claims": "Static unexecuted MVPs, future briefs and the old photo-OCR demo/stub are not evidence of completed missing features. No claim of line-for-line reuse of obsolete versions."
+  },
+  "intermediate_attempts": [
+    {
+      "run": 45433091440,
+      "flutter": "5c086af2fa967f743d5801b4be23c15efbbb88ba",
+      "result": "Flutter and native/World checks passed; packaging failed because reviewed c814 pin was missing from strict production Meshy import-output allowlist."
+    },
+    {
+      "run": 45440702223,
+      "flutter": "c2e4f9e7da6ba9731e0f6dc3c2f918d43dffe010",
+      "result": "Voice-complete source; superseded by the same-source export correction before delivery."
+    }
+  ]
+}

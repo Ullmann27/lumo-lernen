@@ -1,0 +1,746 @@
+{
+  "schema": 1,
+  "kind": "UNAPPLIED_IMMUTABLE_DELTA_REVIEW",
+  "created_utc": "2026-11-14T15:14:02.426660+00:00",
+  "integration_ready": false,
+  "targets": {
+    "host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+    "host_tree": "f3a7df4c3112ac63577db00a9637facfea5c0175",
+    "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00"
+  },
+  "history_pack": {
+    "path": "/workspace/scratch/b3485b7bb989/producer-pr503-pr182-selective-review-20261114",
+    "manifest": {
+      "bytes": 49231,
+      "sha256": "8aba4dfb6011de7df5efcb2cca31e498935db6b5b4190ff37a4610094a34fc5e",
+      "git_blob": "90cffab655a1c10febf32138b266959d17a69119"
+    },
+    "archive_sha256": "00c45974fae690c0516d1163650e8fa89e00316ad6a3850eac31a621752bbe8f",
+    "untouched": true
+  },
+  "producer_commits": {
+    "host": {
+      "head": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "tree": "59c469de6252d368470bb41b0bcef21151cec826",
+      "parents": [
+        "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+        "14ca47948b25ac0aca221654ac6f5d1a093b349a"
+      ],
+      "delta_base": "8b09c48ba8e4b41e8b25521b022d4d64ba4bb2bc",
+      "commits": 2
+    },
+    "native": {
+      "head": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "tree": "d370790b6949b1cd16cc5fbd2d2c655330110274",
+      "parent": "9f2e865614262c7176f9fdd987766ff5e45f2551"
+    }
+  },
+  "host_path_counts": {
+    "delta": 35,
+    "materialized_exact_texts": 28,
+    "binary_fixture_identity_only": 3,
+    "excluded_workflow_or_docs": 4
+  },
+  "host_paths": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "status": "modified",
+      "producer_blob": "ffa5c6d9a0c8e4403847fd07e8436234f7af979e",
+      "old_8b_blob": "53679cb2a9adda7fbae82621afb29efd920c4485",
+      "target_0b_blob": "681e25d4654ce9827db8f208da5a608b458fa958",
+      "before": {
+        "bytes": 36483,
+        "sha256": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e",
+        "git_blob": "53679cb2a9adda7fbae82621afb29efd920c4485"
+      },
+      "source": {
+        "file": "original-source/host-505/.github/probes/lumo_connect_four_android_probe.py",
+        "bytes": 39906,
+        "sha256": "eb26424167b24fd2c2959bce0ba07668452147d8a1212fd4d5b525ffc9584a82",
+        "git_blob": "ffa5c6d9a0c8e4403847fd07e8436234f7af979e"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "current": {
+        "file": "original-source/host-0b/.github/probes/lumo_connect_four_android_probe.py",
+        "bytes": 28798,
+        "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+        "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+      },
+      "current_vs_old": "different",
+      "observed_diff": {
+        "file": "comparisons/.github__probes__lumo_connect_four_android_probe.py.8b-to-505.patch",
+        "bytes": 4704,
+        "sha256": "a835822f8dd65189b92b0bb1cc1f3948838225c048d24019dd8608eac59535b7",
+        "git_blob": "4491c3256203f61a5edfc8e715d43dce644a1d75"
+      },
+      "group": "c4_navigation",
+      "proposed_action": "reference_only_until_target_specific_need_and_guard_preserving_adapter"
+    },
+    {
+      "path": ".github/probes/lumo_english_objects_android_probe.py",
+      "status": "added",
+      "producer_blob": "ee4e1d59c43a6e27c464208e26eedc694a516df9",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/.github/probes/lumo_english_objects_android_probe.py",
+        "bytes": 55089,
+        "sha256": "9df986992f759b10a6fb4a09565092e3c692718e427dec152f7039db58e368dd",
+        "git_blob": "ee4e1d59c43a6e27c464208e26eedc694a516df9"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "english_objects",
+      "proposed_action": "candidate_additive_expanded_English_contract_after_combined_source_qualification"
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "status": "modified",
+      "producer_blob": "f83ef1b958f25d188042d18605b888bddf7605c6",
+      "old_8b_blob": "4747ac3d62fddcf7ec3b12f96ca01ff3a93830b5",
+      "target_0b_blob": "cd3a11c2206ab31c4933df7388f2a62a07e6399f",
+      "before": {
+        "bytes": 69712,
+        "sha256": "5b2aad1a5fe0a9bac1e52f891c836393a9ca41492da110d50fcd59d98d4fc2e0",
+        "git_blob": "4747ac3d62fddcf7ec3b12f96ca01ff3a93830b5"
+      },
+      "source": {
+        "file": "original-source/host-505/.github/probes/studio_creative_android_probe.py",
+        "bytes": 74185,
+        "sha256": "2bf513aa1486e54a3da1e512ba66ab87c0fc4510705dfcbb92d36bd5f34d0de8",
+        "git_blob": "f83ef1b958f25d188042d18605b888bddf7605c6"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "current": {
+        "file": "original-source/host-0b/.github/probes/studio_creative_android_probe.py",
+        "bytes": 79294,
+        "sha256": "4eac8342846bf42561e45d132450ebf90648283f75c7f4333d77b6fd43739e28",
+        "git_blob": "cd3a11c2206ab31c4933df7388f2a62a07e6399f"
+      },
+      "current_vs_old": "different",
+      "observed_diff": {
+        "file": "comparisons/.github__probes__studio_creative_android_probe.py.8b-to-505.patch",
+        "bytes": 7512,
+        "sha256": "bc08b07811527f8394ff66a004ccb36ce412df52d5e485caf08dbf926b30e3d2",
+        "git_blob": "62985e124315212762cdd53f27db4430d56a168e"
+      },
+      "group": "creative_probe",
+      "proposed_action": "do_not_replace_current_probe__existing_decode_fix_and_distinct_movement_guards"
+    },
+    {
+      "path": ".github/workflows/lumo-nextgen-feature-contracts.yml",
+      "status": "modified",
+      "producer_blob": "5ea2906e200a8a513e2a941da165b9450f3b5ea8",
+      "old_8b_blob": "4b57d6c54de6cb7047efca47a7ef722c6278a7fe",
+      "target_0b_blob": null,
+      "disposition": "excluded_workflow_or_narrative_in_original_compare",
+      "group": "excluded",
+      "proposed_action": "reference_only"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2020.yml",
+      "status": "modified",
+      "producer_blob": "017d3ea110834a5c2a24bb1bd4b16887d7b81c5e",
+      "old_8b_blob": "b8e63e1841828cab1e75ef3896e47b2d4d6aa38f",
+      "target_0b_blob": null,
+      "disposition": "excluded_workflow_or_narrative_in_original_compare",
+      "group": "excluded",
+      "proposed_action": "reference_only"
+    },
+    {
+      "path": "docs/NEXTGEN_FEATURE_20261114.md",
+      "status": "modified",
+      "producer_blob": "5a4a111a19a7877a57eb9535fd47ea7f2fdd2888",
+      "old_8b_blob": "f3a110664531015817266100e1038c02322eaccb",
+      "target_0b_blob": null,
+      "disposition": "excluded_workflow_or_narrative_in_original_compare",
+      "group": "excluded",
+      "proposed_action": "reference_only"
+    },
+    {
+      "path": "docs/STUDIO_2020_ANDROID_QA_CORRECTION_20261114.md",
+      "status": "added",
+      "producer_blob": "7db79a99095c2c0ea0e00130fe3ddb6759436d39",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "disposition": "excluded_workflow_or_narrative_in_original_compare",
+      "group": "excluded",
+      "proposed_action": "reference_only"
+    },
+    {
+      "path": "lib/domain/tutoring/native_english_vocabulary.dart",
+      "status": "modified",
+      "producer_blob": "4469849b204f91fab3e645604e11922e29cb594c",
+      "old_8b_blob": "e79e6342f017dd59ebfd4bbb7adad215057e0545",
+      "target_0b_blob": null,
+      "before": {
+        "bytes": 2941,
+        "sha256": "66f07be4fb2d573b411f8bda97330edad46003929640bf36a0ede74c2d43102a",
+        "git_blob": "e79e6342f017dd59ebfd4bbb7adad215057e0545"
+      },
+      "source": {
+        "file": "original-source/host-505/lib/domain/tutoring/native_english_vocabulary.dart",
+        "bytes": 3323,
+        "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f",
+        "git_blob": "4469849b204f91fab3e645604e11922e29cb594c"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "observed_diff": {
+        "file": "comparisons/lib__domain__tutoring__native_english_vocabulary.dart.8b-to-505.patch",
+        "bytes": 1728,
+        "sha256": "4e7fdb34d2c304db016d54ac03bf39138a3caa8797c5809b63288325e346eb5a",
+        "git_blob": "a4972707b7cb4a62e97e4058a2f971f15c2e4712"
+      },
+      "group": "english_objects",
+      "proposed_action": "candidate_additive_expanded_English_contract_after_combined_source_qualification"
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "status": "modified",
+      "producer_blob": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43",
+      "old_8b_blob": "aec0446cc1bb5a1ff6b3469c0c9606c45bfda64e",
+      "target_0b_blob": "033e3a70bd7fff21506bea014cc16a8ee1558c06",
+      "before": {
+        "bytes": 52529,
+        "sha256": "fa2ec3a8ae7c55fb14fe5fb78572c2a3e5dff3fcd7830b088fe45f02a2513e1c",
+        "git_blob": "aec0446cc1bb5a1ff6b3469c0c9606c45bfda64e"
+      },
+      "source": {
+        "file": "original-source/host-505/lib/features/games/memory/lumo_memory_game.dart",
+        "bytes": 52654,
+        "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+        "git_blob": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "current": {
+        "file": "original-source/host-0b/lib/features/games/memory/lumo_memory_game.dart",
+        "bytes": 52550,
+        "sha256": "28c5f0d7348354bb55f6c1ad8cb1d712360fbbe27fcf7cc36424003568c846f4",
+        "git_blob": "033e3a70bd7fff21506bea014cc16a8ee1558c06"
+      },
+      "current_vs_old": "different",
+      "observed_diff": {
+        "file": "comparisons/lib__features__games__memory__lumo_memory_game.dart.8b-to-505.patch",
+        "bytes": 686,
+        "sha256": "ddc6761a7f5ef633fd98be6b64595e06cb6f521db27b4fe2d4aff7ed371e3690",
+        "git_blob": "ad0bcc2058a05b6293615fac7e9af593aab6abdd"
+      },
+      "group": "memory_result",
+      "proposed_action": "defer_pending_real_memory_fix_and_source_acceptance"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-home.xml",
+      "status": "added",
+      "producer_blob": "80349515b3c4f5b2f1e4fad4c303a9152a325edf",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api35-home.xml",
+        "bytes": 32222,
+        "sha256": "f0b5578b948a839e2fbf018ce982b17ad2645abea2932e26a892eb1b8cc4f52b",
+        "git_blob": "80349515b3c4f5b2f1e4fad4c303a9152a325edf"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "c4_navigation",
+      "proposed_action": "reference_only_until_target_specific_need_and_guard_preserving_adapter"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-hub.xml",
+      "status": "added",
+      "producer_blob": "4d284085abc30785e4e0b4c34970c2e4d5a64d1f",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api35-hub.xml",
+        "bytes": 28551,
+        "sha256": "fa7a6e746ed13a0f325b2d9da0639e221f06a41ee5b953d7f77ce1517ba4472a",
+        "git_blob": "4d284085abc30785e4e0b4c34970c2e4d5a64d1f"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "c4_navigation",
+      "proposed_action": "reference_only_until_target_specific_need_and_guard_preserving_adapter"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-paused.xml",
+      "status": "added",
+      "producer_blob": "d3a07990f85c9709457bf75293865437e0aa1916",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api35-paused.xml",
+        "bytes": 34244,
+        "sha256": "ac47cdf55d8d8f9db8d266d9f1a0734b4d01dc780dbbd511f770595a7fe72b90",
+        "git_blob": "d3a07990f85c9709457bf75293865437e0aa1916"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "c4_navigation",
+      "proposed_action": "reference_only_until_target_specific_need_and_guard_preserving_adapter"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api35-showcase.xml",
+      "status": "added",
+      "producer_blob": "adea5bac5d52c0cfe6000f5b48288a040d40346a",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api35-showcase.xml",
+        "bytes": 15889,
+        "sha256": "9ec7b4a5e1653ee8597f05e0e3a46f7661b35b15b6feada1879b406865e051be",
+        "git_blob": "adea5bac5d52c0cfe6000f5b48288a040d40346a"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "c4_navigation",
+      "proposed_action": "reference_only_until_target_specific_need_and_guard_preserving_adapter"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api37-paused.xml",
+      "status": "added",
+      "producer_blob": "f328465dc61c58f93aeaf7a2cc5a023a785da0e6",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api37-paused.xml",
+        "bytes": 35172,
+        "sha256": "995714f918e1b1f7e2a366a339baee5d6b1714a35aabe0ac24c73db84360b996",
+        "git_blob": "f328465dc61c58f93aeaf7a2cc5a023a785da0e6"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "c4_navigation",
+      "proposed_action": "reference_only_until_target_specific_need_and_guard_preserving_adapter"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/api37-showcase.xml",
+      "status": "added",
+      "producer_blob": "ec4a80a2abba2bd18ffdb6b019b1aa0aabd19d96",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api37-showcase.xml",
+        "bytes": 16801,
+        "sha256": "5acfb1348da462257433d03c761a16eaab6adedfb1235d1c3aa318f895495588",
+        "git_blob": "ec4a80a2abba2bd18ffdb6b019b1aa0aabd19d96"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "c4_navigation",
+      "proposed_action": "reference_only_until_target_specific_need_and_guard_preserving_adapter"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_c4_navigation/provenance.json",
+      "status": "added",
+      "producer_blob": "a801d687a0e1c897e3c4fd4dc2d162ae4cc1b2b4",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/provenance.json",
+        "bytes": 2297,
+        "sha256": "8752814041fade9e17528b1a6038bb92f0ea4dba167cfa685c89fb5c5ca94e51",
+        "git_blob": "a801d687a0e1c897e3c4fd4dc2d162ae4cc1b2b4"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "c4_navigation",
+      "proposed_action": "reference_only_until_target_specific_need_and_guard_preserving_adapter"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_ae1/0179-treasure-save-lumo_treasure_p_83f659a4a9642fc7c4e7feff8cfd1efb.json",
+      "status": "added",
+      "producer_blob": "57041a3844fa695d9314ecf5e5b290943c4b94a4",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_creative_ae1/0179-treasure-save-lumo_treasure_p_83f659a4a9642fc7c4e7feff8cfd1efb.json",
+        "bytes": 276,
+        "sha256": "b134ba5f90c2e9de9c57161e42916829b524a702a41c079f543ef65ed91c6338",
+        "git_blob": "57041a3844fa695d9314ecf5e5b290943c4b94a4"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "creative_probe",
+      "proposed_action": "do_not_replace_current_probe__existing_decode_fix_and_distinct_movement_guards"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_ae1/0182-observe-original-stick.png",
+      "status": "added",
+      "producer_blob": "8d03fee63f668ac05c415d337b0eea3b8f8ceaaf",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "disposition": "binary_fixture_identity_only_not_downloaded",
+      "group": "creative_probe",
+      "proposed_action": "do_not_replace_current_probe__existing_decode_fix_and_distinct_movement_guards"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_ae1/0182-observe-original-stick.png.ocr.json",
+      "status": "added",
+      "producer_blob": "fe260e034c0c0b76ebdfef7fdfa76cbf5d3315f9",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_creative_ae1/0182-observe-original-stick.png.ocr.json",
+        "bytes": 14006,
+        "sha256": "169e4c371977282e7f3ffc96cf1f60c09bf2a2c8cba0c38270c9ac0e1e26c23f",
+        "git_blob": "fe260e034c0c0b76ebdfef7fdfa76cbf5d3315f9"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "creative_probe",
+      "proposed_action": "do_not_replace_current_probe__existing_decode_fix_and_distinct_movement_guards"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_ae1/0183-before-real-input.png",
+      "status": "added",
+      "producer_blob": "b36b88824637360a451613e3bffbb3f24c474d43",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "disposition": "binary_fixture_identity_only_not_downloaded",
+      "group": "creative_probe",
+      "proposed_action": "do_not_replace_current_probe__existing_decode_fix_and_distinct_movement_guards"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_ae1/0183-before-real-input.png.ocr.json",
+      "status": "added",
+      "producer_blob": "2169f69a1b974cb367a0b038eeb1a47a1f41d160",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_creative_ae1/0183-before-real-input.png.ocr.json",
+        "bytes": 17771,
+        "sha256": "2941c7a65c3982811d3989960466aa08d1fab030fce8d9157a7b9cc830f4ad13",
+        "git_blob": "2169f69a1b974cb367a0b038eeb1a47a1f41d160"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "creative_probe",
+      "proposed_action": "do_not_replace_current_probe__existing_decode_fix_and_distinct_movement_guards"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_ae1/0185-treasure-save-lumo_treasure_p_83f659a4a9642fc7c4e7feff8cfd1efb.json",
+      "status": "added",
+      "producer_blob": "110bf068456ca454fed4317b740df403c6440324",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_creative_ae1/0185-treasure-save-lumo_treasure_p_83f659a4a9642fc7c4e7feff8cfd1efb.json",
+        "bytes": 306,
+        "sha256": "8cff949dfc4f383eea1f2caf49ede60ed42c314e59db1a30f5b010d37a685534",
+        "git_blob": "110bf068456ca454fed4317b740df403c6440324"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "creative_probe",
+      "proposed_action": "do_not_replace_current_probe__existing_decode_fix_and_distinct_movement_guards"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_ae1/jump-actual-android.mp4",
+      "status": "added",
+      "producer_blob": "db9449273246c6d04be2ffe80fd69157d49fae2d",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "disposition": "binary_fixture_identity_only_not_downloaded",
+      "group": "creative_probe",
+      "proposed_action": "do_not_replace_current_probe__existing_decode_fix_and_distinct_movement_guards"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_ae1/provenance.json",
+      "status": "added",
+      "producer_blob": "20ed3fe68608365b7726d7ba655d7307b6f0ca2e",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/fixtures/studio_creative_ae1/provenance.json",
+        "bytes": 2716,
+        "sha256": "7dc8ed8be9d9f7240cbab85890bdfc692f84a6d0714526d59cd44c2366175fb6",
+        "git_blob": "20ed3fe68608365b7726d7ba655d7307b6f0ca2e"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "creative_probe",
+      "proposed_action": "do_not_replace_current_probe__existing_decode_fix_and_distinct_movement_guards"
+    },
+    {
+      "path": "scripts/tests/test_studio_c4_navigation.py",
+      "status": "added",
+      "producer_blob": "73f7b88fc567dbeb3b3cc72ad3832d7a60219012",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/test_studio_c4_navigation.py",
+        "bytes": 3069,
+        "sha256": "378621b612f02f56c9914d3d5387e69e166ba24d104cf3e66f5b206d17a6f0e2",
+        "git_blob": "73f7b88fc567dbeb3b3cc72ad3832d7a60219012"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "c4_navigation",
+      "proposed_action": "reference_only_until_target_specific_need_and_guard_preserving_adapter"
+    },
+    {
+      "path": "scripts/tests/test_studio_creative_clock_calibration.py",
+      "status": "added",
+      "producer_blob": "6a49d7a43d7679dec3eaf897fa5e668aafd89104",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/scripts/tests/test_studio_creative_clock_calibration.py",
+        "bytes": 10485,
+        "sha256": "a96e0514711fb1b31ca3762c2a94123510bb8771d4ead36d8e6730e8b36f9266",
+        "git_blob": "6a49d7a43d7679dec3eaf897fa5e668aafd89104"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "creative_probe",
+      "proposed_action": "do_not_replace_current_probe__existing_decode_fix_and_distinct_movement_guards"
+    },
+    {
+      "path": "scripts/tests/test_studio_treasure_movement.py",
+      "status": "modified",
+      "producer_blob": "0282b1f95a70691502dea6901b34842981e673e1",
+      "old_8b_blob": "910d8fd814654a82f09a7c915200e7ef6e2819d1",
+      "target_0b_blob": null,
+      "before": {
+        "bytes": 12241,
+        "sha256": "d6401252f81e249751dc6d031efe2ceba91759255a0528496bbc249ef877fc8f",
+        "git_blob": "910d8fd814654a82f09a7c915200e7ef6e2819d1"
+      },
+      "source": {
+        "file": "original-source/host-505/scripts/tests/test_studio_treasure_movement.py",
+        "bytes": 12250,
+        "sha256": "893de0755d8a15dece6e5a784f83ad9c591584dd5ea1962c021c42dfbfe9e974",
+        "git_blob": "0282b1f95a70691502dea6901b34842981e673e1"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "observed_diff": {
+        "file": "comparisons/scripts__tests__test_studio_treasure_movement.py.8b-to-505.patch",
+        "bytes": 645,
+        "sha256": "43a521c42a47db3c087c5fbba72c2f207de0930886034904372ca73f74c65943",
+        "git_blob": "f5ce54a5147336ad1ae5f34fb84bf8a19fa99439"
+      },
+      "group": "creative_probe",
+      "proposed_action": "do_not_replace_current_probe__existing_decode_fix_and_distinct_movement_guards"
+    },
+    {
+      "path": "test/games/memory_result_frame_test.dart",
+      "status": "added",
+      "producer_blob": "a725ef713a18de925bc933705c74983952c13178",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/test/games/memory_result_frame_test.dart",
+        "bytes": 5988,
+        "sha256": "b42ecb1c96d757f7917e9692f0101a81b3f8e76d36394a58dc89be9113f83bc1",
+        "git_blob": "a725ef713a18de925bc933705c74983952c13178"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "memory_result",
+      "proposed_action": "defer_pending_real_memory_fix_and_source_acceptance"
+    },
+    {
+      "path": "test/tutoring/native_english_activity_test.dart",
+      "status": "modified",
+      "producer_blob": "e12cadfa4bdc33be932fc1e570f5ce51d17f0c39",
+      "old_8b_blob": "70cacfce15bdd374d582c570b49c2a865cee63d6",
+      "target_0b_blob": null,
+      "before": {
+        "bytes": 7588,
+        "sha256": "cf115557354b01a7d873654a74fa2c5e52860df1a8baf967df126d2a712a8114",
+        "git_blob": "70cacfce15bdd374d582c570b49c2a865cee63d6"
+      },
+      "source": {
+        "file": "original-source/host-505/test/tutoring/native_english_activity_test.dart",
+        "bytes": 7686,
+        "sha256": "3f0f0c9c331c23fd1f8372349a941976657c10d450c629092d86ec59dacc396c",
+        "git_blob": "e12cadfa4bdc33be932fc1e570f5ce51d17f0c39"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "observed_diff": {
+        "file": "comparisons/test__tutoring__native_english_activity_test.dart.8b-to-505.patch",
+        "bytes": 1136,
+        "sha256": "b34f2a082fbbe3878addfcece9793364f990dd70711d965d16ed70bd8ad79605",
+        "git_blob": "b5c6ffc5e03820acad98cf936245c97e768ed189"
+      },
+      "group": "english_objects",
+      "proposed_action": "candidate_additive_expanded_English_contract_after_combined_source_qualification"
+    },
+    {
+      "path": "tool/check_native_english_activity.dart",
+      "status": "modified",
+      "producer_blob": "2d304dfbf89e7be2cd123808b8a3352d7622e87b",
+      "old_8b_blob": "85a96d92e0eac2c1d9f6791820d8990d816fdc48",
+      "target_0b_blob": null,
+      "before": {
+        "bytes": 9307,
+        "sha256": "b812765a787a5553cd472271a4eb4ed13b2f5b6e72d8c1721408bfbcb3c28bb8",
+        "git_blob": "85a96d92e0eac2c1d9f6791820d8990d816fdc48"
+      },
+      "source": {
+        "file": "original-source/host-505/tool/check_native_english_activity.dart",
+        "bytes": 12610,
+        "sha256": "59c89f50faf62be0f06c3d7c35f4c7d517ec67c73f059779a57767951569997a",
+        "git_blob": "2d304dfbf89e7be2cd123808b8a3352d7622e87b"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "observed_diff": {
+        "file": "comparisons/tool__check_native_english_activity.dart.8b-to-505.patch",
+        "bytes": 5081,
+        "sha256": "96e45f6dbe40cd38260dedc9697dc9430d79f3c87e8764b7f3b424122b271989",
+        "git_blob": "fe58240e52db1997730ba38848b8ab86a27a3861"
+      },
+      "group": "english_objects",
+      "proposed_action": "candidate_additive_expanded_English_contract_after_combined_source_qualification"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-complete.layout.json",
+      "status": "added",
+      "producer_blob": "17c5648abd3b3ba5ef5b8d884093e1e1445e62df",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-complete.layout.json",
+        "bytes": 43004,
+        "sha256": "a9d4da5aa6a1666edc1a15324ce9412be42c2ac420e2bda98cb7035fbd1a9a4d",
+        "git_blob": "17c5648abd3b3ba5ef5b8d884093e1e1445e62df"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "english_objects",
+      "proposed_action": "candidate_additive_expanded_English_contract_after_combined_source_qualification"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-hint.layout.json",
+      "status": "added",
+      "producer_blob": "935b65a28f105301176a9aacf659582ba630b7d5",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-hint.layout.json",
+        "bytes": 43005,
+        "sha256": "d0059e9bf1351b32364747dbbb3214c2cda7dc153b2d04689b503efe015f5682",
+        "git_blob": "935b65a28f105301176a9aacf659582ba630b7d5"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "english_objects",
+      "proposed_action": "candidate_additive_expanded_English_contract_after_combined_source_qualification"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-start.layout.json",
+      "status": "added",
+      "producer_blob": "a32884e7ed90cfe888aeb50e86f9ed9ba57d2391",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-start.layout.json",
+        "bytes": 42195,
+        "sha256": "e1e79909c444444ac45e467d6abfd9f792f999fe1f37bf9e28425dd17885e6e8",
+        "git_blob": "a32884e7ed90cfe888aeb50e86f9ed9ba57d2391"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "english_objects",
+      "proposed_action": "candidate_additive_expanded_English_contract_after_combined_source_qualification"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/english_objects/english-pen-1080x2400-start.layout.json",
+      "status": "added",
+      "producer_blob": "1bf23985d82681f5a152790ae39cbbdbd31fe431",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/tools/android_qa/tests/fixtures/english_objects/english-pen-1080x2400-start.layout.json",
+        "bytes": 37009,
+        "sha256": "91c4a6d3ce55a918b9854fd692869bb1b97fcacaa05dfc76c3dbbf711a27166f",
+        "git_blob": "1bf23985d82681f5a152790ae39cbbdbd31fe431"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "english_objects",
+      "proposed_action": "candidate_additive_expanded_English_contract_after_combined_source_qualification"
+    },
+    {
+      "path": "tools/android_qa/tests/test_english_objects_android_probe.py",
+      "status": "added",
+      "producer_blob": "19f640b0f534837eb53be1e401f471a6a9e280d5",
+      "old_8b_blob": null,
+      "target_0b_blob": null,
+      "source": {
+        "file": "original-source/host-505/tools/android_qa/tests/test_english_objects_android_probe.py",
+        "bytes": 20503,
+        "sha256": "ecd76b3da990e5477cadd77223782ca7af853a0f8e4753b67a9008c83c460d8c",
+        "git_blob": "19f640b0f534837eb53be1e401f471a6a9e280d5"
+      },
+      "materialization": "complete_original_API_diff_applied_to_exact_old_blob_with_final_Gitblob_match",
+      "disposition": "unapplied_new_source_review",
+      "group": "english_objects",
+      "proposed_action": "candidate_additive_expanded_English_contract_after_combined_source_qualification"
+    }
+  ],
+  "decisions": [
+    {
+      "group": "memory_result",
+      "paths": [
+        "lib/features/games/memory/lumo_memory_game.dart",
+        "test/games/memory_result_frame_test.dart"
+      ],
+      "finding": "Published producer switches one result-route callback from post-frame to microtask and adds a durable-award one-frame countercase. The new exact case still fails at line134 in two independent original CI jobs. The former full-round case is no longer listed among failing tests in505; this does not qualify the new frame contract.",
+      "decision": "WAIT_FOR_PRODUCER_FIX; no parallel implementation, no weakened assertion."
+    },
+    {
+      "group": "english_objects",
+      "finding": "Closed Host catalog now14 entries, including all ten original school words. Adds corresponding Host regression/Dart contract and read-only Android illustration probe with28 source-level negative methods and4 desktop-layout fixtures. The actual new Native pair now completes10/2955 Dart and7649 renderer checks on505/47ca.",
+      "decision": "Relevant future additive product/test cluster; requires old43 Host+30 Native authority/presenter dependencies and preserved target Village/Wisp merges. No Android execution of the new probe observed."
+    },
+    {
+      "group": "c4_navigation",
+      "finding": "Producer adds current-route classification for paused game, Cards showcase, game hub and main game tab. Its current C4 architecture is different from target0b. Target already has bound artifact/current-APK identity,900s budget, fresh two-observation touches,30s observed return landing, durable ACK/process/prefs/reopen chain.",
+      "decision": "Do not replace the target probe. Route classifier/6XML fixture idea may become a narrow adapter only if the actual target entry path needs it; not a confirmed active-candidate defect. Preserve wait_for_flutter_control and all target guards."
+    },
+    {
+      "group": "creative_decode",
+      "finding": "Producer adds full-video decoding with passthrough and enc_time_base=-1; target already has independently repaired enc_time_base=demux with hard stderr/exit/full decode gates. New Producer original-video tests currently error for missing executable prerequisites in its Astra job.",
+      "decision": "No duplicate decoder replacement or foreign workflow transplant. Preserve the target fix and distinguish version/source compatibility from an actual decode replay; no new replay performed here."
+    },
+    {
+      "group": "creative_treasure",
+      "finding": "Producer allows one positive small first calibration segment then requires stricter later progress, reads two actual playable HUD frames and derives the original ring. Target has a different18-gesture/1200-second input-arrival controller with its own identity/solve/inventory/resume checks, versus Producer12 segments.",
+      "decision": "No threshold or budget transplant. Any future adapter must be tied to its actual target failure and retain source,identity,strict subsequent progress,frame,deadline,question and durable-return gates. Published source fixtures are separated from actual artifact/visual verification."
+    }
+  ],
+  "native_addendum": {
+    "review": "independent-native-addendum/review.json",
+    "sha256": "a322b0708a3b59224789e8bfa4ed9d77f4d4a274aaf1ff449ea65ee354efa04f",
+    "relevant_paths": 10,
+    "excluded_paths": 3,
+    "changes": "nullable Quiz explanation with closed types and real50:50 hiding; seven English geometries; short-landscape margin; two regression sources/four JSON fixtures",
+    "existing_two_conflicts_preserved": true,
+    "later_english_success": "Separately recorded by this agent after the peer snapshot; peer text unchanged."
+  },
+  "remaining_gates": [
+    "A genuinely successful Producer HostMemory/complete-source acceptance, not only Native pair successes.",
+    "A separately published explicit merged Host/Native candidate; all current target repairs/modules must remain.",
+    "Existing52/17, Dream,Discovery,Village,C4,Cards,PCM/Consent/Garage/Update and fullFlutter gates remain.",
+    "Actual current APK Android entry,input,save/profile/return and visual proofs; no inherited source-only success.",
+    "Published JSON/PNG/video fixtures require original artifact comparison before claiming historical artifact identity; no binary download occurred here."
+  ],
+  "scope": {
+    "product_or_git_writes": false,
+    "tests_or_imports": false,
+    "device_or_engine_runs": false,
+    "ci_or_remote_mutations": false,
+    "source_materialization_only": true
+  },
+  "api_original_integrity": "Every saved API/log string is fully UTF-8-read back; JSON originals parse completely. Exact source strings reconstructed only when final published Gitblob matches."
+}

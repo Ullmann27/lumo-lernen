@@ -1,0 +1,14 @@
+{
+  "status": "ALL_ARCHIVE_MEMBERS_BYTE_EQUAL",
+  "archive": {
+    "path": "/tmp/host0cda-runtime-originals-checkpoint-20261114/technical-originals.tar.gz",
+    "bytes": 3787926,
+    "sha256": "7b2b84746de7e4910db85ae422d9317e44617dbd75df251245a12766d627fa8d",
+    "git_blob": "d03b01c769fa9d88baf7effa653ffb7f14867b7f"
+  },
+  "members": 188,
+  "uncompressed_bytes": 15282094,
+  "every_member_complete_readback_and_source_bytes_equal": true,
+  "all_399_original_member_bytes_unchanged": true,
+  "full_original_zip_unchanged": true
+}

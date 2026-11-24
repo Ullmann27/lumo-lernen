@@ -1,0 +1,19 @@
+{
+  "observedAtUtc": "2026-11-16T08:02:58.558771+00:00",
+  "qaProducer": "fde05e41ef4b6337a2f19e017d62ad04c96b2107",
+  "qaTree": "d98ca3f9ec556ad39867cc7cacd0804382eaa8d3",
+  "previousQa": "59ab8cd000d4cca1c9c414920ccebf9fc5d1c7ba",
+  "onlyChangedPath": ".github/probes/lumo_nextgen_2031_runtime_cases.json",
+  "onlyChangedValue": "caseAttempt5 to6",
+  "configSha256": "42e137bf9fe7a8cbf7c38b17b20d72dde44dcd4c0e0bcf1dc272f66b02c562ae",
+  "all48FullReplaySourcesUnchanged": true,
+  "allOtherSourceBytesUnchangedFromAttempt5": true,
+  "sourceProductUnchanged": true,
+  "originalAttempt5Status": "FAIL",
+  "reason": "One independently reviewed fresh run after observed ADB offline then not-found during onboarding, before any supplemental case; all existing strict gates remain unchanged.",
+  "independentReviewer": "Conversation",
+  "newTestsRun": false,
+  "newAndroidStarted": false,
+  "boundDecision": "../ci-2031-runtime-cases-onboarding-transfer-failure/bounded-fresh-run-decision.json",
+  "priorPublishedRoot": "bd1712e6527c94186d34faca508101e08b2053d0"
+}

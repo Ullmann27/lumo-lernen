@@ -1,0 +1,289 @@
+{
+  "schema": 1,
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "host": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "run": 43596913210,
+    "attempt": 1,
+    "job": 132454178537,
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "workflow_blob": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6",
+    "runner": "scripts/run_full_flutter_acceptance.py",
+    "runner_blob": "f6db83c08db2a89c8d422f33a874fde8a0b62f72",
+    "artifact_id": 14115282912,
+    "artifact_size": 363833462,
+    "artifact_sha256": "81132f79c596df4a70f87f4a39b3cebe8fb3405384d34a471cb40c8416d4b6ab",
+    "primary_scope": "Complete unfiltered Flutter suite with captures enabled; not an APK or Android acceptance.",
+    "full_job_log_owner": "android_qa will fetch the terminal complete build log exactly once; not fetched here.",
+    "no_new_test_execution": true
+  },
+  "status": "PASS_FLUTTER_TEST_EXECUTION_WITH_EXPLICIT_CAPTURE_LIMITS",
+  "counts": {
+    "passed": 2627,
+    "failed": 0,
+    "skipped": 0,
+    "pngs": 566
+  },
+  "files": [
+    {
+      "path": "full/acceptance-summary.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/acceptance-summary.json",
+      "bytes": 2382,
+      "sha256": "23b017d6306e582242e1b5d84097ed29b43e100b2b4b0a262fd0c515ffe260fa",
+      "git_blob": "4af95e8d4ef0cedb4b402c99cab6f8475e94f857"
+    },
+    {
+      "path": "full/flutter-machine.jsonl",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/flutter-machine.jsonl",
+      "bytes": 1782291,
+      "sha256": "5ae8d271b4357cab4f2883720e25b9257cc06f52c63b4aae211de461de9300dc",
+      "git_blob": "91663763be8b17b59c907503d417399790c8bb17"
+    },
+    {
+      "path": "full/original-artifact-manifest.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-artifact-manifest.json",
+      "bytes": 233459,
+      "sha256": "b6899b30467382bf0c2cf473388bbfe5b62737c112fd0a750c882ca26de001b8",
+      "git_blob": "73b34002ef01d0782f11f0df7c237e30b93210d1"
+    },
+    {
+      "path": "full/failure-details.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/failure-details.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "git_blob": "fe51488c7066f6687ef680d6bfaa4f7768ef205c"
+    },
+    {
+      "path": "full/portal-and-c4-events.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/portal-and-c4-events.json",
+      "bytes": 8743,
+      "sha256": "bcb307e00a78bca9e27dc6f3290fe686d78811aa543d747e26afbdef245daf38",
+      "git_blob": "4c61b1808e6d49771092b823b6ef45794b538554"
+    },
+    {
+      "path": "full/legacy-c4-capture-original-events.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/legacy-c4-capture-original-events.json",
+      "bytes": 118712,
+      "sha256": "eca91f852083a7c79542657896bced15ebaff5efab75e53d09bae40c608b0898",
+      "git_blob": "146d63a272776120d7cde2ae72fadc6fed99b395"
+    },
+    {
+      "path": "full/legacy-c4-warning-index.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/legacy-c4-warning-index.json",
+      "bytes": 6472,
+      "sha256": "e1f10fa572188b1247b74b6949f3b760eb21a810a763c336ed0ec9047fbd89dd",
+      "git_blob": "677a313944fb5bcc893c123e2dfd6d952708ef97"
+    },
+    {
+      "path": "full/recount.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/recount.json",
+      "bytes": 6299,
+      "sha256": "ca3aed2734fa0a06f7c214ae7846248a09aeaa6791d557f49a481829dd5c3e7e",
+      "git_blob": "50cea443ea3f51a02eb237d8ff694808d3313b53"
+    },
+    {
+      "path": "full/visual-review.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/visual-review.json",
+      "bytes": 10256,
+      "sha256": "c4258b16f19d9d3f7672e2cd2b1835d4fd129499f983b6b8db79aa05a2bec71b",
+      "git_blob": "1f7990514123c185da862d4bc88c990fd4a4ae0a"
+    },
+    {
+      "path": "full/source-map.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/source-map.json",
+      "bytes": 917,
+      "sha256": "f2809211d1e4878ce0f3ac9179e3fa8711f2ffa9d22b0fa8a0f2d7fd14751a50",
+      "git_blob": "61e4c77da0892ab1b5e29dab167e9040c0da3f34"
+    },
+    {
+      "path": "full/original-artifact-metadata.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/original-artifact-metadata.json",
+      "bytes": 839,
+      "sha256": "3e11fe7eecf88f2ddef6ddbc266220373663dcea8a323dab30fea1d43e618e34",
+      "git_blob": "fcec253f92d0e0a4054069f9d2066f9b6df248b3"
+    },
+    {
+      "path": "full/observed-run.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/observed-run.json",
+      "bytes": 15193,
+      "sha256": "6de0cea583abda427f6509870f486b993ff9640687b253b6a80416757dd96c4b",
+      "git_blob": "a29542dc2fd3e7005a8ef47bff01ddf3542be2ca"
+    },
+    {
+      "path": "full/observed-jobs.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/observed-jobs.json",
+      "bytes": 21706,
+      "sha256": "7e381fca6a2e50522ee397f5438ee8ad60cd5f831515da94630014c5bb0ef69c",
+      "git_blob": "4a6f641dbb46001f219c97499d86efcfdeab6b11"
+    },
+    {
+      "path": "full/original-verification.log",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/original-verification.log",
+      "bytes": 2267,
+      "sha256": "85a5ebb0c2374baed87986310cf9116ac1e958f693461fdbb05991b03b36be63",
+      "git_blob": "e1140c2a02c90d6a25942c8ea07912a83ecdb055"
+    },
+    {
+      "path": "full/verification-invocation.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verification-invocation.json",
+      "bytes": 422,
+      "sha256": "eabffa372148e9c749dd1a0f80febe9b8195a2fc9bdc4c2b91537da66f1ec091",
+      "git_blob": "282ad7f0445b169c509a58a31af6a7b6ca402fc0"
+    },
+    {
+      "path": "full/verification-exit-code.txt",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verification-exit-code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "git_blob": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56"
+    },
+    {
+      "path": "full/verify_original_flutter_artifact.py",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/verify_original_flutter_artifact.py",
+      "bytes": 7061,
+      "sha256": "b8cf2ac92eec66376ae49819504a853373234cd9dc55fb8a79de1e5c8aec906b",
+      "git_blob": "ec3e0b5027b1eb9b9c4f74ea9a3f2a8fe5581eb5"
+    },
+    {
+      "path": "full/legacy-c4-original-pngs/connect_overview_fold.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-pngs/games/connect_overview_fold.png",
+      "bytes": 319333,
+      "sha256": "548585b2f6adc11c730ecb113dc4bd5f6dc8832c7ed274d2046c4eb83f435466",
+      "git_blob": "830eedd4fdca5988e34a1c80d203721f6316688d"
+    },
+    {
+      "path": "full/legacy-c4-original-pngs/connect_overview_phone.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-pngs/games/connect_overview_phone.png",
+      "bytes": 550975,
+      "sha256": "1acbe35fa11eefe64a7a98a1436b81526e2552ee2daa490c6b1264f06aff80ba",
+      "git_blob": "ae7a3808bd66e52e6afa436793312df2edceaf92"
+    },
+    {
+      "path": "full/legacy-c4-original-pngs/connect_winglow_fold.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-pngs/games/connect_winglow_fold.png",
+      "bytes": 319333,
+      "sha256": "548585b2f6adc11c730ecb113dc4bd5f6dc8832c7ed274d2046c4eb83f435466",
+      "git_blob": "830eedd4fdca5988e34a1c80d203721f6316688d"
+    },
+    {
+      "path": "full/legacy-c4-original-pngs/connect_winglow_phone.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-pngs/games/connect_winglow_phone.png",
+      "bytes": 275822,
+      "sha256": "57e3f388827b727d2deae33fd0009bbdb25c3ccb89fa5a79f44cc42d984dce05",
+      "git_blob": "9ea484eca7e3b41894151e40faccc97603c01534"
+    },
+    {
+      "path": "dedicated-c4/original-artifact-manifest.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-artifact-manifest.json",
+      "bytes": 3126,
+      "sha256": "a9d3c9ba9caa69ed82d44a74db212388dba7149de5ba3d14803b688855656947",
+      "git_blob": "d8a1ca4e2bfba26f8d6b9d15b5c21909c772933f"
+    },
+    {
+      "path": "dedicated-c4/observed-jobs.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/observed-jobs.json",
+      "bytes": 15473,
+      "sha256": "6ae81bb74099c7c26e96d21ab46920bcfea3f380d58d1524d2c3077184da7b77",
+      "git_blob": "b38bec089cc5b10da6f4a8c422790e3212169170"
+    },
+    {
+      "path": "dedicated-c4/visual-review.json",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/visual-review.json",
+      "bytes": 3359,
+      "sha256": "ce9fbf28b319caae8fd11f49903f409a488469df48694ff4ac89074e43836fbe",
+      "git_blob": "a524fc2c5d3ad870405ee7406b77f7ff6a343b21"
+    },
+    {
+      "path": "README.md",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/README-final.md",
+      "bytes": 6017,
+      "sha256": "5566b1f888caa20fc88cbc543237703df7091eec4dc5fd3748ab89d4987be3c3",
+      "git_blob": "d5be271919b7fba844c97635c7a3cf6f3f3b30cc"
+    },
+    {
+      "path": "dedicated-c4/original-pngs/1200x896.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/1200x896.png",
+      "bytes": 704939,
+      "sha256": "00096d674a7ababe8f21ac3ec7040186e9298e64e83059d9811ac33c2f8880ac",
+      "git_blob": "d322f964259266cb20f6dc3f2f9fc19856e47eaf"
+    },
+    {
+      "path": "dedicated-c4/original-pngs/1280x720.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/1280x720.png",
+      "bytes": 634361,
+      "sha256": "0230d9bc5ef03a35d71643241e8a01ec601d926fd848e6ea14948c976f8a652a",
+      "git_blob": "a5972a6418c9b0938ba860b4fe840110f9fd8951"
+    },
+    {
+      "path": "dedicated-c4/original-pngs/360x800.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/360x800.png",
+      "bytes": 203048,
+      "sha256": "612f0702d283c089bbaf61312ae25f3c0f7f29a3d6343b6e7b63141f2ef690ab",
+      "git_blob": "9fa3a73d509fe2d390f06e9e564a250a93a96706"
+    },
+    {
+      "path": "dedicated-c4/original-pngs/640x360.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/640x360.png",
+      "bytes": 147539,
+      "sha256": "0684430d78676c5cf342c6a6baf27f9c1cddd8609b3e6dfc572961c752671226",
+      "git_blob": "e80f2cdf445a76a90f7b52ec87bb586c8ea79f40"
+    },
+    {
+      "path": "dedicated-c4/original-pngs/740x840.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/dedicated-c4/original-pngs/740x840.png",
+      "bytes": 402409,
+      "sha256": "7429f49fe114e019009d7f12b032103a49d4f6af279260132de6b8ca3d4559b1",
+      "git_blob": "b3fdd99cf5445aaac0b8e3a32599799ff9c4adcb"
+    },
+    {
+      "path": "full/village-original-pngs/village-fold-cover.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-pngs/village/village-fold-cover.png",
+      "bytes": 337946,
+      "sha256": "fa00127e0316de2b083ba8d55578f79e01197203cacc2ad5ff3431d0a47b6361",
+      "git_blob": "a965cb7e56c44af30bf2aee36ede7e3ddc62fe25"
+    },
+    {
+      "path": "full/village-original-pngs/village-fold-landscape.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-pngs/village/village-fold-landscape.png",
+      "bytes": 1102593,
+      "sha256": "213edb9568f70aa0cb1673d06cc5ce242a37385cc29803b69fe5371698ee92ac",
+      "git_blob": "2c3942884d85b5989fd7d27dee7ef0ae897cd12b"
+    },
+    {
+      "path": "full/village-original-pngs/village-fold-open-large-text.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-pngs/village/village-fold-open-large-text.png",
+      "bytes": 600959,
+      "sha256": "a2397df28ac69a41b918a0ea6ffb741bc92b2b7c7cb833874881652bf6ec6d18",
+      "git_blob": "8602020dec10da3f5b6119955e52f3a6e905205d"
+    },
+    {
+      "path": "full/village-original-pngs/village-fold-open.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-pngs/village/village-fold-open.png",
+      "bytes": 595416,
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+      "git_blob": "8d52f1bce929ab0f6f81b221a0d51705d6f9c2ed"
+    },
+    {
+      "path": "full/village-original-pngs/village-fold-wide-min.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-pngs/village/village-fold-wide-min.png",
+      "bytes": 555532,
+      "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9",
+      "git_blob": "f79c4cd22905a8a7ebf9aef4429fd7f63a40a4b2"
+    },
+    {
+      "path": "full/village-original-pngs/village-phone.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/full/verified/original-pngs/village/village-phone.png",
+      "bytes": 401998,
+      "sha256": "12e3d0ca6f514f12b58106ddb1a197bdaa09a773a2703e5d4708db8d6e710dc7",
+      "git_blob": "0a4702d753a41185aa207931e8492f6413bdf8f1"
+    }
+  ],
+  "visual_limits": [
+    "Four legacy C4 captures do not establish their named board/win states; see full/visual-review.json and the 30 original hit-test warnings.",
+    "Six current Village originals and five later dedicated C4 originals were actually viewed. The latter show all seven played pieces and no pause overlay, but no win.",
+    "The independently reviewed current Home originals are indexed separately in the earlier files on this evidence branch.",
+    "The index omits its own hash to avoid self-reference. No APK or Android acceptance is asserted."
+  ]
+}

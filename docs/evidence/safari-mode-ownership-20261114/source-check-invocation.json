@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "review/verify_source.py",
+    "--repo",
+    "/workspace/scratch/909ddb52fe7b/lumo-upstream057-review",
+    "--candidate",
+    "/workspace/scratch/909ddb52fe7b/lumo-safari-mode-repair-9c5a",
+    "--output",
+    "review/source-check.json"
+  ],
+  "cwd": "/workspace/scratch/909ddb52fe7b/lumo-safari-mode-repair-9c5a",
+  "observed_exit_code": 0,
+  "python_version": "3.12.14",
+  "pyyaml_version": "6.0.3",
+  "stdout_and_stderr": "source-check-original.log",
+  "widget_execution": "NOT_RUN",
+  "dart_compilation": "NOT_RUN"
+}

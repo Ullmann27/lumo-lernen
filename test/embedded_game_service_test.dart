@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -106,6 +107,30 @@ void main() {
     nextState.dispose();
   });
 
+  test('Sternenpost: ein quittierter Flug trotz verlorener erster Quittung', () async {
+    const fixture = String.fromEnvironment('LUMO_TEST_FLIGHT_PENDING');
+    pending = fixture.isEmpty
+        ? {'results': [{'game': 'skypost', 'resultId': 'test-post-flight', 'stars': 5, 'solved': 2, 'status': 'completed'}]}
+        : Map<String, dynamic>.from(jsonDecode(File(fixture).readAsStringSync()) as Map);
+    final receipt = (pending['results'] as List).single as Map;
+    expect(receipt['game'], 'skypost');
+    final wallet = RewardWalletRepository();
+    final state = LumoAppState(walletRepository: wallet);
+    final service = EmbeddedGameService(appState: state, wallet: wallet, onDestination: (_) {});
+    failAcknowledgement = true;
+    await service.synchronize();
+    expect((pending['results'] as List), hasLength(1));
+    failAcknowledgement = false;
+    await service.synchronize();
+    expect(pending['results'], isEmpty);
+    expect(acknowledged, [receipt['resultId']]);
+    final stored = await RewardWalletRepository().load();
+    expect(stored.stars, receipt['stars']);
+    expect(stored.gameResultIds, [receipt['resultId']]);
+    service.dispose();
+    state.dispose();
+  });
+
   test('simultaneous resumed callbacks share the same replay operation',
       () async {
     final wallet = RewardWalletRepository();
@@ -175,22 +200,82 @@ void main() {
     final state = LumoAppState(walletRepository: wallet);
     final service = EmbeddedGameService(appState: state, wallet: wallet, onDestination: (_) {});
     pending['results'] = [
-      for (final game in ['build', 'puzzle', 'rhythm', 'treasure'])
+      for (final game in ['build', 'puzzle', 'rhythm', 'treasure', 'chess'])
         {'game': game, 'resultId': 'creative-$game', 'status': 'completed', 'stars': 3, 'xp': 24},
       {'game': 'build', 'resultId': 'bad-xp', 'status': 'completed', 'stars': 3, 'xp': -1},
       {'game': 'puzzle', 'resultId': 'bad-stars', 'status': 'completed', 'stars': 101, 'xp': 24},
     ];
     failAcknowledgement = true;
     await service.synchronize();
-    expect(state.state.stars, 12);
-    expect(state.state.xp, 96);
+    expect(state.state.stars, 15);
+    expect(state.state.xp, 120);
     failAcknowledgement = false;
     await service.synchronize();
-    expect(state.state.stars, 12);
-    expect(state.state.xp, 96);
-    expect(acknowledged, hasLength(4));
+    expect(state.state.stars, 15);
+    expect(state.state.xp, 120);
+    expect(acknowledged, hasLength(5));
     expect((pending['results'] as List).map((e) => e['resultId']), ['bad-xp', 'bad-stars']);
     service.dispose(); state.dispose();
+  });
+
+  test('card table and Lumo Lauf results are booked exactly once', () async {
+    final wallet = RewardWalletRepository();
+    final state = LumoAppState(walletRepository: wallet);
+    final service = EmbeddedGameService(
+        appState: state, wallet: wallet, onDestination: (_) {});
+    // Payload shapes as the game sends them: the card table carries explicit
+    // XP, the run reports its solved learning stops (ten XP each).
+    pending['results'] = [
+      {
+        'game': 'cards',
+        'resultId': 'cards-sternenstich-1',
+        'status': 'completed',
+        'variant': 'sternenstich',
+        'stars': 4,
+        'xp': 40,
+        'place': 1,
+        'players': 4,
+        'difficulty': 'mittel',
+        'rounds': 3,
+        'points': 17,
+      },
+      {
+        'game': 'run',
+        'resultId': 'run-dschungelherz-1',
+        'status': 'completed',
+        'stars': 15,
+        'solved': 3,
+        'course': 'dschungelherz',
+        'rating': 3,
+        'timeMs': 181000,
+      },
+      {
+        'game': 'uno',
+        'resultId': 'unknown-game',
+        'status': 'completed',
+        'stars': 5,
+        'xp': 10,
+      },
+    ];
+    await service.synchronize();
+    expect(state.state.stars, 19);
+    expect(state.state.xp, 70);
+    expect(acknowledged, ['cards-sternenstich-1', 'run-dschungelherz-1']);
+    // A replayed delivery of the same results must not pay twice.
+    pending['results'] = [
+      {
+        'game': 'cards',
+        'resultId': 'cards-sternenstich-1',
+        'status': 'completed',
+        'stars': 4,
+        'xp': 40,
+      },
+    ];
+    await service.synchronize();
+    expect(state.state.stars, 19);
+    expect(state.state.xp, 70);
+    service.dispose();
+    state.dispose();
   });
 
 }

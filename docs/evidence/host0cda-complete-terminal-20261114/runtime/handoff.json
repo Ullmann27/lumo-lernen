@@ -1,0 +1,58 @@
+{
+  "status": "FROZEN",
+  "run_id": 43637785992,
+  "attempt": 1,
+  "job_id": 132578338806,
+  "artifact_id": 14130094271,
+  "host": {
+    "head": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+    "tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+    "scope": [
+      "lib",
+      "pubspec.yaml",
+      "pubspec.lock",
+      "config/godot-source.json",
+      "test/games/connect_four_runtime_bridge.dart",
+      "scripts/run_connect_four_runtime.py"
+    ],
+    "exact_scoped_files": 458,
+    "all_oids_modes_match_exact_tree": true,
+    "original_before_after_equal": true
+  },
+  "native": {
+    "head": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+    "tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+    "scope": [
+      "scripts",
+      "scenes",
+      "assets",
+      "project.godot"
+    ],
+    "exact_scoped_files": 1295,
+    "all_oids_modes_match_exact_tree": true,
+    "original_before_after_equal": true
+  },
+  "technical_archive": {
+    "path": "/tmp/host0cda-runtime-originals-checkpoint-20261114/technical-originals.tar.gz",
+    "bytes": 3787926,
+    "sha256": "7b2b84746de7e4910db85ae422d9317e44617dbd75df251245a12766d627fa8d",
+    "git_blob": "d03b01c769fa9d88baf7effa653ffb7f14867b7f"
+  },
+  "original_root": "/tmp/host0cda-runtime-native-evidence-20261114/runtime",
+  "replay_report": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/runtime-original-replay.json",
+  "visual_catalog": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/runtime-visual-catalog.json",
+  "original_full_job_log": {
+    "bytes": 293390,
+    "sha256": "c9084ede77503455ec36eed7abf9d08f84eee10c1a03302792dddc4e09f5cf8b",
+    "git_blob": "5fa9893697221b7f2f224755b22a210c2a83d67f"
+  },
+  "full_original_archive": {
+    "path": "/tmp/host0cda-runtime-native-evidence-20261114/runtime/original-14130094271.zip",
+    "bytes": 22161744,
+    "sha256": "50f23a953075c8d58cec71284eb052f2c880019a9106944e169f8b6c33ebeec3",
+    "git_blob": "93cfc25a2476296a01170c463ca7e84018a6d517"
+  },
+  "scoped_result": "Actual desktop Runtime170/250 frames with Return21/Wisp14 and exact pure replay.",
+  "new_engine_or_product_tests": false,
+  "complete_workflow_or_apk_or_android_or_fps_acceptance": false
+}

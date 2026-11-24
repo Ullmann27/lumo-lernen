@@ -1,0 +1,60 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/rewards/legacy_reward_history_owner_test.dart
+00:00 +0: Shop shows legacy history only for Self across A/B/Self/A without modifying stored data
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+
+When the exception was thrown, this was the stack:
+#4      _visibleHistory (file:///tmp/lumo-integration-20261122/lumo-lernen/test/rewards/legacy_reward_history_owner_test.dart:54:3)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///tmp/lumo-integration-20261122/lumo-lernen/test/rewards/legacy_reward_history_owner_test.dart:118:9)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///tmp/lumo-integration-20261122/lumo-lernen/test/rewards/legacy_reward_history_owner_test.dart line 54
+The test description was:
+  Shop shows legacy history only for Self across A/B/Self/A without modifying stored data
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -1: Shop shows legacy history only for Self across A/B/Self/A without modifying stored data [E]
+  Test failed. See exception logs above.
+  The test description was: Shop shows legacy history only for Self across A/B/Self/A without modifying stored data
+  
+00:00 +0 -1: Profile shows legacy history only for Self across A/B/Self/A without modifying stored data
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+
+When the exception was thrown, this was the stack:
+#4      _visibleHistory (file:///tmp/lumo-integration-20261122/lumo-lernen/test/rewards/legacy_reward_history_owner_test.dart:54:3)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///tmp/lumo-integration-20261122/lumo-lernen/test/rewards/legacy_reward_history_owner_test.dart:118:9)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///tmp/lumo-integration-20261122/lumo-lernen/test/rewards/legacy_reward_history_owner_test.dart line 54
+The test description was:
+  Profile shows legacy history only for Self across A/B/Self/A without modifying stored data
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -2: Profile shows legacy history only for Self across A/B/Self/A without modifying stored data [E]
+  Test failed. See exception logs above.
+  The test description was: Profile shows legacy history only for Self across A/B/Self/A without modifying stored data
+  
+00:01 +0 -2: Some tests failed.
+
+Failing tests:
+  /tmp/lumo-integration-20261122/lumo-lernen/test/rewards/legacy_reward_history_owner_test.dart: Profile shows legacy history only for Self across A/B/Self/A without modifying stored data
+  /tmp/lumo-integration-20261122/lumo-lernen/test/rewards/legacy_reward_history_owner_test.dart: Shop shows legacy history only for Self across A/B/Self/A without modifying stored data

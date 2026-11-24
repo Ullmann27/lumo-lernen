@@ -1,0 +1,247 @@
+{
+  "schema": 1,
+  "host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "tree": "f3a7df4c3112ac63577db00a9637facfea5c0175",
+  "files": [
+    {
+      "path": ".github/probes/lumo_connect_four_android_probe.py",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958",
+      "bytes_in_tree": 28798,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "git_blob": "10d5caa657552a0168e5d90cf5bac2ec94b90521",
+      "bytes_in_tree": 72474,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "git_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064",
+      "bytes_in_tree": 49103,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "config/godot-source.json",
+      "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a",
+      "bytes_in_tree": 145,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "git_blob": "85fbad4a0b09753a7f22663690a9660f98382f39",
+      "bytes_in_tree": 49784,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_engine.dart",
+      "git_blob": "0ad49aeaab65ea34ceb387e73788cdb886a210db",
+      "bytes_in_tree": 9755,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "git_blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "bytes_in_tree": 12082,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "git_blob": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "bytes_in_tree": 9737,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "git_blob": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+      "bytes_in_tree": 43222,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_stage.dart",
+      "git_blob": "84c5ff9949a216331d228128f02415a47833396b",
+      "bytes_in_tree": 10519,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "git_blob": "597defa53a3959a3b1fa95f1e495b91a9ce47af5",
+      "bytes_in_tree": 30182,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "git_blob": "a5ad13f364e40d19ab2b4c809dbb4ea3729f631d",
+      "bytes_in_tree": 6778,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "git_blob": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "bytes_in_tree": 3696,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "git_blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "bytes_in_tree": 33174,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "git_blob": "625f7a73b71046225bbba395920d9d8a59d5775c",
+      "bytes_in_tree": 26157,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/photo_lesson/lumo_photo_lesson_screen.dart",
+      "git_blob": "fdf6f139a00423fb944444735b81c5406271ec86",
+      "bytes_in_tree": 23548,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/photo_lesson/photo_lesson_practice.dart",
+      "git_blob": "6ee129d21a7935ef895bffdf262ba08dfa8370f2",
+      "bytes_in_tree": 2467,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "git_blob": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "bytes_in_tree": 28091,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "git_blob": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "bytes_in_tree": 38878,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "git_blob": "123c13786584c3f9c487ae1b71317841d2995420",
+      "bytes_in_tree": 2434,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+      "git_blob": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+      "bytes_in_tree": 39576,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/writing/writing_engine.dart",
+      "git_blob": "a6df9ce87657681d776d5f46ff10a63acf74b6ba",
+      "bytes_in_tree": 57931,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/features/writing/writing_feature_flags.dart",
+      "git_blob": "41000a96041c2fd4e43ed228666f66650e629719",
+      "bytes_in_tree": 1534,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/widgets/design/lumo_character_stage.dart",
+      "git_blob": "7104a8c60311edca8c63bf2bf05e0fc3a8b3e4b3",
+      "bytes_in_tree": 1770,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "lib/widgets/fox/lumo_character.dart",
+      "git_blob": "c6084fab450b08867cee138c9eb384bb1d20eced",
+      "bytes_in_tree": 17665,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "pubspec.lock",
+      "git_blob": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1",
+      "bytes_in_tree": 24469,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "pubspec.yaml",
+      "git_blob": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "bytes_in_tree": 2718,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "git_blob": "77e84cbc276f1653c23e6ebd3b5bd06f3fc4aeec",
+      "bytes_in_tree": 17393,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "git_blob": "bb496435fe24ecd34fd24809e12d51df6c2952be",
+      "bytes_in_tree": 11403,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871",
+      "bytes_in_tree": 67003,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "git_blob": "9cbc865858f3337ca2cef66bf0d90d29e2b8777c",
+      "bytes_in_tree": 10687,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "test/learning_modules/deutsch_sach_module_progress_test.dart",
+      "git_blob": "c1123ff353e10308d454449fe9eccf4df5ff1b64",
+      "bytes_in_tree": 21107,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "test/math_exact_topic_selection_test.dart",
+      "git_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8",
+      "bytes_in_tree": 402,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "test/support/math_exact_topic_selection_contract.dart",
+      "git_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2",
+      "bytes_in_tree": 7699,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "test/wort_diktat_gesture_regression_test.dart",
+      "git_blob": "d8507944cb1ac781ab2ccb3eb428152549a0df17",
+      "bytes_in_tree": 12858,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "git_blob": "5bc2336a8da1f71e6c64a2efdcb29d6965a1d8aa",
+      "bytes_in_tree": 36130,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "tools/android_qa/kart_android_race.py",
+      "git_blob": "a0aad12a6162370e9c0e35849e213963c76c67d2",
+      "bytes_in_tree": 39513,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "git_blob": "bc71fd6556418bd71a99b24af047ea0f7e51d7c3",
+      "bytes_in_tree": 20777,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "git_blob": "95b57595d0cc788746c20fe5c26ef448c18121c2",
+      "bytes_in_tree": 8921,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    },
+    {
+      "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+      "git_blob": "5721274734e111e96d55762d86b3d3e830fc26e8",
+      "bytes_in_tree": 4697,
+      "verification": "Exact entry in fully preserved current 0b7 recursive Git tree; not an unperformed content or runtime claim."
+    }
+  ]
+}

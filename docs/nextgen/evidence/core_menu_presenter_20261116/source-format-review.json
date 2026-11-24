@@ -1,0 +1,63 @@
+{
+  "base": "fd4a1eea31bcf1aeff41086e3e739da1136933d2",
+  "checks": [
+    {
+      "command": [
+        "/workspace/scratch/c5a7dadab95f/toolchain/flutter/bin/dart",
+        "format",
+        "--language-version=3.4",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib/app/lumo_companion_host.dart",
+        "lib/widgets/fox/lumo_free_companion.dart"
+      ],
+      "exit_code": 0,
+      "stdout": "Formatted 2 files (0 changed) in 0.03 seconds.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "source_checks": {
+    "existing_menu_builder_tokens_identical": true,
+    "existing_post_menu_scope_action_gates_byte_identical": true,
+    "existing_showLumoConversation_body_byte_identical": true,
+    "existing_exact_route_report_methods_byte_identical": true,
+    "existing_ValueKeys_unchanged": true,
+    "default_menu_parameters_retained": [
+      "context",
+      "isScrollControlled:true",
+      "showDragHandle:true",
+      "useSafeArea:false(default)"
+    ],
+    "owned_menu_safe_area_explicitly_false": true,
+    "existing_conversation_safe_area_default_still_true": true,
+    "presenter_null_result_does_not_fall_back": true,
+    "new_helper_waits_for_route_completed": true
+  },
+  "runtime_tests_run": false,
+  "flutter_analysis_run": false,
+  "language_version_basis": "fd4a1ee pubspec.yaml sdk lower bound >=3.4.0; explicit package language version for sparse checkout",
+  "inspection_notes": [
+    "An initial line-by-line builder comparison rejected formatter line wrapping; the final token comparison preserves quoted string contents and passed.",
+    "The first formatter check without a package config used the SDK default; the final check explicitly uses the actual package language version 3.4."
+  ],
+  "files": {
+    "lib/app/lumo_companion_host.dart": {
+      "bytes": 12843,
+      "sha256": "be927b5ad93782ec945cb0302e70e7601fe644ae749e632a5007ea490c1e8d33"
+    },
+    "lib/widgets/fox/lumo_free_companion.dart": {
+      "bytes": 27242,
+      "sha256": "a361c60177ef9e8f7a011178b74d135604a135659839e0c3edf9d300ee5f2643"
+    }
+  }
+}

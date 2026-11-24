@@ -1,0 +1,57 @@
+00:00 +0: loading /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart
+00:00 +0: LumoLearningFeedbackEngine uses coaching tone on first wrong answer
+00:00 +1: LumoLearningFeedbackEngine uses teacher-like rescue tone from second wrong answer
+00:00 +2: LumoLearningFeedbackEngine resets wrong streak after correct answer
+00:00 +3: LumoLearningFeedbackEngine guided successes receive practice praise without capability claims
+00:00 +3 -1: LumoLearningFeedbackEngine guided successes receive practice praise without capability claims [E]
+  Expected: LumoFeedbackTone:<LumoFeedbackTone.encouraging>
+    Actual: LumoFeedbackTone:<LumoFeedbackTone.improvement>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/lumo_learning_feedback_engine_test.dart 52:9   main.<fn>.<fn>
+  
+00:00 +3 -1: LumoLearningFeedbackEngine guided answers cannot seed a later independent success streak
+00:00 +3 -2: LumoLearningFeedbackEngine guided answers cannot seed a later independent success streak [E]
+  Expected: not LumoFeedbackTone:<LumoFeedbackTone.streak>
+    Actual: LumoFeedbackTone:<LumoFeedbackTone.streak>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/lumo_learning_feedback_engine_test.dart 67:7   main.<fn>.<fn>
+  
+00:00 +3 -2: LumoLearningFeedbackEngine practice does not erase an existing independent series
+00:00 +3 -3: LumoLearningFeedbackEngine practice does not erase an existing independent series [E]
+  Expected: null
+    Actual: 'Mini-Abzeichen: 3er-Fuchsserie'
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/lumo_learning_feedback_engine_test.dart 81:7   main.<fn>.<fn>
+  
+00:00 +3 -3: LumoLearningFeedbackEngine guided mistakes do not produce an independent wrong-answer series
+00:00 +3 -4: LumoLearningFeedbackEngine guided mistakes do not produce an independent wrong-answer series [E]
+  Expected: LumoFeedbackTone:<LumoFeedbackTone.coaching>
+    Actual: LumoFeedbackTone:<LumoFeedbackTone.rescue>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/lumo_learning_feedback_engine_test.dart 91:9   main.<fn>.<fn>
+  
+00:00 +3 -4: LumoLearningFeedbackEngine fast guided answers cannot seed an independent speed badge
+00:00 +3 -5: LumoLearningFeedbackEngine fast guided answers cannot seed an independent speed badge [E]
+  Expected: null
+    Actual: 'Mini-Abzeichen: Blitzblick'
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/lumo_learning_feedback_engine_test.dart 105:7  main.<fn>.<fn>
+  
+00:00 +3 -5: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine fast guided answers cannot seed an independent speed badge
+  /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine guided answers cannot seed a later independent success streak
+  /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine guided mistakes do not produce an independent wrong-answer series
+  /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine guided successes receive practice praise without capability claims
+  /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine practice does not erase an existing independent series

@@ -1,0 +1,24 @@
+test_actual_upload_digest_is_canonicalized_against_rest_metadata (test_connect_four_android_evidence.BindingTests.test_actual_upload_digest_is_canonicalized_against_rest_metadata) ... ok
+test_real_size_identifiers_and_exact_source_contract (test_connect_four_android_evidence.BindingTests.test_real_size_identifiers_and_exact_source_contract) ... ok
+test_rejects_wrong_source_workflow_attempt_artifact_and_job (test_connect_four_android_evidence.BindingTests.test_rejects_wrong_source_workflow_attempt_artifact_and_job) ... ok
+test_complete_synthetic_observation_replay (test_connect_four_android_evidence.CompleteEvidenceTests.test_complete_synthetic_observation_replay) ... /workspace/scratch/b3485b7bb989/host-c4-pipeline-20261114/proposed/tools/android_qa/connect_four_android_evidence.py:339: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  sampled = list(image.crop(box).getdata())
+ok
+test_failure_status_cannot_be_relabelled_with_old_binding (test_connect_four_android_evidence.CompleteEvidenceTests.test_failure_status_cannot_be_relabelled_with_old_binding) ... ok
+test_fresh_heartbeat_and_actual_density_are_mandatory (test_connect_four_android_evidence.CompleteEvidenceTests.test_fresh_heartbeat_and_actual_density_are_mandatory) ... ok
+test_original_byte_change_and_unlisted_file_fail (test_connect_four_android_evidence.CompleteEvidenceTests.test_original_byte_change_and_unlisted_file_fail) ... ok
+test_return_cannot_omit_actual_back_touch (test_connect_four_android_evidence.CompleteEvidenceTests.test_return_cannot_omit_actual_back_touch) ... ok
+test_state_chain_cannot_skip_first_child_bot_pair (test_connect_four_android_evidence.CompleteEvidenceTests.test_state_chain_cannot_skip_first_child_bot_pair) ... ok
+test_ack_requires_actual_bot_and_same_round (test_connect_four_android_evidence.ObservationTests.test_ack_requires_actual_bot_and_same_round) ... ok
+test_actual_complete_target_and_density (test_connect_four_android_evidence.ObservationTests.test_actual_complete_target_and_density) ... ok
+test_anr_and_engine_errors_remain_rejected (test_connect_four_android_evidence.ObservationTests.test_anr_and_engine_errors_remain_rejected) ... ok
+test_flutter_target_requires_actual_package_and_unambiguous_full_control (test_connect_four_android_evidence.ObservationTests.test_flutter_target_requires_actual_package_and_unambiguous_full_control) ... ok
+test_no_clipped_small_duplicate_fake_or_other_revision_target (test_connect_four_android_evidence.ObservationTests.test_no_clipped_small_duplicate_fake_or_other_revision_target) ... ok
+test_owner_and_durable_round_must_match (test_connect_four_android_evidence.ObservationTests.test_owner_and_durable_round_must_match) ... ok
+test_pixel_evidence_rejects_missing_actual_acknowledged_disc (test_connect_four_android_evidence.ObservationTests.test_pixel_evidence_rejects_missing_actual_acknowledged_disc) ... ok
+test_reopen_requires_same_round_and_new_token (test_connect_four_android_evidence.ObservationTests.test_reopen_requires_same_round_and_new_token) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 17.667s
+
+OK

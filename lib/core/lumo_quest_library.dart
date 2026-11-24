@@ -56,7 +56,7 @@ class LumoQuestLibrary {
   static LumoQuest _grade1Apfelgarten() => LumoQuest(
         id: 'q1_apfelgarten',
         title: 'Lumo und der Apfelgarten',
-        summary: 'Hilf Lumo, die Apfelernte zu zaehlen!',
+        summary: 'Hilf Lumo, die Apfelernte zu zählen!',
         emoji: '🍎',
         story: LumoStory(
           title: 'Lumo und der Apfelgarten',
@@ -64,29 +64,29 @@ class LumoQuestLibrary {
           location: 'Apfelgarten',
           theme: 'Ernte',
           gradeLevel: 1,
-          keyPoints: const ['Plus bis 10', 'Mengen zaehlen'],
+          keyPoints: const ['Plus bis 10', 'Mengen zählen'],
           newWords: const ['Apfel', 'Korb', 'Baum'],
           pages: const <LumoStoryPage>[
             LumoStoryPage(
               pageNum: 1,
-              text: 'Lumo steht im grossen Apfelgarten. Die Aeste haengen voller roter Aepfel. "So viele!", staunt Lumo. "Heute brauche ich Hilfe beim Zaehlen."',
+              text: 'Lumo steht im großen Apfelgarten. Die Äste hängen voller roter Äpfel. „So viele!“, staunt Lumo. „Heute brauche ich Hilfe beim Zählen.“',
               imagePrompt: 'Fuchs Lumo in einem sonnigen Apfelgarten, viele rote Aepfel an den Baeumen',
               newWord: 'Apfel',
             ),
             LumoStoryPage(
               pageNum: 2,
-              text: 'Im ersten Korb liegen 3 Aepfel. Lumo legt 4 weitere dazu. Wie viele Aepfel sind jetzt im Korb?',
+              text: 'Im ersten Korb liegen 3 Äpfel. Lumo legt 4 weitere dazu. Wie viele Äpfel sind jetzt im Korb?',
               imagePrompt: 'Holzkorb mit roten Aepfeln, daneben Fuchs Lumo',
               exercise: StoryExercise(
                 type: StoryExerciseType.mathPlus,
-                prompt: '3 Aepfel + 4 Aepfel = ?',
+                prompt: '3 Äpfel + 4 Äpfel = ?',
                 correctAnswer: '7',
                 options: <String>['6', '7', '8'],
               ),
             ),
             LumoStoryPage(
               pageNum: 3,
-              text: 'Super! 7 Aepfel sind im ersten Korb. Lumo trifft jetzt Hasi den Hasen. Hasi hat 2 Aepfel. Lumo gibt ihm 5 dazu. Wie viele hat Hasi nun?',
+              text: 'Super! 7 Äpfel sind im ersten Korb. Lumo trifft jetzt Hasi den Hasen. Hasi hat 2 Äpfel. Lumo gibt ihm 5 dazu. Wie viele hat Hasi nun?',
               imagePrompt: 'Hase Hasi mit Aepfeln, Fuchs Lumo gibt mehr Aepfel',
               exercise: StoryExercise(
                 type: StoryExerciseType.mathPlus,
@@ -97,18 +97,18 @@ class LumoQuestLibrary {
             ),
             LumoStoryPage(
               pageNum: 4,
-              text: 'Hasi und Lumo schauen auf zwei Baeume. Am linken Baum haengen 8 Aepfel, am rechten 5. Wo sind MEHR Aepfel?',
+              text: 'Hasi und Lumo schauen auf zwei Bäume. Am linken Baum hängen 8 Äpfel, am rechten 5. Wo sind mehr Äpfel?',
               imagePrompt: 'Zwei Apfelbaeume, links viele Aepfel, rechts weniger',
               exercise: StoryExercise(
                 type: StoryExerciseType.wordChoice,
-                prompt: '8 Aepfel oder 5 Aepfel - wo sind mehr?',
+                prompt: '8 Äpfel oder 5 Äpfel – wo sind mehr?',
                 correctAnswer: 'links',
                 options: <String>['links', 'rechts', 'gleich viel'],
               ),
             ),
             LumoStoryPage(
               pageNum: 5,
-              text: 'Toll! Die Ernte ist geschafft. Lumo und Hasi setzen sich in den Schatten und essen jeder einen Apfel. "Zaehlen macht Spass!", sagt Lumo.',
+              text: 'Toll! Die Ernte ist geschafft. Lumo und Hasi setzen sich in den Schatten und essen jeder einen Apfel. „Zählen macht Spaß!“, sagt Lumo.',
               imagePrompt: 'Fuchs und Hase essen Aepfel im Schatten unter einem Baum',
             ),
           ],
@@ -120,13 +120,13 @@ class LumoQuestLibrary {
   // ────────────────────────────────────────────────────────────────────
   static LumoQuest _grade2Baeckerei() => LumoQuest(
         id: 'q2_baeckerei',
-        title: 'Lumo in der Baeckerei',
+        title: 'Lumo in der Bäckerei',
         summary: 'Backen und rechnen mit Lumo!',
         emoji: '🥨',
         story: LumoStory(
-          title: 'Lumo in der Baeckerei',
+          title: 'Lumo in der Bäckerei',
           heroName: 'Lumo',
-          location: 'Baeckerei',
+          location: 'Bäckerei',
           theme: 'Backen',
           gradeLevel: 2,
           keyPoints: const ['Plus/Minus bis 20', 'Geld bis 20 Euro'],
@@ -134,7 +134,7 @@ class LumoQuestLibrary {
           pages: const <LumoStoryPage>[
             LumoStoryPage(
               pageNum: 1,
-              text: 'Lumo arbeitet heute in Baecker Brunos Baeckerei. Bruno backt 12 frische Semmeln und 8 Brezeln. Wie viele Backwaren sind das insgesamt?',
+              text: 'Lumo arbeitet heute in Bäcker Brunos Bäckerei. Bruno backt 12 frische Semmeln und 8 Brezeln. Wie viele Backwaren sind das insgesamt?',
               imagePrompt: 'Baeckerei mit Semmeln und Brezeln auf einem Holztisch, Fuchs Lumo mit Schuerze',
               exercise: StoryExercise(
                 type: StoryExerciseType.mathPlus,
@@ -156,7 +156,7 @@ class LumoQuestLibrary {
             ),
             LumoStoryPage(
               pageNum: 3,
-              text: 'Jede Semmel kostet 1 Euro. Frau Maier zahlt mit einem 10-Euro-Schein. Wie viel Wechselgeld bekommt sie zurueck?',
+              text: 'Jede Semmel kostet 1 Euro. Frau Maier zahlt mit einem 10-Euro-Schein. Wie viel Wechselgeld bekommt sie zurück?',
               imagePrompt: 'Geldschein und Muenzen auf einem Holztresen',
               newWord: 'Wechselgeld',
               exercise: StoryExercise(
@@ -168,7 +168,7 @@ class LumoQuestLibrary {
             ),
             LumoStoryPage(
               pageNum: 4,
-              text: 'Am Nachmittag backt Bruno 6 neue Brezeln und 4 Krapfen. Wie viele neue Stuecke sind das?',
+              text: 'Am Nachmittag backt Bruno 6 neue Brezeln und 4 Krapfen. Wie viele neue Stücke sind das?',
               imagePrompt: 'Baeckerei mit frischen Brezeln und Krapfen',
               exercise: StoryExercise(
                 type: StoryExerciseType.mathPlus,
@@ -179,7 +179,7 @@ class LumoQuestLibrary {
             ),
             LumoStoryPage(
               pageNum: 5,
-              text: 'Was fuer ein Tag! Lumo ist stolz. "Rechnen hilft uns, dass Bruno die richtige Menge backt und die Kunden zufrieden sind."',
+              text: 'Was für ein Tag! Lumo ist stolz. „Rechnen hilft uns, dass Bruno die richtige Menge backt und die Kunden zufrieden sind.“',
               imagePrompt: 'Fuchs Lumo zufrieden in der Baeckerei am Abend',
             ),
           ],
@@ -191,13 +191,13 @@ class LumoQuestLibrary {
   // ────────────────────────────────────────────────────────────────────
   static LumoQuest _grade3Schatzhoehle() => LumoQuest(
         id: 'q3_schatzhoehle',
-        title: 'Lumo und die Schatzhoehle',
-        summary: 'Edelsteine zaehlen und teilen!',
+        title: 'Lumo und die Schatzhöhle',
+        summary: 'Edelsteine zählen und teilen!',
         emoji: '💎',
         story: LumoStory(
-          title: 'Lumo und die Schatzhoehle',
+          title: 'Lumo und die Schatzhöhle',
           heroName: 'Lumo',
-          location: 'Schatzhoehle',
+          location: 'Schatzhöhle',
           theme: 'Abenteuer',
           gradeLevel: 3,
           keyPoints: const ['Einmaleins', 'Division einstellig', 'Sachrechnen'],
@@ -205,7 +205,7 @@ class LumoQuestLibrary {
           pages: const <LumoStoryPage>[
             LumoStoryPage(
               pageNum: 1,
-              text: 'Lumo findet im Wald eine geheime Hoehle. Drinnen funkelt eine alte Truhe. Lumo oeffnet sie - und sieht Edelsteine. In 4 Reihen liegen je 6 blaue Steine. Wie viele Steine sind das?',
+              text: 'Lumo findet im Wald eine geheime Höhle. Drinnen funkelt eine alte Truhe. Lumo öffnet sie – und sieht Edelsteine. In 4 Reihen liegen je 6 blaue Steine. Wie viele Steine sind das?',
               imagePrompt: 'Fuchs Lumo in einer Schatzhoehle mit funkelnden Edelsteinen in einer Truhe',
               newWord: 'Edelstein',
               exercise: StoryExercise(
@@ -228,7 +228,7 @@ class LumoQuestLibrary {
             ),
             LumoStoryPage(
               pageNum: 3,
-              text: 'In einer kleineren Schachtel findet Lumo 8 rote Edelsteine. Sie sind 5-mal so wertvoll wie die blauen. Was waere ihr Wert in blauen Steinen?',
+              text: 'In einer kleineren Schachtel findet Lumo 8 rote Edelsteine. Sie sind 5-mal so wertvoll wie die blauen. Was wäre ihr Wert in blauen Steinen?',
               imagePrompt: 'Kleine Schachtel mit roten Edelsteinen',
               exercise: StoryExercise(
                 type: StoryExerciseType.mathPlus,
@@ -239,18 +239,18 @@ class LumoQuestLibrary {
             ),
             LumoStoryPage(
               pageNum: 4,
-              text: 'Lumo will von den 24 blauen Steinen die Haelfte zurueck in die Hoehle legen, damit andere Tiere auch noch etwas finden. Wie viele Steine bleiben fuer Lumo?',
+              text: 'Lumo will von den 24 blauen Steinen die Hälfte zurück in die Höhle legen, damit andere Tiere auch noch etwas finden. Wie viele Steine bleiben für Lumo?',
               imagePrompt: 'Lumo legt Edelsteine zurueck in die Hoehle',
               exercise: StoryExercise(
                 type: StoryExerciseType.mathMinus,
-                prompt: 'Haelfte von 24 = ?',
+                prompt: 'Hälfte von 24 = ?',
                 correctAnswer: '12',
                 options: <String>['10', '12', '14'],
               ),
             ),
             LumoStoryPage(
               pageNum: 5,
-              text: 'Mit 12 blauen Steinen geht Lumo nach Hause. "Teilen ist auch eine Form von Reichtum", sagt Lumo zufrieden und schliesst die Truhe.',
+              text: 'Mit 12 blauen Steinen geht Lumo nach Hause. „Teilen ist auch eine Form von Reichtum“, sagt Lumo zufrieden und schließt die Truhe.',
               imagePrompt: 'Lumo verlaesst die Hoehle mit einem kleinen Beutel Edelsteine',
             ),
           ],
@@ -276,7 +276,7 @@ class LumoQuestLibrary {
           pages: const <LumoStoryPage>[
             LumoStoryPage(
               pageNum: 1,
-              text: 'Lumo sitzt in der Rakete "Sternblitz". Der Tank fasst 250 Liter Treibstoff. Bisher sind 175 Liter eingefuellt. Wie viele Liter fehlen noch?',
+              text: 'Lumo sitzt in der Rakete „Sternblitz“. Der Tank fasst 250 Liter Treibstoff. Bisher sind 175 Liter eingefüllt. Wie viele Liter fehlen noch?',
               imagePrompt: 'Fuchs Lumo im Astronautenanzug in einer Rakete am Cockpit',
               newWord: 'Treibstoff',
               exercise: StoryExercise(
@@ -288,7 +288,7 @@ class LumoQuestLibrary {
             ),
             LumoStoryPage(
               pageNum: 2,
-              text: 'Die Rakete fliegt mit 1.250 Kilometern pro Minute. In 4 Minuten - wie weit kommt Lumo?',
+              text: 'Die Rakete fliegt mit 1.250 Kilometern pro Minute. Wie weit kommt Lumo in 4 Minuten?',
               imagePrompt: 'Rakete fliegt durchs Weltall, Sterne und Planeten',
               exercise: StoryExercise(
                 type: StoryExerciseType.mathPlus,
@@ -322,7 +322,7 @@ class LumoQuestLibrary {
             ),
             LumoStoryPage(
               pageNum: 5,
-              text: 'Lumo macht ein Foto vom Sternenhimmel und kehrt zur Erde zurueck. "Mathe macht Raumfahrt erst moeglich", denkt Lumo. Was fuer ein Tag im All!',
+              text: 'Lumo macht ein Foto vom Sternenhimmel und kehrt zur Erde zurück. „Mathe macht Raumfahrt erst möglich“, denkt Lumo. Was für ein Tag im All!',
               imagePrompt: 'Rakete landet sanft auf der Erde, Lumo steigt zufrieden aus',
             ),
           ],

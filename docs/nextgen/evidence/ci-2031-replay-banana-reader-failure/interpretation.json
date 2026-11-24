@@ -1,0 +1,52 @@
+{
+  "schema": "lumo.nextgen.retained_replay_interpretation",
+  "workflowRun": 43806736020,
+  "qaCommit": "51a3bfdedf4d6a745fb574ae9186c1094eb11abf",
+  "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "apkSha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+  "originalTourStatus": "PASS_WITH_LIMITATIONS",
+  "referenceStatus": "FAIL",
+  "workflowConclusion": "failure",
+  "releaseEligible": false,
+  "fullModernizationComplete": false,
+  "sourceResultDigests": {
+    "original/android/original-android/learning-android-result.json": "ceb0b7aa402fe64eea840cbd9f31e5c84ca4fa27132e2609c4acef30ea338eb1",
+    "original/android/reference-android/reference-android-result.json": "d564f845768d6f26493efbb65b41158c874da3a4d8a9ff8ba20c055372c8823a"
+  },
+  "readerFailure": {
+    "label": "Das Wort hat 3 Silben",
+    "actualImage": "original/android/reference-android/0139-failure-current-screen.png",
+    "actualOCR": "original/android/reference-android/0138-banana-syllable-status-3-9-ocr.json",
+    "observedLine1": "Banane: Ba - na - ne. Das Wort hat 3",
+    "observedLine2": "Silben.",
+    "interpretation": "Whole phrase is visibly present across two adjacent lines; current dispatch used historical single-line matching. Original failed result remains unchanged."
+  },
+  "measuredPerformance": {
+    "renderer": "Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))",
+    "physicalDevice": false,
+    "sampleCount": 46,
+    "windowCount": 7,
+    "observedSeconds": 45.05966541200007,
+    "measuredWindowSeconds": 37.399515,
+    "weightedProcessFrameIntervalMs": 813.0329347826085,
+    "processFrameRateHz": 1.2299624741122983,
+    "framesOver16_7Ms": 46,
+    "foxSamples": 46,
+    "playingAudibleSamples": 13,
+    "jointSpeechFoxEffectsSamples": 12,
+    "drawCallsMean": 268.1739130434782,
+    "renderPrimitivesMean": 318059.1739130435,
+    "godotTimeProcessMeanMs": 787.8394782608694,
+    "presentationTimestamps": false,
+    "physical60fpsVerified": false,
+    "acousticAudioCaptured": false
+  },
+  "originalTourLimits": [
+    "Real spoken recognition was not exercised; actual request, system availability and Stop were observed.",
+    "Native MediaPlayer start/completion proves playback callbacks, not audible quality or phoneme lip sync.",
+    "Actual emulator frame intervals and render counters were collected with audio/figure/effect overlap; this is not a verified 60-FPS result on a physical device.",
+    "Real emulator screenshots/video and resized displays do not replace physical Fold/phone acceptance."
+  ],
+  "screenshotCount": 34,
+  "videoCount": 14
+}

@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-24T16:56:26.203171+00:00",
+  "scope": "Local exact-engine import/export reproduction of the narrowly extended Meshy cleanup allowlist; not an APK test",
+  "native_source": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "c814e35249e4038f903d1fca3e19bb4751040a43",
+    "tree": "b37c1b3246bf0fa6554a0a562eca3a8ea1c0d38b",
+    "source_clean_before": true,
+    "source_clean_after": true,
+    "production_asset_tree": "580fc843e0eb87a9c600fc8dd1dd0f8ec00cd4e6",
+    "manifest_sha256": "763df5822780b995ceff8b87d927341374141fb3aa8b3a3d6dda4add49c25f31"
+  },
+  "exporter": {
+    "path": "scripts/export_embedded_game.py",
+    "sha256": "6430daa7adecea327b516da01a9fc843f97e829357f015680b9e3f9f7b0a5a54",
+    "fix": "Add exact c814 revision to PRODUCTION_MESHY_ALLOWED_REVISIONS; existing validation and dirty-source checks unchanged"
+  },
+  "engine": {
+    "version": "4.6.3.stable.official.7d41c59c4",
+    "binary_sha256": "f64d4ed19fc9df9440321653fcc80df8c6e365ba7b6de0a29e2cfa9fa71bfeb3"
+  },
+  "import": {
+    "status": "passed",
+    "attempts": 1,
+    "evidence": "Production exporter advanced from successful managed import into --export-pack"
+  },
+  "export": {
+    "status": "interrupted",
+    "process_signal": "SIGKILL",
+    "signal_number": 9,
+    "wrapper_exit_code": 1,
+    "last_reported_progress_percent": 85,
+    "cause": "Not established; no kernel OOM evidence available",
+    "complete_pck_created": false,
+    "partial_output": {
+      "path": "android/app/src/main/assets/lumo_game.pck-f1uvWV",
+      "bytes": 390713456,
+      "sha256": "c949f5bdae2486bc585adb02c444cfb6bb41f1df8aed4c966a547add301f91e5",
+      "valid_pck_claim": false
+    }
+  },
+  "mesh_import_cleanup": {
+    "status": "passed",
+    "removed_count": 32,
+    "removed_paths": [
+      "assets/kart/production/garage/meshy_tool_workbench.glb.import",
+      "assets/kart/production/garage/meshy_tool_workbench_0.png",
+      "assets/kart/production/garage/meshy_turntable.glb.import",
+      "assets/kart/production/garage/meshy_turntable_0.png",
+      "assets/kart/production/meshy/blitz.glb.import",
+      "assets/kart/production/meshy/blitz_0.png",
+      "assets/kart/production/meshy/boru_rally.glb.import",
+      "assets/kart/production/meshy/boru_rally_0.png",
+      "assets/kart/production/meshy/comet.glb.import",
+      "assets/kart/production/meshy/comet_0.png",
+      "assets/kart/production/meshy/gecko_velo.glb.import",
+      "assets/kart/production/meshy/gecko_velo_0.png",
+      "assets/kart/production/meshy/glider.glb.import",
+      "assets/kart/production/meshy/glider_0.png",
+      "assets/kart/production/meshy/iva_aurora.glb.import",
+      "assets/kart/production/meshy/iva_aurora_0.png",
+      "assets/kart/production/meshy/koloss.glb.import",
+      "assets/kart/production/meshy/koloss_0.png",
+      "assets/kart/production/meshy/nala_comet.glb.import",
+      "assets/kart/production/meshy/nala_comet_0.png",
+      "assets/kart/production/meshy/noa_tide.glb.import",
+      "assets/kart/production/meshy/noa_tide_0.png",
+      "assets/kart/production/meshy/phantom.glb.import",
+      "assets/kart/production/meshy/phantom_0.png",
+      "assets/kart/production/meshy/stella.glb.import",
+      "assets/kart/production/meshy/stella_0.png",
+      "assets/kart/production/meshy/terra.glb.import",
+      "assets/kart/production/meshy/terra_0.png",
+      "assets/kart/production/meshy/turbo.glb.import",
+      "assets/kart/production/meshy/turbo_0.png",
+      "assets/kart/production/meshy/zuri_volt.glb.import",
+      "assets/kart/production/meshy/zuri_volt_0.png"
+    ],
+    "post_cleanup_git_status_porcelain": "",
+    "validation_disabled": false
+  },
+  "world_json_pck_check": {
+    "status": "not_run",
+    "reason": "Export was interrupted before producing a completed PCK; actual APK/PCK verification remains for final CI"
+  },
+  "logs": [
+    {
+      "path": "export-reproduction.log",
+      "bytes": 1157110,
+      "sha256": "827bd51e19753f755e88e1f5f097c58230be37de3a77f4f6657ba03f7bb43bc4",
+      "gzip": {
+        "path": "export-reproduction.log.gz",
+        "bytes": 85477,
+        "sha256": "7e98a898e4f3013172cf8dfebe543c93cf9c38357de085b4264f25a7cf2e6d16"
+      }
+    },
+    {
+      "path": "build-proof/GODOT-package-import-1.txt",
+      "bytes": 683762,
+      "sha256": "d7f85cb25136cffd798a08024c3b94c117e60a2434848efd9df61ccceb7c3b71",
+      "gzip": {
+        "path": "build-proof/GODOT-package-import-1.txt.gz",
+        "bytes": 25408,
+        "sha256": "d69737e1ed409cb838e3f26d6d5a0f82ddce677f1ce5e48531ff0d9c3c023beb"
+      }
+    },
+    {
+      "path": "build-proof/GODOT-package-export.txt",
+      "bytes": 469113,
+      "sha256": "58a1881edd2a4167430d284a211a982c191e39d698d35bb522d941146e7de8c4",
+      "gzip": {
+        "path": "build-proof/GODOT-package-export.txt.gz",
+        "bytes": 59270,
+        "sha256": "4667b164ad1f7abd9552d6612f80df40eda690c20f979fd51a262e4b0e545515"
+      }
+    },
+    {
+      "path": "source-after.txt",
+      "bytes": 122,
+      "sha256": "536ca5c02338d28a43d1a5f244e98f3305bdcde0500d637f124bc6c4989b8012"
+    }
+  ],
+  "disposable_cleanup": {
+    "isolated_native_checkout_removed": true,
+    "incomplete_pack_removed": true,
+    "original_qa_sources_engine_and_logs_preserved": true
+  }
+}

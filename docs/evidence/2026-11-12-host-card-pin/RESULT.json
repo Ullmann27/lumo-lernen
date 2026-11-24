@@ -1,0 +1,53 @@
+{
+  "scope": "Host source identity and delivery rejection contracts; not APK or renderer evidence",
+  "host_base_commit": "48a7e7d88af082f99e6d972c054dcd37030e22b5",
+  "host_remote_base_commit": "d279afa3af65e5224d28ae3855594a2da6a99739",
+  "version": "0.13.5+2017",
+  "native_revision": "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57",
+  "native_tree": "0941a80d811df4e3630f0c9de44d1417148ae320",
+  "rejected_native_revisions": [
+    "0aa89cdea3a07d0c2bc0a31a153737a1fee41454",
+    "f04e580ec0d7d8f70e8be269523fabedd15b0766"
+  ],
+  "historical_1950_through_2016_policy_sha256": "6577810bda4d3811422fc9df47733f1d2e698ede56206d9c11f850dc6150b0db",
+  "commands": {
+    "pin-delivery-tests": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "scripts.tests.test_candidate_2011_pin",
+        "scripts.tests.test_legacy_release_pin",
+        "scripts.tests.test_action_2017_delivery",
+        "scripts.tests.test_unified_workflow_artifact_names",
+        "tools.android_qa.tests.test_modernization_tour_identity",
+        "-v"
+      ],
+      "exit": 0,
+      "log_sha256": "0d32cfe9906a1bd074353a6ab1bd1fe65db0371f3f77cb590c9b0990240fe950",
+      "tests": 89
+    },
+    "strict-pin-check": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/verify_legacy_release_pin.py"
+      ],
+      "exit": 0,
+      "log_sha256": "54150cf84b8cbb971336c4fa6f138120709cdad2d95eb4485a229d7cb85a9e52"
+    }
+  },
+  "source_sha256": {
+    "config/godot-source.json": "12316119c4f74fb2f168516a354d32688b2f7fc6318d5bd069cf19651d0c91ae",
+    "pubspec.yaml": "49c622d000cc0984b1561836fcf9efe0316a9b03d53a44213b66129ff21fc2f3",
+    "scripts/verify_legacy_release_pin.py": "448a6653cffb1c13a8c1d9f80eabd26e6a6dcf780b630278389ed94f3fe78f2b",
+    "scripts/tests/test_candidate_2011_pin.py": "809f78e1da6274533aa618c6cf4cd8d619117b7d30f5f5b7440e63ba79352613",
+    "scripts/tests/test_action_2017_delivery.py": "50f49ae8178a022b020bd2fe05124c96e907da634ef0b72a3ff62b6a136dc5b3",
+    ".github/workflows/lumo-unified-integration-2026.yml": "386e7b870cb3169e05f0cf41e7f06ea1d8f3024523060d89fd8714e40643c5a5"
+  },
+  "pending": [
+    "Exact-source native CI renderer acceptance",
+    "New exact-source Android APK and visual review",
+    "Successful 2015-to-2017 in-place update",
+    "Public release receipt"
+  ]
+}

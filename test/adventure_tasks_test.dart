@@ -37,7 +37,7 @@ void main() {
             expect(t.prompt, isNot(contains('Aepfel')), reason: where);
             if (subject == 'Mathematik' && int.tryParse(t.answer) != null) {
               final value = int.parse(t.answer);
-              expect(value, inInclusiveRange(0, LumoAdventureTasks.maxNumber(grade)),
+              expect(value, inInclusiveRange(0, LumoAdventureTasks.answerMax(grade, unit)),
                   reason: 'Zahlenraum: $where');
             }
             final task = LumoTask(
@@ -111,5 +111,180 @@ void main() {
     final task = factory.next(grade: 3, subject: 'Mathematik', unit: 'Marktstand', childName: 'Mia');
     expect(task.unit, 'Marktstand');
     expect(task.choices, contains(task.answer));
+  });
+
+  // Fachprüfung Mathematik (17.11.2026), Abenteuer-Aufgaben.
+  group('Fachprüfung Mathematik', () {
+    AdventureTask next(LumoAdventureTasks generator, String unit, int grade,
+            {String subject = 'Mathematik'}) =>
+        generator.generate(subject: subject, unit: unit, grade: grade);
+
+    test('M22: große Zahlen zählen Punkte, Meter, Zuschauer, Schritte', () {
+      final generator = LumoAdventureTasks(Random(3));
+      for (final grade in [3, 4]) {
+        for (var i = 0; i < 400; i++) {
+          final task = next(generator, 'Rechengeschichten', grade);
+          final numbers = _numbers(task.prompt);
+          if (numbers.every((n) => n < 100)) continue;
+          // Früher: „Hoppel hat 902 Erdbeeren“, „fährt 471 Runden“.
+          for (final thing in ['Erdbeeren', 'Runden', 'Äpfel', 'Kekse', 'Murmeln']) {
+            final counted = RegExp('(\\d+) $thing').allMatches(task.prompt);
+            for (final match in counted) {
+              expect(int.parse(match[1]!), lessThanOrEqualTo(1000),
+                  reason: task.prompt);
+            }
+          }
+          expect(task.prompt, isNot(matches(RegExp(r'fährt \S+ \d{3,} Runden'))));
+        }
+      }
+    });
+
+    test('M20: mehrstufige Geschichte ohne mehrdeutiges „Davon“, richtiger Fall',
+        () {
+      final generator = LumoAdventureTasks(Random(8));
+      var seen = 0;
+      for (var i = 0; i < 600; i++) {
+        final task = next(generator, 'Rechengeschichten', 4);
+        if (!task.prompt.contains('Packungen')) continue;
+        seen++;
+        expect(task.prompt, isNot(contains('Davon')));
+        expect(task.prompt, isNot(contains('mit je')));
+        expect(task.prompt, contains('In jeder Packung sind'));
+        expect(task.prompt, contains('Von allen'));
+        final n = _numbers(task.prompt);
+        expect(int.parse(task.answer), n[0] * n[1] + n[2] - n[3],
+            reason: task.prompt);
+      }
+      expect(seen, greaterThan(20));
+    });
+
+    test('M21: Zahlenmauer ohne das Fachwort „Summe“', () {
+      final generator = LumoAdventureTasks(Random(4));
+      for (var grade = 1; grade <= 4; grade++) {
+        for (var i = 0; i < 100; i++) {
+          final task = next(generator, 'Zahlenmauer', grade);
+          expect(task.prompt, isNot(contains('Summe')));
+          expect(task.prompt,
+              contains('Zwei Steine nebeneinander ergeben zusammen den Stein darüber.'));
+        }
+      }
+    });
+
+    test('L7: Klasse 1 hat keine Karten über 20 und wechselnde Waren', () {
+      final generator = LumoAdventureTasks(Random(6));
+      final goods = <String>{};
+      for (final unit in ['Rechengeschichten', 'Zahlenmauer', 'Marktstand']) {
+        for (var i = 0; i < 300; i++) {
+          final task = next(generator, unit, 1);
+          for (final choice in task.choices) {
+            expect(_numbers(choice).single, lessThanOrEqualTo(20),
+                reason: '${task.prompt} ${task.choices}');
+          }
+          expect(task.choices.toSet(), hasLength(4), reason: task.prompt);
+          if (unit == 'Marktstand') {
+            goods.add(RegExp(r'am Markt (.+?) um').firstMatch(task.prompt)![1]!);
+          }
+        }
+      }
+      // Früher immer „einen Ball“ und „ein Buch“.
+      expect(goods.length, greaterThan(4));
+      final second = <String>{
+        for (var i = 0; i < 100; i++)
+          RegExp(r'kauft (.+?) um').firstMatch(next(generator, 'Marktstand', 2).prompt)![1]!,
+      };
+      expect(second.length, greaterThan(3));
+    });
+
+    test('L1: Geschichten zählen nie „1“ Dinge in der Mehrzahl', () {
+      final generator = LumoAdventureTasks(Random(12));
+      for (var grade = 1; grade <= 4; grade++) {
+        for (var i = 0; i < 400; i++) {
+          final task = next(generator, 'Rechengeschichten', grade);
+          expect(RegExp(r'(?<![\d,])1 [A-ZÄÖÜ]').hasMatch(task.prompt), isFalse,
+              reason: task.prompt);
+        }
+      }
+    });
+
+    test('L6: Erklärungen bei „=“ und beim Uhr-Abenteuer', () {
+      final generator = LumoAdventureTasks(Random(2));
+      var equal = 0;
+      for (var i = 0; i < 600; i++) {
+        final task = next(generator, 'Größer, kleiner, gleich', 2);
+        if (task.answer != '=') continue;
+        equal++;
+        expect(task.explanation, contains('Beide Seiten sind gleich groß.'));
+        expect(task.explanation, isNot(contains('Krokodil')));
+      }
+      expect(equal, greaterThan(10));
+      for (var i = 0; i < 100; i++) {
+        final task = next(generator, 'Uhr-Abenteuer', 2);
+        expect(task.explanation, isNot(contains(' + ')));
+        expect(task.explanation, startsWith('Von '));
+        expect(task.explanation, endsWith('${task.answer}.'));
+      }
+    });
+
+    test('L13: „gehört zu den Möbelstücken“ statt „gehört zu Möbelstücke“', () {
+      final generator = LumoAdventureTasks(Random(9));
+      for (var i = 0; i < 300; i++) {
+        final task = next(generator, 'Was passt nicht?', 2, subject: 'Logik');
+        expect(task.explanation, isNot(matches(RegExp(r'gehör(t|en) zu [A-ZÄÖÜ]'))),
+            reason: task.explanation);
+        expect(
+            task.explanation,
+            matches(RegExp(r'gehören (zum|zu den|zur Gruppe) .+\. \S+ gehört (zum|zu den|zur Gruppe) ')),
+            reason: task.explanation);
+      }
+    });
+
+    test('M22: Klasse 4 rechnet in Geschichten bis zur Million', () {
+      final generator = LumoAdventureTasks(Random(21));
+      var big = 0;
+      for (var i = 0; i < 300; i++) {
+        final task = next(generator, 'Rechengeschichten', 4);
+        final value = int.parse(task.answer);
+        if (value <= 10000) continue;
+        big++;
+        expect(value, lessThanOrEqualTo(1000000), reason: task.prompt);
+        // Keine Karte mit anderer Einerziffer, die man ohne Rechnen streicht.
+        for (final choice in task.choices) {
+          expect(int.parse(choice) % 10, value % 10,
+              reason: '${task.prompt} ${task.choices}');
+        }
+        expect(task.prompt, isNot(contains('Erdbeeren')));
+      }
+      expect(big, greaterThan(60));
+    });
+
+    test('M26: Geheimcode mit Ablenkern gleichen Anfangs, Klasse 4 verschoben',
+        () {
+      for (final grade in [2, 3, 4]) {
+        final generator = LumoAdventureTasks(Random(grade));
+        var sameStart = 0, shifted = 0;
+        for (var i = 0; i < 200; i++) {
+          final task = next(generator, 'Geheimcode', grade, subject: 'Logik');
+          final start = RegExp(r'A = (\d+)').firstMatch(task.prompt)!;
+          final offset = int.parse(start[1]!) - 1;
+          if (offset == 1) shifted++;
+          final codes = RegExp(r'heißt ([\d-]+)\?')
+              .firstMatch(task.prompt)![1]!
+              .split('-')
+              .map(int.parse);
+          final decoded = String.fromCharCodes(codes.map((n) => n - offset + 64));
+          expect(decoded, task.answer, reason: task.prompt);
+          expect(task.choices, hasLength(4), reason: task.prompt);
+          if (task.choices.where((c) => c[0] == task.answer[0]).length >= 2) {
+            sameStart++;
+          }
+        }
+        expect(sameStart, greaterThan(120), reason: 'Klasse $grade');
+        if (grade < 4) {
+          expect(shifted, 0);
+        } else {
+          expect(shifted, inInclusiveRange(60, 140));
+        }
+      }
+    });
   });
 }

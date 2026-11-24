@@ -1,0 +1,330 @@
+{
+  "schema": 1,
+  "scope": "Original terminal Auxiliary job logs, no rerun and no artifact download",
+  "observations": [
+    {
+      "run_id": 43603036202,
+      "run_attempt": 1,
+      "job_id": 132471674856,
+      "source": "79c7f2f5a80ab1e5491f2898e7a522a919334813",
+      "error_count": 3,
+      "errors": [
+        {
+          "line": 2790,
+          "utc": "2026-11-14T14:13:57.6650542Z",
+          "original_stack_context": [
+            "2026-11-14T14:13:57.0878697Z 06:46 +1856 ~200: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: d1_woerter real registry answer persists its exact subject and topic",
+            "2026-11-14T14:13:57.1210618Z 06:46 +1857 ~200: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: d1_woerter real registry answer persists its exact subject and topic",
+            "2026-11-14T14:13:57.6645767Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════",
+            "2026-11-14T14:13:57.6647160Z The following StateError was thrown running a test:",
+            "2026-11-14T14:13:57.6650542Z Bad state: No element",
+            "2026-11-14T14:13:57.6651173Z ",
+            "2026-11-14T14:13:57.6651511Z When the exception was thrown, this was the stack:",
+            "2026-11-14T14:13:57.6652167Z #0      Iterable.first (dart:core/iterable.dart:663:7)",
+            "2026-11-14T14:13:57.6652894Z #1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)",
+            "2026-11-14T14:13:57.6654270Z #3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)",
+            "2026-11-14T14:13:57.6655200Z #4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)",
+            "2026-11-14T14:13:57.6656255Z #5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)",
+            "2026-11-14T14:13:57.6657188Z #6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)",
+            "2026-11-14T14:13:57.6658146Z #7      WidgetController.drag (package:flutter_test/src/controller.dart:1602:31)",
+            "2026-11-14T14:13:57.6659379Z #8      _revealWrittenWord (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:195:16)",
+            "2026-11-14T14:13:57.6660934Z #9      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:293:15)",
+            "2026-11-14T14:13:57.6661820Z <asynchronous suspension>",
+            "2026-11-14T14:13:57.6662493Z #10     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)",
+            "2026-11-14T14:13:57.6663169Z <asynchronous suspension>",
+            "2026-11-14T14:13:57.6663803Z #11     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)",
+            "2026-11-14T14:13:57.6664527Z <asynchronous suspension>",
+            "2026-11-14T14:13:57.6664905Z <asynchronous suspension>",
+            "2026-11-14T14:13:57.6665380Z (elided 2 frames from dart:async-patch and package:stack_trace)",
+            "2026-11-14T14:13:57.6665810Z ",
+            "2026-11-14T14:13:57.6665957Z The test description was:",
+            "2026-11-14T14:13:57.6666491Z   d1_woerter real registry answer persists its exact subject and topic",
+            "2026-11-14T14:13:57.6667543Z ════════════════════════════════════════════════════════════════════════════════════════════════════",
+            "2026-11-14T14:13:57.6707283Z 06:47 +1857 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: d1_woerter real registry answer persists its exact subject and topic [E]",
+            "2026-11-14T14:13:57.6717940Z   Test failed. See exception logs above.",
+            "2026-11-14T14:13:57.6719066Z   The test description was: d1_woerter real registry answer persists its exact subject and topic",
+            "2026-11-14T14:13:57.6720028Z   ",
+            "2026-11-14T14:13:57.6721502Z 06:47 +1857 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: s1_tiere real registry answer persists its exact subject and topic",
+            "2026-11-14T14:13:57.7652551Z 06:47 +1858 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: s1_tiere real registry answer persists its exact subject and topic",
+            "2026-11-14T14:13:57.7679889Z 06:47 +1859 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: s1_tiere real registry answer persists its exact subject and topic",
+            "2026-11-14T14:13:57.7728425Z 06:47 +1860 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: s1_tiere real registry answer persists its exact subject and topic"
+          ]
+        },
+        {
+          "line": 2865,
+          "utc": "2026-11-14T14:14:07.6113230Z",
+          "original_stack_context": [
+            "2026-11-14T14:14:07.5807190Z 06:57 +1901 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+            "2026-11-14T14:14:07.5930894Z 06:57 +1902 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+            "2026-11-14T14:14:07.6066055Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════",
+            "2026-11-14T14:14:07.6081424Z The following StateError was thrown running a test:",
+            "2026-11-14T14:14:07.6113230Z Bad state: No element",
+            "2026-11-14T14:14:07.6119793Z ",
+            "2026-11-14T14:14:07.6120172Z When the exception was thrown, this was the stack:",
+            "2026-11-14T14:14:07.6120985Z #0      Iterable.first (dart:core/iterable.dart:663:7)",
+            "2026-11-14T14:14:07.6121991Z #1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)",
+            "2026-11-14T14:14:07.6123033Z #3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)",
+            "2026-11-14T14:14:07.6124046Z #4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)",
+            "2026-11-14T14:14:07.6124991Z #5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)",
+            "2026-11-14T14:14:07.6125972Z #6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)",
+            "2026-11-14T14:14:07.6126967Z #7      WidgetController.drag (package:flutter_test/src/controller.dart:1602:31)",
+            "2026-11-14T14:14:07.6128268Z #8      _revealWrittenWord (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:195:16)",
+            "2026-11-14T14:14:07.6129865Z #9      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:502:11)",
+            "2026-11-14T14:14:07.6131166Z <asynchronous suspension>",
+            "2026-11-14T14:14:07.6132015Z #10     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)",
+            "2026-11-14T14:14:07.6133169Z <asynchronous suspension>",
+            "2026-11-14T14:14:07.6133935Z #11     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)",
+            "2026-11-14T14:14:07.6134768Z <asynchronous suspension>",
+            "2026-11-14T14:14:07.6135265Z <asynchronous suspension>",
+            "2026-11-14T14:14:07.6135867Z (elided 2 frames from dart:async-patch and package:stack_trace)",
+            "2026-11-14T14:14:07.6136401Z ",
+            "2026-11-14T14:14:07.6136675Z The test description was:",
+            "2026-11-14T14:14:07.6137847Z   actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+            "2026-11-14T14:14:07.6139197Z ════════════════════════════════════════════════════════════════════════════════════════════════════",
+            "2026-11-14T14:14:07.6140569Z 06:57 +1902 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/cosmos_profile_isolation_test.dart: simultaneous first rewards share one load and preserve every item",
+            "2026-11-14T14:14:07.6142823Z 06:57 +1902 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word [E]",
+            "2026-11-14T14:14:07.6144635Z   Test failed. See exception logs above.",
+            "2026-11-14T14:14:07.6145513Z   The test description was: actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+            "2026-11-14T14:14:07.6146359Z   ",
+            "2026-11-14T14:14:07.6147628Z 06:57 +1903 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+            "2026-11-14T14:14:07.6894808Z 06:57 +1904 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+            "2026-11-14T14:14:07.6927763Z 06:57 +1905 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily"
+          ]
+        },
+        {
+          "line": 2898,
+          "utc": "2026-11-14T14:14:08.0051166Z",
+          "original_stack_context": [
+            "2026-11-14T14:14:07.6894808Z 06:57 +1904 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+            "2026-11-14T14:14:07.6927763Z 06:57 +1905 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+            "2026-11-14T14:14:07.9993461Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════",
+            "2026-11-14T14:14:08.0021558Z The following StateError was thrown running a test:",
+            "2026-11-14T14:14:08.0051166Z Bad state: No element",
+            "2026-11-14T14:14:08.0051464Z ",
+            "2026-11-14T14:14:08.0051682Z When the exception was thrown, this was the stack:",
+            "2026-11-14T14:14:08.0052295Z #0      Iterable.first (dart:core/iterable.dart:663:7)",
+            "2026-11-14T14:14:08.0052998Z #1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)",
+            "2026-11-14T14:14:08.0053911Z #3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)",
+            "2026-11-14T14:14:08.0054798Z #4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)",
+            "2026-11-14T14:14:08.0055644Z #5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)",
+            "2026-11-14T14:14:08.0056580Z #6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)",
+            "2026-11-14T14:14:08.0057463Z #7      WidgetController.drag (package:flutter_test/src/controller.dart:1602:31)",
+            "2026-11-14T14:14:08.0058687Z #8      _revealWrittenWord (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:195:16)",
+            "2026-11-14T14:14:08.0060290Z #9      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:541:15)",
+            "2026-11-14T14:14:08.0061547Z <asynchronous suspension>",
+            "2026-11-14T14:14:08.0062286Z #10     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)",
+            "2026-11-14T14:14:08.0063088Z <asynchronous suspension>",
+            "2026-11-14T14:14:08.0063737Z #11     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)",
+            "2026-11-14T14:14:08.0064434Z <asynchronous suspension>",
+            "2026-11-14T14:14:08.0064800Z <asynchronous suspension>",
+            "2026-11-14T14:14:08.0065275Z (elided 2 frames from dart:async-patch and package:stack_trace)",
+            "2026-11-14T14:14:08.0065686Z ",
+            "2026-11-14T14:14:08.0065831Z The test description was:",
+            "2026-11-14T14:14:08.0066460Z   two complete actual Diktat sessions show twenty words and award each earned bonus without extra",
+            "2026-11-14T14:14:08.0067162Z   Daily",
+            "2026-11-14T14:14:08.0067968Z ════════════════════════════════════════════════════════════════════════════════════════════════════",
+            "2026-11-14T14:14:08.0069953Z 06:57 +1905 ~200 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily [E]",
+            "2026-11-14T14:14:08.0071611Z   Test failed. See exception logs above.",
+            "2026-11-14T14:14:08.0072508Z   The test description was: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+            "2026-11-14T14:14:08.0073403Z   ",
+            "2026-11-14T14:14:08.0074423Z 06:57 +1905 ~200 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: (tearDownAll)",
+            "2026-11-14T14:14:08.4421367Z 06:57 +1905 ~200 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/cross_grade_progress_ribbon_test.dart: real progress responds to values on narrow Fold cover",
+            "2026-11-14T14:14:08.9752554Z 06:58 +1906 ~200 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/cross_grade_visual_capture_test.dart: captures real library/hologlass lesson on phone and Fold"
+          ]
+        }
+      ],
+      "test_failures": [
+        {
+          "line": 2813,
+          "original": "2026-11-14T14:13:57.6707283Z 06:47 +1857 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: d1_woerter real registry answer persists its exact subject and topic [E]"
+        },
+        {
+          "line": 2889,
+          "original": "2026-11-14T14:14:07.6142823Z 06:57 +1902 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word [E]"
+        },
+        {
+          "line": 2922,
+          "original": "2026-11-14T14:14:08.0069953Z 06:57 +1905 ~200 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily [E]"
+        }
+      ],
+      "terminal_lines": [
+        {
+          "line": 3701,
+          "original": "2026-11-14T14:15:36.7888156Z 08:26 +2403 ~202 -3: Some tests failed."
+        },
+        {
+          "line": 3707,
+          "original": "2026-11-14T14:15:36.9275997Z ##[error]Process completed with exit code 1."
+        }
+      ],
+      "visible_passed": 2403,
+      "explicit_skipped": 202,
+      "failed": 3,
+      "each_stack_at_same_existing_helper": true
+    },
+    {
+      "run_id": 43603036303,
+      "run_attempt": 1,
+      "job_id": 132471768177,
+      "source": "79c7f2f5a80ab1e5491f2898e7a522a919334813",
+      "error_count": 3,
+      "errors": [
+        {
+          "line": 2696,
+          "utc": "2026-11-14T14:14:09.7028472Z",
+          "original_stack_context": [
+            "2026-11-14T14:14:09.0998253Z 07:07 +1843 ~200: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/plus_bis_10_semantics_test.dart: Antwortkarten sind Schaltflächen mit eindeutiger Beschriftung",
+            "2026-11-14T14:14:09.7024137Z 07:07 +1843 ~200: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: d1_woerter real registry answer persists its exact subject and topic",
+            "2026-11-14T14:14:09.7026621Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════",
+            "2026-11-14T14:14:09.7027762Z The following StateError was thrown running a test:",
+            "2026-11-14T14:14:09.7028472Z Bad state: No element",
+            "2026-11-14T14:14:09.7028990Z ",
+            "2026-11-14T14:14:09.7029379Z When the exception was thrown, this was the stack:",
+            "2026-11-14T14:14:09.7030080Z #0      Iterable.first (dart:core/iterable.dart:663:7)",
+            "2026-11-14T14:14:09.7030879Z #1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)",
+            "2026-11-14T14:14:09.7031844Z #3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)",
+            "2026-11-14T14:14:09.7032804Z #4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)",
+            "2026-11-14T14:14:09.7033751Z #5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)",
+            "2026-11-14T14:14:09.7034717Z #6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)",
+            "2026-11-14T14:14:09.7035660Z #7      WidgetController.drag (package:flutter_test/src/controller.dart:1602:31)",
+            "2026-11-14T14:14:09.7037404Z #8      _revealWrittenWord (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:195:16)",
+            "2026-11-14T14:14:09.7039136Z #9      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:293:15)",
+            "2026-11-14T14:14:09.7040260Z <asynchronous suspension>",
+            "2026-11-14T14:14:09.7041121Z #10     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)",
+            "2026-11-14T14:14:09.7041986Z <asynchronous suspension>",
+            "2026-11-14T14:14:09.7042753Z #11     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)",
+            "2026-11-14T14:14:09.7043569Z <asynchronous suspension>",
+            "2026-11-14T14:14:09.7044047Z <asynchronous suspension>",
+            "2026-11-14T14:14:09.7044626Z (elided 2 frames from dart:async-patch and package:stack_trace)",
+            "2026-11-14T14:14:09.7045040Z ",
+            "2026-11-14T14:14:09.7045301Z The test description was:",
+            "2026-11-14T14:14:09.7046321Z   d1_woerter real registry answer persists its exact subject and topic",
+            "2026-11-14T14:14:09.7047676Z ════════════════════════════════════════════════════════════════════════════════════════════════════",
+            "2026-11-14T14:14:09.7049759Z 07:07 +1843 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/plus_bis_10_semantics_test.dart: Antwortkarten sind Schaltflächen mit eindeutiger Beschriftung",
+            "2026-11-14T14:14:09.7061546Z 07:07 +1843 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: d1_woerter real registry answer persists its exact subject and topic [E]",
+            "2026-11-14T14:14:09.7063273Z   Test failed. See exception logs above.",
+            "2026-11-14T14:14:09.7063971Z   The test description was: d1_woerter real registry answer persists its exact subject and topic",
+            "2026-11-14T14:14:09.7065517Z   ",
+            "2026-11-14T14:14:10.7151576Z 07:08 +1844 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/plus_bis_10_semantics_test.dart: Antwortkarten sind Schaltflächen mit eindeutiger Beschriftung",
+            "2026-11-14T14:14:10.8327934Z 07:09 +1845 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: s1_farben real registry answer persists its exact subject and topic",
+            "2026-11-14T14:14:11.4574875Z 07:09 +1846 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: s2_jahreszeiten real registry answer persists its exact subject and topic"
+          ]
+        },
+        {
+          "line": 2782,
+          "utc": "2026-11-14T14:14:20.6510560Z",
+          "original_stack_context": [
+            "2026-11-14T14:14:20.2500844Z 07:18 +1898 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/state_persistence_regression_test.dart: A settings deep link opens without a code and uses saved permissions",
+            "2026-11-14T14:14:20.6506980Z 07:18 +1898 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+            "2026-11-14T14:14:20.6509270Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════",
+            "2026-11-14T14:14:20.6510073Z The following StateError was thrown running a test:",
+            "2026-11-14T14:14:20.6510560Z Bad state: No element",
+            "2026-11-14T14:14:20.6511337Z ",
+            "2026-11-14T14:14:20.6511822Z When the exception was thrown, this was the stack:",
+            "2026-11-14T14:14:20.6512388Z #0      Iterable.first (dart:core/iterable.dart:663:7)",
+            "2026-11-14T14:14:20.6513106Z #1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)",
+            "2026-11-14T14:14:20.6513910Z #3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)",
+            "2026-11-14T14:14:20.6531325Z #4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)",
+            "2026-11-14T14:14:20.6532383Z #5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)",
+            "2026-11-14T14:14:20.6533491Z #6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)",
+            "2026-11-14T14:14:20.6534439Z #7      WidgetController.drag (package:flutter_test/src/controller.dart:1602:31)",
+            "2026-11-14T14:14:20.6535658Z #8      _revealWrittenWord (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:195:16)",
+            "2026-11-14T14:14:20.6537212Z #9      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:502:11)",
+            "2026-11-14T14:14:20.6538272Z <asynchronous suspension>",
+            "2026-11-14T14:14:20.6539233Z #10     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)",
+            "2026-11-14T14:14:20.6540052Z <asynchronous suspension>",
+            "2026-11-14T14:14:20.6540781Z #11     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)",
+            "2026-11-14T14:14:20.6541524Z <asynchronous suspension>",
+            "2026-11-14T14:14:20.6542009Z <asynchronous suspension>",
+            "2026-11-14T14:14:20.6542603Z (elided 2 frames from dart:async-patch and package:stack_trace)",
+            "2026-11-14T14:14:20.6543110Z ",
+            "2026-11-14T14:14:20.6543354Z The test description was:",
+            "2026-11-14T14:14:20.6544047Z   actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+            "2026-11-14T14:14:20.6545385Z ════════════════════════════════════════════════════════════════════════════════════════════════════",
+            "2026-11-14T14:14:20.6546790Z 07:18 +1898 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/state_persistence_regression_test.dart: A settings deep link opens without a code and uses saved permissions",
+            "2026-11-14T14:14:20.6549050Z 07:18 +1898 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word [E]",
+            "2026-11-14T14:14:20.6550324Z   Test failed. See exception logs above.",
+            "2026-11-14T14:14:20.6551201Z   The test description was: actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+            "2026-11-14T14:14:20.6552026Z   ",
+            "2026-11-14T14:14:20.9591545Z 07:19 +1898 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+            "2026-11-14T14:14:20.9613378Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════",
+            "2026-11-14T14:14:20.9634267Z The following StateError was thrown running a test:"
+          ]
+        },
+        {
+          "line": 2813,
+          "utc": "2026-11-14T14:14:20.9648154Z",
+          "original_stack_context": [
+            "2026-11-14T14:14:20.6552026Z   ",
+            "2026-11-14T14:14:20.9591545Z 07:19 +1898 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+            "2026-11-14T14:14:20.9613378Z ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════",
+            "2026-11-14T14:14:20.9634267Z The following StateError was thrown running a test:",
+            "2026-11-14T14:14:20.9648154Z Bad state: No element",
+            "2026-11-14T14:14:20.9665879Z ",
+            "2026-11-14T14:14:20.9689863Z When the exception was thrown, this was the stack:",
+            "2026-11-14T14:14:20.9711190Z #0      Iterable.first (dart:core/iterable.dart:663:7)",
+            "2026-11-14T14:14:20.9712163Z #1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)",
+            "2026-11-14T14:14:20.9717767Z #3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)",
+            "2026-11-14T14:14:20.9720937Z #4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)",
+            "2026-11-14T14:14:20.9751249Z #5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)",
+            "2026-11-14T14:14:20.9754360Z #6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)",
+            "2026-11-14T14:14:20.9779434Z #7      WidgetController.drag (package:flutter_test/src/controller.dart:1602:31)",
+            "2026-11-14T14:14:20.9790385Z #8      _revealWrittenWord (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:195:16)",
+            "2026-11-14T14:14:20.9813115Z #9      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:541:15)",
+            "2026-11-14T14:14:20.9814486Z <asynchronous suspension>",
+            "2026-11-14T14:14:20.9815516Z #10     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)",
+            "2026-11-14T14:14:20.9818221Z <asynchronous suspension>",
+            "2026-11-14T14:14:20.9825993Z #11     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)",
+            "2026-11-14T14:14:20.9847226Z <asynchronous suspension>",
+            "2026-11-14T14:14:20.9847845Z <asynchronous suspension>",
+            "2026-11-14T14:14:20.9848550Z (elided 2 frames from dart:async-patch and package:stack_trace)",
+            "2026-11-14T14:14:20.9849340Z ",
+            "2026-11-14T14:14:20.9849643Z The test description was:",
+            "2026-11-14T14:14:20.9850510Z   two complete actual Diktat sessions show twenty words and award each earned bonus without extra",
+            "2026-11-14T14:14:20.9851385Z   Daily",
+            "2026-11-14T14:14:20.9852685Z ════════════════════════════════════════════════════════════════════════════════════════════════════",
+            "2026-11-14T14:14:20.9854205Z 07:19 +1898 ~200 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/state_persistence_regression_test.dart: A settings deep link opens without a code and uses saved permissions",
+            "2026-11-14T14:14:20.9856254Z 07:19 +1898 ~200 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily [E]",
+            "2026-11-14T14:14:20.9858032Z   Test failed. See exception logs above.",
+            "2026-11-14T14:14:20.9859071Z   The test description was: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+            "2026-11-14T14:14:20.9860012Z   ",
+            "2026-11-14T14:14:20.9861124Z 07:19 +1898 ~200 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/state_persistence_regression_test.dart: A settings deep link opens without a code and uses saved permissions",
+            "2026-11-14T14:14:21.9387418Z 07:20 +1899 ~200 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/state_persistence_regression_test.dart: A settings deep link opens without a code and uses saved permissions"
+          ]
+        }
+      ],
+      "test_failures": [
+        {
+          "line": 2720,
+          "original": "2026-11-14T14:14:09.7061546Z 07:07 +1843 ~200 -1: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: d1_woerter real registry answer persists its exact subject and topic [E]"
+        },
+        {
+          "line": 2806,
+          "original": "2026-11-14T14:14:20.6549050Z 07:18 +1898 ~200 -2: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word [E]"
+        },
+        {
+          "line": 2838,
+          "original": "2026-11-14T14:14:20.9856254Z 07:19 +1898 ~200 -3: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily [E]"
+        }
+      ],
+      "terminal_lines": [
+        {
+          "line": 3622,
+          "original": "2026-11-14T14:15:53.8904260Z 08:52 +2403 ~202 -3: Some tests failed."
+        },
+        {
+          "line": 3628,
+          "original": "2026-11-14T14:15:53.9664606Z ##[error]Process completed with exit code 1."
+        },
+        {
+          "line": 3655,
+          "original": "2026-11-14T14:15:54.0052484Z ##[error]Process completed with exit code 1."
+        }
+      ],
+      "visible_passed": 2403,
+      "explicit_skipped": 202,
+      "failed": 3,
+      "each_stack_at_same_existing_helper": true
+    }
+  ]
+}

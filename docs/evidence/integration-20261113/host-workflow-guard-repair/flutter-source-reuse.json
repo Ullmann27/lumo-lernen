@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "baseline_commit": "732056af52826920e4228fc9e68e188cc8f27a82",
+  "current_commit": "f80fe6b3d6a3c58c89f8507853dcbfc15a84525e",
+  "prior_manifest": "docs/evidence/integration-20261113/studio-followup-host/manifest.json",
+  "prior_manifest_sha256": "ec9c0981f038da1dc6e77854dd8d3ff103ee36beafabf655720e9d0908e2d8ee",
+  "prior_passed": 55,
+  "prior_failed": 0,
+  "prior_skipped": 0,
+  "prior_archive_sha256": "57d073cc279900aaf5c51740f9974c67efb3a31172009d23fc077b7590b8becb",
+  "prior_raw_log_sha256": "26bdcf458c148fa4c26a653e4e3f9ee42f5173df77ed68d0eec2da05a65b9c33",
+  "prior_evidence_digests_valid": true,
+  "scope_objects": {
+    "lib": {
+      "baseline": "b62c19365516ff903b888aa179e48a5acf4a0eee",
+      "current": "b62c19365516ff903b888aa179e48a5acf4a0eee"
+    },
+    "test": {
+      "baseline": "7f8aa506506642b88c580b3f31ef6d2290d2cf67",
+      "current": "7f8aa506506642b88c580b3f31ef6d2290d2cf67"
+    },
+    "assets": {
+      "baseline": "e344fab9b20ff85379d48984a778a0ab2a392b53",
+      "current": "e344fab9b20ff85379d48984a778a0ab2a392b53"
+    },
+    "pubspec.yaml": {
+      "baseline": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "current": "40a3226d7b575cc414abc1494dfff5924a5de775"
+    },
+    "pubspec.lock": {
+      "baseline": "7843602e3d858660dc52d95587983858803976a5",
+      "current": "7843602e3d858660dc52d95587983858803976a5"
+    }
+  },
+  "scope_git_diff": "",
+  "exact_prior_runtime_and_test_files": [
+    {
+      "path": "lib/core/native_profile_key_repository.dart",
+      "baseline_blob": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+      "current_blob": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+      "baseline_evidence_blob": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+      "baseline_evidence_sha256": "27790a3fecd569a57a0c6fb6905636773bc95938fe22f9c8bbe84b677603471c",
+      "working_sha256": "27790a3fecd569a57a0c6fb6905636773bc95938fe22f9c8bbe84b677603471c",
+      "all_equal": true
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "baseline_blob": "9e76be4522a1f27ca56da0b9d2989984a14b4701",
+      "current_blob": "9e76be4522a1f27ca56da0b9d2989984a14b4701",
+      "baseline_evidence_blob": "9e76be4522a1f27ca56da0b9d2989984a14b4701",
+      "baseline_evidence_sha256": "846b99af1e424646b051610e37867319371e81ee0f09f73e0fe4b3fbc9ea0cdb",
+      "working_sha256": "846b99af1e424646b051610e37867319371e81ee0f09f73e0fe4b3fbc9ea0cdb",
+      "all_equal": true
+    },
+    {
+      "path": "lib/features/lumo3d/native_game_saves_screen.dart",
+      "baseline_blob": "8f5cbee67a38777ebfe8818002416ef26f3ca22a",
+      "current_blob": "8f5cbee67a38777ebfe8818002416ef26f3ca22a",
+      "baseline_evidence_blob": "8f5cbee67a38777ebfe8818002416ef26f3ca22a",
+      "baseline_evidence_sha256": "05e45625de473f6dddbe81567e3412a441e29d2a335a121be115ddb855065d9b",
+      "working_sha256": "05e45625de473f6dddbe81567e3412a441e29d2a335a121be115ddb855065d9b",
+      "all_equal": true
+    },
+    {
+      "path": "lib/features/settings/native_game_saves_card.dart",
+      "baseline_blob": "36e401e8a5bc13208be2368240772bf84e385633",
+      "current_blob": "36e401e8a5bc13208be2368240772bf84e385633",
+      "baseline_evidence_blob": "36e401e8a5bc13208be2368240772bf84e385633",
+      "baseline_evidence_sha256": "1678bb967c1177a17a0e36e5995c416c15e2095356191637cea667e37c4025d7",
+      "working_sha256": "1678bb967c1177a17a0e36e5995c416c15e2095356191637cea667e37c4025d7",
+      "all_equal": true
+    },
+    {
+      "path": "lib/features/settings/settings_content.dart",
+      "baseline_blob": "88505af2708e316c72448695e6279fc08e9312e9",
+      "current_blob": "88505af2708e316c72448695e6279fc08e9312e9",
+      "baseline_evidence_blob": "88505af2708e316c72448695e6279fc08e9312e9",
+      "baseline_evidence_sha256": "0f692e8dcd4d3562feaf443631aee7b5eb013e62495f537f1f996835f8b13cb1",
+      "working_sha256": "0f692e8dcd4d3562feaf443631aee7b5eb013e62495f537f1f996835f8b13cb1",
+      "all_equal": true
+    },
+    {
+      "path": "test/native_profile_key_repository_test.dart",
+      "baseline_blob": "908a85c6e18c527837eff5e2fcf77066ae4d8ada",
+      "current_blob": "908a85c6e18c527837eff5e2fcf77066ae4d8ada",
+      "baseline_evidence_blob": "908a85c6e18c527837eff5e2fcf77066ae4d8ada",
+      "baseline_evidence_sha256": "e21108a09054ce35cf8d55b9bcd33d970330ab315102b399f80e456d8fb95944",
+      "working_sha256": "e21108a09054ce35cf8d55b9bcd33d970330ab315102b399f80e456d8fb95944",
+      "all_equal": true
+    },
+    {
+      "path": "test/native_profile_keys_ui_test.dart",
+      "baseline_blob": "c152d173df4d5dc7bebee33a741f9ada0159fc2f",
+      "current_blob": "c152d173df4d5dc7bebee33a741f9ada0159fc2f",
+      "baseline_evidence_blob": "c152d173df4d5dc7bebee33a741f9ada0159fc2f",
+      "baseline_evidence_sha256": "957388e7161a05ba3faeda333ed26b954354f613dfdf7fdab063b5a4f890004c",
+      "working_sha256": "957388e7161a05ba3faeda333ed26b954354f613dfdf7fdab063b5a4f890004c",
+      "all_equal": true
+    },
+    {
+      "path": "test/lumo3d_launcher_lifecycle_test.dart",
+      "baseline_blob": "620a4d74132a516142f2757610c65971909fc166",
+      "current_blob": "620a4d74132a516142f2757610c65971909fc166",
+      "baseline_evidence_blob": "620a4d74132a516142f2757610c65971909fc166",
+      "baseline_evidence_sha256": "6247e2439809312f1f06a7455c78b35269f4c44ed87dc23cf3062119a5851a3d",
+      "working_sha256": "6247e2439809312f1f06a7455c78b35269f4c44ed87dc23cf3062119a5851a3d",
+      "all_equal": true
+    },
+    {
+      "path": "test/tutoring/native_learning_launch_test.dart",
+      "baseline_blob": "240da9cc4a559ef44b17db8b8e1693292e423fe8",
+      "current_blob": "240da9cc4a559ef44b17db8b8e1693292e423fe8",
+      "baseline_evidence_blob": "240da9cc4a559ef44b17db8b8e1693292e423fe8",
+      "baseline_evidence_sha256": "4fff9015bba0fbbe5a69c6de613a1b1123db97c76e17b49ecca5e20426c15824",
+      "working_sha256": "4fff9015bba0fbbe5a69c6de613a1b1123db97c76e17b49ecca5e20426c15824",
+      "all_equal": true
+    },
+    {
+      "path": "test/tutoring/native_sharing_activity_test.dart",
+      "baseline_blob": "f2db4fb1fe0d4ebc5a5158ce04e6db083e3990f5",
+      "current_blob": "f2db4fb1fe0d4ebc5a5158ce04e6db083e3990f5",
+      "baseline_evidence_blob": "f2db4fb1fe0d4ebc5a5158ce04e6db083e3990f5",
+      "baseline_evidence_sha256": "23aa35bffa4a78fc173167eabb1d4dec41d80fe30453a51544f6989e8b56855f",
+      "working_sha256": "23aa35bffa4a78fc173167eabb1d4dec41d80fe30453a51544f6989e8b56855f",
+      "all_equal": true
+    },
+    {
+      "path": "test/tutoring/native_learning_serialized_contract_test.dart",
+      "baseline_blob": "9c93f8aeca66991d43e79a699c95330601e110a7",
+      "current_blob": "9c93f8aeca66991d43e79a699c95330601e110a7",
+      "baseline_evidence_blob": "9c93f8aeca66991d43e79a699c95330601e110a7",
+      "baseline_evidence_sha256": "01161e29f6864382deb32c081f8b8352fd5a56231679a8de5b8cd912e67f0e10",
+      "working_sha256": "01161e29f6864382deb32c081f8b8352fd5a56231679a8de5b8cd912e67f0e10",
+      "all_equal": true
+    },
+    {
+      "path": "test/games/build_world_voice_launch_test.dart",
+      "baseline_blob": "14a3775eab7213ff7fd195a32fde38fe1030044f",
+      "current_blob": "14a3775eab7213ff7fd195a32fde38fe1030044f",
+      "baseline_evidence_blob": "14a3775eab7213ff7fd195a32fde38fe1030044f",
+      "baseline_evidence_sha256": "98eb2f796e5fd6938bbe0e98fc61d9edbc4c039b8ed3e69af395418d4eb70693",
+      "working_sha256": "98eb2f796e5fd6938bbe0e98fc61d9edbc4c039b8ed3e69af395418d4eb70693",
+      "all_equal": true
+    }
+  ],
+  "flutter_tests_rerun": false,
+  "reason": "Previously tested Dart runtime, seven Dart test files, assets and Pubspec objects are unchanged; this does not reapprove changed Kotlin/Android code.",
+  "reusable_source_binding": true
+}

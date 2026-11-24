@@ -1,0 +1,8 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/state_persistence_regression_test.dart
+00:00 +0: Rewards arriving during wallet load remain visible and persisted
+00:00 +1: Profile reset drains pending rewards and clears the cached wallet
+00:00 +2: A reset invalidates an older hydration waiting on disk
+00:00 +3: Legacy shop stars migrate once for the active child
+00:00 +4: Opening the shop keeps legacy stars and the other shop fields
+00:00 +5: A settings deep link opens without a code and uses saved permissions
+00:02 +6: All tests passed!

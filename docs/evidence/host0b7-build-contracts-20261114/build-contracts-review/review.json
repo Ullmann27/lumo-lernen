@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "run_id": 43604903064,
+  "run_attempt": 1,
+  "job_id": 132478533146,
+  "artifact": {
+    "id": 14118755786,
+    "node_id": "MDg6QXJ0aWZhY3QxNDExODc1NTc4Ng==",
+    "name": "lumo-connect-four-2020-build-contracts",
+    "size_in_bytes": 27254,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14118755786",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14118755786/zip",
+    "expired": false,
+    "digest": "sha256:a1c7a368c18c95bd0531e6383a188896df42329f02a9867476ec99b442fafa3b",
+    "created_at": "2026-11-14T14:48:16Z",
+    "updated_at": "2026-11-14T14:48:16Z",
+    "expires_at": "2026-12-14T14:48:15Z",
+    "workflow_run": {
+      "id": 43604903064,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-c4-connections-20261114",
+      "head_sha": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62"
+    }
+  },
+  "original_log": {
+    "path": "build-contracts.log",
+    "bytes": 174562,
+    "sha256": "149bfb4b30d7b5018e892253ccde9c8b0dee5014d53a40545b46dcbf38288b44"
+  },
+  "original_closing_lines": [
+    {
+      "line": 988,
+      "text": "Ran 877 tests in 298.960s"
+    },
+    {
+      "line": 990,
+      "text": "OK"
+    }
+  ],
+  "pcm_original_lines": [
+    {
+      "line": 1029,
+      "text": "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+    },
+    {
+      "line": 1030,
+      "text": "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+    },
+    {
+      "line": 1031,
+      "text": "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47"
+    }
+  ],
+  "scope": "Original CI script-test result and synthetic JVM speech-boundary markers only; no local test rerun or Android playback claim",
+  "whole_run_pass": false
+}

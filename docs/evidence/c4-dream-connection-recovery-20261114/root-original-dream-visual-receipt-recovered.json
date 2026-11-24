@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "kind": "New visual receipt recording actual pre-outage Root inspection; not a reconstruction of the earlier locally frozen JSON",
+  "recorded_utc": "2026-11-14T11:07:21.808Z",
+  "native": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "run": 43585768986,
+  "artifact_id": 14110197975,
+  "original_zip_bytes": 12781948,
+  "original_zip_sha256": "25ffd1c39416ff05feb87a3d7d502f7c67106590d22224f8a1355c0a509c5e30",
+  "root_actually_viewed_all_seven_originals_with_view_image": true,
+  "images": [
+    {
+      "path": "dream/captures/garden/learning-dream-1280x720.png",
+      "bytes": 299659,
+      "sha256": "bdc882966e6b4b2abe62dde32e7ce088bede07d03255c00b81d385d5c7b9d49f",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "dream/captures/garden/learning-dream-2400x1080.png",
+      "bytes": 726191,
+      "sha256": "3066e337eb4780c5df260acaf13ab1bad397db06d7204b7aed74193746bc0b07",
+      "width": 2400,
+      "height": 1080
+    },
+    {
+      "path": "dream/captures/garden/learning-dream-412x915.png",
+      "bytes": 129176,
+      "sha256": "c990d1733c2a3ec168e5d5aeec6eccb57a14e60ac7c769991c2154ed2035015b",
+      "width": 412,
+      "height": 915
+    },
+    {
+      "path": "dream/captures/learning/learning_00.png",
+      "bytes": 263492,
+      "sha256": "3f8ac03a11f02947e7db7df5e4e05846b13da51829aa41e022d7b4cf4bd2a12e",
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "path": "dream/captures/learning/learning_01.png",
+      "bytes": 265581,
+      "sha256": "8b0bb68d3cd3149d2d509360ac0644a69e0b5614199713f38d39bc6bdf7c9efc",
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "path": "dream/captures/treasure/treasure_00.png",
+      "bytes": 1138606,
+      "sha256": "1dc5363621124a2702f2f09b5258d856994068e25f44f6ace455cc78a272d583",
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "path": "dream/captures/treasure/treasure_01.png",
+      "bytes": 1137736,
+      "sha256": "32c8904453ecdf3a769795ecf5458cc854bd33aa8f4d671741e8f2613699370c",
+      "width": 720,
+      "height": 1280
+    }
+  ],
+  "observations": {
+    "garden_landscape": "Readable arithmetic prompt and all three actions. Both landscape ten-frame layouts, Lumo and the storybook are visible; flowers are visible in the wider shot. Some decorative props reach behind overlays or beyond the viewport.",
+    "garden_portrait": "Prompt wraps without visible text clipping; all three action labels remain visible over two rows, with blue ten-frame blocks and five gold addends. Book and flowers are outside this capture.",
+    "learning_pair": "Both originals have readable task and controls. Lumo arm pose visibly changes while arithmetic layout remains stable.",
+    "treasure_pair": "Island path, arch, Lumo from behind, navigation, joystick, jump and inspect are visible. The final discovery-count digit wraps to its own line and remains readable. Lumo pose differs."
+  },
+  "limits": {
+    "binary_images_are_in_original_github_artifact": "Local extracted originals were lost in the /tmp reset; this metadata does not claim to reconstruct their binary contents.",
+    "visual_review_is_not_android_acceptance": true,
+    "new_local_renderer_run": false,
+    "fps_measurement": false,
+    "all_52_mode_images_reviewed": false
+  }
+}

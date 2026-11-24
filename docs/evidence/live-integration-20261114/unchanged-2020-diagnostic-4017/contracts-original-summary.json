@@ -1,0 +1,23 @@
+{
+  "job_id": 132500341700,
+  "run_id": 43612493152,
+  "attempt": 1,
+  "head": "4017a94dd4a859f7b571e9b6a1f0208695e5e815",
+  "tree": "7680b8ab9b32d526b365ad2376092da267f0063b",
+  "bytes": 51888,
+  "sha256": "fb32d11205433221e04deb0ed20b672c46c0d4140709695d944562fb542f0e1e",
+  "lines": 409,
+  "ok_test_lines": 101,
+  "summaries": [
+    {
+      "line": 363,
+      "text": "2026-11-14T15:53:09.2748364Z Ran 101 tests in 20.544s",
+      "plain": "Ran 101 tests in 20.544s"
+    },
+    {
+      "line": 365,
+      "text": "2026-11-14T15:53:09.2748606Z OK",
+      "plain": "OK"
+    }
+  ]
+}

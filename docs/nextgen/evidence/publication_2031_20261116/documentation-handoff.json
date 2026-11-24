@@ -1,0 +1,32 @@
+{
+  "documentationOwner": {
+    "branch": "docs/lumo-2031-delivery-status-20261116",
+    "producerCommit": "9d1cca37e11d706bd3a7c0f4ac1f5b54fb5e842d",
+    "apiCommit": "f9a42e38747edd758dffbea4922ef89cf7512ffa",
+    "apiParent": "8f2c9c7d8bb36957b52ef31347a82a3e920dd247",
+    "tree": "6c6717c805e23e50b61ac26432a144d4ef6884c0"
+  },
+  "rootIntegratedCommits": [
+    "446814a",
+    "aae849c",
+    "620745e"
+  ],
+  "publisherConfigIntegratedCommit": "bcf1b3d",
+  "files": [
+    {
+      "path": "docs/nextgen/ANDROID_DELIVERY_2031.md",
+      "bytes": 27085,
+      "sha256": "e1e7cb54f5c9a6d7fc62620642412bb6df9191700a1e1db114b43aa565b18097"
+    },
+    {
+      "path": "docs/nextgen/ACCEPTANCE_CASES_2031.md",
+      "bytes": 28292,
+      "sha256": "222e98ebf2a8712fd6c8963f19a23d26c230931c5f8682e92b4def3e5d3f54da"
+    },
+    {
+      "path": "config/nextgen-2031-replay-publish.json",
+      "bytes": 387,
+      "sha256": "50d8199c49fab30ddc321db23d6569b66168dbd5583037e6eb46bd4d23854354"
+    }
+  ]
+}

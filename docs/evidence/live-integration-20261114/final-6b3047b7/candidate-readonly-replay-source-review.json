@@ -1,0 +1,69 @@
+{
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "head": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "run": 43616038272,
+    "attempt": 1,
+    "branch": "integration/lumo-live-connections-20261114",
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml"
+  },
+  "reviewed_at": "2026-11-14 17:23:06 UTC",
+  "source_path": "scripts/verify_connect_four_candidate.py",
+  "source_sha256": "d4355d1f4ae56fa294fe6ba8c66b1bd145cb772ca9ceda0cc8ac2f803dea0cea",
+  "execution": "NOT_RUN_EXECUTOR_UNAVAILABLE",
+  "conclusion": "Unmodified verify(args) is suitable after original run completion when invoked from exact clean Host source and bound to original run/attempt metadata; no original lifecycle change needed.",
+  "lifecycle": "artifact_binding has no running-state restriction and checks exact source/run/attempt/artifact plus five successful original jobs. Must not substitute Reader-run metadata.",
+  "writes": "verify(args) returns dict without result-file writes. CLI main() refuses existing args.out then mkdir/write_text there. Imported OCR/runtime functions used here are read-only; Python -B prevents import cache writes.",
+  "stdout": "verify_apk prints an original deterministic JSON per ABI, so verify(args) stdout is not one standalone final JSON object.",
+  "dependencies": [
+    "Python >=3.11",
+    "Pillow==12.3.0 as original workflow",
+    "Git exact clean source checkout with full original package/voice/notice expectations and stable keystore",
+    "JDK17 java + keytool and original LumoApkCertificateVerifier.java",
+    "Android Build Tools36.0.0 aapt and apksigner/lib/apksigner.jar",
+    "Both unchanged original ABI APKs and complete source-bound desktop, host compile, Android C4/Village/main, update originals"
+  ],
+  "not_needed_for_candidate": [
+    "Flutter",
+    "Dart",
+    "Godot",
+    "ADB/emulator",
+    "new Tesseract OCR invocation"
+  ],
+  "reviewed_paths": [
+    "scripts/verify_connect_four_candidate.py",
+    "scripts/verify_connect_four_delivery.py",
+    ".github/workflows/lumo-connect-four-2020.yml",
+    "tools/android_qa/connect_four_android_evidence.py",
+    "tools/android_qa/village_android_evidence.py",
+    "scripts/verify_unified_apk.py",
+    "scripts/verify_android_apk.py",
+    "scripts/run_connect_four_runtime.py",
+    "tools/android_qa/update_preservation.py",
+    "tools/android_qa/native_surface_readiness.py",
+    "tools/android_qa/native_ocr_tiles.py",
+    "tools/android_qa/kart_tour_evidence.py",
+    "scripts/package_notices.py",
+    "scripts/LumoApkCertificateVerifier.java",
+    "scripts/verify_legacy_release_pin.py"
+  ],
+  "source_hashes": {
+    "scripts/verify_connect_four_candidate.py": "d4355d1f4ae56fa294fe6ba8c66b1bd145cb772ca9ceda0cc8ac2f803dea0cea",
+    "scripts/verify_connect_four_delivery.py": "b4c0ebc834507c060b79622187d6c9ba4527b43653d95c775507451a05e19673",
+    ".github/workflows/lumo-connect-four-2020.yml": "145a13157a0afea804664ce8de99943ed310356052ffaa26ad71d1e29ccbed5d",
+    "tools/android_qa/connect_four_android_evidence.py": "0f09d08607e51f19c2e0be9f35bf876d8606fd73644b96a2eb39c2ffff15a88f",
+    "tools/android_qa/village_android_evidence.py": "c00b9536d72d6c6f8547680666f2db403bb24b796f345e9ab22eec829fcafd32",
+    "scripts/verify_unified_apk.py": "8089083e35978c701a4694a7f189beee2c91c076d78d51af1909d4f275427620",
+    "scripts/verify_android_apk.py": "1914f1294f618653c23ab54d9bdaf3e69cf74e4050c2a7ade97486345addbbdc",
+    "scripts/run_connect_four_runtime.py": "dc91ce099bcd65a2b6a1250d49db4e7522b6643a8735505642eeeb0ca51a0d6b",
+    "tools/android_qa/update_preservation.py": "73ea7f8155c65e4bd648ab99dd2baaa6261db2c380bcb435c0cb0761730f990a",
+    "tools/android_qa/native_surface_readiness.py": "52b5cfb9a2b592a6be36cea4adfdfeece18fb28d04cd679680748e0418904b60",
+    "tools/android_qa/native_ocr_tiles.py": "0365c7f57551c3f2b5efb2c4d5f7d16886cd93638f7e4be7a75c6d0fc6838704",
+    "tools/android_qa/kart_tour_evidence.py": "79709279ca9c20fe5778d3e603dd404b2d69aedc1825ffd9e17b3aed2e1cffca",
+    "scripts/package_notices.py": "2a0a2bc6bd4ccd4f6aedc92b91349aceee0f44f6d5d0f2008f81c105c9c156ce",
+    "scripts/LumoApkCertificateVerifier.java": "caf87af2279cf8d6d453487b39bc240e8a56feb4d021e0c221c8f48064bd82ca",
+    "scripts/verify_legacy_release_pin.py": "a0caf59cfd5e5d9459d4c87bf932fcd896f52f469aae741bc8235418f9591793"
+  }
+}

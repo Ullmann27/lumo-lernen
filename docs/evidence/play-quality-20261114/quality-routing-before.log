@@ -1,0 +1,37 @@
+FFE
+======================================================================
+ERROR: test_quality_branch_requires_the_same_current_pull_branch (scripts.tests.test_connect_four_delivery.OriginalAcceptanceTests.test_quality_branch_requires_the_same_current_pull_branch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/agent/lumo-quality-2708/integration/scripts/tests/test_connect_four_delivery.py", line 73, in test_quality_branch_requires_the_same_current_pull_branch
+    self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
+                         ^^^^^^^^^^^^
+  File "/home/agent/lumo-quality-2708/integration/scripts/tests/test_connect_four_delivery.py", line 64, in check
+    return delivery.checked_jobs(self.run, self.jobs, self.pull, self.binding, 999)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/agent/lumo-quality-2708/integration/scripts/verify_connect_four_delivery.py", line 131, in checked_jobs
+    require(run.get('id') == run_id and run.get('run_attempt') == attempt
+  File "/home/agent/lumo-quality-2708/integration/scripts/verify_connect_four_delivery.py", line 94, in require
+    raise ValueError(message)
+ValueError: Delivery requires the corresponding exact C4 workflow phase/attempt
+
+======================================================================
+FAIL: test_only_exact_same_repository_c4_pull_request_starts (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_exact_same_repository_c4_pull_request_starts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/agent/lumo-quality-2708/integration/scripts/tests/test_connect_four_pipeline.py", line 54, in test_only_exact_same_repository_c4_pull_request_starts
+    self.assertTrue(condition(block,{**values,
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_only_c4_branch_is_added_to_existing_unified_exclusions (scripts.tests.test_connect_four_pipeline.WorkflowTests.test_only_c4_branch_is_added_to_existing_unified_exclusions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/agent/lumo-quality-2708/integration/scripts/tests/test_connect_four_pipeline.py", line 167, in test_only_c4_branch_is_added_to_existing_unified_exclusions
+    self.assertFalse(condition(block,{'github.head_ref':quality,'github.ref_name':'123/merge'}))
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+FAILED (failures=2, errors=1)

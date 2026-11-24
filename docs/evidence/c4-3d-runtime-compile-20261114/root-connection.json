@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "status": "TWO_COMPLETED_JOBS_ONLY_FULL_BUILD_STILL_RUNNING",
+  "host": "3d91bd8355a539c3c2413760959684cd3fee985a",
+  "native": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "run_id": 43589206933,
+  "attempt": 1,
+  "completed_jobs": [
+    132430145329,
+    132430145630
+  ],
+  "independent_original_archive_readback": {
+    "members": 67,
+    "all_member_bytes_equal": true
+  },
+  "pack_scope": "Complete original APIs and job logs;31 original artifact text files; full ZIP/PNG indexes and source bindings. Original runtime image bytes remain in the separately identified GitHub artifact; this compact pack does not contain all259 PNG byte streams.",
+  "full_build_conclusion": "PENDING",
+  "android_device_acceptance": "NOT_RUN",
+  "fps_claim": false,
+  "active_host_branch_changed": false,
+  "main_changed": false
+}

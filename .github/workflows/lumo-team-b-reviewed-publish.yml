@@ -1,0 +1,91 @@
+name: "Lumo Team B 2071 – geprüfte Original-APK veröffentlichen"
+
+# This workflow does not build. Only a separately reviewed publication order
+# starts it; adding or editing this workflow alone never starts publication.
+on:
+  push:
+    branches: [support/logic-world-team-b-20261123]
+    paths: [config/lumo-team-b-reviewed-publish.json]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-team-b-reviewed-publish-2071
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Unveränderte ARM64-APK mit freigegebener Identität veröffentlichen
+    if: github.repository == 'Ullmann27/lumo-lernen'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Freigegebene Publisher-Identität muss vorhanden sein
+        env:
+          LUMO_RELEASE_PUBLISH_TOKEN: ${{ secrets.LUMO_RELEASE_PUBLISH_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$LUMO_RELEASE_PUBLISH_TOKEN" ]]; then
+            echo '::error::LUMO_RELEASE_PUBLISH_TOKEN fehlt. Es gibt keinen GITHUB_TOKEN-Fallback.'
+            exit 1
+          fi
+      - name: Auftrag, Originalrun und exakte Artefakt-IDs prüfen
+        id: request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/lumo_team_b_reviewed_publish.py prepare
+      - uses: actions/download-artifact@v4
+        with:
+          repository: Ullmann27/lumo-lernen
+          run-id: ${{ steps.request.outputs.build_run_id }}
+          artifact-ids: ${{ steps.request.outputs.apk_artifact_id }}
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: reviewed-team-b/apk
+      - uses: actions/download-artifact@v4
+        with:
+          repository: Ullmann27/lumo-lernen
+          run-id: ${{ steps.request.outputs.build_run_id }}
+          artifact-ids: ${{ steps.request.outputs.metadata_artifact_id }}
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: reviewed-team-b/metadata
+      - uses: actions/download-artifact@v4
+        with:
+          repository: Ullmann27/lumo-lernen
+          run-id: ${{ steps.request.outputs.build_run_id }}
+          artifact-ids: ${{ steps.request.outputs.android_artifact_id }}
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: reviewed-team-b/android
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'build-tools;36.0.0'
+      - name: Originalbytes, öffentliches Zertifikat, PCK und Android-Belege prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/lumo_team_b_reviewed_publish.py verify \
+            --build-tools "$ANDROID_HOME/build-tools/36.0.0"
+      - name: Einmal veröffentlichen und anonym vollständig zurückladen
+        env:
+          LUMO_RELEASE_PUBLISH_TOKEN: ${{ secrets.LUMO_RELEASE_PUBLISH_TOKEN }}
+        run: python3 scripts/lumo_team_b_reviewed_publish.py publish
+      - name: Tatsächlichen Prüf- und Veröffentlichungsstand sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-TEAM-B-REVIEWED-PUBLISH-${{ github.run_id }}-${{ github.run_attempt }}
+          path: reviewed-team-b/proof/
+          if-no-files-found: warn
+

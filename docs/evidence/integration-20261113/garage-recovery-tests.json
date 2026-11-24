@@ -1,0 +1,145 @@
+{
+  "started_utc": "2026-11-13T13:00:31.306929+00:00",
+  "finished_utc": "2026-11-13T13:00:43.869950+00:00",
+  "base_head": "76ffba90b7aed9968b0ded484d6e56942d286e1a",
+  "source_dirty": true,
+  "source_sha256": {
+    ".github/probes/modernization_android_tour.py": "5eca8eeafd1c297bb120c932646c90efd67d6a4591ba67dd6b9e3815585a5942",
+    "tools/android_qa/kart_garage_evidence.py": "1d81793ae3cface7dbeda771072ba2183595326d7b76327e25ed10348d811fa9",
+    "tools/android_qa/tests/test_kart_garage_evidence.py": "c1f1a665a90cf1db6596e9cb89c61d834c609ad54791e5a97f0fc35979ffdc14",
+    "tools/android_qa/tests/test_modernization_tour_identity.py": "b5d293da941f52287c8bc929569bd04cf80e3126ad9fd2405209022a888fdf02",
+    "tools/android_qa/tests/test_kart_tour_evidence.py": "0d19e57c65197d7d6d52f3ef2618cfcc9350bd795133906547644c65fab58966"
+  },
+  "source_hashes_unchanged_during_tests": true,
+  "commands": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_kart_garage_evidence.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests_run": 20
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_modernization_tour_identity.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests_run": 13
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_kart_tour_evidence.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests_run": 15
+    }
+  ],
+  "tests_passed": 48,
+  "tests_run": 48,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "scope": "20 synthetic Garage/Continue/driver-target validator and wiring tests, 13 established tour tests including historical Android-image OCR fixtures, 15 existing race-evidence tests. No fresh Android execution or APK acceptance.",
+  "driver_regression": "The unchanged old native_tap reproducibly touches the first exact Lumo logo; the specialized driver reader touches the sole current left-list Lumo only after two stable observed bounds and an unchanged screenshot hash. Invalid, absent, wrong-region, ambiguous, replaced-image and unsettled observations send no touch.",
+  "derived_from": {
+    "pull_request": "https://github.com/Ullmann27/lumo-lernen/pull/456",
+    "source_commit": "a1d581f0b0b392e0bc4ad7d90fd38d14f8d74095",
+    "native_compatibility_source": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
+  },
+  "historical_runs": [
+    {
+      "base_head": "993fa4a2415690cabfe71c37405077e103429e91",
+      "source_dirty": true,
+      "source_sha256": {
+        ".github/probes/modernization_android_tour.py": "38d37a897ae1a30e65ad9841d09ead991fc4b79ce1b8658427c8f4533f644f37",
+        "tools/android_qa/kart_garage_evidence.py": "6ab1dd069250630a487576c7d63832efd3e3df50e8c2c81a0133be684863054c",
+        "tools/android_qa/tests/test_kart_garage_evidence.py": "66116e9d2c5cf1a3bdc5350093c45090ba2271ee23c90fd0bb9389f90a52502e",
+        "tools/android_qa/tests/test_modernization_tour_identity.py": "ffe6b786b115e5da609eb1b6186a321df14a9694544cdc59f376159f1326d1ca",
+        "tools/android_qa/tests/test_kart_tour_evidence.py": "0d19e57c65197d7d6d52f3ef2618cfcc9350bd795133906547644c65fab58966"
+      },
+      "commands": [
+        {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/android_qa/tests",
+            "-p",
+            "test_kart_garage_evidence.py",
+            "-v"
+          ],
+          "exit_code": 0
+        },
+        {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/android_qa/tests",
+            "-p",
+            "test_modernization_tour_identity.py",
+            "-v"
+          ],
+          "exit_code": 0
+        },
+        {
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tools/android_qa/tests",
+            "-p",
+            "test_kart_tour_evidence.py",
+            "-v"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "tests_passed": 41,
+      "failures": 0,
+      "skips": 0,
+      "scope": "13 synthetic Garage/Continue validator and wiring tests, 13 established tour tests including historical Android-image OCR fixtures, 15 existing race-evidence tests. No fresh Android execution or APK acceptance.",
+      "derived_from": {
+        "pull_request": "https://github.com/Ullmann27/lumo-lernen/pull/456",
+        "source_commit": "a1d581f0b0b392e0bc4ad7d90fd38d14f8d74095",
+        "native_compatibility_source": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
+      },
+      "status": "Historical pre-driver-scope fix; not acceptance of current source"
+    }
+  ],
+  "native_review": {
+    "reviewer": "godot_integration",
+    "scope": "Independent source review of the current landscape driver list, short/ultra-short variants, race identity and pause/continue; no current Android render execution.",
+    "result": "No further concrete native incompatibility identified in the reviewed probe paths."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "lumo.qa.fixture.original",
+  "version": 1,
+  "workflowRun": 43814971553,
+  "workflowJob": 133124836818,
+  "qaCommit": "e2713c27599b6659a6ad2fd31355effeae9f88c9",
+  "apkSource": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "artifactId": 14203175225,
+  "archiveBytes": 75040815,
+  "archiveSha256": "3575c784355901d6d0f35cbce3de05bfd93186222047d2c1a62d29afcc565f76",
+  "source": "docs/nextgen/evidence/ci-2031-replay-transfer-state-failure/",
+  "originalStatus": "FAIL",
+  "files": {
+    "0090-banana-guided-navigation-video-transfer.json": {
+      "member": "android/reference-android/0090-banana-guided-navigation-video-transfer.json",
+      "bytes": 1352,
+      "sha256": "4a8317b77266ccdd78d29ea2da0221b10434818e47d7fbcac07b33eb42f8c408",
+      "byteIdenticalOriginal": true
+    },
+    "0090-banana-guided-navigation-recording-error.json": {
+      "member": "android/reference-android/0090-banana-guided-navigation-recording-error.json",
+      "bytes": 2266,
+      "sha256": "9423f41509214d85cc8849e62093fabeabcc39ba3418ea78df7b4ff97ada53a9",
+      "byteIdenticalOriginal": true
+    },
+    "0090-banana-guided-navigation-screenrecord.txt": {
+      "member": "android/reference-android/0090-banana-guided-navigation-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byteIdenticalOriginal": true
+    }
+  },
+  "limits": [
+    "The first transfer aborted with exit 1 and empty combined output.",
+    "The subsequent PID query literally returned adb: device offline; a running recorder was not observed.",
+    "Before the transfer the stopped remote file had positive size and SHA-256; its MP4 bytes are not in this fixture.",
+    "Recovery/device/boot observations used in host tests are explicitly constructed, not new Android evidence."
+  ]
+}

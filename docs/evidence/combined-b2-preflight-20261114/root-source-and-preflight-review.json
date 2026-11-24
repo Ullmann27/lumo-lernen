@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "status": "SOURCE_REVIEW_COMPLETE; FULL_NEW_SOURCE_ACCEPTANCE_PENDING",
+  "prepared_source": {
+    "commit": "b2f7493bda3bc22c1296f2284888ff7302f18883",
+    "tree": "2bffbaf37f5e5d9a9c4d4a018faa81b7d621ca98",
+    "parents": [
+      "07447eb05cf06a09e0ebf3e5b5db35e517eddb64",
+      "fe5df7f40728bad4de86f3a699f7561debe54a76"
+    ],
+    "branch": "integration/lumo-upstream057-review-20261114",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "local_commit": "7e99238efde16839f5570c53192b5872e517e32c"
+  },
+  "complete_tree_review": {
+    "source": "b2f7493bda3bc22c1296f2284888ff7302f18883",
+    "tree": "2bffbaf37f5e5d9a9c4d4a018faa81b7d621ca98",
+    "base_garage_tree": "c8258b3e12dd01eafd14b08368363d111e2994c0",
+    "base_files": 4961,
+    "expected_files": 4967,
+    "actual_files": 4967,
+    "remote_complete": true,
+    "differences": [],
+    "protected_modules": [
+      {
+        "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+        "sha": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+        "unchanged": true
+      },
+      {
+        "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+        "sha": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+        "unchanged": true
+      },
+      {
+        "path": "lib/features/journal/lumo_journal_screen.dart",
+        "sha": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+        "unchanged": true
+      },
+      {
+        "path": "lib/features/journal/journal_repository.dart",
+        "sha": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+        "unchanged": true
+      },
+      {
+        "path": "lib/core/writing_progress_repository.dart",
+        "sha": "4bb609a76be4cc64a316798debc2bafa24274803",
+        "unchanged": true
+      },
+      {
+        "path": "lib/core/reward_wallet_repository.dart",
+        "sha": "63a3d4c4fe6c5c9249f3531e685cc541646747ee",
+        "unchanged": true
+      }
+    ],
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "producer": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "central_before_activation": "1e22d2455937e2640d1e44e153d290746f3afe49"
+  },
+  "independent_feature_source_review": {
+    "commit": "1b20b23814bfe80710d0c7a42a53e4657c9f978e",
+    "blob": "57bdf7412062d886a1b5cb2508b3e3b8c5705160",
+    "widget_execution": "NOT_RUN"
+  },
+  "local_full_suite": {
+    "command": "python3 -B -m unittest discover -s scripts/tests -v",
+    "source": "b2f7493bda3bc22c1296f2284888ff7302f18883",
+    "tests_reported": 924,
+    "errors_reported": 6,
+    "skips_reported": 3,
+    "exit_code": 1,
+    "original_log_sha256": "b5073f23af710b72e95f747c2c1983c042c0eac0c8bdfa69c298693051deeaaa",
+    "source_after_unchanged": true,
+    "limitations": [
+      "Three real AF_UNIX socket tests fail at socket creation with PermissionError errno 1 Operation not permitted.",
+      "Three Kotlin test classes fail in setup because verified Gradle Kotlin libraries are absent.",
+      "Two Kotlin test classes and one Gradle mirror test are skipped for the same missing toolchain.",
+      "The installed JDK does execute the separate real Java verifier cases. Java absence is not claimed."
+    ],
+    "full_local_pass": false,
+    "final_requirement": "Run the complete unchanged suite with the prescribed verified CI toolchain and zero skipped tests."
+  },
+  "focused_source_checks": {
+    "host_9c_contracts": 177,
+    "host_074_native_pin_contracts": 25,
+    "historical_native_pins_unchanged": 50,
+    "actionlint": "1.7.12; Host C4 and final Feature workflows; exit 0"
+  },
+  "unchanged_apk_diagnostic": {
+    "run_id": 43612493152,
+    "attempt": 1,
+    "qa_source": "4017a94dd4a859f7b571e9b6a1f0208695e5e815",
+    "apk_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "all_three_jobs": "SUCCESS",
+    "main_steps": "21/21 PASS from original result; main image review/archive ongoing",
+    "update": "Original diagnostic and update results PASS; actual Gecko Velo race; unchanged UID and firstInstallTime; seven learning keys preserved through update, Kart, restart and three Fold sizes",
+    "populated_writing_or_journal_data": false,
+    "direct_village_and_c4_probes_in_diagnostic": false,
+    "final_new_source_acceptance": false
+  },
+  "native_current": {
+    "source": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "pr_runs": "11/11 terminal SUCCESS; original log review by Native owner",
+    "additional_run": 43613299144,
+    "additional_attempt": 1,
+    "additional_status": "in progress; exact original Discovery and Village/Scaling steps completed; SafeArea/Minimap and final source/index/upload pending at last observation"
+  },
+  "publication": {
+    "version": "0.13.8+2020",
+    "old_publisher_9448_inactive": true,
+    "new_activation_not_yet_created": true,
+    "requirements": [
+      "Complete seven-job acceptance on the newly activated Host source.",
+      "Exact-source Feature30 and full Flutter results including eight Safari cases.",
+      "Additional Native847 Discovery/Scaling/Minimap acceptance and strict source/index result.",
+      "Original delivery replay, fresh certificate and package verification, new immutable release, unauthenticated public APK bytes verified."
+    ]
+  }
+}

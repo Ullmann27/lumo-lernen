@@ -1,0 +1,6 @@
+{
+  "status": "FAIL",
+  "error": "Insufficient space for complete verified archive",
+  "scope": "Local retention reserve after successful full archive download/member verification; no Android execution or original mutation",
+  "correctiveAction": "Reversibly trim only frozen clean own worktrees after actual remote HEAD comparison, then repeat the exact immutable download"
+}

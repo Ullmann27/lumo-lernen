@@ -1,0 +1,391 @@
+{
+  "status": "PASS",
+  "steps": [
+    {
+      "step": "apk-identity",
+      "ok": true,
+      "installed_sha256": "57a48218d833a3e5114cf8ae93d7a32acd51b0aa10d1e9dad6483699e785f306"
+    },
+    {
+      "step": "fictional-profile",
+      "ok": true,
+      "profile_name": "LumoTest",
+      "original_reduceAnimations": false
+    },
+    {
+      "step": "saf-export",
+      "ok": true,
+      "picker": {
+        "package": "com.google.android.documentsui",
+        "activity_token": "a40ab94",
+        "intent": "Intent { act=android.intent.action.CREATE_DOCUMENT cat=[android.intent.category.OPENABLE] typ=application/json cmp=com.google.android.documentsui/com.android.documentsui.picker.PickActivity (has extras) }"
+      },
+      "observed_filename": "Lumo-Sicherung-2026-11-23-1517.json",
+      "remote_path": "/sdcard/Download/Lumo-Sicherung-2026-11-23-1517.json",
+      "bytes": 18641,
+      "sha256": "7e50dbaeae5d1ed5c13768f5b9162aaca150e12fce4c060ef0b5723fa9b08bd0"
+    },
+    {
+      "step": "export-archive",
+      "ok": true,
+      "format": "lumo-local-backup",
+      "version": 1,
+      "createdAt": "2026-11-23T15:17:47.307527Z",
+      "payload_sha256": "74619e1b2414360798eff2fcb957931a43571570a9b783174c0463d17fbf954e",
+      "profile": {
+        "id": "1795445267644916",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-23T14:47:47.644916",
+        "lastActiveAt": "2026-11-23T14:47:47.645020"
+      },
+      "wallet": {
+        "stars": 1,
+        "xp": 0,
+        "level": 1,
+        "streak": 0,
+        "totalEarnedStars": 1,
+        "lastDailyKey": "",
+        "gameResultIds": [
+          "ae70321d-4e6e-4879-a534-bda54d5e402f-1795445628650-24925465"
+        ],
+        "lumoCardsWinStreak": 0,
+        "shopRedemptions": [],
+        "roomActions": [],
+        "achievementClaims": [],
+        "earnedStarsByOwner": {}
+      },
+      "preference_count": 17,
+      "native_files": [
+        {
+          "path": "kart_holographic_records.cfg",
+          "bytes": 75,
+          "sha256": "8b036f375f1e2ee1668881e85f3a3fbb197f51d6cbb433d9aeabb7b75452875e",
+          "archive_sha256": "8b036f375f1e2ee1668881e85f3a3fbb197f51d6cbb433d9aeabb7b75452875e",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "kart_preferences.cfg",
+          "bytes": 263,
+          "sha256": "155d84f255043b7d935c1ac6949fc3e6ee4c2e49d574543a98e262b733dfc7a2",
+          "archive_sha256": "155d84f255043b7d935c1ac6949fc3e6ee4c2e49d574543a98e262b733dfc7a2",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "kart_sonnenhafen_session.cfg",
+          "bytes": 2462,
+          "sha256": "76e1670dbdb177cd6c780d79e03104c8c7e0c824077975739b5000568d40d3b9",
+          "archive_sha256": "76e1670dbdb177cd6c780d79e03104c8c7e0c824077975739b5000568d40d3b9",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "lumo_cards_aec45562e8a331e1f0f7dca1.json",
+          "bytes": 127,
+          "sha256": "bd5ff654f3635d45338e4167ccd2607207073e6396938014ac1c7e93fc7ec7f9",
+          "archive_sha256": "bd5ff654f3635d45338e4167ccd2607207073e6396938014ac1c7e93fc7ec7f9",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "lumo_first_run_5b565a33b80b75dc462328a68cb5b57d.cfg",
+          "bytes": 49,
+          "sha256": "3eeb2a9a73660eb941301efccf029131a9e49dbf47ce0dccc7e038141e8f212d",
+          "archive_sha256": "3eeb2a9a73660eb941301efccf029131a9e49dbf47ce0dccc7e038141e8f212d",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "lumo_first_run_aec45562e8a331e1f0f7dca12f46e112.cfg",
+          "bytes": 471,
+          "sha256": "76b2c0bc5477878041216d8588d829ed5252e3d5bca98b5df80cdd245b672733",
+          "archive_sha256": "76b2c0bc5477878041216d8588d829ed5252e3d5bca98b5df80cdd245b672733",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "lumo_game_events.json",
+          "bytes": 14,
+          "sha256": "5021e624e752b001ce3e3846e8f158ed4aeb93a4c9a72fdb35a0c5b14a0eea84",
+          "archive_sha256": "5021e624e752b001ce3e3846e8f158ed4aeb93a4c9a72fdb35a0c5b14a0eea84",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "progress.cfg",
+          "bytes": 135,
+          "sha256": "683da5c1a271c0488621473b8972de13bd94167838e92eb013faf501df0d4b60",
+          "archive_sha256": "683da5c1a271c0488621473b8972de13bd94167838e92eb013faf501df0d4b60",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "skypost_records.cfg",
+          "bytes": 280,
+          "sha256": "cad4b4edff911f884481900d6824656c144dcf5078f560006b0fbea3d5712b3f",
+          "archive_sha256": "cad4b4edff911f884481900d6824656c144dcf5078f560006b0fbea3d5712b3f",
+          "comparison": "identical-bytes"
+        }
+      ]
+    },
+    {
+      "step": "changed-setting",
+      "ok": true,
+      "before": false,
+      "persisted_after": true
+    },
+    {
+      "step": "saf-review",
+      "ok": true,
+      "picker": {
+        "package": "com.google.android.documentsui",
+        "activity_token": "ca5f64b",
+        "intent": "Intent { act=android.intent.action.OPEN_DOCUMENT cat=[android.intent.category.OPENABLE] typ=application/json cmp=com.google.android.documentsui/com.android.documentsui.picker.PickActivity (has extras) }"
+      },
+      "observed_filename": "Lumo-Sicherung-2026-11-23-1517.json",
+      "review": {
+        "observed": [
+          "17 Lerndaten-Einträge und 9 native Spielstandsdateien.",
+          "Geprüfte Sicherung wiederherstellen?",
+          "Profile: LumoTest",
+          "Sicherung vom 23.11.2026 15:17"
+        ],
+        "hierarchy": "restore-review--1-0.xml"
+      },
+      "adult_checkbox_checked": true
+    },
+    {
+      "step": "process-closed",
+      "ok": true,
+      "prior_pid": "9513",
+      "observations": [
+        {
+          "attempt": 0,
+          "host_pid": "",
+          "native_pid": ""
+        }
+      ]
+    },
+    {
+      "step": "restore-and-preservation",
+      "ok": true,
+      "new_host_pid": "11695",
+      "status_message": {
+        "observed": [
+          "Die Sicherung wurde beim App-Start wiederhergestellt."
+        ],
+        "hierarchy": "restore-status--1-0.xml"
+      },
+      "profile": {
+        "id": "1795445267644916",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-23T14:47:47.644916",
+        "lastActiveAt": "2026-11-23T14:47:47.645020"
+      },
+      "wallet": {
+        "stars": 1,
+        "xp": 0,
+        "level": 1,
+        "streak": 0,
+        "totalEarnedStars": 1,
+        "lastDailyKey": "",
+        "gameResultIds": [
+          "ae70321d-4e6e-4879-a534-bda54d5e402f-1795445628650-24925465"
+        ],
+        "lumoCardsWinStreak": 0,
+        "shopRedemptions": [],
+        "roomActions": [],
+        "achievementClaims": [],
+        "earnedStarsByOwner": {}
+      },
+      "restored_reduceAnimations": false,
+      "native_files": [
+        {
+          "path": "kart_holographic_records.cfg",
+          "bytes": 75,
+          "sha256": "8b036f375f1e2ee1668881e85f3a3fbb197f51d6cbb433d9aeabb7b75452875e",
+          "archive_sha256": "8b036f375f1e2ee1668881e85f3a3fbb197f51d6cbb433d9aeabb7b75452875e",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "kart_preferences.cfg",
+          "bytes": 263,
+          "sha256": "155d84f255043b7d935c1ac6949fc3e6ee4c2e49d574543a98e262b733dfc7a2",
+          "archive_sha256": "155d84f255043b7d935c1ac6949fc3e6ee4c2e49d574543a98e262b733dfc7a2",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "kart_sonnenhafen_session.cfg",
+          "bytes": 2462,
+          "sha256": "76e1670dbdb177cd6c780d79e03104c8c7e0c824077975739b5000568d40d3b9",
+          "archive_sha256": "76e1670dbdb177cd6c780d79e03104c8c7e0c824077975739b5000568d40d3b9",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "lumo_cards_aec45562e8a331e1f0f7dca1.json",
+          "bytes": 127,
+          "sha256": "bd5ff654f3635d45338e4167ccd2607207073e6396938014ac1c7e93fc7ec7f9",
+          "archive_sha256": "bd5ff654f3635d45338e4167ccd2607207073e6396938014ac1c7e93fc7ec7f9",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "lumo_first_run_5b565a33b80b75dc462328a68cb5b57d.cfg",
+          "bytes": 49,
+          "sha256": "3eeb2a9a73660eb941301efccf029131a9e49dbf47ce0dccc7e038141e8f212d",
+          "archive_sha256": "3eeb2a9a73660eb941301efccf029131a9e49dbf47ce0dccc7e038141e8f212d",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "lumo_first_run_aec45562e8a331e1f0f7dca12f46e112.cfg",
+          "bytes": 471,
+          "sha256": "76b2c0bc5477878041216d8588d829ed5252e3d5bca98b5df80cdd245b672733",
+          "archive_sha256": "76b2c0bc5477878041216d8588d829ed5252e3d5bca98b5df80cdd245b672733",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "lumo_game_events.json",
+          "bytes": 14,
+          "sha256": "5021e624e752b001ce3e3846e8f158ed4aeb93a4c9a72fdb35a0c5b14a0eea84",
+          "archive_sha256": "5021e624e752b001ce3e3846e8f158ed4aeb93a4c9a72fdb35a0c5b14a0eea84",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "progress.cfg",
+          "bytes": 135,
+          "sha256": "683da5c1a271c0488621473b8972de13bd94167838e92eb013faf501df0d4b60",
+          "archive_sha256": "683da5c1a271c0488621473b8972de13bd94167838e92eb013faf501df0d4b60",
+          "comparison": "identical-bytes"
+        },
+        {
+          "path": "skypost_records.cfg",
+          "bytes": 280,
+          "sha256": "cad4b4edff911f884481900d6824656c144dcf5078f560006b0fbea3d5712b3f",
+          "archive_sha256": "cad4b4edff911f884481900d6824656c144dcf5078f560006b0fbea3d5712b3f",
+          "comparison": "identical-bytes"
+        }
+      ]
+    }
+  ],
+  "scope": "Real API35 Android SAF round trip",
+  "not_tested": [
+    "restoration of a running native game process",
+    "physical user devices"
+  ],
+  "identity": {
+    "apk_sha256": "57a48218d833a3e5114cf8ae93d7a32acd51b0aa10d1e9dad6483699e785f306",
+    "flutter_source_commit": "b4db287fe562893d849d1c826c9b92e8f2e44761",
+    "godot_revision": "e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913",
+    "godot_pck_sha256": "398cf6cdd6cac5233037b6cd1247c89b3a92392050a0c9a9696af82d0beedf5f",
+    "versionName": "0.14.2",
+    "versionCode": 2071,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "emulator_root_readiness": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "arguments": [
+          "get-serialno"
+        ],
+        "elapsed_seconds": 0.0,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "emulator-5554"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "root"
+        ],
+        "elapsed_seconds": 0.005,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "adbd is already running as root"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "wait-for-device"
+        ],
+        "elapsed_seconds": 0.008,
+        "status": "PASS",
+        "return_code": 0,
+        "output": ""
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "id",
+          "-u"
+        ],
+        "elapsed_seconds": 0.01,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "0"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "sys.boot_completed"
+        ],
+        "elapsed_seconds": 0.025,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "1"
+      }
+    ],
+    "root_transport_recovered": false,
+    "initial_offline_recovered": false,
+    "initial_missing_recovered": false,
+    "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+    "scope": "disposable emulator setup; this does not pass installation or gameplay",
+    "serial": "emulator-5554",
+    "last_shell_uid": "0",
+    "last_boot_completed": "1",
+    "shell_uid": 0,
+    "boot_completed": true,
+    "elapsed_seconds": 0.036
+  },
+  "installed": {
+    "path": "/data/app/~~4GHSBSN_YgePmYRubLRrag==/dev.ullmann.lumo.lumo_lernen.coachpreview-1wA8j3v8HXdlB2xlycrH3A==/base.apk",
+    "sha256": "57a48218d833a3e5114cf8ae93d7a32acd51b0aa10d1e9dad6483699e785f306",
+    "package": {
+      "userId": "10209",
+      "firstInstallTime": "2026-11-23 14:47:03",
+      "versionCode": "2071 minSdk=24 targetSdk=36",
+      "versionName": "0.14.2"
+    }
+  },
+  "default_settings_initialized_by_two_real_taps": true,
+  "process_close_observations": [
+    {
+      "attempt": 0,
+      "host_pid": "",
+      "native_pid": ""
+    }
+  ],
+  "installed_after": {
+    "path": "/data/app/~~4GHSBSN_YgePmYRubLRrag==/dev.ullmann.lumo.lumo_lernen.coachpreview-1wA8j3v8HXdlB2xlycrH3A==/base.apk",
+    "sha256": "57a48218d833a3e5114cf8ae93d7a32acd51b0aa10d1e9dad6483699e785f306",
+    "package": {
+      "userId": "10209",
+      "firstInstallTime": "2026-11-23 14:47:03",
+      "versionCode": "2071 minSdk=24 targetSdk=36",
+      "versionName": "0.14.2"
+    }
+  }
+}

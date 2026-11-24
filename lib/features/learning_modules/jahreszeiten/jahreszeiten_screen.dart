@@ -8,6 +8,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_scene_art_panel.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 import 'season_question_deck.dart';
@@ -18,6 +19,8 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../learning_module_rounds.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 enum _Jahreszeit { fruehling, sommer, herbst, winter }
@@ -89,7 +92,10 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
 
   late final List<SeasonQuestion> _deck;
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
+  late final LearningModuleRounds _rounds =
+      LearningModuleRounds(progress: _progress, totalTasks: _totalTasks);
 
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
@@ -122,6 +128,7 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakTask());
   }
@@ -170,6 +177,7 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey: _deck[_taskIdx].id,
       cosmosSubjectId: 's1_jahreszeiten',
       cosmosIsMath: false,
       correct: isCorrect,
@@ -197,11 +205,31 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     _nextTask();
   }
 
-  void _nextTask() {
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null || !mounted || _taskIdx != 0 || _answered) return;
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -274,6 +302,39 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) {
+    final imageTask = _typ == _JahreszeitFrageTyp.bildErraten;
+    return ModuleTaskScope(
+      key: _taskScopeKey,
+      appState: widget.appState,
+      progress: _progress,
+      moduleId: 's2_jahreszeiten',
+      taskKey: _deck[_taskIdx].id,
+      prompt: imageTask
+          ? 'Welche Jahreszeit zeigt das Bild? Zu sehen: ${_correctJz.sceneDescription}.'
+          : 'In welcher Jahreszeit passiert das: ${_aktuellerHinweis.text}?',
+      objective:
+          'Du ordnest typische Veränderungen in der Natur den Jahreszeiten zu.',
+      answerChoices: _options.map((season) => season.label).toList(),
+      onConfirmChoice: (index) =>
+          _onAnswer(index, _options[index] == _correctJz),
+      helpSteps: [
+        imageTask
+            ? 'Betrachte Bäume, Boden und Himmel im Aufgabenbild. Welche Veränderungen erkennst du?'
+            : 'Lies den Hinweis noch einmal: „${_aktuellerHinweis.text}“. Welches Wort beschreibt die Veränderung?',
+        imageTask
+            ? 'Im Aufgabenbild siehst du: ${_correctJz.sceneDescription}. Vergleiche diese Merkmale mit den vier Jahreszeiten.'
+            : 'Vergleiche den Hinweis mit dem Jahreslauf: neues Wachstum, warme lange Tage, fallende Blätter, kalte kurze Tage.',
+        'Der Jahreslauf wiederholt sich: Frühling, Sommer, Herbst, Winter. Gesucht ist die typische passende Jahreszeit; das Wetter muss nicht an jedem Tag gleich sein.',
+      ],
+      answering: !_answered,
+      lastAnswer: _selectedIdx == null ? null : _options[_selectedIdx!].label,
+      lastCorrect:
+          _selectedIdx == null ? null : _options[_selectedIdx!] == _correctJz,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -285,10 +346,12 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
         icon: Icons.nature_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
+        inRounds: true,
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -298,6 +361,12 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
                 child: child);
           },
           child: Column(children: [
+            const LumoSceneArtPanel(
+              key: ValueKey('lumo-seasons-scene-illustration'),
+              scene: LumoSceneArt.seasons,
+              height: 115,
+            ),
+            const SizedBox(height: 10),
             _buildTaskHeader(),
             const SizedBox(height: 12),
             if (_typ == _JahreszeitFrageTyp.bildErraten)
@@ -307,7 +376,7 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
             const SizedBox(height: 12),
             _buildOptions(),
           ]),
-        ),
+        )),
       ),
     );
   }

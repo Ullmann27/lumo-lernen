@@ -1,0 +1,19 @@
+{
+  "base": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "command": [
+    "flock",
+    "--close",
+    "/workspace/scratch/c5a7dadab95f/toolchain/lumo-flutter.lock",
+    "/workspace/scratch/c5a7dadab95f/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/learning/lab_conversation_return_test.dart"
+  ],
+  "exit_code": 1,
+  "baseline_source_sha256": "12512400840d989c9652afa285fb308c2bbaa8dbbb2ef2f3a642a2ef6638e5ad",
+  "restored_fixed_source_sha256": "9ba19a3101125f1ae111c3ec963758a4edd914367ba8c31c69237055e2e9ab45",
+  "test_sha256": "ff5bc1ed4e8540ab78a2a24f907a6c1d36b3023fd4197c5e2ac93aaf11b8951b",
+  "restored_fixed_source_exact": true
+}

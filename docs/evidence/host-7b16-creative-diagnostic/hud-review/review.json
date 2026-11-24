@@ -1,0 +1,86 @@
+{
+  "created_at": "2026-11-14T04:04:47.595250+00:00",
+  "status": "NO_CONCRETE_BLOCKER",
+  "scope": "Independent read-only source and current original-image review; no test, device or OCR execution by this reviewer.",
+  "freeze": {
+    "path": "host-61c-race-hud-crop-repair/source-freeze.json",
+    "sha256": "7e0f8f3742f557845e31a55c3b213715fc8e5ff45834fce390cf07690fcc8375"
+  },
+  "source_identity_checks": [
+    {
+      "path": "tools/android_qa/kart_android_race.py",
+      "bytes": 39513,
+      "sha256": "9777542758deae314531c4da7bccd4168eb4c730dacc0844f84bab6f6ec3b81a",
+      "git_blob": "a0aad12a6162370e9c0e35849e213963c76c67d2"
+    },
+    {
+      "path": "tools/android_qa/tests/test_focused_race_hud_current.py",
+      "bytes": 5656,
+      "sha256": "735ac3864f9f5203c02273ab1251c60a2bf6bd20a3e36ce9f35ec6ed8bdc7e73",
+      "git_blob": "127502b2e9a143e36d4c76523ae47a6cb60f9353"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/api37-host-20-focused-hud.json",
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860",
+      "git_blob": "a91742f753c053092617dac25f431e49b6dd0e62"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/api37-host-20.png",
+      "bytes": 1967096,
+      "sha256": "7fb26f79a258c50f00de1db7fcd786bc6775ebf3d399840fea3f5defd24672e1",
+      "git_blob": "0f937f9f21c7128a1fb0b2181178319e283a78af"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/provenance.json",
+      "bytes": 3813,
+      "sha256": "7ea39342fcb1ec28faa7a2b8ac955a94c6a2f28537d5120e70e95039166d336c",
+      "git_blob": "ce2153e50fdfea20ef8406550c444edd061fe81f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/update-0-focused-hud.json",
+      "bytes": 128,
+      "sha256": "c0101fb221d2f2dafaf652aa615666ea9df61f35c06c4e193eeea1ffd6744dc7",
+      "git_blob": "328304bda7f403ff475cf1cf970731cb203cc641"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/update-0.png",
+      "bytes": 2005004,
+      "sha256": "1ae6632355a726470852d5babb0a43ce0967fb8c4bc56fb5b73a810ca1fec8e0",
+      "git_blob": "93492aa88aaf0a442e1916262acaccd3e0c1986d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/update-17-focused-hud.json",
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860",
+      "git_blob": "a91742f753c053092617dac25f431e49b6dd0e62"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-hud-61c/update-17.png",
+      "bytes": 1965296,
+      "sha256": "c10e6636686baef6511402d5fbd34046307d06f8d2c7a5b01e96fc2c25ba9d07",
+      "git_blob": "a9767327f1b53442a3057814bd1c0d8d7e646be4"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "sha256": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba",
+      "bytes": 69612
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "sha256": "c8c167ce1b59023248b0aba18ba80c96c4c781e55cb0806eddf5252a2e8336bf",
+      "bytes": 14145
+    }
+  ],
+  "findings": [
+    "Exactly one executable AST constant changes, the crop bottom 0.15 to 0.20; all other AST nodes are identical.",
+    "The current API37-host original frame20 was viewed directly and compared byte-for-byte with the fixture. Its visible RUNDE/PLATZ/speed text crosses the former 162px edge; the 216px edge includes the ribbon and remains above the central LOS caption.",
+    "The tests retain three-feature/range predicates, the 90-second timeout and pause/result rejection; deliberately damaged test rasters are labeled derivatives.",
+    "First-series host frame20 is correctly retained. Original filenames0..18 were subsequently overwritten by the pause attempt and are not presented as the first series."
+  ],
+  "limits": [
+    "The original Update and API37-host executions remain FAIL.",
+    "No new driving, resume, renderer or ANR success is inferred from this local crop repair."
+  ],
+  "tests_run_by_reviewer": 0
+}

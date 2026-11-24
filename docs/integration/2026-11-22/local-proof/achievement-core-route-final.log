@@ -1,0 +1,15 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/learning/core_conversation_route_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: actual Core header dialog retains current task and permitted help
+00:02 +1: actual Core dialog repeats its last help and accepts trying alone
+00:03 +2: saved chat achievement keeps the owned dialog with animations enabled
+00:04 +3: foreign overlay withdraws even an owned Core conversation
+00:04 +4: task replacement retires the old dialog and its entry owner
+00:05 +5: actual Core and own dialog survive the shell width breakpoint
+00:06 +6: actual Core dock menu keeps its task through the question action
+00:06 +7: wide Core companion questions and menu use the current owner
+00:07 +8: stop retires a menu selection without an unbound fallback
+00:07 +9: task change during menu closing discards its pending action
+00:07 +10: pause and resume while menu closes retire its pending action
+00:07 +11: (tearDownAll)
+00:07 +11: All tests passed!

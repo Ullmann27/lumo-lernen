@@ -1,0 +1,54 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+[Perf] quality_profile:medium
+behavior:idle_bounce
+[JumpNextgen] measured jump heights: {"held":{"height":2.07875111699104,"knee_angle":0.717702507972717},"tap":{"height":1.09041860699654,"knee_angle":0.615940988063812}}
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Deutsch
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Router] goto:jump (res://scenes/games/jump_islands.tscn)
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[JumpNextgen] PASS 84 checks: actual variable jumps, coyote, buffer, original rig, pause, dp layouts and isolated saves

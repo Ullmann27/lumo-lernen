@@ -16,6 +16,7 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 String? _fractionValue(String answer) {
@@ -55,6 +56,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   final _rng = math.Random();
 
@@ -101,7 +103,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
 
   void _generateTask() {
     // Progressiver Schwierigkeitsgrad:
-    // Aufgabe 1-2: Halbe (1/2)
+    // Aufgabe 1: Halbe (1/2), Aufgabe 2: Viertel
     // Aufgabe 3-4: Drittel/Viertel
     // Aufgabe 5-8: bis Achtel
     final maxNenner = _taskIdx < 2
@@ -111,6 +113,12 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
             : 8;
     _nenner = 2 + _rng.nextInt(maxNenner - 1); // 2..maxNenner
     _gegessen = 1 + _rng.nextInt(_nenner - 1); // 1..nenner-1
+    // Befund L9: Die ersten beiden Aufgaben waren immer 1/2. Die zweite
+    // ist jetzt ein Viertel oder drei Viertel.
+    if (_taskIdx == 1) {
+      _nenner = 4;
+      _gegessen = _rng.nextBool() ? 1 : 3;
+    }
 
     // Enumerate a finite pool of distinct values. Equivalent fractions must
     // neither duplicate each other nor be offered as a wrong answer.
@@ -146,6 +154,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
     });
     final isCorrect = areEquivalentFractionAnswers(answer, _correctText);
     if (!await _progress.saveAnswer(
+          problemKey: 'Pizza: $_gegessen/$_nenner',
           correct: isCorrect,
           stars: isCorrect ? 1 : 0,
           xp: isCorrect ? 10 : 0,
@@ -248,6 +257,30 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
+        appState: widget.appState,
+        progress: _progress,
+        moduleId: 'm4_bruch',
+        taskKey: _taskIdx,
+        prompt:
+            'Eine Pizza hat $_nenner gleich große Stücke. $_gegessen wurden gegessen. Welcher Bruch wurde gegessen?',
+        objective: 'Du beschreibst einen Anteil mit Zähler und Nenner.',
+        answerChoices: _answers,
+        onConfirmChoice: (index) => _onAnswer(_answers[index]),
+        helpSteps: [
+          'Schau zuerst auf die ganze Pizza. Alle gleich großen Stücke zusammen bestimmen den Nenner unten.',
+          'Es gibt $_nenner gleich große Stücke. Zähle jetzt nur die als gegessen markierten Stücke für den Zähler oben.',
+          'Oben steht die Anzahl gegessener Stücke, unten die Anzahl aller Stücke: $_gegessen von $_nenner. Wähle den passenden Bruch; ein gleich großer gekürzter Bruch zählt ebenfalls.',
+        ],
+        answering: !_answered,
+        lastAnswer: _selectedAnswer,
+        lastCorrect: _answered && _selectedAnswer != null
+            ? areEquivalentFractionAnswers(_selectedAnswer!, _correctText)
+            : null,
+        child: child,
+      );
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -255,14 +288,15 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
       child: LumoLearningModuleFrame(
         appState: widget.appState,
         title: 'Mathe-Abenteuer',
-        moduleTitle: 'Bruchrechnen',
+        moduleTitle: 'Brüche erkennen',
         icon: Icons.pie_chart_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
         correctAnswers: _correctCount,
         progressLabel: 'Bruch',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) => Opacity(
               opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
@@ -289,7 +323,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
             const SizedBox(height: 8),
             _buildAnswerGrid(),
           ]),
-        ),
+        )),
       ),
     );
   }

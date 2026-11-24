@@ -1,0 +1,32 @@
+{
+  "purpose": "Materialized source copy for authorized check-only parsing",
+  "native_pin": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+  "origin": "/home/agent/lumo-kart-dream-merge-2708/source",
+  "destination": "/home/agent/lumo-c4-small-modal-qa-2708/parser-source",
+  "complete_git_checkout": false,
+  "git_directory_copied": false,
+  "source_fetch_performed": false,
+  "engine_import_performed": false,
+  "materialized_tracked_files": 1454,
+  "missing_selected_paths": [],
+  "source_inventory_sha256": "6dc7aa3125e04caa6d9cc19b108ce9ca22de3bafd54d30b7b4a141307edbf0fe",
+  "source_inventory_bytes": 289176,
+  "helper": {
+    "path": "scripts/tests/connect_four_runtime_regression.gd",
+    "bytes": 14782,
+    "sha256": "83852fdd2e19cd32b20ec6de62179ee3f9e7712e574f723773bcc40cc35dd0a7",
+    "git_blob": "94c32597c0170c5c3199e39ca6fbfcc1caf25f99"
+  },
+  "overlay": {
+    "path": "scripts/tests/connect_four_small_result_actions_qa.gd",
+    "bytes": 16802,
+    "sha256": "2c5e4a16a39817359e8748970d41238e518e1244525e643660c6e0bd760b3288",
+    "git_blob": "92368c1e776c3b32ed2147127ea0c5d52f66df70"
+  },
+  "cache_copy": "Physical private copy of the existing owned Godot cache; no links",
+  "sidecars_copied": 820,
+  "sidecar_inventory_sha256": "d49c3236b328484586fa2e5f6f9f467849bdc002598a36a653d205651779c8c1",
+  "physical_copy_bytes_before_sidecars": 157090558,
+  "home_free_after": 4058763264
+}

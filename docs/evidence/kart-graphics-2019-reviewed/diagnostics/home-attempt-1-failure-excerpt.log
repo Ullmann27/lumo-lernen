@@ -1,0 +1,9 @@
+2026-11-13T14:26:06.5881695Z [  50% ] [90m[1mpreload_reimporting_scene[22m | Preparation done.[39m[0m
+2026-11-13T14:26:06.5881878Z [92m[ DONE ][39m [1mpreload_reimporting_scene[22m
+2026-11-13T14:26:06.5881983Z [0m
+2026-11-13T14:26:06.5882193Z [   0% ] [90m[1mreimport[22m | lumo_reference_manifest.csv[39m[0m
+2026-11-13T14:26:06.5926144Z [   0% ] [90m[1mreimport[22m | lumo_reference_manifest.csv[39m[0m
+2026-11-13T14:26:09.3758292Z /home/runner/work/_temp/d37fb90e-231b-4502-9c07-7475d841e2bf.sh: line 13:  2893 Segmentation fault      (core dumped) godot --headless --path "$baseline" --editor --import --quit 2>&1
+2026-11-13T14:26:09.3759301Z       2894 Done                    | tee "$EVIDENCE/baseline/import.log"
+2026-11-13T14:26:09.3773091Z ##[error]Process completed with exit code 139.
+2026-11-13T14:26:09.3821780Z ##[group]Run set -euo pipefail

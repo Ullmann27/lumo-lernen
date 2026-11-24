@@ -1,0 +1,40 @@
+{
+  "run": 43589206933,
+  "conclusion": "FAIL",
+  "compact_archive": {
+    "path": "compact-originals.tar.gz",
+    "bytes": 4368132,
+    "sha256": "8aac812164b1d69029293aa0f3de4e45b477c9cf381a8ab5c8c0d33e352032db",
+    "git_blob": "5c4162d1203243fc4c639c5bee540bba5f76ef13"
+  },
+  "roundtrip": {
+    "path": "archive-roundtrip.json",
+    "bytes": 482,
+    "sha256": "a1ecc2742ef507ccde9aa13fbec7b9a000c029d7d8ccee2bcdc52515931a1814",
+    "git_blob": "417bfe42fca7d83942c0d43d765a5d9110272f55"
+  },
+  "manifest": {
+    "path": "manifest.json",
+    "bytes": 29840,
+    "sha256": "0f3aab694145df8d02c3339bbf3c9de8b9beeeb6a36a8a541f33fe003459daac",
+    "git_blob": "b037d4bd43fa648b6adf6d342f0b09539a1bb37d"
+  },
+  "review": {
+    "path": "review.json",
+    "bytes": 3520,
+    "sha256": "b09c67356f6f04e4fc56163b82f960515eaa83337e3726e66ee0a31fbb61bff4",
+    "git_blob": "d4b285644251a0a2ec6a518e684413f8f0bc764f"
+  },
+  "original_zip": {
+    "path": "/tmp/host3d91-terminal-android-evidence-20261114/14114895060-original.zip",
+    "bytes": 53588701,
+    "sha256": "5a2bcf963a14ac300e1cab483a59c68fd77c1dbcf711110e2fcdab7102a0c790"
+  },
+  "photos_for_root": [
+    "selected-originals/main/21_stage_select_gecko_velo-0.png",
+    "selected-originals/main/21_stage_select_gecko_velo-2.png"
+  ],
+  "frozen": true,
+  "new_tests": 0,
+  "new_device_runs": 0
+}

@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T15:54:04.188264+00:00",
+  "host": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+  "feature_run": 43610022344,
+  "script_run": 43610026651,
+  "attempt": 1,
+  "feature_jobs": [
+    {
+      "id": 132492830056,
+      "name": "flutter-contracts",
+      "head_sha": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-14T15:33:40Z"
+    },
+    {
+      "id": 132492830331,
+      "name": "android-host-compile",
+      "head_sha": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-14T15:28:34Z"
+    },
+    {
+      "id": 132492830414,
+      "name": "memory-source-contracts",
+      "head_sha": "2e20f5f24cee7a696296e6bea5618cc130a40ce2",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-14T15:25:36Z"
+    }
+  ],
+  "flutter_terminal_original_summary": {
+    "status": "PASS",
+    "passed": 2608,
+    "failed": [],
+    "skipped": [],
+    "capture_error_files": [],
+    "flutter_exit_code": 0,
+    "runner_completed_successfully": true,
+    "runner_errors": [],
+    "scope": [
+      "complete Flutter suite; capture outputs recorded below"
+    ],
+    "capture_png_counts": {
+      "LUMO_TUTORING_CAPTURE_DIR": {
+        "directory": "tutoring",
+        "pngs": 6
+      },
+      "LUMO_RIG_STRESS": {
+        "directory": "rig-stress",
+        "pngs": 27
+      },
+      "LUMO_CARDS_OPPONENT_CAPTURE": {
+        "directory": "cards-opponents",
+        "pngs": 4
+      },
+      "LUMO_STREAM_E_CAPTURE": {
+        "directory": "cards-memory",
+        "pngs": 8
+      },
+      "LUMO_NAVIGATION_CAPTURES": {
+        "directory": "navigation",
+        "pngs": 26
+      },
+      "LUMO_GUIDED_CAPTURE_DIR": {
+        "directory": "guided-learning",
+        "pngs": 170
+      },
+      "LUMO_VISUAL_CAPTURE_DIR": {
+        "directory": "reasoning",
+        "pngs": 15
+      },
+      "LUMO_TOUR_DIR": {
+        "directory": "tour",
+        "pngs": 62
+      },
+      "LUMO_FLUTTER_GAMES_CAPTURE": {
+        "directory": "games",
+        "pngs": 16
+      },
+      "LUMO_LEARNING_CAPTURE_DIR": {
+        "directory": "learning-adventure",
+        "pngs": 80
+      },
+      "LUMO_COMPANION_CAPTURE_DIR": {
+        "directory": "companion",
+        "pngs": 6
+      },
+      "LUMO_SPATIAL_CAPTURES": {
+        "directory": "reading",
+        "pngs": 12
+      },
+      "LUMO_CAPTURE_DIR": {
+        "directory": "modernization",
+        "pngs": 42
+      },
+      "LUMO_CARD_FACE_EXPORT_DIR": {
+        "directory": "card-face-exports",
+        "pngs": 56
+      },
+      "LUMO_NEXTGEN_READING_CAPTURES": {
+        "directory": "nextgen-reading",
+        "pngs": 6
+      },
+      "LUMO_READING_CAPTURES": {
+        "directory": "reading-passages",
+        "pngs": 3
+      },
+      "LUMO_ASSISTED_LEARNING_CAPTURES": {
+        "directory": "assisted-learning",
+        "pngs": 2
+      },
+      "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+        "directory": "native-profiles",
+        "pngs": 4
+      }
+    },
+    "capture_file_outputs": {
+      "LUMO_CARDS_CUP_CAPTURE": {
+        "path": "cards-cup/trophy.png",
+        "created": true
+      }
+    },
+    "rendered_png_count": 546
+  },
+  "flutter_scope": "Parsed complete original job log summary; full machine artifact not downloaded or independently recounted in this review.",
+  "script_case_headers_independently_counted": 599,
+  "script_terminal_report": "Ran 599 tests in 105.380s; OK; zero failure/error sections and zero skipped test entries",
+  "script_parser_observation": "Initial strict single-line ok matcher counted591 and stopped before report writes. Original log has three multiline docstring cases and five cases interleaved with warnings or captured child stdout. The corrected reader counts599 unique original case headers plus the actual terminal suite result. No test was rerun or edited.",
+  "original_script_diagnostics": "Original ResourceWarnings and expected negative-test subprocess output are retained unchanged; this is not a warning-free claim.",
+  "android_build_original_terminal": "BUILD SUCCESSFUL in 2m 28s",
+  "changes_since_505": {
+    "commits": 2,
+    "files": 21
+  },
+  "native_current": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "native_full_and_authority_runs": "in progress in the separate observed15:47 snapshot; no terminal success claimed here",
+  "integrated_into_root_candidate": false,
+  "new_tests_run_by_root": 0,
+  "limits": [
+    "Producer source acceptance only; no new Root APK or installed-device acceptance.",
+    "Original prior505 and8b failures remain independently preserved.",
+    "No current pin, active source or release changed by this review."
+  ]
+}

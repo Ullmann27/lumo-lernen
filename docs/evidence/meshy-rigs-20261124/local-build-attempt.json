@@ -1,0 +1,17 @@
+{
+  "started_at_utc": "2026-11-24T07:43:40.992044+00:00",
+  "command": [
+    "bash",
+    "scripts/build_unified_apk.sh"
+  ],
+  "flutter_source_commit": "ad9a91c1e3cd70b24a3e01ae6182eb98b5a882ed",
+  "godot_source_commit": "574a10e8fb7b06fc8f9af3ff89ef28c6bd4f76d7",
+  "tracked_source_clean_at_start": true,
+  "exit_code": 127,
+  "flutter_executable": null,
+  "adb_executable": null,
+  "java_executable": "/usr/bin/java",
+  "apk_created": false,
+  "github_upload_completed": false,
+  "scope": "Actual local build script invocation; remote upload remains blocked pending explicit approval."
+}

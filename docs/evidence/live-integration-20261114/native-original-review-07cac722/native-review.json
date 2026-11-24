@@ -1,0 +1,481 @@
+{
+  "schema": 1,
+  "status": "NATIVE52_AND_LIVE_COMPLETE_DISCOVERY_INTERRUPTED_NO_OVERALL_ACCEPTANCE",
+  "basis": {
+    "host_source": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "host_tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+    "native_source": "71a4c1e2304b52005950b12490d070c286c45438",
+    "native_tree": "8633c0ac611f2ba9f261cc247a60997634d43dd9",
+    "run_id": 43586101225,
+    "run_attempt": 1,
+    "job_id": 132421769277,
+    "workflow_blob": "f585727503a73aadcec25414e60f47e44c9f29db",
+    "declared_job_timeout_minutes": 90
+  },
+  "original_logs": [
+    {
+      "file": "verify-and-build-original.log",
+      "git_blob": "c246b7ddce9d1b66db659a93b0af8abec539ee0d",
+      "utf8_bytes": 1370502,
+      "sha256": "fc687b374ca27e28632b11786ff26fb4eed916e4e9b0fe70d3bb72a064acbef1",
+      "line_count_including_final_empty_line": 10889
+    },
+    {
+      "file": "connect-four-runtime-original.log",
+      "git_blob": "3cf536f314913709ed2f5f542bd3629fba9c291e",
+      "utf8_bytes": 287986,
+      "sha256": "a5203d649dab1729a06de65e01a7e5cf886051c03bed757cbea0064821617d65"
+    }
+  ],
+  "original_api": [
+    {
+      "file": "original-run.json",
+      "git_blob": "d813fa5ccfe7386c42fe1d38837856ed0a13addb",
+      "utf8_bytes": 13364,
+      "unchanged_api_text": true
+    },
+    {
+      "file": "original-jobs.json",
+      "git_blob": "f92d7223bcde9785b1f012c2c8e38219e82760ea",
+      "utf8_bytes": 19298,
+      "unchanged_api_text": true
+    },
+    {
+      "file": "original-artifacts.json",
+      "git_blob": "5a1fdf5d6508fe1d54c3fa133a8b7533b023f0c1",
+      "utf8_bytes": 6771,
+      "unchanged_api_text": true
+    }
+  ],
+  "source_contracts": [
+    {
+      "path": "tools/validate_nextgen.sh",
+      "git_blob": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946",
+      "explicit_probe_calls": 52
+    },
+    {
+      "path": "tools/validate_live_connections.sh",
+      "git_blob": "047c48b60af8ea8c1ed91426604cdb0e5dac7299"
+    },
+    {
+      "path": "tools/validate_discovery_connections.sh",
+      "git_blob": "07975f12c1f9b07d586cbeb85270329955198f04"
+    },
+    {
+      "path": "tools/verify_discovery_rasters.py",
+      "git_blob": "219e691fc8aa119cc80221b3db6c77e63caf8bfe"
+    }
+  ],
+  "terminal_job": {
+    "status": "completed",
+    "conclusion": "cancelled",
+    "started_at": "2026-11-14T10:40:50Z",
+    "completed_at": "2026-11-14T12:11:26Z",
+    "steps": [
+      {
+        "name": "Require actual gameplay gates on the exact pinned native source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31,
+        "started_at": "2026-11-14T11:03:00Z",
+        "completed_at": "2026-11-14T12:01:51Z"
+      },
+      {
+        "name": "Verify connected dream ambience and garden on exact native source",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "number": 32,
+        "started_at": "2026-11-14T12:01:51Z",
+        "completed_at": "2026-11-14T12:11:03Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 33,
+        "started_at": "2026-11-14T12:11:03Z",
+        "completed_at": "2026-11-14T12:11:23Z"
+      },
+      {
+        "name": "Build unified real Android APK",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 34,
+        "started_at": "2026-11-14T12:11:23Z",
+        "completed_at": "2026-11-14T12:11:23Z"
+      },
+      {
+        "name": "Verify APK archive and collect reproducible source hashes",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 35,
+        "started_at": "2026-11-14T12:11:23Z",
+        "completed_at": "2026-11-14T12:11:23Z"
+      },
+      {
+        "name": "Upload exact candidate (no release or synthetic screenshots)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 36,
+        "started_at": "2026-11-14T12:11:23Z",
+        "completed_at": "2026-11-14T12:11:23Z"
+      },
+      {
+        "name": "Deliver verified ARM64 APK separately for direct download",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 37,
+        "started_at": "2026-11-14T12:11:23Z",
+        "completed_at": "2026-11-14T12:11:23Z"
+      }
+    ]
+  },
+  "observed_durations_seconds": {
+    "native_step31_api": 3531,
+    "nextgen_first_engine_output_to_final_marker": 2485.113,
+    "nextgen_entire_call_lower_bound": 2485.113,
+    "nextgen_entire_call_upper_bound": 2485.978,
+    "nextgen_bounds_reason": "The call starts after the preceding ActionStage PASS and before its first Godot engine output. Rounded to milliseconds; exact original timestamp strings are retained.",
+    "completed_first_learning_capture_engine_to_pass": 618.97,
+    "interrupted_second_learning_capture_engine_to_cancel": 242.274
+  },
+  "nextgen": {
+    "status": "PASS",
+    "probes": 52,
+    "studio_2020_pngs": 17,
+    "studio_2020_sidecars": 3,
+    "verified_facial_movies": 1,
+    "other_roster_counts": {
+      "studio": 24,
+      "village": 4,
+      "puzzle_menu": 6,
+      "safe_area": 7
+    },
+    "safe_area_settled_sidecars": 3,
+    "markers": [
+      {
+        "line": 10224,
+        "timestamp": "2026-11-14T12:01:49.5939906Z",
+        "text": "[StudioRasterRoster] PASS 24 actual PNG files"
+      },
+      {
+        "line": 10225,
+        "timestamp": "2026-11-14T12:01:49.8885707Z",
+        "text": "[VillageRasterRoster] PASS 4 actual PNG files"
+      },
+      {
+        "line": 10226,
+        "timestamp": "2026-11-14T12:01:50.0403931Z",
+        "text": "[PuzzleMenuRasterRoster] PASS 6 actual PNG files"
+      },
+      {
+        "line": 10227,
+        "timestamp": "2026-11-14T12:01:50.7867814Z",
+        "text": "[SafeAreaRasterRoster] PASS 7 actual PNG files and 3 settled layout sidecars"
+      },
+      {
+        "line": 10228,
+        "timestamp": "2026-11-14T12:01:51.6046465Z",
+        "text": "[Studio2020RasterRoster] PASS 17 actual PNG files, 3 original sidecars and 1 verified facial movie"
+      },
+      {
+        "line": 10229,
+        "timestamp": "2026-11-14T12:01:51.6153084Z",
+        "text": "[LumoNextgen52] PASS: all 48 previous modes plus four Studio2020 modes and 17 bound rasters/movie/sidecars"
+      }
+    ]
+  },
+  "live": {
+    "status": "PASS",
+    "probes": 9,
+    "verified_pngs": 7,
+    "c4_return_checks": 21,
+    "wisp_checks": {
+      "headless": 14,
+      "rendered": 18
+    },
+    "marker": {
+      "line": 10398,
+      "timestamp": "2026-11-14T12:03:02.8314009Z",
+      "text": "[LumoLiveConnections] PASS 9 original probes and 7 verified renderer PNGs"
+    }
+  },
+  "discovery": {
+    "status": "INCOMPLETE",
+    "required_probes": 10,
+    "completed_probes": [
+      {
+        "probe": "learning_world_regression",
+        "mode": "headless",
+        "status": "PASS",
+        "original_marker": {
+          "line": 10539,
+          "timestamp": "2026-11-14T12:03:38.0542833Z",
+          "text": "[LearningWorld] PASS checks=5347"
+        }
+      },
+      {
+        "probe": "learning_sharing_regression",
+        "mode": "headless",
+        "status": "PASS",
+        "original_marker": {
+          "line": 10563,
+          "timestamp": "2026-11-14T12:03:41.0881246Z",
+          "text": "[LearningSharing] PASS checks=1811"
+        }
+      },
+      {
+        "probe": "learning_studio_regression",
+        "mode": "headless",
+        "status": "PASS",
+        "original_marker": {
+          "line": 10592,
+          "timestamp": "2026-11-14T12:03:49.0614808Z",
+          "text": "[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning"
+        }
+      },
+      {
+        "probe": "game_hub_magic_regression",
+        "mode": "headless",
+        "status": "PASS",
+        "original_marker": {
+          "line": 10606,
+          "timestamp": "2026-11-14T12:03:49.4900755Z",
+          "text": "[LumoHub] PASS 8 visible native game entrances, active village route, preserved child settings and 3D reduced-motion portal"
+        }
+      },
+      {
+        "probe": "village_host_launch_regression",
+        "mode": "headless",
+        "status": "PASS",
+        "original_marker": {
+          "line": 10623,
+          "timestamp": "2026-11-14T12:03:50.8352161Z",
+          "text": "[VillageHost] PASS Flutter village request, native boot scene and child context"
+        }
+      },
+      {
+        "probe": "learning_wonder_details_regression",
+        "mode": "headless",
+        "status": "PASS",
+        "original_marker": {
+          "line": 10677,
+          "timestamp": "2026-11-14T12:03:56.1426477Z",
+          "text": "[LearningWonder] checks=100 failures=0 renderer=headless invalid_scene_checked=false"
+        }
+      },
+      {
+        "probe": "learning_wonder_details_regression",
+        "mode": "rendered",
+        "status": "PASS",
+        "original_marker": {
+          "line": 10738,
+          "timestamp": "2026-11-14T12:06:43.7653141Z",
+          "text": "[LearningWonder] checks=108 failures=0 renderer=X11 invalid_scene_checked=true"
+        }
+      },
+      {
+        "probe": "game_hub_magic_capture",
+        "mode": "rendered",
+        "status": "PASS",
+        "original_marker": {
+          "line": 10759,
+          "timestamp": "2026-11-14T12:07:01.0716057Z",
+          "text": "[LumoHubCapture] PASS 2 original current-source rendered PNGs"
+        }
+      }
+    ],
+    "incomplete_probe": {
+      "name": "learning_world_capture",
+      "mode": "rendered",
+      "required_pngs": 25,
+      "observed_screenshot_markers": 10,
+      "own_timeout_seconds": 900,
+      "own_timeout_reached": false,
+      "markers": [
+        {
+          "line": 10778,
+          "timestamp": "2026-11-14T12:07:22.8133406Z",
+          "text": "[LearningCapture] SCREENSHOT math-start-1280x720 lit=52907 orange=25461 fox_head_orange=1309 clipped_ratio=0.00348324514991"
+        },
+        {
+          "line": 10781,
+          "timestamp": "2026-11-14T12:07:47.9097510Z",
+          "text": "[LearningCapture] SCREENSHOT math-ten-1280x720 lit=53158 orange=25553 fox_head_orange=1309 clipped_ratio=0.00348324514991"
+        },
+        {
+          "line": 10785,
+          "timestamp": "2026-11-14T12:08:21.6443528Z",
+          "text": "[LearningCapture] SCREENSHOT math-complete-1280x720 lit=53715 orange=26173 fox_head_orange=1309 clipped_ratio=0.00348324514991"
+        },
+        {
+          "line": 10786,
+          "timestamp": "2026-11-14T12:08:29.6231819Z",
+          "text": "[LearningCapture] SCREENSHOT math-start-412x915 lit=18777 orange=10261 fox_head_orange=969 clipped_ratio=0.0005812376487"
+        },
+        {
+          "line": 10789,
+          "timestamp": "2026-11-14T12:08:42.5155907Z",
+          "text": "[LearningCapture] SCREENSHOT math-ten-412x915 lit=19082 orange=10441 fox_head_orange=969 clipped_ratio=0.0005812376487"
+        },
+        {
+          "line": 10793,
+          "timestamp": "2026-11-14T12:08:59.7787901Z",
+          "text": "[LearningCapture] SCREENSHOT math-complete-412x915 lit=18428 orange=10354 fox_head_orange=870 clipped_ratio=0.00073087542634"
+        },
+        {
+          "line": 10794,
+          "timestamp": "2026-11-14T12:09:20.5438292Z",
+          "text": "[LearningCapture] SCREENSHOT math-start-2400x1080 lit=107160 orange=24549 fox_head_orange=1253 clipped_ratio=0.00186936615814"
+        },
+        {
+          "line": 10797,
+          "timestamp": "2026-11-14T12:09:54.4299004Z",
+          "text": "[LearningCapture] SCREENSHOT math-ten-2400x1080 lit=107386 orange=24614 fox_head_orange=1253 clipped_ratio=0.00186936615814"
+        },
+        {
+          "line": 10801,
+          "timestamp": "2026-11-14T12:10:40.1482179Z",
+          "text": "[LearningCapture] SCREENSHOT math-complete-2400x1080 lit=107914 orange=25215 fox_head_orange=1253 clipped_ratio=0.00186936615814"
+        },
+        {
+          "line": 10802,
+          "timestamp": "2026-11-14T12:10:55.1307973Z",
+          "text": "[LearningCapture] SCREENSHOT syllables-start lit=55049 orange=21550 fox_head_orange=1309 clipped_ratio=0.00348324514991"
+        }
+      ]
+    },
+    "unstarted_probe": {
+      "name": "learning_wonder_details_capture",
+      "required_pngs": 11,
+      "expected_geometry_checks": 136
+    },
+    "final_10_probe_38_png_marker_present": false,
+    "full_discovery_raster_replay_reached": false,
+    "note": "Repeated grep confirmations in the original runner output do not count as additional executions."
+  },
+  "native_error_scan": {
+    "from": "2026-11-14T11:03:00Z",
+    "until_exclusive": "2026-11-14T12:11:03.574Z",
+    "case_sensitive_patterns": [
+      "SCRIPT ERROR",
+      "Parse Error",
+      "ERROR:",
+      "Assertion failed",
+      "ObjectDB instances leaked",
+      "resources still in use at exit",
+      "timed out",
+      "TimeoutExpired",
+      "[LumoNextgen] FAIL"
+    ],
+    "matches": [],
+    "scope": "Only the original native execution interval before the GitHub cancellation message; normal Compatibility/VSync warnings remain preserved."
+  },
+  "original_markers": {
+    "host_checkout": {
+      "line": 101,
+      "timestamp": "2026-11-14T10:41:01.3822875Z",
+      "text": " * branch            07cac7225e2f7b6451665dfda9c38841f51c758b -> FETCH_HEAD"
+    },
+    "native_checkout": {
+      "line": 4293,
+      "timestamp": "2026-11-14T11:03:06.8342295Z",
+      "text": " * branch            71a4c1e2304b52005950b12490d070c286c45438 -> FETCH_HEAD"
+    },
+    "previous_action_stage_complete": {
+      "line": 8775,
+      "timestamp": "2026-11-14T11:20:25.6371834Z",
+      "text": "[LumoActionStage] PASS: native touch navigation, real 3D stage and physical roadside action; logs /home/runner/work/lumo-lernen/lumo-lernen/acceptance-native/action-stage"
+    },
+    "first_nextgen_engine_output": {
+      "line": 8776,
+      "timestamp": "2026-11-14T11:20:26.5019711Z",
+      "text": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+    },
+    "first_complete_learning_capture_engine": {
+      "line": 9541,
+      "timestamp": "2026-11-14T11:22:57.9082465Z",
+      "text": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+    },
+    "first_complete_learning_capture_pass": {
+      "line": 9635,
+      "timestamp": "2026-11-14T11:33:16.8782921Z",
+      "text": "[LearningCapture] PASS captures=25"
+    },
+    "studio_2020": {
+      "line": 10228,
+      "timestamp": "2026-11-14T12:01:51.6046465Z",
+      "text": "[Studio2020RasterRoster] PASS 17 actual PNG files, 3 original sidecars and 1 verified facial movie"
+    },
+    "nextgen52": {
+      "line": 10229,
+      "timestamp": "2026-11-14T12:01:51.6153084Z",
+      "text": "[LumoNextgen52] PASS: all 48 previous modes plus four Studio2020 modes and 17 bound rasters/movie/sidecars"
+    },
+    "live9": {
+      "line": 10398,
+      "timestamp": "2026-11-14T12:03:02.8314009Z",
+      "text": "[LumoLiveConnections] PASS 9 original probes and 7 verified renderer PNGs"
+    },
+    "c4_return_in_live": {
+      "line": 10291,
+      "timestamp": "2026-11-14T12:01:56.6314622Z",
+      "text": "CONNECT_FOUR_RETURN_PASS checks=21"
+    },
+    "wisp_headless": {
+      "line": 10303,
+      "timestamp": "2026-11-14T12:01:57.0522516Z",
+      "text": "[TreasureWisp] PASS checks=14"
+    },
+    "wisp_rendered": {
+      "line": 10334,
+      "timestamp": "2026-11-14T12:01:59.7992553Z",
+      "text": "[TreasureWisp] PASS checks=18"
+    },
+    "last_learning_capture_engine": {
+      "line": 10761,
+      "timestamp": "2026-11-14T12:07:01.3001490Z",
+      "text": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+    },
+    "last_learning_screenshot": {
+      "line": 10802,
+      "timestamp": "2026-11-14T12:10:55.1307973Z",
+      "text": "[LearningCapture] SCREENSHOT syllables-start lit=55049 orange=21550 fox_head_orange=1309 clipped_ratio=0.00348324514991"
+    },
+    "last_observed_learning_action": {
+      "line": 10803,
+      "timestamp": "2026-11-14T12:10:55.7407137Z",
+      "text": "[LearningWorld] move kind=syllables token=0 target=0 placed=1 complete=false"
+    },
+    "cancellation": {
+      "line": 10804,
+      "timestamp": "2026-11-14T12:11:03.5742356Z",
+      "text": "##[error]The operation was canceled."
+    }
+  },
+  "cancellation": {
+    "api_conclusion": "cancelled",
+    "original_log_message": "The operation was canceled.",
+    "explicit_timeout_annotation_in_inspected_log": false,
+    "inference": "The cancellation follows the declared 90-minute job budget while an active 900-second capture was only about 242 seconds old. No native error or individual probe timeout is evidenced before cancellation. The exact platform cancellation cause is not independently asserted from this log alone."
+  },
+  "artifact": {
+    "id": 14113137811,
+    "name": "lumo-candidate-pinned-native-gameplay",
+    "bytes": 201481571,
+    "sha256": "84e8e465e16bc49c302b500f5b12dd81cf2dc03729f009f623576fc9833f4c05",
+    "uploaded_successfully": true,
+    "created_at": "2026-11-14T12:11:23Z",
+    "expires_at": "2026-12-14T12:11:05Z",
+    "downloaded_for_this_review": false
+  },
+  "limits": {
+    "new_renderer_or_test_execution": false,
+    "original_artifact_pixels_replayed_for_this_review": false,
+    "apk_build_started": false,
+    "android_village_roundtrip_executed_in_this_run": false,
+    "release_approval": false,
+    "physical_android_fps_measured": false
+  },
+  "review_method": "Read-only inspection of the identical immutable original job log and original GitHub API metadata. This evidence-only checkpoint leaves production code, runtime pin and all test limits unchanged."
+}

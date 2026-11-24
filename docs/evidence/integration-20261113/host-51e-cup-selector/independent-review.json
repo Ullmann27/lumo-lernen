@@ -1,0 +1,15 @@
+{
+  "reviewer": "/root/godot_integration",
+  "kind": "Independent read-only source and original-fixture review",
+  "status": "NO_CONCRETE_BLOCKER",
+  "helper_sha256": "03b3b9b690b93b74a3a4e385efcb5e4f13de16a1d3f3a6a589bb8caefc0978f6",
+  "test_sha256": "a9c2b47565e29553f41eea3f2d84614fcc55fba0af030e6da02442d653a13d3e",
+  "fixture_manifest_sha256": "ce8397d3ff06c4ca2b6b6b1aedf2c1d3cecb18332cdfcccd5736989d77869fae",
+  "observations": [
+    "Current Native993c renders Grand Prix or narrow Pokal with no symbol prefix.",
+    "Every other helper function is AST-identical; entire guard/bounds/IoU>=0.6/ambiguity/return block byte-identical.",
+    "All six OCR/readiness fixtures independently compared directly with all three original artifact ZIPs and are byte-exact.",
+    "A genuinely distinct second exact-title region remains FAIL; decoration without clean caption remains rejected."
+  ],
+  "scope": "No tests or writes by reviewer. No fresh Android or product acceptance."
+}

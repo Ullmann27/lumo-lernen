@@ -1,0 +1,935 @@
+﻿2026-11-14T16:25:03.9500333Z Current runner version: '2.338.2'
+2026-11-14T16:25:03.9527869Z ##[group]Runner Image Provisioner
+2026-11-14T16:25:03.9528797Z Hosted Compute Agent
+2026-11-14T16:25:03.9529534Z Version: 20261103.629
+2026-11-14T16:25:03.9530493Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T16:25:03.9531379Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T16:25:03.9532268Z Worker ID: {d7ce19ab-47f0-4ecd-8685-e7fb4afc9827}
+2026-11-14T16:25:03.9533186Z Region: eastus
+2026-11-14T16:25:03.9533980Z Cloud: Azure
+2026-11-14T16:25:03.9534630Z ##[endgroup]
+2026-11-14T16:25:03.9536272Z ##[group]Operating System
+2026-11-14T16:25:03.9537174Z Ubuntu
+2026-11-14T16:25:03.9537810Z 24.04.5
+2026-11-14T16:25:03.9538467Z LTS
+2026-11-14T16:25:03.9539098Z ##[endgroup]
+2026-11-14T16:25:03.9539949Z ##[group]Runner Image
+2026-11-14T16:25:03.9540763Z Image: ubuntu-24.04
+2026-11-14T16:25:03.9541494Z Version: 20261111.370.1
+2026-11-14T16:25:03.9543132Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T16:25:03.9545013Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T16:25:03.9546387Z ##[endgroup]
+2026-11-14T16:25:03.9547732Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T16:25:03.9550219Z Contents: read
+2026-11-14T16:25:03.9550951Z Metadata: read
+2026-11-14T16:25:03.9551737Z ##[endgroup]
+2026-11-14T16:25:03.9554059Z Secret source: Actions
+2026-11-14T16:25:03.9555202Z Cache mode: write
+2026-11-14T16:25:03.9556409Z Prepare workflow directory
+2026-11-14T16:25:03.9974955Z Prepare all required actions
+2026-11-14T16:25:04.0030016Z Getting action download info
+2026-11-14T16:25:04.1716128Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T16:25:04.2981141Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+2026-11-14T16:25:04.5754889Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+2026-11-14T16:25:04.6539227Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T16:25:04.9079387Z Getting action download info
+2026-11-14T16:25:04.9684078Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-11-14T16:25:05.1807126Z Complete job name: verify-and-build
+2026-11-14T16:25:05.2616637Z ##[group]Run actions/checkout@v4
+2026-11-14T16:25:05.2617328Z with:
+2026-11-14T16:25:05.2617691Z   persist-credentials: false
+2026-11-14T16:25:05.2618151Z   ref: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:25:05.2618650Z   repository: Ullmann27/lumo-lernen
+2026-11-14T16:25:05.2622093Z   token: ***
+2026-11-14T16:25:05.2622454Z   ssh-strict: true
+2026-11-14T16:25:05.2622814Z   ssh-user: git
+2026-11-14T16:25:05.2623167Z   clean: true
+2026-11-14T16:25:05.2623529Z   sparse-checkout-cone-mode: true
+2026-11-14T16:25:05.2623957Z   fetch-depth: 1
+2026-11-14T16:25:05.2624316Z   fetch-tags: false
+2026-11-14T16:25:05.2624712Z   show-progress: true
+2026-11-14T16:25:05.2625074Z   lfs: false
+2026-11-14T16:25:05.2625407Z   submodules: false
+2026-11-14T16:25:05.2625771Z   set-safe-directory: true
+2026-11-14T16:25:05.2626184Z   allow-unsafe-pr-checkout: false
+2026-11-14T16:25:05.2626790Z env:
+2026-11-14T16:25:05.2627125Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:05.2627513Z ##[endgroup]
+2026-11-14T16:25:05.4408417Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T16:25:05.4410055Z ##[group]Getting Git version info
+2026-11-14T16:25:05.4410656Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T16:25:05.4411493Z [command]/usr/bin/git version
+2026-11-14T16:25:05.4471814Z git version 2.56.1
+2026-11-14T16:25:05.4486503Z ##[endgroup]
+2026-11-14T16:25:05.4497219Z Temporarily overriding HOME='/home/runner/work/_temp/3a70b4aa-4256-45d4-b03f-2ff9b325d270' before making global git config changes
+2026-11-14T16:25:05.4498897Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T16:25:05.4501192Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:25:05.4538158Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T16:25:05.4541514Z ##[group]Initializing the repository
+2026-11-14T16:25:05.4544584Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:25:05.4617080Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T16:25:05.4618192Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T16:25:05.4618991Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T16:25:05.4619859Z hint: call:
+2026-11-14T16:25:05.4620349Z hint:
+2026-11-14T16:25:05.4620973Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T16:25:05.4621722Z hint:
+2026-11-14T16:25:05.4622408Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T16:25:05.4623556Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T16:25:05.4624167Z hint:
+2026-11-14T16:25:05.4624497Z hint: 	git branch -m <name>
+2026-11-14T16:25:05.4624871Z hint:
+2026-11-14T16:25:05.4625356Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T16:25:05.4626371Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T16:25:05.4631217Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T16:25:05.4673299Z ##[endgroup]
+2026-11-14T16:25:05.4673921Z ##[group]Disabling automatic garbage collection
+2026-11-14T16:25:05.4676562Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T16:25:05.4837592Z ##[endgroup]
+2026-11-14T16:25:05.4838456Z ##[group]Setting up auth
+2026-11-14T16:25:05.4843623Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:25:05.4873839Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:25:05.5156969Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:25:05.5182627Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:25:05.5371417Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:25:05.5399788Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:25:05.5590810Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T16:25:05.5623345Z ##[endgroup]
+2026-11-14T16:25:05.5623996Z ##[group]Fetching the repository
+2026-11-14T16:25:05.5632069Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:25:16.7382652Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T16:25:16.7383778Z  * branch            93bd9b7804e2c352303d58552cc48e0a89a1c3cb -> FETCH_HEAD
+2026-11-14T16:25:16.7386181Z ##[endgroup]
+2026-11-14T16:25:16.7386813Z ##[group]Determining the checkout info
+2026-11-14T16:25:16.7387210Z ##[endgroup]
+2026-11-14T16:25:16.7387726Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T16:25:16.8048435Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T16:25:16.8261022Z ##[group]Checking out the ref
+2026-11-14T16:25:16.8264586Z [command]/usr/bin/git checkout --progress --force 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:25:17.8437007Z Updating files:  67% (3371/4974)
+2026-11-14T16:25:17.8614155Z Updating files:  68% (3383/4974)
+2026-11-14T16:25:17.8642408Z Updating files:  69% (3433/4974)
+2026-11-14T16:25:17.8674596Z Updating files:  70% (3482/4974)
+2026-11-14T16:25:17.8705809Z Updating files:  71% (3532/4974)
+2026-11-14T16:25:17.8742232Z Updating files:  72% (3582/4974)
+2026-11-14T16:25:17.8786988Z Updating files:  73% (3632/4974)
+2026-11-14T16:25:17.8826957Z Updating files:  74% (3681/4974)
+2026-11-14T16:25:17.8866106Z Updating files:  75% (3731/4974)
+2026-11-14T16:25:17.8897693Z Updating files:  76% (3781/4974)
+2026-11-14T16:25:17.8930804Z Updating files:  77% (3830/4974)
+2026-11-14T16:25:17.8953361Z Updating files:  78% (3880/4974)
+2026-11-14T16:25:17.8976728Z Updating files:  79% (3930/4974)
+2026-11-14T16:25:17.9096606Z Updating files:  80% (3980/4974)
+2026-11-14T16:25:17.9126398Z Updating files:  81% (4029/4974)
+2026-11-14T16:25:17.9158811Z Updating files:  82% (4079/4974)
+2026-11-14T16:25:17.9182512Z Updating files:  83% (4129/4974)
+2026-11-14T16:25:17.9204282Z Updating files:  84% (4179/4974)
+2026-11-14T16:25:17.9227094Z Updating files:  85% (4228/4974)
+2026-11-14T16:25:17.9247780Z Updating files:  86% (4278/4974)
+2026-11-14T16:25:17.9272471Z Updating files:  87% (4328/4974)
+2026-11-14T16:25:17.9292649Z Updating files:  88% (4378/4974)
+2026-11-14T16:25:17.9314241Z Updating files:  89% (4427/4974)
+2026-11-14T16:25:17.9336239Z Updating files:  90% (4477/4974)
+2026-11-14T16:25:17.9368388Z Updating files:  91% (4527/4974)
+2026-11-14T16:25:17.9705250Z Updating files:  92% (4577/4974)
+2026-11-14T16:25:17.9889122Z Updating files:  93% (4626/4974)
+2026-11-14T16:25:18.0026282Z Updating files:  94% (4676/4974)
+2026-11-14T16:25:18.0193560Z Updating files:  95% (4726/4974)
+2026-11-14T16:25:18.0226702Z Updating files:  96% (4776/4974)
+2026-11-14T16:25:18.0351596Z Updating files:  97% (4825/4974)
+2026-11-14T16:25:18.0381067Z Updating files:  98% (4875/4974)
+2026-11-14T16:25:18.0405848Z Updating files:  99% (4925/4974)
+2026-11-14T16:25:18.0406217Z Updating files: 100% (4974/4974)
+2026-11-14T16:25:18.0406547Z Updating files: 100% (4974/4974), done.
+2026-11-14T16:25:18.0451066Z Note: switching to '93bd9b7804e2c352303d58552cc48e0a89a1c3cb'.
+2026-11-14T16:25:18.0451449Z 
+2026-11-14T16:25:18.0451712Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T16:25:18.0452147Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T16:25:18.0452741Z state without impacting any branches by switching back to a branch.
+2026-11-14T16:25:18.0453058Z 
+2026-11-14T16:25:18.0453219Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T16:25:18.0453583Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T16:25:18.0453786Z 
+2026-11-14T16:25:18.0453882Z   git switch -c <new-branch-name>
+2026-11-14T16:25:18.0454034Z 
+2026-11-14T16:25:18.0454124Z Or undo this operation with:
+2026-11-14T16:25:18.0454261Z 
+2026-11-14T16:25:18.0454344Z   git switch -
+2026-11-14T16:25:18.0454446Z 
+2026-11-14T16:25:18.0454625Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T16:25:18.0454874Z 
+2026-11-14T16:25:18.0455050Z HEAD is now at 93bd9b7 ci(lumo): run full acceptance of the integrated 2020 source
+2026-11-14T16:25:18.0552261Z ##[endgroup]
+2026-11-14T16:25:18.0591712Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T16:25:18.0612929Z 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:25:18.0621320Z ##[group]Removing auth
+2026-11-14T16:25:18.0624650Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:25:18.0651201Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:25:18.0852968Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:25:18.0876390Z http.https://github.com/.extraheader
+2026-11-14T16:25:18.0882532Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T16:25:18.0911156Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:25:18.1105709Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:25:18.1130966Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:25:18.1323033Z ##[endgroup]
+2026-11-14T16:25:18.1520633Z ##[group]Run set -euo pipefail
+2026-11-14T16:25:18.1520991Z [36;1mset -euo pipefail[0m
+2026-11-14T16:25:18.1521212Z [36;1mmkdir -p dist[0m
+2026-11-14T16:25:18.1521466Z [36;1mgit rev-parse HEAD | tee dist/BUILD-SOURCE.txt[0m
+2026-11-14T16:25:18.1521817Z [36;1mcat config/godot-source.json | tee dist/GODOT-SOURCE.json[0m
+2026-11-14T16:25:18.1522102Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T16:25:18.1522297Z [36;1mimport json[0m
+2026-11-14T16:25:18.1522492Z [36;1mimport re[0m
+2026-11-14T16:25:18.1522664Z [36;1mimport sys[0m
+2026-11-14T16:25:18.1522855Z [36;1mfrom pathlib import Path[0m
+2026-11-14T16:25:18.1523079Z [36;1msys.path.insert(0, "scripts")[0m
+2026-11-14T16:25:18.1523329Z [36;1mfrom verify_legacy_release_pin import verify[0m
+2026-11-14T16:25:18.1523749Z [36;1mbuild, native = verify(Path("pubspec.yaml").read_text(), Path("config/godot-source.json").read_text())[0m
+2026-11-14T16:25:18.1524230Z [36;1massert build == 2020, "C4 test workflow requires build 2020"[0m
+2026-11-14T16:25:18.1524582Z [36;1mfrom release_pipeline_gates import parse_pubspec_version[0m
+2026-11-14T16:25:18.1525040Z [36;1massert parse_pubspec_version(Path("pubspec.yaml").read_text())[1] == 2020, "Wrong C4 test candidate version"[0m
+2026-11-14T16:25:18.1525483Z [36;1mconfig=json.load(open("config/godot-source.json"))[0m
+2026-11-14T16:25:18.1525962Z [36;1massert config["repository"]=="https://github.com/Ullmann27/lumo-godot.git", "Unexpected Godot repository"[0m
+2026-11-14T16:25:18.1526689Z [36;1massert isinstance(config["revision"], str) and re.fullmatch(r"[0-9a-f]{40}", config["revision"]), "Godot source must be an immutable 40-character Git SHA"[0m
+2026-11-14T16:25:18.1527240Z [36;1massert config["engine"]=="4.6.3", "Unexpected Godot engine"[0m
+2026-11-14T16:25:18.1527618Z [36;1m# Historical bad sources remain rejected on this separate candidate.[0m
+2026-11-14T16:25:18.1527996Z [36;1m# Actual rendered review exposed native menu geometry defects.[0m
+2026-11-14T16:25:18.1528377Z [36;1m# This workflow revision rejects the measured candidates on every run.[0m
+2026-11-14T16:25:18.1528759Z [36;1m# It cannot alter historical workflow revisions used by older runs.[0m
+2026-11-14T16:25:18.1529070Z [36;1mrejected_android_layout_sources = {[0m
+2026-11-14T16:25:18.1529342Z [36;1m    "0aa89cdea3a07d0c2bc0a31a153737a1fee41454":[0m
+2026-11-14T16:25:18.1529850Z [36;1m        "Android 2400x1080: header/tab overlap and landing model occlusion",[0m
+2026-11-14T16:25:18.1530215Z [36;1m    "f04e580ec0d7d8f70e8be269523fabedd15b0766":[0m
+2026-11-14T16:25:18.1530555Z [36;1m        "Android 2400x1080: selected kart card exceeds visible scroll viewport",[0m
+2026-11-14T16:25:18.1530931Z [36;1m}[0m
+2026-11-14T16:25:18.1531203Z [36;1massert config["revision"] not in rejected_android_layout_sources, ([0m
+2026-11-14T16:25:18.1531650Z [36;1m    "Rejected Android menu layout: " + rejected_android_layout_sources.get(config["revision"], "")[0m
+2026-11-14T16:25:18.1532015Z [36;1m)[0m
+2026-11-14T16:25:18.1532291Z [36;1m# scripts/export_embedded_game.py subsequently fetches/checks out this[0m
+2026-11-14T16:25:18.1532690Z [36;1m# exact SHA, then compares its HEAD before packaging the native PCK.[0m
+2026-11-14T16:25:18.1532979Z [36;1mPY[0m
+2026-11-14T16:25:18.1553118Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:25:18.1553354Z env:
+2026-11-14T16:25:18.1553532Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:18.1553720Z ##[endgroup]
+2026-11-14T16:25:18.1627343Z 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:25:18.1639144Z {
+2026-11-14T16:25:18.1639471Z   "repository": "https://github.com/Ullmann27/lumo-godot.git",
+2026-11-14T16:25:18.1640064Z   "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+2026-11-14T16:25:18.1640484Z   "engine": "4.6.3"
+2026-11-14T16:25:18.1640742Z }
+2026-11-14T16:25:18.2083934Z ##[group]Run actions/setup-java@v4
+2026-11-14T16:25:18.2084177Z with:
+2026-11-14T16:25:18.2084345Z   distribution: temurin
+2026-11-14T16:25:18.2084535Z   java-version: 17
+2026-11-14T16:25:18.2084712Z   java-package: jdk
+2026-11-14T16:25:18.2084896Z   check-latest: false
+2026-11-14T16:25:18.2085074Z   server-id: github
+2026-11-14T16:25:18.2085252Z   server-username: GITHUB_ACTOR
+2026-11-14T16:25:18.2085472Z   server-password: GITHUB_TOKEN
+2026-11-14T16:25:18.2085673Z   overwrite-settings: true
+2026-11-14T16:25:18.2085863Z   job-status: success
+2026-11-14T16:25:18.2087990Z   token: ***
+2026-11-14T16:25:18.2088167Z env:
+2026-11-14T16:25:18.2088345Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:18.2088532Z ##[endgroup]
+2026-11-14T16:25:18.3431399Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+2026-11-14T16:25:18.3437793Z ##[group]Installed distributions
+2026-11-14T16:25:18.3502606Z Resolved Java 17.0.21+9 from tool-cache
+2026-11-14T16:25:18.3503003Z Setting Java 17.0.21+9 as the default
+2026-11-14T16:25:18.3510382Z (node:2247) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T16:25:18.3511095Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T16:25:18.3513146Z Creating toolchains.xml for JDK version 17 from temurin
+2026-11-14T16:25:18.3566657Z Writing to /home/runner/.m2/toolchains.xml
+2026-11-14T16:25:18.3566964Z 
+2026-11-14T16:25:18.3567082Z Java configuration:
+2026-11-14T16:25:18.3567351Z   Distribution: temurin
+2026-11-14T16:25:18.3567625Z   Version: 17.0.21+9
+2026-11-14T16:25:18.3568050Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:18.3568403Z 
+2026-11-14T16:25:18.3568755Z ##[endgroup]
+2026-11-14T16:25:18.3584227Z Creating settings.xml with server-id: github
+2026-11-14T16:25:18.3600691Z Writing to /home/runner/.m2/settings.xml
+2026-11-14T16:25:18.3861314Z ##[group]Run subosito/flutter-action@v2
+2026-11-14T16:25:18.3861550Z with:
+2026-11-14T16:25:18.3861719Z   flutter-version: 3.44.9
+2026-11-14T16:25:18.3861913Z   channel: stable
+2026-11-14T16:25:18.3862080Z   cache: true
+2026-11-14T16:25:18.3862239Z   architecture: X64
+2026-11-14T16:25:18.3862421Z   pub-cache-path: default
+2026-11-14T16:25:18.3862606Z   dry-run: false
+2026-11-14T16:25:18.3862827Z   git-source: https://github.com/flutter/flutter.git
+2026-11-14T16:25:18.3863077Z env:
+2026-11-14T16:25:18.3863248Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:18.3863522Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:18.3863906Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:18.3864221Z ##[endgroup]
+2026-11-14T16:25:18.3911098Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-11-14T16:25:18.3919525Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T16:25:18.3921555Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-11-14T16:25:18.3948087Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-11-14T16:25:18.3948400Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-11-14T16:25:18.3968781Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:25:18.3969066Z env:
+2026-11-14T16:25:18.3969238Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:18.3969517Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:18.3970027Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:18.3970543Z ##[endgroup]
+2026-11-14T16:25:18.4027467Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=10]
+2026-11-14T16:25:18.4029299Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-11-14T16:25:18.4063501Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-11-14T16:25:18.4063828Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-11-14T16:25:18.4064070Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T16:25:18.4064264Z [36;1m  -f '' \[0m
+2026-11-14T16:25:18.4064439Z [36;1m  -a 'X64' \[0m
+2026-11-14T16:25:18.4064614Z [36;1m  -k '' \[0m
+2026-11-14T16:25:18.4064773Z [36;1m  -c '' \[0m
+2026-11-14T16:25:18.4064933Z [36;1m  -l '' \[0m
+2026-11-14T16:25:18.4065100Z [36;1m  -d 'default' \[0m
+2026-11-14T16:25:18.4065352Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-11-14T16:25:18.4065612Z [36;1m  stable[0m
+2026-11-14T16:25:18.4081144Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:25:18.4081436Z env:
+2026-11-14T16:25:18.4081614Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:18.4081889Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:18.4082295Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:18.4082601Z ##[endgroup]
+2026-11-14T16:25:18.5502477Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=147]
+2026-11-14T16:25:18.5506697Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-11-14T16:25:18.5610825Z ##[group]Run actions/cache@v5
+2026-11-14T16:25:18.5611044Z with:
+2026-11-14T16:25:18.5611258Z   path: /opt/hostedtoolcache/flutter/stable-3.44.9-x64
+2026-11-14T16:25:18.5611631Z   key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T16:25:18.5611975Z   enableCrossOsArchive: false
+2026-11-14T16:25:18.5612184Z   fail-on-cache-miss: false
+2026-11-14T16:25:18.5612377Z   lookup-only: false
+2026-11-14T16:25:18.5612568Z   save-always: false
+2026-11-14T16:25:18.5612734Z env:
+2026-11-14T16:25:18.5612902Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:18.5613166Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:18.5613750Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:18.5614055Z ##[endgroup]
+2026-11-14T16:25:18.7210128Z Cache hit for: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T16:25:19.7805489Z Received 276824064 of 1692352766 (16.4%), 264.0 MBs/sec
+2026-11-14T16:25:20.7818307Z Received 599785472 of 1692352766 (35.4%), 285.9 MBs/sec
+2026-11-14T16:25:21.7830524Z Received 939524096 of 1692352766 (55.5%), 298.5 MBs/sec
+2026-11-14T16:25:22.7828365Z Received 1249902592 of 1692352766 (73.9%), 297.9 MBs/sec
+2026-11-14T16:25:23.7827418Z Received 1551892480 of 1692352766 (91.7%), 295.9 MBs/sec
+2026-11-14T16:25:24.2037896Z Received 1692352766 of 1692352766 (100.0%), 297.6 MBs/sec
+2026-11-14T16:25:24.2039695Z Cache Size: ~1614 MB (1692352766 B)
+2026-11-14T16:25:24.2136248Z [command]/usr/bin/tar -xf /home/runner/work/_temp/0b064961-57e4-47c5-bcbd-9ee6c0b20129/cache.tzst -P -C /home/runner/work/lumo-lernen/lumo-lernen --use-compress-program unzstd
+2026-11-14T16:25:35.3765555Z Cache restored successfully
+2026-11-14T16:25:35.4676237Z Cache restored from key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T16:25:35.4814913Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=16930]
+2026-11-14T16:25:35.4817050Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-11-14T16:25:35.8383257Z ##[group]Run actions/cache@v5
+2026-11-14T16:25:35.8383481Z with:
+2026-11-14T16:25:35.8383662Z   path: /home/runner/.pub-cache
+2026-11-14T16:25:35.8384234Z   key: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-07a42308f945467ea716bf9dfc154480292fdac641dd361ec5d48db65fa9fdd9
+2026-11-14T16:25:35.8384997Z   enableCrossOsArchive: false
+2026-11-14T16:25:35.8385214Z   fail-on-cache-miss: false
+2026-11-14T16:25:35.8385417Z   lookup-only: false
+2026-11-14T16:25:35.8385594Z   save-always: false
+2026-11-14T16:25:35.8385763Z env:
+2026-11-14T16:25:35.8385933Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:35.8386215Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:35.8386600Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:35.8386903Z ##[endgroup]
+2026-11-14T16:25:36.0009196Z Cache hit for: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-07a42308f945467ea716bf9dfc154480292fdac641dd361ec5d48db65fa9fdd9
+2026-11-14T16:25:36.4310024Z Received 80521324 of 80521324 (100.0%), 210.4 MBs/sec
+2026-11-14T16:25:36.4310511Z Cache Size: ~77 MB (80521324 B)
+2026-11-14T16:25:36.4329543Z [command]/usr/bin/tar -xf /home/runner/work/_temp/96c6a5b2-b462-422b-9d29-d63d707c2e38/cache.tzst -P -C /home/runner/work/lumo-lernen/lumo-lernen --use-compress-program unzstd
+2026-11-14T16:25:37.2478491Z Cache restored successfully
+2026-11-14T16:25:37.2570947Z Cache restored from key: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-07a42308f945467ea716bf9dfc154480292fdac641dd361ec5d48db65fa9fdd9
+2026-11-14T16:25:37.2727979Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=1791]
+2026-11-14T16:25:37.2731432Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-11-14T16:25:37.2784428Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-11-14T16:25:37.2784727Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-11-14T16:25:37.2784971Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T16:25:37.2785178Z [36;1m  -a 'x64' \[0m
+2026-11-14T16:25:37.2785445Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.44.9-x64' \[0m
+2026-11-14T16:25:37.2785749Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2026-11-14T16:25:37.2785989Z [36;1m  stable[0m
+2026-11-14T16:25:37.2803226Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T16:25:37.2803510Z env:
+2026-11-14T16:25:37.2803686Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:37.2804129Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:37.2804546Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:37.2804851Z ##[endgroup]
+2026-11-14T16:25:37.4076523Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=134]
+2026-11-14T16:25:37.4127209Z ##[group]Run set -euo pipefail
+2026-11-14T16:25:37.4127487Z [36;1mset -euo pipefail[0m
+2026-11-14T16:25:37.4127743Z [36;1msudo apt-get -o Acquire::Retries=2 update -qq[0m
+2026-11-14T16:25:37.4128129Z [36;1msudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji[0m
+2026-11-14T16:25:37.4128514Z [36;1mtest -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf[0m
+2026-11-14T16:25:37.4145898Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:25:37.4146146Z env:
+2026-11-14T16:25:37.4146320Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:37.4146608Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:37.4147009Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:37.4147391Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:25:37.4147700Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:25:37.4147921Z ##[endgroup]
+2026-11-14T16:25:44.9420642Z Reading package lists...
+2026-11-14T16:25:45.1414393Z Building dependency tree...
+2026-11-14T16:25:45.1423065Z Reading state information...
+2026-11-14T16:25:45.2817943Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+2026-11-14T16:25:45.2818652Z 0 upgraded, 0 newly installed, 0 to remove and 20 not upgraded.
+2026-11-14T16:25:45.2871667Z ##[group]Run flutter pub get --enforce-lockfile
+2026-11-14T16:25:45.2872123Z [36;1mflutter pub get --enforce-lockfile[0m
+2026-11-14T16:25:45.2889119Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:25:45.2889328Z env:
+2026-11-14T16:25:45.2889506Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:45.2889982Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:45.2890379Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:45.2890768Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:25:45.2891077Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:25:45.2891298Z ##[endgroup]
+2026-11-14T16:25:45.7017624Z Resolving dependencies...
+2026-11-14T16:25:45.7831868Z Downloading packages...
+2026-11-14T16:25:45.8146991Z   clock 1.1.2 (1.1.3 available)
+2026-11-14T16:25:45.8147382Z   code_assets 1.2.1 (2.2.0 available)
+2026-11-14T16:25:45.8147716Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-11-14T16:25:45.8148106Z   crypto 3.0.7 (3.0.8 available)
+2026-11-14T16:25:45.8148427Z   file_selector_macos 0.9.5+1 (0.9.5+2 available)
+2026-11-14T16:25:45.8148781Z   flutter_lints 4.0.0 (6.0.0 available)
+2026-11-14T16:25:45.8149146Z   google_mlkit_commons 0.8.1 (1.0.3 available)
+2026-11-14T16:25:45.8149531Z   google_mlkit_text_recognition 0.13.1 (1.0.3 available)
+2026-11-14T16:25:45.8150052Z   hooks 2.0.2 (2.2.0 available)
+2026-11-14T16:25:45.8150334Z   image_picker 1.2.3 (1.2.4 available)
+2026-11-14T16:25:45.8150655Z   image_picker_ios 0.8.13+9 (0.8.13+15 available)
+2026-11-14T16:25:45.8151087Z   image_picker_platform_interface 2.11.1 (2.11.2 available)
+2026-11-14T16:25:45.8151482Z   jni 1.1.0 (1.1.2 available)
+2026-11-14T16:25:45.8151774Z   jni_flutter 1.0.3 (1.0.4+1 available)
+2026-11-14T16:25:45.8152117Z   lints 4.0.0 (6.1.0 available)
+2026-11-14T16:25:45.8152413Z   matcher 0.12.19 (0.12.20 available)
+2026-11-14T16:25:45.8152788Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-11-14T16:25:45.8153184Z   meta 1.18.0 (1.19.0 available)
+2026-11-14T16:25:45.8153510Z   objective_c 9.5.0 (9.6.4 available)
+2026-11-14T16:25:45.8153845Z   record_use 0.6.0 (1.1.1 available)
+2026-11-14T16:25:45.8154193Z   shared_preferences 2.5.5 (2.5.6 available)
+2026-11-14T16:25:45.8154603Z   shared_preferences_android 2.4.28 (2.5.5 available)
+2026-11-14T16:25:45.8155053Z   shared_preferences_foundation 2.5.7 (2.6.2 available)
+2026-11-14T16:25:45.8155467Z   stack_trace 1.12.1 (1.12.2 available)
+2026-11-14T16:25:45.8155839Z   synchronized 3.4.2 (3.6.1+1 available)
+2026-11-14T16:25:45.8156201Z   test_api 0.7.11 (0.7.15 available)
+2026-11-14T16:25:45.8156545Z   vector_math 2.2.0 (2.4.4 available)
+2026-11-14T16:25:45.8156903Z   vm_service 15.3.0 (15.4.0 available)
+2026-11-14T16:25:45.8157229Z   web 1.1.1 (1.1.2 available)
+2026-11-14T16:25:45.8157562Z Got dependencies!
+2026-11-14T16:25:45.8158004Z 29 packages have newer versions incompatible with dependency constraints.
+2026-11-14T16:25:45.8158577Z Try `flutter pub outdated` for more information.
+2026-11-14T16:25:46.0180409Z ##[group]Run set -euo pipefail
+2026-11-14T16:25:46.0180873Z [36;1mset -euo pipefail[0m
+2026-11-14T16:25:46.0181361Z [36;1maudit_dir="$GITHUB_WORKSPACE/.ci-results/learning-curriculum-audit"[0m
+2026-11-14T16:25:46.0181907Z [36;1mmkdir -p "$audit_dir"[0m
+2026-11-14T16:25:46.0182669Z [36;1mdart run tools/audit_learning_tasks_all_grades.dart "$audit_dir" 2> "$audit_dir/audit.stderr.log" | tee "$audit_dir/audit.stdout.log"[0m
+2026-11-14T16:25:46.0184132Z [36;1mpython3 scripts/verify_connect_four_delivery.py bind-learning-audit --directory "$audit_dir" --source "$SOURCE_SHA" --build-run "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT"[0m
+2026-11-14T16:25:46.0209234Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:25:46.0209556Z env:
+2026-11-14T16:25:46.0209984Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:46.0210449Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:46.0211159Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:46.0211794Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:25:46.0212572Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:25:46.0212985Z   SOURCE_SHA: 93bd9b7804e2c352303d58552cc48e0a89a1c3cb
+2026-11-14T16:25:46.0213377Z ##[endgroup]
+2026-11-14T16:25:47.6290498Z {
+2026-11-14T16:25:47.6290781Z   "status": "SAMPLED_CONTRACT_PASS",
+2026-11-14T16:25:47.6293019Z   "grades": [
+2026-11-14T16:25:47.6293227Z     1,
+2026-11-14T16:25:47.6293398Z     2,
+2026-11-14T16:25:47.6293563Z     3,
+2026-11-14T16:25:47.6293812Z     4
+2026-11-14T16:25:47.6294074Z   ],
+2026-11-14T16:25:47.6294341Z   "familyCount": 236,
+2026-11-14T16:25:47.6294652Z   "generatedSamples": 7552,
+2026-11-14T16:25:47.6294952Z   "issues": 0,
+2026-11-14T16:25:47.6295271Z   "allExistingTasksReviewed": false,
+2026-11-14T16:25:47.6295648Z   "officialCurriculumApproval": false,
+2026-11-14T16:25:47.6296048Z   "allVariantsEnumerated": false,
+2026-11-14T16:25:47.6296755Z   "scope": "ExerciseFactory core only. Other reading, handwriting, games, lesson banks need separate review."
+2026-11-14T16:25:47.6297457Z }
+2026-11-14T16:25:47.8326894Z {"all_variants_enumerated": false, "family_count": 236, "generated_samples": 7552, "official_curriculum_approval": false, "originals": {"audit.stderr.log": {"bytes": 44, "sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6"}, "audit.stdout.log": {"bytes": 372, "sha256": "ac585dfc0dc3b160279d05a38a493a2828569cb7b1e9eb68961f25cb251fa184"}, "issues.json": {"bytes": 2, "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"}, "summary.json": {"bytes": 371, "sha256": "018c376e1a7c9b047b0625f90cbb0c27528c2c80ccc4907bca678f107e6c5e67"}, "task-families.json": {"bytes": 34450, "sha256": "27431f158ebb1a7bff323f989d4da9064f1ba20c5e7046c46537d805c574d703"}, "task-samples.jsonl": {"bytes": 3174060, "sha256": "271445137ea3a6e8f821cc31f49d876ec1d11aacac47be898638d04c2bcd3051"}}, "scope": "Current core ExerciseFactory samples only; no semantic, Android or 3D approval", "structural_issues": 0}
+2026-11-14T16:25:47.8430158Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T16:25:47.8430412Z with:
+2026-11-14T16:25:47.8430649Z   name: lumo-connect-four-2020-learning-curriculum-audit
+2026-11-14T16:25:47.8430957Z   path: .ci-results/learning-curriculum-audit/
+2026-11-14T16:25:47.8431214Z   if-no-files-found: error
+2026-11-14T16:25:47.8431413Z   retention-days: 30
+2026-11-14T16:25:47.8431600Z   compression-level: 6
+2026-11-14T16:25:47.8431792Z   overwrite: false
+2026-11-14T16:25:47.8431976Z   include-hidden-files: false
+2026-11-14T16:25:47.8432174Z env:
+2026-11-14T16:25:47.8432347Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:47.8432623Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:47.8433016Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:47.8433398Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:25:47.8433695Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:25:47.8433941Z ##[endgroup]
+2026-11-14T16:25:47.9784213Z (node:2939) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T16:25:47.9785179Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T16:25:47.9815755Z With the provided path, there will be 7 files uploaded
+2026-11-14T16:25:47.9819220Z Artifact name is valid!
+2026-11-14T16:25:47.9820403Z Root directory input is valid!
+2026-11-14T16:25:48.1828882Z Beginning upload of artifact content to blob storage
+2026-11-14T16:25:48.2292160Z (node:2939) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T16:25:48.2931943Z Uploaded bytes 212135
+2026-11-14T16:25:48.3095947Z Finished uploading artifact content to blob storage!
+2026-11-14T16:25:48.3096727Z SHA256 digest of uploaded artifact zip is 15b1ce21229c67e22cf8c44423e487af0bdfee4b2b07c8a212537a20cac77c14
+2026-11-14T16:25:48.3097613Z Finalizing artifact upload
+2026-11-14T16:25:48.6315201Z Artifact lumo-connect-four-2020-learning-curriculum-audit.zip successfully finalized. Artifact ID 14121589395
+2026-11-14T16:25:48.6316080Z Artifact lumo-connect-four-2020-learning-curriculum-audit has been successfully uploaded! Final size is 212135 bytes. Artifact ID is 14121589395
+2026-11-14T16:25:48.6321073Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43615133709/artifacts/14121589395
+2026-11-14T16:25:48.6459185Z ##[group]Run flutter analyze --no-fatal-infos --no-fatal-warnings
+2026-11-14T16:25:48.6459751Z [36;1mflutter analyze --no-fatal-infos --no-fatal-warnings[0m
+2026-11-14T16:25:48.6476977Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:25:48.6477194Z env:
+2026-11-14T16:25:48.6477371Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:25:48.6477659Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:48.6478057Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:25:48.6478458Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:25:48.6478775Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:25:48.6478999Z ##[endgroup]
+2026-11-14T16:25:48.7776157Z Resolving dependencies...
+2026-11-14T16:25:48.8664359Z Downloading packages...
+2026-11-14T16:25:48.8986741Z   clock 1.1.2 (1.1.3 available)
+2026-11-14T16:25:48.8987156Z   code_assets 1.2.1 (2.2.0 available)
+2026-11-14T16:25:48.8987628Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-11-14T16:25:48.8988142Z   crypto 3.0.7 (3.0.8 available)
+2026-11-14T16:25:48.8988584Z   file_selector_macos 0.9.5+1 (0.9.5+2 available)
+2026-11-14T16:25:48.8989162Z   flutter_lints 4.0.0 (6.0.0 available)
+2026-11-14T16:25:48.8989837Z   google_mlkit_commons 0.8.1 (1.0.3 available)
+2026-11-14T16:25:48.8990391Z   google_mlkit_text_recognition 0.13.1 (1.0.3 available)
+2026-11-14T16:25:48.8990894Z   hooks 2.0.2 (2.2.0 available)
+2026-11-14T16:25:48.8991329Z   image_picker 1.2.3 (1.2.4 available)
+2026-11-14T16:25:48.8991797Z   image_picker_ios 0.8.13+9 (0.8.13+15 available)
+2026-11-14T16:25:48.8992344Z   image_picker_platform_interface 2.11.1 (2.11.2 available)
+2026-11-14T16:25:48.8992858Z   jni 1.1.0 (1.1.2 available)
+2026-11-14T16:25:48.8993272Z   jni_flutter 1.0.3 (1.0.4+1 available)
+2026-11-14T16:25:48.8993702Z   lints 4.0.0 (6.1.0 available)
+2026-11-14T16:25:48.8994109Z   matcher 0.12.19 (0.12.20 available)
+2026-11-14T16:25:48.8994604Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-11-14T16:25:48.8995071Z   meta 1.18.0 (1.19.0 available)
+2026-11-14T16:25:48.8995462Z   objective_c 9.5.0 (9.6.4 available)
+2026-11-14T16:25:48.8995847Z   record_use 0.6.0 (1.1.1 available)
+2026-11-14T16:25:48.8996272Z   shared_preferences 2.5.5 (2.5.6 available)
+2026-11-14T16:25:48.8996759Z   shared_preferences_android 2.4.28 (2.5.5 available)
+2026-11-14T16:25:48.8997278Z   shared_preferences_foundation 2.5.7 (2.6.2 available)
+2026-11-14T16:25:48.8997758Z   stack_trace 1.12.1 (1.12.2 available)
+2026-11-14T16:25:48.8998185Z   synchronized 3.4.2 (3.6.1+1 available)
+2026-11-14T16:25:48.8998609Z   test_api 0.7.11 (0.7.15 available)
+2026-11-14T16:25:48.8999017Z   vector_math 2.2.0 (2.4.4 available)
+2026-11-14T16:25:48.8999436Z   vm_service 15.3.0 (15.4.0 available)
+2026-11-14T16:25:48.9000001Z   web 1.1.1 (1.1.2 available)
+2026-11-14T16:25:48.9000381Z Got dependencies!
+2026-11-14T16:25:48.9000892Z 29 packages have newer versions incompatible with dependency constraints.
+2026-11-14T16:25:48.9001539Z Try `flutter pub outdated` for more information.
+2026-11-14T16:26:03.5892857Z Analyzing lumo-lernen...                                        
+2026-11-14T16:26:03.5897719Z 
+2026-11-14T16:26:03.5916567Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • lib/core/app_update_service.dart:89:5 • prefer_const_declarations
+2026-11-14T16:26:03.5918307Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/app_update_service.dart:99:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5926985Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:644:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5928718Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:1003:13 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5930907Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:1035:68 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5932578Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:1095:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5934230Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:299:40 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5935978Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:302:37 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5937710Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:328:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5939370Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:330:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5941189Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:332:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5942858Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:335:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5944516Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:341:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5946178Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:343:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5947826Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:345:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5949485Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:354:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5961770Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_guide.dart:212:51 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5963593Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:69:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5965394Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:73:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5967152Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:75:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5968916Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:192:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5981451Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:105:66 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5983476Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:136:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5985257Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:168:37 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5987017Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:187:53 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5988812Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/concept_graph.dart:31:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5990878Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:155:32 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5992844Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:158:45 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5994763Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:184:37 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5996674Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:224:45 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.5998590Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:227:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6000823Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:235:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6002743Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:253:51 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6004640Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:137:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6006589Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:153:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6008509Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:165:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6010531Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:206:5 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6012465Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:38:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6014603Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:42:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6016553Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:46:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6018610Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:66:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6020694Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:104:11 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6022653Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:146:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6024613Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:152:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6026512Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:78:15 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6028319Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:90:44 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6030528Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:123:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6032368Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:150:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6034181Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:160:5 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6035999Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:198:32 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6037849Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:205:11 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6039766Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:221:40 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6041648Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:235:50 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6043469Z    info • Dangling library doc comment. Add a 'library' directive after the library comment • lib/domain/quiz/quiz_rewards.dart:1:1 • dangling_library_doc_comments
+2026-11-14T16:26:03.6045138Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/agent/lumo_agent_content.dart:90:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6046967Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_round.dart:248:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6049149Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_round.dart:289:48 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6051322Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:38:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6053359Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:121:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6055315Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:124:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6057264Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:142:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6059225Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:171:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6061340Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:219:27 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6063304Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:253:13 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6065248Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:259:13 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6067178Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/connect_four_table_session.dart:264:57 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6069094Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:94:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6071137Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:136:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6073017Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:149:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6075152Z    info • Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check • lib/features/games/connect_four/lumo_connect_four_game.dart:149:37 • use_build_context_synchronously
+2026-11-14T16:26:03.6077346Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:159:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6079238Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:169:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6081283Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:179:48 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6083374Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:275:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6085508Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:293:46 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6087430Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/connect_four/lumo_connect_four_game.dart:482:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6089310Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/mini_games/lesson_trail_game.dart:48:55 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6091460Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:86:25 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6093595Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:88:25 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6095710Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:92:25 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6097824Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:210:16 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6100140Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:304:14 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6102138Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • lib/features/learning/cross_grade_practice_screen.dart:193:5 • prefer_const_declarations
+2026-11-14T16:26:03.6103993Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/lab/learning_lab_hub.dart:50:59 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6105955Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_hub.dart:181:41 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6108022Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_screen.dart:43:7 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6110234Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_screen.dart:91:19 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6112269Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/lab/learning_lab_screen.dart:96:52 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6114106Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/lab/learning_lab_screen.dart:179:38 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6116090Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_screen.dart:383:43 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6118489Z    info • Unnecessary braces in a string interpolation. Try removing the braces • lib/features/learning/lumo_rechentricks_poster_screen.dart:435:30 • unnecessary_brace_in_string_interps
+2026-11-14T16:26:03.6120670Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:63:59 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6122646Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:78:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6124573Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:108:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6126501Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:152:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6128423Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:161:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6130402Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/live/lumo_live_pro_screen.dart:223:76 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6132181Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/live/lumo_live_pro_screen.dart:232:55 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6133928Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/live/lumo_live_pro_screen.dart:268:70 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6135906Z    info • Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check • lib/features/live/lumo_live_pro_screen.dart:279:50 • use_build_context_synchronously
+2026-11-14T16:26:03.6138046Z    info • Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check • lib/features/live/lumo_live_pro_screen.dart:374:48 • use_build_context_synchronously
+2026-11-14T16:26:03.6150178Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/live/lumo_live_pro_screen.dart:375:52 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6151391Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/live/lumo_live_pro_screen.dart:421:39 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6152464Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/lumo3d/lumo3d_launcher.dart:48:67 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6153491Z warning • Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive • lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8 • unused_import
+2026-11-14T16:26:03.6154538Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/magic_hub/lumo_magic_hub_screen.dart:104:47 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6155570Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/reading/reading_content.dart:229:52 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6156560Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/reading/reading_content.dart:232:52 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6157826Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/reading/reading_content.dart:242:52 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6158953Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/story/lumo_story_library_screen.dart:50:20 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6160177Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/story/lumo_story_library_screen.dart:55:20 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6161175Z    info • The private field _companion could be 'final'. Try making the field 'final' • lib/features/story/lumo_story_setup_screen.dart:34:10 • prefer_final_fields
+2026-11-14T16:26:03.6162085Z    info • The private field _magicItem could be 'final'. Try making the field 'final' • lib/features/story/lumo_story_setup_screen.dart:35:10 • prefer_final_fields
+2026-11-14T16:26:03.6162943Z warning • The value of the field '_ink' isn't used. Try removing the field, or using it • lib/features/story/widgets/lumo_story_scene.dart:150:16 • unused_field
+2026-11-14T16:26:03.6163905Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • lib/features/story/widgets/lumo_story_scene.dart:327:5 • prefer_const_declarations
+2026-11-14T16:26:03.6164978Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/teacher/student_assignments_card.dart:105:45 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6166036Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/tests/iq_test_screen.dart:177:53 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6167116Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/tutoring/guided_language_nature_illustration.dart:154:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6168305Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/tutoring/guided_language_nature_illustration.dart:192:9 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6169785Z    info • The import of 'package:flutter/foundation.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart'. Try removing the import directive • lib/widgets/design/lumo_design_system.dart:1:8 • unnecessary_import
+2026-11-14T16:26:03.6171165Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/widgets/design/lumo_design_system.dart:1056:39 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6172325Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/widgets/design/lumo_design_system.dart:1187:23 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6173452Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/design/denkprofil_knobel_before_after_capture_test.dart:11:8 • unused_import
+2026-11-14T16:26:03.6174870Z    info • The import of 'package:flutter/foundation.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart'. Try removing the import directive • test/design/dorfwirtschaft_spielewelt_capture_test.dart:4:8 • unnecessary_import
+2026-11-14T16:26:03.6176260Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • test/design/dorfwirtschaft_spielewelt_capture_test.dart:28:7 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6177565Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/games/connect_four_runtime_bridge.dart:40:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6178450Z    info • Don't invoke 'print' in production code. Try using a logging framework • test/games/connect_four_runtime_bridge.dart:62:5 • avoid_print
+2026-11-14T16:26:03.6179353Z    info • Don't invoke 'print' in production code. Try using a logging framework • test/games/connect_four_runtime_bridge.dart:71:5 • avoid_print
+2026-11-14T16:26:03.6180279Z    info • Don't invoke 'print' in production code. Try using a logging framework • test/games/connect_four_runtime_bridge.dart:78:5 • avoid_print
+2026-11-14T16:26:03.6181030Z    info • Don't invoke 'print' in production code. Try using a logging framework • test/games/connect_four_runtime_bridge.dart:80:5 • avoid_print
+2026-11-14T16:26:03.6182002Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • test/games/star_trail_visual_test.dart:34:17 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6183089Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/grade_1_to_4_subject_menu_integrity_test.dart:83:41 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6184289Z    info • The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive • test/helpers/lumo_capture.dart:2:8 • unnecessary_import
+2026-11-14T16:26:03.6185444Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/legacy_tutor_9fdf.dart:106:66 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6186426Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/legacy_tutor_9fdf.dart:137:7 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6187445Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/legacy_tutor_9fdf.dart:168:37 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6188473Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/live_alternative_scene_test.dart:30:51 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6189483Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/iq/iq_extended_adventure_test.dart:5:8 • unused_import
+2026-11-14T16:26:03.6190898Z    info • The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive • test/lumo_cards_reference_showcase_test.dart:2:8 • unnecessary_import
+2026-11-14T16:26:03.6192198Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • test/shape_trace_gesture_regression_test.dart:132:16 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6193364Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • test/shape_trace_gesture_regression_test.dart:150:16 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6194608Z    info • The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/foundation.dart'. Try removing the import directive • test/shape_trace_input_test.dart:1:8 • unnecessary_import
+2026-11-14T16:26:03.6195875Z    info • Can't use a relative path to import a library in 'lib'. Try fixing the relative path or changing the import to a 'package:' import • test/support/math_exact_topic_selection_contract.dart:4:8 • avoid_relative_lib_imports
+2026-11-14T16:26:03.6197184Z    info • Can't use a relative path to import a library in 'lib'. Try fixing the relative path or changing the import to a 'package:' import • test/support/math_exact_topic_selection_contract.dart:5:8 • avoid_relative_lib_imports
+2026-11-14T16:26:03.6198471Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • test/support/math_exact_topic_selection_contract.dart:217:49 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6199779Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • test/tutoring/language_nature_lessons_test.dart:19:7 • prefer_const_declarations
+2026-11-14T16:26:03.6200946Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/tutoring/language_nature_runtime_test.dart:133:15 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6202018Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/tutoring/language_nature_runtime_test.dart:183:13 • curly_braces_in_flow_control_structures
+2026-11-14T16:26:03.6203027Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • test/tutoring/place_value_tutor_test.dart:22:5 • prefer_const_declarations
+2026-11-14T16:26:03.6203828Z 153 issues found. (ran in 14.3s)
+2026-11-14T16:26:03.6205254Z    info • The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive • test/wort_diktat_gesture_regression_test.dart:4:8 • unnecessary_import
+2026-11-14T16:26:03.6207345Z    info • Can't use a relative path to import a library in 'lib'. Try fixing the relative path or changing the import to a 'package:' import • tools/audit_learning_tasks_all_grades.dart:5:8 • avoid_relative_lib_imports
+2026-11-14T16:26:03.6209060Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • tools/audit_learning_tasks_all_grades.dart:97:3 • prefer_const_declarations
+2026-11-14T16:26:03.6211093Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • tools/audit_learning_tasks_all_grades.dart:99:26 • prefer_interpolation_to_compose_strings
+2026-11-14T16:26:03.6211928Z 
+2026-11-14T16:26:03.6238373Z ##[group]Run flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+2026-11-14T16:26:03.6238877Z [36;1mflutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \[0m
+2026-11-14T16:26:03.6239270Z [36;1m  test/quiz_premium_stage_layout_test.dart \[0m
+2026-11-14T16:26:03.6239748Z [36;1m  test/quiz_premium_stage_visual_capture_test.dart \[0m
+2026-11-14T16:26:03.6240070Z [36;1m  test/home_navigation_progress_test.dart \[0m
+2026-11-14T16:26:03.6240392Z [36;1m  test/home_subject_islands_premium_test.dart \[0m
+2026-11-14T16:26:03.6240708Z [36;1m  test/academy_grade_3_4_visible_navigation_test.dart \[0m
+2026-11-14T16:26:03.6241025Z [36;1m  test/lumo_scene_art_panel_test.dart \[0m
+2026-11-14T16:26:03.6241298Z [36;1m  test/learning_lab_runtime_test.dart \[0m
+2026-11-14T16:26:03.6241616Z [36;1m  test/parents/parent_school_grade_progression_test.dart[0m
+2026-11-14T16:26:03.6258877Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:26:03.6259110Z env:
+2026-11-14T16:26:03.6259329Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:26:03.6259749Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:26:03.6260168Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:26:03.6260556Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:26:03.6260879Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:26:03.6261104Z ##[endgroup]
+2026-11-14T16:26:04.9471285Z 00:00 +0: loading /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_layout_test.dart
+2026-11-14T16:26:11.5581939Z 00:00 +0: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_layout_test.dart: Three live jokers, mascot and prize rail remain separated
+2026-11-14T16:26:12.5748958Z 00:01 +1: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_layout_test.dart: Lumo remains present after selecting and revealing a question
+2026-11-14T16:26:12.8976951Z 00:01 +2: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: (setUpAll)
+2026-11-14T16:26:12.9271419Z 00:01 +2: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 320.0 px at text scale 1.0
+2026-11-14T16:26:15.4954285Z 00:03 +3: /home/runner/work/lumo-lernen/lumo-lernen/test/home_navigation_progress_test.dart: Lernen and Spielen stay visible and usable across Fold resize
+2026-11-14T16:26:15.9339327Z 00:04 +4: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 320.0 px at text scale 1.5
+2026-11-14T16:26:16.3843603Z 00:04 +5: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 320.0 px at text scale 1.5
+2026-11-14T16:26:16.4051011Z 00:04 +6: /home/runner/work/lumo-lernen/lumo-lernen/test/home_navigation_progress_test.dart: home uses the supplied 3D icons and Kart artwork
+2026-11-14T16:26:16.5054701Z 00:04 +7: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 420.0 px at text scale 1.0
+2026-11-14T16:26:16.6324164Z 00:05 +8: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 420.0 px at text scale 1.0
+2026-11-14T16:26:17.2229243Z 00:05 +9: /home/runner/work/lumo-lernen/lumo-lernen/test/home_navigation_progress_test.dart: home subject cards browse topics and delegate to the shell
+2026-11-14T16:26:17.4339004Z 00:05 +10: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 420.0 px at text scale 1.5
+2026-11-14T16:26:17.6828859Z 00:06 +11: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 420.0 px at text scale 1.5
+2026-11-14T16:26:18.1279771Z 00:06 +12: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 1024.0 px at text scale 1.0
+2026-11-14T16:26:19.4941362Z 00:07 +13: /home/runner/work/lumo-lernen/lumo-lernen/test/home_subject_islands_premium_test.dart: Nine real 3D learning islands fit phone and unfolded Fold
+2026-11-14T16:26:19.7760533Z 00:08 +14: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 1024.0 px at text scale 1.5
+2026-11-14T16:26:20.1218397Z 00:08 +15: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 1024.0 px at text scale 1.5
+2026-11-14T16:26:21.0890135Z 00:09 +16: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: (tearDownAll)
+2026-11-14T16:26:21.4608281Z 00:09 +16: /home/runner/work/lumo-lernen/lumo-lernen/test/academy_grade_3_4_visible_navigation_test.dart: grade picker visibly distinguishes 3rd and 4th-class topics
+2026-11-14T16:26:21.8111944Z 00:10 +17: /home/runner/work/lumo-lernen/lumo-lernen/test/academy_grade_3_4_visible_navigation_test.dart: grade picker visibly distinguishes 3rd and 4th-class topics
+2026-11-14T16:26:22.3840437Z 00:10 +18: /home/runner/work/lumo-lernen/lumo-lernen/test/academy_grade_3_4_visible_navigation_test.dart: grade picker visibly distinguishes 3rd and 4th-class topics
+2026-11-14T16:26:22.4340398Z 00:10 +19: /home/runner/work/lumo-lernen/lumo-lernen/test/academy_grade_3_4_visible_navigation_test.dart: grade picker visibly distinguishes 3rd and 4th-class topics
+2026-11-14T16:26:22.9081906Z 00:11 +20: /home/runner/work/lumo-lernen/lumo-lernen/test/academy_grade_3_4_visible_navigation_test.dart: class 3 German focus opens its real lesson
+2026-11-14T16:26:23.2238598Z 00:11 +21: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: learning narration replay remains accessible and opt-in
+2026-11-14T16:26:23.3751391Z 00:11 +22: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: learning narration replay remains accessible and opt-in
+2026-11-14T16:26:24.0218633Z 00:12 +23: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: real build then two new free recall problems persist honest evidence
+2026-11-14T16:26:24.1433023Z 00:12 +24: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: real build then two new free recall problems persist honest evidence
+2026-11-14T16:26:24.1484276Z 00:12 +25: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: real build then two new free recall problems persist honest evidence
+2026-11-14T16:26:24.8464697Z 00:13 +26: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: specific error opens escalating help and does not claim independence
+2026-11-14T16:26:25.4425714Z 00:13 +27: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: profile switch invalidates the open task
+2026-11-14T16:26:25.4828295Z 00:13 +28: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: real lab layout Size(320.0, 740.0) text 2.0
+2026-11-14T16:26:25.5416063Z 00:13 +29: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: real lab layout Size(840.0, 720.0) text 1.0
+2026-11-14T16:26:25.5974648Z 00:14 +30: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: real lab layout Size(915.0, 412.0) text 1.4
+2026-11-14T16:26:25.6772950Z 00:14 +31: All tests passed!
+2026-11-14T16:26:25.7509089Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T16:26:25.7509462Z with:
+2026-11-14T16:26:25.7510005Z   name: lumo-1983-quiz-studio-captures
+2026-11-14T16:26:25.7510393Z   path: .ci-results/quiz-premium-stage/
+2026-11-14T16:26:25.7510769Z   include-hidden-files: true
+2026-11-14T16:26:25.7511113Z   if-no-files-found: warn
+2026-11-14T16:26:25.7511427Z   retention-days: 30
+2026-11-14T16:26:25.7511738Z   compression-level: 6
+2026-11-14T16:26:25.7512039Z   overwrite: false
+2026-11-14T16:26:25.7512313Z env:
+2026-11-14T16:26:25.7512572Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:26:25.7513015Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:26:25.7513626Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:26:25.7514254Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:26:25.7514768Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:26:25.7515128Z ##[endgroup]
+2026-11-14T16:26:25.8857954Z (node:3180) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T16:26:25.8858620Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T16:26:25.8938678Z With the provided path, there will be 36 files uploaded
+2026-11-14T16:26:25.8939113Z Artifact name is valid!
+2026-11-14T16:26:25.8939325Z Root directory input is valid!
+2026-11-14T16:26:26.0908949Z Beginning upload of artifact content to blob storage
+2026-11-14T16:26:26.3245318Z (node:3180) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T16:26:26.5405418Z Uploaded bytes 8388608
+2026-11-14T16:26:26.5938710Z Uploaded bytes 10605085
+2026-11-14T16:26:26.6101809Z Finished uploading artifact content to blob storage!
+2026-11-14T16:26:26.6102716Z SHA256 digest of uploaded artifact zip is fd062d64753e2178a6c3e73ded4e469b50453e8979462d4a600474f32b83b2df
+2026-11-14T16:26:26.6103950Z Finalizing artifact upload
+2026-11-14T16:26:26.9272484Z Artifact lumo-1983-quiz-studio-captures.zip successfully finalized. Artifact ID 14122595278
+2026-11-14T16:26:26.9273543Z Artifact lumo-1983-quiz-studio-captures has been successfully uploaded! Final size is 10605085 bytes. Artifact ID is 14122595278
+2026-11-14T16:26:26.9277315Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43615133709/artifacts/14122595278
+2026-11-14T16:26:26.9441365Z ##[group]Run set -euo pipefail
+2026-11-14T16:26:26.9441809Z [36;1mset -euo pipefail[0m
+2026-11-14T16:26:26.9442193Z [36;1mif [ "$REQUIRE_ALL_TESTS" = true ]; then[0m
+2026-11-14T16:26:26.9442866Z [36;1m  python3 scripts/run_full_flutter_acceptance.py --output .ci-results/full-acceptance[0m
+2026-11-14T16:26:26.9443481Z [36;1melse[0m
+2026-11-14T16:26:26.9443942Z [36;1m  flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2[0m
+2026-11-14T16:26:26.9444448Z [36;1mfi[0m
+2026-11-14T16:26:26.9462306Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:26:26.9462546Z env:
+2026-11-14T16:26:26.9462733Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:26:26.9463036Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:26:26.9463448Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:26:26.9463849Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:26:26.9464182Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:26:26.9464427Z   REQUIRE_ALL_TESTS: true
+2026-11-14T16:26:26.9464642Z ##[endgroup]
+2026-11-14T16:26:58.4578995Z Flutter acceptance: 100 tests completed
+2026-11-14T16:27:18.8505358Z Flutter acceptance: 200 tests completed
+2026-11-14T16:27:41.5953043Z Flutter acceptance: 300 tests completed
+2026-11-14T16:27:55.4715315Z Flutter acceptance: 400 tests completed
+2026-11-14T16:28:13.8438208Z Flutter acceptance: 500 tests completed
+2026-11-14T16:28:30.7780338Z Flutter acceptance: 600 tests completed
+2026-11-14T16:28:59.1738087Z Flutter acceptance: 700 tests completed
+2026-11-14T16:30:10.7761407Z Flutter acceptance: 800 tests completed
+2026-11-14T16:30:25.5273141Z Flutter acceptance: 900 tests completed
+2026-11-14T16:30:41.8815223Z Flutter acceptance: 1000 tests completed
+2026-11-14T16:31:07.7207813Z Flutter acceptance: 1100 tests completed
+2026-11-14T16:31:15.5322995Z Flutter acceptance: 1200 tests completed
+2026-11-14T16:31:25.1257133Z ##[error]The operation was canceled.
+2026-11-14T16:31:25.1317740Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T16:31:25.1318175Z with:
+2026-11-14T16:31:25.1318538Z   name: lumo-candidate-all-flutter-tests-and-captures
+2026-11-14T16:31:25.1319027Z   path: .ci-results/full-acceptance/
+2026-11-14T16:31:25.1319416Z   include-hidden-files: true
+2026-11-14T16:31:25.1319945Z   if-no-files-found: warn
+2026-11-14T16:31:25.1320278Z   retention-days: 30
+2026-11-14T16:31:25.1320590Z   compression-level: 6
+2026-11-14T16:31:25.1320889Z   overwrite: false
+2026-11-14T16:31:25.1321177Z env:
+2026-11-14T16:31:25.1321428Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:31:25.1321914Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:31:25.1323135Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:31:25.1323812Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:31:25.1324312Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:31:25.1324671Z ##[endgroup]
+2026-11-14T16:31:25.3531720Z (node:5289) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T16:31:25.3606215Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T16:31:25.5695970Z With the provided path, there will be 558 files uploaded
+2026-11-14T16:31:25.5696634Z Artifact name is valid!
+2026-11-14T16:31:25.5696936Z Root directory input is valid!
+2026-11-14T16:31:25.6410314Z Beginning upload of artifact content to blob storage
+2026-11-14T16:31:26.0841839Z (node:5289) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T16:31:26.4078774Z Uploaded bytes 8388608
+2026-11-14T16:31:26.6268579Z Uploaded bytes 16777216
+2026-11-14T16:31:26.9015416Z Uploaded bytes 25165824
+2026-11-14T16:31:27.2590975Z Uploaded bytes 33554432
+2026-11-14T16:31:27.4891442Z Uploaded bytes 41943040
+2026-11-14T16:31:27.8562085Z Uploaded bytes 50331648
+2026-11-14T16:31:28.1806839Z Uploaded bytes 58720256
+2026-11-14T16:31:28.4248334Z Uploaded bytes 67108864
+2026-11-14T16:31:28.6364753Z Uploaded bytes 75497472
+2026-11-14T16:31:28.8970625Z Uploaded bytes 83886080
+2026-11-14T16:31:29.1166830Z Uploaded bytes 92274688
+2026-11-14T16:31:29.4506363Z Uploaded bytes 100663296
+2026-11-14T16:31:29.6428711Z Uploaded bytes 109051904
+2026-11-14T16:31:29.9509553Z Uploaded bytes 117440512
+2026-11-14T16:31:30.1099260Z Uploaded bytes 125829120
+2026-11-14T16:31:30.4323001Z Uploaded bytes 134217728
+2026-11-14T16:31:30.6563080Z Uploaded bytes 142606336
+2026-11-14T16:31:31.0033230Z Uploaded bytes 150994944
+2026-11-14T16:31:31.3413358Z Uploaded bytes 159383552
+2026-11-14T16:31:31.6608240Z Uploaded bytes 167772160
+2026-11-14T16:31:32.0292435Z Uploaded bytes 176160768
+2026-11-14T16:31:32.3839533Z Uploaded bytes 184549376
+2026-11-14T16:31:32.7711706Z Uploaded bytes 192937984
+2026-11-14T16:31:33.0014806Z Uploaded bytes 201326592
+2026-11-14T16:31:33.3010785Z Uploaded bytes 209715200
+2026-11-14T16:31:33.6853562Z Uploaded bytes 218103808
+2026-11-14T16:31:33.9923508Z Uploaded bytes 226492416
+2026-11-14T16:31:34.2740818Z Uploaded bytes 234881024
+2026-11-14T16:31:34.6922524Z Uploaded bytes 243269632
+2026-11-14T16:31:34.8570686Z Uploaded bytes 251658240
+2026-11-14T16:31:35.2301226Z Uploaded bytes 260046848
+2026-11-14T16:31:35.4660755Z Uploaded bytes 268435456
+2026-11-14T16:31:35.8630307Z Uploaded bytes 276824064
+2026-11-14T16:31:36.0781112Z Uploaded bytes 285212672
+2026-11-14T16:31:36.2925439Z Uploaded bytes 293601280
+2026-11-14T16:31:36.5347404Z Uploaded bytes 301989888
+2026-11-14T16:31:36.8134189Z Uploaded bytes 310378496
+2026-11-14T16:31:37.0531136Z Uploaded bytes 318767104
+2026-11-14T16:31:37.4655107Z Uploaded bytes 327155712
+2026-11-14T16:31:37.7130703Z Uploaded bytes 335544320
+2026-11-14T16:31:38.0278936Z Uploaded bytes 343932928
+2026-11-14T16:31:38.5027505Z Uploaded bytes 352321536
+2026-11-14T16:31:38.6678764Z Uploaded bytes 360135088
+2026-11-14T16:31:38.6931365Z Finished uploading artifact content to blob storage!
+2026-11-14T16:31:38.6932568Z SHA256 digest of uploaded artifact zip is 6cfc42bb60e6e24da16b31b0ca294294d458d5ff3f587f104ff58a0711fb273a
+2026-11-14T16:31:38.6933476Z Finalizing artifact upload
+2026-11-14T16:31:39.0767531Z Artifact lumo-candidate-all-flutter-tests-and-captures.zip successfully finalized. Artifact ID 14122081695
+2026-11-14T16:31:39.0780972Z Artifact lumo-candidate-all-flutter-tests-and-captures has been successfully uploaded! Final size is 360135088 bytes. Artifact ID is 14122081695
+2026-11-14T16:31:39.0782483Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43615133709/artifacts/14122081695
+2026-11-14T16:31:39.1839507Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T16:31:39.1840128Z with:
+2026-11-14T16:31:39.1840457Z   name: lumo-connect-four-2020-build-contracts
+2026-11-14T16:31:39.1840888Z   path: .ci-results/build-contracts.log
+2026-11-14T16:31:39.1841271Z   if-no-files-found: error
+2026-11-14T16:31:39.1841593Z   retention-days: 30
+2026-11-14T16:31:39.1841905Z   compression-level: 6
+2026-11-14T16:31:39.1842211Z   overwrite: false
+2026-11-14T16:31:39.1842516Z   include-hidden-files: false
+2026-11-14T16:31:39.1842843Z env:
+2026-11-14T16:31:39.1843094Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:31:39.1843542Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:31:39.1844192Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:31:39.1844842Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:31:39.1845589Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:31:39.1845942Z ##[endgroup]
+2026-11-14T16:31:39.3405366Z (node:5433) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T16:31:39.3406354Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T16:31:39.3431199Z ##[error]No files were found with the provided path: .ci-results/build-contracts.log. No artifacts will be uploaded.
+2026-11-14T16:31:39.3919559Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T16:31:39.3920057Z with:
+2026-11-14T16:31:39.3920297Z   name: lumo-candidate-pinned-native-gameplay
+2026-11-14T16:31:39.3920592Z   path: acceptance-native/
+2026-11-14T16:31:39.3920823Z   if-no-files-found: warn
+2026-11-14T16:31:39.3921039Z   retention-days: 30
+2026-11-14T16:31:39.3921252Z   compression-level: 6
+2026-11-14T16:31:39.3921539Z   overwrite: false
+2026-11-14T16:31:39.3921887Z   include-hidden-files: false
+2026-11-14T16:31:39.3922125Z env:
+2026-11-14T16:31:39.3922306Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-14T16:31:39.3922613Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:31:39.3923166Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-14T16:31:39.3923632Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T16:31:39.3923959Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T16:31:39.3924244Z ##[endgroup]
+2026-11-14T16:31:39.5541151Z (node:5445) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T16:31:39.5576615Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T16:31:39.5578840Z ##[warning]No files were found with the provided path: acceptance-native/. No artifacts will be uploaded.
+2026-11-14T16:31:39.5953606Z Post job cleanup.
+2026-11-14T16:31:39.5958410Z ##[start-action display=Cache pub dependencies;id=__bcaad9ae-3704-4f42-b35d-5511f3d1d94e.cache-pub]
+2026-11-14T16:31:39.5961335Z ##[end-action id=__bcaad9ae-3704-4f42-b35d-5511f3d1d94e.cache-pub;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T16:31:39.5963808Z ##[start-action display=Cache Flutter;id=__bcaad9ae-3704-4f42-b35d-5511f3d1d94e.cache-flutter]
+2026-11-14T16:31:39.5966180Z ##[end-action id=__bcaad9ae-3704-4f42-b35d-5511f3d1d94e.cache-flutter;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T16:31:39.6044887Z Post job cleanup.
+2026-11-14T16:31:39.7820755Z (node:5465) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T16:31:39.7860572Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T16:31:39.8155152Z Post job cleanup.
+2026-11-14T16:31:39.9261877Z [command]/usr/bin/git version
+2026-11-14T16:31:39.9305176Z git version 2.56.1
+2026-11-14T16:31:39.9341912Z Temporarily overriding HOME='/home/runner/work/_temp/c171ea43-2830-44d9-b96e-4d8d95f04428' before making global git config changes
+2026-11-14T16:31:39.9343174Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T16:31:39.9345647Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:31:39.9386876Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:31:39.9432221Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:31:39.9710583Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:31:39.9742677Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:31:40.0031767Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:31:40.0094236Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:31:40.0682086Z Evaluate and set job outputs
+2026-11-14T16:31:40.0687905Z Cleaning up orphan processes
+2026-11-14T16:31:40.0998929Z Terminate orphan process: pid (3193) (python3)
+2026-11-14T16:31:40.1042858Z Terminate orphan process: pid (3194) (dart:flutter_to)
+2026-11-14T16:31:40.1093048Z Terminate orphan process: pid (3227) (dart:frontend_s)
+2026-11-14T16:31:40.1180076Z Terminate orphan process: pid (5391) (flutter_tester)
+2026-11-14T16:31:40.1221644Z Terminate orphan process: pid (5452) (flutter_tester)
+2026-11-14T16:31:40.1281054Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

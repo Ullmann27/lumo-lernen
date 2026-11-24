@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14T15:25:26.325615+00:00",
+  "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+  "run_id": 43607156921,
+  "artifact_id": 14119369270,
+  "archive": {
+    "bytes": 38345151,
+    "sha256": "f33ce27cea68774f8cf706412a2b893b9a947bcd6fae46e781781b7d485f6a9f",
+    "git_blob": "029570137388c1760e569654ba66f2285380234a"
+  },
+  "original_files": 54,
+  "images_opened_by_root": 3,
+  "images": [
+    {
+      "path": "1978/lessons/cover-large-text.png",
+      "bytes": 911744,
+      "sha256": "3b0ee57c29caae7a8460f5a96b7c37b65c85fe44e373c45e81e721f203760dbb",
+      "git_blob": "18c70ad3cc74ca69e99852066c9a5fb550c30d6d",
+      "dimensions_px": [
+        688,
+        1764
+      ],
+      "actually_opened": true,
+      "observations": [
+        "The visible narrow large-text lesson shows the Lumo header, encouragement, progress, arithmetic question and beginning of the grouped-apple aid with readable text.",
+        "Answer controls and the rest of the lesson lie below this captured viewport. The navigation item preceding Mehr is only partly visible; this image does not establish its reachability or a functional defect."
+      ]
+    },
+    {
+      "path": "1981/atelier/fold-cover-large-text-example.png",
+      "bytes": 335320,
+      "sha256": "78d425beef4b0125e1fcf202cf7afc7d6276e9edb4fa292217ad402cc124aca0",
+      "git_blob": "06a768fb3ba0bbccf652890105f3c7133105d752",
+      "dimensions_px": [
+        688,
+        1764
+      ],
+      "actually_opened": true,
+      "observations": [
+        "The worked example explains8+5 by reaching10 with2, then adding the remaining3; displayed result13 is arithmetically correct.",
+        "The explanatory text, Beispiel vorlesen and Jetzt gemeinsam bauen actions are fully readable without observed overlap in this original capture."
+      ]
+    },
+    {
+      "path": "1981/atelier/fold-cover-large-text-build.png",
+      "bytes": 480838,
+      "sha256": "05715ded0dffad86af06a84c533b8e196a01e2c52a2d274c939beca36b73667a",
+      "git_blob": "1381634de911b9596aa22d543f69e2cd49ed2948",
+      "dimensions_px": [
+        688,
+        1764
+      ],
+      "actually_opened": true,
+      "observations": [
+        "The visible building task asks to complete10 from7 using a supply of5; seven yellow pieces and five blue supply pieces are visible.",
+        "Zurück, Verschieben and Mein Modell prüfen are fully visible and readable. This scrolled still image does not independently prove OS touch, drag behavior, sound or persistence."
+      ]
+    }
+  ],
+  "delta_to_full_artifact": {
+    "identical_sha256_members": 30,
+    "different_sha256_members": 24,
+    "scope": "Three specified narrow lesson/atelier images were actually opened by Root; eleven other specified lesson/C4/atelier images are assigned for a separate Child review. Remaining differing premium/card/cross-grade images are not implicitly visually approved."
+  },
+  "scope": "Existing actual Flutter test captures. No additional test/rendering execution, no Android or physical FPS approval."
+}

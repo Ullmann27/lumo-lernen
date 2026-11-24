@@ -1,0 +1,55 @@
+{
+  "correction": {
+    "bytes": 2565,
+    "git_blob": "4efe1e20aebf51200f3794da302073631bc3be64",
+    "sha256": "45d767a308fd910ed5e9000d85d1d19f5dbf6cc182718b4ca456868b4371fba1"
+  },
+  "entry": "final/README.md",
+  "final_files": [
+    {
+      "after": {
+        "bytes": 3736,
+        "git_blob": "e6720f34bfd8e4a01b58edb9e1492f10ec433421",
+        "sha256": "865b6493e118c94de49314d1b9995eeafeaeebe0e7728a3bfaa17e9090a8d05d"
+      },
+      "before": {
+        "bytes": 2856,
+        "git_blob": "dafc466099cfd626f2f3c5f8505f2a72e393be2b",
+        "sha256": "e39830329473e1a66e3bc82bf896489265997665f74144aff2a661745da79fe3"
+      },
+      "path": "cli-argument-contract.json"
+    },
+    {
+      "after": {
+        "bytes": 10771,
+        "git_blob": "1c9e8fe1cc2b3f1999aeb097c1ee4aa8dbc08797",
+        "sha256": "7e711b8d75696e56b91e2e716f7b526049734f262d150341142e88c6fcb00bd6"
+      },
+      "before": {
+        "bytes": 10586,
+        "git_blob": "2acd2c77478bf03a6f0adc5c70e6ac4b88a26cad",
+        "sha256": "aa20ac70d445214dad6123f501f5585b13c31969938f6db9f0b06be284c8256d"
+      },
+      "path": "plan.json"
+    },
+    {
+      "after": {
+        "bytes": 10298,
+        "git_blob": "b7576f0a1f1cb8bafd1001c01bd67f40965b734f",
+        "sha256": "893c230093ae7fe4a38c827a2f5f0c47bd5695c9545075879999767d8d0e3a1d"
+      },
+      "before": {
+        "bytes": 9237,
+        "git_blob": "25f6bbfbb85db1f9b0d60cf7ad04670b0919fdea",
+        "sha256": "176f1f97cb1480be18f835d9b161f53295dee1c6b7b18abe9059eab8c685f699"
+      },
+      "path": "README.md"
+    }
+  ],
+  "newtests": 0,
+  "original_v1_preserved": true,
+  "remote_mutations": false,
+  "schema": 1,
+  "status": "V2_FROZEN",
+  "workflow_activation": false
+}

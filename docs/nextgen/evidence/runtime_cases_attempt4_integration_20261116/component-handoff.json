@@ -1,0 +1,115 @@
+{
+  "producerCommit": "530faefb5a9f2a828386c110c7a9b89b429247f7",
+  "producerTree": "e56baeb3ce80dcd941ec9380ffbed3bf026337a3",
+  "parentCommit": "ae6c27c81d41342179a0bf6e60fedbcafacb63a4",
+  "branch": "qa/lumo-supplemental-academy-navigation-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-supplemental-academy-navigation",
+  "frozen": true,
+  "scope": "Supplemental bridge entry after actual Banana return; no shared original/reference/helper, workflow, config, publisher or product source mutation.",
+  "originalRun": 43819768114,
+  "originalJob": 133139916176,
+  "originalArtifact": 14204766749,
+  "originalArchiveBytes": 37623671,
+  "originalArchiveSha256": "660794dab77f440a7af869e60e51bfd310c014706570f37344a3a40447736ee0",
+  "originalStatus": "FAIL",
+  "minimalChange": "Replace the second academy() call with fresh exact current academy and open tools observations, retaining the existing guided_course() path.",
+  "tests": {
+    "red": {
+      "count": 1,
+      "expectedErrors": 1,
+      "productionUnchanged": true,
+      "log": "docs/nextgen/evidence/2031_supplemental_academy_navigation_20261116/navigation-original-red.log"
+    },
+    "green": {
+      "count": 45,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "modules": [
+        "test_nextgen_2031_native_runtime_cases",
+        "test_nextgen_2031_runtime_cases"
+      ],
+      "log": "docs/nextgen/evidence/2031_supplemental_academy_navigation_20261116/navigation-runtime-green.log"
+    },
+    "sparseFixtureSetupFailureRetained": true,
+    "testBoundary": "Real original XML parsed by unchanged selectors; transport/clock/negative controls are explicitly simulated. Execution stops at guided entry.",
+    "sourceDiffCheck": "PASS",
+    "rawEvidenceFormattingPreserved": true
+  },
+  "sharedPublisherBoundFilesUnchanged": 31,
+  "androidWithFix": "NOT_RUN",
+  "nativeStopSuccessClaimed": false,
+  "remoteActions": false,
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_native_runtime_cases.py",
+      "bytes": 26339,
+      "sha256": "aae23a917505535a0fa267927b2018821a281b0b36c865b622c103f4679380c8"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_academy_navigation_20261116/README.md",
+      "bytes": 4459,
+      "sha256": "f15b4025d282e08831fe8594f78bce6961902cedeb252d7a3e223de9d7a6d7da"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_academy_navigation_20261116/navigation-original-red-provenance.json",
+      "bytes": 701,
+      "sha256": "8386e72dffa047e9bbdbd4dd892e69ee34605914fc73d03aa4990bc82cfd7a0f"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_academy_navigation_20261116/navigation-original-red.log",
+      "bytes": 1904,
+      "sha256": "980303f17b913612cab69571025867d307814d10e425335ff48a0a603e700c12"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_academy_navigation_20261116/navigation-runtime-green.log",
+      "bytes": 9385,
+      "sha256": "edf2d3d6d4f094c1512e0d7a193421b2f8e686c2679fc49bbb2d0627e596fcc8"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_academy_navigation_20261116/navigation-runtime-sparse-fixture-setup-failure.log",
+      "bytes": 21306,
+      "sha256": "ee8f100f84afeb919460aa361297388901a04c152edfb0c585748380903a3314"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_supplemental_academy_navigation_20261116/source-review.json",
+      "bytes": 1342,
+      "sha256": "c8de05fb2cdbaa2a3c09f66a54fccf4fa2ebd97f138fda3edbe6411631519c63"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_academy_return_43819768114/0399-academy-open.xml",
+      "bytes": 32234,
+      "sha256": "adebe037630cf39c269b0695ada2ffb111f24adf7bad177a34694ef0b545216c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_academy_return_43819768114/0407-academy-tools.xml",
+      "bytes": 31342,
+      "sha256": "1b066f94e1c5afff98523794e6bb3cb17821b7f517523847f55483c01130d7e0"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_academy_return_43819768114/0409-academy-tools-touch.json",
+      "bytes": 107,
+      "sha256": "13625042c7ee5a7da8acdc512876739859e2e815bd76d73124606a024a0b3105"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_academy_return_43819768114/0410-academy-tools-open.xml",
+      "bytes": 31765,
+      "sha256": "6232ff708592881d1ac31815f3a34fec2bd3f0776cfcc1e6bbbbc5ba3a1d8284"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_academy_return_43819768114/0417-academy-tools-open-scroll-search.json",
+      "bytes": 2117,
+      "sha256": "867d4e2dcb560b02bbb1f75401631a5ba2c9bfc40b7c6d3d4b0aa007c098d943"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_academy_return_43819768114/manifest.json",
+      "bytes": 2192,
+      "sha256": "7e851d28c3d8241c95e0bd38654fc2d73a13770b4a8bcbf5c6f834cf78e070a3"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py",
+      "bytes": 26664,
+      "sha256": "507d0e9b94a9807c61a5ef5515c83c69c442fc1b2dfe63acff654631417cf85d"
+    }
+  ]
+}

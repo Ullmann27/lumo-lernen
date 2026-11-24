@@ -164,7 +164,7 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
                   key: const ValueKey('lumo-hint-listen'),
                   onPressed: _speakWithLumoMotion,
                   style: OutlinedButton.styleFrom(
-                    minimumSize: const Size(0, 43),
+                    minimumSize: const Size(0, 48),
                     foregroundColor: const Color(0xFFE2FAFF),
                     side: const BorderSide(
                         color: Color(0xB04EDCFF)),

@@ -1,0 +1,98 @@
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "ref": "refs/heads/qa/lumo-prompt-label-contrast-20261114-2708",
+  "run_id": "43603068259",
+  "run_attempt": "1",
+  "head_commit": "21e0368603e38d1dfd063485f5307ec201f0d872",
+  "head_tree": "0a5042254cd27c70597952842fdc8d71b089b417",
+  "sole_parent": "1375da193af0152af64f91d86577aa9768cd50db",
+  "base_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+  "changes": [
+    "A\t.github/workflows/lumo-prompt-label-contrast-qa.yml",
+    "M\tlib/widgets/lumo/lumo_prompt_card.dart"
+  ],
+  "files": {
+    ".github/workflows/lumo-prompt-label-contrast-qa.yml": {
+      "bytes": 15102,
+      "sha256": "b78694efe0f737c5bd3002e02bdcf420836ff56a08b042cfed88e1d6beefb03a",
+      "git_blob": "bfd93a088d3181444248e57e0ea5b7599921c242"
+    },
+    "lib/widgets/lumo/lumo_prompt_card.dart": {
+      "bytes": 4255,
+      "sha256": "8c6280819104d4b32a78b4cda0d0f6ab484920f4c38f0a6e1408fa12d98b5c70",
+      "git_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+    },
+    "scripts/run_full_flutter_acceptance.py": {
+      "bytes": 6483,
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72"
+    },
+    "test/design/lumo_modernization_capture_test.dart": {
+      "bytes": 7690,
+      "sha256": "031f8c6623e34ddb9cfac43122c195513080f4304391f469d05cb877173261c0",
+      "git_blob": "2b3f8adcd1dbf9b968b9bc640ef212257f845586"
+    },
+    "test/helpers/lumo_capture.dart": {
+      "bytes": 2703,
+      "sha256": "a5edb53ce57918c9607517712a242d1c32ffc26cd96ac50147bfcb2f7fc48f49",
+      "git_blob": "439c2a8862effae26907ef655304e0c57f76a56c"
+    },
+    "pubspec.yaml": {
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "git_blob": "7f504396071cf3af57164187a29ea74b74c62413"
+    },
+    "pubspec.lock": {
+      "bytes": 24467,
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+      "git_blob": "7843602e3d858660dc52d95587983858803976a5"
+    },
+    "config/godot-source.json": {
+      "bytes": 145,
+      "sha256": "1b7c5f504dd2de26b0ae889f32f16971d960e18374b169c5862c3b1bd9a0b20f",
+      "git_blob": "3ce3b0d1f53f5d9b9f7ff0dcb7c3bd519c250788"
+    },
+    "lib/widgets/lumo/lumo_design_kit.dart": {
+      "bytes": 7598,
+      "sha256": "3d0a43bfb2a7f60ad759af919675d9928cd1b4e9a0b9c807623f1803a1c2c66f",
+      "git_blob": "ce4aeb98bce59d6df706f68a2f39dc75a13cda75"
+    },
+    "lib/app/app_theme.dart": {
+      "bytes": 11506,
+      "sha256": "c0f00bdcf125967b7188a3af350938d58597626b39c7938fe2a0def199688833",
+      "git_blob": "fbca41aca3bf0f5e199175fe7285aec5a2e84db9"
+    },
+    "lib/features/writing/lumo_writing_coach_screen.dart": {
+      "bytes": 28091,
+      "sha256": "3365cae7a1137ce57a573971fa40e20b55f7f9434ee721d79f2fd0978b16ed10",
+      "git_blob": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857"
+    },
+    "lib/features/writing/lumo_writing_word_coach_screen.dart": {
+      "bytes": 38878,
+      "sha256": "e08c2b8acd274eb201f1cd6dd164e9f22b569a1478cdff9295f0ea4fbe6c82bd",
+      "git_blob": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea"
+    },
+    "assets/fonts/Nunito-Regular.ttf": {
+      "bytes": 39332,
+      "sha256": "0f050be91a610576ef9d06abb68f7c21d22df2d20ece6edb8818630af9b59793",
+      "git_blob": "4ed809463fcba2afd71553075412a6d7e74dcedf"
+    },
+    "assets/fonts/Nunito-Bold.ttf": {
+      "bytes": 39284,
+      "sha256": "5d6ac65faf73856810797d4e6843a57c7444ee6089b764399c3ebfa85d61e448",
+      "git_blob": "e289ba049b167e4fd0e5ba5f537fa3f4b94a92fb"
+    },
+    "assets/fonts/Nunito-ExtraBold.ttf": {
+      "bytes": 39300,
+      "sha256": "1804f686f4a8fe643b997ca5fee109c2e9e27dc6b53b871f1ddc35a58e99005e",
+      "git_blob": "d3168c268b0f8c20edc534be678ab53300ba0828"
+    },
+    "assets/fonts/Nunito-Black.ttf": {
+      "bytes": 39260,
+      "sha256": "3a373c4d17cffecdc9f3c351e2ce9ec83edb0622925a59d802be24fd442346f8",
+      "git_blob": "9e7743ebb7efc2bda51e99eda079cb9b2061f566"
+    }
+  },
+  "tracked_changes": "",
+  "untracked_source_inputs": []
+}

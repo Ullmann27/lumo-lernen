@@ -1,0 +1,29 @@
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "head": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "run": 43596913164,
+  "attempt": 1,
+  "job": 132453271203,
+  "workflow": ".github/workflows/lumo-living-intelligence-core.yml",
+  "workflow_blob": "89bbe8c1b936f943cc3e9ac42a44012262cbd7f7",
+  "actual_checkout": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "checkout_log_line": 169,
+  "core": {
+    "passed": 48,
+    "failed": 0,
+    "skipped": 0,
+    "original_log_line": 596,
+    "original_line": "2026-11-14T12:53:40.5590966Z 00:17 +48: All tests passed!"
+  },
+  "regression": {
+    "passed": 2425,
+    "skipped": 202,
+    "failed": 0,
+    "original_log_line": 3637,
+    "original_line": "2026-11-14T13:02:59.5687954Z 09:14 +2425 ~202: All tests passed!"
+  },
+  "conclusion": "success",
+  "zip_locally_downloaded": false,
+  "limits": "The 202 skipped cases remain explicit. Only the separate full-capture run can establish a no-skip Flutter acceptance."
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "0177-bridge-same-model-after-return",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "0177-bridge-same-model-after-return-render-candidate-1.png",
+      "sha256": "b1e6b4489b99034d3ab3e1ff45b2be5e752516e6f4c2aaf6ea065c0fdd25f477",
+      "width": 1080,
+      "height": 2340,
+      "content_entropy_bits": 5.868,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 0.631
+}

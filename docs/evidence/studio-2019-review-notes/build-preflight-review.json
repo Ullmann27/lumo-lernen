@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "review_kind": "Visual preflight only; no publication approval",
+  "native_revision": "9eb25fcb158342639badb0e953a8fe7945fda6ce",
+  "reviewed_by": "Agent C / games_worlds",
+  "reviewed_at_utc": "2026-11-13T13:19:02.551095+00:00",
+  "method": "All four build_nextgen_play_regression PNGs and all six build_settlement_play_regression PNGs opened individually through view_image at their original dimensions; per-file SHA-256 computed from the inspected original files. No image or code modification.",
+  "status": "NO_ADDITIONAL_BUILD_BLOCKER_OBSERVED_IN_REJECTED_REVISION",
+  "release_approval": false,
+  "native_candidate_status": "9eb25fcb remains rejected because of the separately confirmed Puzzle compact-layout obstruction. This note does not accept that revision or pre-approve the fresh 64f revision.",
+  "images": [
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/01_build_selection.png",
+      "filename": "01_build_selection.png",
+      "sha256": "d9feab7ce972bd089b94b840e6dadd92727b444e64946bc3a98df3c79642dbe9",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_individually_with_view_image": true,
+      "verdict": "NO_ADDITIONAL_BLOCKER_OBSERVED",
+      "observations": "Die ausgewählte reale Brücke ist als transparente Auswahl auf dem sichtbaren Bauraster erkennbar. Zielgebiet und vorhandenes Bauteil liegen außerhalb von Kopf-, Auftrags- und Werkzeugleisten. Beschriftungen und Aktionen sind lesbar; die rechts angeschnittene Katalogfortsetzung gehört zur horizontalen Teileliste."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "filename": "02_build_moved.png",
+      "sha256": "580098c196cf6c56918460dba52753b234c41ef7aaf37f6d7f56af2cc84f90aa",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_individually_with_view_image": true,
+      "verdict": "NO_ADDITIONAL_BLOCKER_OBSERVED",
+      "observations": "Die Brücke ist gegenüber dem Auswahlbild versetzt und um 90 Grad gedreht; der Status benennt die Versetzung und Rückgängig. Kein sichtbarer Verlust der Geometrie, keine HUD-Überdeckung des ausgewählten Bauteils."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/03_build_walking.png",
+      "filename": "03_build_walking.png",
+      "sha256": "350351ca87fa345eebe411a1418cd07a9b3d8a46cbea334eaca1f27a2a1c55d8",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_individually_with_view_image": true,
+      "verdict": "NO_ADDITIONAL_BLOCKER_OBSERVED",
+      "observations": "Der erkennbare Originalfuchs mit blauem Outfit und Brille steht vollständig sichtbar neben dem gebauten Teil. Körper, Beine, Füße und Schwanz zeigen in dieser Aufnahme keine auffällige Rig-Zerlegung oder Durchstiche. Linker Bewegungsstick, rechter Sprungknopf und Ansehen sind getrennt sichtbar; die Bauwerkzeuge sind im Laufmodus ausgeblendet."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/04_build_jump.png",
+      "filename": "04_build_jump.png",
+      "sha256": "2928770bab2660d2c729c23547f2284ca970064a48f187d5da0978fcf495d67b",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_individually_with_view_image": true,
+      "verdict": "NO_ADDITIONAL_BLOCKER_OBSERVED",
+      "observations": "Der Originalfuchs ist sichtbar angehoben; Beine und Schwanz bleiben zusammenhängend. Sprung- und Interaktionsknopf bleiben getrennt. Aus diesem Standbild wird keine vollständige Sprungkurve oder Eingabelatenz abgeleitet."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/01_settlement_start.png",
+      "filename": "01_settlement_start.png",
+      "sha256": "57ec1cde379af17451674abb39ef880fdc41119ac2802f03168e87c98614c54b",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_individually_with_view_image": true,
+      "verdict": "NO_ADDITIONAL_BLOCKER_OBSERVED",
+      "observations": "Alle neun eigenen Baugrundstücke sind im dargestellten Planmodus sichtbar. Ressourcen, Tagesstand, Aufgabe und Baukosten sind lesbar. Die Fußleiste verdeckt keinen Mittelpunkt der neun hier dargestellten Grundstücke; Rückkehr und Pause sind sichtbar."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/02_settlement_purchases.png",
+      "filename": "02_settlement_purchases.png",
+      "sha256": "2fbcbc6e8fbe8001462277d01e2a912cae73a145e4ce382b9acb994552083fa2",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_individually_with_view_image": true,
+      "verdict": "NO_ADDITIONAL_BLOCKER_OBSERVED",
+      "observations": "Wohnhaus und Bauernhof sind als unterschiedliche echte räumliche Objekte auf getrennten Grundstücken erkennbar. Baukosten, Ressourcen und Aufgabenzustand bleiben lesbar. Kein zusätzliches verdecktes Pflichtziel in dieser Aufnahme festgestellt."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/03_settlement_rival_day.png",
+      "filename": "03_settlement_rival_day.png",
+      "sha256": "c074b5d5825e92b7a4e7afba045d27ee1cd82ce793096f4822d0df1f5bed2e90",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_individually_with_view_image": true,
+      "verdict": "NO_ADDITIONAL_BLOCKER_OBSERVED",
+      "observations": "Eigene und Nachbarsiedlung sind beiderseits des Flusses sichtbar. Unterschiedliche Bebauung und Nachbarfigur sind erkennbar; ausgewähltes eigenes Grundstück und Tagesmeldung bleiben verständlich. HUD und Fußaktionen überschneiden sich nicht."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/04_settlement_lumo.png",
+      "filename": "04_settlement_lumo.png",
+      "sha256": "0e884ef52fae2df24610d21f6376ccf8745911f291e22bf28eb7cf2bf4cad673",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_individually_with_view_image": true,
+      "verdict": "NO_ADDITIONAL_BLOCKER_OBSERVED",
+      "observations": "Der Originalfuchs ist im Laufmodus von hinten vollständig mit Kopf, Händen, Füßen und Schwanz sichtbar. Keine auffällige Deformation im dargestellten Posezustand. Bewegungsstick und Sprungknopf liegen getrennt an den unteren Seiten; Planen und Pause sind am oberen Rand erreichbar dargestellt."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/05_settlement_result.png",
+      "filename": "05_settlement_result.png",
+      "sha256": "ae7948d5dbdcac6f5a3e8753061c7c483d52140a45140bf3e452e98980d343f0",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "opened_individually_with_view_image": true,
+      "verdict": "NO_ADDITIONAL_BLOCKER_OBSERVED",
+      "observations": "Abschlussmeldung nennt den Sieg der Nachbarin und die Erhaltung des eigenen Bauplans. Die gebauten Objekte bleiben sichtbar; Neue Runde und Rückkehr sind lesbar. Der nicht modale Ergebniszustand verdeckt keine zusätzliche Pflichtaktion."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "filename": "06_settlement_relocation.png",
+      "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2",
+      "dimensions": [
+        388,
+        390
+      ],
+      "opened_individually_with_view_image": true,
+      "verdict": "NO_ADDITIONAL_BLOCKER_OBSERVED",
+      "observations": "Separater gerenderter Dialog-Viewport (388×390). Folgen des Rückbaus und Rückerstattung sind vollständig lesbar. Haus behalten und Ja, umbauen sind als getrennte, vollständig sichtbare Aktionen dargestellt. Das Bild allein belegt keine Dialogposition im übergeordneten Android-Fenster."
+    }
+  ],
+  "related_recorded_runtime_logs": [
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log",
+      "sha256": "4439cc99723397dd2a4ead00eea92141438eb24a56c360d22aa9308b4ba78552",
+      "recorded_checks": 70,
+      "recorded_marker": "[BuildNextgen] PASS",
+      "scope": "Existing archived renderer probe log inspected; not rerun in this preflight."
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log",
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "recorded_checks": 139,
+      "recorded_marker": "[SettlementPlay] PASS",
+      "scope": "Existing archived renderer probe log inspected; not rerun in this preflight."
+    }
+  ],
+  "limitations": [
+    "Screenshots are the archived Linux OpenGL Compatibility/Mesa llvmpipe renderer output, not Android or Samsung Fold7 captures.",
+    "Single frames cannot establish full animation transitions, physical motion over time, gesture latency or measured dp touch sizes. Relevant archived runtime markers are listed separately without claiming a new execution.",
+    "All nine full-scene images are 1280×720; the relocation capture is the separate 388×390 dialog viewport. This review does not add a portrait/compact-screen clearance proof.",
+    "Fresh native revision requires inspection of its own renderer evidence before final approval."
+  ]
+}

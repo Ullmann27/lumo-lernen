@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "kind": "unmodified_original_failure_fixtures",
+  "run_id": 43589206933,
+  "job_id": 132447694895,
+  "attempt": 1,
+  "artifact_id": 14114895060,
+  "host": "3d91bd8355a539c3c2413760959684cd3fee985a",
+  "native": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "archive_bytes": 53588701,
+  "archive_sha256": "5a2bcf963a14ac300e1cab483a59c68fd77c1dbcf711110e2fcdab7102a0c790",
+  "original_outcome": "FAIL: No currently visible vehicle card in the actual left list",
+  "files": [
+    {
+      "path": "21_stage_select_gecko_velo-0.png",
+      "archive_member": "main/21_stage_select_gecko_velo-0.png",
+      "bytes": 790695,
+      "sha256": "59a150123c6c06ef63c078230ca51dcf09bc6c74d6fb08b2386ce02380d4772c",
+      "crc32": "12af9af3"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-0-ocr.json",
+      "archive_member": "main/21_stage_select_gecko_velo-0-ocr.json",
+      "bytes": 22111,
+      "sha256": "6138480ca5d08eed03917918641dc66b85dc3cb2c835ec57b51dbb9a0574cc33",
+      "crc32": "392ee0dc"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2.png",
+      "archive_member": "main/21_stage_select_gecko_velo-2.png",
+      "bytes": 787362,
+      "sha256": "06b0a39e612271df34b4a8522ba609234ad4890b3dda7b7de4a16d33d6ac355c",
+      "crc32": "aead1fcc"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr.json",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr.json",
+      "bytes": 21249,
+      "sha256": "926590e14d10afc157be939593ebc2fbc38b6c587cf7cd7d59453433161f26eb",
+      "crc32": "e18eb8e9"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-surface-readiness.json",
+      "archive_member": "main/21_stage_select_gecko_velo-surface-readiness.json",
+      "bytes": 3842,
+      "sha256": "8fd5ce1630d0b63e4711d7f95fd61fbcae70599da3e8e1344567703ea2b00424",
+      "crc32": "fa27a635"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-contrast.tsv",
+      "bytes": 5014,
+      "sha256": "50e39063fbf0b94b94e7ff6a0bc7175d89cee20f3566b69e457ff1335b9606d3",
+      "crc32": "24d07b69"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-raw.tsv",
+      "bytes": 4794,
+      "sha256": "23af4eb6e08d9e9666633e2bec70ec641b692efa5a2a0bf870f9136d46b9409f",
+      "crc32": "9da54cb3"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-white-text.tsv",
+      "bytes": 2972,
+      "sha256": "7062e17daaf890122f81a4bea7a5055ced14c4478126b5b43ae3b0d5a43b0bee",
+      "crc32": "70c7d3da"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-white-latin.tsv",
+      "bytes": 2974,
+      "sha256": "a6ca440b761dda8d31dba3592496adc6e355c572b0e8d480196988f6c3bab81d",
+      "crc32": "3161c66e"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-navy-latin.tsv",
+      "bytes": 4156,
+      "sha256": "add2cf19c1dfaca6fc0ab11875df56dfc0559caebbd18a866f4a3c848dd5e199",
+      "crc32": "dcc8cdb1"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-navy-latin-1x.tsv",
+      "bytes": 2502,
+      "sha256": "1b947a31e2c8ba8b42828b2c77f18bb65ca640453f3682d01b3e1c16b51407a8",
+      "crc32": "d3bba156"
+    },
+    {
+      "path": "21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "archive_member": "main/21_stage_select_gecko_velo-2-ocr-teal-text-1x.tsv",
+      "bytes": 6552,
+      "sha256": "751383c2c156608ac81b7fa507d5a68bc4180e614db1cfa3237b46ae070e4849",
+      "crc32": "9b0eb95d"
+    }
+  ],
+  "scope": "Actual PNG/OCR/TSV/readiness only; fixture controller sequences are synthetic, never a new Android outcome."
+}

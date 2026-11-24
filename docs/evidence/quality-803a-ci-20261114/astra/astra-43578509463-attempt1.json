@@ -1,0 +1,188 @@
+{
+  "schema": "lumo-completed-ci-evidence-v1",
+  "repository": "Ullmann27/lumo-lernen",
+  "run": {
+    "id": 43578509463,
+    "name": "Lumo Astra app-script recovery and exact Python test evidence",
+    "event": "pull_request",
+    "path": ".github/workflows/lumo-astra-script-recovery.yml",
+    "head_branch": "work/lumo-play-quality-20261114",
+    "head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509463",
+    "created_at": "2026-11-14T09:01:04Z",
+    "updated_at": "2026-11-14T09:06:14Z",
+    "run_started_at": "2026-11-14T09:01:04Z"
+  },
+  "expected_head": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "complete_attempt_job_inventory": {
+    "total_count": 1,
+    "jobs": [
+      {
+        "id": 132397973718,
+        "run_id": 43578509463,
+        "workflow_name": "Lumo Astra app-script recovery and exact Python test evidence",
+        "head_branch": "work/lumo-play-quality-20261114",
+        "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43578509463",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOSNzcp88AAAAe04jA1g",
+        "head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132397973718",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43578509463/job/132397973718",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-14T09:01:05Z",
+        "started_at": "2026-11-14T09:01:07Z",
+        "completed_at": "2026-11-14T09:06:14Z",
+        "name": "full-app-script-regression",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-14T09:01:07Z",
+            "completed_at": "2026-11-14T09:01:09Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-14T09:01:09Z",
+            "completed_at": "2026-11-14T09:01:31Z"
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-14T09:01:31Z",
+            "completed_at": "2026-11-14T09:01:31Z"
+          },
+          {
+            "name": "Install the real prerequisites used by the app-script suite",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-14T09:01:31Z",
+            "completed_at": "2026-11-14T09:02:05Z"
+          },
+          {
+            "name": "Record source and installed compiler availability",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-14T09:02:05Z",
+            "completed_at": "2026-11-14T09:02:05Z"
+          },
+          {
+            "name": "Reproduce the whole Astra app-script test inventory",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-14T09:02:05Z",
+            "completed_at": "2026-11-14T09:06:11Z"
+          },
+          {
+            "name": "Upload full stdout and stderr even on test failures",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-14T09:06:11Z",
+            "completed_at": "2026-11-14T09:06:12Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-11-14T09:06:12Z",
+            "completed_at": "2026-11-14T09:06:13Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-11-14T09:06:13Z",
+            "completed_at": "2026-11-14T09:06:13Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-11-14T09:06:13Z",
+            "completed_at": "2026-11-14T09:06:13Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132397973718",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000017618,
+        "runner_name": "GitHub Actions 1000017618",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  },
+  "raw_log": {
+    "job_id": 132397973718,
+    "git_blob": "9ab8801f0aba76eafddc6dc4f3ff7ab741311043",
+    "filename": "astra-43578509463-attempt1-job132397973718.log",
+    "decoded_character_count": 287346,
+    "retrieved_only_after_job_completed": true
+  },
+  "observed_result": {
+    "unittest_count": 872,
+    "unittest_seconds": 245.202,
+    "unittest_summary": "OK",
+    "original_video_tests": [
+      "test_actual_original_full_decode_has_no_error_output",
+      "test_all_original_packets_frames_and_action_coverage_are_present",
+      "test_corrupt_h264_packet_still_fails_the_production_guard",
+      "test_truncated_container_still_fails_the_production_guard"
+    ],
+    "all_four_original_video_tests": "ok",
+    "ffmpeg_path": "/usr/bin/ffmpeg",
+    "ffprobe_path": "/usr/bin/ffprobe",
+    "installed_version": "6.1.1-3ubuntu5"
+  },
+  "scope": "Complete Astra Python app-script inventory on the observed synthetic PR-merge checkout. GitHub commit-object reads prove its entire tree is identical to the requested PR head; the actual checkout SHA is reported separately. This workflow does not build or execute an Android APK.",
+  "checkout": {
+    "expected_pr_head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "api_head_sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "actual_checkout_commit": "ca15ae2ae03fbeeb3f68da6cfed548b27a8ed146",
+    "actual_checkout_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+    "expected_pr_head_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+    "checkout_tree_identical_to_expected_head": true,
+    "actual_checkout_is_pr_head": false,
+    "original_log_blob": "9ab8801f0aba76eafddc6dc4f3ff7ab741311043",
+    "checkout_command": "2026-11-14T09:01:29.9822332Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/491/merge",
+    "git_log_command": "2026-11-14T09:01:31.2144532Z [command]/usr/bin/git log -1 --format=%H",
+    "git_log_output": "2026-11-14T09:01:31.2162166Z ca15ae2ae03fbeeb3f68da6cfed548b27a8ed146",
+    "independent_sha_outputs": [
+      "2026-11-14T09:01:31.2162166Z ca15ae2ae03fbeeb3f68da6cfed548b27a8ed146",
+      "2026-11-14T09:02:05.7240597Z ca15ae2ae03fbeeb3f68da6cfed548b27a8ed146"
+    ],
+    "verified_commit_object": {
+      "sha": "ca15ae2ae03fbeeb3f68da6cfed548b27a8ed146",
+      "tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+      "parents": [
+        "729585db3f49ecff7f0632439f90edb882f09454",
+        "803a4e960ffb804a46b6d09417731c031f00f680"
+      ],
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/ca15ae2ae03fbeeb3f68da6cfed548b27a8ed146"
+    },
+    "verified_expected_head_commit": {
+      "sha": "803a4e960ffb804a46b6d09417731c031f00f680",
+      "tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/803a4e960ffb804a46b6d09417731c031f00f680"
+    },
+    "explanation": "The runner checked out the synthetic PR merge commit. Independent Git commit reads confirm its entire tree is identical to the requested PR-head tree; the two commit identities are reported separately."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "base": "05dfecb16a0230090792980723b4a7284c957caf",
+  "branch": "fix/lumo-learning-conversation-scope-20261115",
+  "commits": [
+    "ddf7106cb1a3b6592f0e37dcd96d36b9108a4ec8",
+    "cd0906ab8f672e6c9da5659d0876ad537311eea9"
+  ],
+  "final_tree": "9e9536351857da66672d64b639b7c7cf7238ff97",
+  "test_result": {
+    "passed": 56,
+    "failed": 0,
+    "skipped": 0
+  },
+  "test_counts": {
+    "test/lumo_conversation_owner_lifecycle_test.dart": 8,
+    "test/lumo_context_conversation_test.dart": 11,
+    "test/lumo_learning_dialogue_contract_test.dart": 11,
+    "test/lumo_learning_events_test.dart": 7,
+    "test/lumo_agent_microphone_lifecycle_test.dart": 1,
+    "test/lumo_agent_final_result_lifecycle_test.dart": 1,
+    "test/learning/nextgen_lab_bus_integration_test.dart": 9,
+    "test/learning/lab_native_entry_test.dart": 8
+  },
+  "analysis": {
+    "modal": "No issues found",
+    "owner": "No issues found"
+  },
+  "verification_boundary": [
+    "Flutter widget/controller and real requestRevision checks; native channels in microphone tests are explicit fixtures.",
+    "No claim of physical audio quality, actual Android playback, new APK or release.",
+    "Final run preceded only three analyzer-requested brace changes; final sources were analyzed successfully.",
+    "Experimental final-transcript-owner-red.log is incomplete and not release evidence; that test experiment was reverted."
+  ],
+  "logs": {
+    "red.log": {
+      "bytes": 2308,
+      "sha256": "476dc38a6c4600a84928374166e2d918fa073f6480f30e234036db7e82a4db5c"
+    },
+    "host-audio-red.log": {
+      "bytes": 2126,
+      "sha256": "6f26dc3f9c9f28dab177778f6556786278ee2b4eee1a5a9029956d92df9cf6e4"
+    },
+    "modal-regressions-green.log": {
+      "bytes": 5867,
+      "sha256": "04166e114a0587c86f41f31fa2e91dc83bacdd318d1b88a27b5440bdb1f598a0"
+    },
+    "modal-analyze.log": {
+      "bytes": 96,
+      "sha256": "2ab670d2122a1c69addb8ad430a657ce544e34569ff1a1eeb5b1a998dae96de3"
+    },
+    "owner-red.log": {
+      "bytes": 7951,
+      "sha256": "fab24099674fe128ef2559c61a004ca3346a59da471b4ec6a1b9e34781f5d62c"
+    },
+    "owner-regressions-green.log": {
+      "bytes": 10881,
+      "sha256": "59305cb454f470d6133bf0cd067ffaffe11c3d1a037c592064a4321ce395088e"
+    },
+    "owner-analyze.log": {
+      "bytes": 96,
+      "sha256": "0ed32a6a70e399ace51677fbeb5497e1e8ddeed126e52a6e08e6001abc353402"
+    }
+  }
+}

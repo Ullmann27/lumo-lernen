@@ -1,0 +1,11 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/writing_word_progress_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: mute shows the target word without TTS, voice keeps the dictation
+00:00 +1: traced letters persist XP, one whole word counts one Daily, double tap pays once
+00:02 +2: wrong traced letter records false with help, corrected word keeps accuracy bonus
+00:03 +3: failed letter wallet write blocks touch and back, Retry saves original XP once
+00:03 +4: word profile failure waits for Retry before finish without double Daily or wallet
+00:04 +5: unmount during final reward completes accepted word storage without session bonus
+00:04 +6: background pauses feedback and never advances the next letter offscreen
+00:04 +7: (tearDownAll)
+00:05 +7: All tests passed!

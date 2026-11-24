@@ -1,0 +1,36 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-v"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 31.21,
+  "base_code_tree": "0a037b2f789dfa1e506edfad161284b5d8d5c5a8",
+  "source_sha256_before": {
+    ".github/probes/modernization_android_tour.py": "38d37a897ae1a30e65ad9841d09ead991fc4b79ce1b8658427c8f4533f644f37",
+    "tools/android_qa/kart_garage_evidence.py": "6ab1dd069250630a487576c7d63832efd3e3df50e8c2c81a0133be684863054c",
+    "tools/android_qa/tests/test_kart_garage_evidence.py": "66116e9d2c5cf1a3bdc5350093c45090ba2271ee23c90fd0bb9389f90a52502e",
+    "tools/android_qa/tests/test_modernization_tour_identity.py": "ffe6b786b115e5da609eb1b6186a321df14a9694544cdc59f376159f1326d1ca",
+    ".github/probes/lumo_nextgen_surfaces_android_probe.py": "9f78b70ba89a79608b7c68c732124c12b2e3c4da59294a7e1fb746443f522177",
+    "tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py": "8005d244af785f9c29380ed9fecea710814bba73f32874ea2e3de1645f39397e"
+  },
+  "source_sha256_after": {
+    ".github/probes/modernization_android_tour.py": "38d37a897ae1a30e65ad9841d09ead991fc4b79ce1b8658427c8f4533f644f37",
+    "tools/android_qa/kart_garage_evidence.py": "6ab1dd069250630a487576c7d63832efd3e3df50e8c2c81a0133be684863054c",
+    "tools/android_qa/tests/test_kart_garage_evidence.py": "66116e9d2c5cf1a3bdc5350093c45090ba2271ee23c90fd0bb9389f90a52502e",
+    "tools/android_qa/tests/test_modernization_tour_identity.py": "ffe6b786b115e5da609eb1b6186a321df14a9694544cdc59f376159f1326d1ca",
+    ".github/probes/lumo_nextgen_surfaces_android_probe.py": "9f78b70ba89a79608b7c68c732124c12b2e3c4da59294a7e1fb746443f522177",
+    "tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py": "8005d244af785f9c29380ed9fecea710814bba73f32874ea2e3de1645f39397e"
+  },
+  "sources_unchanged": true,
+  "summary": [
+    "Ran 736 tests in 30.799s",
+    "OK"
+  ],
+  "log_sha256": "e84fb3dbbd0eb95bfc2b0d908711e60288d67470ae1c2066090ceac4a9eeaba5"
+}

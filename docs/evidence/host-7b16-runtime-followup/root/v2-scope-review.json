@@ -1,0 +1,11 @@
+{
+  "status": "V2_LIST_ONLY_SCOPE_VERIFIED",
+  "v1_freeze": "f8305a2f383777f478a7f84bd4027eb688834bd8aecf5cbdb7576c6cfeecbe5c",
+  "v2_freeze": "556776a6152f8c0e62ddf497ccdfc3ea7bbf8fb60656e5303793ad7a0b5f78df",
+  "source_files": {
+    ".github/workflows/lumo-android-runtime-7b16-followup.yml": "a0f99f5bdf09a6f20e1800425497129f9ce9b3e68b19ca3d1a38feb9eab51a31",
+    "scripts/tests/test_runtime_followup_workflow.py": "15d0d7aa8a37aff6ff6d419135d73674a9a5ea236d03174238a14eb325adad83"
+  },
+  "delta": "One scripts.tests.test_unchanged_apk_followup entry in CI and its required contract list; every other byte identical to independently reviewed V1.",
+  "device_acceptance": false
+}

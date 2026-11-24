@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "kind": "actual_original_arm64_apk_bytes_and_provenance",
+  "source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "run_id": 43596913210,
+  "run_attempt": 1,
+  "job_id": 132454178537,
+  "artifact": {
+    "id": 14118379876,
+    "node_id": "MDg6QXJ0aWZhY3QxNDExODM3OTg3Ng==",
+    "name": "lumo-connect-four-2020-arm64-verified",
+    "size_in_bytes": 331365042,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14118379876",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14118379876/zip",
+    "expired": false,
+    "digest": "sha256:e02bf416b5adf2d081de573dc2dd04b7d50a004b1bc8b33d91982f99ebfa8c4c",
+    "created_at": "2026-11-14T14:53:36Z",
+    "updated_at": "2026-11-14T14:53:36Z",
+    "expires_at": "2026-12-14T14:53:31Z",
+    "workflow_run": {
+      "id": 43596913210,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-live-connections-20261114",
+      "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+    }
+  },
+  "local_byte_and_crc_verification": "PASS",
+  "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+  "versionName": "0.13.8",
+  "versionCode": 2020,
+  "abi": "arm64-v8a",
+  "apk_bytes": 331354629,
+  "apk_sha256": "44faa59620955d58fc43e7b6a6488222fe70f8445884384c17c6b379f775d5bd",
+  "test_certificate_sha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "actual_embedded_native": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "engine": "4.6.3",
+    "pck_sha256": "c4c6fb10d6a9492c7c34bcf330ff0dad18601cbcccaedcfe7468053c7328c6dc",
+    "bytes": 75403096
+  },
+  "all_original_verification_fields_equal_both_ci_stdout_records": true,
+  "original_ci_log_blob": "511fdb28b35703da777e38f6eda83722c4ca9d17",
+  "original_ci_record_lines": [
+    [
+      15482,
+      15522
+    ],
+    [
+      15582,
+      15622
+    ]
+  ],
+  "original_artifact_downloads": 1,
+  "apk_bytes_stored_in_git": false,
+  "local_apk_path": "/workspace/scratch/909ddb52fe7b/android-artifacts-1e22/arm64-14118379876/Lumo-Lernen-Neu.apk",
+  "originals": [
+    {
+      "file": "APK-SHA256.txt",
+      "bytes": 91,
+      "sha256": "a63201db8be20c66e2fffa07a7e50055d0d07b33b59d5541e7434df58a1392ba",
+      "crc32": "cd5fcd37"
+    },
+    {
+      "file": "APK-VERIFICATION.json",
+      "bytes": 1779,
+      "sha256": "1931c559c0ae16e3559a6ca0792dfea33ac2799602bf30986d9ff2536a0d5b0b",
+      "crc32": "8cbbb10e"
+    },
+    {
+      "file": "Lumo-Lernen-Neu.apk",
+      "bytes": 331354629,
+      "sha256": "44faa59620955d58fc43e7b6a6488222fe70f8445884384c17c6b379f775d5bd",
+      "crc32": "c66c5aaf"
+    },
+    {
+      "file": "BUILD-PROVENANCE.json",
+      "bytes": 7589,
+      "sha256": "18ca9abe6004df049d2f5cf66a222ca53d139b344b1aa59a66008b8900e92010",
+      "crc32": "36a4dd62"
+    },
+    {
+      "file": "GODOT-SOURCE.json",
+      "bytes": 145,
+      "sha256": "65b166cfadfcc64160f8bf4648a87b29cefd538f08513fd6b896656fbcfba9ee",
+      "crc32": "0a125013"
+    },
+    {
+      "file": "APP-VERSION.txt",
+      "bytes": 21,
+      "sha256": "c013ca7f211e5bc15f7449705ab8c325c7e41164828301f8b0f2c51174ac8f68",
+      "crc32": "0d27d171"
+    }
+  ],
+  "limitations": [
+    "The actual APK bytes and embedded PCK were independently read and hashed; all outer and inner ZIP CRCs passed.",
+    "The original certificate/package/version/alignment receipt is from the actually executed CI verifier. No additional local apksigner run is claimed because it is not installed here.",
+    "The certificate is the existing test certificate, not Play production signing.",
+    "Actual Android/update/candidate/delivery gates remain separate and were still running when this evidence was captured."
+  ]
+}

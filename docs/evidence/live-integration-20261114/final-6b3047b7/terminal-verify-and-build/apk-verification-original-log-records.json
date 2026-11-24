@@ -1,0 +1,377 @@
+{
+  "original_log_blob": "d123bb0e37019ebf301e89f7ca41bd6f0725db3b",
+  "records": [
+    {
+      "start_line": 15128,
+      "end_line": 15216,
+      "value": {
+        "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+        "versionCode": 2020,
+        "versionName": "0.13.8",
+        "minSdk": 24,
+        "targetSdk": 36,
+        "abis": [
+          "arm64-v8a"
+        ],
+        "elf16KiBAligned": true,
+        "resourcesArscAligned": true,
+        "bytes": 331367098,
+        "sha256": "822aec63fa23c6ab57980932a5d6b5465c7e78b1c6f774a790dfe1b272ea6d6d",
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "godot": {
+          "repository": "https://github.com/Ullmann27/lumo-godot.git",
+          "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+          "engine": "4.6.3",
+          "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+          "bytes": 75401304
+        },
+        "offlineVoice": {
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "speakerId": 1,
+          "sampleRate": 44100,
+          "onnxruntimeVersion": "1.23.1",
+          "clipCount": 155,
+          "modelSha256": {
+            "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+            "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+            "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+            "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+            "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+            "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+            "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+          },
+          "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+          "scope": "Actual APK package validation, not audible playback acceptance"
+        },
+        "notices": {
+          "status": "verified",
+          "policySha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+          "nativeRevision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+          "files": [
+            {
+              "source": "host",
+              "path": "assets/fonts/OFL.txt",
+              "bytes": 4385,
+              "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+              "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+              "entry": "assets/lumo_notices/host/assets/fonts/OFL.txt"
+            },
+            {
+              "source": "native",
+              "path": "THIRD_PARTY_NOTICES.md",
+              "bytes": 1582,
+              "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+              "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c",
+              "entry": "assets/lumo_notices/native/THIRD_PARTY_NOTICES.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+              "bytes": 1640,
+              "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+              "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+              "entry": "assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+              "bytes": 2626,
+              "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+              "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+              "entry": "assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/fonts/Nunito-LICENSE.txt",
+              "bytes": 4385,
+              "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+              "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+              "entry": "assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt"
+            }
+          ],
+          "scope": "Exact original outer-package assets; no rights or PCK-content approval"
+        }
+      }
+    },
+    {
+      "start_line": 15217,
+      "end_line": 15305,
+      "value": {
+        "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+        "versionCode": 2020,
+        "versionName": "0.13.8",
+        "minSdk": 24,
+        "targetSdk": 36,
+        "abis": [
+          "x86_64"
+        ],
+        "elf16KiBAligned": true,
+        "resourcesArscAligned": true,
+        "bytes": 334516947,
+        "sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "godot": {
+          "repository": "https://github.com/Ullmann27/lumo-godot.git",
+          "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+          "engine": "4.6.3",
+          "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+          "bytes": 75401304
+        },
+        "offlineVoice": {
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "speakerId": 1,
+          "sampleRate": 44100,
+          "onnxruntimeVersion": "1.23.1",
+          "clipCount": 155,
+          "modelSha256": {
+            "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+            "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+            "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+            "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+            "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+            "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+            "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+          },
+          "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+          "scope": "Actual APK package validation, not audible playback acceptance"
+        },
+        "notices": {
+          "status": "verified",
+          "policySha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+          "nativeRevision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+          "files": [
+            {
+              "source": "host",
+              "path": "assets/fonts/OFL.txt",
+              "bytes": 4385,
+              "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+              "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+              "entry": "assets/lumo_notices/host/assets/fonts/OFL.txt"
+            },
+            {
+              "source": "native",
+              "path": "THIRD_PARTY_NOTICES.md",
+              "bytes": 1582,
+              "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+              "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c",
+              "entry": "assets/lumo_notices/native/THIRD_PARTY_NOTICES.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+              "bytes": 1640,
+              "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+              "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+              "entry": "assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+              "bytes": 2626,
+              "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+              "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+              "entry": "assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/fonts/Nunito-LICENSE.txt",
+              "bytes": 4385,
+              "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+              "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+              "entry": "assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt"
+            }
+          ],
+          "scope": "Exact original outer-package assets; no rights or PCK-content approval"
+        }
+      }
+    },
+    {
+      "start_line": 15324,
+      "end_line": 15412,
+      "value": {
+        "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+        "versionCode": 2020,
+        "versionName": "0.13.8",
+        "minSdk": 24,
+        "targetSdk": 36,
+        "abis": [
+          "arm64-v8a"
+        ],
+        "elf16KiBAligned": true,
+        "resourcesArscAligned": true,
+        "bytes": 331367098,
+        "sha256": "822aec63fa23c6ab57980932a5d6b5465c7e78b1c6f774a790dfe1b272ea6d6d",
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "godot": {
+          "repository": "https://github.com/Ullmann27/lumo-godot.git",
+          "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+          "engine": "4.6.3",
+          "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+          "bytes": 75401304
+        },
+        "offlineVoice": {
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "speakerId": 1,
+          "sampleRate": 44100,
+          "onnxruntimeVersion": "1.23.1",
+          "clipCount": 155,
+          "modelSha256": {
+            "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+            "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+            "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+            "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+            "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+            "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+            "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+          },
+          "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+          "scope": "Actual APK package validation, not audible playback acceptance"
+        },
+        "notices": {
+          "status": "verified",
+          "policySha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+          "nativeRevision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+          "files": [
+            {
+              "source": "host",
+              "path": "assets/fonts/OFL.txt",
+              "bytes": 4385,
+              "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+              "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+              "entry": "assets/lumo_notices/host/assets/fonts/OFL.txt"
+            },
+            {
+              "source": "native",
+              "path": "THIRD_PARTY_NOTICES.md",
+              "bytes": 1582,
+              "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+              "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c",
+              "entry": "assets/lumo_notices/native/THIRD_PARTY_NOTICES.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+              "bytes": 1640,
+              "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+              "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+              "entry": "assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+              "bytes": 2626,
+              "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+              "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+              "entry": "assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/fonts/Nunito-LICENSE.txt",
+              "bytes": 4385,
+              "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+              "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+              "entry": "assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt"
+            }
+          ],
+          "scope": "Exact original outer-package assets; no rights or PCK-content approval"
+        }
+      }
+    },
+    {
+      "start_line": 15414,
+      "end_line": 15502,
+      "value": {
+        "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+        "versionCode": 2020,
+        "versionName": "0.13.8",
+        "minSdk": 24,
+        "targetSdk": 36,
+        "abis": [
+          "x86_64"
+        ],
+        "elf16KiBAligned": true,
+        "resourcesArscAligned": true,
+        "bytes": 334516947,
+        "sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "godot": {
+          "repository": "https://github.com/Ullmann27/lumo-godot.git",
+          "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+          "engine": "4.6.3",
+          "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+          "bytes": 75401304
+        },
+        "offlineVoice": {
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "speakerId": 1,
+          "sampleRate": 44100,
+          "onnxruntimeVersion": "1.23.1",
+          "clipCount": 155,
+          "modelSha256": {
+            "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+            "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+            "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+            "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+            "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+            "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+            "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+          },
+          "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+          "scope": "Actual APK package validation, not audible playback acceptance"
+        },
+        "notices": {
+          "status": "verified",
+          "policySha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+          "nativeRevision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+          "files": [
+            {
+              "source": "host",
+              "path": "assets/fonts/OFL.txt",
+              "bytes": 4385,
+              "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+              "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+              "entry": "assets/lumo_notices/host/assets/fonts/OFL.txt"
+            },
+            {
+              "source": "native",
+              "path": "THIRD_PARTY_NOTICES.md",
+              "bytes": 1582,
+              "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+              "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c",
+              "entry": "assets/lumo_notices/native/THIRD_PARTY_NOTICES.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+              "bytes": 1640,
+              "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+              "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+              "entry": "assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+              "bytes": 2626,
+              "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+              "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+              "entry": "assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md"
+            },
+            {
+              "source": "native",
+              "path": "assets/fonts/Nunito-LICENSE.txt",
+              "bytes": 4385,
+              "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+              "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+              "entry": "assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt"
+            }
+          ],
+          "scope": "Exact original outer-package assets; no rights or PCK-content approval"
+        }
+      }
+    }
+  ]
+}

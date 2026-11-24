@@ -1,0 +1,28 @@
+--- a/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py
++++ b/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py
+@@ -233,14 +233,14 @@
+             probe.verify_word_switch(case["before"], changed, case["checkpoint_before"], case["checkpoint_after"])
+ 
+     def test_actual_switch_reader_taps_once_from_its_new_xml_and_rejects_missed_or_late_playback(self):
+-        for scenario in ("active", "missed", "late-observation", "stale-before-touch"):
++        for scenario in ("active", "missed", "late-observation", "slow-capture", "stale-before-touch"):
+             with self.subTest(scenario=scenario), tempfile.TemporaryDirectory() as directory:
+                 clock, touches = [0.0], []
+                 item = object.__new__(probe.RuntimeCasesProbe)
+                 item.out, item.counter = Path(directory), 0
+ 
+                 def observe(out, name):
+-                    clock[0] += 2.0 if scenario == "late-observation" else .1
++                    clock[0] += 2.0 if scenario == "late-observation" else 1.1 if scenario == "slow-capture" else .1
+                     root = ET.Element("hierarchy")
+                     root.extend(ui("Silbe 2: na" if scenario == "missed" else "Silbe 2: na, gerade aktiv"))
+                     text = ET.tostring(root, encoding="unicode")
+@@ -266,7 +266,7 @@
+                                          probe.immutable.digest(item.out / result["observation"]["xml"]))
+                     else:
+                         with self.assertRaises(RuntimeError):
+-                            item.switch_on_active_syllable(timeout=.5)
++                            item.switch_on_active_syllable(timeout=5 if scenario == "slow-capture" else .5)
+                         self.assertEqual(touches, [])
+                 self.assertGreater(len(list(item.out.glob("*.xml"))), 0)
+ 

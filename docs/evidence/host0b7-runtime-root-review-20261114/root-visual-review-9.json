@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T14:54:50.453381+00:00",
+  "host_sha": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "native_sha": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "run_id": 43604903064,
+  "run_attempt": 1,
+  "artifact_id": 14117443108,
+  "original_zip_sha256": "2d7b91b3d9da60979b438c71604dc4e85b4b6738e26ca17890aba1a28e835488",
+  "reviewer": "Root",
+  "method": "All nine exact original PNGs were opened through view_image in three batches and actually viewed. No regenerated, cropped or edited image was used.",
+  "actual_original_images_viewed": 9,
+  "findings": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_empty.png",
+      "member": "runtime/connect_four_empty.png",
+      "sha256": "aa1bde4d9f074b6d509024f064f14e27a40866d344657a7d522005bb60e52fd8",
+      "bytes": 82537,
+      "width": 960,
+      "height": 540,
+      "observation": "At 960x540 the complete seven-column board, Back/Pause, saved-turn status and seven input controls are visible without text overlap. The Lumo figure is visible to the right."
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_fold_landscape.png",
+      "member": "runtime/connect_four_fold_landscape.png",
+      "sha256": "aac2efa26eafaf9eebdd9288f4db8b7a7f747860ebaade1a159b54a2747e7e96",
+      "bytes": 123809,
+      "width": 2400,
+      "height": 1080,
+      "observation": "At 2400x1080 the result menu visibly scrolls vertically and initially clips the next action at its own viewport edge. Header, result status and seven disabled column controls remain separate and legible."
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_pause.png",
+      "member": "runtime/connect_four_pause.png",
+      "sha256": "7203ccc962921b3573febf6a56fcfd60af3178cbbb0ad99cc623857b0e662ee1",
+      "bytes": 47760,
+      "width": 960,
+      "height": 540,
+      "observation": "Pause modal clearly shows the saved-round message and Continue/New round/Play against Lumo. Background move controls and Pause are visibly disabled."
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_phone_bot_response.png",
+      "member": "runtime/connect_four_phone_bot_response.png",
+      "sha256": "3278b7867f790cc16f60738995404b436d8dd05b02a3132387005872a671ab04",
+      "bytes": 239686,
+      "width": 1080,
+      "height": 2400,
+      "observation": "At 1080x2400 the cyan move and gold response occupy the same center column, with the cyan turn shown next. The board, seven controls and header remain visible."
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_phone_playing.png",
+      "member": "runtime/connect_four_phone_playing.png",
+      "sha256": "daec6b50de75b5932865e7e25d79cd6fa181e974291df26b0371a18b60605dab",
+      "bytes": 235104,
+      "width": 1080,
+      "height": 2400,
+      "observation": "At 1080x2400 the whole 7x6 board and all seven column controls are visible; Back/Pause and saved-turn status are legible. The board occupies the portrait width with substantial vertical space above and below."
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_phone_portrait.png",
+      "member": "runtime/connect_four_phone_portrait.png",
+      "sha256": "0d22adcedf99e68060f7091a3cb9bf8b99abea7c9415c724e2ef81a0b7600de1",
+      "bytes": 170661,
+      "width": 1080,
+      "height": 2400,
+      "observation": "At 1080x2400 the result modal shows the win, three actions and seven disabled column controls without text overlap. The translucent modal intentionally obscures the board."
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_small_landscape.png",
+      "member": "runtime/connect_four_small_landscape.png",
+      "sha256": "b5c074d659a5a20c646a3a8e977e052b5a11267e9082743c06b72fdd7fc98d55",
+      "bytes": 22915,
+      "width": 640,
+      "height": 360,
+      "observation": "At 640x360 the result menu has a visible vertical scrollbar; only the first action is in the initial viewport. Header and result status remain legible. Lower menu actions require scrolling; this still image alone does not prove that interaction."
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_small_portrait.png",
+      "member": "runtime/connect_four_small_portrait.png",
+      "sha256": "dc189342ac6f0150c5a1a569d4377d484a015a49fbafafe3e924e9f51f1740e1",
+      "bytes": 35739,
+      "width": 320,
+      "height": 740,
+      "observation": "At 320x740 all three result actions are legible and separate. The seven-column button row intentionally exceeds the narrow viewport and has a visible horizontal scrollbar; columns beyond the right edge require scrolling. No claim that all seven are simultaneously visible."
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/root-host0b7-runtime-visual-review-20261114/connect_four_win.png",
+      "member": "runtime/connect_four_win.png",
+      "sha256": "c1ae15494092fa78aed6d074196b60bd9bfeac8b145a4d2b0dfecae866767e1a",
+      "bytes": 84544,
+      "width": 960,
+      "height": 540,
+      "observation": "Four cyan pieces and their winning outline are visible in the bottom row; the status says Cyan wins and the menu button is available."
+    }
+  ],
+  "result": "No blocking visual issue identified in these nine still images. Scroll-dependent layouts are explicitly recorded rather than described as fully visible.",
+  "limits": [
+    "These are desktop Godot runtime captures at specified viewport sizes, not Android device screenshots.",
+    "No device FPS, Android navigation, save integrity or touch interaction is inferred from still-image viewing.",
+    "The other 250 frame images were not manually reviewed by Root in this pass.",
+    "The full current C4 workflow is still running; this record does not declare whole-candidate acceptance."
+  ]
+}

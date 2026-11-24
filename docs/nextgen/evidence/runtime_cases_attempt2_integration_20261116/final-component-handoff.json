@@ -1,0 +1,156 @@
+{
+  "commit": "5520097bb90dfd3a4ddd54ef0d4b73ab893a2880",
+  "tree": "aaf0d4997703f42a0e3ff4b7d77adf8eddc2dbca",
+  "parent": "d3aed4a53675829bab989ed9a1496e420211623c",
+  "branch": "qa/lumo-2031-active-syllable-observation-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-active-syllable-observation",
+  "scope": "Documentation-only correction of the original observed Next bounds histogram; code, tests, fixtures and test logs unchanged.",
+  "originalProducerCommit": "42fa338ec193abfd855f1b19a2adb1984659e467",
+  "apiAdoptionCommit": "d3aed4a53675829bab989ed9a1496e420211623c",
+  "originalProducerAndApiTree": "a3a8d46685ff1e2c446e8605e3a16df6f528e5ba",
+  "originalHandoff": {
+    "path": "/workspace/scratch/4fa97167812c/active-syllable-2031-handoff/handoff.json",
+    "bytes": 5768,
+    "sha256": "de8f15448466248a717c60273a5f40ca2dce747d9acf48c9fcbfdf6552e9de43",
+    "preservedUnmodified": true
+  },
+  "changedFiles": [
+    {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/README.md",
+      "bytes": 8512,
+      "sha256": "121318054690f8222765c77f827d386d9ba05ba57607bcf9d24777f67c73a8bf",
+      "previousBytes": 8400,
+      "previousSha256": "2540dc38f3ffb12d7710cc3aa845bb1a34a32ad8e629731a388edb9a339366fa"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/original-observation-manifest.json",
+      "bytes": 121023,
+      "sha256": "bd56e11f913f2987f00d2c55ec92050a803c01b764ad481a39d67175bcc143e0",
+      "previousBytes": 120969,
+      "previousSha256": "18ce454fb4d8831c5290ee5bd3225c926315177b2a9083788d1ab2f1b47ca84a"
+    }
+  ],
+  "files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 46301,
+      "sha256": "2869bba0ac0c9a028653254cbd4627b961b2dbc7cf9a580b429cdf40f1face90"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/README.md",
+      "bytes": 8512,
+      "sha256": "121318054690f8222765c77f827d386d9ba05ba57607bcf9d24777f67c73a8bf"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/original-observation-manifest.json",
+      "bytes": 121023,
+      "sha256": "bd56e11f913f2987f00d2c55ec92050a803c01b764ad481a39d67175bcc143e0"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/source-review.json",
+      "bytes": 2982,
+      "sha256": "0138e728285740572ed647e584162c200400352ea3c598ecdd498d35410e314c"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-fixture-followup-failure.log",
+      "bytes": 9021,
+      "sha256": "589cb6a88e303be5b79387ad29f2e2052b1076b71eab8c216eb63e15f5e03d4e"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-green-final.log",
+      "bytes": 4436,
+      "sha256": "16b897ece9971180df0b7b0f276f9c2c830305104da4b6c9d0f519e36f78cff6"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-green-first.log",
+      "bytes": 4436,
+      "sha256": "ebcb622b9b831f8ac8e775fefcf8c8fa4c6ee83472f953f343527fdc6852c9ba"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-red-source.json",
+      "bytes": 950,
+      "sha256": "e01ca27877c3504c6ad7eed82d7b3ed9afdf43fe7f85db71bca5673ad5f06e97"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-red-test.patch",
+      "bytes": 1369,
+      "sha256": "83dda7ed07b449d66805d045ff74c38ced024cf007db047dd43062d5d78eec57"
+    },
+    {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-red.log",
+      "bytes": 4216,
+      "sha256": "8caa0a3804bf2ebf30278815b1d5939351ce54414ff94f5d0a392fe5d0d91a36"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0199-switch-check-built-word.xml",
+      "bytes": 22793,
+      "sha256": "7e1574e31eb3ef2b6a6f6d55c8a99c22c89f8f85a839f4ccaac0daaeb54bec1d"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0200-switch-check-built-word.xml",
+      "bytes": 24562,
+      "sha256": "16e33de633c97546672bf7c1d55f45bbec65839e55067f53702982b0617f4f97"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0204-switch-next-is-offered.xml",
+      "bytes": 23428,
+      "sha256": "bc08c28bca0bc2a22d6145a5342e1126965e774402398864d8219fec6ac4720c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0212-switch-start-fresh-syllable-replay-touch.json",
+      "bytes": 93,
+      "sha256": "fb14df6b6e5a18796f07f922b959d10d187e95c5d47f35e88c2c10fea10e4d84"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/0213-switch-live-active-and-next.xml",
+      "bytes": 23840,
+      "sha256": "831939cebb5b2b3ad87b5edeebe66bf0bcddf6f78a2f5d9cff696be110cf1a9a"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/nextgen_active_syllable_43812538819/manifest.json",
+      "bytes": 2135,
+      "sha256": "ebf7891fca233947935a4cdeb4b5db5d22551af8a34fffa67b97e9a33357f31d"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "bytes": 35464,
+      "sha256": "79d5ba3ebf954ccdd48a4264f58017cf69e7f172fd30c3acbe5c69e02bb40c43"
+    }
+  ],
+  "correction": {
+    "observationCount": 270,
+    "nextBoundsHistogram": {
+      "[83,858][998,1001]": 246,
+      "[83,918][998,1061]": 24
+    },
+    "exampleSecondBoundsMember": "android/runtime-cases/0226-switch-live-active-and-next.xml",
+    "perObservationEntriesUnchanged": true,
+    "originalXmlBytesUnchanged": true,
+    "originalOutcome": "FAIL",
+    "individualSyllableNodeCount": 0,
+    "activeSyllableNodeCount": 0
+  },
+  "verification": {
+    "all17CommittedBytesMatchWorktree": true,
+    "exactlyTwoDocumentationFilesChanged": true,
+    "unchangedOther15Files": true,
+    "gitDiffCheck": "PASS",
+    "worktreeClean": true
+  },
+  "tests": {
+    "executedForThisDocumentationCorrection": false,
+    "reason": "Only provenance text and aggregate histogram corrected; prior final test log and test source remain byte-identical.",
+    "priorPassed": 21,
+    "priorFailed": 0,
+    "priorSkipped": 0,
+    "priorFinalLog": {
+      "path": "docs/nextgen/evidence/2031_active_syllable_observation_20261116/viewport-green-final.log",
+      "bytes": 4436,
+      "sha256": "16b897ece9971180df0b7b0f276f9c2c830305104da4b6c9d0f519e36f78cff6"
+    }
+  },
+  "androidExecuted": false,
+  "newRuntimeStatus": "NOT_RUN",
+  "remoteActions": false,
+  "releaseEligible": false
+}

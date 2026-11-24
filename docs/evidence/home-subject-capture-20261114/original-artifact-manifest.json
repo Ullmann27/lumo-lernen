@@ -1,0 +1,93 @@
+{
+  "host_source": "cf2593cb6dec51b66461c8e5984dfbfdd5091c22",
+  "actual_checkout": "ef6a8bc178d72e8ad50f26e044bbb96c839be94c",
+  "source_tree": "014b2acc4cea5def174f7c51a12902c4aa2c22d6",
+  "run_id": 43582160985,
+  "run_attempt": 1,
+  "job_id": 132408996775,
+  "artifact_id": 14109390016,
+  "archive_sha256": "4ad263460a7c5c15f66ade70afb876c3f1886336732c6af64e7398dffe45bbb5",
+  "archive_bytes": 21603858,
+  "images": [
+    {
+      "name": "fold-cover-learning-cards.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/home-1989/fold-cover-learning-cards.png",
+      "dimensions": [
+        640,
+        1480
+      ],
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0"
+    },
+    {
+      "name": "fold-cover-start.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/home-1989/fold-cover-start.png",
+      "dimensions": [
+        640,
+        1480
+      ],
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0"
+    },
+    {
+      "name": "fold-open-learning-cards.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/home-1989/fold-open-learning-cards.png",
+      "dimensions": [
+        1680,
+        1920
+      ],
+      "bytes": 2336662,
+      "sha256": "2e21a3c2e9500cee11977ff75dbc41b506ff7cdb9d929bd98638685766da15a2"
+    },
+    {
+      "name": "fold-open-start.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/home-1989/fold-open-start.png",
+      "dimensions": [
+        1680,
+        1920
+      ],
+      "bytes": 3568336,
+      "sha256": "a042b714f65154e417641405dee2cd8512b0d4f4bf926e72464a9af6748f9335"
+    },
+    {
+      "name": "large-text-learning-cards.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/home-1989/large-text-learning-cards.png",
+      "dimensions": [
+        1800,
+        2400
+      ],
+      "bytes": 4718304,
+      "sha256": "99c261555bed6f1e4760beb9643a03f298f62ad32fe4a5881cdf0dee159a7ab7"
+    },
+    {
+      "name": "phone-learning-cards.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/home-1989/phone-learning-cards.png",
+      "dimensions": [
+        786,
+        1704
+      ],
+      "bytes": 1782974,
+      "sha256": "b52431571238dc314c626b800707eb84d6488ec26f644e59f8543ea6971f9c66"
+    },
+    {
+      "name": "large-text-start.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/home-1989/large-text-start.png",
+      "dimensions": [
+        1800,
+        2400
+      ],
+      "bytes": 4718245,
+      "sha256": "ce8f8023d916627d90452fec77fac0156a2e18ddae04deb700e6b79ab4dc04e0"
+    },
+    {
+      "name": "phone-start.png",
+      "path": "/tmp/lumo-final-cf259-909ddb52fe7b/home-1989/phone-start.png",
+      "dimensions": [
+        786,
+        1704
+      ],
+      "bytes": 1782974,
+      "sha256": "b52431571238dc314c626b800707eb84d6488ec26f644e59f8543ea6971f9c66"
+    }
+  ]
+}

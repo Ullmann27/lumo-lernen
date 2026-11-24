@@ -1,0 +1,417 @@
+{
+  "baseHead": "4f5d66f96c5ad84939e4cd09bc66fb4744ae2a6b",
+  "baseTree": "0e89490ea5d877c8249c8d461270b8e364d2c986",
+  "sourceFiles": [
+    {
+      "path": "lib/features/games/games_content.dart",
+      "expected": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+      "actual": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_game_icon.dart",
+      "expected": "c3cb6bb44c1eff098245aec5d06fbda97b7ab87d",
+      "actual": "c3cb6bb44c1eff098245aec5d06fbda97b7ab87d",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "expected": "8097e4695614b8215e59025707ec9cc1b12c4d80",
+      "actual": "8097e4695614b8215e59025707ec9cc1b12c4d80",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "expected": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+      "actual": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "expected": "dd95361b132c7a73b372a3225c75e645be07e1b7",
+      "actual": "dd95361b132c7a73b372a3225c75e645be07e1b7",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo_game_entry_overlay.dart",
+      "expected": "3408e5f304003c91fc3172d03b4d22ad467d8ec0",
+      "actual": "3408e5f304003c91fc3172d03b4d22ad467d8ec0",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/run_full_flutter_acceptance.py",
+      "expected": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+      "actual": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+      "mode": "100644"
+    },
+    {
+      "path": "test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "expected": null,
+      "actual": null,
+      "mode": null
+    },
+    {
+      "path": "test/games/dorfwirtschaft_portal_test.dart",
+      "expected": null,
+      "actual": null,
+      "mode": null
+    },
+    {
+      "path": "test/games/games_world_layout_test.dart",
+      "expected": "7bbd14eb377b54166146f6a5b36998cb70f1f744",
+      "actual": "7bbd14eb377b54166146f6a5b36998cb70f1f744",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/spielwelt_hub_capture_test.dart",
+      "expected": "5b28919bc753727f6f6a35d01392fb42d6f86081",
+      "actual": "5b28919bc753727f6f6a35d01392fb42d6f86081",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/spielwelt_routing_test.dart",
+      "expected": "8fb8128bcd86183dd305bcc83d3a5e8ff4e4fd58",
+      "actual": "8fb8128bcd86183dd305bcc83d3a5e8ff4e4fd58",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/spielwelt_semantics_action_test.dart",
+      "expected": "b702778f7553fd1bbb3a40d87bfee1458a7ab0a4",
+      "actual": "b702778f7553fd1bbb3a40d87bfee1458a7ab0a4",
+      "mode": "100644"
+    },
+    {
+      "path": "test/lumo_game_entry_overlay_test.dart",
+      "expected": "7e22e412a919ec26d049602682c6931da21adf26",
+      "actual": "7e22e412a919ec26d049602682c6931da21adf26",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "expected": "0621cafe29b703d29f7b067991a90c8ceac84ba6",
+      "actual": "0621cafe29b703d29f7b067991a90c8ceac84ba6",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "expected": "9027d1106287c1c295a94ebcf3828e5dcac35b7b",
+      "actual": "9027d1106287c1c295a94ebcf3828e5dcac35b7b",
+      "mode": "100644"
+    }
+  ],
+  "protectedFiles": [
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "expected": "123c13786584c3f9c487ae1b71317841d2995420",
+      "actual": "123c13786584c3f9c487ae1b71317841d2995420",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "expected": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "actual": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/app_settings.dart",
+      "expected": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+      "actual": "fa9c802d50e4041ea9a545f7da1722bfef8cfca3",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/lumo_feature_permissions.dart",
+      "expected": "1f7d10536def0389ed5e45b7df659ab83987e0de",
+      "actual": "1f7d10536def0389ed5e45b7df659ab83987e0de",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/lumo_speech_listener.dart",
+      "expected": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "actual": "8c6da203e9620fda1e2762869199f1f0c37cf434",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/lumo_brain.dart",
+      "expected": "47dd9462cdc7852a287c10a4738064012864256b",
+      "actual": "47dd9462cdc7852a287c10a4738064012864256b",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/core/lumo_voice.dart",
+      "expected": "22e7ebaa40c270fe3d0a76d22294ad3667745b08",
+      "actual": "22e7ebaa40c270fe3d0a76d22294ad3667745b08",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_progress.dart",
+      "expected": "b48854f40a5df977635227635e88724c833e70a0",
+      "actual": "b48854f40a5df977635227635e88724c833e70a0",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+      "expected": "74d92c94837cb258e405d2bb04baf5e54ec8d477",
+      "actual": "74d92c94837cb258e405d2bb04baf5e54ec8d477",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "expected": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "actual": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "expected": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "actual": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/widgets/lumo_mirror.dart",
+      "expected": "14863ad233150c9ed36b58fea895acd7a224ca1e",
+      "actual": "14863ad233150c9ed36b58fea895acd7a224ca1e",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/auto_install/LumoLearningSpeech.kt",
+      "expected": "95b57595d0cc788746c20fe5c26ef448c18121c2",
+      "actual": "95b57595d0cc788746c20fe5c26ef448c18121c2",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/auto_install/LumoSpeechEnvelope.kt",
+      "expected": "5721274734e111e96d55762d86b3d3e830fc26e8",
+      "actual": "5721274734e111e96d55762d86b3d3e830fc26e8",
+      "mode": "100644"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_avatar.png",
+      "expected": "2528db26b4288d89e905c03ec1015ac7b8798538",
+      "actual": "2528db26b4288d89e905c03ec1015ac7b8798538",
+      "mode": "100644"
+    },
+    {
+      "path": "assets/lumo_design/fox/fox_book_point.png",
+      "expected": "0ee53bec6758833d2d3f64e0ca12a2a208878c0b",
+      "actual": "0ee53bec6758833d2d3f64e0ca12a2a208878c0b",
+      "mode": "100644"
+    },
+    {
+      "path": "assets/fonts/Nunito-Regular.ttf",
+      "expected": "4ed809463fcba2afd71553075412a6d7e74dcedf",
+      "actual": "4ed809463fcba2afd71553075412a6d7e74dcedf",
+      "mode": "100644"
+    },
+    {
+      "path": "assets/fonts/Nunito-Bold.ttf",
+      "expected": "e289ba049b167e4fd0e5ba5f537fa3f4b94a92fb",
+      "actual": "e289ba049b167e4fd0e5ba5f537fa3f4b94a92fb",
+      "mode": "100644"
+    },
+    {
+      "path": "assets/fonts/Nunito-ExtraBold.ttf",
+      "expected": "d3168c268b0f8c20edc534be678ab53300ba0828",
+      "actual": "d3168c268b0f8c20edc534be678ab53300ba0828",
+      "mode": "100644"
+    },
+    {
+      "path": "assets/fonts/Nunito-Black.ttf",
+      "expected": "9e7743ebb7efc2bda51e99eda079cb9b2061f566",
+      "actual": "9e7743ebb7efc2bda51e99eda079cb9b2061f566",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "expected": "625f7a73b71046225bbba395920d9d8a59d5775c",
+      "actual": "625f7a73b71046225bbba395920d9d8a59d5775c",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/live/lumo_live_pro_screen.dart",
+      "expected": "f592b2459a6b79a1b2fe685c15671df908c5ad15",
+      "actual": "f592b2459a6b79a1b2fe685c15671df908c5ad15",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/widgets/profile_screen.dart",
+      "expected": "5cc989e2258cf5123d306f01ca268d007a4de105",
+      "actual": "5cc989e2258cf5123d306f01ca268d007a4de105",
+      "mode": "100644"
+    },
+    {
+      "path": "test/wort_diktat_gesture_regression_test.dart",
+      "expected": "d8507944cb1ac781ab2ccb3eb428152549a0df17",
+      "actual": "d8507944cb1ac781ab2ccb3eb428152549a0df17",
+      "mode": "100644"
+    },
+    {
+      "path": "test/feature_permission_regression_test.dart",
+      "expected": "613aad5272caacc668908baa9b899469e7caec17",
+      "actual": "613aad5272caacc668908baa9b899469e7caec17",
+      "mode": "100644"
+    },
+    {
+      "path": "test/profile_screen_test.dart",
+      "expected": "f741789b917858aa0f8ec141395b4d8115470a14",
+      "actual": "f741789b917858aa0f8ec141395b4d8115470a14",
+      "mode": "100644"
+    },
+    {
+      "path": "pubspec.yaml",
+      "expected": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "actual": "f3b1792a73098c5c8c4f426ee041e1f05eeb2426",
+      "mode": "100644"
+    },
+    {
+      "path": "pubspec.lock",
+      "expected": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1",
+      "actual": "c88c463b643523ab3b1ce23276b2dc8eaf17d0b1",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "expected": "254267c9f84d5c8e507307178015d281db238e4f",
+      "actual": "254267c9f84d5c8e507307178015d281db238e4f",
+      "mode": "100644"
+    },
+    {
+      "path": "config/godot-source.json",
+      "expected": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad",
+      "actual": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "expected": "b10d2ba20c93d17f723b9c190652060968505b53",
+      "actual": "b10d2ba20c93d17f723b9c190652060968505b53",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "expected": "b0373f0f8efb8bda20faf49fbde9d7cb7c54cc06",
+      "actual": "b0373f0f8efb8bda20faf49fbde9d7cb7c54cc06",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_embedded_android.py",
+      "expected": "7639755789f4e5abbfa0743173532cd2b2b29f49",
+      "actual": "7639755789f4e5abbfa0743173532cd2b2b29f49",
+      "mode": "100644"
+    },
+    {
+      "path": "test/lumo3d_launcher_lifecycle_test.dart",
+      "expected": "620a4d74132a516142f2757610c65971909fc166",
+      "actual": "620a4d74132a516142f2757610c65971909fc166",
+      "mode": "100644"
+    },
+    {
+      "path": "test/tutoring/native_learning_launch_test.dart",
+      "expected": "240da9cc4a559ef44b17db8b8e1693292e423fe8",
+      "actual": "240da9cc4a559ef44b17db8b8e1693292e423fe8",
+      "mode": "100644"
+    },
+    {
+      "path": "test/helpers/lumo_capture.dart",
+      "expected": "439c2a8862effae26907ef655304e0c57f76a56c",
+      "actual": "439c2a8862effae26907ef655304e0c57f76a56c",
+      "mode": "100644"
+    },
+    {
+      "path": "assets/lumo_design/spielwelt/portal_bauwelt.png",
+      "expected": "501ca1a5988cc60d89b816e9f7cfd06388b1f295",
+      "actual": "501ca1a5988cc60d89b816e9f7cfd06388b1f295",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_engine.dart",
+      "expected": "0ad49aeaab65ea34ceb387e73788cdb886a210db",
+      "actual": "0ad49aeaab65ea34ceb387e73788cdb886a210db",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "expected": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "actual": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "expected": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "actual": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "expected": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+      "actual": "ed3a47ea8995ff829a97fd0240500fa7ffc47a96",
+      "mode": "100644"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_stage.dart",
+      "expected": "84c5ff9949a216331d228128f02415a47833396b",
+      "actual": "84c5ff9949a216331d228128f02415a47833396b",
+      "mode": "100644"
+    },
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "expected": "4169f06a21138d253ec3b4298720e97fa9854d95",
+      "actual": "4169f06a21138d253ec3b4298720e97fa9854d95",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/connect_four_engine_test.dart",
+      "expected": "965abef6cda8a22fd4b3776d0dfac6721d68c27e",
+      "actual": "965abef6cda8a22fd4b3776d0dfac6721d68c27e",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "expected": "d5e847507275b67d6d3aa4bdbaf2991f01817bca",
+      "actual": "d5e847507275b67d6d3aa4bdbaf2991f01817bca",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/connect_four_interaction_test.dart",
+      "expected": "379c1dee8358507493ba60dbd683ca7f4a3821a6",
+      "actual": "379c1dee8358507493ba60dbd683ca7f4a3821a6",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/connect_four_lumo_level_test.dart",
+      "expected": "229a531e9fe61337e05f92cb50409eef409bd57f",
+      "actual": "229a531e9fe61337e05f92cb50409eef409bd57f",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/connect_four_native_route_test.dart",
+      "expected": "d5178ab675bbc83b8fcb6dd0f6a3b7d675b1f3d0",
+      "actual": "d5178ab675bbc83b8fcb6dd0f6a3b7d675b1f3d0",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/connect_four_native_session_test.dart",
+      "expected": "a540779dc16fe894493e1b13b4de720a33765c7d",
+      "actual": "a540779dc16fe894493e1b13b4de720a33765c7d",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/connect_four_runtime_bridge.dart",
+      "expected": "6ae4695d06f955d5c9501bdce22ed9a83a0a26d0",
+      "actual": "6ae4695d06f955d5c9501bdce22ed9a83a0a26d0",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/connect_four_scroll_alignment_test.dart",
+      "expected": "b05fa2ececfef096db3c4c6f7b116ac79e61d197",
+      "actual": "b05fa2ececfef096db3c4c6f7b116ac79e61d197",
+      "mode": "100644"
+    },
+    {
+      "path": "test/games/connect_four_tactics_test.dart",
+      "expected": "80ceaa6273a34d1e844a3735878a949c3e34d129",
+      "actual": "80ceaa6273a34d1e844a3735878a949c3e34d129",
+      "mode": "100644"
+    }
+  ],
+  "mismatches": []
+}

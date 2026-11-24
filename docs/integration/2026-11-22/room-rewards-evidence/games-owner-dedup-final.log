@@ -1,0 +1,16 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart
+00:00 +0: game: known result waits for a positive duplicate commit
+00:00 +1: game: falseAfterMemory stays unconfirmed in a new wallet
+00:00 +2: game: throwAfterMemory stays unconfirmed in a new wallet
+00:00 +3: game: throwAfterCommit stays unconfirmed in a new wallet
+00:00 +4: quiz: known result waits for a positive duplicate commit
+00:00 +5: quiz: falseAfterMemory stays unconfirmed in a new wallet
+00:00 +6: quiz: throwAfterMemory stays unconfirmed in a new wallet
+00:00 +7: quiz: throwAfterCommit stays unconfirmed in a new wallet
+00:00 +8: cards: known result waits for a positive duplicate commit
+00:00 +9: cards: falseAfterMemory stays unconfirmed in a new wallet
+00:00 +10: cards: throwAfterMemory stays unconfirmed in a new wallet
+00:00 +11: cards: throwAfterCommit stays unconfirmed in a new wallet
+00:00 +12: AppState falseAfterMemory: fresh wallet cannot clear an unsaved result
+00:00 +13: AppState throwAfterMemory: fresh wallet cannot clear an unsaved result
+00:00 +14: All tests passed!

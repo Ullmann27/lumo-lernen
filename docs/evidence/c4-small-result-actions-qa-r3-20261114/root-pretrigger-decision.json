@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "decision": "Proceed with one isolated real R3 two-action QA run after exact source/negative-case review",
+  "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
+  "qa_tree": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4",
+  "parent": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "files": {
+    ".github/workflows/lumo-c4-small-result-actions-qa.yml": "5c02a9274bf91b428e1080ff58884af9e89d46a8",
+    "scripts/run_connect_four_small_result_actions_qa.py": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3",
+    "test/games/connect_four_small_result_actions_qa.dart": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
+    "tools/qa/connect_four_small_result_actions_qa.gd": "1b474002b3b93db9cae53a19c90fe75cb80c0604"
+  },
+  "root_exact_comparison": {
+    "workflow": "only two r2 to r3 branch strings",
+    "native": "only three numerically identical FLOAT array expectations",
+    "runner": "byte-identical",
+    "dart": "byte-identical"
+  },
+  "root_original_reproduction_review": {
+    "source_predicate_exact": true,
+    "full_reproduction_only_three_literal_changes": true,
+    "actual_inputs_and_expectations_identical": true,
+    "red": {
+      "checks": 15,
+      "failures": 1,
+      "failed_cases": [
+        "exact_geometry"
+      ]
+    },
+    "green": {
+      "checks": 15,
+      "failures": 0
+    },
+    "negative_cases": [
+      {
+        "name": "window_width_wrong",
+        "accepted": false
+      },
+      {
+        "name": "window_height_wrong",
+        "accepted": false
+      },
+      {
+        "name": "viewport_width_wrong",
+        "accepted": false
+      },
+      {
+        "name": "viewport_height_wrong",
+        "accepted": false
+      },
+      {
+        "name": "safe_left_wrong",
+        "accepted": false
+      },
+      {
+        "name": "safe_top_wrong",
+        "accepted": false
+      },
+      {
+        "name": "safe_width_wrong",
+        "accepted": false
+      },
+      {
+        "name": "safe_height_wrong",
+        "accepted": false
+      },
+      {
+        "name": "fractional_window",
+        "accepted": false
+      },
+      {
+        "name": "fractional_viewport",
+        "accepted": false
+      },
+      {
+        "name": "fractional_safe_rect",
+        "accepted": false
+      },
+      {
+        "name": "window_extra_element",
+        "accepted": false
+      },
+      {
+        "name": "safe_string_element",
+        "accepted": false
+      },
+      {
+        "name": "viewport_missing",
+        "accepted": false
+      }
+    ],
+    "gameplay_success_not_inferred": true
+  },
+  "independent_source_review_blob": "b165df108db085a5c2ff00fce2e0b2b2f2fc0199",
+  "original_failure_preserved_in": "7526c6d189989ddd88817905a0034183f654c70b",
+  "actual_gameplay_result": "pending; synthetic predicate acceptance is not gameplay acceptance",
+  "permissions": "existing read-only contents permission; no release or APK build"
+}

@@ -1,0 +1,257 @@
+{
+  "artifactId": 14208352381,
+  "workflowRun": 43828196598,
+  "archiveSha256": "2919adada699c2614dfea8daa193d51a5f9619c2f51ed0d43909792671c67c01",
+  "byteExactOriginals": [
+    {
+      "path": "android/runtime-cases/0001-onboarding.mp4",
+      "bytes": 1709482,
+      "sha256": "3b3250853eb0e9c43c87992ecb1bb95f345563551b1c847f42b6734d9d59e6b5"
+    },
+    {
+      "path": "android/runtime-cases/0118-numeric-build-before-graded-recall.mp4",
+      "bytes": 794523,
+      "sha256": "73a6fdf907d76b722ba40bbea7d0f701d299fcd52e82bb7c98204130c4fdc03a"
+    },
+    {
+      "path": "android/runtime-cases/0144-numeric-before-wrong-answer.png",
+      "bytes": 443033,
+      "sha256": "31a6cbf3e0ad1539dfd15af1435d887a1f5c326a22c3880eed4de1f076afa87f"
+    },
+    {
+      "path": "android/runtime-cases/0145-numeric-wrong-submission.mp4",
+      "bytes": 681005,
+      "sha256": "5917661f8bc0283057dce7091bac4619f89079abb6a0f8318e0eb06bf5a1498a"
+    },
+    {
+      "path": "android/runtime-cases/0159-numeric-corrected-submission.mp4",
+      "bytes": 605123,
+      "sha256": "1d44dbc746443b930f4497525c4088d5998510959bbe9066f16ff072ded3c185"
+    },
+    {
+      "path": "android/runtime-cases/0179-switch-build-banane-and-retain-syllable-replay.mp4",
+      "bytes": 1315849,
+      "sha256": "9448ed09942159449f1081990ba5709db74abf7806081d06448f55494659e6a1"
+    },
+    {
+      "path": "android/runtime-cases/0216-switch-during-actual-active-syllable.mp4",
+      "bytes": 646148,
+      "sha256": "405583622e00835e2f2f85c2d4f5760d975e041a32629b5688200fc5756cb96a"
+    },
+    {
+      "path": "android/runtime-cases/0343-runtime-banana-before-slower.png",
+      "bytes": 583804,
+      "sha256": "b0385c1056d8203ff8ebb9634faec48b9ea034fae3ee301c2b01d99313e6f618"
+    },
+    {
+      "path": "android/runtime-cases/0350-runtime-banana-four-slower-segments.mp4",
+      "bytes": 1212933,
+      "sha256": "f142496416982d79e37d9b405cbb9af423e8287981d1caca659901b6f4974a64"
+    },
+    {
+      "path": "android/runtime-cases/0385-runtime-banana-after-slower.png",
+      "bytes": 621070,
+      "sha256": "bd3f7e3f5e71bae112298d884f1f03695958b9ad0bafba7c869de986c174822f"
+    },
+    {
+      "path": "android/runtime-cases/0400-runtime-banana-return-academy.xml",
+      "bytes": 32237,
+      "sha256": "bfd0d4f16cbde2e47e90a9af4f6361562de98dda0fcfd63167ec90383bb1ef1f"
+    },
+    {
+      "path": "android/runtime-cases/0401-runtime-banana-return-academy-render-readiness.json",
+      "bytes": 578,
+      "sha256": "ea32d68da3f4ce0438022b1af6d5a82b908951728da21f04bc94838dbfaf44cf"
+    },
+    {
+      "path": "android/runtime-cases/0401-runtime-banana-return-academy.png",
+      "bytes": 901925,
+      "sha256": "c98c46a9c1e67fe0bcf15148086934f2072b1dc64ceb6ee257e84420188c3b31"
+    },
+    {
+      "path": "android/runtime-cases/0453-native-why-two-question-and-demonstration.mp4",
+      "bytes": 2163021,
+      "sha256": "f3b1a5885e749c11bb07f3fd39cdfb409950dc3011f533ba7149784f4baa2ce7"
+    },
+    {
+      "path": "android/runtime-cases/0481-runtime-bridge-current-playback-direct-stop.mp4",
+      "bytes": 745960,
+      "sha256": "0ff5a420b8e422be4e95f7790d979877a7c199e3f7e39b0c16854036604eb94f"
+    },
+    {
+      "path": "android/runtime-cases/0483-runtime-active-stop.json",
+      "bytes": 10339,
+      "sha256": "1ef9d5272a8cbdf074cc577dcf5dd637ab8db0164e4175bb99593bded4ae52a1"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-components.json",
+      "bytes": 5225,
+      "sha256": "e838d83103ddb3f6cb87eb6fc6c9957f4bc2a31f1af6a4d4d633130b896ff9bb"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-contrast.tsv",
+      "bytes": 6471,
+      "sha256": "a7747d3120ac8f1382e9e3ee529120f5392d4c52732b0d4768ff42b178fddad7"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-0.png",
+      "bytes": 15908,
+      "sha256": "a61b5c1eae6ffcae8061240a12a322ba49d4cc5dc09c3524c6b795383a51fc0c"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-0.tsv",
+      "bytes": 322,
+      "sha256": "f28ae716b9004f7c0aafadad2cca940160dac5d6be955ed87193c537f0d922b9"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-1.png",
+      "bytes": 11625,
+      "sha256": "03114f76fb7a30251f4249a464d0edb9a048037dd474341dc5c6c6400db4493f"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-1.tsv",
+      "bytes": 111,
+      "sha256": "b7d6f5314af2a5829fe2a2dcb3a7908f0b5fedad8177f097425a10639d37b7b0"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-2.png",
+      "bytes": 34923,
+      "sha256": "3472909a9a1342fd424800cacb4e80d30e4078002c2b25873d2011890aa84c0e"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-2.tsv",
+      "bytes": 423,
+      "sha256": "3ff1441500563030ee0a00972c66c4592664c102471031de2d92a9ce5903854a"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-3.png",
+      "bytes": 31808,
+      "sha256": "9e392895204c4c572d656b433b0a70389934a11185fabffb7c4551536638d79c"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-4.png",
+      "bytes": 45833,
+      "sha256": "22ae1224a88f6770ec0c3ba27312bf60c8795057df8b4b0ee7fd4fcb853a257a"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-3.tsv",
+      "bytes": 299,
+      "sha256": "d4eed0ca787f0d658acfe3c04c8d200c69acd73a44e09a31e470eb4e15423d18"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-4.tsv",
+      "bytes": 523,
+      "sha256": "7a90b44aee77f4ae712b0e1866dc2de1a3ba69b0452de55e1904e48202f337ba"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-5.png",
+      "bytes": 11342,
+      "sha256": "ac7c76dac9f2182abbef8de39a3d4a3134648ac93480e9ecdf978a77b878c57e"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-5.tsv",
+      "bytes": 111,
+      "sha256": "ea455ca41461979eee6b2accfd363809d181fa41cfce0fa2d55efc42cc3a6a90"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-6.png",
+      "bytes": 8602,
+      "sha256": "092eae6e5ffe2ba78008fa12864ac0506d19312971bda4995d04fa3184c9e64d"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-7.png",
+      "bytes": 6893,
+      "sha256": "ceaccae20092a27ac916b55e4c3ab69c48172331b3bdfa5c001aa1c190096fcf"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-6.tsv",
+      "bytes": 111,
+      "sha256": "bc52bfa533192b6c502056ed67bccf08d4111162cc323c57d551d434406727b8"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-8.png",
+      "bytes": 8352,
+      "sha256": "0c44aa699986481ec2ad58f99aa6d1a3471ba9782aaecccd7d5ad83af2849c84"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-gold-component-7.tsv",
+      "bytes": 111,
+      "sha256": "900fd9d8a98275ca8247ed1f1bfe2e9ac3a6ad164dd4c2bc7be02179f2fe9717"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-navy-latin-1x.tsv",
+      "bytes": 113,
+      "sha256": "74a2c8aac1dde5ef2051cf8e2d08c5ceda6d3956fe277462793df3edbcaa0ec6"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-navy-latin.tsv",
+      "bytes": 113,
+      "sha256": "15591769ff75c6acf44bcf348d5d77cd424c3d9859e4573d32ad2a5a8784931d"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-raw.tsv",
+      "bytes": 4397,
+      "sha256": "5458d323d4829627ca41ba1a0129e822ae866f8f03b70d1fb91aef00e9921794"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-teal-text-1x.tsv",
+      "bytes": 5888,
+      "sha256": "f9f8f78a2f37ad63ff00d85e93dccdc1eedea5552864e12af17333561477e741"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-white-text.tsv",
+      "bytes": 3864,
+      "sha256": "a58b351e47f639badc3bdd3a73102b9ded6cf466007e95cdb1399e79b2d52c05"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop-ocr-white-latin.tsv",
+      "bytes": 3900,
+      "sha256": "0219af48e77aaa568f55f9df2e538fcd58b4b38fa5d97219396c6e2530b84126"
+    },
+    {
+      "path": "android/runtime-cases/0529-runtime-voice-stop.png",
+      "bytes": 677778,
+      "sha256": "9a3c7634f851fe976ea3d925af2749fa59be3b6d32ce2d79f55bb871e76009b1"
+    },
+    {
+      "path": "android/runtime-cases/0530-runtime-failure-current-screen.png",
+      "bytes": 676587,
+      "sha256": "90a2e645ab623bd8ae3f803ebf42e73e6b68def3a51ca2db63b53297c3c722d3"
+    },
+    {
+      "path": "checkers/current-gates.log",
+      "bytes": 2382,
+      "sha256": "2847ba0ac5e05873310fe3e960a9e883b8cee246ce72220c2103a1363b02ead7"
+    },
+    {
+      "path": "checkers/original-gates.log",
+      "bytes": 17935,
+      "sha256": "377f945ff6bb4eadb0375d25024f1c59c88fadbdc8a7eb8d3a7e0497edb55d7f"
+    },
+    {
+      "path": "checkers/public-download-gates.log",
+      "bytes": 2755,
+      "sha256": "3b74a21fd2c1a6fce08574abc62339fe94ed967da1c4676c66f2db8dd610668b"
+    },
+    {
+      "path": "checkers/publication-gates.log",
+      "bytes": 1902,
+      "sha256": "a3412ae2f1d6a7a2de435d82ff754793778612cc090808f8a4bc58fdff24b98c"
+    },
+    {
+      "path": "checkers/reference-gates.log",
+      "bytes": 7018,
+      "sha256": "08c63c4c6a62628375133b1facb076b11d3d474ef2a4b688419104d790af35f8"
+    },
+    {
+      "path": "checkers/runtime-case-gates.log",
+      "bytes": 13475,
+      "sha256": "23d440ec6ac771d87287e1b2e3cbe6541ac1c8f9257b8f3219bdadf97fa0438a"
+    },
+    {
+      "path": "checkers/wrapped-reader.log",
+      "bytes": 2824,
+      "sha256": "5f6ee0052211fa8f471643429c851618528e586cc2dae0ff713a8ce09860c15a"
+    }
+  ]
+}

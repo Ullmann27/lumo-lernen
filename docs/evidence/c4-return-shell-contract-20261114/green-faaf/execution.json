@@ -1,0 +1,714 @@
+{
+  "scope": "Actual execution of the unmodified workflow shell step with real Bash/Git/timeout/tee/grep/Python and explicit fake Godot. Synthetic tracked Git fixtures; no Native engine, Android, or game acceptance.",
+  "host_workflow_source_commit": "faaf9d906bd72c2ffe9ab677c76355fe538cddfe",
+  "started_utc": "2026-11-14T10:27:13.523814+00:00",
+  "completed_utc": "2026-11-14T10:27:14.959754+00:00",
+  "python_version": "3.12.14",
+  "actual_command": [
+    "evidence/run-targeted.py",
+    "--output",
+    "/home/agent/lumo-return-gate-968e-2708/evidence/green-faaf",
+    "--source-commit",
+    "faaf9d906bd72c2ffe9ab677c76355fe538cddfe",
+    "--expected-workflow-blob",
+    "6d281c42e2997a8a421721e9b80ff5d8e6439570"
+  ],
+  "tools": {
+    "python3": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "bash": "/usr/bin/bash",
+    "git": "/usr/local/bin/git",
+    "timeout": "/usr/bin/timeout",
+    "tee": "/usr/bin/tee",
+    "grep": "/usr/bin/grep"
+  },
+  "unittest_methods": 11,
+  "failure_cases": 0,
+  "errors": 0,
+  "skipped": 0,
+  "exit_code": 0,
+  "shell_execution_count": 24,
+  "sources_before": {
+    ".github/workflows/lumo-connect-four-2020.yml": {
+      "bytes": 44374,
+      "sha256": "e4df6ccfcff5783f5bfe8cb50ec7aca1b39a01090721131b4ae90f4ca816d101",
+      "git_blob": "6d281c42e2997a8a421721e9b80ff5d8e6439570"
+    },
+    "config/godot-source.json": {
+      "bytes": 145,
+      "sha256": "6967b1b13a78aed5e9fc13add809768d3fd98d7847e69b2902efe6a33af1a019",
+      "git_blob": "3f24f85434618cf26af87ed977c884dae8bd064a"
+    },
+    "scripts/tests/test_connect_four_return_gate.py": {
+      "bytes": 12606,
+      "sha256": "c7253c73f4c56d38dafcef150223ff340518e2ae819db8c03614f924f63f827f",
+      "git_blob": "a3a76bcc9949af22d9be8abdce2e30065b97dddc"
+    }
+  },
+  "sources_after": {
+    ".github/workflows/lumo-connect-four-2020.yml": {
+      "bytes": 44374,
+      "sha256": "e4df6ccfcff5783f5bfe8cb50ec7aca1b39a01090721131b4ae90f4ca816d101",
+      "git_blob": "6d281c42e2997a8a421721e9b80ff5d8e6439570"
+    },
+    "config/godot-source.json": {
+      "bytes": 145,
+      "sha256": "6967b1b13a78aed5e9fc13add809768d3fd98d7847e69b2902efe6a33af1a019",
+      "git_blob": "3f24f85434618cf26af87ed977c884dae8bd064a"
+    },
+    "scripts/tests/test_connect_four_return_gate.py": {
+      "bytes": 12606,
+      "sha256": "c7253c73f4c56d38dafcef150223ff340518e2ae819db8c03614f924f63f827f",
+      "git_blob": "a3a76bcc9949af22d9be8abdce2e30065b97dddc"
+    }
+  },
+  "source_bytes_unchanged": true,
+  "execution_records": [
+    {
+      "test": "test_connect_four_return_gate.ConnectFourReturnGateTests.test_duplicate_success_marker_is_rejected",
+      "executions": [
+        {
+          "behavior": {
+            "stdout": "CONNECT_FOUR_RETURN_PASS checks=21\nCONNECT_FOUR_RETURN_PASS checks=21\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_before": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_after": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nCONNECT_FOUR_RETURN_PASS checks=21\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nCONNECT_FOUR_RETURN_PASS checks=21\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return dpeykj2a/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return dpeykj2a/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return dpeykj2a/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return dpeykj2a/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return dpeykj2a/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "test": "test_connect_four_return_gate.ConnectFourReturnGateTests.test_engine_error_after_success_on_stderr_is_rejected",
+      "executions": [
+        {
+          "behavior": {
+            "stderr": "ERROR: synthetic failure\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_before": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_after": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nERROR: synthetic failure\n3:ERROR: synthetic failure\n",
+          "stderr": "Connect Four return regression emitted an engine error\n",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nERROR: synthetic failure\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return qzb0im09/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return qzb0im09/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return qzb0im09/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return qzb0im09/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return qzb0im09/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        },
+        {
+          "behavior": {
+            "stderr": "SCRIPT ERROR: synthetic failure\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_before": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_after": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nSCRIPT ERROR: synthetic failure\n3:SCRIPT ERROR: synthetic failure\n",
+          "stderr": "Connect Four return regression emitted an engine error\n",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nSCRIPT ERROR: synthetic failure\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 1i1tulld/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 1i1tulld/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 1i1tulld/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 1i1tulld/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 1i1tulld/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        },
+        {
+          "behavior": {
+            "stderr": "Parse Error: synthetic failure\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_before": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_after": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nParse Error: synthetic failure\n3:Parse Error: synthetic failure\n",
+          "stderr": "Connect Four return regression emitted an engine error\n",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nParse Error: synthetic failure\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return q7gsbcck/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return q7gsbcck/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return q7gsbcck/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return q7gsbcck/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return q7gsbcck/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "test": "test_connect_four_return_gate.ConnectFourReturnGateTests.test_missing_marker_cannot_reuse_an_old_successful_log",
+      "executions": [
+        {
+          "behavior": {
+            "stdout": "completed without a success marker\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_before": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_after": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\ncompleted without a success marker\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\ncompleted without a success marker\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return s_zb4y28/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return s_zb4y28/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return s_zb4y28/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return s_zb4y28/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return s_zb4y28/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "test": "test_connect_four_return_gate.ConnectFourReturnGateTests.test_new_clean_commit_during_engine_is_not_the_pinned_source",
+      "executions": [
+        {
+          "behavior": {
+            "mutation": {
+              "path": "scripts/games/connect_four/connect_four_table.gd",
+              "stage": true,
+              "commit": true
+            }
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_before": "45a517c8e127116e2b910447ca665dfb4d7804c4",
+          "native_head_after": "17ae4d11e72c6a8e4b0d59269f3f7a7dfa67ff2d",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return r4jx2aa_/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return r4jx2aa_/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return r4jx2aa_/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return r4jx2aa_/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return r4jx2aa_/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "test": "test_connect_four_return_gate.ConnectFourReturnGateTests.test_nonzero_engine_exit_is_rejected_despite_success_marker",
+      "executions": [
+        {
+          "behavior": {
+            "exit_code": 7
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 7,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return wz2ghg9n/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return wz2ghg9n/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return wz2ghg9n/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return wz2ghg9n/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return wz2ghg9n/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "test": "test_connect_four_return_gate.ConnectFourReturnGateTests.test_staged_and_unstaged_changes_during_engine_are_rejected",
+      "executions": [
+        {
+          "behavior": {
+            "mutation": {
+              "path": "scripts/games/connect_four/connect_four_table.gd",
+              "stage": false
+            }
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\ndiff --git a/scripts/games/connect_four/connect_four_table.gd b/scripts/games/connect_four/connect_four_table.gd\nindex 5b23c57..8afe743 100644\n--- a/scripts/games/connect_four/connect_four_table.gd\n+++ b/scripts/games/connect_four/connect_four_table.gd\n@@ -1 +1,2 @@\n # Synthetic tracked source for the shell guard.\n+# changed by fake engine\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return cr04dujs/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return cr04dujs/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return cr04dujs/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return cr04dujs/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return cr04dujs/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        },
+        {
+          "behavior": {
+            "mutation": {
+              "path": "scripts/games/connect_four/connect_four_table.gd",
+              "stage": true
+            }
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\ndiff --git a/scripts/games/connect_four/connect_four_table.gd b/scripts/games/connect_four/connect_four_table.gd\nindex 5b23c57..8afe743 100644\n--- a/scripts/games/connect_four/connect_four_table.gd\n+++ b/scripts/games/connect_four/connect_four_table.gd\n@@ -1 +1,2 @@\n # Synthetic tracked source for the shell guard.\n+# changed by fake engine\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return _si5h6a8/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return _si5h6a8/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return _si5h6a8/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return _si5h6a8/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return _si5h6a8/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        },
+        {
+          "behavior": {
+            "mutation": {
+              "path": "scripts/tests/connect_four_return_regression.gd",
+              "stage": false
+            }
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\ndiff --git a/scripts/tests/connect_four_return_regression.gd b/scripts/tests/connect_four_return_regression.gd\nindex 5b23c57..8afe743 100644\n--- a/scripts/tests/connect_four_return_regression.gd\n+++ b/scripts/tests/connect_four_return_regression.gd\n@@ -1 +1,2 @@\n # Synthetic tracked source for the shell guard.\n+# changed by fake engine\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return l7fs8lhb/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return l7fs8lhb/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return l7fs8lhb/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return l7fs8lhb/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return l7fs8lhb/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        },
+        {
+          "behavior": {
+            "mutation": {
+              "path": "scripts/tests/connect_four_return_regression.gd",
+              "stage": true
+            }
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\ndiff --git a/scripts/tests/connect_four_return_regression.gd b/scripts/tests/connect_four_return_regression.gd\nindex 5b23c57..8afe743 100644\n--- a/scripts/tests/connect_four_return_regression.gd\n+++ b/scripts/tests/connect_four_return_regression.gd\n@@ -1 +1,2 @@\n # Synthetic tracked source for the shell guard.\n+# changed by fake engine\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return hx63zkcq/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return hx63zkcq/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return hx63zkcq/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return hx63zkcq/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return hx63zkcq/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "test": "test_connect_four_return_gate.ConnectFourReturnGateTests.test_staged_and_unstaged_source_changes_stop_before_engine",
+      "executions": [
+        {
+          "behavior": {},
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "diff --git a/scripts/games/connect_four/connect_four_table.gd b/scripts/games/connect_four/connect_four_table.gd\nindex 5b23c57..812b564 100644\n--- a/scripts/games/connect_four/connect_four_table.gd\n+++ b/scripts/games/connect_four/connect_four_table.gd\n@@ -1 +1,2 @@\n # Synthetic tracked source for the shell guard.\n+# changed before the gate\n",
+          "stderr": "",
+          "original_gate_log": null,
+          "fake_invocation": null
+        },
+        {
+          "behavior": {},
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "diff --git a/scripts/games/connect_four/connect_four_table.gd b/scripts/games/connect_four/connect_four_table.gd\nindex 5b23c57..812b564 100644\n--- a/scripts/games/connect_four/connect_four_table.gd\n+++ b/scripts/games/connect_four/connect_four_table.gd\n@@ -1 +1,2 @@\n # Synthetic tracked source for the shell guard.\n+# changed before the gate\n",
+          "stderr": "",
+          "original_gate_log": null,
+          "fake_invocation": null
+        },
+        {
+          "behavior": {},
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "diff --git a/scripts/tests/connect_four_return_regression.gd b/scripts/tests/connect_four_return_regression.gd\nindex 5b23c57..812b564 100644\n--- a/scripts/tests/connect_four_return_regression.gd\n+++ b/scripts/tests/connect_four_return_regression.gd\n@@ -1 +1,2 @@\n # Synthetic tracked source for the shell guard.\n+# changed before the gate\n",
+          "stderr": "",
+          "original_gate_log": null,
+          "fake_invocation": null
+        },
+        {
+          "behavior": {},
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "diff --git a/scripts/tests/connect_four_return_regression.gd b/scripts/tests/connect_four_return_regression.gd\nindex 5b23c57..812b564 100644\n--- a/scripts/tests/connect_four_return_regression.gd\n+++ b/scripts/tests/connect_four_return_regression.gd\n@@ -1 +1,2 @@\n # Synthetic tracked source for the shell guard.\n+# changed before the gate\n",
+          "stderr": "",
+          "original_gate_log": null,
+          "fake_invocation": null
+        }
+      ]
+    },
+    {
+      "test": "test_connect_four_return_gate.ConnectFourReturnGateTests.test_success_cannot_hide_a_contradictory_return_marker",
+      "executions": [
+        {
+          "behavior": {
+            "stdout": "CONNECT_FOUR_RETURN_PASS checks=21\nCONNECT_FOUR_RETURN_FAIL checks=21\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nCONNECT_FOUR_RETURN_FAIL checks=21\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nCONNECT_FOUR_RETURN_FAIL checks=21\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 3stc7eor/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 3stc7eor/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 3stc7eor/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 3stc7eor/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 3stc7eor/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        },
+        {
+          "behavior": {
+            "stdout": "CONNECT_FOUR_RETURN_PASS checks=21\nCONNECT_FOUR_RETURN_PASS checks=20\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nCONNECT_FOUR_RETURN_PASS checks=20\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nCONNECT_FOUR_RETURN_PASS checks=20\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return zc0v56iq/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return zc0v56iq/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return zc0v56iq/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return zc0v56iq/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return zc0v56iq/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "test": "test_connect_four_return_gate.ConnectFourReturnGateTests.test_success_runs_exact_script_with_isolated_data_paths",
+      "executions": [
+        {
+          "behavior": {
+            "stderr": "WARNING: synthetic optional renderer feature\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 0,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nWARNING: synthetic optional renderer feature\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=21\nWARNING: synthetic optional renderer feature\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return o3mmwxp2/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return o3mmwxp2/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return o3mmwxp2/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return o3mmwxp2/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return o3mmwxp2/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "test": "test_connect_four_return_gate.ConnectFourReturnGateTests.test_wrong_marker_is_rejected",
+      "executions": [
+        {
+          "behavior": {
+            "stdout": "CONNECT_FOUR_RETURN_PASS checks=20\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=20\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=20\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return aij8r88u/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return aij8r88u/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return aij8r88u/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return aij8r88u/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return aij8r88u/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        },
+        {
+          "behavior": {
+            "stdout": "CONNECT_FOUR_RETURN_PASS checks=210\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=210\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_PASS checks=210\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 4la4el5w/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 4la4el5w/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 4la4el5w/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 4la4el5w/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 4la4el5w/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        },
+        {
+          "behavior": {
+            "stdout": "prefix CONNECT_FOUR_RETURN_PASS checks=21\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nprefix CONNECT_FOUR_RETURN_PASS checks=21\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nprefix CONNECT_FOUR_RETURN_PASS checks=21\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 846uoxpg/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 846uoxpg/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 846uoxpg/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 846uoxpg/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return 846uoxpg/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        },
+        {
+          "behavior": {
+            "stdout": "CONNECT_FOUR_RETURN_FAIL checks=21\n"
+          },
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_FAIL checks=21\n",
+          "stderr": "",
+          "original_gate_log": "FAKE_GODOT: host shell contract; no engine executed\nCONNECT_FOUR_RETURN_FAIL checks=21\n",
+          "fake_invocation": {
+            "argv": [
+              "--headless",
+              "--path",
+              "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return j5cmc8nj/runner temporary/lumo-native-acceptance",
+              "--script",
+              "scripts/tests/connect_four_return_regression.gd"
+            ],
+            "cwd": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return j5cmc8nj/host workspace",
+            "xdg": {
+              "XDG_DATA_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return j5cmc8nj/host workspace/acceptance-native/connect-four-return-user-data",
+              "XDG_CONFIG_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return j5cmc8nj/host workspace/acceptance-native/connect-four-return-user-config",
+              "XDG_CACHE_HOME": "/home/agent/lumo-return-gate-968e-2708/tmp/lumo c4 return j5cmc8nj/host workspace/acceptance-native/connect-four-return-user-cache"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "test": "test_connect_four_return_gate.ConnectFourReturnGateTests.test_wrong_pin_or_wrong_head_stops_before_engine",
+      "executions": [
+        {
+          "behavior": {},
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_after": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "",
+          "original_gate_log": null,
+          "fake_invocation": null
+        },
+        {
+          "behavior": {},
+          "shell_sha256": "07f9b58726167be4a63479faac30267fca0e4dbb40dea1143227944572bb93df",
+          "fixture_pin": "2b07e00e0546a2af84359e0a173aacd373320cad",
+          "native_head_before": "de3161ec2e609a9c8ed490a238389e366506209a",
+          "native_head_after": "de3161ec2e609a9c8ed490a238389e366506209a",
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "",
+          "original_gate_log": null,
+          "fake_invocation": null
+        }
+      ]
+    }
+  ]
+}

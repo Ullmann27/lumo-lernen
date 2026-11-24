@@ -1,0 +1,145 @@
+{
+  "producer_commit": "570e8238aabcb5d0e2c7dc19d237ad82d03a3959",
+  "tree": "26b6e5301372d4ade91ca8955f7c1ccf5d0dee78",
+  "parent": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "branch": "fix/lumo-learning-button-state-contrast-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-learning-button-contrast",
+  "worktree_clean": true,
+  "frozen": true,
+  "scope": "One production change in scripts/learning/learning_world.gd::_button, one actual Godot regression, and11 evidence files",
+  "files": [
+    {
+      "path": "docs/nextgen/evidence/button-state-contrast-20261116/0529-runtime-voice-stop.png",
+      "bytes": 677778,
+      "sha256": "9a3c7634f851fe976ea3d925af2749fa59be3b6d32ce2d79f55bb871e76009b1"
+    },
+    {
+      "path": "docs/nextgen/evidence/button-state-contrast-20261116/README.md",
+      "bytes": 5187,
+      "sha256": "07b02297cb40d8290ad6ebf0081d682b7b6fc511448b1e95858682cf77e2c4a5"
+    },
+    {
+      "path": "docs/nextgen/evidence/button-state-contrast-20261116/android-trigger.json",
+      "bytes": 1090,
+      "sha256": "642ae6fb2a9093764dadebad3ada1ba554378433190acf2c127e62dda68e4a42"
+    },
+    {
+      "path": "docs/nextgen/evidence/button-state-contrast-20261116/green-provenance.json",
+      "bytes": 715,
+      "sha256": "88662cdf80dbd238f2498dd10fc5e1c13f10547ad4d2866389030a41d7046aaa"
+    },
+    {
+      "path": "docs/nextgen/evidence/button-state-contrast-20261116/green.json",
+      "bytes": 6939,
+      "sha256": "51a2083abaf198f560028e415816698ad69ce2389313249ddcb020bd8006eea1"
+    },
+    {
+      "path": "docs/nextgen/evidence/button-state-contrast-20261116/green.log",
+      "bytes": 117,
+      "sha256": "c4aac091272c594896821a987c78c6a08d6e11e324c698c45d29f913c74d59c1"
+    },
+    {
+      "path": "docs/nextgen/evidence/button-state-contrast-20261116/isolated-project.godot",
+      "bytes": 261,
+      "sha256": "d2a5f870bad493ddb55305b1f40772e6379539140789ddf760a0ca883e37b0cd"
+    },
+    {
+      "path": "docs/nextgen/evidence/button-state-contrast-20261116/red-provenance.json",
+      "bytes": 715,
+      "sha256": "8b6c04c9f3411043fe0967865e6f63cbff83c91cf4c96f4950d20ea956efc337"
+    },
+    {
+      "path": "docs/nextgen/evidence/button-state-contrast-20261116/red.json",
+      "bytes": 9275,
+      "sha256": "819adde9903a1bb64405f9fb4d0ca9acad45933036345e31f7f23ecfba3b0cd5"
+    },
+    {
+      "path": "docs/nextgen/evidence/button-state-contrast-20261116/red.log",
+      "bytes": 25358,
+      "sha256": "7b6b54f19acbdac00bd7ef7634bf612f0c413d8c0729544f4ff65b679ab74d08"
+    },
+    {
+      "path": "docs/nextgen/evidence/button-state-contrast-20261116/scope-verification.json",
+      "bytes": 823,
+      "sha256": "539b89a473643e4b41aaf1dba9ef002d7ea2d1a0e36ded97335b37d8a0d183e7"
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "bytes": 94639,
+      "sha256": "1e12a51ee1264c86bdf7e83fc0073e36aae766b777b56923ff80e3a8cf449fca"
+    },
+    {
+      "path": "scripts/tests/learning_button_state_contrast_regression.gd",
+      "bytes": 8305,
+      "sha256": "56aca033f3b19a8063145b6a603be3c8d26a2ae4508ea1789ce35eb7ae9a0567"
+    }
+  ],
+  "source_sha256": "1e12a51ee1264c86bdf7e83fc0073e36aae766b777b56923ff80e3a8cf449fca",
+  "original_source_sha256": "c2855613e79f7fd233190eb56e1f7379e780c1979c629e536e49690bbc4608e3",
+  "test_sha256": "56aca033f3b19a8063145b6a603be3c8d26a2ae4508ea1789ce35eb7ae9a0567",
+  "engine": {
+    "build": "official",
+    "hash": "7d41c59c457bd5a245092b4e7eb2d833e3b3f8c3",
+    "hex": 263683,
+    "major": 4,
+    "minor": 6,
+    "patch": 3,
+    "status": "stable",
+    "string": "4.6.3-stable (official)",
+    "timestamp": 0
+  },
+  "engine_sha256": "f64d4ed19fc9df9440321653fcc80df8c6e365ba7b6de0a29e2cfa9fa71bfeb3",
+  "red": {
+    "exit_code": 1,
+    "checks": 79,
+    "pass": 47,
+    "fail": 32,
+    "all_failures_contrast_only": true,
+    "source_exact_parent": true,
+    "log_sha256": "7b6b54f19acbdac00bd7ef7634bf612f0c413d8c0729544f4ff65b679ab74d08"
+  },
+  "green": {
+    "exit_code": 0,
+    "checks": 79,
+    "pass": 79,
+    "fail": 0,
+    "log_sha256": "c4aac091272c594896821a987c78c6a08d6e11e324c698c45d29f913c74d59c1"
+  },
+  "same_test_red_green": true,
+  "real_input_observations_per_run": 16,
+  "real_signal_activations_per_run": 6,
+  "contrast_minimums": [
+    {
+      "caption": "Stimme stoppen",
+      "red": 1.10235888179447,
+      "green": 6.43793072776729
+    },
+    {
+      "caption": "Ein Objekt zeigen",
+      "red": 1.77959131347847,
+      "green": 4.6345262419692
+    }
+  ],
+  "expected_workflow_script": "learning_button_state_contrast_regression",
+  "expected_workflow_command": "timeout --signal=TERM --kill-after=15s 3m godot --headless --path native-source --script res://scripts/tests/learning_button_state_contrast_regression.gd",
+  "optional_result_environment": "LUMO_CONTRAST_OUTPUT=<absolute evidence/validation/learning_button_state_contrast_regression.json>",
+  "expected_success_line": "[LearningButtonContrast] 79/79 PASS; 0 FAIL",
+  "root_native_source_unchanged": true,
+  "disabled_changes": false,
+  "android_execution": "NOT_RUN",
+  "framebuffer_execution": "NOT_RUN; existing Xorg failed to establish listening sockets",
+  "tools_unavailable": [
+    "gdlint",
+    "gdformat"
+  ],
+  "full_structure_validator": "NOT_RUN on intentionally sparse checkout",
+  "remote_actions": false,
+  "limits": [
+    "Exact production factory tested in isolation; no full learning scene or 3D assets",
+    "Theme colors and actual input states; no framebuffer or Android pixel measurement",
+    "Original Android draw mode unknown; this run does not identify it",
+    "Non-toggle hover+press uses DRAW_PRESSED; hover_pressed font is palette-tested only",
+    "Disabled palette reported only; disabled behavior and styles remain unchanged",
+    "No speech, acoustic stop, mouth timing, or device touch claim"
+  ]
+}

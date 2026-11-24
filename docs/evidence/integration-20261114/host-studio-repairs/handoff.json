@@ -1,0 +1,73 @@
+{
+  "archive": {
+    "path": "host-studio-integration-evidence.tar.gz",
+    "verified_identity_file": "archive-result.json"
+  },
+  "assembled_at_utc": "2026-11-14T00:18:13.033028+00:00",
+  "catalog": "evidence-catalog.json",
+  "combined_local": {
+    "android_qa_failures": 0,
+    "errors": 2,
+    "failures": 3,
+    "overall": "FAIL",
+    "skips": 0,
+    "source_paths_unchanged": 1346,
+    "tests_android_qa": 870,
+    "tests_scripts": 557
+  },
+  "historical_creative": {
+    "apk_artifact_id": 14078786114,
+    "apk_build_run": 43502594333,
+    "apk_source": "51e92fb5afab232a29850ffefef5637359af08f7",
+    "apk_tree": "a13ab981d917c7788f35318cf10d962c1bf657f7",
+    "native_source": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+    "native_tree": "f13dd5fc5540ecb7705c5f18bf3cf8ba6e79d7a6",
+    "outcome": "FAILURE",
+    "qa_attempt": 1,
+    "qa_job": 132208424300,
+    "qa_run": 43519068565,
+    "qa_source": "d2c4589a074ee9d56e9fda4c1c6fd20897d09bed",
+    "qa_tree": "4e249da75296919276a69a23081039b57ad7497a"
+  },
+  "historical_main": {
+    "host": "84865ce2880360d909cef88efea28a6335989586",
+    "outcome": "FAILURE",
+    "run": 43515640224,
+    "tree": "400830eb09aa1f5110b54c70311a8de1db37d3fe"
+  },
+  "index": "index.json",
+  "interpretation": "This package proves original-byte preservation and records prior scoped evidence; it is not an integration or release PASS.",
+  "no_mutations": [
+    "Hostprep/source files",
+    "Existing evidence inputs",
+    "Git index",
+    "Commits/refs",
+    "Pins/receipts",
+    "CI runs"
+  ],
+  "output_directory": "/workspace/scratch/b3485b7bb989/host-studio-integration-evidence-assembly",
+  "pending": [
+    "Final combined source checkpoint and correction verification",
+    "New native source acceptance and atomic Native pin decision",
+    "New source-bound native/graphics visual receipts",
+    "Fresh APK/source-bound Android35/37/creative/update acceptance"
+  ],
+  "schema": 1,
+  "state": "EVIDENCE_ASSEMBLED_INTEGRATION_ACCEPTANCE_PENDING",
+  "stats": {
+    "canonical_nested_objects": 1376,
+    "changed_original_inputs": 0,
+    "direct_original_inputs_checked": 415,
+    "logical_bytes_before_dedup": 64462664,
+    "logical_file_paths": 2181,
+    "nested_original_members_checked": 1791,
+    "original_compact_containers": 4,
+    "physical_object_bytes": 18342213,
+    "physical_sha256_objects": 299,
+    "required_packs_missing": 0,
+    "selected_frozen_repair_packs": 17,
+    "unchanged_original_inputs": 415,
+    "unique_content_bytes": 55696336,
+    "unique_content_hashes": 1675
+  }
+}

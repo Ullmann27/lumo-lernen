@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "timestamp_utc": "2026-11-14T00:26:13.759182+00:00",
+  "status": "DIRECT_CURRENT_PREVIEW_INSPECTION_BUNDLE_PENDING",
+  "native_commit": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "run_id": 43532048311,
+  "preview_artifact_id": 14087809206,
+  "path": "godot-pr166-17f5b9d4-nextgen-evidence/image-candidates/preview/images/bridge_hundred-complete-2400x1080.png",
+  "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+  "bytes": 723952,
+  "dimensions": [
+    2400,
+    1080
+  ],
+  "findings": "Root directly opened this new-run preview original. Zehner bündeln, 180 + 50 and the explanation 180 plus 50 ist 230 are clearly visible. Ten tens form the completed upper hundred and three remaining tens sit below; the 100 tile, Lumo, both equality signs, Noch einmal and Zur Aufgabe are visible. Ein Objekt zeigen is visibly disabled in this completed state.",
+  "scope": "This is the current Preview artifact, not yet the completed new Worlds or combined Native archive. Reuse in a future receipt requires exact byte identity with that final successful archive. No new Native 48/48, Android, input or performance acceptance is asserted."
+}

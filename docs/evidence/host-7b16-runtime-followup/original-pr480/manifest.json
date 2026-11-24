@@ -1,0 +1,2432 @@
+{
+  "schema": 1,
+  "scope": "Immutable central original QA61c checkpoint; no complete ZIP copies",
+  "files": {
+    "README.md": {
+      "bytes": 1452,
+      "sha256": "75283a449707df631662c543c449fc5976cff0661f0d4b188261fd6fc9383b1d"
+    },
+    "artifacts/api37-host-14096004123/artifact.json": {
+      "bytes": 820,
+      "sha256": "0a09ab64599460a034f2449635a2c5f331bb24001e2597f3216a17ea4e45ddfb"
+    },
+    "artifacts/api37-host-14096004123/collect_once.py": {
+      "bytes": 5100,
+      "sha256": "09580f1f2fbec740e4d3b742f8440b33fcc8ddb32954101f618d785fe4594c03"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_0-focused-hud.json": {
+      "bytes": 127,
+      "sha256": "0c892622c0a4edc06183ce6fc8038d872a47cfe87fc8a3d3d78dc2ad6baf858c"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_1-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "7532a70e0734397ee81e082b7ff884cf9dffc629c09d50a93c341750326d32d4"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_10-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_11-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_12-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_13-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_14-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_15-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_16-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_17-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_18-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_19-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_2-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_20-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_20.png": {
+      "bytes": 1967096,
+      "sha256": "7fb26f79a258c50f00de1db7fcd786bc6775ebf3d399840fea3f5defd24672e1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_3-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_4-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_5-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_6-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_7-focused-hud.json": {
+      "bytes": 129,
+      "sha256": "165ad981c5c653151aed28a7a881e0b5cd708d56886736324e476a2ebc32f15d"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_8-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/21_race_hud_9-focused-hud.json": {
+      "bytes": 128,
+      "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/android-emulator-version.txt": {
+      "bytes": 655,
+      "sha256": "1a523c9091747b7bf48a755396278f2eca455352b40c281336f1c3e075607b54"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/android-release.txt": {
+      "bytes": 3,
+      "sha256": "54183f4323f377b737433a1e98229ead0fdc686f93bab057ecb612daa94002b5"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/android-sdk.txt": {
+      "bytes": 3,
+      "sha256": "b58a3da5fde2680191877ec88a1aa7d06927cc3b30cdf0d0db8c39b488891576"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/apk-source-sha.txt": {
+      "bytes": 41,
+      "sha256": "455ade348412c9937fae13800667513d04ddc909f87343b21ee775ef982c26fd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/candidate-and-probe-binding.json": {
+      "bytes": 7434,
+      "sha256": "69f86ab6609614a0078a755997e82fc94f351b3c22955b4730694faa18eb4fd6"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/avd-guard/configuration/bootcompleted.ini": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/avd-guard/configuration/config.ini": {
+      "bytes": 3620,
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/avd-guard/configuration/emu-launch-params.txt": {
+      "bytes": 260,
+      "sha256": "0eddf9b90736438f8c963b8c9bf746955ffdf6317cc33c015c512fb912ab6f83"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/avd-guard/configuration/hardware-qemu.ini": {
+      "bytes": 4148,
+      "sha256": "0e30db1472fa409bf9dd67d73b464a556b81b83bd9aa7e0b2f6486334b6a0d3a"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/avd-guard/configuration/modem_simulator/etc/modem_simulator/files/numeric_operator.xml": {
+      "bytes": 297,
+      "sha256": "c2557e604beea20b67642cdbb14ae7b792f804e4476b3f6cf47035690234f436"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_carrierapitests.xml": {
+      "bytes": 16537,
+      "sha256": "dc4b5f5344f084fc44f89250bbcf2b12e452eb98c104e4ef3ec115366eb6ce32"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_sim0.xml": {
+      "bytes": 14722,
+      "sha256": "7a70da249fedced82e5954c0144941849f93a5ef5a0b20a50a832c9c77e1c0b3"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_sim_tel_alaska.xml": {
+      "bytes": 14474,
+      "sha256": "462cc26ddaa9d6c470a2d9415771c80e323b526b1863f099accb298955b14db3"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/avd-guard/configuration/netsim.ini": {
+      "bytes": 38,
+      "sha256": "c8fd846ec31ee1d607fc06f150e841e8c5287eb803ab0b2abf23abff6f39a080"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/avd-guard/configuration/qemu-version.txt": {
+      "bytes": 1,
+      "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/avd-guard/configuration/read-snapshot.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/packages-guard/emulator/package.xml": {
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/packages-guard/emulator/source.properties": {
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/packages-guard/image/package.xml": {
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/packages-guard/image/source.properties": {
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/packages-guard/platform/package.xml": {
+      "bytes": 18468,
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/packages-guard/platform/source.properties": {
+      "bytes": 343,
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/packages-guard/platform-tools/package.xml": {
+      "bytes": 18335,
+      "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/cli22/packages-guard/platform-tools/source.properties": {
+      "bytes": 38,
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0001-data-filesystem.json": {
+      "bytes": 412,
+      "sha256": "79ce49299354c11e32cba0515c74491b4d093e534e4e1463b0ee1e05e42977ed"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0001-data-filesystem.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0001-data-filesystem.stdout": {
+      "bytes": 120,
+      "sha256": "856cd6c3d05d96fa8398bcb5d55ccf8b986e47ccf85142073e2fdde1d31f975d"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0002-memory-info.json": {
+      "bytes": 403,
+      "sha256": "fca1c6c8e3af338ffc8bb0a2b77d9f77a2f73f8a41a0429ad8b99a14fa6b8e45"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0002-memory-info.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0002-memory-info.stdout": {
+      "bytes": 1291,
+      "sha256": "c750ee758ddb40633b6d40aceb55e7473066f657cd1d281c3790d186b058a1bd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0003-mounted-filesystems.json": {
+      "bytes": 418,
+      "sha256": "4fa87a307b9c317e36020d184cd9e3a5a72ae07989b0a6e49f421b08f1e5ae20"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0003-mounted-filesystems.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0003-mounted-filesystems.stdout": {
+      "bytes": 13719,
+      "sha256": "914dbf973ef2fa3fcd992c8a0a89f36ed36e0373649e650c84b17a2a0268456d"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0004-properties.json": {
+      "bytes": 384,
+      "sha256": "7b6ab5bb3538c476c26a386a338992a7d1ade262479454d22f819744bc3ecefb"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0004-properties.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0004-properties.stdout": {
+      "bytes": 23844,
+      "sha256": "89cde1357f9ceb1ea6a3b44c567ea94a594b02ee2b9c594ea30cb26ada31031b"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0005-pid-before.json": {
+      "bytes": 403,
+      "sha256": "07d3e3e3d2c1d702cf5653052aeb051605a2b710be1b62c387703a83f74e3652"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0005-pid-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0005-pid-before.stdout": {
+      "bytes": 4,
+      "sha256": "9554a6e812bd6b80acda8d60307b0c20e0b54a06419cc848ed28db63bb0ad7fd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0006-service-input.json": {
+      "bytes": 416,
+      "sha256": "d7d14950170b00deb1f9595ec02e49b9f18d3c220ad7e7f6f92db345b31faecb"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0006-service-input.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0006-service-input.stdout": {
+      "bytes": 21,
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0007-service-settings.json": {
+      "bytes": 425,
+      "sha256": "ec6e37341b97c046cbc14bbe5c8374a7ea9bceedc670cd764186570642c7daf3"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0007-service-settings.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0007-service-settings.stdout": {
+      "bytes": 24,
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0008-service-activity.json": {
+      "bytes": 425,
+      "sha256": "210191632afa3e86beb2ca34dae286ad03ceb5885288538d2dd8626c41ab09a6"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0008-service-activity.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0008-service-activity.stdout": {
+      "bytes": 24,
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0009-service-package.json": {
+      "bytes": 422,
+      "sha256": "a3c6001cdfce49af0a3036803ec8253219c4ea5f772a9896b6517429933ff567"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0009-service-package.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0009-service-package.stdout": {
+      "bytes": 23,
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0010-service-window.json": {
+      "bytes": 419,
+      "sha256": "dd7ac634a4d842033a2a43bcf46794f641e4337988e2ee00d00d9e3132a1722f"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0010-service-window.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0010-service-window.stdout": {
+      "bytes": 22,
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0011-settings-read.json": {
+      "bytes": 434,
+      "sha256": "140b0b17de625aa7e88f3cb226222d1d4979bdcd49c6905ca56e29684043f34b"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0011-settings-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0011-settings-read.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0012-package-read.json": {
+      "bytes": 426,
+      "sha256": "e0348b2fed163beaea98f85a8b401267da6d22c5f29ab5e8d7ce52b8f5644be9"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0012-package-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0012-package-read.stdout": {
+      "bytes": 44,
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0013-window-read.json": {
+      "bytes": 393,
+      "sha256": "235c73bde930e70f74ed3b198ff795eb640ccd7ab6d1360d8565dce7480a498b"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0013-window-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0013-window-read.stdout": {
+      "bytes": 25,
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0014-window-state.json": {
+      "bytes": 412,
+      "sha256": "35a49da8faa7619b3dcba7d677c193b93b38544de2fcd06061ee2f933f92292a"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0014-window-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0014-window-state.stdout": {
+      "bytes": 63003,
+      "sha256": "32c43192e7086f36a3445ad7bee2b5d27d0dbe475e34af723b3bc6b7db3d0968"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0015-input-state.json": {
+      "bytes": 399,
+      "sha256": "810365fa45aea0d63c7d6ed231d5cfc2bd56c68724efb071899b4acd868315fe"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0015-input-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0015-input-state.stdout": {
+      "bytes": 87274,
+      "sha256": "7addda52f7aa68dcfab5e0e1d1ac3d21f23c6fb8bd168de3db6cd7168a4597d8"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0016-events-anr.json": {
+      "bytes": 469,
+      "sha256": "09dedb86f3b0ef5fabd9f4e17313ce2baf93c0dd05d223ae329f907cf3612aae"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0016-events-anr.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0016-events-anr.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0017-pid-after.json": {
+      "bytes": 401,
+      "sha256": "b3abaabfb12cb9f72751f4eda6ceaec15822cf6d8b2ece8044237fbe37f69ef7"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0017-pid-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0017-pid-after.stdout": {
+      "bytes": 4,
+      "sha256": "9554a6e812bd6b80acda8d60307b0c20e0b54a06419cc848ed28db63bb0ad7fd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0018-count-after.json": {
+      "bytes": 423,
+      "sha256": "9ec2802c274144b5dc92e5d791ed024a5f70b31ead26468e404085df33a38ba1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0018-count-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0018-count-after.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0019-properties.json": {
+      "bytes": 384,
+      "sha256": "4f55341f1e04fe14032e93a12e62daf11b09d532093f8db7241358aec965ec27"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0019-properties.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0019-properties.stdout": {
+      "bytes": 23905,
+      "sha256": "e33f0aa89daed52d4031d70fda6accfee491f5f8ede6dd19f53708653d8fb341"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0020-pid-before.json": {
+      "bytes": 403,
+      "sha256": "eba5d12648c72df7157c382280add70f6f8f4f4abf9656cf944da1e70c62865a"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0020-pid-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0020-pid-before.stdout": {
+      "bytes": 4,
+      "sha256": "9554a6e812bd6b80acda8d60307b0c20e0b54a06419cc848ed28db63bb0ad7fd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0021-service-input.json": {
+      "bytes": 416,
+      "sha256": "c26f79a28400363e26aea5c394f3f8dd860cbfe2f183614e51f8d00f05853368"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0021-service-input.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0021-service-input.stdout": {
+      "bytes": 21,
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0022-service-settings.json": {
+      "bytes": 425,
+      "sha256": "b61b9c627b28f9bdebdefcea138cb2ff1156d7a02d82bbc538531bb65ada1c8b"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0022-service-settings.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0022-service-settings.stdout": {
+      "bytes": 24,
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0023-service-activity.json": {
+      "bytes": 425,
+      "sha256": "bdc46ca76bb93bde5848bfe589f8a5ce51a155f9ffc570fcb535350f65d8b773"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0023-service-activity.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0023-service-activity.stdout": {
+      "bytes": 24,
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0024-service-package.json": {
+      "bytes": 422,
+      "sha256": "519aa9aae8c597720fb6efb83b62b28506310e14d48bf98564164f992f79b40b"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0024-service-package.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0024-service-package.stdout": {
+      "bytes": 23,
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0025-service-window.json": {
+      "bytes": 419,
+      "sha256": "d61e75e504b6f8a43b7fd799f2bcb759e63529a24383c7e54e8e59844e5d7caa"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0025-service-window.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0025-service-window.stdout": {
+      "bytes": 22,
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0026-settings-read.json": {
+      "bytes": 434,
+      "sha256": "657e1ffde157a0c44d48e6fbf54bceeafee9b8642f192bc4b0ef76b84f540d43"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0026-settings-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0026-settings-read.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0027-package-read.json": {
+      "bytes": 426,
+      "sha256": "c763a6e160832c3f2b9734b829f67f3115652c350acc04916f7739cf24c147ad"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0027-package-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0027-package-read.stdout": {
+      "bytes": 44,
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0028-window-read.json": {
+      "bytes": 393,
+      "sha256": "13a192ae3d4a64167826f9de1dbba333959818eec90af0b0896464533fa55710"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0028-window-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0028-window-read.stdout": {
+      "bytes": 25,
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0029-window-state.json": {
+      "bytes": 412,
+      "sha256": "6c9c6ea7ca401dd01ab12981b932195ff3ef7cf045d23bca312727e19c7611ca"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0029-window-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0029-window-state.stdout": {
+      "bytes": 70698,
+      "sha256": "2d7c071e3960db834a258437ccff9feadde2f5264f30faa30d712ece5d421beb"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0030-input-state.json": {
+      "bytes": 399,
+      "sha256": "d257675c9a54b3518ab0f34231f06a10c4525825cc7efa3a3f4b1492ca2c8f18"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0030-input-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0030-input-state.stdout": {
+      "bytes": 87948,
+      "sha256": "e00e2e900322790133d925151e1f7d2643b8a2926f5fca7b43273149b0ecdf03"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0031-events-anr.json": {
+      "bytes": 469,
+      "sha256": "a1902f616b8aa31a2ad2621406b5ae00e55a5057814309187ade3246056a71e6"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0031-events-anr.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0031-events-anr.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0032-pid-after.json": {
+      "bytes": 401,
+      "sha256": "16b93c6c2856f6f0bbd828b71f0015279c3cb3df62311285618a486d83373900"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0032-pid-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0032-pid-after.stdout": {
+      "bytes": 4,
+      "sha256": "9554a6e812bd6b80acda8d60307b0c20e0b54a06419cc848ed28db63bb0ad7fd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0033-count-after.json": {
+      "bytes": 423,
+      "sha256": "297401809d36ba0ec1db58ce5554b9d67b7ff122f76d83bd8194ffb7010767d2"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0033-count-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0033-count-after.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0034-properties.json": {
+      "bytes": 384,
+      "sha256": "c87e0358e432921d68400dc534c11fadb5f32c639169fe852f5aeba157159daf"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0034-properties.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0034-properties.stdout": {
+      "bytes": 24016,
+      "sha256": "4ef42ea1eee4671349f7b7cafac251ef5c7c092724d6ee8ea9386ff4ad6e79e2"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0035-pid-before.json": {
+      "bytes": 403,
+      "sha256": "fff727c1c91804b2cd1eaa5f41fca78232431399278e63c74020a38d8ca559b3"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0035-pid-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0035-pid-before.stdout": {
+      "bytes": 4,
+      "sha256": "9554a6e812bd6b80acda8d60307b0c20e0b54a06419cc848ed28db63bb0ad7fd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0036-service-input.json": {
+      "bytes": 416,
+      "sha256": "f09db3007ed28079a7e7d7ca9a4e71b68415c93f9871b820c7b9910f2ec17ee7"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0036-service-input.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0036-service-input.stdout": {
+      "bytes": 21,
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0037-service-settings.json": {
+      "bytes": 425,
+      "sha256": "30ef5d1d5c591df732bdd6fd12ca25413931fd181a6c22d3f486b51dca829726"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0037-service-settings.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0037-service-settings.stdout": {
+      "bytes": 24,
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0038-service-activity.json": {
+      "bytes": 425,
+      "sha256": "90d213eb7b28bc6bfc6b35d13eddafca58c1f7dd169bb1222485b2f4e5fe2cc6"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0038-service-activity.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0038-service-activity.stdout": {
+      "bytes": 24,
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0039-service-package.json": {
+      "bytes": 422,
+      "sha256": "3030afd423ec36327f520cf3302cc854791eef118e0a7d28a2b12d0e204232d5"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0039-service-package.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0039-service-package.stdout": {
+      "bytes": 23,
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0040-service-window.json": {
+      "bytes": 419,
+      "sha256": "c27463e84cc5b7f6d690d07f5d0a6eaf5578fd6d5e390b4214dafbda18cb0923"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0040-service-window.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0040-service-window.stdout": {
+      "bytes": 22,
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0041-settings-read.json": {
+      "bytes": 434,
+      "sha256": "51fa20b82fb5769835846eeaac895392c011c283d7e54906a1ab88d28f5c0450"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0041-settings-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0041-settings-read.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0042-package-read.json": {
+      "bytes": 426,
+      "sha256": "f62aff8590e54739c430b33a8dc32ebb13a3625b9571d29f203882cc8228aa1f"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0042-package-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0042-package-read.stdout": {
+      "bytes": 44,
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0043-window-read.json": {
+      "bytes": 393,
+      "sha256": "fc372196e16284bcfb3e1840e4290ce44203af5fa31af9d32001b684d5b43a9f"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0043-window-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0043-window-read.stdout": {
+      "bytes": 25,
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0044-window-state.json": {
+      "bytes": 412,
+      "sha256": "013f5e4d4a675492be8d94fb89124dc966faa952a006c929d277b36202c6d52e"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0044-window-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0044-window-state.stdout": {
+      "bytes": 70752,
+      "sha256": "2178d2f8c4b0d84cba686b065f4c73033fae00a85a7267fb53c6113f9ad5fe43"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0045-input-state.json": {
+      "bytes": 399,
+      "sha256": "cb750f41fcc2a5f5fac8d3758055c80dd011c14b4f5e08d281b69bd60b2c2361"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0045-input-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0045-input-state.stdout": {
+      "bytes": 87703,
+      "sha256": "a69cbc909103928ed8804b1514ab3103b3080edcd14d26d4f8bf399dd37bdab6"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0046-events-anr.json": {
+      "bytes": 469,
+      "sha256": "25f8e49e282b2e4606babb6be1359ab8454cdd4b73dea507cafb0f247a9d45a9"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0046-events-anr.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0046-events-anr.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0047-pid-after.json": {
+      "bytes": 401,
+      "sha256": "d6b9ccfb8bb0e898d5c44fdfa580b324b6e3e4decbc174f99280a25bfe27c758"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0047-pid-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0047-pid-after.stdout": {
+      "bytes": 4,
+      "sha256": "9554a6e812bd6b80acda8d60307b0c20e0b54a06419cc848ed28db63bb0ad7fd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0048-count-after.json": {
+      "bytes": 423,
+      "sha256": "273b4893013952aa807dfda2e13a9be97252649321eb18fa2f9a4191bbc9484b"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0048-count-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0048-count-after.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0049-properties.json": {
+      "bytes": 384,
+      "sha256": "5bc52f531dd79ad6f16f6691f426c10699f11c24198bdd53dde29855075df41e"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0049-properties.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0049-properties.stdout": {
+      "bytes": 24096,
+      "sha256": "878238cb4a0160c72d108ab260d757dafa2eb2ce88083a9591d94309fefba20f"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0050-pid-before.json": {
+      "bytes": 403,
+      "sha256": "87d072cce490779315769b199dd7ee90351f1a34d6bf739bd1918d83e22e78af"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0050-pid-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0050-pid-before.stdout": {
+      "bytes": 4,
+      "sha256": "9554a6e812bd6b80acda8d60307b0c20e0b54a06419cc848ed28db63bb0ad7fd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0051-service-input.json": {
+      "bytes": 416,
+      "sha256": "e748000988f211fe7b4220ac9964a42bf3e0e9866da82018b94c550fa6b8981f"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0051-service-input.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0051-service-input.stdout": {
+      "bytes": 21,
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0052-service-settings.json": {
+      "bytes": 425,
+      "sha256": "301a928e14c62ab68dc5c7b7e1c09f0a34e5d99937475e9db804b6f49ee3f19c"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0052-service-settings.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0052-service-settings.stdout": {
+      "bytes": 24,
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0053-service-activity.json": {
+      "bytes": 425,
+      "sha256": "5e09db77f883f4faa13db813215d9ada05ac0a0508abd5ab0944b7ead5b10a8d"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0053-service-activity.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0053-service-activity.stdout": {
+      "bytes": 24,
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0054-service-package.json": {
+      "bytes": 422,
+      "sha256": "9ee53bde4d58a31c26f815a60a1ebae81fc0a3d0657cacfbb0fc488ee524bea3"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0054-service-package.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0054-service-package.stdout": {
+      "bytes": 23,
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0055-service-window.json": {
+      "bytes": 419,
+      "sha256": "4bec36e7d9a656ace82c19429e866e954e17286ca17215da5f08413472cd4b8b"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0055-service-window.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0055-service-window.stdout": {
+      "bytes": 22,
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0056-settings-read.json": {
+      "bytes": 434,
+      "sha256": "910f425751926170b84d8abc804017e5cd405e8c327f7c8fdd1c23dcc0b2c8c0"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0056-settings-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0056-settings-read.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0057-package-read.json": {
+      "bytes": 426,
+      "sha256": "8cb73c73084e2fee572dfe9384fe53531fbd2545f1f4198017345140cee52919"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0057-package-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0057-package-read.stdout": {
+      "bytes": 44,
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0058-window-read.json": {
+      "bytes": 393,
+      "sha256": "2b85a5ed7f1587fcf04744e4a760f8f4c3e9948d39912bf2e3da8cfb875d73dd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0058-window-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0058-window-read.stdout": {
+      "bytes": 25,
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0059-window-state.json": {
+      "bytes": 412,
+      "sha256": "9380358e3d706a67b59fa55289dbdb8ad7307ba442582468f13876f82cf78dd7"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0059-window-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0059-window-state.stdout": {
+      "bytes": 70582,
+      "sha256": "7f72bd435517343e7b7e2a04967254a31781524e3aa792b1d62596a0888fa59e"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0060-input-state.json": {
+      "bytes": 399,
+      "sha256": "dea661e1a73e65f1f0ffe7bbdd5025b5aa3ca661cc9b22eb42d71290e451efaf"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0060-input-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0060-input-state.stdout": {
+      "bytes": 87536,
+      "sha256": "b3a5b61dbac5dbd75eeeade9816a215f89ec3dea24ef04d8601659ab4679a3c9"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0061-events-anr.json": {
+      "bytes": 469,
+      "sha256": "17ad508b816cab8e003c7d8fcbbe7c90acb78d078c5fd4b2475423f9ebafb415"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0061-events-anr.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0061-events-anr.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0062-pid-after.json": {
+      "bytes": 401,
+      "sha256": "e3eeab85b058363c5da4f960599a23d1a78ff454f0676be8e194e81d09edb5c9"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0062-pid-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0062-pid-after.stdout": {
+      "bytes": 4,
+      "sha256": "9554a6e812bd6b80acda8d60307b0c20e0b54a06419cc848ed28db63bb0ad7fd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0063-count-after.json": {
+      "bytes": 423,
+      "sha256": "9ec1b1b8bd218443fcaa199dd9bc0cd59d343b7071315c2615e86d128b02f740"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0063-count-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/commands/0063-count-after.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/framework-readiness.json": {
+      "bytes": 45327,
+      "sha256": "3cec7d097035accbb29650a2e1feec077bf1086fda490a3be4c6e72745421983"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/logcat-all.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/logcat-all.stdout": {
+      "bytes": 4836455,
+      "sha256": "667c7c76cd331c48e3918d6d75f8a8018a7e1a4a81a79f1c91badef7e31e21a3"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/monitor-commands.json": {
+      "bytes": 965,
+      "sha256": "73c2ac51fb076a82b6ed154b572e6c73df8b90a34a5f7641c55866fd1df638cb"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/monitor-finished.json": {
+      "bytes": 1074,
+      "sha256": "8af85369c2b34f0de7e26a49fef151ccb69bdab9195446c8076b3dab7f1c3cf1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/monitor-process.json": {
+      "bytes": 509,
+      "sha256": "9e9eeb68ac9f5c66a83fe499ffc5e796ef0d0a66c601d1999be04833a15e86cf"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/monitor-stop.json": {
+      "bytes": 43297,
+      "sha256": "4841121e46bb2ebe2179aa5634cda17572c4c5aa493fd7574d470f5eb9e223f2"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/monitor.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/monitor.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/wait-for-device.stderr": {
+      "bytes": 77,
+      "sha256": "d84aaa3222b49c6dfc6c07666347890c6ad2ff255b911fa83525c5814e54963c"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/framework-start/wait-for-device.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/probe-source-sha.txt": {
+      "bytes": 41,
+      "sha256": "a29ace4ef9139b960a357f3cf029ffb5ae37a875df353b6dc85b45ed05bc1d35"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/renderer-comparison-binding.json": {
+      "bytes": 2364,
+      "sha256": "3ae4f8c245c09c43bb7107f5a08132c4a76712547a02093a6352d66a8f3d0f0c"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0001-properties.json": {
+      "bytes": 384,
+      "sha256": "a0658ed4328cc7d7c214a24645145a77c6aff99b94b67b21e701e86320bfb2b6"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0001-properties.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0001-properties.stdout": {
+      "bytes": 44729,
+      "sha256": "64a34ebcc3db8b789a26479746d60aa54d39331fdd9540b828557cfa0afd6a87"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0002-system-server-pid.json": {
+      "bytes": 417,
+      "sha256": "bdd4cf81ef0362385719ac148ae88b9542747c4a776fab6b9e83aaa7fb756e9d"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0002-system-server-pid.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0002-system-server-pid.stdout": {
+      "bytes": 4,
+      "sha256": "9554a6e812bd6b80acda8d60307b0c20e0b54a06419cc848ed28db63bb0ad7fd"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0003-input-state.json": {
+      "bytes": 399,
+      "sha256": "d0ab979b9c26ac9471c21a94e01f19482573c102ad484646796b6f1c0103e853"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0003-input-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0003-input-state.stdout": {
+      "bytes": 92134,
+      "sha256": "dcfc8110511551f70d9cf21be590dfb746b3148bbcf48cc19b9bd63257d464f7"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0004-window-state.json": {
+      "bytes": 412,
+      "sha256": "570b860736d7bd698b5be70ac2fce35bec430b72a949e7d6c1e26f5ec130ba10"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0004-window-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0004-window-state.stdout": {
+      "bytes": 81325,
+      "sha256": "1330e7de35b6650a1d96b0aaca675c6222789a2810640474122e836289cf1d21"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0005-events-anr.json": {
+      "bytes": 469,
+      "sha256": "756163aecb9f04f2d4983f92f45e054993a3eba5b37532dff856fe05b6d1f613"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0005-events-anr.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0005-events-anr.stdout": {
+      "bytes": 321,
+      "sha256": "cdea9d527ca2d3ef09ebdbf26ff496f2dda5f4af0aedfbbb3e0bf4eb3e1e8d31"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/runtime-anr-verification.json": {
+      "bytes": 4909,
+      "sha256": "d980edd13fef975ab36bdd44ba252fefe425f06d18c5632613aa8faeecb101b9"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/runtime-end.json": {
+      "bytes": 5208,
+      "sha256": "70b3ae99b44ec4ddf88c4b143e51936e02051c8570be5de4bf2554d1cde5d1ce"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/runtime-anr/runtime-start.json": {
+      "bytes": 1010,
+      "sha256": "5c3b2dc71b59c7a5d414ab4b67cd9dcf1f22524c38f0461ad12d6e23d01017c1"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/surfaceflinger-start.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/surfaceflinger-start.stdout": {
+      "bytes": 53190,
+      "sha256": "bf1b7cf9f82b10b6d3b4f0492e72c9e05d2a8d96155410609a27c3c747630717"
+    },
+    "artifacts/api37-host-14096004123/selected-originals/tour-result.json": {
+      "bytes": 10750,
+      "sha256": "d941e667ab01c0ce701a506bdfe992ab33c8e126fbb98e61c128dd6046c7acd3"
+    },
+    "artifacts/api37-host-14096004123/verification.json": {
+      "bytes": 258403,
+      "sha256": "21c049fb8245ceefb15b57a9d4199810e89e58e2859aa7d230192a5cf0b9e773"
+    },
+    "artifacts/api37-swiftshader-14096976074/artifact.json": {
+      "bytes": 826,
+      "sha256": "3189c558d4cf42960ea8d5e26a35014bf53285b4014c6c7fbaba0cfd130dc7ac"
+    },
+    "artifacts/api37-swiftshader-14096976074/collect_once.py": {
+      "bytes": 4819,
+      "sha256": "80a2e7f6b25ca7f926a68d5f767118e79de7d723732aee8a6b8af12f58d94f82"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0-ocr-contrast.tsv": {
+      "bytes": 630,
+      "sha256": "5aa772f2b896bfb86bdd3e89a07fe8f26ce99c4d76245295e96086ef867010c6"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0-ocr-navy-latin-1x.tsv": {
+      "bytes": 113,
+      "sha256": "09ebb57f2513225863b664271376ba2d5aed980079d00e6908e3acbe7556dccd"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0-ocr-navy-latin.tsv": {
+      "bytes": 113,
+      "sha256": "83f87dcbdb395f3151d7e7aab36505d652b7408b771350fd979161eb64bbc327"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0-ocr-raw.tsv": {
+      "bytes": 454,
+      "sha256": "98df3a7d9f0469a4af8f26973026ced1d1c47af51b7a53b7e5619995cbf53217"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0-ocr-teal-text-1x.tsv": {
+      "bytes": 485,
+      "sha256": "682cb6da02d6ee4c645b0d123be7b38daf633d77d95451755827b29717eee20e"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0-ocr-white-latin.tsv": {
+      "bytes": 630,
+      "sha256": "5d588a34e224a802e48532a20360854127d81ceb840cf8a2e5b511d6f218f6b6"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0-ocr-white-text.tsv": {
+      "bytes": 630,
+      "sha256": "8fdc203127f617cf872fdaef21f6cf9de14005ed8af6863cc8224c23156d3470"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0-ocr.json": {
+      "bytes": 2045,
+      "sha256": "5f9881609bc2551383ec3bf66d0e2295eb88971920791d1ad539a4785021c6c7"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-0.png": {
+      "bytes": 18822,
+      "sha256": "2d53fe68237e227fbdf00ed39ff536ab7dbe5951c748217d6a334ddec08e916b"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/21_stage_mode_cup-surface-readiness.json": {
+      "bytes": 973,
+      "sha256": "8b7d397da5eddd9141d9bdb87214114d1f146d2396cb2d71dd2cfbf16029597a"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/android-emulator-version.txt": {
+      "bytes": 655,
+      "sha256": "1a523c9091747b7bf48a755396278f2eca455352b40c281336f1c3e075607b54"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/android-release.txt": {
+      "bytes": 3,
+      "sha256": "54183f4323f377b737433a1e98229ead0fdc686f93bab057ecb612daa94002b5"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/android-sdk.txt": {
+      "bytes": 3,
+      "sha256": "b58a3da5fde2680191877ec88a1aa7d06927cc3b30cdf0d0db8c39b488891576"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/apk-source-sha.txt": {
+      "bytes": 41,
+      "sha256": "455ade348412c9937fae13800667513d04ddc909f87343b21ee775ef982c26fd"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/candidate-and-probe-binding.json": {
+      "bytes": 7441,
+      "sha256": "346b08b5aeb7c6e992db15585dacae37611a7b9e4fb89091fa30901d143e93e9"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/avd-guard/configuration/config.ini": {
+      "bytes": 3620,
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/avd-guard/configuration/emu-launch-params.txt": {
+      "bytes": 267,
+      "sha256": "a1e8cc0f4f81fd8c99dc4d8b2559df13d91936afb62c9225ff55e738b38d6423"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/avd-guard/configuration/hardware-qemu.ini": {
+      "bytes": 4155,
+      "sha256": "f58d879911724638f32f1099d6389ef2dbafe75a7fc96271b009f3fc53a9aaf5"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/avd-guard/configuration/modem_simulator/etc/modem_simulator/files/numeric_operator.xml": {
+      "bytes": 297,
+      "sha256": "c2557e604beea20b67642cdbb14ae7b792f804e4476b3f6cf47035690234f436"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_carrierapitests.xml": {
+      "bytes": 16537,
+      "sha256": "dc4b5f5344f084fc44f89250bbcf2b12e452eb98c104e4ef3ec115366eb6ce32"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_sim0.xml": {
+      "bytes": 14647,
+      "sha256": "a2744726a306b18d7547251026201aa5c6a9e120aa1555992eeb8b0a3b4aa6d9"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_sim_tel_alaska.xml": {
+      "bytes": 14474,
+      "sha256": "462cc26ddaa9d6c470a2d9415771c80e323b526b1863f099accb298955b14db3"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/avd-guard/configuration/netsim.ini": {
+      "bytes": 38,
+      "sha256": "c8fd846ec31ee1d607fc06f150e841e8c5287eb803ab0b2abf23abff6f39a080"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/avd-guard/configuration/qemu-version.txt": {
+      "bytes": 1,
+      "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/avd-guard/configuration/read-snapshot.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/emulator/package.xml": {
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/emulator/source.properties": {
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/image/package.xml": {
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/image/source.properties": {
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/platform/package.xml": {
+      "bytes": 18468,
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/platform/source.properties": {
+      "bytes": 343,
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/platform-tools/package.xml": {
+      "bytes": 18335,
+      "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/cli22/packages-guard/platform-tools/source.properties": {
+      "bytes": 38,
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0001-data-filesystem.json": {
+      "bytes": 412,
+      "sha256": "3c0950f2391f8e23057fa27c5b09678d0eceef23cbfe4fba14092447102202eb"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0001-data-filesystem.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0001-data-filesystem.stdout": {
+      "bytes": 120,
+      "sha256": "0a152bcc0a5d74c4a3624099bcaeee785bb249118579f20d848b3e974cd40f64"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0002-memory-info.json": {
+      "bytes": 403,
+      "sha256": "48ddfbe5437007e19eb043ea77f8adff578e5cbcdec89b80822eaafbe3942506"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0002-memory-info.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0002-memory-info.stdout": {
+      "bytes": 1291,
+      "sha256": "90a982515af560e0a5e413543f0261c3fdded266b6becadcd1f14e0c4dacd1fa"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0003-mounted-filesystems.json": {
+      "bytes": 418,
+      "sha256": "30e4331d2dfeafc9785f0b3ffb9c45f06f41e76865a8da1c4a9fc016e40b0aef"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0003-mounted-filesystems.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0003-mounted-filesystems.stdout": {
+      "bytes": 13845,
+      "sha256": "be68f6508198831bed184438e6d8f32df2bfa9feba450ed2e863d6f272388d0d"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0004-properties.json": {
+      "bytes": 384,
+      "sha256": "9132f148843f7c7097d05708fb8e2463b261dab7f89f2ff5ae700abe07924283"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0004-properties.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0004-properties.stdout": {
+      "bytes": 23709,
+      "sha256": "80bc31f0f69aa786237741300e792a0bf019ceeeb4cae5add874624e0cd1ec5a"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0005-pid-before.json": {
+      "bytes": 403,
+      "sha256": "953e9dd8a95deb0def3ee0b2f31811f45e0ee410386acd169730b030b483d85f"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0005-pid-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0005-pid-before.stdout": {
+      "bytes": 4,
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0006-service-input.json": {
+      "bytes": 416,
+      "sha256": "56cdf9c940822239e3e7c12659235a49922cdd7d23bb5bc61a8c34e03d150825"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0006-service-input.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0006-service-input.stdout": {
+      "bytes": 21,
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0007-service-settings.json": {
+      "bytes": 425,
+      "sha256": "d96312d0187711fc91e277a40b5f089672759ddc8e760a3f437c5529a69c98da"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0007-service-settings.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0007-service-settings.stdout": {
+      "bytes": 24,
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0008-service-activity.json": {
+      "bytes": 425,
+      "sha256": "d158eb9a4be2814d041b1e0eea1d619d6644d0ddcf94b48ded95a3f821c8f3b5"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0008-service-activity.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0008-service-activity.stdout": {
+      "bytes": 24,
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0009-service-package.json": {
+      "bytes": 422,
+      "sha256": "b321462d587f408cbd31d8c323e4b6f5d73d3ca642ebd179d28fb09f5f8169f5"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0009-service-package.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0009-service-package.stdout": {
+      "bytes": 23,
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0010-service-window.json": {
+      "bytes": 419,
+      "sha256": "efb3ee636fe3a4ef806a638cb58b756ecb2bda1473964bef5922ccbe0f1d9f2c"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0010-service-window.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0010-service-window.stdout": {
+      "bytes": 22,
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0011-settings-read.json": {
+      "bytes": 434,
+      "sha256": "fd261ada658756ad8021cfb14f710447ce63788626872395413233d78157e0f3"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0011-settings-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0011-settings-read.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0012-package-read.json": {
+      "bytes": 426,
+      "sha256": "c781454ca8c79cc481097f1d51042a9b1cf9a47a58ebe3a7b0d01f2390a125d9"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0012-package-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0012-package-read.stdout": {
+      "bytes": 44,
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0013-window-read.json": {
+      "bytes": 393,
+      "sha256": "baf3ce4259a8142ce3afa20fc45cd55f5900ea0cbda8d0fa696a29406dd8ce6a"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0013-window-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0013-window-read.stdout": {
+      "bytes": 25,
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0014-window-state.json": {
+      "bytes": 412,
+      "sha256": "c775399c06d561f079a946d157d7e7044fbb16fb6e6e0159baec2d8b056fc938"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0014-window-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0014-window-state.stdout": {
+      "bytes": 70753,
+      "sha256": "385fd865cbfedc6a13b29b49a96cef6f43db344428380c829d4b7a00e169920c"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0015-input-state.json": {
+      "bytes": 399,
+      "sha256": "8c99cf1bd27bdf626c7468f0c348fba8ff662310db2877fc7a5335078baf27c6"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0015-input-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0015-input-state.stdout": {
+      "bytes": 88353,
+      "sha256": "a2a204038c5f62de93a880c5d971ccc402a38bd52e0fbfae9130a0fd2a8ad3b3"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0016-events-anr.json": {
+      "bytes": 469,
+      "sha256": "253d714fea85f68db0a10350c4f2c00d24e798a089c45cab95ecdfad71c08c01"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0016-events-anr.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0016-events-anr.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0017-pid-after.json": {
+      "bytes": 401,
+      "sha256": "d6a3b0eae61f87f9e5c3fe3148377af230c2fa632c0047d9427921c54000d0da"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0017-pid-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0017-pid-after.stdout": {
+      "bytes": 4,
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0018-count-after.json": {
+      "bytes": 423,
+      "sha256": "6c4e7a050e7d6c40e3b7b454267c2dcc350741e2c37d456f8e4a51ca9937c7eb"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0018-count-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0018-count-after.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0019-properties.json": {
+      "bytes": 384,
+      "sha256": "b00bbf38b311991b63cd64689610626b97ecd90390f958e4ec76929ec1b402ae"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0019-properties.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0019-properties.stdout": {
+      "bytes": 23975,
+      "sha256": "6e241a70762654546deea4144a17ce3832ad5c412a845224fab39ebf0449a9cf"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0020-pid-before.json": {
+      "bytes": 403,
+      "sha256": "5256c0105719a90db953e6d56b3d2aa1ef46100f98ce87a16bbc49367f7d2d74"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0020-pid-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0020-pid-before.stdout": {
+      "bytes": 4,
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0021-service-input.json": {
+      "bytes": 416,
+      "sha256": "6b809912fc710587a30ebec66c4fc2497d169bf1be53df9edc3757a4ddb24bab"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0021-service-input.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0021-service-input.stdout": {
+      "bytes": 21,
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0022-service-settings.json": {
+      "bytes": 425,
+      "sha256": "bd07107b87e7609cdb1c58fdda2732f29536f35b1d4515d95af3bb4f3efcea8d"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0022-service-settings.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0022-service-settings.stdout": {
+      "bytes": 24,
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0023-service-activity.json": {
+      "bytes": 425,
+      "sha256": "06ad8429a789ed6282d7da909a1fff2159095d122e0136cabcc9a2bb00be99ba"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0023-service-activity.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0023-service-activity.stdout": {
+      "bytes": 24,
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0024-service-package.json": {
+      "bytes": 422,
+      "sha256": "c8e331f0344509dedb143230efa96e2ce6689b301e472637f787472e0d16c8e3"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0024-service-package.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0024-service-package.stdout": {
+      "bytes": 23,
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0025-service-window.json": {
+      "bytes": 419,
+      "sha256": "b8e833bafc93ac2f40c6855eecd6e83879bf0d0ae33e13db664dd31d382f0cb7"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0025-service-window.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0025-service-window.stdout": {
+      "bytes": 22,
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0026-settings-read.json": {
+      "bytes": 434,
+      "sha256": "96d35d0eceb38b8c995d98c5c96910e0a53024aa65f05a06985a6d124ed059a8"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0026-settings-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0026-settings-read.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0027-package-read.json": {
+      "bytes": 426,
+      "sha256": "4f36f28d30e4901315ca67168b1f115d8527ccf5b16bc4b080239814180e41db"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0027-package-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0027-package-read.stdout": {
+      "bytes": 44,
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0028-window-read.json": {
+      "bytes": 393,
+      "sha256": "9b5efc534ec99dba48362e31a1da21fce657ea46e11a6999943b6507e405555b"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0028-window-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0028-window-read.stdout": {
+      "bytes": 25,
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0029-window-state.json": {
+      "bytes": 412,
+      "sha256": "3669511016848e54108f142c5e4806760987a27e7a2dc045b5028757c2dcf370"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0029-window-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0029-window-state.stdout": {
+      "bytes": 70805,
+      "sha256": "219c4ef057549f858a3b5a2f2f71f431e770dd92e955f21cadff5f7b9cbfc718"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0030-input-state.json": {
+      "bytes": 399,
+      "sha256": "00df585608b2c90e7c2c357536820adc10bc5910a0b364f8550f03943122879c"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0030-input-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0030-input-state.stdout": {
+      "bytes": 88736,
+      "sha256": "96c39232e8444bad0a4ea0affa9ba1d2a28c33a127834ce0a9027c08a9b80cf7"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0031-events-anr.json": {
+      "bytes": 469,
+      "sha256": "5b275967f78a97110e0c52bc68835e8f9f8490cfd7e82367ad607f04d3df23f0"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0031-events-anr.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0031-events-anr.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0032-pid-after.json": {
+      "bytes": 401,
+      "sha256": "f1a3fc8ae1a61fdf2d5edc4caaacd101d6d1a593d752073abf7f2510a4c73261"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0032-pid-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0032-pid-after.stdout": {
+      "bytes": 4,
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0033-count-after.json": {
+      "bytes": 423,
+      "sha256": "35ed04f850070117525250bda45471046bb69efb205a03da553f44750110714f"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0033-count-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0033-count-after.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0034-properties.json": {
+      "bytes": 384,
+      "sha256": "1b24e2329cbf82283b3a036bbe4173cc74d496f45014d8649888ebaf431c1edb"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0034-properties.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0034-properties.stdout": {
+      "bytes": 24112,
+      "sha256": "bd7d8de1bfd58a8215e6dab2807b567c1ce0244aa8225aabba7b8565d2ebc75e"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0035-pid-before.json": {
+      "bytes": 403,
+      "sha256": "fca43c46b1b0a92410ff171c56ee9631ca392d441e4d0e30b83c353a15b4ccf3"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0035-pid-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0035-pid-before.stdout": {
+      "bytes": 4,
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0036-service-input.json": {
+      "bytes": 416,
+      "sha256": "e9874b203eb9745d70dfe573a45d48f18e2881f17e2971a62646b86070846639"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0036-service-input.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0036-service-input.stdout": {
+      "bytes": 21,
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0037-service-settings.json": {
+      "bytes": 425,
+      "sha256": "cba5fb69ef8f8c70ec1947ac115342b108b009ce2ecdf2fcae4ebae306146e73"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0037-service-settings.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0037-service-settings.stdout": {
+      "bytes": 24,
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0038-service-activity.json": {
+      "bytes": 425,
+      "sha256": "a8e4139aaf14c0b04f4438af45f6040438772e5adef48ab963da1145dad4f1ce"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0038-service-activity.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0038-service-activity.stdout": {
+      "bytes": 24,
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0039-service-package.json": {
+      "bytes": 422,
+      "sha256": "82212bdd34fc0f146a970fb5aa9d801ca36ff50018edf0955585cf347ed34f29"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0039-service-package.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0039-service-package.stdout": {
+      "bytes": 23,
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0040-service-window.json": {
+      "bytes": 419,
+      "sha256": "3be472fef199398e717d2a6b7d945375c64eca4a2a012830fc8cd32c8aa6bba7"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0040-service-window.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0040-service-window.stdout": {
+      "bytes": 22,
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0041-settings-read.json": {
+      "bytes": 434,
+      "sha256": "5d6237966be0330b3d19df14f6c92dfa8da40cf5e5840a408f7d501e5cc5bd7c"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0041-settings-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0041-settings-read.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0042-package-read.json": {
+      "bytes": 426,
+      "sha256": "b353d1eca3f0aa5c0f5be326440036313b77a85b43865b4b531513ebe00a2ec3"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0042-package-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0042-package-read.stdout": {
+      "bytes": 44,
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0043-window-read.json": {
+      "bytes": 393,
+      "sha256": "f74d4220fc85418261725bbb81d27a9aeff17282d1096c1d54f5998e1bbd3a2b"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0043-window-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0043-window-read.stdout": {
+      "bytes": 25,
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0044-window-state.json": {
+      "bytes": 412,
+      "sha256": "75b2fd7e2d2bd3d743555229c323667bab12ce98583a9692f32f9bb18cb0f45a"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0044-window-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0044-window-state.stdout": {
+      "bytes": 67926,
+      "sha256": "37a07862d05362023dc72d39bce412319e47f5dd23c36bca835a0b6745158c68"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0045-input-state.json": {
+      "bytes": 399,
+      "sha256": "f4d188b94c311507125d14a7f8f71cbc5b409ff4438b5549ec976dd2e37d963d"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0045-input-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0045-input-state.stdout": {
+      "bytes": 88347,
+      "sha256": "5bbb0fe57cc1ea321c1ead2b7ad35d39c7a7573c7e8a97957ecafe121b01f686"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0046-events-anr.json": {
+      "bytes": 469,
+      "sha256": "7147296c4f9a33aaf6ff8c0a81a4a96abc06deae04de6cdcb7e779e8bac7fcea"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0046-events-anr.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0046-events-anr.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0047-pid-after.json": {
+      "bytes": 401,
+      "sha256": "ea60122adda30446ec1c528852af8a029e3f7d4feed549899ad0043d10dfa047"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0047-pid-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0047-pid-after.stdout": {
+      "bytes": 4,
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0048-count-after.json": {
+      "bytes": 423,
+      "sha256": "b2070217354a55b86e6ab64d6c3767d616c899c543f05e41577309545a3b247e"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0048-count-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0048-count-after.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0049-properties.json": {
+      "bytes": 384,
+      "sha256": "6fb38c70ef2622b404b333668aaeb878874b761f82729eca5e13c3f5ab63ab46"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0049-properties.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0049-properties.stdout": {
+      "bytes": 24158,
+      "sha256": "23d278a427139f9bb68210710a91da6f14dbb567bd7e55ae9f209e7444ac8a35"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0050-pid-before.json": {
+      "bytes": 403,
+      "sha256": "f6791f3b7847770d153f2f69013ec2801c24672465052d3c0e90a2b20e5c1a12"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0050-pid-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0050-pid-before.stdout": {
+      "bytes": 4,
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0051-service-input.json": {
+      "bytes": 416,
+      "sha256": "58c51e971a5cb3c03d134edbc5d6e919f02bbac096c5afa7cb5204c81f0059f0"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0051-service-input.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0051-service-input.stdout": {
+      "bytes": 21,
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0052-service-settings.json": {
+      "bytes": 425,
+      "sha256": "de76e92cd68f0fceafae93c318f756dfa1f6a68486da412a2c67f23b3d76a99f"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0052-service-settings.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0052-service-settings.stdout": {
+      "bytes": 24,
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0053-service-activity.json": {
+      "bytes": 425,
+      "sha256": "47e075f91d03c14365d841e3b919ce47244521dca9a33de17d111c48a990a4bd"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0053-service-activity.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0053-service-activity.stdout": {
+      "bytes": 24,
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0054-service-package.json": {
+      "bytes": 422,
+      "sha256": "94d4fe1029ebbedcd067d72062c8fa623f1d884399dcd6141e61d26345e49051"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0054-service-package.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0054-service-package.stdout": {
+      "bytes": 23,
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0055-service-window.json": {
+      "bytes": 419,
+      "sha256": "1be4cb2fdbcdc5f20ba55be80b3c7fdd61fa75d6fc8adb66eb540b92c18f9751"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0055-service-window.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0055-service-window.stdout": {
+      "bytes": 22,
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0056-settings-read.json": {
+      "bytes": 434,
+      "sha256": "51107fd6db8fa3385ac2e7788c0f16cb95150580e8afdbdf8790ba1793753a56"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0056-settings-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0056-settings-read.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0057-package-read.json": {
+      "bytes": 426,
+      "sha256": "6411fd76ffff7eeb0c446e3ceece88a78715d66765f984642c11ff090e3c5e86"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0057-package-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0057-package-read.stdout": {
+      "bytes": 44,
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0058-window-read.json": {
+      "bytes": 393,
+      "sha256": "d98498dffafeb1f925ecb5fa4a60765eb9d87387badf78ce3c26a7424828d228"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0058-window-read.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0058-window-read.stdout": {
+      "bytes": 25,
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0059-window-state.json": {
+      "bytes": 412,
+      "sha256": "dd9a1968be0e4d0aa936511b530ac116b9a7e3d1db6b5fbc7968d32f4fc72e77"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0059-window-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0059-window-state.stdout": {
+      "bytes": 70687,
+      "sha256": "53f6e896ff72c37c5c7b68845f702cd626e568d19e1a90f956fb1309be3d9c5c"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0060-input-state.json": {
+      "bytes": 399,
+      "sha256": "fff09b95d1755c56f26670be407e21ab2b3b4ebf61cbca0990bc2d0d2da2b1a0"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0060-input-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0060-input-state.stdout": {
+      "bytes": 88196,
+      "sha256": "a22ff05ce9d0e0684b246bbdc247c4dcb55181370406d6d00103c9500b104a90"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0061-events-anr.json": {
+      "bytes": 469,
+      "sha256": "c332e95d64e1d1766b9d421c24b8ba5d3f390ddecd60f77d2c2dbcd514154408"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0061-events-anr.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0061-events-anr.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0062-pid-after.json": {
+      "bytes": 401,
+      "sha256": "b0a2bbb15e572310195eb0c6c243ae92ef9029dec292dc18b18025e4d308863c"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0062-pid-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0062-pid-after.stdout": {
+      "bytes": 4,
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0063-count-after.json": {
+      "bytes": 423,
+      "sha256": "2780f23c074ebb4df45292673fa6602b610d65fcd16c2d8f2aacd278210e0c39"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0063-count-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/commands/0063-count-after.stdout": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/framework-readiness.json": {
+      "bytes": 45328,
+      "sha256": "6060d82cba453968b4d7aa06c9af6638f4f6c24dd6293f03dc7d37b3b46196f9"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/logcat-all.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/logcat-all.stdout": {
+      "bytes": 4899501,
+      "sha256": "611685048cd7f4caa6d8168874fa0018c4852aeebbbf1abfb6d528640d601dc2"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/monitor-commands.json": {
+      "bytes": 965,
+      "sha256": "fc4cc1f029e7604174dddcef0548ed986ce22835658a5045c02ba3acafd4550b"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/monitor-finished.json": {
+      "bytes": 1074,
+      "sha256": "be9d7574f67d4cb37a6755ca7f923b468653cb05b9a07cda240b9258bc7f46ed"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/monitor-process.json": {
+      "bytes": 509,
+      "sha256": "f28165dfb875a5790adb77d831eabf2c8309a2dceb92506b02c6850e51121cca"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/monitor-stop.json": {
+      "bytes": 43132,
+      "sha256": "22eb4083e85b462056181340a1cad4c2f0bbf7cfa235576d435d0dbf710c6ab8"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/monitor.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/monitor.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/wait-for-device.stderr": {
+      "bytes": 77,
+      "sha256": "d84aaa3222b49c6dfc6c07666347890c6ad2ff255b911fa83525c5814e54963c"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/wait-for-device.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/probe-source-sha.txt": {
+      "bytes": 41,
+      "sha256": "a29ace4ef9139b960a357f3cf029ffb5ae37a875df353b6dc85b45ed05bc1d35"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/renderer-comparison-binding.json": {
+      "bytes": 2364,
+      "sha256": "cc644c503f97bf2f53b35f580c24efe908a713fd6173e2eaac01fd80f9c3bc72"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0001-properties.json": {
+      "bytes": 384,
+      "sha256": "15711c6c933e6aad3b577a2682ae1ba37badd3d3bd2143728a54d623f33178a7"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0001-properties.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0001-properties.stdout": {
+      "bytes": 44794,
+      "sha256": "bc2ff41e67c3fcbcace9c1c550e96874a946829c7d1bbce9148e4a7f245a1fdc"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0002-system-server-pid.json": {
+      "bytes": 417,
+      "sha256": "28988e15a0d2c048efe47969a31bdec474f7d2dc3e6f357769305fd30918bec4"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0002-system-server-pid.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0002-system-server-pid.stdout": {
+      "bytes": 4,
+      "sha256": "f23d6f1eefc536ecaefac8405466631513676cf8c77f1aa4d785ab875a879707"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0003-input-state.json": {
+      "bytes": 399,
+      "sha256": "639f2497218b9c036bf3f58b8580948e6f46c70ec007d20270916231f5d4ea18"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0003-input-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0003-input-state.stdout": {
+      "bytes": 92128,
+      "sha256": "0b450e19a93e15830c7529a1a1b773f248f3b8d8ea2bcdfe3a9b67ac5bb30461"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0004-window-state.json": {
+      "bytes": 412,
+      "sha256": "0a43858de6cc176590895619fe14d880f342c72d6aaec636c1f3d5aa5fbf49bd"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0004-window-state.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0004-window-state.stdout": {
+      "bytes": 81343,
+      "sha256": "3d2c2f1c1b67539a3b8a24661f98a35b6c50f4bd2cb88713e83eacb9f66cf670"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0005-events-anr.json": {
+      "bytes": 469,
+      "sha256": "8e301e09545faa1b20e57512f32376e1208ef8616cd06bd9c104c1d072399a6d"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0005-events-anr.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/commands/0005-events-anr.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/runtime-anr-verification.json": {
+      "bytes": 4511,
+      "sha256": "f0ef951e04a448fc36366f06f43010054d94465a3ffcbe617074ae67b9f86f01"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/runtime-end.json": {
+      "bytes": 5206,
+      "sha256": "572947cdfe8a967d2c78cf093f5844d48adad3f7986b3e5f5b26b706a4d6f424"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/runtime-anr/runtime-start.json": {
+      "bytes": 1010,
+      "sha256": "65a06aff7ba500083fea52153275ea25cd0c98170be2c588759b1e34a733ed10"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/surfaceflinger-start.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/surfaceflinger-start.stdout": {
+      "bytes": 53344,
+      "sha256": "3d121d9d604d2c6f276636ac4b5ebf3a5477ab0dff7f169d2bceb7fa2f14db61"
+    },
+    "artifacts/api37-swiftshader-14096976074/selected-originals/tour-result.json": {
+      "bytes": 6252,
+      "sha256": "40e3d52ec17be97d01307d674ecfb3e3e873d295546ad1596be0d792d2ca6086"
+    },
+    "artifacts/api37-swiftshader-14096976074/verification.json": {
+      "bytes": 134675,
+      "sha256": "82468a4c5310de7283b15637dde342237ebf1eff0fe26dd5b98b887a46a10ab0"
+    },
+    "auxiliary-once/20261114T032607Z/43551424012-jobs.json": {
+      "bytes": 4151,
+      "sha256": "d6e31178f5e229f6c9adde8009f3d903205936d8bbcccf6cc5173d33901ac409"
+    },
+    "auxiliary-once/20261114T032607Z/43551424012-run.json": {
+      "bytes": 12931,
+      "sha256": "c8b2415db82be8ec1aa318c4bc551aca5753aa878ab2f9efe0d10fa4ac21c798"
+    },
+    "auxiliary-once/20261114T032607Z/43551424022-jobs.json": {
+      "bytes": 1838,
+      "sha256": "242b75ae5a0cb4aa9ca6924fbdb8102b1eae112325af7f6a2b48d9623ef477c7"
+    },
+    "auxiliary-once/20261114T032607Z/43551424022-run.json": {
+      "bytes": 12956,
+      "sha256": "d342a116c5b5a98413d6cad9790af9aae9b7d353f46f3dfd8b962a6eaa749d8c"
+    },
+    "auxiliary-once/20261114T032607Z/43551424024-jobs.json": {
+      "bytes": 2029,
+      "sha256": "e34c5639fe250b01c08722f24d214188eb05069988dba693d7e08faa81185c57"
+    },
+    "auxiliary-once/20261114T032607Z/43551424024-run.json": {
+      "bytes": 12963,
+      "sha256": "b0f777708c7b002eea7829339aac5aeefebb5558cc3f51b5c5da5b939a5e82fe"
+    },
+    "auxiliary-once/20261114T032607Z/43551424040-jobs.json": {
+      "bytes": 18992,
+      "sha256": "e7ca1eca3de7e40fa51705c639de3e8778e979746edd138707f259068aae6ead"
+    },
+    "auxiliary-once/20261114T032607Z/43551424040-run.json": {
+      "bytes": 12966,
+      "sha256": "e4a1f0529f3e8ea6711d187d44b519a91fe2ff25bbaf00eaaac1e622d5d2d2a5"
+    },
+    "auxiliary-once/20261114T032607Z/43551424043-jobs.json": {
+      "bytes": 2450,
+      "sha256": "43a6d20f1fc765e64d13bde75ddcc7fd8b552c041fec71b8476023575c0cbd10"
+    },
+    "auxiliary-once/20261114T032607Z/43551424043-run.json": {
+      "bytes": 12981,
+      "sha256": "b2852d14480925fe55d87f1c25ec1beb1b3b5461e3de433c38adb247ad120545"
+    },
+    "auxiliary-once/20261114T032607Z/43551424053-jobs.json": {
+      "bytes": 2709,
+      "sha256": "78deb9b1b9546f5aee220b41f165d09a7870edb3aaae43465ce38b9c4bdd3945"
+    },
+    "auxiliary-once/20261114T032607Z/43551424053-run.json": {
+      "bytes": 12976,
+      "sha256": "db707169742c6707b008a3988a3d31cb161e6a9df5c0ab62b6bcdc0d82ac6e98"
+    },
+    "auxiliary-once/jobs/unified-early-routing-132314516082.log": {
+      "bytes": 20693,
+      "sha256": "ff579673f89468927905816d69e4062a82c3afd94504320a2a958135627dfff5"
+    },
+    "auxiliary-once/jobs/unified-early-routing-132314516082.log.gz": {
+      "bytes": 5744,
+      "sha256": "5a7b0a7b76a02100291c05e4bd296e30ba3c5d406b1ef2dc639355ff873ac180"
+    },
+    "auxiliary-once/jobs/unified-early-routing-132314516082.provenance.json": {
+      "bytes": 503,
+      "sha256": "11a5e27f12765962b25b676c83aa27e9f2500bbbf29cac043f4dc97e33628706"
+    },
+    "collector/poll.js": {
+      "bytes": 3967,
+      "sha256": "8c43b0622baeb85941ceeda4dd6938f18326117851762e1d962b22ed2671884c"
+    },
+    "initial-binding.json": {
+      "bytes": 3680,
+      "sha256": "a6a0db1211fc41b1ad136d9d7f4247096bd04fe01f5ac68fa58d42eef5f499a7"
+    },
+    "jobs/api37-host-132314688505.log": {
+      "bytes": 1583793,
+      "sha256": "4d2b35829958ec31a092ec52e4965a38655947b4d0b6375125e23a79fbab5dfe"
+    },
+    "jobs/api37-host-132314688505.log.gz": {
+      "bytes": 957680,
+      "sha256": "ca0f0e11dfe9a97099d0bf2c446a63c8f38ed84e79e7a2eced242019423e658b"
+    },
+    "jobs/api37-swiftshader-132314688434.log": {
+      "bytes": 1112812,
+      "sha256": "d290df4c39b38a945a3b44934ce59f6fd068a4b294ea1b540b944eafba8a9671"
+    },
+    "jobs/api37-swiftshader-132314688434.log.gz": {
+      "bytes": 723754,
+      "sha256": "dd0ac1577127e4abfbc67d7ba5ffd819485a3ef31b494a7bad274708951ab676"
+    },
+    "jobs/diagnostic-probe-contracts-132314515808.log": {
+      "bytes": 61218,
+      "sha256": "1e8c793775ad796d1798d2fc6157f2da95e07208a15baac7d6fae6577fdfb5f8"
+    },
+    "jobs/diagnostic-probe-contracts-132314515808.log.gz": {
+      "bytes": 12177,
+      "sha256": "c7d5323a1fe75bb856f27a019a27fddd1849b20543f75c750d7928a9cf26c5ad"
+    },
+    "jobs/diagnostic-probe-contracts-132314515808.provenance.json": {
+      "bytes": 484,
+      "sha256": "c046ef1899809580fa6c94f08fb69d5faae584388dd97ac02ec85541e18ff456"
+    },
+    "local-source-equivalence.json": {
+      "bytes": 2631,
+      "sha256": "58437f4f9a6eecb91c5b17073b0f1f9a7465b9511421ac24ea84136e72789be4"
+    },
+    "snapshots/20261114T032519Z/artifacts.json": {
+      "bytes": 769,
+      "sha256": "978ff16f24ce58df55e26e3b72af0baeb2948f06b79cd9c496e722a1b286ba95"
+    },
+    "snapshots/20261114T032519Z/jobs.json": {
+      "bytes": 19679,
+      "sha256": "131085f56d2d712adc307883c54c0ae75a62131422ce915fa6f001664a333363"
+    },
+    "snapshots/20261114T032519Z/run.json": {
+      "bytes": 12963,
+      "sha256": "5508447d4be98f18ad30e2a68f096d0c52f04770e1ee94ee7456dbf05c460e5f"
+    },
+    "snapshots/20261114T032723Z/artifacts.json": {
+      "bytes": 769,
+      "sha256": "978ff16f24ce58df55e26e3b72af0baeb2948f06b79cd9c496e722a1b286ba95"
+    },
+    "snapshots/20261114T032723Z/jobs.json": {
+      "bytes": 20840,
+      "sha256": "a0ae1f45e3229f13b13f51af792e22312829ea611319ee94e6e62e79cc539508"
+    },
+    "snapshots/20261114T032723Z/run.json": {
+      "bytes": 12963,
+      "sha256": "5508447d4be98f18ad30e2a68f096d0c52f04770e1ee94ee7456dbf05c460e5f"
+    },
+    "snapshots/20261114T032723Z/source-check.json": {
+      "bytes": 368,
+      "sha256": "f540d659d65e6864d1c18c9d7d9b314dbea87817b2ae36da03fc0b31fe974fb6"
+    },
+    "snapshots/20261114T032723Z/transport.json": {
+      "bytes": 1006,
+      "sha256": "0f7e5330262c55f3f3b8c99dd72c5a7908bb26dd00c9d6023eb42bc6ccb20c27"
+    },
+    "snapshots/20261114T032917Z/artifacts.json": {
+      "bytes": 769,
+      "sha256": "978ff16f24ce58df55e26e3b72af0baeb2948f06b79cd9c496e722a1b286ba95"
+    },
+    "snapshots/20261114T032917Z/jobs.json": {
+      "bytes": 21184,
+      "sha256": "4065e3b2a4e564c8c2634e2e1ec009fc4f2c9d05366b2e5efba9978c2d03a335"
+    },
+    "snapshots/20261114T032917Z/run.json": {
+      "bytes": 12963,
+      "sha256": "5508447d4be98f18ad30e2a68f096d0c52f04770e1ee94ee7456dbf05c460e5f"
+    },
+    "snapshots/20261114T032917Z/source-check.json": {
+      "bytes": 368,
+      "sha256": "c2f6a5d44d68254d689a7f4ba541f4ada69bab44541249d84dc022d2615f2d0e"
+    },
+    "snapshots/20261114T032917Z/transport.json": {
+      "bytes": 1006,
+      "sha256": "6fb83e43aacc8bf1194339ccc9aa620091e39621d7e3f7ec394a5b0b1347ba55"
+    },
+    "snapshots/20261114T033051Z/artifacts.json": {
+      "bytes": 769,
+      "sha256": "978ff16f24ce58df55e26e3b72af0baeb2948f06b79cd9c496e722a1b286ba95"
+    },
+    "snapshots/20261114T033051Z/jobs.json": {
+      "bytes": 21184,
+      "sha256": "4065e3b2a4e564c8c2634e2e1ec009fc4f2c9d05366b2e5efba9978c2d03a335"
+    },
+    "snapshots/20261114T033051Z/run.json": {
+      "bytes": 12963,
+      "sha256": "5508447d4be98f18ad30e2a68f096d0c52f04770e1ee94ee7456dbf05c460e5f"
+    },
+    "snapshots/20261114T033051Z/source-check.json": {
+      "bytes": 368,
+      "sha256": "ffe814b9004b7131d1cc9ba3bee7dd3e17a1b3706412c7dac0eefaf5b9e1be41"
+    },
+    "snapshots/20261114T033051Z/transport.json": {
+      "bytes": 1006,
+      "sha256": "776ba9b973e300c74cdc77973ab6557539ef06540d5ef9d7f073f040e199503e"
+    },
+    "snapshots/20261114T033225Z/artifacts.json": {
+      "bytes": 1513,
+      "sha256": "294dfd4d5f8ec7c262e64b29df2f07660a52711d52165bfc60a0aa0250b904b5"
+    },
+    "snapshots/20261114T033225Z/jobs.json": {
+      "bytes": 21638,
+      "sha256": "b8836aed034b9365d08e819293595777a9d1f77055eec0d2a7253fb51bd87300"
+    },
+    "snapshots/20261114T033225Z/run.json": {
+      "bytes": 12963,
+      "sha256": "5508447d4be98f18ad30e2a68f096d0c52f04770e1ee94ee7456dbf05c460e5f"
+    },
+    "snapshots/20261114T033225Z/source-check.json": {
+      "bytes": 368,
+      "sha256": "6c8ed9c1d712d1d16e48baf833df5b70d30cfe2e47793e15ebf7254213ad1937"
+    },
+    "snapshots/20261114T033225Z/transport.json": {
+      "bytes": 1006,
+      "sha256": "213e9be9fdc184782c33b4e53125b7660abeb2c54d4f89677b305752cc22bb7a"
+    },
+    "snapshots/20261114T033901Z/artifacts.json": {
+      "bytes": 1513,
+      "sha256": "294dfd4d5f8ec7c262e64b29df2f07660a52711d52165bfc60a0aa0250b904b5"
+    },
+    "snapshots/20261114T033901Z/jobs.json": {
+      "bytes": 21638,
+      "sha256": "b8836aed034b9365d08e819293595777a9d1f77055eec0d2a7253fb51bd87300"
+    },
+    "snapshots/20261114T033901Z/run.json": {
+      "bytes": 12963,
+      "sha256": "5508447d4be98f18ad30e2a68f096d0c52f04770e1ee94ee7456dbf05c460e5f"
+    },
+    "snapshots/20261114T033901Z/source-check.json": {
+      "bytes": 368,
+      "sha256": "7bbcf45c003344b4a9184ac427c7a2f4bcb4129ec3eb7d111e5dd9ba44e2c715"
+    },
+    "snapshots/20261114T033901Z/transport.json": {
+      "bytes": 1006,
+      "sha256": "10ce4e8493b0b28122bffee28c414aa37f3551a20b279608f58a4500439118e9"
+    },
+    "snapshots/20261114T034313Z/artifacts.json": {
+      "bytes": 2251,
+      "sha256": "85a7439b3743f158c7a82ab85a1791b5c8ef64e8bf1e93f5cf909186174a2f70"
+    },
+    "snapshots/20261114T034313Z/jobs.json": {
+      "bytes": 22092,
+      "sha256": "5b0959157eead92e38aa0642f5514b4b48d33292ade2e5e6ae863aa8615f0600"
+    },
+    "snapshots/20261114T034313Z/run.json": {
+      "bytes": 12963,
+      "sha256": "5508447d4be98f18ad30e2a68f096d0c52f04770e1ee94ee7456dbf05c460e5f"
+    },
+    "snapshots/20261114T034313Z/source-check.json": {
+      "bytes": 368,
+      "sha256": "b7d1a99e14c1a3580f89f673077e718712aeb71d75b0329aab01ee7d088fe893"
+    },
+    "snapshots/20261114T034313Z/transport.json": {
+      "bytes": 1006,
+      "sha256": "42231ad17593b696918511c7ca58be35132c22d21218453d8354205bb5731501"
+    },
+    "snapshots/20261114T034456Z/artifacts.json": {
+      "bytes": 2989,
+      "sha256": "59aa3ee24b15f6ab895c7082af1cf699f9ffe2fe603eefc9558aa5d246a0d3fd"
+    },
+    "snapshots/20261114T034456Z/jobs.json": {
+      "bytes": 22546,
+      "sha256": "e68e3c6e63e5a9b61dd5fc58ebaf0e070a18af82cb1a852d4f1eff7fe40f55a6"
+    },
+    "snapshots/20261114T034456Z/run.json": {
+      "bytes": 12963,
+      "sha256": "5508447d4be98f18ad30e2a68f096d0c52f04770e1ee94ee7456dbf05c460e5f"
+    },
+    "snapshots/20261114T034456Z/source-check.json": {
+      "bytes": 368,
+      "sha256": "bb0bd041bb62aad3db5fce96b5550d9e2ea6af7e0822e59bcb58c29f113735dd"
+    },
+    "snapshots/20261114T034456Z/transport.json": {
+      "bytes": 1006,
+      "sha256": "25e59fa31fc61e68f2f08298a591f4cac69cc1d5c021fbc1a07f6450f12c4d89"
+    },
+    "snapshots/20261114T034815Z/artifacts.json": {
+      "bytes": 2989,
+      "sha256": "59aa3ee24b15f6ab895c7082af1cf699f9ffe2fe603eefc9558aa5d246a0d3fd"
+    },
+    "snapshots/20261114T034815Z/jobs.json": {
+      "bytes": 22546,
+      "sha256": "e68e3c6e63e5a9b61dd5fc58ebaf0e070a18af82cb1a852d4f1eff7fe40f55a6"
+    },
+    "snapshots/20261114T034815Z/run.json": {
+      "bytes": 12963,
+      "sha256": "5508447d4be98f18ad30e2a68f096d0c52f04770e1ee94ee7456dbf05c460e5f"
+    },
+    "snapshots/20261114T034815Z/source-check.json": {
+      "bytes": 368,
+      "sha256": "fd3643ce1440d11da058c91af9621a91807337c790c0a26e6654d2dd295193eb"
+    },
+    "snapshots/20261114T034815Z/transport.json": {
+      "bytes": 1006,
+      "sha256": "d5a0464ac8f86e3eb624b6d7f974b471bf00d2d9081da0ae829935fa1d64df80"
+    },
+    "snapshots/20261114T035024Z/artifacts.json": {
+      "bytes": 3722,
+      "sha256": "593325150a8dad007e57504af099891811f4af419dd9ac3624cd31af0fe4c15f"
+    },
+    "snapshots/20261114T035024Z/jobs.json": {
+      "bytes": 23000,
+      "sha256": "9824239173587464e03dc681c2414f06b2de7774dd1d06c020138c94230b5f63"
+    },
+    "snapshots/20261114T035024Z/run.json": {
+      "bytes": 12966,
+      "sha256": "dd1dcf73c4c2d1dc94b7cb282db088a1d4c76b4f2f153595cf1601f2247af8d0"
+    },
+    "snapshots/20261114T035024Z/source-check.json": {
+      "bytes": 368,
+      "sha256": "d69f41bb5d8391fbada5cb7aee02681c398d7367291f18580b6314ee39ac5000"
+    },
+    "snapshots/20261114T035024Z/transport.json": {
+      "bytes": 1006,
+      "sha256": "8784ab189992c29882cf03c06b5f5556ec2473b990cdb80abac699c1bffded3c"
+    },
+    "terminal-handoff.json": {
+      "bytes": 4883,
+      "sha256": "ba4f12fd9a68d70e99608daef1fb0c9e4c3be2744be73541638e4354a38fd974"
+    }
+  },
+  "count": 606,
+  "bytes": 19699952
+}

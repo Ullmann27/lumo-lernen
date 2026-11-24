@@ -182,7 +182,7 @@ void main() {
           if (step != lesson.steps.last)
             await _tap(tester, find.byKey(const ValueKey('guided-continue')));
         }
-        expect(find.textContaining('2 neue Aufgaben selbst gelöst.'),
+        expect(find.textContaining('1 neue Aufgabe selbst gelöst.'),
             findsOneWidget);
         final id =
             '${lesson.subject.toLowerCase()}::${lesson.schoolUnit.toLowerCase()}';
@@ -190,6 +190,10 @@ void main() {
         expect(record.correct, 2);
         expect(record.wrong, 1);
         expect(record.hintCount, 1);
+        final evidence = app.learningJourney()[id]!;
+        expect(evidence.assistedCorrect, 1);
+        expect(evidence.independentCorrect, 1);
+        expect(evidence.transferCorrect, 1);
         expect(app.learningSkills()['mathematik::plus bis 10']!.toJson(),
             beforeMath);
         expect(app.learningDailyDone(), 3);

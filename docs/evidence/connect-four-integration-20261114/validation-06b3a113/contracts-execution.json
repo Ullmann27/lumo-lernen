@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_connect_four_runtime_gate",
+    "test_connect_four_native_contract",
+    "test_game_return_contract",
+    "test_embedded_android"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration",
+  "started_at": "2026-11-14T05:31:24.856542+00:00",
+  "completed_at": "2026-11-14T05:31:41.672980+00:00",
+  "seconds": 16.816442552008084,
+  "returncode": 0,
+  "required_all_tests": true,
+  "log": {
+    "path": "contracts.log",
+    "bytes": 8999,
+    "sha256": "b782fb9ba931e2788a0d549c7f8d6b246f483482b852299e2adfcb95a1265f9a"
+  }
+}

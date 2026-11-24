@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "status": "FAIL",
+  "started_at": "2026-11-14T06:35:40.145814+00:00",
+  "token": "be999d89737ce1ef9af710964df4a60c",
+  "connections": 1,
+  "stop_requested": false,
+  "errors": [
+    "TimeoutError: Actual console launch acknowledgement was not received"
+  ],
+  "socket": {
+    "path": "/home/runner/work/_temp/lumo-serial-43566692796-1/console.sock",
+    "device": 66305,
+    "inode": 4775406,
+    "mode": 49645,
+    "uid": 1001,
+    "parent_device": 66305,
+    "parent_inode": 4775307,
+    "parent_mode": 16832
+  },
+  "peer": {
+    "pid": 4242,
+    "start_ticks": "19994",
+    "argv": [
+      "/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/qemu-system-x86_64-headless",
+      "-port",
+      "5554",
+      "-avd",
+      "test",
+      "-no-window",
+      "-accel",
+      "on",
+      "-gpu",
+      "swangle",
+      "-no-snapshot",
+      "-noaudio",
+      "-no-boot-anim",
+      "-camera-back",
+      "none",
+      "-camera-front",
+      "none",
+      "-shell-serial",
+      "unix:/home/runner/work/_temp/lumo-serial-43566692796-1/console.sock,server,nowait"
+    ],
+    "executable": "/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/qemu-system-x86_64-headless",
+    "uid": 1001,
+    "gid": 1001
+  },
+  "sent_at": "2026-11-14T06:35:40.146863+00:00",
+  "finished_at": "2026-11-14T06:36:00.166289+00:00",
+  "source": {
+    "bytes": 20839,
+    "sha256": "d0344469bdb68cc2927ffac7f715dd52c73c6730fd7e56fd946f486f2d931cca"
+  }
+}

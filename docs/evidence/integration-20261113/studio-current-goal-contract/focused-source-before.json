@@ -1,0 +1,52 @@
+{
+  "scripts/verify_studio_delivery.py": {
+    "bytes": 41593,
+    "sha256": "e41de3892c8a3756b90eb208272b686a03ac3e9253664975580d1de9d7c6d2b4",
+    "git_blob": "b4a65471f71eabd723cb767ef722491ca1228025"
+  },
+  "scripts/tests/test_nextgen_2019_review.py": {
+    "bytes": 25202,
+    "sha256": "c7c8881a32142bf50f0e63841e52ffe446fadaf8d64e49f6cce195756cee376f",
+    "git_blob": "8526eb3931bbfb8e4b235d35f3bcf7e5ab30183b"
+  },
+  "docs/integration/2026-11-13/nextgen_2019_native_review_handoff.md": {
+    "bytes": 9821,
+    "sha256": "6cf5b9b07544d8ec433c71b89b3b01b79dde095f1b9bf8de4120a2dff593ed06",
+    "git_blob": "db6e5009ccfc7bf7fe3a9e551dbcdf3f09806c84"
+  },
+  "config/godot-source.json": {
+    "bytes": 145,
+    "sha256": "9eea3f7d7f1fdd9a555e98d2227f79cf1a3dd7a2b89ee345a7fd82c4d0e853f2",
+    "git_blob": "554db9f8d7837c8c60b6dd09deb99aa3ab5ba071"
+  },
+  "scripts/verify_legacy_release_pin.py": {
+    "bytes": 10418,
+    "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6",
+    "git_blob": "cb5b14104e261553790178eceb5b0ce1ffe22bc7"
+  },
+  "scripts/tests/test_candidate_2011_pin.py": {
+    "bytes": 16678,
+    "sha256": "e174edb0331ae53e9a57cb2e3ea9d2a8cba2662af1b132c97bbd6bf9242598ac",
+    "git_blob": "2ddd27fe6239129aee2551f3ad7a941bfcf87b5a"
+  },
+  "scripts/record_studio_visual_review.py": {
+    "bytes": 6840,
+    "sha256": "ebacaa1f58e7b3735bc46bb322a6767347ecae5a36f8fc0ed1ce093cd51acbbd",
+    "git_blob": "f0a46078df315d7ffacf4bd590d18ba6db802298"
+  },
+  "pubspec.yaml": {
+    "bytes": 2675,
+    "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+    "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775"
+  },
+  "config/nextgen-2018-visual-review.json": {
+    "bytes": 12964,
+    "sha256": "70a93dc1e8ac9a33652946fd5314ac5d14d8220fb088bba574e14f74e50163c3",
+    "git_blob": "1064a8070e78e2911d76fee69f493bf493bdf6c4"
+  },
+  "config/kart-graphics-2019-visual-review.json": {
+    "bytes": 8903,
+    "sha256": "effb7249f0844550e41c51b555f9fcf0f803ee990aea75cff03dfd2a5c9b703a",
+    "git_blob": "2cf7448de40d6ff5b6b21db3db463df361599bed"
+  }
+}

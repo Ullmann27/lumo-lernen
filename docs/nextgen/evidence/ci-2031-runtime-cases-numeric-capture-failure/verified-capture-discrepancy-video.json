@@ -1,0 +1,32 @@
+{
+  "artifactId": 14204798832,
+  "workflowRun": 43822740773,
+  "archiveSha256": "d28a0b855eb8ad8cc5127cac5fa0b453f79999dd98a798ba449bdb72ad6131df",
+  "byteExactOriginals": [
+    {
+      "path": "android/runtime-cases/0113-numeric-build-before-graded-recall-ffprobe.json",
+      "bytes": 4358,
+      "sha256": "b25c5cb2bed81a7ff08d66bfa5da6c53e1d42aed8cb00b8fe4e4f1cd333d25a8"
+    },
+    {
+      "path": "android/runtime-cases/0113-numeric-build-before-graded-recall-screenrecord.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "android/runtime-cases/0113-numeric-build-before-graded-recall-video-transfer.json",
+      "bytes": 2069,
+      "sha256": "196e3c72252c7937cd239cb9418f2059cc9fe5c2ecb73697bdc43ec8067f4fce"
+    },
+    {
+      "path": "android/runtime-cases/0113-numeric-build-before-graded-recall-video.json",
+      "bytes": 451,
+      "sha256": "c111f36209adf0021d89d2bcec4f6172f6c9abcd1426c97c9d3e1b8e2e23591e"
+    },
+    {
+      "path": "android/runtime-cases/0113-numeric-build-before-graded-recall.mp4",
+      "bytes": 1351831,
+      "sha256": "70d7aedde9280c924dba4e06934a6ab385ac95366d81e1c7586d8c841a8ef78b"
+    }
+  ]
+}

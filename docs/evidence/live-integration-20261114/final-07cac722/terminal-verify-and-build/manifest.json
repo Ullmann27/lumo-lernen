@@ -1,0 +1,272 @@
+{
+  "schema": "lumo-original-terminal-ci-evidence/v1",
+  "recorded_at": "2026-11-14 12:14:37 UTC",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_head": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+  "host_tree": "17b4d10565001b61fe1fa5012004cce4ec7642d9",
+  "native_source": "71a4c1e2304b52005950b12490d070c286c45438",
+  "run_id": 43586101225,
+  "run_attempt": 1,
+  "run_conclusion": "cancelled",
+  "job_id": 132421769277,
+  "job_conclusion": "cancelled",
+  "started_at": "2026-11-14T10:40:50Z",
+  "completed_at": "2026-11-14T12:11:26Z",
+  "original_log": {
+    "path": "docs/evidence/live-integration-20261114/final-07cac722/terminal-verify-and-build/job-132421769277-original.log",
+    "git_blob": "c246b7ddce9d1b66db659a93b0af8abec539ee0d",
+    "bytes": 1370502,
+    "sha256": "fc687b374ca27e28632b11786ff26fb4eed916e4e9b0fe70d3bb72a064acbef1",
+    "single_github_job_log_retrieval": true,
+    "remote_byte_equal_readback": true
+  },
+  "full_flutter_summary": {
+    "original_line": 808,
+    "original_text": "2026-11-14T10:53:06.9680009Z {\"status\": \"PASS\", \"passed\": 2625, \"failed\": [], \"skipped\": [], \"capture_error_files\": [], \"flutter_exit_code\": 0, \"runner_completed_successfully\": true, \"runner_errors\": [], \"scope\": [\"complete Flutter suite; capture outputs recorded below\"], \"capture_png_counts\": {\"LUMO_VILLAGE_CAPTURES\": {\"directory\": \"village\", \"pngs\": 6}, \"LUMO_1989_CARD_CAPTURES\": {\"directory\": \"home-premium\", \"pngs\": 8}, \"LUMO_NEXTGEN_CAPTURES\": {\"directory\": \"home-nextgen\", \"pngs\": 6}, \"LUMO_TUTORING_CAPTURE_DIR\": {\"directory\": \"tutoring\", \"pngs\": 6}, \"LUMO_RIG_STRESS\": {\"directory\": \"rig-stress\", \"pngs\": 27}, \"LUMO_CARDS_OPPONENT_CAPTURE\": {\"directory\": \"cards-opponents\", \"pngs\": 4}, \"LUMO_STREAM_E_CAPTURE\": {\"directory\": \"cards-memory\", \"pngs\": 8}, \"LUMO_NAVIGATION_CAPTURES\": {\"directory\": \"navigation\", \"pngs\": 26}, \"LUMO_GUIDED_CAPTURE_DIR\": {\"directory\": \"guided-learning\", \"pngs\": 170}, \"LUMO_VISUAL_CAPTURE_DIR\": {\"directory\": \"reasoning\", \"pngs\": 15}, \"LUMO_TOUR_DIR\": {\"directory\": \"tour\", \"pngs\": 62}, \"LUMO_FLUTTER_GAMES_CAPTURE\": {\"directory\": \"games\", \"pngs\": 16}, \"LUMO_LEARNING_CAPTURE_DIR\": {\"directory\": \"learning-adventure\", \"pngs\": 80}, \"LUMO_COMPANION_CAPTURE_DIR\": {\"directory\": \"companion\", \"pngs\": 6}, \"LUMO_SPATIAL_CAPTURES\": {\"directory\": \"reading\", \"pngs\": 12}, \"LUMO_CAPTURE_DIR\": {\"directory\": \"modernization\", \"pngs\": 42}, \"LUMO_CARD_FACE_EXPORT_DIR\": {\"directory\": \"card-face-exports\", \"pngs\": 56}, \"LUMO_NEXTGEN_READING_CAPTURES\": {\"directory\": \"nextgen-reading\", \"pngs\": 6}, \"LUMO_READING_CAPTURES\": {\"directory\": \"reading-passages\", \"pngs\": 3}, \"LUMO_ASSISTED_LEARNING_CAPTURES\": {\"directory\": \"assisted-learning\", \"pngs\": 2}, \"LUMO_NATIVE_PROFILE_CAPTURE_DIR\": {\"directory\": \"native-profiles\", \"pngs\": 4}}, \"capture_file_outputs\": {\"LUMO_CARDS_CUP_CAPTURE\": {\"path\": \"cards-cup/trophy.png\", \"created\": true}}, \"rendered_png_count\": 566}",
+    "parsed": {
+      "status": "PASS",
+      "passed": 2625,
+      "failed": [],
+      "skipped": [],
+      "capture_error_files": [],
+      "flutter_exit_code": 0,
+      "runner_completed_successfully": true,
+      "runner_errors": [],
+      "scope": [
+        "complete Flutter suite; capture outputs recorded below"
+      ],
+      "capture_png_counts": {
+        "LUMO_VILLAGE_CAPTURES": {
+          "directory": "village",
+          "pngs": 6
+        },
+        "LUMO_1989_CARD_CAPTURES": {
+          "directory": "home-premium",
+          "pngs": 8
+        },
+        "LUMO_NEXTGEN_CAPTURES": {
+          "directory": "home-nextgen",
+          "pngs": 6
+        },
+        "LUMO_TUTORING_CAPTURE_DIR": {
+          "directory": "tutoring",
+          "pngs": 6
+        },
+        "LUMO_RIG_STRESS": {
+          "directory": "rig-stress",
+          "pngs": 27
+        },
+        "LUMO_CARDS_OPPONENT_CAPTURE": {
+          "directory": "cards-opponents",
+          "pngs": 4
+        },
+        "LUMO_STREAM_E_CAPTURE": {
+          "directory": "cards-memory",
+          "pngs": 8
+        },
+        "LUMO_NAVIGATION_CAPTURES": {
+          "directory": "navigation",
+          "pngs": 26
+        },
+        "LUMO_GUIDED_CAPTURE_DIR": {
+          "directory": "guided-learning",
+          "pngs": 170
+        },
+        "LUMO_VISUAL_CAPTURE_DIR": {
+          "directory": "reasoning",
+          "pngs": 15
+        },
+        "LUMO_TOUR_DIR": {
+          "directory": "tour",
+          "pngs": 62
+        },
+        "LUMO_FLUTTER_GAMES_CAPTURE": {
+          "directory": "games",
+          "pngs": 16
+        },
+        "LUMO_LEARNING_CAPTURE_DIR": {
+          "directory": "learning-adventure",
+          "pngs": 80
+        },
+        "LUMO_COMPANION_CAPTURE_DIR": {
+          "directory": "companion",
+          "pngs": 6
+        },
+        "LUMO_SPATIAL_CAPTURES": {
+          "directory": "reading",
+          "pngs": 12
+        },
+        "LUMO_CAPTURE_DIR": {
+          "directory": "modernization",
+          "pngs": 42
+        },
+        "LUMO_CARD_FACE_EXPORT_DIR": {
+          "directory": "card-face-exports",
+          "pngs": 56
+        },
+        "LUMO_NEXTGEN_READING_CAPTURES": {
+          "directory": "nextgen-reading",
+          "pngs": 6
+        },
+        "LUMO_READING_CAPTURES": {
+          "directory": "reading-passages",
+          "pngs": 3
+        },
+        "LUMO_ASSISTED_LEARNING_CAPTURES": {
+          "directory": "assisted-learning",
+          "pngs": 2
+        },
+        "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+          "directory": "native-profiles",
+          "pngs": 4
+        }
+      },
+      "capture_file_outputs": {
+        "LUMO_CARDS_CUP_CAPTURE": {
+          "path": "cards-cup/trophy.png",
+          "created": true
+        }
+      },
+      "rendered_png_count": 566
+    }
+  },
+  "completed_native_main_step": {
+    "name": "Require actual gameplay gates on the exact pinned native source",
+    "status": "completed",
+    "conclusion": "success",
+    "number": 31,
+    "started_at": "2026-11-14T11:03:00Z",
+    "completed_at": "2026-11-14T12:01:51Z"
+  },
+  "cancelled_native_connections_step": {
+    "name": "Verify connected dream ambience and garden on exact native source",
+    "status": "completed",
+    "conclusion": "cancelled",
+    "number": 32,
+    "started_at": "2026-11-14T12:01:51Z",
+    "completed_at": "2026-11-14T12:11:03Z"
+  },
+  "native_originals_upload_step": {
+    "name": "Run actions/upload-artifact@v4",
+    "status": "completed",
+    "conclusion": "success",
+    "number": 33,
+    "started_at": "2026-11-14T12:11:03Z",
+    "completed_at": "2026-11-14T12:11:23Z"
+  },
+  "apk_steps": [
+    {
+      "name": "Build unified real Android APK",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 34,
+      "started_at": "2026-11-14T12:11:23Z",
+      "completed_at": "2026-11-14T12:11:23Z"
+    },
+    {
+      "name": "Verify APK archive and collect reproducible source hashes",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 35,
+      "started_at": "2026-11-14T12:11:23Z",
+      "completed_at": "2026-11-14T12:11:23Z"
+    },
+    {
+      "name": "Upload exact candidate (no release or synthetic screenshots)",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 36,
+      "started_at": "2026-11-14T12:11:23Z",
+      "completed_at": "2026-11-14T12:11:23Z"
+    },
+    {
+      "name": "Deliver verified ARM64 APK separately for direct download",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 37,
+      "started_at": "2026-11-14T12:11:23Z",
+      "completed_at": "2026-11-14T12:11:23Z"
+    }
+  ],
+  "downstream_jobs": [
+    {
+      "id": 132443239312,
+      "name": "update-2020-from-2017",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132443239475,
+      "name": "android-c4",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132443239503,
+      "name": "prepare-c4-delivery",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 132443239504,
+      "name": "verify-c4-candidate",
+      "status": "completed",
+      "conclusion": "skipped"
+    }
+  ],
+  "cancellation_evidence": {
+    "original_line": 10804,
+    "original_text": "2026-11-14T12:11:03.5742356Z ##[error]The operation was canceled.",
+    "explicit_provider_timeout_reason_in_retrieved_log": false,
+    "check_metadata_access": "GitHub fetch rejected the public check-runs metadata and annotations endpoint as unsupported. Additional cause review remains separate.",
+    "timing_note": "The cancellation occurred approximately at the configured 90-minute job budget. Timing alone is not recorded as an explicit provider timeout reason."
+  },
+  "native_artifact": {
+    "id": 14113137811,
+    "node_id": "MDg6QXJ0aWZhY3QxNDExMzEzNzgxMQ==",
+    "name": "lumo-candidate-pinned-native-gameplay",
+    "size_in_bytes": 201481571,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14113137811",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14113137811/zip",
+    "expired": false,
+    "digest": "sha256:84e8e465e16bc49c302b500f5b12dd81cf2dc03729f009f623576fc9833f4c05",
+    "created_at": "2026-11-14T12:11:23Z",
+    "updated_at": "2026-11-14T12:11:23Z",
+    "expires_at": "2026-12-14T12:11:05Z",
+    "workflow_run": {
+      "id": 43586101225,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-live-connections-20261114",
+      "head_sha": "07cac7225e2f7b6451665dfda9c38841f51c758b"
+    }
+  },
+  "retrieved_metadata": [
+    {
+      "path": "docs/evidence/live-integration-20261114/final-07cac722/terminal-verify-and-build/run-api.json",
+      "bytes": 13364,
+      "sha256": "f0fba537f17c6d2604409e02ffeb863e003bb6435c875035571da9e71b304d49"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-07cac722/terminal-verify-and-build/jobs-attempt-1-api.json",
+      "bytes": 19298,
+      "sha256": "c59f823875bf529420c8dcfd75db6beb1cbf0e0812dab27d3eb99308b888e409"
+    },
+    {
+      "path": "docs/evidence/live-integration-20261114/final-07cac722/terminal-verify-and-build/artifacts-api.json",
+      "bytes": 6771,
+      "sha256": "9c17f0a15285b5602645aa5a0d09bb510c00213b57094daf4a0e8edf7ff0182e"
+    }
+  ],
+  "current_apk_built": false,
+  "android_village_runtime_accepted": false,
+  "update_accepted": false,
+  "delivery_prepared": false,
+  "published": false,
+  "limitations": [
+    "No APK or Android/update/delivery artifact was produced by this run.",
+    "The Native connection step was cancelled and is not accepted as complete.",
+    "Full Flutter results come from the original runner JSON; no new local PNG/ZIP inspection is claimed.",
+    "Executor remained unavailable; no new local runtime tests were performed."
+  ]
+}

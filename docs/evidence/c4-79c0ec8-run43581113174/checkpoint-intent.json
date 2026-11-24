@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "parent_host": "79c0ec868d6a6236eb2ae942d18251d0ed96379f",
+  "parent_tree": "e70dccc439c99a1bc2e8546f552a7886b8838225",
+  "native": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "run": 43581113174,
+  "attempt": 1,
+  "branch": "evidence/lumo-c4-79c0ec8-20261114",
+  "scope": "Evidence-only checkpoint. No active production source, workflow, pin, historical result or active build branch changes.",
+  "actual_passes": [
+    "132 targeted Python contracts, zero skips",
+    "C4 workflow actionlint",
+    "C4 desktop runtime 170 checks / 250 frames, original Dart and Godot exit zero",
+    "Native Return21 and Wisp14 in actual current runtime job"
+  ],
+  "remaining": "verify-and-build still active at recorded API snapshot. No complete APK, device, FPS or public-release acceptance. Historical API37 FAILs remain. A separate original QA fixture case has since reproduced RED and its repair is being frozen separately.",
+  "archive_scope": "All compact archive members are preserved. Original 22,151,623-byte runtime ZIP is referenced by SHA256 and remote artifact, not claimed to be Git-stored. Six original PNGs are separately included. Pending Dream review is preparation only and does not alter current Native pin.",
+  "created_at": "2026-11-14T09:48:54.182Z"
+}

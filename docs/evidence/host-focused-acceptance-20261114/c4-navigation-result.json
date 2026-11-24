@@ -1,0 +1,63 @@
+{
+  "started_at": "2026-11-14T13:19:54.031116+00:00",
+  "head": "adb88bef880861e23b451166c04ee7d28c96a95d",
+  "tree": "f027cfbefe935835b6b80f34843e2b5297816cee",
+  "scope": "One authorized 36-method C4 evidence/deadline/navigation run; no Android/OCR/engine run",
+  "phases": [
+    {
+      "name": "targeted-green",
+      "argv": [
+        "/tmp/lumo-root-recovery-1242/py/bin/python",
+        "-m",
+        "unittest",
+        "test_connect_four_android_evidence",
+        "test_connect_four_probe_deadlines",
+        "test_connect_four_flutter_navigation",
+        "-v"
+      ],
+      "cwd": "/tmp/host-adb88-c4-navigation-targeted-validation-20261114/checkout",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "GIT_OPTIONAL_LOCKS": "0",
+        "REQUIRE_ALL_TESTS": "true",
+        "PYTHONPATH": "/tmp/host-adb88-c4-navigation-targeted-validation-20261114/checkout/tools/android_qa/tests:/tmp/host-adb88-c4-navigation-targeted-validation-20261114/checkout/tools/android_qa:/tmp/host-adb88-c4-navigation-targeted-validation-20261114/checkout"
+      },
+      "started_at": "2026-11-14T13:19:54.061468+00:00",
+      "ended_at": "2026-11-14T13:20:37.031947+00:00",
+      "duration_seconds": 42.970786638999925,
+      "exit_code": 0,
+      "reported_tests": 36,
+      "reported_seconds": 42.439,
+      "stdout": {
+        "path": "targeted-green.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "targeted-green.stderr.log",
+        "bytes": 6836,
+        "sha256": "1432d6c7f051a6acdcfd072ca12f2ef2ebc0517f7442f42855ebe6491042aca1"
+      },
+      "errors": 0,
+      "failures": 0,
+      "skips": 0,
+      "unittest_plain_ok": true
+    }
+  ],
+  "outcome": "PASS",
+  "source_unchanged": {
+    "head": true,
+    "tree": true,
+    "index": true,
+    "stage_sha256": true,
+    "flags_sha256": true,
+    "status_utf8": true,
+    "status_sha256": true,
+    "untracked_utf8": true,
+    "tracked_count": true,
+    "materialized_count": true,
+    "absent_count": true,
+    "sources": true
+  },
+  "ended_at": "2026-11-14T13:20:37.565690+00:00"
+}

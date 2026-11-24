@@ -1,0 +1,19 @@
+{
+  "id": 14197576182,
+  "name": "lumo-nextgen-arm64",
+  "size_in_bytes": 535040468,
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14197576182",
+  "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14197576182/zip",
+  "expired": false,
+  "created_at": "2026-11-16T04:20:00Z",
+  "expires_at": "2026-12-16T04:19:54Z",
+  "updated_at": "2026-11-16T04:20:00Z",
+  "digest": "sha256:0c254fbc74c13c4ecd98bec2f31203ee93c6c51818150d0fa115a10fad192fa4",
+  "workflow_run": {
+    "id": 43800892196,
+    "repository_id": 1222433959,
+    "head_repository_id": 1222433959,
+    "head_branch": "integration/lumo-nextgen-learning-20261115",
+    "head_sha": "e05a96a52aaf57e466e79831f15aaffd144284ee"
+  }
+}

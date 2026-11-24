@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-14T08:12:56.826663+00:00",
+  "base_host": "b394cd4f73cc4ab3d2e818aa94c0a10b26a55b9e",
+  "agent_source_file_count": 47,
+  "root_pin_file_count": 3,
+  "current_native": {
+    "commit": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+    "tree": "5b5992487e60ae805d708965f1500954c6b0556d",
+    "targeted_tests": 42,
+    "passed": 42,
+    "skipped": 0,
+    "original_manifest_sha256": "3a9f1b730a642b5cc18ca825be90db299bfbf756226b18ae1051155492a862f6",
+    "complete_original_archive": {
+      "path": "complete-native0e261-contract-validation.tar.gz",
+      "bytes": 609039,
+      "sha256": "1e86d5dfe8d509d80147173a72f7d0ebf1cfbc37f652025b08447882ab988a06",
+      "members": 17,
+      "readback_matches": true
+    }
+  },
+  "pin_changes": [
+    {
+      "path": "config/godot-source.json",
+      "before_sha256": "b06fd116c41053ec67f8a8aeb0c85dc1b85e62eaf59e87dcc84040051555a510",
+      "after_sha256": "d12f94f96ebbe18005a1db79b294c4c4de9841bf4b2ab860868c7a3c05bdfa82",
+      "only_exact_revision_replacement": true
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "before_sha256": "70a1b243b7de814087addf5b05a0aa2f1c2579527eaad14bdf41fcaa252a5633",
+      "after_sha256": "337ee4e3fb83af060edfc741db86404cf59b07c0e686e632b49dfe1077991bde",
+      "only_exact_revision_replacement": true
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "before_sha256": "dc42d548600b5b7a797c815fb5d3caf819bfd0aecf05fd61d0adba3bc3424442",
+      "after_sha256": "e9ad36e9da7f5e18380b63ac7c9260eb546c0d2385faa163fa5909565cc03b1b",
+      "only_exact_revision_replacement": true
+    }
+  ],
+  "agent_freeze_sha256": "da9b218fa0323f802105d9bf1f3d9caf3e89de3f185f8bc9c54ecb3464f324e4",
+  "restored_originals": {
+    "analyzer": {
+      "path": "docs/evidence/host-c4-followup-recovery-20261114/original-b394-analyzer-recheck.tar.gz",
+      "bytes": 73090,
+      "sha256": "068b452f0629563cc0de45d0981a5274e1d88d25d687ff38783d86a6dcce0f12",
+      "members": 7,
+      "readback": true
+    },
+    "curriculum": {
+      "path": "docs/evidence/host-c4-followup-recovery-20261114/original-f536-curriculum-producer.tar.gz",
+      "bytes": 457636,
+      "sha256": "d5045ceef25775326d215c939710ef72e91886e8f592b13c1c4f053d64c9e639",
+      "members": 17,
+      "readback": true
+    }
+  },
+  "limits": [
+    "No tests have run on this newly composed50-source Host checkpoint yet.",
+    "Native42 is contract coverage with explicitly synthetic fixtures, not actual52-mode renderer execution.",
+    "No new APK, Android acceptance, PCM device playback, physical-device FPS or public release is claimed."
+  ],
+  "workspace_recovery": {
+    "new_worktree": "/tmp/lumo-recovery-20261114/host-c4",
+    "original_worktree_unchanged": true,
+    "tmp_outputs_are_reproducible_from_the_published_source_and_complete_evidence_archives": true,
+    "prior_upload_cache_cleanup_removed_bytes_were_logical_file_sizes_not_a_verified_physical_capacity_gain": true
+  }
+}

@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lumo_lernen/core/holo_lesson_catalog.dart';
 import 'package:lumo_lernen/core/german_task_templates.dart';
 import 'package:lumo_lernen/core/primary_school_word_data.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
@@ -37,6 +38,37 @@ void main() {
       for (var seed = 0; seed < 48; seed++) {
         final task =
             GermanTaskTemplates.generate(grade: 2, unit: entry.key, seed: seed);
+        // Holo-Satzaufgabe (2026-11-19): dieselbe Wortart, aber im Satz.
+        if (entry.key == 'Tunwoerter' &&
+            task.promptPattern == 'tunwort-im-satz') {
+          expect(task.prompt, endsWith('Welches Wort ist das Tunwort?'));
+          expect(
+              HoloLessonCatalog.verbSentences
+                  .any((item) => item.verb == task.answer),
+              isTrue);
+          continue;
+        }
+        // Holo-Satzaufgabe (2026-11-19): dieselbe Wortart, aber im Satz.
+        if (entry.key == 'Namenwoerter' &&
+            task.promptPattern == 'namenwort-im-satz') {
+          expect(task.prompt, endsWith('Welches Wort ist das Namenwort?'));
+          expect(
+              HoloLessonCatalog.nounSentences
+                  .any((item) => item.noun == task.answer),
+              isTrue);
+          continue;
+        }
+        // Holo-Satzaufgabe (2026-11-19): Wiewort im Satz („wie … ist?“).
+        if (entry.key == 'Wiewoerter' &&
+            task.promptPattern == 'wiewort-im-satz') {
+          expect(task.prompt,
+              matches(RegExp(r'Welches Wort sagt, wie .+ ist\?$')));
+          expect(
+              HoloLessonCatalog.adjectiveSentences
+                  .any((item) => item.adjective == task.answer),
+              isTrue);
+          continue;
+        }
         expect(task.prompt, 'Welches Wort ist ein ${entry.value}?');
         final type = PrimarySchoolWordData.dictionary[task.answer]!.wordType;
         expect(
@@ -50,17 +82,19 @@ void main() {
     }
   });
 
-  test('sound data handles multiple letters, silent h and final devoicing', () {
+  // Fachprüfung 2026-11 (D-S2, D-M1): Dieser Test schrieb früher Hund → T,
+  // Stift → Sch und Vogel → F fest. Das Wort steht geschrieben in der Frage;
+  // die Lautantwort widersprach der Schreibung (Hunt, Fogel). Solche Wörter
+  // sind jetzt bewusst nicht mehr Teil der Lautaufgaben.
+  test('sound data handles multiple letters and silent h, without devoicing',
+      () {
     const initial = <String, String>{
       'Schule': 'Sch',
-      'Stift': 'Sch',
-      'Vogel': 'F',
-      'Auto': 'Au'
+      'Auto': 'Au',
+      'Tisch': 'T'
     };
     const ending = <String, String>{
-      'Hund': 'T',
-      'Rad': 'T',
-      'Pferd': 'T',
+      'Heft': 'T',
       'Buch': 'Ch',
       'Tisch': 'Sch',
       'Schuh': 'U'
@@ -70,6 +104,34 @@ void main() {
         reason: word));
     ending.forEach((word, sound) =>
         expect(PrimarySchoolWordData.finalSoundFor(word), sound, reason: word));
+    for (final word in <String>['Stift', 'Vogel']) {
+      expect(PrimarySchoolWordData.initialSoundFor(word), isNull, reason: word);
+    }
+    for (final word in <String>[
+      'Hund',
+      'Hand',
+      'Kind',
+      'Mond',
+      'Pferd',
+      'Rad',
+      'Wind',
+      'Berg',
+      'Zug'
+    ]) {
+      expect(PrimarySchoolWordData.finalSoundFor(word), isNull, reason: word);
+    }
+    for (final word in PrimarySchoolWordData.nounsForGrade(4)) {
+      final first = PrimarySchoolWordData.initialSoundFor(word);
+      if (first != null) {
+        expect(word.toLowerCase().startsWith(first.toLowerCase()), isTrue,
+            reason: 'Anlaut von $word muss zur Schreibung passen');
+      }
+      final last = PrimarySchoolWordData.finalSoundFor(word);
+      if (last != null) {
+        expect(RegExp(r'[bdg]$').hasMatch(word), isFalse,
+            reason: '$word hat Auslautverhärtung');
+      }
+    }
     expect(PrimarySchoolWordData.finalSoundFor('unbekannt'), isNull);
     for (var seed = 0; seed < 100; seed++) {
       for (final id in <String>['g1_start_sound', 'g1_end_sound']) {

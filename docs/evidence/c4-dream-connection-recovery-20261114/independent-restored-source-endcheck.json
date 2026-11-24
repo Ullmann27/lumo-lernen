@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "kind": "independent_remote_endcheck_of_recovered_host_dream_sources",
+  "repository": "Ullmann27/lumo-lernen",
+  "original_review_blob": "f74f6ff8c763840d8a7b6066123d9ebf90817634",
+  "verdict": "ALL_THREE_ORIGINAL_SOURCE_IDENTITIES_MATCH",
+  "sources": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "bytes": 45539,
+      "sha256": "543d0415098a18007aa0f863cc4dbbbada7dc82cc30dc77c13446a8f2b5399b6",
+      "git_blob": "d56118529b7493e819262e61427d627c01ee0753",
+      "independently_fetched_and_verified": true
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "bytes": 56951,
+      "sha256": "332d059e2b7a3da338cb9cc27dd41830020a0cfda1fb19a5fedd789feaccfb82",
+      "git_blob": "cbd999a042b4c7e5ea15b1bb90ab2bc9f72233ff",
+      "independently_fetched_and_verified": true
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "bytes": 66711,
+      "sha256": "9ce1031bf12a677fe346188fdb7f5edcbc77bd12245ecea642adc065735f8f0b",
+      "git_blob": "a91e25120489d21fc409930d893f52b31448aea3",
+      "independently_fetched_and_verified": true
+    }
+  ],
+  "scope": {
+    "local_process_starts": 0,
+    "tests": 0,
+    "ci_polls": 0,
+    "source_git_ref_mutations": 0
+  },
+  "preservation": "The complete fetched source strings are additionally retained in functions.store; no filesystem availability or local test result is asserted."
+}

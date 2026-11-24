@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "reviewer": "godot_integration",
+  "transcribed_by": "root",
+  "kind": "Independent source review, not executed publisher release",
+  "prepared_commit": "361f409f4bded479858e392aff8494863c4c0b1a",
+  "workflow_blob": "c4a901a649f49b80cd16e22ece3c40b1a3cbd12d",
+  "workflow_sha256": "1227146ea19a3665ec44789824d716677cc96301de7048bd17b487265a5072d9",
+  "helper_blob": "de429c0430422f659f47b74ef9efcd21e3b3612a",
+  "tests_blob": "5cac6f3b404554d3c7b04f07874c811525e5d270",
+  "preservation_blob": "a8eccbf8b6304f75196078c6e6f585a9c79dd7c6",
+  "finding": "No concrete bypass or weakening identified in reviewed code.",
+  "independent_findings": [
+    "Reversed only the declared additions and source/run bindings; exactly reproduced original publisher blob 73450953d8426965fd75204ea3994eaf00fdf4f5 and SHA256 c090b8631be7f43215fc3b4472bb710348f869eb0ff397b60abbd37a27cc141d.",
+    "Embedded helper equals standalone helper byte-for-byte.",
+    "Exact Native 43613299144/1 job 132502826135 (17 steps) and Feature 43616035099/1 job 132511176199 (13 steps), original artifacts/bytes/digests and repository identities are bound.",
+    "Complete one-job and one-artifact catalogs, strict JSON value types and duplicate-key rejection are enforced.",
+    "Current checkout and tracked-source cleanliness are required; checks occur before release/tag mutations and again before public release PATCH.",
+    "Actual Host6b delivery verifier blob 42d54aa5293750f64f1c0307b5d97aace354471d retains seven-job and eleven-asset gates.",
+    "Read the actual original 51-test log and verified its SHA256 81d258e96928d4758bbf6d8242ee040f6e8910e7196a26e7c56c0b754d380879; tests were not rerun by this reviewer."
+  ],
+  "limits": [
+    "Publisher remains inactive; no actual release job token has yet executed the cross-repository public metadata calls.",
+    "The new helper compares fresh metadata to previously reviewed originals; it does not redownload or replay engine artifacts.",
+    "All seven authoritative current Host jobs and independent original delivery replay remain required before activation."
+  ]
+}

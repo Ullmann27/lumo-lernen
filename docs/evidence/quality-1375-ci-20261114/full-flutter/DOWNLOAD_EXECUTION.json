@@ -1,0 +1,16 @@
+{
+  "initial": {
+    "chunk_id": "da5c02",
+    "wall_time_seconds": 1.001286197,
+    "session_id": 22555,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "completion": {
+    "chunk_id": "01c0e4",
+    "wall_time_seconds": 1.106708891,
+    "exit_code": 0,
+    "original_token_count": 74,
+    "output": "{\n  \"archive\": {\n    \"bytes\": 332341284,\n    \"sha256\": \"5f5796a883a80423668fe6c9b13a09f08cf70a39d79430213f8c71090eca3bbd\",\n    \"git_blob\": \"3dd533b5da84abf1c0422f2a533e54178bdccd73\"\n  },\n  \"zip_crc_valid\": true,\n  \"canonical_paths\": true,\n  \"file_count\": 548,\n  \"archive_code_executed\": false\n}\n"
+  }
+}

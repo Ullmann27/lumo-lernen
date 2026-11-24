@@ -1,0 +1,43 @@
+{
+  "base_commit": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "base_tree": "744986f046f6ec65ebe314f62243187a8a0a64c0",
+  "current_commit": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "checks": [
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "base": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "current": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "unchanged": true
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "base": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "current": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "unchanged": true
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "base": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "current": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "unchanged": true
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "base": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "current": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "unchanged": true
+    },
+    {
+      "path": "lib/core/writing_progress_repository.dart",
+      "base": "4bb609a76be4cc64a316798debc2bafa24274803",
+      "current": "4bb609a76be4cc64a316798debc2bafa24274803",
+      "unchanged": true
+    },
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "base": "63a3d4c4fe6c5c9249f3531e685cc541646747ee",
+      "current": "63a3d4c4fe6c5c9249f3531e685cc541646747ee",
+      "unchanged": true
+    }
+  ]
+}

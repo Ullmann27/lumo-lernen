@@ -1,0 +1,165 @@
+{
+  "run": 45056264708,
+  "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45056264708",
+  "source": "f19f8311b0967d8dc5ff375d50260df1ab191068",
+  "godot": "04613baa8e4e3e597d3ed8c683aa1778eefc4c07",
+  "version": "0.13.54+2066",
+  "apk_produced": false,
+  "conclusion": "failure",
+  "cause": "Godot 4.6.3 generated untracked assets/kart/track_stage/clips/windwerk_auftakt.ogv.uid; the unchanged clean-source guard rejected packaging.",
+  "fix_godot_commit": "29ac19f8984b510e5add531f15e555a98c72bed4",
+  "steps": [
+    {
+      "job": 137312068226,
+      "name": "Set up job",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Run actions/checkout@v4",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Run actions/setup-java@v4",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Run android-actions/setup-android@v3",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Run subosito/flutter-action@v2",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Quellstand und Godot-Pin festhalten",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Android- und Godot-Werkzeuge einrichten",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Native Sprache und lokaler Lerndialog – JVM-Verträge",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Flutter – Analyse und Kernprüfungen",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Eine signierte Flutter-Godot-APK bauen",
+      "conclusion": "failure"
+    },
+    {
+      "job": 137312068226,
+      "name": "APK für den Android-Emulator sichern",
+      "conclusion": "skipped"
+    },
+    {
+      "job": 137312068226,
+      "name": "Test-APK als Vorabversion zum Herunterladen bereitstellen",
+      "conclusion": "skipped"
+    },
+    {
+      "job": 137312068226,
+      "name": "APK und Belege als Artefakt sichern",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Post Run subosito/flutter-action@v2",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Post Run actions/setup-java@v4",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Post Run actions/checkout@v4",
+      "conclusion": "success"
+    },
+    {
+      "job": 137312068226,
+      "name": "Complete job",
+      "conclusion": "success"
+    }
+  ],
+  "excerpts": [
+    "2026-11-22T18:39:58.6632424Z Ran 18 tests in 0.023s",
+    "2026-11-22T18:40:33.7271028Z [NDKPreflight] PASS: installed and verified exact ndk;28.2.13676358",
+    "2026-11-22T18:40:49.5290368Z Ran 24 tests in 12.031s",
+    "2026-11-22T18:40:49.5292618Z ENGLISH_LESSON_JAVA_PASS scenario=after-join checks=3 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim",
+    "2026-11-22T18:40:49.5293624Z ENGLISH_LESSON_JAVA_PASS scenario=before checks=3 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim",
+    "2026-11-22T18:40:49.5294615Z ENGLISH_LESSON_JAVA_PASS scenario=before-join checks=3 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim",
+    "2026-11-22T18:40:49.5295579Z ENGLISH_LESSON_JAVA_PASS scenario=between checks=3 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim",
+    "2026-11-22T18:40:49.5296675Z ENGLISH_LESSON_JAVA_PASS scenario=tags checks=26 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim",
+    "2026-11-22T18:40:49.5297265Z PASS local voice Java guards: 11",
+    "2026-11-22T18:40:49.5298094Z ENGLISH_LESSON_JAVA_PASS scenario=thread checks=3 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim",
+    "2026-11-22T18:40:49.5299012Z ENGLISH_LESSON_JAVA_PASS scenario=join checks=8 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim",
+    "2026-11-22T18:40:49.5299917Z ENGLISH_LESSON_JAVA_PASS scenario=sequence checks=7 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim",
+    "2026-11-22T18:40:49.5300846Z ENGLISH_LESSON_JAVA_PASS scenario=malformed checks=32 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim",
+    "2026-11-22T18:40:49.5301749Z ENGLISH_LESSON_JAVA_PASS scenario=bounds checks=4 boundary=synthetic_ONNX_no_weights_no_Android_no_audio_claim",
+    "2026-11-22T18:40:49.5302585Z LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+    "2026-11-22T18:40:49.5303391Z LUMO_SPEECH_FAILURE_PASS checks=15 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+    "2026-11-22T18:40:49.5304346Z ENGLISH_LESSON_LIFECYCLE_PASS scenario=binding checks=66 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true",
+    "2026-11-22T18:40:49.5305531Z ENGLISH_LESSON_LIFECYCLE_PASS scenario=invalid-descriptor checks=14 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true",
+    "2026-11-22T18:40:49.5306830Z ENGLISH_LESSON_LIFECYCLE_PASS scenario=late-callback checks=3 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true",
+    "2026-11-22T18:40:49.5308269Z ENGLISH_LESSON_LIFECYCLE_PASS scenario=parent-and-default checks=6 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true",
+    "2026-11-22T18:40:49.5309617Z ENGLISH_LESSON_LIFECYCLE_PASS scenario=result-identity checks=6 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true",
+    "2026-11-22T18:40:49.5310906Z ENGLISH_LESSON_LIFECYCLE_PASS scenario=one-player checks=6 platform=synthetic_JVM_boundary no_inference_or_Android_audio_claim=true",
+    "2026-11-22T18:40:49.5311989Z LUMO_SETTLEMENT_SPEECH_PASS checks=19 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+    "2026-11-22T18:40:49.5313023Z LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true",
+    "2026-11-22T18:40:49.5313833Z LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47",
+    "2026-11-22T18:41:37.1505947Z Shell: PASS actual generator and unchanged checked adapter reach all fourteen words",
+    "2026-11-22T18:41:37.1507569Z Shell: PASS both first school grades retain all ten real school objects",
+    "2026-11-22T18:41:37.1514258Z Shell: PASS multiword objects require the exact prompt and actual answer",
+    "2026-11-22T18:41:37.1516915Z Shell: PASS fallback prompt remains bound to its actual German answer",
+    "2026-11-22T18:41:37.1520299Z Shell: PASS unknown words, text injection and wrong meanings fail closed",
+    "2026-11-22T18:41:37.1523532Z Shell: PASS missing, duplicate or misleading visible answer choices fail closed",
+    "2026-11-22T18:41:37.1534823Z Shell: PASS stable task chooses stable positions without always revealing the first slot",
+    "2026-11-22T18:41:37.1538555Z Shell: PASS launch maps cannot mutate retained task descriptor",
+    "2026-11-22T18:41:37.1543246Z Shell: PASS existing arithmetic descriptors retain the same operands",
+    "2026-11-22T18:41:37.1547172Z Shell: PASS existing German syllable descriptor remains exact",
+    "2026-11-22T18:41:37.1548141Z Shell: NATIVE_ENGLISH_DART_PASS cases=10 checks=2887",
+    "2026-11-22T18:42:06.1053372Z 00:46 +216: All tests passed!",
+    "2026-11-22T18:42:24.4642007Z PASS kart fleet mirror: 14 karts match the game and have pictures",
+    "2026-11-22T18:43:48.2790802Z [NeonHome] {\"checks\":162,\"failures\":[],\"status\":\"PASS\"}",
+    "2026-11-22T18:43:54.4653931Z [GarageLandscape] PASS: 88 checks",
+    "2026-11-22T18:44:04.7871510Z [KartRaceKinds] PASS: 133 checks; five race kinds and START on 4 displays",
+    "2026-11-22T18:44:32.5338584Z [KartResultReach] PASS: all result actions reachable on 11 display sizes",
+    "2026-11-22T18:44:33.5144345Z [NativeTableBoot] PASS 26 actual boot, resource and authority-context checks",
+    "2026-11-22T18:44:34.0880285Z {\"checks\":43,\"failures\":[],\"scope\":\"4.6.3 capability dispatch and actual routed Stop owners; no Android audio or device PASS claim\",\"status\":\"PASS\",\"test\":\"learning_android_host_capability\"}",
+    "2026-11-22T18:44:35.1668585Z [NativeLearningBoot] PASS 41 actual boot, plan and task-context checks",
+    "2026-11-22T18:44:36.0040541Z [ProductionDriver] checks=8200 failures=0 imported=27 maximum_hand_error_m=0.00020463427063",
+    "2026-11-22T18:44:36.3518249Z [OpponentRoster] checks=131 failures=0",
+    "2026-11-22T18:44:43.4539536Z EXTRA_DRIVERS_PASS checks=79 failures=0",
+    "2026-11-22T18:46:06.6229992Z [HoloLesson] checks=1328 failures=0",
+    "2026-11-22T18:46:13.7538911Z [RunRelay] PASS",
+    "2026-11-22T18:46:18.5572890Z ARENA_BATTLE_PASS checks=16 failures=0",
+    "2026-11-22T18:46:24.0819657Z [ParcoursMenu] PASS: 8 Prüfungen",
+    "2026-11-22T18:46:34.6039478Z [ParcoursRace] PASS",
+    "2026-11-22T18:56:59.8589443Z [LumoRun] PASS: 510 checks",
+    "2026-11-22T18:57:17.8651747Z [LumoFlow] PASS: 13 checks",
+    "2026-11-22T18:57:19.2544111Z {\"checks\":14,\"failures\":[],\"status\":\"PASS\",\"test\":\"quiz_studio_escape\"}",
+    "2026-11-22T18:57:22.2799817Z [Tutor] PASS checks=107 failures=0",
+    "2026-11-22T18:57:51.1929591Z Ran 9 tests in 2.747s",
+    "2026-11-22T18:59:41.5180172Z RuntimeError: Godot import changed sources; refuse exported candidate:",
+    "2026-11-22T18:59:41.5180566Z ?? assets/kart/track_stage/clips/windwerk_auftakt.ogv.uid"
+  ]
+}

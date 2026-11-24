@@ -1,0 +1,52 @@
+{
+  "android35_portrait-playing": {
+    "source_sha256": "9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2",
+    "pause": {
+      "text": "Pause",
+      "bounds": [
+        896.0,
+        214.0,
+        1025.0,
+        248.0
+      ],
+      "variant": "contrast"
+    },
+    "page": {
+      "text": "1/3",
+      "bounds": [
+        508.0,
+        2052.0,
+        574.0,
+        2087.0
+      ],
+      "variant": "contrast"
+    },
+    "scope": "Actual local Tesseract transport on unmodified renderer PNG. Installed eng model; missing deu is preserved in command stderr.",
+    "raw_tsv": "android35_portrait-playing-ocr-contrast.tsv"
+  },
+  "landscape_cutout_fixture-playing": {
+    "source_sha256": "90b49f1abdfd70a5b835cc6a4432dc291a2ed748ecd2d8f53b47ab75b157bfa8",
+    "pause": {
+      "text": "Pause",
+      "bounds": [
+        2216.0,
+        141.0,
+        2345.0,
+        175.0
+      ],
+      "variant": "contrast"
+    },
+    "page": {
+      "text": "1/1",
+      "bounds": [
+        1008.0,
+        901.0,
+        1067.0,
+        935.0
+      ],
+      "variant": "contrast"
+    },
+    "scope": "Actual local Tesseract transport on unmodified renderer PNG. Installed eng model; missing deu is preserved in command stderr.",
+    "raw_tsv": "landscape_cutout_fixture-playing-ocr-contrast.tsv"
+  }
+}

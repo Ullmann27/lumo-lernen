@@ -1,0 +1,37 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart
+00:00 +0: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart: portable roundtrip preserves journal, IDs, parents, wallet and native bytes
+00:00 +1: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart: export removes secrets and device grants while retaining identity salt
+00:00 +2: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart: old HTML format and a future version are rejected without conversion
+00:00 +3: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart: outer checksum, individual file checksum and byte count are enforced
+00:00 +4: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart: paths, duplicate files, transient tokens and forbidden preferences fail closed
+00:00 +5: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart: wrong types, reserved plugin encodings and malformed learning JSON are rejected
+00:00 +6: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart: native profile mapping must remain complete and unique
+00:00 +7: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart: oversize and excessive nesting reject before processing
+00:00 +8: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart: duplicate JSON object keys cannot be hidden behind a valid checksum
+00:00 +9: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart: all current native persistent families are accepted
+00:00 +10: loading /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart
+00:00 +10: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart: native picker cancellation never stages a restore
+00:00 +11: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart: export keeps pending events plus fresh wallet and a cancelled save changes nothing
+00:00 +12: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart: failed staging does not close and releases the pause
+00:00 +13: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart: restore stages reviewed bytes while paused and closes only after durable acknowledgement
+00:00 +14: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart: pending wallet write finishes before a backup can read it
+00:00 +15: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart: 390dp review requires adult checkbox, cancellation performs no restore
+00:01 +16: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart: actual adult confirmation invokes exactly one staged restore
+00:01 +17: /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_flow_test.dart: cancelled Android selection remains a clean UI cancellation
+00:01 +18: loading /tmp/lumo-integration-20261122/lumo-lernen/test/app_state_student_identity_test.dart
+00:02 +18: /tmp/lumo-integration-20261122/lumo-lernen/test/app_state_student_identity_test.dart: answer keeps its student when assignment changes during progress load
+00:02 +19: /tmp/lumo-integration-20261122/lumo-lernen/test/app_state_student_identity_test.dart: answer keeps its student when assignment changes during progress save
+00:02 +20: /tmp/lumo-integration-20261122/lumo-lernen/test/app_state_student_identity_test.dart: unassigned answers retain the existing local log attribution
+00:02 +21: loading /tmp/lumo-integration-20261122/lumo-lernen/test/learning_profile_isolation_test.dart
+00:02 +21: /tmp/lumo-integration-20261122/lumo-lernen/test/learning_profile_isolation_test.dart: switching A to B shows B own skills and daily progress
+00:02 +22: /tmp/lumo-integration-20261122/lumo-lernen/test/learning_profile_isolation_test.dart: a fresh app restores only the selected student after restart
+00:02 +23: /tmp/lumo-integration-20261122/lumo-lernen/test/learning_profile_isolation_test.dart: module captures A before a delayed wallet and leaves visible B empty
+00:02 +24: /tmp/lumo-integration-20261122/lumo-lernen/test/learning_profile_isolation_test.dart: resetting A learning preserves B progress and B attempt history
+00:02 +25: /tmp/lumo-integration-20261122/lumo-lernen/test/learning_profile_isolation_test.dart: a first local identity write failure can retry the same accepted module answer
+00:03 +26: /tmp/lumo-integration-20261122/lumo-lernen/test/learning_profile_isolation_test.dart: independent A and B answers preserve both logs when the first log write is delayed
+00:03 +27: /tmp/lumo-integration-20261122/lumo-lernen/test/learning_profile_isolation_test.dart: full reset waits for an old student selection before clearing storage
+00:03 +28: loading /tmp/lumo-integration-20261122/lumo-lernen/test/profile_fail_closed_regression_test.dart
+00:03 +28: /tmp/lumo-integration-20261122/lumo-lernen/test/profile_fail_closed_regression_test.dart: a damaged previous profile cannot be overwritten by onboarding
+00:03 +29: /tmp/lumo-integration-20261122/lumo-lernen/test/profile_fail_closed_regression_test.dart: reading an older valid profile never silently rewrites its raw data
+00:03 +30: /tmp/lumo-integration-20261122/lumo-lernen/test/profile_fail_closed_regression_test.dart: explicit saving a valid profile preserves its identity and grade
+00:03 +31: All tests passed!

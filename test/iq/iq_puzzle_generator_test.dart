@@ -150,11 +150,13 @@ void main() {
       expect(solution.tint, puzzle.cells[6]!.tint);
     });
 
-    test('Zahlenrätsel Stufe 4 verdoppelt', () {
+    test('Zahlenrätsel Stufe 4 multipliziert korrekt mit 2 oder 3', () {
       final generator = IqPuzzleGenerator(Random(3));
       final puzzle = generator.generate(IqArea.numbers, 4, 'n') as IqNumberPuzzle;
       final shown = puzzle.numbers.whereType<int>().toList();
-      expect(puzzle.options[puzzle.answer], shown.last * 2);
+      final answer = puzzle.options[puzzle.answer];
+      expect(answer % shown.last, 0);
+      expect(answer ~/ shown.last, isIn(<int>[2, 3]));
     });
   });
 

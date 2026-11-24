@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T03:17:47.166847+00:00",
+  "reviewer": "pipeline_repair",
+  "result": "No remaining concrete fail-open or lifecycle blocker found in the final frozen revision.",
+  "scope": "Independent read-only source and original-byte review. No test, Android, emulator, APK, installation, monitoring session or source/Git mutation was performed by this reviewer.",
+  "source_root": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16",
+  "sources": {
+    "scripts/android_framework_ready.py": {
+      "bytes": 29916,
+      "sha256": "0b501e19f4aaa56c69c593a3fdbcacce508ef55dd255671e059651b1e8e0b190",
+      "git_blob": "61d4f084ba30291796481db51ab9366ddd5d57b8"
+    },
+    "scripts/verify_android_runtime_anr.py": {
+      "bytes": 20361,
+      "sha256": "c71acb91a77285699b8bb70a8e4846f41363e378171707e2c06eae9367b55e60",
+      "git_blob": "3561471b7ac6896faf12a3ad9f78f31fa16abdda"
+    },
+    "scripts/tests/test_verify_android_runtime_anr.py": {
+      "bytes": 24164,
+      "sha256": "afe8e382f58a4a579ac2b25fb49fdf22f7297db0b0d1ceb88264841ee3703046",
+      "git_blob": "ad15a8aa8f81e72e662577742a02d738749a6d6a"
+    }
+  },
+  "owner_frozen_handoff": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-anr-review-final/handoff.json",
+    "sha256": "bfcb09f3fbba4baed267aa124adc54d4a097da7644e0f74b294776784a6ca9ab"
+  },
+  "owner_frozen_manifest": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-runtime-anr-review-final/manifest.json",
+    "sha256": "607629072c028f46e2636a48068d8f79790333c2f6eea57d583f73c3c7154d94"
+  },
+  "resolved_findings": [
+    {
+      "finding": "Original parent start timestamp was captured after Popen and could follow the child wait command under delayed parent scheduling.",
+      "final_contract": "UTC start is now captured immediately before Popen, while the strict chronological coverage check remains unchanged.",
+      "owner_red_log": "delayed-parent-before.log"
+    },
+    {
+      "finding": "Actual successful ADB startup can produce the original 77 bytes on wait-for-device stderr.",
+      "final_contract": "Only exact empty or exact original success bytes are accepted; successful wait RC remains required and monitor/logcat/endpoint stderr remain strict. No line normalization or generic stderr filtering.",
+      "owner_red_log": "adb-start-before.log"
+    }
+  ],
+  "checked_guards": [
+    "begin binds the existing live PID/start-ticks monitor, original positive readiness, same adb/serial and untouched identity bytes before the workflow installation boundary.",
+    "finish takes five bounded read-only endpoint command records before requesting stop of that same monitor, then verifies retained originals offline. It does not clear buffers, restart monitoring or dismiss dialogs.",
+    "One unfiltered all-buffer threadtime session must run through the complete endpoint interval; requested stop, no budget exhaustion, exact command set, original file hashes, unchanged source identity and nonempty complete output are mandatory.",
+    "Exact original am_anr and ActivityManager ANR records, unknown-prefix ANR markers, final Window error history and InputDispatcher last-ANR history remain terminal even after an earlier guard PASS.",
+    "Endpoint dump commands, success/time bounds, file inventory, actual positive current dispatch state, Android37/17/fingerprint/system_server PID/start count and successful tour exit must remain bound.",
+    "Existing readiness timeout, stability, secure/unknown-state and unlock behavior are unchanged; the new explicit 1..7200-second monitor duration preserves the old default450 and does not extend or restart a failed session."
+  ],
+  "source_comparison": {
+    "prior_parser_path": "/workspace/scratch/b3485b7bb989/host-7b16-api37-parser-repair/after/scripts/android_framework_ready.py",
+    "prior_parser_sha256": "b5ddd549a6cbea5b9fbe2bba643eae903a94e23869f495f8229dc999fdd1041f",
+    "changed_existing_functions": [
+      "start_monitor",
+      "collect_monitor",
+      "main"
+    ],
+    "added_functions": [
+      "monitor_budget"
+    ],
+    "other_existing_functions_ast_identical": true
+  },
+  "original_checks": {
+    "all_owner_manifest_objects_match": 16,
+    "retained_original_config_files_compared_byte_for_byte": 5,
+    "activity_manager_line": {
+      "source": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-pipeline-evidence/artifacts/14093659058/originals/framework-start/logcat-all.stdout",
+      "line_1_based": 32405,
+      "exact_fixture_bytes_match": true,
+      "line_sha256": "b1837c5b82168491f24a3fca4d1fed486c01b0338207117a782b4bd94a7d11a1"
+    }
+  },
+  "tests": {
+    "performed_by_reviewer": false,
+    "owner_reported_final": {
+      "new_contracts_pass": 19,
+      "unchanged_neighbors_pass": 29,
+      "failures": 0,
+      "skips": 0
+    },
+    "owner_scope": "Synthetic/offline contracts and one explicitly synthetic local adb subprocess; no new real device acceptance."
+  },
+  "limits": [
+    "Existing actual Host7b16 API37 GMS broadcast ANR remains a failed original run.",
+    "The final real diagnostic workflow must call begin before installation and finish before emulator teardown; that workflow is owned/reviewed by Root.",
+    "This verifies bounded recorded ANR evidence, not APK functionality, FPS, future stability or a real emulator success.",
+    "Prior frozen parser and intermediate ANR packs remain unchanged and are not relabeled as this revision."
+  ]
+}

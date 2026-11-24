@@ -1,0 +1,26 @@
+diff --git a/.github/workflows/lumo-connect-four-2020.yml b/.github/workflows/lumo-connect-four-2020.yml
+index a0bf8855..581e072a 100644
+--- a/.github/workflows/lumo-connect-four-2020.yml
++++ b/.github/workflows/lumo-connect-four-2020.yml
+@@ -178,7 +178,7 @@ jobs:
+       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
+       github.head_ref == 'work/lumo-play-quality-20261114'))
+     runs-on: ubuntu-latest
+-    timeout-minutes: 90
++    timeout-minutes: 150
+     outputs:
+       candidate-artifact-id: ${{ steps.upload-candidate.outputs.artifact-id }}
+       candidate-artifact-digest: ${{ steps.upload-candidate.outputs.artifact-digest }}
+diff --git a/scripts/tests/test_connect_four_delivery.py b/scripts/tests/test_connect_four_delivery.py
+index cbc7d6c5..99b24136 100644
+--- a/scripts/tests/test_connect_four_delivery.py
++++ b/scripts/tests/test_connect_four_delivery.py
+@@ -549,7 +549,7 @@ class DreamRequiredStepTests(unittest.TestCase):
+         step = build[begin:end]
+         self.assertLess(build.index('LUMO_NEXTGEN_LOG_DIR='), begin)
+         self.assertLess(end, build.index('      - name: Build unified real Android APK'))
+-        self.assertIn('    timeout-minutes: 90\n', build)
++        self.assertIn('    timeout-minutes: 150\n', build)
+         self.assertIn('set -euo pipefail', step)
+         self.assertIn('export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"', step)
+         self.assertLess(step.index('export PATH='), step.index('cd "$native_source"'))

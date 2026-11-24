@@ -1,3 +1,4 @@
+import '../../../widgets/fox/stage/lumo_stage_targets.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -5,19 +6,23 @@ import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../theme/lumo_visual_tokens.dart';
+import '../../../widgets/design/lumo_answer_crystal.dart';
+import '../../../widgets/design/lumo_motion.dart';
+import '../widgets/interactive_task_workspace.dart';
 import '../../shared/widgets/lumo_premium_effects.dart';
 import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
 import 'lumo_premium_visuals.dart';
 import 'shape_trace_task_renderer.dart';
 import 'writing_task_renderer.dart';
 import 'reading_passage_card.dart';
+import '../../../widgets/design/lumo_task_object_art.dart';
 
 class AdaptiveTaskAnswer {
   const AdaptiveTaskAnswer({
     required this.task,
     required this.answer,
     required this.correct,
-  this.hintUsed = false,
+    this.hintUsed = false,
   });
 
   final TaskInstance task;
@@ -33,14 +38,41 @@ class AdaptiveTaskRenderer extends StatefulWidget {
     this.onAnswered,
     this.onWritingSubmitted,
     this.onShapeTraced,
-  this.allowRetry = true,
+    this.onWritingPraise,
+    this.allowRetry = true,
+    this.onInteraction,
+    this.requestedHelpLevel = 0,
+    this.reduceMotion = false,
+    this.activeObjectId,
+    this.slow = false,
+    this.replaySerial = 0,
+    this.guided = false,
+    this.feedback,
   });
 
   final TaskInstance task;
   final ValueChanged<AdaptiveTaskAnswer>? onAnswered;
   final ValueChanged<WritingTaskResult>? onWritingSubmitted;
   final ValueChanged<ShapeTraceTaskResult>? onShapeTraced;
+
+  /// Speaks Lumo's praise after a real writing attempt (voice permitting).
+  final ValueChanged<String>? onWritingPraise;
   final bool allowRetry;
+  final ValueChanged<TaskWorkspaceInteraction>? onInteraction;
+  final int requestedHelpLevel;
+  final bool reduceMotion;
+  final String? activeObjectId;
+  final bool slow;
+  final int replaySerial;
+
+  /// The solution has been worked through together. Every answer can be
+  /// tapped again, so the child picks the explained answer among all of them
+  /// instead of tapping the last one left.
+  final bool guided;
+
+  /// Help that belongs to the child's last answer; shown directly above the
+  /// answers, where the child is looking.
+  final Widget? feedback;
 
   @override
   State<AdaptiveTaskRenderer> createState() => _AdaptiveTaskRendererState();
@@ -50,17 +82,76 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
   Object? _picked;
   final Set<String> _wrongAnswers = <String>{};
   bool _showGentleHint = false;
+  int _localHelpLevel = 0;
+  bool _workspaceHelpUsed = false;
+  String? _workspaceExplanation;
+  String? _workspaceKind;
+  Map<String, Object?> _workspaceState = const {};
 
-  bool get _solved => _picked != null && '$_picked' == '${widget.task.correctAnswer}';
+  int get _helpLevel => math.max(
+        widget.requestedHelpLevel,
+        math.max(_localHelpLevel, widget.guided ? 3 : 0),
+      );
+
+  @override
+  void didUpdateWidget(covariant AdaptiveTaskRenderer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.task.taskInstanceId != widget.task.taskInstanceId ||
+        oldWidget.task.prompt != widget.task.prompt) {
+      _picked = null;
+      _wrongAnswers.clear();
+      _showGentleHint = false;
+      _localHelpLevel = 0;
+      _workspaceHelpUsed = false;
+      _workspaceExplanation = null;
+      _workspaceKind = null;
+      _workspaceState = const {};
+    } else if (widget.guided && !oldWidget.guided) {
+      // The worked solution starts with all answers available again.
+      _wrongAnswers.clear();
+    }
+  }
+
+  void _workspaceChanged(TaskWorkspaceInteraction interaction) {
+    if (!mounted || interaction.taskId != widget.task.taskInstanceId) return;
+    _workspaceState = interaction.visibleState;
+    final changed = _workspaceExplanation != interaction.explanation ||
+        (interaction.isHelp && !_workspaceHelpUsed);
+    if (changed) {
+      setState(() {
+        _workspaceExplanation = interaction.explanation;
+        _workspaceKind = interaction.visibleState['kind'] as String?;
+        _workspaceHelpUsed |= interaction.isHelp;
+      });
+    }
+    widget.onInteraction?.call(interaction);
+  }
+
+  bool get _solved =>
+      _picked != null && '$_picked' == '${widget.task.correctAnswer}';
 
   @override
   Widget build(BuildContext context) {
     final task = widget.task;
 
     if (task.taskType == TaskType.writingCanvas) {
-      return WritingTaskRenderer(
-        task: task,
-        onSubmitted: widget.onWritingSubmitted,
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _goal(task),
+          const SizedBox(height: 12),
+          if (widget.feedback != null) ...[
+            widget.feedback!,
+            const SizedBox(height: 12),
+          ],
+          WritingTaskRenderer(
+            task: task,
+            showLanguageExample: widget.allowRetry,
+            reduceMotion: widget.reduceMotion,
+            onSubmitted: widget.onWritingSubmitted,
+            speak: widget.onWritingPraise,
+          ),
+        ],
       );
     }
 
@@ -68,10 +159,21 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
     // Eigener Renderer mit Demo-Phase (Strich fuer Strich vorgezeichnet)
     // und Trace-Phase (Kind zeichnet auf leerem Canvas nach).
     if (task.taskType == TaskType.shapeTrace) {
-      return ShapeTraceTaskRenderer(
-        task: task,
-        onSubmitted: widget.onShapeTraced,
-        allowRetry: widget.allowRetry,
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _goal(task),
+          const SizedBox(height: 12),
+          if (widget.feedback != null) ...[
+            widget.feedback!,
+            const SizedBox(height: 12),
+          ],
+          ShapeTraceTaskRenderer(
+            task: task,
+            onSubmitted: widget.onShapeTraced,
+            allowRetry: widget.allowRetry,
+          ),
+        ],
       );
     }
 
@@ -90,211 +192,359 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
     final questionCard = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-      // 2026-06-06 FIX: Border mit unterschiedlichen Farben + borderRadius
-      // crasht Flutter silent (Widget unsichtbar). Loesung: Outer Container
-      // mit border-Side links als separate child, dann inner Card mit
-      // borderRadius + uniform border.
-      Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.50), width: 1.3),
-          boxShadow: [
-            BoxShadow(
-              color: LumoVisualTokens.cyan.withOpacity(0.26),
-              blurRadius: 24,
-              offset: const Offset(0, 10),
-            ),
-            const BoxShadow(
-              color: Color(0x66000000),
-              blurRadius: 22,
-              offset: Offset(0, 12),
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(24),
-          child: IntrinsicHeight(
-              child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            // Leuchtende Fachkante statt Papier-Buchrücken.
-            Container(
-              width: 5,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [subjectAccent, subjectAccent.withOpacity(.18)],
-                ),
+        // 2026-06-06 FIX: Border mit unterschiedlichen Farben + borderRadius
+        // crasht Flutter silent (Widget unsichtbar). Loesung: Outer Container
+        // mit border-Side links als separate child, dann inner Card mit
+        // borderRadius + uniform border.
+        LumoStageTarget(
+          id: 'learning-task',
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: LumoVisualTokens.cyan.withOpacity(.50),
+                width: 1.3,
               ),
-            ),
-            // Hauptbereich
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(17, 18, 18, 18),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xF00F3F7A), Color(0xF4092150), Color(0xED0C356A)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  border: Border.all(
-                    color: LumoVisualTokens.cyan.withOpacity(.28),
-                    width: 1,
-                  ),
+              boxShadow: [
+                BoxShadow(
+                  color: LumoVisualTokens.cyan.withOpacity(0.30),
+                  blurRadius: 26,
+                  offset: const Offset(0, 10),
                 ),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 4,
-                            ),
-                    decoration: BoxDecoration(
-                      color: subjectAccent.withOpacity(0.16),
-                      borderRadius: BorderRadius.circular(LumoRadius.pill,
-                              ),
-                      border: Border.all(
-                          color: subjectAccent.withOpacity(0.70),
-                              ),
-                    ),
-                    child: Text(
-                      _subjectLabel(task.subject),
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 0.6,
-                        color: Colors.white,
+                const BoxShadow(
+                  color: Color(0x66000000),
+                  blurRadius: 22,
+                  offset: Offset(0, 12),
+                ),
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.16),
+                  blurRadius: 10,
+                  offset: const Offset(0, -2),
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(24),
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Leuchtende Fachkante statt Papier-Buchrücken.
+                    Container(
+                      width: 5,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            subjectAccent,
+                            subjectAccent.withOpacity(.18)
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 12),
-                  if (task.subject == LearningSubject.deutsch &&
-                      const ['Sätze lesen', 'Lesesinn', 'Reihenfolge'].contains(task.parameters['unit']) &&
-                      task.prompt.contains('\n'))
-                    ReadingPassageCard(prompt: task.prompt)
-                  else Text(
-                    task.prompt,
-                    // Kurze Rechnungen groß, lange Geschichten gut lesbar
-                    // ohne dass die Antworten aus dem Bild rutschen.
-                    textAlign: task.subject == LearningSubject.mathematik &&
-                            task.prompt.length < 24
-                        ? TextAlign.center
-                        : TextAlign.start,
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: task.subject == LearningSubject.mathematik &&
-                              task.prompt.length < 24
-                          ? math.min(41, _promptSize(task.prompt) * 1.2)
-                          : _promptSize(task.prompt),
-                      fontWeight: FontWeight.w900,
-                      color: LumoVisualTokens.white,
-                      shadows: const [
-                        Shadow(color: Color(0xAA37D2FD), blurRadius: 12),
-                      ],
-                      height: 1.12,
-                    ),
-                  ),
-                  const SizedBox(height: 18),
-                  _AdaptiveVisual(task: task, picked: _picked, solved: _solved,
+                    // Hauptbereich
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(17, 18, 18, 18),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Color(0xF00F3F7A),
+                              Color(0xF4092150),
+                              Color(0xED0C356A),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
                           ),
-                  if (widget.allowRetry &&
-                              _wrongAnswers.length >= 2 && !_solved) ...[
-                    const SizedBox(height: 14),
-                    _LocalHelpBanner(task: task, wrongCount: _wrongAnswers.length,
+                          border: Border.all(
+                            color: LumoVisualTokens.cyan.withOpacity(.28),
+                            width: 1,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: subjectAccent.withOpacity(0.16),
+                                borderRadius: BorderRadius.circular(
+                                  LumoRadius.pill,
+                                ),
+                                border: Border.all(
+                                  color: subjectAccent.withOpacity(0.70),
+                                ),
+                              ),
+                              child: Text(
+                                _subjectLabel(task.subject),
+                                style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w900,
+                                  letterSpacing: 0.6,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
-                  ],
-                ],
+                            const SizedBox(height: 12),
+                            _goal(task),
+                            const SizedBox(height: 12),
+                            if (task.subject == LearningSubject.deutsch &&
+                                const [
+                                  'Sätze lesen',
+                                  'Lesesinn',
+                                  'Reihenfolge',
+                                ].contains(task.parameters['unit']) &&
+                                task.prompt.contains('\n'))
+                              ReadingPassageCard(prompt: task.prompt)
+                            else
+                              Text(
+                                LumoTaskObjectArt.matchWordImage(
+                                      prompt: task.prompt,
+                                      answer: task.correctAnswer,
+                                    )?.displayPrompt ??
+                                    task.prompt,
+                                // Kurze Rechnungen groß, lange Geschichten gut lesbar
+                                // ohne dass die Antworten aus dem Bild rutschen.
+                                textAlign: task.subject ==
+                                            LearningSubject.mathematik &&
+                                        task.prompt.length < 24
+                                    ? TextAlign.center
+                                    : TextAlign.start,
+                                style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: task.subject ==
+                                              LearningSubject.mathematik &&
+                                          task.prompt.length < 24
+                                      ? math.min(
+                                          41,
+                                          _promptSize(task.prompt) * 1.2,
+                                        )
+                                      : _promptSize(task.prompt),
+                                  fontWeight: FontWeight.w900,
+                                  color: LumoVisualTokens.white,
+                                  shadows: const [
+                                    Shadow(
+                                      color: Color(0xAA37D2FD),
+                                      blurRadius: 12,
+                                    ),
+                                  ],
+                                  height: 1.12,
+                                ),
+                              ),
+                          ],
+                        ),
                       ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ],
-              ),
-            ),
+          ),
         ),
-      ),
+        const SizedBox(height: 12),
+        LumoStageTarget(
+          id: 'task-workspace',
+          kind: LumoStageRegionKind.obstacle,
+          child: widget.allowRetry
+              ? InteractiveTaskWorkspace(
+                  key: ValueKey('task-workspace-${task.taskInstanceId}'),
+                  task: task,
+                  fallback: _AdaptiveVisual(
+                    task: task,
+                    picked: _picked,
+                    solved: _solved,
+                  ),
+                  enabled: !_solved,
+                  helpLevel: _helpLevel,
+                  reduceMotion: widget.reduceMotion,
+                  showSolution: _solved,
+                  activeObjectId: widget.activeObjectId,
+                  slow: widget.slow,
+                  replaySerial: widget.replaySerial,
+                  onInteraction: _workspaceChanged,
+                )
+              : _AdaptiveVisual(task: task, picked: _picked, solved: _solved),
+        ),
       ],
     );
     final answerPanel = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-      Text(
-        _wrongAnswers.length >= 2 && !_solved
-            ? 'Versuch es nochmal mit Lumos Hilfe:'
-            : 'Wähle die richtige Antwort:',
-        style: LumoTextStyles.label.copyWith(color: Colors.white, fontSize: 14,
-          shadows: const [Shadow(color: Color(0xAA000000), blurRadius: 6)],
-          ),
-      ),
-      const SizedBox(height: 12),
-      _OptionGrid(
-        task: task,
-        picked: _picked,
-        wrongAnswers: _wrongAnswers,
-        solved: _solved,
-        onPick: _pick,
-      ),
-        if (widget.allowRetry && !_solved && !_showGentleHint)
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: OutlinedButton.icon(
-                key: const ValueKey('lesson-hint-button'),
-                icon: const Icon(Icons.lightbulb_rounded),
-                label: const Text('Tipp von Lumo', style: TextStyle(
-                  fontFamily: 'Nunito', fontSize: 14,
-                  fontWeight: FontWeight.w900,
-                )),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: const Color(0xFFFFD36A),
-                  side: const BorderSide(color: Color(0xB3FFDA7B)),
-                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
-                ),
-                onPressed: () => setState(() => _showGentleHint = true),
-              ),
+        if (widget.feedback != null) ...[
+          LumoStageTarget(id: 'task-feedback', child: widget.feedback!),
+          const SizedBox(height: 14),
+        ],
+        // The worked solution directly above already says what to do.
+        if (!(widget.guided && !_solved)) ...[
+          Text(
+            'Wähle die richtige Antwort:',
+            style: LumoTextStyles.label.copyWith(
+              color: Colors.white,
+              fontSize: 14,
+              shadows: const [Shadow(color: Color(0xAA000000), blurRadius: 6)],
             ),
           ),
-        if (widget.allowRetry && _showGentleHint && !_solved)
+          const SizedBox(height: 12),
+        ],
+        LumoStageTarget(
+          id: 'answers',
+          kind: LumoStageRegionKind.answers,
+          child: _OptionGrid(
+            task: task,
+            picked: _picked,
+            wrongAnswers: _wrongAnswers,
+            solved: _solved,
+            enabled:
+                !(_solved || (!widget.allowRetry && _wrongAnswers.isNotEmpty)),
+            reduceMotion: widget.reduceMotion,
+            onPick: _pick,
+          ),
+        ),
+        if (widget.allowRetry && !_solved && !widget.guided)
+          LumoStageTarget(
+              id: 'lesson-hint',
+              kind: LumoStageRegionKind.control,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: OutlinedButton.icon(
+                    key: const ValueKey('lesson-hint-button'),
+                    icon: const Icon(Icons.lightbulb_rounded),
+                    label: Text(
+                      _showGentleHint ? 'Anders erklären' : 'Tipp von Lumo',
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: const Color(0xFFFFD36A),
+                      minimumSize: const Size(48, 48),
+                      side: const BorderSide(color: Color(0xB3FFDA7B)),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 13,
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _showGentleHint = true;
+                        _localHelpLevel = (_localHelpLevel + 1).clamp(1, 3);
+                      });
+                      widget.onInteraction?.call(
+                        TaskWorkspaceInteraction(
+                          taskId: task.taskInstanceId,
+                          objectId: 'task-workspace',
+                          action: 'requestHelp',
+                          visibleState: {
+                            ..._workspaceState,
+                            'helpLevel': _helpLevel,
+                          },
+                          explanation: _workspaceExplanation ??
+                              InteractiveTaskWorkspace.goalFor(task),
+                          isHelp: true,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              )),
+        if (widget.allowRetry && _helpLevel > 0 && !_solved && !widget.guided)
           Padding(
             padding: const EdgeInsets.only(top: 12),
-            child: _LocalHelpBanner(task: task, wrongCount: 0),
+            child: _LocalHelpBanner(
+              task: task,
+              wrongCount: _wrongAnswers.length,
+              explanation:
+                  _workspaceKind == 'evidence' ? null : _workspaceExplanation,
+              helpLevel: _helpLevel,
+            ),
           ),
       ],
     );
-    return LayoutBuilder(builder: (context, constraints) {
-      // Wide comparison visuals (for example measurements and fractions)
-      // need the complete Fold width. Splitting those into two ~300dp
-      // columns causes clipping even though simple visuals are safe there.
-      final simpleVisual = switch (task.visualPayload.type) {
-        VisualType.none ||
-        VisualType.dots ||
-        VisualType.tenOnes ||
-        VisualType.numberLine ||
-        VisualType.syllables ||
-        VisualType.shape ||
-        VisualType.quantityCompare => true,
-        _ => false,
-      };
-      final wide = constraints.maxWidth >= (simpleVisual ? 610 : 1260) &&
-          MediaQuery.textScalerOf(context).scale(1) <= 1.25;
-      if (wide) {
-        return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Expanded(child: questionCard),
-          const SizedBox(width: 16),
-          Expanded(child: answerPanel),
-        ]);
-      }
-      return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        questionCard,
-        const SizedBox(height: 17),
-        answerPanel,
-      ]);
-    });
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Wide comparison visuals (for example measurements and fractions)
+        // need the complete Fold width. Splitting those into two ~300dp
+        // columns causes clipping even though simple visuals are safe there.
+        final simpleVisual = switch (task.visualPayload.type) {
+          VisualType.none ||
+          VisualType.dots ||
+          VisualType.tenOnes ||
+          VisualType.numberLine ||
+          VisualType.syllables ||
+          VisualType.shape ||
+          VisualType.quantityCompare =>
+            true,
+          _ => false,
+        };
+        final shortViewport = constraints.hasBoundedHeight &&
+            constraints.maxHeight < 850;
+        final wideThreshold =
+            simpleVisual && shortViewport ? 620.0 : (simpleVisual ? 760.0 : 1260.0);
+        final wide = constraints.maxWidth >= wideThreshold &&
+            MediaQuery.textScalerOf(context).scale(1) <= 1.25;
+        if (wide) {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: questionCard),
+              const SizedBox(width: 16),
+              Expanded(child: answerPanel),
+            ],
+          );
+        }
+        final verticalGap = constraints.hasBoundedHeight &&
+                constraints.maxHeight < 900
+            ? 6.0
+            : 17.0;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            questionCard,
+            SizedBox(height: verticalGap),
+            answerPanel,
+          ],
+        );
+      },
+    );
   }
 
+  Widget _goal(TaskInstance task) => Semantics(
+        label: 'Dein Lernziel: ${InteractiveTaskWorkspace.goalFor(task)}',
+        excludeSemantics: true,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Icon(Icons.flag_outlined, color: Color(0xFFB9DCEB), size: 19),
+            const SizedBox(width: 7),
+            Expanded(
+              child: Text(
+                InteractiveTaskWorkspace.goalFor(task),
+                key: const ValueKey('task-learning-goal'),
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 13,
+                  height: 1.4,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFFC5DCEA),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
   void _pick(AnswerOption option) {
-    if (_solved|| (!widget.allowRetry && _wrongAnswers.isNotEmpty)) return;
+    if (_solved || (!widget.allowRetry && _wrongAnswers.isNotEmpty)) return;
     final answer = option.payload ?? option.label;
     final answerKey = '$answer';
     if (_wrongAnswers.contains(answerKey)) return;
@@ -303,18 +553,20 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
     setState(() {
       if (correct) {
         _picked = answer;
-      } else {
+      } else if (!widget.guided) {
         _wrongAnswers.add(answerKey);
       }
     });
 
     widget.onAnswered?.call(
-        AdaptiveTaskAnswer(task: widget.task, answer: answer, correct: correct,
-        hintUsed: _showGentleHint ||
-            (widget.allowRetry && _wrongAnswers.length >= 2),
+      AdaptiveTaskAnswer(
+        task: widget.task,
+        answer: answer,
+        correct: correct,
+        hintUsed: _showGentleHint || _workspaceHelpUsed || _helpLevel > 0,
       ),
-      );
-    }
+    );
+  }
 
   String _subjectLabel(LearningSubject subject) {
     return switch (subject) {
@@ -328,14 +580,21 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
 }
 
 class _LocalHelpBanner extends StatelessWidget {
-  const _LocalHelpBanner({required this.task, required this.wrongCount});
+  const _LocalHelpBanner({
+    required this.task,
+    required this.wrongCount,
+    this.explanation,
+    this.helpLevel = 1,
+  });
 
   final TaskInstance task;
   final int wrongCount;
+  final String? explanation;
+  final int helpLevel;
 
   @override
   Widget build(BuildContext context) {
-    final hint = _buildHint(task);
+    final hint = explanation ?? _buildHint(task);
     // 2026-06-06 Iter 27: Premium-Look fuer Lumo-Hilfe-Banner.
     // Vorher: flacher gelber Container. Jetzt: Gradient + Glow + groesserer
     // Mascot-Avatar im farbigen Kreis. Header in Pill-Form abgesetzt.
@@ -349,7 +608,10 @@ class _LocalHelpBanner extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.58), width: 1.4),
+        border: Border.all(
+          color: LumoVisualTokens.cyan.withOpacity(.58),
+          width: 1.4,
+        ),
         boxShadow: [
           BoxShadow(
             color: LumoVisualTokens.cyan.withOpacity(0.22),
@@ -358,266 +620,107 @@ class _LocalHelpBanner extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Container(
-          width: 52,
-          height: 52,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: const Color(0xFF0A315F),
-            shape: BoxShape.circle,
-            border: Border.all(color: LumoVisualTokens.cyanBright, width: 1.8),
-            boxShadow: [
-              BoxShadow(
-                color: LumoVisualTokens.cyan.withOpacity(0.35),
-                blurRadius: 10,
-                offset: const Offset(0, 3),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 52,
+            height: 52,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: const Color(0xFF0A315F),
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: LumoVisualTokens.cyanBright,
+                width: 1.8,
               ),
-            ],
-          ),
-          // 2026-06-06 Iter 28: Echte Lumo-Pose statt nur Emoji.
-          // Heinz' Wunsch: 'mehr Professionalitaet'. Wir nutzen den
-          // vorhandenen Companion-PNG (lumo_think) - faellt bei
-          // Asset-Fehler auf Emoji zurueck.
-          child: ClipOval(
-            child: Image.asset(
-              'assets/companion/lumo_think.png',
-              width: 44,
-              height: 44,
-              fit: BoxFit.contain,
-              errorBuilder: (_, __, ___) =>
-                  const Text('🦊', style: TextStyle(fontSize: 26)),
-            ),
-          ),
-        ),
-        const SizedBox(width: 11),
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4,
-                  ),
-              decoration: BoxDecoration(
-                color: const Color(0xFF174C8C),
-                borderRadius: BorderRadius.circular(LumoRadius.pill),
-                boxShadow: [
-                  BoxShadow(
-                    color: LumoVisualTokens.cyan.withOpacity(0.35),
-                    blurRadius: 6,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Text(
-                wrongCount == 0
-                    ? '💡 Ein Tipp von Lumo'
-                    : wrongCount == 2
-                    ? '💡 Lumo hilft Schritt für Schritt'
-                    : '💡 Noch ein Tipp von Lumo',
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 12,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: LumoVisualTokens.cyan.withOpacity(0.35),
+                  blurRadius: 10,
+                  offset: const Offset(0, 3),
                 ),
+              ],
+            ),
+            // 2026-06-06 Iter 28: Echte Lumo-Pose statt nur Emoji.
+            // Heinz' Wunsch: 'mehr Professionalitaet'. Wir nutzen den
+            // vorhandenen Companion-PNG (lumo_think) - faellt bei
+            // Asset-Fehler auf Emoji zurueck.
+            child: ClipOval(
+              child: Image.asset(
+                'assets/companion/lumo_think.png',
+                width: 44,
+                height: 44,
+                fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) =>
+                    const Text('🦊', style: TextStyle(fontSize: 26)),
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              hint,
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 13.5,
-                fontWeight: FontWeight.w800,
-                color: LumoVisualTokens.white,
-                height: 1.35,
-              ),
+          ),
+          const SizedBox(width: 11),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF174C8C),
+                    borderRadius: BorderRadius.circular(LumoRadius.pill),
+                    boxShadow: [
+                      BoxShadow(
+                        color: LumoVisualTokens.cyan.withOpacity(0.35),
+                        blurRadius: 6,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    wrongCount == 0
+                        ? '💡 Ein Tipp von Lumo'
+                        : '💡 Noch ein Tipp von Lumo',
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  hint,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 13.5,
+                    fontWeight: FontWeight.w800,
+                    color: LumoVisualTokens.white,
+                    height: 1.35,
+                  ),
+                ),
+              ],
             ),
-          ],
-            ),
-        ),
-      ],
+          ),
+        ],
       ),
     );
   }
 
   String _buildHint(TaskInstance task) {
-    // 2026-06-05 Iter 25: variantenreiche, aufgaben-spezifische Hilfe.
-    // Heinz' Feedback: 'Hilfen sind eintoenig'. Vorher fielen Deutsch und
-    // Sachkunde auf den selben Default-Satz zurueck. Jetzt:
-    // - parst aufgaben-konkrete Schluesselwoerter (Satz, Wort, Tier, Koerper, ...)
-    // - liefert 2-4 sinnvolle Varianten pro Kategorie
-    // - waehlt die Variante per Seed-Hash der Aufgabe (stabil aber abwechslungsreich)
-    final prompt = task.prompt.toLowerCase();
-    final numbers = _allInts(task.prompt);
-
-    if (task.subject == LearningSubject.mathematik && numbers.length >= 2) {
-      final a = numbers[0];
-      final b = numbers[1];
-      final op = _operationFromTask(task);
-      if (op == 'subtraction') {
-        return _pick(task, <String>[
-          'Du startest mit $a. Dann nimmst du $b weg. Decke $b Dinge ab oder streiche sie. Was uebrig bleibt, ist die Antwort.',
-          'Stell dir $a Äpfel vor. Du gibst $b weg. Zähl, was übrig bleibt.',
-          'Beginne bei $a auf dem Zahlenstrahl und huepfe $b Schritte zurueck.',
-        ]);
-      }
-      if (op == 'multiplication' || prompt.contains('×') || prompt.contains('mal')) {
-        return _pick(task, <String>[
-          'Stell dir $a Gruppen mit je $b Dingen vor. Wie viele insgesamt?',
-          'Du kannst auch tauschen: $b × $a ist genau dasselbe.',
-          'Zerlege $a × $b in $a Reihen mit $b Würfeln.',
-        ]);
-      }
-      return _pick(task, <String>[
-        'Zaehle zuerst $a Dinge, dann noch $b dazu. Danach zaehlst du alle zusammen.',
-        'Erst $a, dann $b mehr - huepfe auf dem Zahlenstrahl weiter.',
-        'Vertausche zur Probe: $b + $a ist genau dasselbe wie $a + $b.',
-      ]);
+    // The checked adapter owns the didactic sequence. Do not infer an
+    // operation from arbitrary digits or insert an unrelated example word.
+    final steps = task.helpPayload.guidedSteps
+        .where((step) => step.trim().isNotEmpty)
+        .toList(growable: false);
+    if (steps.isNotEmpty) {
+      return steps[(helpLevel - 1).clamp(0, steps.length - 1)];
     }
-
-    // ── Englisch / lebende Fremdsprache ──
-    if (task.subject == LearningSubject.englisch) {
-      if (prompt.contains('what') || prompt.contains('which') || prompt.contains('choose')) {
-        return _pick(task, <String>[
-          'Lies die Frage langsam. Suche zuerst das Schlüsselwort und dann die passende englische Antwort.',
-          'Sprich die Antwortmöglichkeiten laut. Welche klingt zur Frage passend?',
-          'Nutze das Bild im Kopf: Was würdest du in dieser Alltagssituation sagen?',
-        ]);
-      }
-      return _pick(task, <String>[
-        'Sprich das englische Wort laut und verbinde es mit dem Bild oder der Bedeutung.',
-        'Achte auf das erste und letzte Wort der Frage. Das hilft dir beim Verstehen.',
-        'Wenn du unsicher bist: Lies jede Antwort einmal laut und streiche unpassende Wörter weg.',
-      ]);
-    }
-
-    // ── Deutsch / Lesen ──
-    if (prompt.contains('welcher satz ist richtig') || prompt.contains('satz')) {
-      return _pick(task, <String>[
-        'Ein Satz beginnt gross und endet mit einem Punkt. Pruef das bei jeder Antwort.',
-        'Welcher Satz klingt richtig wenn du ihn laut liest? Probiers!',
-        'Subjekt (wer?), dann das Verb (was tut er?) - die richtige Reihenfolge.',
-        'Sprich jeden Satz langsam vor dich hin. Welcher klingt schoen?',
-      ]);
-    }
-    if (prompt.contains('namenswort') || prompt.contains('hauptwort') || prompt.contains('nomen')) {
-      return _pick(task, <String>[
-        'Namenswoerter sind Dinge, Personen oder Tiere. Sie werden GROSS geschrieben.',
-        'Vor ein Namenswort kannst du der/die/das setzen. Probier es bei jeder Antwort!',
-        'Such das Wort das ein Ding meint - kein Tun, keine Eigenschaft.',
-      ]);
-    }
-    if (prompt.contains('tunwort') || prompt.contains('verb')) {
-      return _pick(task, <String>[
-        'Tunwoerter sagen was jemand MACHT: laufen, malen, lachen.',
-        'Pass auf das Wort auf das eine Bewegung oder Taetigkeit zeigt.',
-        'Welches Wort kannst du nach "Ich..." setzen? Das ist das Tunwort.',
-      ]);
-    }
-    if (prompt.contains('wiewort') || prompt.contains('adjektiv') || prompt.contains('eigenschaft')) {
-      return _pick(task, <String>[
-        'Wiewoerter beschreiben WIE etwas ist: gross, klein, schnell, leise.',
-        'Frag dich: "wie ist es?" - das passt nur auf das Wiewort.',
-        'Ein Wiewort sagt nicht WAS das ist, sondern WIE es ist.',
-      ]);
-    }
-    if (prompt.contains('reim') || prompt.contains('reimt sich')) {
-      return _pick(task, <String>[
-        'Reimwoerter klingen am Ende gleich: Hase - Nase, Ball - Fall.',
-        'Sprich beide Woerter laut. Hoeren sich die letzten Laute gleich an?',
-        'Nur die letzten Buchstaben muessen gleich klingen, nicht das ganze Wort.',
-      ]);
-    }
-    if (prompt.contains('silbe')) {
-      return _pick(task, <String>[
-        'Sprich das Wort langsam. Bei jeder Silbe klatschst du einmal mit.',
-        'Stell dir die Silben wie kleine Pakete vor: Ba-na-ne = 3 Pakete.',
-        'Lege fuer jede Silbe einen Finger hin. Zaehl am Ende deine Finger.',
-      ]);
-    }
-    if (prompt.contains('anfangs') || prompt.contains('beginnt')) {
-      return _pick(task, <String>[
-        'Sprich das Wort ganz langsam und hoere nur auf den ersten Laut.',
-        'Welcher Laut kommt zuerst raus wenn du den Mund auf-machst?',
-        'Sprich nur den ersten Buchstaben sehr lang: "Aaaa-pfel" - das A!',
-      ]);
-    }
-    if (prompt.contains('endlaut') || prompt.contains('endet')) {
-      return _pick(task, <String>[
-        'Sprich das Wort langsam. Welcher Laut kommt ganz am Ende?',
-        'Sprich nur den letzten Buchstaben lang: "Bal-llll" - das L!',
-        'Hoer beim letzten Laut genau hin. Das ist die Antwort.',
-      ]);
-    }
-    if (prompt.contains('mehrzahl') || prompt.contains('plural')) {
-      return _pick(task, <String>[
-        '"Eins" oder "viele"? Bei viele endet das Wort oft auf -e, -en oder -s.',
-        'Setze "viele" davor und sprich das Wort - so klingt die Mehrzahl.',
-      ]);
-    }
-    if (prompt.contains('artikel') || prompt.contains('der die das')) {
-      return _pick(task, <String>[
-        'Frag dich: heisst es der, die oder das? Hoer auf den natuerlichen Klang.',
-        'Setze "ein" oder "eine" davor - das hilft beim Artikel finden.',
-      ]);
-    }
-
-    // ── Sachkunde ──
-    if (prompt.contains('koerper') ||
-        prompt.contains('hoer') ||
-        prompt.contains('seh') ||
-        prompt.contains('riech') ||
-        prompt.contains('schmeck')) {
-      return _pick(task, <String>[
-        'Greif dir an den Koerper-Teil mit dem du das machst - der gehoert dazu!',
-        'Womit machst DU das gerade? Spuer es selber - das ist die Antwort.',
-        'Schau dich kurz im Spiegel an. Welches Koerper-Teil passt zur Frage?',
-      ]);
-    }
-    if (prompt.contains('tier') || prompt.contains('hund') || prompt.contains('katze') ||
-        prompt.contains('vogel')) {
-      return _pick(task, <String>[
-        'Stell dir das Tier vor: wo lebt es? was frisst es? - das hilft.',
-        'Ueberleg was das Tier kann - schwimmen, fliegen, klettern?',
-      ]);
-    }
-    if (prompt.contains('wetter') || prompt.contains('regen') || prompt.contains('sonne') ||
-        prompt.contains('jahreszeit')) {
-      return _pick(task, <String>[
-        'Denk an die Jahreszeiten: Fruehling, Sommer, Herbst, Winter - was passt?',
-        'Schau aus dem Fenster: welche Wetter siehst du im Kopf?',
-      ]);
-    }
-    if (prompt.contains('verkehr') || prompt.contains('ampel') ||
-        prompt.contains('strasse') || prompt.contains('zebrastreifen')) {
-      return _pick(task, <String>[
-        'Bei der Ampel: rot = stehen, gruen = gehen. Was war die Frage?',
-        'Schau immer erst links, dann rechts, dann nochmal links bevor du gehst.',
-      ]);
-    }
-    if (prompt.contains('pflanz') || prompt.contains('blume') || prompt.contains('baum')) {
-      return _pick(task, <String>[
-        'Pflanzen brauchen Wasser, Sonne und Erde - das hilft beim Antworten.',
-        'Denk an die Teile der Pflanze: Wurzel, Stamm/Stiel, Blatt, Blueten.',
-      ]);
-    }
-
-    // ── Generischer Fallback aber variantenreich ──
-    return _pick(task, <String>[
-      'Lies die Frage nochmal langsam. Welche Antwort klingt richtig wenn du sie laut sagst?',
-      'Schau dir jede Antwort einzeln an. Welche kannst du auf jeden Fall ausschliessen?',
-      'Sprich die Frage und jede Antwort laut. Welche fuehlt sich am sichersten an?',
-      'Such die wichtigsten Woerter in der Frage. Was wird wirklich gefragt?',
-    ]);
-  }
-
-  /// Stabile aber variierende Auswahl: gleicher Task = gleicher Tipp,
-  /// neue Task = anderer Tipp. Vermeidet, dass dasselbe Kind staendig
-  /// die exakt selbe Hilfe sieht.
-  String _pick(TaskInstance task, List<String> variants) {
-    if (variants.isEmpty) return '';
-    final h = task.taskInstanceId.hashCode ^ task.prompt.hashCode;
-    return variants[h.abs() % variants.length];
+    final hint = task.helpPayload.shortHint;
+    if (hint != null && hint.trim().isNotEmpty) return hint;
+    return InteractiveTaskWorkspace.goalFor(task);
   }
 }
 
@@ -628,6 +731,8 @@ class _OptionGrid extends StatelessWidget {
     required this.wrongAnswers,
     required this.solved,
     required this.onPick,
+    this.enabled = true,
+    this.reduceMotion = false,
   });
 
   final TaskInstance task;
@@ -635,49 +740,74 @@ class _OptionGrid extends StatelessWidget {
   final Set<String> wrongAnswers;
   final bool solved;
   final ValueChanged<AnswerOption> onPick;
+  final bool enabled;
+  final bool reduceMotion;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      final compact = constraints.maxWidth < 460;
-      // Kurze Antworten (Zahlen, Wörter) stehen am Handy zu zweit nebeneinander,
-      // damit Aufgabe und alle Antworten gemeinsam ins Bild passen.
-      final shortAnswers = task.options.every((o) => o.label.length <= 14) &&
-          MediaQuery.textScalerOf(context).scale(1) <= 1.3;
-      // Vier kurze Antwortkacheln bleiben auch auf Tablets ein
-      // ausgewogenes 2×2-Raster statt einer unruhigen 3+1-Anordnung.
-      // Längere Antworttexte und andere Auswahlanzahlen behalten ihre
-      // bisherigen responsiven Regeln.
-      final balancedFour = shortAnswers && task.options.length == 4;
-      final itemWidth = balancedFour
-          ? (constraints.maxWidth - 12) / 2
-          : compact
-              ? (shortAnswers
-                  ? (constraints.maxWidth - 12) / 2
-                  : constraints.maxWidth)
-              : (constraints.maxWidth - 24) / 3;
-      return Wrap(
-        spacing: 12,
-        runSpacing: 12,
-        children: task.options.map((option) {
-          final payload = option.payload ?? option.label;
-          final isPicked = picked != null && '$picked' == '$payload';
-          final isWrongPicked = wrongAnswers.contains('$payload');
-          final isCorrect = '$payload' == '${task.correctAnswer}';
-          return SizedBox(
-            width: itemWidth,
-            child: _AnswerButton(
-              label: option.label,
-              isPicked: isPicked,
-              isWrongPicked: isWrongPicked,
-              isCorrect: isCorrect,
-              solved: solved,
-              onTap: () => onPick(option),
-            ),
-          );
-        }).toList(),
-      );
-    },
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final compact = constraints.maxWidth < 460;
+        // Kurze Antworten (Zahlen, Wörter) stehen am Handy zu zweit nebeneinander,
+        // damit Aufgabe und alle Antworten gemeinsam ins Bild passen.
+        final shortAnswers = task.options.every((o) => o.label.length <= 14) &&
+            MediaQuery.textScalerOf(context).scale(1) <= 1.3;
+        // Vier kurze Antwortkacheln bleiben auch auf Tablets ein
+        // ausgewogenes 2×2-Raster statt einer unruhigen 3+1-Anordnung.
+        // Längere Antworttexte und andere Auswahlanzahlen behalten ihre
+        // bisherigen responsiven Regeln.
+        final balancedFour = shortAnswers && task.options.length == 4;
+        final itemWidth = balancedFour
+            ? (constraints.maxWidth - 12) / 2
+            : compact
+                ? (shortAnswers
+                    ? (constraints.maxWidth - 12) / 2
+                    : constraints.maxWidth)
+                : (constraints.maxWidth - 24) / 3;
+        return Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: task.options.map((option) {
+            final payload = option.payload ?? option.label;
+            final isPicked = picked != null && '$picked' == '$payload';
+            final isWrongPicked = wrongAnswers.contains('$payload');
+            final isCorrect = '$payload' == '${task.correctAnswer}';
+            // The primary Maths practice uses the real crystal controls as
+            // part of the task flow, not merely in an isolated demo module.
+            // Keep long written answers in the readable original cards.
+            final crystalAnswer = task.subject == LearningSubject.mathematik &&
+                option.label.length <= 14;
+            return SizedBox(
+              width: itemWidth,
+              child: crystalAnswer
+                  ? LumoAnswerCrystal(
+                      buttonKey: ValueKey('math-crystal-${option.label}'),
+                      label: option.label,
+                      fontSize: option.label.length >= 9 ? 20 : 29,
+                      state: solved && isCorrect
+                          ? LumoCrystalState.correct
+                          : isWrongPicked
+                              ? LumoCrystalState.retry
+                              : LumoCrystalState.neutral,
+                      onPressed: !enabled || solved || isWrongPicked
+                          ? null
+                          : () => onPick(option),
+                    )
+                  : _AnswerButton(
+                      key: ValueKey('answer-option-${option.id}'),
+                      label: option.label,
+                      isPicked: isPicked,
+                      isWrongPicked: isWrongPicked,
+                      isCorrect: isCorrect,
+                      solved: solved,
+                      enabled: enabled,
+                      reduceMotion: reduceMotion,
+                      onTap: () => onPick(option),
+                    ),
+            );
+          }).toList(),
+        );
+      },
     );
   }
 }
@@ -689,12 +819,15 @@ class _OptionGrid extends StatelessWidget {
 /// bleiben unveraendert.
 class _AnswerButton extends StatefulWidget {
   const _AnswerButton({
+    super.key,
     required this.label,
     required this.isPicked,
     required this.isWrongPicked,
     required this.isCorrect,
     required this.solved,
     required this.onTap,
+    this.enabled = true,
+    this.reduceMotion = false,
   });
 
   final String label;
@@ -703,6 +836,8 @@ class _AnswerButton extends StatefulWidget {
   final bool isCorrect;
   final bool solved;
   final VoidCallback onTap;
+  final bool enabled;
+  final bool reduceMotion;
 
   @override
   State<_AnswerButton> createState() => _AnswerButtonState();
@@ -722,6 +857,11 @@ class _AnswerButtonState extends State<_AnswerButton>
   @override
   void didUpdateWidget(covariant _AnswerButton old) {
     super.didUpdateWidget(old);
+    if (widget.reduceMotion || LumoMotion.reduced(context)) {
+      _pulse.reset();
+      _shake.reset();
+      return;
+    }
     final justSolved =
         widget.solved && widget.isCorrect && !(old.solved && old.isCorrect);
     final justWrong = widget.isWrongPicked && !old.isWrongPicked;
@@ -768,7 +908,8 @@ class _AnswerButtonState extends State<_AnswerButton>
     // auf Touch-only spring-back. Tap funktioniert weiterhin normal.
     // Disabled-State (solved/isWrongPicked) ohne Tilt damit nur aktive Cards
     // reagieren.
-    final tilted = !(widget.solved || widget.isWrongPicked);
+    final quiet = widget.reduceMotion || LumoMotion.reduced(context);
+    final enabled = widget.enabled && !(widget.solved || widget.isWrongPicked);
     // 2026-06-06 Iter 26: Premium-Look fuer Answer-Cards.
     // Heinz: 'Aufgaben sehen nicht eindrucksvoll aus'. Vorher flache Pills mit
     // 2px Border. Jetzt: weicher 3D-Schatten + Top-Shine (Glas-Effekt) +
@@ -779,56 +920,63 @@ class _AnswerButtonState extends State<_AnswerButton>
             ? const Color(0xFFF43F5E)
             : Colors.black;
     final card = AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        constraints: const BoxConstraints(minHeight: 80),
-        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 18),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color.alphaBlend(Colors.white.withOpacity(0.10), bg),
-              Color.alphaBlend(Colors.black.withOpacity(0.16), bg),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(LumoRadius.lg),
-          border: Border.all(color: border, width: 2),
-          boxShadow: [
-            BoxShadow(
-              color: shadowColor.withOpacity(
-                  widget.solved || widget.isWrongPicked ? 0.22 : 0.12,
-            ),
-              blurRadius: 14,
-              offset: const Offset(0, 5),
-            ),
-            // Subtiler Inner-Glow oben (Glas-Shine) ueber zweite Box-Shadow
-            BoxShadow(
-              color: LumoVisualTokens.cyan.withOpacity(0.20),
-              blurRadius: 8,
-              offset: const Offset(0, 1),
-              spreadRadius: -2,
-            ),
+      duration: quiet ? Duration.zero : const Duration(milliseconds: 180),
+      constraints: const BoxConstraints(minHeight: 80),
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 18),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.alphaBlend(Colors.white.withOpacity(0.10), bg),
+            Color.alphaBlend(Colors.black.withOpacity(0.16), bg),
           ],
         ),
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: border, width: 2),
+        boxShadow: [
+          BoxShadow(
+            color: shadowColor.withOpacity(
+              widget.solved || widget.isWrongPicked ? 0.22 : 0.12,
+            ),
+            blurRadius: 14,
+            offset: const Offset(0, 5),
+          ),
+          // Subtiler Inner-Glow oben (Glas-Shine) ueber zweite Box-Shadow
+          BoxShadow(
+            color: LumoVisualTokens.cyan.withOpacity(0.20),
+            blurRadius: 8,
+            offset: const Offset(0, 1),
+            spreadRadius: -2,
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           if (widget.solved && widget.isCorrect)
             const Padding(
               padding: EdgeInsets.only(right: 7),
-              child: Icon(Icons.check_circle_rounded, color: Color(0xFF22C55E), size: 20,
+              child: Icon(
+                Icons.check_circle_rounded,
+                color: Color(0xFF22C55E),
+                size: 20,
               ),
             ),
           if (widget.isWrongPicked)
             const Padding(
               padding: EdgeInsets.only(right: 7),
-              child: Icon(Icons.cancel_rounded, color: Color(0xFFF43F5E), size: 20,
+              child: Icon(
+                Icons.cancel_rounded,
+                color: Color(0xFFF43F5E),
+                size: 20,
               ),
             ),
           Flexible(
             child: Text(
               widget.label,
               textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+              softWrap: true,
               style: TextStyle(
                 fontFamily: 'Nunito',
                 fontSize: 22,
@@ -839,7 +987,7 @@ class _AnswerButtonState extends State<_AnswerButton>
           ),
         ],
       ),
-      );
+    );
     // 2026-06-05 Iter 19/B5: Feedback-Animation um die Card legen.
     // Pulse fuer Richtig, Shake fuer Falsch. AnimatedBuilder nur wenn aktiv.
     Widget animated = card;
@@ -848,10 +996,11 @@ class _AnswerButtonState extends State<_AnswerButton>
       child: card,
       builder: (context, child) {
         // Pulse: 1.0 -> 1.08 -> 1.0 (sin-Kurve)
-        final p = _pulse.value;
-        final scale = p == 0 ? 1.0 : 1.0 + 0.08 * (1 - (2 * p - 1) * (2 * p - 1));
+        final p = quiet ? 0.0 : _pulse.value;
+        final scale =
+            p == 0 ? 1.0 : 1.0 + 0.08 * (1 - (2 * p - 1) * (2 * p - 1));
         // Shake: 3x links/rechts +/- 8px ueber 420ms
-        final s = _shake.value;
+        final s = quiet ? 0.0 : _shake.value;
         final dx = s == 0 ? 0.0 : 8.0 * (1 - s) * _shakeWave(s);
         return Transform.translate(
           offset: Offset(dx, 0),
@@ -861,10 +1010,24 @@ class _AnswerButtonState extends State<_AnswerButton>
     );
     // Wenn aktive Card: in LumoTiltCard fuer 3D-Effekt + Tap-Forward.
     // Sonst nur GestureDetector (kein Tilt fuer disabled Cards).
-    if (tilted) {
-      return LumoTiltCard(onTap: widget.onTap, child: animated);
-    }
-    return GestureDetector(onTap: null, child: animated);
+    return Semantics(
+      button: true,
+      enabled: enabled,
+      value: widget.solved && widget.isCorrect
+          ? 'Richtig'
+          : widget.isWrongPicked
+              ? 'Noch nicht richtig'
+              : null,
+      child: enabled && !quiet
+          ? LumoTiltCard(onTap: widget.onTap, child: animated)
+          : Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(LumoRadius.lg),
+                onTap: enabled ? widget.onTap : null,
+                child: animated,
+              )),
+    );
   }
 
   /// Sinus-Shake-Welle: drei volle Schwingungen ueber 0..1.
@@ -872,7 +1035,10 @@ class _AnswerButtonState extends State<_AnswerButton>
 }
 
 class _AdaptiveVisual extends StatelessWidget {
-  const _AdaptiveVisual({required this.task, required this.picked, required this.solved,
+  const _AdaptiveVisual({
+    required this.task,
+    required this.picked,
+    required this.solved,
   });
 
   final TaskInstance task;
@@ -884,10 +1050,16 @@ class _AdaptiveVisual extends StatelessWidget {
     return switch (task.visualPayload.type) {
       VisualType.dots => _DotsVisual(task: task),
       VisualType.tenOnes => _TenOnesVisual(task: task),
-      VisualType.numberLine => _NumberLineVisual(task: task, picked: picked, solved: solved,
-      ),
-      VisualType.shape => _ShapeVisual(task: task, picked: picked, solved: solved,
-      ),
+      VisualType.numberLine => _NumberLineVisual(
+          task: task,
+          picked: picked,
+          solved: solved,
+        ),
+      VisualType.shape => _ShapeVisual(
+          task: task,
+          picked: picked,
+          solved: solved,
+        ),
       VisualType.syllables => _SyllableVisual(task: task),
       // Heinz' neue Visuals (Mai 2026):
       VisualType.quantityCompare => QuantityCompareVisual(task: task),
@@ -908,11 +1080,12 @@ class _AdaptiveVisual extends StatelessWidget {
       // 2026-06-05 Iter 18/B1:
       VisualType.writtenArithmetic => WrittenArithmeticVisual(task: task),
       VisualType.divisionGroups => DivisionGroupsVisual(task: task),
-      VisualType.numberCompare => NumberCompareVisual(task: task),
+      VisualType.numberCompare => NumberCompareVisual(
+          task: task, evaluatedSymbol: solved ? '${task.correctAnswer}' : null),
       VisualType.simpleBarChart => SimpleBarChartVisual(task: task),
       // 2026-06-05 Iter 19/B3:
       VisualType.storyStage => StoryStageVisual(task: task),
-      _ => _SchoolbookFallbackVisual(task: task),
+      _ => _wordPictureVisual(task) ?? _SchoolbookFallbackVisual(task: task),
     };
   }
 }
@@ -927,8 +1100,22 @@ class _DotsVisual extends StatelessWidget {
     final data = task.visualPayload.data;
     final numbers = _allInts(task.prompt);
     final operation = _operationFromTask(task);
-    final left = _readInt(data['left']) ?? _readInt(data['start']) ?? (numbers.isNotEmpty ? numbers[0] : 0);
-    final right = _readInt(data['right']) ?? _readInt(data['takeAway']) ?? (numbers.length > 1 ? numbers[1] : 0);
+    final left = _readInt(data['left']) ??
+        _readInt(data['start']) ??
+        (numbers.isNotEmpty ? numbers[0] : 0);
+    final right = _readInt(data['right']) ??
+        _readInt(data['takeAway']) ??
+        (numbers.length > 1 ? numbers[1] : 0);
+    final answer = _readInt(task.correctAnswer);
+    final expected = operation == 'subtraction' ? left - right : left + right;
+    if (left < 0 ||
+        right < 0 ||
+        left > 20 ||
+        right > 20 ||
+        expected < 0 ||
+        answer != expected) {
+      return const SizedBox.shrink();
+    }
     final emoji = _emojiForPrompt(task.prompt);
 
     if (operation == 'subtraction' && left > 10 && right > 0) {
@@ -936,12 +1123,14 @@ class _DotsVisual extends StatelessWidget {
         title: 'Wegnehmen-Bild',
         subtitle: 'Erst anschauen, dann wegnehmen und zählen.',
         ribbonLabel: '−',
-        helperText: 'Start: $left. Wegnehmen: $right. Ergebnis: ${task.correctAnswer}.',
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          TwentyFrameVisual(start: left, takeAway: right),
-          const SizedBox(height: 16),
-          NumberLineJumpVisual(start: left, takeAway: right),
-        ],
+        helperText: 'Start: $left. Nimm $right weg und zähle, was noch da ist.',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TwentyFrameVisual(start: left, takeAway: right),
+            const SizedBox(height: 16),
+            NumberLineJumpVisual(start: left, takeAway: right),
+          ],
         ),
       );
     }
@@ -993,7 +1182,10 @@ class _MathQuantityAdventureCard extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.55), width: 1.3),
+        border: Border.all(
+          color: LumoVisualTokens.cyan.withOpacity(.55),
+          width: 1.3,
+        ),
         boxShadow: [
           BoxShadow(
             color: LumoVisualTokens.cyan.withOpacity(.18),
@@ -1002,68 +1194,79 @@ class _MathQuantityAdventureCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 15,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 15,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      subtitle,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: LumoVisualTokens.muted,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 2),
-              Text(
-                subtitle,
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  color: LumoVisualTokens.muted,
+              Container(
+                width: 40,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF39DFFF), Color(0xFF2B72FF)],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: LumoVisualTokens.cyan.withOpacity(.42),
+                      blurRadius: 12,
+                    ),
+                  ],
+                ),
+                child: Text(
+                  symbol,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 22,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ]),
+            ],
           ),
-          Container(
-            width: 40,
-            height: 40,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: const LinearGradient(
-                colors: [Color(0xFF39DFFF), Color(0xFF2B72FF)],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: LumoVisualTokens.cyan.withOpacity(.42),
-                  blurRadius: 12,
-                ),
-              ],
-            ),
-            child: Text(
-              symbol,
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 22,
-                fontWeight: FontWeight.w900,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ]),
-        const SizedBox(height: 13),
-        child,
-      ]),
+          const SizedBox(height: 13),
+          child,
+        ],
+      ),
     );
   }
 }
 
-
 class _ObjectMathVisual extends StatelessWidget {
-  const _ObjectMathVisual({required this.left, required this.right, required this.operation, required this.emoji,
+  const _ObjectMathVisual({
+    required this.left,
+    required this.right,
+    required this.operation,
+    required this.emoji,
   });
 
   final int left;
@@ -1098,7 +1301,10 @@ class _ObjectMathVisual extends StatelessWidget {
 }
 
 class _ObjectGroup extends StatelessWidget {
-  const _ObjectGroup({required this.count, required this.crossed, required this.emoji,
+  const _ObjectGroup({
+    required this.count,
+    required this.crossed,
+    required this.emoji,
   });
 
   final int count;
@@ -1110,7 +1316,9 @@ class _ObjectGroup extends StatelessWidget {
     final safeCount = count.clamp(0, 20).toInt();
     final safeCrossed = crossed.clamp(0, safeCount).toInt();
     if (safeCount == 0) {
-      return Text('0', style: LumoTextStyles.heading2.copyWith(color: LumoColors.ink500),
+      return Text(
+        '0',
+        style: LumoTextStyles.heading2.copyWith(color: LumoColors.ink500),
       );
     }
     return Wrap(
@@ -1118,32 +1326,39 @@ class _ObjectGroup extends StatelessWidget {
       runSpacing: 6,
       children: List.generate(safeCount, (index) {
         final isCrossed = index < safeCrossed;
-        return Stack(alignment: Alignment.center, children: [
-          Opacity(
-            opacity: isCrossed ? .25 : 1,
-            child: Container(
-              width: 34,
-              height: 34,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF19538F), Color(0xFF0B315F)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            Opacity(
+              opacity: isCrossed ? .25 : 1,
+              child: Container(
+                width: 34,
+                height: 34,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF19538F), Color(0xFF0B315F)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: LumoVisualTokens.cyan.withOpacity(.55),
+                  ),
                 ),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.55)),
+                child: LumoTaskObjectArt(emoji: emoji, size: 26),
               ),
-              child: Text(emoji, style: const TextStyle(fontSize: 22)),
             ),
-          ),
-          if (isCrossed)
-            Transform.rotate(
-              angle: -.68,
-              child: Container(width: 38, height: 3, color: LumoColors.ink700.withOpacity(.72),
+            if (isCrossed)
+              Transform.rotate(
+                angle: -.68,
+                child: Container(
+                  width: 38,
+                  height: 3,
+                  color: LumoColors.ink700.withOpacity(.72),
                 ),
-            ),
-        ],
+              ),
+          ],
         );
       }),
     );
@@ -1158,45 +1373,70 @@ class _TenOnesVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
-    final tens = (_readInt(data['tens']) ?? 0).clamp(0, 9).toInt();
-    final ones = (_readInt(data['ones']) ?? 0).clamp(0, 9).toInt();
+    final tens = _readInt(data['tens']);
+    final ones = _readInt(data['ones']);
+    if (tens == null || ones == null || tens < 0 || ones < 0 || ones > 9) {
+      return const SizedBox.shrink();
+    }
     final target = tens * 10 + ones;
+    if (tens > 20) {
+      return SchoolbookTaskCard(
+        title: 'Zehner und Einer',
+        subtitle: 'Ein Zehner besteht aus zehn Einern.',
+        ribbonLabel: '$target',
+        child: Text('$tens Zehner und $ones Einer',
+            style: LumoTextStyles.heading2),
+      );
+    }
     return SchoolbookTaskCard(
       title: 'Zehner und Einer',
       subtitle: 'Stangen sind Zehner, Punkte sind Einer.',
       ribbonLabel: '$target',
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: List.generate(tens, (_) => Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: List.generate(
+              tens,
+              (_) => Container(
                 width: 18,
                 height: 72,
-                decoration: BoxDecoration(color: LumoColors.orange.withOpacity(.78), borderRadius: BorderRadius.circular(LumoRadius.sm),
+                decoration: BoxDecoration(
+                  color: LumoColors.orange.withOpacity(.78),
+                  borderRadius: BorderRadius.circular(LumoRadius.sm),
                 ),
               ),
             ),
-        ),
-        const SizedBox(height: 12),
-        Wrap(
-          spacing: 6,
-          runSpacing: 6,
-          children: List.generate(ones, (_) => Container(
+          ),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 6,
+            runSpacing: 6,
+            children: List.generate(
+              ones,
+              (_) => Container(
                 width: 16,
                 height: 16,
-                decoration: BoxDecoration(color: LumoColors.gold.withOpacity(.85), shape: BoxShape.circle,
+                decoration: BoxDecoration(
+                  color: LumoColors.gold.withOpacity(.85),
+                  shape: BoxShape.circle,
                 ),
               ),
             ),
-        ),
-      ],
+          ),
+        ],
       ),
     );
   }
 }
 
 class _NumberLineVisual extends StatelessWidget {
-  const _NumberLineVisual({required this.task, required this.picked, required this.solved,
+  const _NumberLineVisual({
+    required this.task,
+    required this.picked,
+    required this.solved,
   });
 
   final TaskInstance task;
@@ -1216,7 +1456,12 @@ class _NumberLineVisual extends StatelessWidget {
         child: NumberLineJumpVisual(start: start, takeAway: takeAway),
       );
     }
-    final numbers = task.options.map((option) => _readInt(option.payload ?? option.label)).whereType<int>().toSet().toList()..sort();
+    final numbers = task.options
+        .map((option) => _readInt(option.payload ?? option.label))
+        .whereType<int>()
+        .toSet()
+        .toList()
+      ..sort();
     if (numbers.length < 2) return const SizedBox.shrink();
     final answer = _readInt(task.correctAnswer);
     final pickedNumber = picked == null ? null : _readInt(picked);
@@ -1224,63 +1469,68 @@ class _NumberLineVisual extends StatelessWidget {
       title: 'Zahlenstrahl',
       subtitle: 'Suche die Zahl auf der Linie.',
       ribbonLabel: 'Linie',
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: numbers.map((number) {
-        final selected = pickedNumber == number;
-        final correct = solved && number == answer;
-        return Container(
-          width: correct || selected ? 42 : 34,
-          height: correct || selected ? 42 : 34,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: correct
-                  ? const [Color(0xFF24C997), Color(0xFF116F60)]
-                  : selected
-                      ? const [Color(0xFFFFB52E), Color(0xFFC96B00)]
-                      : const [Color(0xFF19538F), Color(0xFF0C315F)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: correct
-                  ? const Color(0xFF5FF0BF)
-                  : selected
-                      ? LumoVisualTokens.gold
-                      : LumoVisualTokens.cyan.withOpacity(.55),
-              width: 2,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: (correct
-                        ? const Color(0xFF5FF0BF)
-                        : selected
-                            ? LumoVisualTokens.gold
-                            : LumoVisualTokens.cyan)
-                    .withOpacity(.22),
-                blurRadius: 8,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: numbers.map((number) {
+          final selected = pickedNumber == number;
+          final correct = solved && number == answer;
+          return Container(
+            width: correct || selected ? 42 : 34,
+            height: correct || selected ? 42 : 34,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: correct
+                    ? const [Color(0xFF24C997), Color(0xFF116F60)]
+                    : selected
+                        ? const [Color(0xFFFFB52E), Color(0xFFC96B00)]
+                        : const [Color(0xFF19538F), Color(0xFF0C315F)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
-            ],
-          ),
-          child: Center(
-            child: Text(
-              '$number',
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 15,
-                fontWeight: FontWeight.w900,
-                color: Colors.white,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: correct
+                    ? const Color(0xFF5FF0BF)
+                    : selected
+                        ? LumoVisualTokens.gold
+                        : LumoVisualTokens.cyan.withOpacity(.55),
+                width: 2,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: (correct
+                          ? const Color(0xFF5FF0BF)
+                          : selected
+                              ? LumoVisualTokens.gold
+                              : LumoVisualTokens.cyan)
+                      .withOpacity(.22),
+                  blurRadius: 8,
+                ),
+              ],
+            ),
+            child: Center(
+              child: Text(
+                '$number',
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
-        );
-      }).toList(),
+          );
+        }).toList(),
       ),
     );
   }
 }
 
 class _ShapeVisual extends StatelessWidget {
-  const _ShapeVisual({required this.task, required this.picked, required this.solved,
+  const _ShapeVisual({
+    required this.task,
+    required this.picked,
+    required this.solved,
   });
 
   final TaskInstance task;
@@ -1313,7 +1563,11 @@ class _ShapeVisual extends StatelessWidget {
         spacing: 12,
         runSpacing: 12,
         alignment: WrapAlignment.center,
-        children: shapes.entries.where((entry) => task.options.any((option) => option.label == entry.key)).map((entry) {
+        children: shapes.entries
+            .where(
+          (entry) => task.options.any((option) => option.label == entry.key),
+        )
+            .map((entry) {
           final selected = '$picked' == entry.key;
           final correct = solved && '${task.correctAnswer}' == entry.key;
           final shapeColor = colors[entry.key] ?? LumoColors.orange;
@@ -1440,7 +1694,8 @@ class _ShapePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_ShapePainter old) => old.kind != kind || old.color != color;
+  bool shouldRepaint(_ShapePainter old) =>
+      old.kind != kind || old.color != color;
 }
 
 class _SyllableVisual extends StatelessWidget {
@@ -1450,15 +1705,22 @@ class _SyllableVisual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final word = task.visualPayload.data['word']?.toString() ?? task.parameters['word']?.toString() ?? '';
+    final word = task.visualPayload.data['word']?.toString() ??
+        task.parameters['word']?.toString() ??
+        '';
     final rawSyllables = task.visualPayload.data['syllables'];
-    final syllables = rawSyllables is List ? rawSyllables.map((e) => e.toString()).toList(growable: false) : null;
+    final syllables = rawSyllables is List
+        ? rawSyllables.map((e) => e.toString()).toList(growable: false)
+        : null;
     return SchoolbookTaskCard(
       title: 'Silben klatschen',
       subtitle: 'Sprich das Wort langsam und klatsche bei jeder Silbe.',
       ribbonLabel: 'Silben',
       accentColor: LumoColors.purple,
-      child: SyllableChipRow(word: word.isEmpty ? 'Wort' : word, syllables: syllables, accentColor: LumoColors.purple,
+      child: SyllableChipRow(
+        word: word.isEmpty ? 'Wort' : word,
+        syllables: syllables,
+        accentColor: LumoColors.purple,
       ),
     );
   }
@@ -1475,22 +1737,35 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
     final data = task.visualPayload.data;
 
     if (visual == 'number_house') {
-      final target = _readInt(data['target']) ?? _readInt(task.correctAnswer) ?? 10;
-      final left = _readInt(data['left']) ?? 0;
-      final right = _readInt(data['right']) ?? _readInt(task.correctAnswer) ?? 0;
+      final given = RegExp(r'Rechenhaus\s+(\d+):\s*(\d+)\s*\+\s*\?')
+          .firstMatch(task.prompt);
+      final target = int.tryParse(given?[1] ?? '');
+      final left = int.tryParse(given?[2] ?? '');
+      if (target == null || left == null || target < left) {
+        return const SizedBox.shrink();
+      }
+      final right = target - left;
       return SchoolbookTaskCard(
         title: 'Rechenhaus',
-        subtitle: 'Die Dachzahl ist das Ganze. Die Zimmer ergeben zusammen das Dach.',
+        subtitle:
+            'Die Dachzahl ist das Ganze. Die Zimmer ergeben zusammen das Dach.',
         ribbonLabel: '$target',
-        helperText: 'Schau zuerst auf das Dach. Dann suchst du die Partnerzahl zu $left.',
-        child: NumberHouseVisual(target: target, rows: <List<int>>[<int>[left, right], <int>[0, target],
-          ], missingIndex: 1,
+        helperText:
+            'Schau zuerst auf das Dach. Dann suchst du die Partnerzahl zu $left.',
+        child: NumberHouseVisual(
+          target: target,
+          rows: <List<int>>[
+            <int>[left, right],
+            <int>[0, target],
+          ],
+          missingIndex: 1,
         ),
       );
     }
 
     if (visual == 'sound_choice') {
-      final word = data['word']?.toString() ?? task.prompt.replaceFirst('St oder Sp?', '').trim();
+      final word = data['word']?.toString() ??
+          task.prompt.replaceFirst('St oder Sp?', '').trim();
       return SchoolbookTaskCard(
         title: 'St oder Sp?',
         subtitle: 'Sprich den Anfang langsam und höre genau hin.',
@@ -1501,15 +1776,15 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
     }
 
     if (visual == 'writing_line') {
-      final target = data['target']?.toString() ?? '${task.correctAnswer}';
-      final word = data['word']?.toString() ?? target;
+      final word = _givenWord(task);
+      if (word == null) return const SizedBox.shrink();
       return SchoolbookTaskCard(
-        title: 'Schreib wie im Heft',
-        subtitle: 'Lies genau und schreibe das passende Wort.',
+        title: 'Das gegebene Wort untersuchen',
+        subtitle:
+            'Lies das Wort. Welche Veränderung ist in der Aufgabe gefragt?',
         ribbonLabel: 'Wort',
         accentColor: LumoColors.purple,
-        child: WritingLineBox(placeholder: word, cells: target.length.clamp(3, 10).toInt(),
-        ),
+        child: WordCardRow(words: [word], accentColor: LumoColors.purple),
       );
     }
 
@@ -1518,33 +1793,43 @@ class _SchoolbookFallbackVisual extends StatelessWidget {
     // Mathe-Aufgabe mit zwei Zahlen (Zahlenmauer, Uhr, Marktstand, 694 …)
     // und zeigte dann eine falsche Rechnung.
     final numbers = _allInts(task.prompt);
-    if (task.subject == LearningSubject.mathematik && _simpleTwoNumberSum(task, numbers) != null) {
+    if (task.subject == LearningSubject.mathematik &&
+        _simpleTwoNumberSum(task, numbers) != null) {
       return _DotsVisual(task: task);
     }
 
     final unitFromParams = task.parameters['unit']?.toString() ?? '';
-    if (task.subject == LearningSubject.deutsch && unitFromParams == 'Satz bauen' && task.correctAnswer is String) {
-      final words = task.correctAnswer.toString().replaceAll(RegExp(r'[.!?]'), '').split(RegExp(r'\s+')).where((w) => w.isNotEmpty).toList(growable: false);
-      if (words.length >= 2) {
-        return SchoolbookTaskCard(
-          title: 'Satz aus Wortkarten',
-          subtitle: 'So sieht der richtige Satz aus. Nun finde ihn unten.',
-          ribbonLabel: 'Satz',
-          accentColor: LumoColors.blue,
-          child: WordCardRow(words: words, accentColor: LumoColors.blue),
-        );
-      }
+    if (task.subject == LearningSubject.deutsch &&
+        unitFromParams == 'Satz bauen') {
+      // An unanswered task may only model the information the child has been
+      // given. The answer key must never assemble a preview of the solution.
+      return SchoolbookTaskCard(
+        title: 'Sätze genau prüfen',
+        subtitle:
+            'Lies die Vorschläge. Achte darauf, ob die Wörter zusammenpassen.',
+        ribbonLabel: 'Satz',
+        accentColor: LumoColors.blue,
+        child: Text(task.prompt),
+      );
     }
 
-    if (task.subject == LearningSubject.deutsch && (unitFromParams.startsWith('Anfangslaut') || unitFromParams.startsWith('Endlaut'))) {
-      final word = task.visualPayload.data['word']?.toString() ?? task.parameters['word']?.toString() ?? task.correctAnswer.toString();
+    if (task.subject == LearningSubject.deutsch &&
+        (unitFromParams.startsWith('Anfangslaut') ||
+            unitFromParams.startsWith('Endlaut'))) {
+      final word = _givenWord(task);
+      if (word == null) return const SizedBox.shrink();
       final highlight = unitFromParams.startsWith('End') ? 'end' : 'start';
       return SchoolbookTaskCard(
         title: highlight == 'end' ? 'Endlaut hören' : 'Anfangslaut hören',
-        subtitle: highlight == 'end' ? 'Sprich das Wort und höre genau auf den letzten Laut.' : 'Sprich das Wort und höre genau auf den ersten Laut.',
+        subtitle: highlight == 'end'
+            ? 'Sprich das Wort und höre genau auf den letzten Laut.'
+            : 'Sprich das Wort und höre genau auf den ersten Laut.',
         ribbonLabel: 'Laut',
         accentColor: LumoColors.purple,
-        child: SoundHighlightWord(word: word, highlight: highlight, color: LumoColors.purple,
+        child: SoundHighlightWord(
+          word: word,
+          highlight: highlight,
+          color: LumoColors.purple,
         ),
       );
     }
@@ -1569,21 +1854,87 @@ String? _simpleTwoNumberSum(TaskInstance task, List<int> numbers) {
   if (answer == null) return null;
   final a = numbers[0], b = numbers[1];
   if (a < 0 || b < 0 || a > 20 || b > 20) return null;
-  if (answer == a + b && answer <= 20) return 'addition';
-  if (answer == a - b) return 'subtraction';
+  final expression = RegExp(
+          r'^\s*(?:Rechne\s+)?(\d+)\s*([+−-])\s*(\d+)\s*(?:=\s*\?|[.!?])?\s*$')
+      .firstMatch(task.prompt);
+  String? operation;
+  if (expression != null) {
+    operation = expression[2] == '+' ? 'addition' : 'subtraction';
+  } else if (RegExp(
+          r'^\S+ hat \d+ [^.?!]+ und findet \d+ dazu\. Wie viele sind es\?$')
+      .hasMatch(task.prompt.trim())) {
+    operation = 'addition';
+  } else {
+    final data = task.visualPayload.data;
+    if (_readInt(data['left']) == a && _readInt(data['right']) == b) {
+      final declared = data['operation'];
+      if (declared == 'addition' || declared == 'subtraction') {
+        operation = declared as String;
+      }
+    }
+  }
+  if (operation == 'addition' && answer == a + b && answer <= 20) {
+    return operation;
+  }
+  if (operation == 'subtraction' && answer == a - b && answer >= 0) {
+    return operation;
+  }
   return null;
+}
+
+String? _givenWord(TaskInstance task) {
+  final candidate = task.visualPayload.data['word']?.toString() ??
+      task.parameters['word']?.toString();
+  if (candidate != null && candidate.trim().isNotEmpty) {
+    final word = candidate.trim();
+    final occurrence = RegExp(
+      '(^|[^A-Za-zÄÖÜäöüß])${RegExp.escape(word)}(\$|[^A-Za-zÄÖÜäöüß])',
+      caseSensitive: false,
+    );
+    if (occurrence.hasMatch(task.prompt)) return word;
+  }
+  final spoken = RegExp(r'Mit welchem Laut (?:beginnt|endet)\s+(.+?)\?')
+      .firstMatch(task.prompt);
+  if (spoken != null) return spoken[1]!.trim();
+  final plural = RegExp(r'Aus 1 mach 2:\s*(.+?)\s*->').firstMatch(task.prompt);
+  return plural?[1]?.trim();
 }
 
 String _operationFromTask(TaskInstance task) {
   final dataOperation = task.visualPayload.data['operation']?.toString();
-  if (dataOperation == 'subtraction' || dataOperation == 'addition') return dataOperation!;
+  if (dataOperation == 'subtraction' || dataOperation == 'addition') {
+    return dataOperation!;
+  }
   final byAnswer = _simpleTwoNumberSum(task, _allInts(task.prompt));
   if (byAnswer != null) return byAnswer;
   final p = task.prompt.toLowerCase();
-  if (p.contains('-') || p.contains('isst') || p.contains('iszt') || p.contains('weg') || p.contains('bleiben') || p.contains('übrig') || p.contains('gibt') || p.contains('verliert')) {
+  if (p.contains('-') ||
+      p.contains('isst') ||
+      p.contains('iszt') ||
+      p.contains('weg') ||
+      p.contains('bleiben') ||
+      p.contains('übrig') ||
+      p.contains('gibt') ||
+      p.contains('verliert')) {
     return 'subtraction';
   }
   return 'addition';
+}
+
+Widget? _wordPictureVisual(TaskInstance task) {
+  final cue = LumoTaskObjectArt.matchWordImage(
+    prompt: task.prompt,
+    answer: task.correctAnswer,
+  );
+  if (cue == null) return null;
+  return Padding(
+    padding: const EdgeInsets.only(top: 4),
+    child: Center(
+      child: LumoTaskHeroCard(
+        child: LumoTaskObjectArt(name: cue.name, emoji: cue.emoji, size: 168),
+      ),
+    ),
+  );
 }
 
 String? _emojiForPrompt(String prompt) {
@@ -1600,13 +1951,15 @@ String? _emojiForPrompt(String prompt) {
 }
 
 List<int> _allInts(String value) {
-  return RegExp(r'-?\d+').allMatches(value).map((match) => int.parse(match.group(0)!)).toList(growable: false);
+  return RegExp(r'-?\d+')
+      .allMatches(value)
+      .map((match) => int.parse(match.group(0)!))
+      .toList(growable: false);
 }
 
 int? _readInt(Object? value) {
-  if (value == null) return null;
   if (value is int) return value;
-  final match = RegExp(r'-?\d+').firstMatch('$value');
-  if (match == null) return null;
-  return int.tryParse(match.group(0)!);
+  if (value is! String || !RegExp(r'^-?\d+$').hasMatch(value.trim()))
+    return null;
+  return int.tryParse(value.trim());
 }

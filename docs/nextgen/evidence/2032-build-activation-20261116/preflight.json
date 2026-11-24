@@ -1,0 +1,51 @@
+{
+  "schema": "lumo.nextgen.2032.build.preflight",
+  "version": 1,
+  "preflightCommit": "14c71ac9510d2dddc9161a029e3617b5bbb9d38c",
+  "native": "9d6ef1d704a0e54098a8f8f0818f36deae0e3789",
+  "nativeTree": "26b6e5301372d4ade91ca8955f7c1ccf5d0dee78",
+  "release": {
+    "versionName": "0.13.20",
+    "versionCode": 2032,
+    "releaseTag": "lumo-nextgen-learning-0.13.20-2032",
+    "buildAttempt": 1
+  },
+  "actualCatalog": {
+    "workflow": 43836322226,
+    "job": 133193729169,
+    "source": "a5ea7422b1152576b34cf80519856129ff264ac1",
+    "artifact": 14210758550,
+    "sourceHashesVerified": 480,
+    "coverageSourceHashes": 364,
+    "protectedFilesByteEqual": 18
+  },
+  "sourceChecks": {
+    "nativeContrast79of79": true,
+    "currentStop26of26": true,
+    "independentCodeAndHashReviews": true
+  },
+  "preactivationAbsence": {
+    "utc": "2026-11-16T09:11:26Z",
+    "release": {
+      "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}",
+      "error_code": "NOT_FOUND",
+      "error_data": {
+        "message": "Not Found",
+        "documentation_url": "https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name",
+        "status": "404"
+      }
+    },
+    "tag": {
+      "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/git/refs#get-a-reference\",\"status\":\"404\"}",
+      "error_code": "NOT_FOUND",
+      "error_data": {
+        "message": "Not Found",
+        "documentation_url": "https://docs.github.com/rest/git/refs#get-a-reference",
+        "status": "404"
+      }
+    }
+  },
+  "apkAvailable": false,
+  "androidAcceptance": false,
+  "fullModernizationComplete": false
+}

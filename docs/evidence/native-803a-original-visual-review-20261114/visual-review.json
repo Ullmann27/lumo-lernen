@@ -1,0 +1,350 @@
+{
+  "schema": 1,
+  "kind": "independent_original_native_still_image_review",
+  "reviewer": "/root/lumo_release_lead/learning_ux_lead/touch_worker",
+  "review_completed_utc": "2026-11-14 10:11:33 UTC",
+  "host_commit": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "native_commit": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "native_tree": "5b5992487e60ae805d708965f1500954c6b0556d",
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "run_id": 43578509499,
+    "run_attempt": 1,
+    "build_job_id": 132399130204,
+    "artifact_id": 14109232711,
+    "artifact_name": "lumo-candidate-pinned-native-gameplay",
+    "artifact_bytes": 175744828,
+    "artifact_sha256": "286d623267d1eb59de9ed5933e3308a29a5868c8beff1323b037e64f2ed357f9",
+    "artifact_provenance": "Archive/API equality and safe extraction independently provided by learning/UX lead; this reviewer independently checked the 17 extracted PNG hashes, byte lengths and dimensions.",
+    "manifest_path": "nextgen/studio-2020-images.json",
+    "manifest_sha256": "b4b616916d36086fe106842457dfd20368ce6f9b3ed07c30c7eac96167ba81aa"
+  },
+  "method": {
+    "original_pngs_visually_opened": 17,
+    "manifest_byte_size_dimension_matches": 17,
+    "image_transformations": 0,
+    "new_renderer_runs": 0,
+    "new_tests": 0,
+    "source_changes": 0,
+    "ref_changes": 0,
+    "film_or_audio_reviewed": false
+  },
+  "conclusion": "In the 17 reviewed original still images, no new visible functional blocker was identified. Two concrete Treasure readability issues remain: an ellipsized portrait title and a split discovery counter in three views.",
+  "technical_gate_status": {
+    "native_ci_step": "Parent reports step 31 completed/success, 09:22:30–10:06:29 UTC; whole APK job was still in progress when artifact was handed over.",
+    "independent_52_and_17_verifiers": "Separate responsibility and evidence of the learning/UX lead; this visual review does not claim to execute or replace those verifiers."
+  },
+  "limitations": [
+    "This report is a review of original rendered still images, not Android device, FPS, audio, runtime input or broad release acceptance.",
+    "Touch-target dimensions of at least 48 dp and safe-area fixture geometry require the separately verified renderer sidecars and gates; pixel appearance alone does not establish Android dp.",
+    "The paused C4 still does not expose the board behind the menu or all menu options beyond the visible scroll region.",
+    "No temporal facial-animation quality, speech intelligibility or audio synchrony is inferred from still images.",
+    "The frozen host 803a and its native pin remain unchanged. The separately tested f0c19 return fix is not part of these images."
+  ],
+  "images": [
+    {
+      "path": "captures/lumo_facial_capture/audio_jaw.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/lumo_facial_capture/audio_jaw.png",
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "bytes": 306464,
+      "width": 640,
+      "height": 640,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "facial",
+      "observations": [
+        "Frontalansicht mit offenen Augen, sichtbaren Ohren und vollständigem Gesicht.",
+        "Beschriftung Original-Lumo · Apfel – lokale WAV sichtbar. Ein einzelnes Standbild belegt weder hörbare Wiedergabe noch zeitliche Mund-Audio-Synchronität."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/lumo_facial_capture/blink.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/lumo_facial_capture/blink.png",
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "bytes": 301312,
+      "width": 640,
+      "height": 640,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "facial",
+      "observations": [
+        "Beide Lider deutlich geschlossen; der Zustand ist visuell von der Aufnahme mit offenen Augen unterscheidbar.",
+        "Gesicht, Ohren und Brille ohne sichtbaren Randbeschnitt."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/lumo_facial_capture/blink_intermediate.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/lumo_facial_capture/blink_intermediate.png",
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "bytes": 302531,
+      "width": 640,
+      "height": 640,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "facial",
+      "observations": [
+        "Beide Lider teilweise geschlossen, sichtbare Augenöffnung zwischen offenem und geschlossenem Zustand.",
+        "Gesicht ohne sichtbaren Randbeschnitt; keine zusätzliche Bedienoberfläche in dieser Nahaufnahme."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/lumo_facial_capture/gaze_left.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/lumo_facial_capture/gaze_left.png",
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "bytes": 295200,
+      "width": 640,
+      "height": 640,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "facial",
+      "observations": [
+        "Kopf/Blick nach links gegenüber der Frontalansicht verändert; beide Augen und Ohren bleiben sichtbar.",
+        "Beschriftung Original-Lumo · stumm lesbar. Das Bild belegt keine tatsächliche Stummschaltung eines Audiogeräts."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/lumo_facial_capture/muted.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/lumo_facial_capture/muted.png",
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "bytes": 303002,
+      "width": 640,
+      "height": 640,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "facial",
+      "observations": [
+        "Frontalansicht mit offenen Augen und nahezu geschlossenem Mund; Gesicht und Ohren innerhalb des Bildes.",
+        "Beschriftung Original-Lumo · stumm sichtbar; tatsächliche Lautstärke oder Tonfreiheit wurde nicht geprüft."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/lumo_facial_capture/neutral.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/lumo_facial_capture/neutral.png",
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "bytes": 283007,
+      "width": 640,
+      "height": 640,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "facial",
+      "observations": [
+        "Nahaufnahme mit offenen Augen, sichtbaren Ohren, Brille und nahezu geschlossenem Mund.",
+        "Gesicht innerhalb des Bildes; der untere Körper ist als Teil der Nahaufnahme außerhalb des Bildausschnitts.",
+        "Beschriftung Original-Lumo · Pause / geschlossen sichtbar."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/lumo_facial_capture/stopped.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/lumo_facial_capture/stopped.png",
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "bytes": 299811,
+      "width": 640,
+      "height": 640,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "facial",
+      "observations": [
+        "Seitlich orientierter Kopf mit offenen Augen, vollständigem Gesicht und sichtbaren Ohren.",
+        "Beschriftung Original-Lumo · Pause / geschlossen sichtbar; kein Nachweis des zeitlichen Stop-Verhaltens allein durch dieses Standbild."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/lumo_facial_capture/teacher_scene.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/lumo_facial_capture/teacher_scene.png",
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "bytes": 113407,
+      "width": 640,
+      "height": 640,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "facial",
+      "observations": [
+        "Wörter bauen · Apfel, die nächste Silbe Ap, die beweglichen Silben fel/Ap und die drei unteren Aktionsknöpfe sind lesbar.",
+        "Lumo steht links neben der Tafel; sichtbare Figur und Bedienelemente überdecken sich nicht.",
+        "Kein fehlendes Text-Glyph oder abgeschnittener Haupttext in diesem Originalbild sichtbar."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "sha256": "05368af4f64863cacfdcd9ce1889e3df8b083f9dc8aa5f0d3fdff91a197846d4",
+      "bytes": 82028,
+      "width": 960,
+      "height": 540,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "connect_four",
+      "observations": [
+        "Leeres Raster mit sieben Spalten und sechs Reihen sichtbar; alle sieben nummerierten Spaltenknöpfe, Zurück und Pause vollständig lesbar.",
+        "Status Gespeichert · Cyan ist dran sichtbar. Lumo steht rechts neben dem Brett ohne sichtbare Überlagerung der Steuerleiste."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/connect_four_visual_capture/c4-paused-small.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/connect_four_visual_capture/c4-paused-small.png",
+      "sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+      "bytes": 29411,
+      "width": 640,
+      "height": 360,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "connect_four",
+      "observations": [
+        "Spiel pausiert. Deine Runde bleibt gespeichert. sowie Fortsetzen und Neue Runde vollständig sichtbar.",
+        "Pausenfeld hat eine sichtbare vertikale Bildlaufleiste. Der Screenshot belegt keine außerhalb des sichtbaren Ausschnitts liegenden Menüaktionen.",
+        "Sieben Spaltenknöpfe und Pause gedimmt; Status Gold ist dran lesbar. Kein Avatar, entsprechend dem Capture-Fall. Das Brett liegt hinter dem Pausenfeld."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/connect_four_visual_capture/c4-playing-phone.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "sha256": "332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c",
+      "bytes": 67672,
+      "width": 412,
+      "height": 915,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "connect_four",
+      "observations": [
+        "Brett mit sieben Spalten und sechs Reihen vollständig sichtbar; zwei Steine in der mittleren Spalte, gelb über cyan.",
+        "Alle sieben Spaltenknöpfe, Zurück, Pause und Gespeichert · Cyan ist dran lesbar.",
+        "Kein Avatar eingeblendet, entsprechend dem vorbereiteten Capture-Fall. Größere freie Bereiche ober- und unterhalb des Bretts, ohne sichtbare Bedienblockade."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/connect_four_visual_capture/c4-win-landscape.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "sha256": "b36497e14dd06e06b070d6b83bddf2114bccc916ff278fe9f11af2a03a748b41",
+      "bytes": 83992,
+      "width": 960,
+      "height": 540,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "connect_four",
+      "observations": [
+        "Vier cyanfarbene Steine in der unteren Reihe mit vier hellen Gewinnringen und drei gelbe Steine sichtbar.",
+        "Cyan gewinnt!, Menü und Zurück lesbar; sieben Spaltenknöpfe sichtbar gedimmt.",
+        "Lumo rechts neben dem Brett sichtbar; keine Überlagerung des Gewinnstatus."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "sha256": "c5a00d642424f9f06bc24419bf1778e599eba243094429d8a1bbd86deb51362a",
+      "bytes": 323987,
+      "width": 640,
+      "height": 320,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "treasure",
+      "observations": [
+        "Der volle Titel, Spiele, Rucksack, Pause, Hinweis, Springen und Ansehen sind sichtbar und voneinander getrennt.",
+        "Der Hinweis-Knopf ersetzt das dauerhafte Hinweisfeld; der einzeilige Hinweisbalken oberhalb des Avatars schneidet dessen Silhouette nicht sichtbar.",
+        "Der Avatar und beide unteren Steuerelemente bleiben innerhalb des Bildes."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "sha256": "b1a0d1b406169acc502af8ab049b2b0053cb18a0d93abab6d75a7e132061cc76",
+      "bytes": 4225366,
+      "width": 2176,
+      "height": 1812,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "treasure",
+      "observations": [
+        "Voller Titel, vollständiger Aufgabenhinweis und unterer Hinweisbalken sind lesbar.",
+        "Avatar und Steuerelemente sind sichtbar; zwischen unterem Hinweisbalken, Joystick und Ansehen-Fläche ist Abstand vorhanden."
+      ],
+      "readability_findings": [
+        "Der Zähler Entdeckungen 0 / 3 bricht vor der 3 um; die letzte Zahl bleibt vollständig sichtbar."
+      ]
+    },
+    {
+      "path": "captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "sha256": "c4b4b4ea47fa4a0499c4ddc889826c45c7a4c1b5e9aed0cce0fe54a9b9b34da5",
+      "bytes": 2622435,
+      "width": 2400,
+      "height": 1080,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "treasure",
+      "observations": [
+        "Voller Titel, separater Hinweis-Knopf und oberer Hinweisbalken sind sichtbar.",
+        "Der Avatar bleibt unterhalb der HUD-Zeilen vollständig sichtbar; linke und rechte Steuerflächen sind klar getrennt.",
+        "Die Darstellung ist gegenüber dem Bildrand eingerückt; reale Geräte-Inset-Werte lassen sich daraus allein nicht bestätigen."
+      ],
+      "readability_findings": []
+    },
+    {
+      "path": "captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "sha256": "dcab2aece457e63187ab94e10740b53fdbb34e1c3bde2b2f9675ddd77d418996",
+      "bytes": 2718159,
+      "width": 1920,
+      "height": 1080,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "treasure",
+      "observations": [
+        "Voller Titel, vollständiger Aufgabenhinweis, unterer Hinweisbalken, Avatar und Steuerflächen sind sichtbar.",
+        "Keine sichtbare Überdeckung des Avatars durch die HUD-Flächen und kein abgeschnittener Hinweistext."
+      ],
+      "readability_findings": [
+        "Der Zähler Entdeckungen 0 / 3 bricht vor der 3 um; die Zahl bleibt lesbar, ist aber optisch vom Bruch getrennt."
+      ]
+    },
+    {
+      "path": "captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "absolute_path": "/home/agent/lumo-native-review-803a-2708/original/nextgen/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "sha256": "353e88d8274e58ad740cfdcbc1dc15c396c435b768aac28f4e4b0f7d678e0ae8",
+      "bytes": 2101554,
+      "width": 1080,
+      "height": 2400,
+      "matches_manifest": true,
+      "visually_reviewed": true,
+      "visible_functional_blocker_found": false,
+      "category": "treasure",
+      "observations": [
+        "Avatar, Aufgabenhinweis, zweizeiliger unterer Hinweisbalken und untere Steuerflächen sind sichtbar und getrennt.",
+        "Die Kopfzeile zeigt den Titel gekürzt; Spiele, Rucksack und Pause bleiben vollständig sichtbar."
+      ],
+      "readability_findings": [
+        "Der Titel erscheint als LUMOS STER…; der vollständige Spielname ist in dieser Aufnahme nicht sichtbar.",
+        "Der Zähler Entdeckungen 0 / 3 bricht vor der 3 um; kein Text wird abgeschnitten."
+      ]
+    }
+  ]
+}
+

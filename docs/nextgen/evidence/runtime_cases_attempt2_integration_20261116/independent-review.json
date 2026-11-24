@@ -1,0 +1,24 @@
+{
+  "reviewer": "/root/learning",
+  "mode": "independent read-only source, committed-byte and original-archive review",
+  "producerCommit": "5520097bb90dfd3a4ddd54ef0d4b73ab893a2880",
+  "apiCommit": "db1180a7ee2b168b6299688c813b7a360d5776a2",
+  "tree": "aaf0d4997703f42a0e3ff4b7d77adf8eddc2dbca",
+  "handoffSha256": "7720a3ddfe9ce696166775ec9efaca532c4ce55ec8efd79ee27c400938cf3edf",
+  "verifiedFiles": 17,
+  "concreteRemainingBlockers": [],
+  "verified": [
+    "45-second active gate unchanged",
+    "full capture-to-requested-touch at most one second unchanged",
+    "one replay after jointly visible observed controls",
+    "1080x2340 pixels with temporary 320 dpi and exact density restoration",
+    "Banane/Rakete checkpoints and profile/learning state preserved",
+    "primary failure retained if restoration also fails",
+    "five fixtures byte-identical to complete original ZIP",
+    "actual 270 XML Next bounds histogram: 246 and 24"
+  ],
+  "testsRerunByReviewer": false,
+  "androidExecutedByReviewer": false,
+  "newAndroidOutcome": "NOT_RUN",
+  "originalAndroidOutcome": "FAIL"
+}

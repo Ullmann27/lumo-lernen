@@ -1,0 +1,55 @@
+name: Lumo Kart online host checks
+on:
+  push:
+    branches: [integration/kart-action-20261123]
+    paths:
+      - lib/core/app_settings.dart
+      - lib/features/settings/kart_online_settings_card.dart
+      - lib/features/lumo3d/lumo3d_launcher.dart
+      - lib/domain/backup/local_backup.dart
+      - test/kart_online_settings_test.dart
+      - .github/workflows/lumo-kart-online-host.yml
+permissions:
+  contents: read
+concurrency:
+  group: kart-online-host-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  host:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve immutable dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Analyze actual host integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p kart-host-proof
+          git rev-parse HEAD > kart-host-proof/SOURCE-COMMIT.txt
+          flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings 2>&1 | tee kart-host-proof/analysis.log
+      - name: Exercise settings, backup and profile preservation
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter expanded --concurrency=2 \
+            test/kart_online_settings_test.dart \
+            test/kart_friend_ghost_test.dart \
+            test/local_backup_format_test.dart \
+            test/local_backup_flow_test.dart \
+            test/learning_profile_isolation_test.dart \
+            2>&1 | tee kart-host-proof/tests.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-kart-online-host-${{ github.run_id }}
+          path: kart-host-proof/
+          if-no-files-found: error

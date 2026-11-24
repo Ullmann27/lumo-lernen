@@ -1,0 +1,245 @@
+name: "Lumo APK – unveränderter Dateitransport"
+
+# Transportiert ausschließlich den bereits gebauten Kandidaten. Kein Build,
+# kein Release und keine Änderung an der laufenden Android-Prüfung.
+on:
+  push:
+    branches: [feature/logic-world-20261123]
+    paths: [config/lumo-world-apk-transfer.json]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-world-apk-transfer-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  transfer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Festen Transportauftrag lesen
+        id: request
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+
+          request = json.loads(Path("config/lumo-world-apk-transfer.json").read_text())
+          for key in ("build_run_id", "apk_artifact_id", "metadata_artifact_id", "apk_bytes", "part_bytes", "part_count"):
+              if type(request[key]) is not int or request[key] <= 0:
+                  raise SystemExit(f"Invalid positive integer: {key}")
+          if request["schema"] != 1 or not re.fullmatch(r"[A-Za-z0-9_.-]+\.apk", request["apk_name"]):
+              raise SystemExit("Invalid transfer schema or APK filename")
+          if not re.fullmatch(r"[0-9a-f]{40}", request["source_commit"]):
+              raise SystemExit("Invalid original source commit")
+          if not re.fullmatch(r"[0-9a-f]{64}", request["apk_sha256"]):
+              raise SystemExit("Invalid original APK digest")
+          count = (request["apk_bytes"] + request["part_bytes"] - 1) // request["part_bytes"]
+          if request["part_bytes"] > 64 * 1024 * 1024 or request["part_count"] != 9 or count != 9:
+              raise SystemExit("This transport requires exactly nine parts of at most 64 MiB")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              for key in ("build_run_id", "apk_artifact_id", "metadata_artifact_id"):
+                  output.write(f"{key}={request[key]}\n")
+          PY
+
+      - name: Bereits gebaute ARM64-APK laden
+        uses: actions/download-artifact@v4
+        with:
+          artifact-ids: ${{ steps.request.outputs.apk_artifact_id }}
+          run-id: ${{ steps.request.outputs.build_run_id }}
+          repository: ${{ github.repository }}
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: incoming/apk
+
+      - name: Originale Bauherkunft aus demselben Lauf laden
+        uses: actions/download-artifact@v4
+        with:
+          artifact-ids: ${{ steps.request.outputs.metadata_artifact_id }}
+          run-id: ${{ steps.request.outputs.build_run_id }}
+          repository: ${{ github.repository }}
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: incoming/metadata
+
+      - name: Original prüfen, zerlegen und Zusammenfügung nachweisen
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, shutil
+          from pathlib import Path
+
+          def file_digest(path):
+              digest = hashlib.sha256()
+              with path.open("rb") as stream:
+                  for block in iter(lambda: stream.read(1024 * 1024), b""):
+                      digest.update(block)
+              return digest.hexdigest()
+
+          def split_file(source, destination, part_size, artifact_suffix):
+              destination.mkdir(parents=True, exist_ok=False)
+              parts = []
+              with source.open("rb") as stream:
+                  while block := stream.read(part_size):
+                      number = len(parts) + 1
+                      name = f"{source.name}.part{number:02d}"
+                      (destination / name).write_bytes(block)
+                      parts.append({
+                          "index": number,
+                          "filename": name,
+                          "bytes": len(block),
+                          "sha256": hashlib.sha256(block).hexdigest(),
+                          "artifact": f"LUMO-WORLD-APK-PART-{number:02d}-{artifact_suffix}",
+                      })
+              return parts
+
+          request = json.loads(Path("config/lumo-world-apk-transfer.json").read_text())
+          apk = Path("incoming/apk") / request["apk_name"]
+          provenance_path = Path("incoming/metadata/BUILD-PROVENANCE.json")
+          provenance = json.loads(provenance_path.read_text())
+          for key, expected in (
+              ("flutter_source_commit", request["source_commit"]),
+              ("bytes", request["apk_bytes"]),
+              ("sha256", request["apk_sha256"]),
+              ("tracked_source_clean", True),
+          ):
+              if provenance.get(key) != expected:
+                  raise SystemExit(f"Original build provenance mismatch: {key}")
+          if apk.stat().st_size != request["apk_bytes"] or file_digest(apk) != request["apk_sha256"]:
+              raise SystemExit("APK size or SHA-256 differs from the built candidate")
+
+          suffix = f'{os.environ["GITHUB_RUN_ID"]}-{os.environ["GITHUB_RUN_ATTEMPT"]}'
+          part_dir = Path("transfer/parts")
+          parts = split_file(apk, part_dir, request["part_bytes"], suffix)
+          if len(parts) != request["part_count"]:
+              raise SystemExit("Unexpected number of parts")
+          joined_digest = hashlib.sha256()
+          joined_bytes = 0
+          for part in parts:
+              path = part_dir / part["filename"]
+              if path.stat().st_size != part["bytes"] or file_digest(path) != part["sha256"]:
+                  raise SystemExit(f'Part verification failed: {part["filename"]}')
+              with path.open("rb") as stream:
+                  for block in iter(lambda: stream.read(1024 * 1024), b""):
+                      joined_digest.update(block)
+                      joined_bytes += len(block)
+          if joined_bytes != request["apk_bytes"] or joined_digest.hexdigest() != request["apk_sha256"]:
+              raise SystemExit("Concatenated parts differ from the original APK")
+
+          manifest_dir = Path("transfer/manifest")
+          manifest_dir.mkdir(parents=True)
+          manifest = {
+              "schema": 1,
+              "purpose": "Byte-identical transport of an existing build; no new build or release approval",
+              "repository": os.environ["GITHUB_REPOSITORY"],
+              "build_run_id": request["build_run_id"],
+              "source_apk_artifact_id": request["apk_artifact_id"],
+              "source_metadata_artifact_id": request["metadata_artifact_id"],
+              "source_commit": provenance["flutter_source_commit"],
+              "transfer_run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "transfer_run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "transfer_commit": os.environ["GITHUB_SHA"],
+              "apk": {"filename": apk.name, "bytes": joined_bytes, "sha256": joined_digest.hexdigest()},
+              "part_limit_bytes": request["part_bytes"],
+              "provenance_sha256": file_digest(provenance_path),
+              "parts": parts,
+          }
+          (manifest_dir / "APK-PARTS-MANIFEST.json").write_text(
+              json.dumps(manifest, indent=2, ensure_ascii=False) + "\n")
+          (manifest_dir / "PART-SHA256SUMS.txt").write_text(
+              "".join(f'{p["sha256"]}  {p["filename"]}\n' for p in parts))
+          (manifest_dir / "APK-SHA256SUM.txt").write_text(
+              f'{request["apk_sha256"]}  {apk.name}\n')
+          shutil.copyfile(provenance_path, manifest_dir / "BUILD-PROVENANCE.json")
+          print(f"Verified original APK and {len(parts)} parts: {joined_bytes} bytes")
+          print(f"Original source: {manifest['source_commit']}")
+          print(f"APK SHA-256: {manifest['apk']['sha256']}")
+          PY
+
+      - name: APK-Teil 01 sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-WORLD-APK-PART-01-${{ github.run_id }}-${{ github.run_attempt }}
+          path: transfer/parts/*.part01
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: APK-Teil 02 sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-WORLD-APK-PART-02-${{ github.run_id }}-${{ github.run_attempt }}
+          path: transfer/parts/*.part02
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: APK-Teil 03 sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-WORLD-APK-PART-03-${{ github.run_id }}-${{ github.run_attempt }}
+          path: transfer/parts/*.part03
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: APK-Teil 04 sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-WORLD-APK-PART-04-${{ github.run_id }}-${{ github.run_attempt }}
+          path: transfer/parts/*.part04
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: APK-Teil 05 sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-WORLD-APK-PART-05-${{ github.run_id }}-${{ github.run_attempt }}
+          path: transfer/parts/*.part05
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: APK-Teil 06 sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-WORLD-APK-PART-06-${{ github.run_id }}-${{ github.run_attempt }}
+          path: transfer/parts/*.part06
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: APK-Teil 07 sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-WORLD-APK-PART-07-${{ github.run_id }}-${{ github.run_attempt }}
+          path: transfer/parts/*.part07
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: APK-Teil 08 sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-WORLD-APK-PART-08-${{ github.run_id }}-${{ github.run_attempt }}
+          path: transfer/parts/*.part08
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: APK-Teil 09 sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-WORLD-APK-PART-09-${{ github.run_id }}-${{ github.run_attempt }}
+          path: transfer/parts/*.part09
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: Manifest und unveränderte Bauherkunft sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-WORLD-APK-MANIFEST-${{ github.run_id }}-${{ github.run_attempt }}
+          path: transfer/manifest/
+          if-no-files-found: error
+          compression-level: 0

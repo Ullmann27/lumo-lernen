@@ -1,0 +1,77 @@
+{
+  "host_source": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "native_source": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "run_id": 43578509499,
+  "artifact_id": 14109995147,
+  "artifact_bytes": 330999378,
+  "artifact_sha256": "4042322c815dac4d1829ff80b2f1889db4104d557e38b408fcd71a40b7706ccc",
+  "archive_members": [
+    {
+      "name": "Lumo-Lernen-Neu.apk",
+      "bytes": 330988965
+    },
+    {
+      "name": "APK-VERIFICATION.json",
+      "bytes": 1779
+    },
+    {
+      "name": "APK-SHA256.txt",
+      "bytes": 91
+    },
+    {
+      "name": "BUILD-PROVENANCE.json",
+      "bytes": 7589
+    },
+    {
+      "name": "GODOT-SOURCE.json",
+      "bytes": 145
+    },
+    {
+      "name": "APP-VERSION.txt",
+      "bytes": 21
+    }
+  ],
+  "apk_path": "/home/agent/lumo-803-arm64/Lumo-Lernen-2020-803a4e9-arm64.apk",
+  "apk_bytes": 330988965,
+  "apk_sha256": "6c380ea99a0ee9119b3179b36df714336936247654216cec1f2188f34a96f164",
+  "native_libraries": [
+    {
+      "name": "lib/arm64-v8a/libapp.so",
+      "bytes": 12387216
+    },
+    {
+      "name": "lib/arm64-v8a/libc++_shared.so",
+      "bytes": 1374336
+    },
+    {
+      "name": "lib/arm64-v8a/libdartjni.so",
+      "bytes": 131248
+    },
+    {
+      "name": "lib/arm64-v8a/libdatastore_shared_counter.so",
+      "bytes": 7112
+    },
+    {
+      "name": "lib/arm64-v8a/libflutter.so",
+      "bytes": 11581856
+    },
+    {
+      "name": "lib/arm64-v8a/libgodot_android.so",
+      "bytes": 70322664
+    },
+    {
+      "name": "lib/arm64-v8a/libmlkit_google_ocr_pipeline.so",
+      "bytes": 11064544
+    },
+    {
+      "name": "lib/arm64-v8a/libonnxruntime.so",
+      "bytes": 19343456
+    },
+    {
+      "name": "lib/arm64-v8a/libonnxruntime4j_jni.so",
+      "bytes": 75752
+    }
+  ],
+  "embedded_metadata_candidates": [],
+  "scope": "Original ARM64 artifact and APK bytes independently match completed main-job verification; Android and update gates are still running."
+}

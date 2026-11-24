@@ -1,0 +1,12 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: actual Akademie grade1 topic gives local help then saves a single answer and reward
+00:02 +1: wallet failure blocks next task and Back then retries one atomic reward
+00:04 +2: profile failure retries existing counters without double-counting answer or reward
+00:05 +3: accepted answer continues durable saving after external unmount and background
+00:05 +4: a pending wrong answer cannot accept a new answer before profile saving
+00:06 +5: saved correct feedback waits for foreground before advancing the real task
+00:06 +6: concurrent learning writes serialize and a failed write does not poison flush
+00:06 +7: thirty real visible sums complete the module and restart without farming saved bonus
+00:14 +8: (tearDownAll)
+00:14 +8: All tests passed!

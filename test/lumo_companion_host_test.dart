@@ -17,6 +17,7 @@ void main() {
   setUp(() {
     SharedPreferences.setMockInitialValues({});
     LumoCompanionRequests.instance.clearLearningScope();
+    LumoCompanionRequests.instance.tutor.activateProfile(0);
   });
   tearDown(() => LumoCompanionRequests.instance.clearLearningScope());
 

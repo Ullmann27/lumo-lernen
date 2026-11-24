@@ -1,0 +1,102 @@
+{
+  "archive_sha256": "73bc1059060c7fbaf0bd4ee8d51afcd32ea12a09dd270af1a67da07ed2d5ee84",
+  "all_members_crc_verified": true,
+  "members": [
+    {
+      "path": "assets.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "feature-test-summary.json",
+      "bytes": 590,
+      "sha256": "8a432b2ed23da8aa331ed3398430d9860e735178e346c6c495ddc7ac38890ded",
+      "crc32": "faac52a3"
+    },
+    {
+      "path": "assets.stdout.log",
+      "bytes": 1420,
+      "sha256": "0b5c91c45e356f656a641bbf039ca36b5d02aabc53965c0e9f2df5bc44f7d936",
+      "crc32": "f211ecc6"
+    },
+    {
+      "path": "flutter-result.json",
+      "bytes": 16,
+      "sha256": "d24219f6de94b955cf36d25bd2aca88e2d35eef45b9317b7083f55ec8fe9653c",
+      "crc32": "238e2e83"
+    },
+    {
+      "path": "flutter.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "flutter.stdout.jsonl",
+      "bytes": 14841,
+      "sha256": "998f9736d38b466e78daec0351f19abe3444b73aa387d4eb6f3a4d9babd32282",
+      "crc32": "eabbf64b"
+    },
+    {
+      "path": "git-index-after.original",
+      "bytes": 484140,
+      "sha256": "5d1710e147abbb87f5152381759f7cc4a7793e76ead82e8afae2bafd7067b6a8",
+      "crc32": "9b14a3e5"
+    },
+    {
+      "path": "git-index-before.original",
+      "bytes": 484140,
+      "sha256": "5d1710e147abbb87f5152381759f7cc4a7793e76ead82e8afae2bafd7067b6a8",
+      "crc32": "9b14a3e5"
+    },
+    {
+      "path": "git-status-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "git-status-before.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "setup-result.json",
+      "bytes": 16,
+      "sha256": "d24219f6de94b955cf36d25bd2aca88e2d35eef45b9317b7083f55ec8fe9653c",
+      "crc32": "238e2e83"
+    },
+    {
+      "path": "setup.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "crc32": "00000000"
+    },
+    {
+      "path": "setup.stdout.log",
+      "bytes": 2790,
+      "sha256": "a3475431f5b79481e12cf95a9a88ac8bf3d737da08af0d2f9f0eebb25f0420af",
+      "crc32": "b618bc86"
+    },
+    {
+      "path": "source-after.json",
+      "bytes": 1483707,
+      "sha256": "668ea5b34979c52449435f573115a4fe610837f7b90c1771c184f80de5f41ad2",
+      "crc32": "d90f6b7f"
+    },
+    {
+      "path": "source-before.json",
+      "bytes": 1483708,
+      "sha256": "5dcbe287bcba1435086d3f87e473b0693425ed77fa7c8606ac606f7961f4353c",
+      "crc32": "89186ad5"
+    },
+    {
+      "path": "source_snapshot.py",
+      "bytes": 3052,
+      "sha256": "f4e35b32b3c5dffc93176a1332cdc9ed2613117e49b4724a397a992ca0bd0e13",
+      "crc32": "a37d6658"
+    }
+  ]
+}

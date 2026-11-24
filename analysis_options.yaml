@@ -1,6 +1,10 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
+  exclude:
+    # Immutable before/after sources belong to the evidence archive.
+    # Active application, test and tool sources remain analyzed.
+    - docs/evidence/**
   errors:
     deprecated_member_use: ignore
     deprecated_member_use_from_same_package: ignore

@@ -43,6 +43,7 @@ class IqMemoryPlay extends StatefulWidget {
     this.maxSide = 360,
     this.leadIn = const Duration(milliseconds: 650),
     this.layout,
+    this.now = DateTime.now,
   });
 
   final IqMemoryPuzzle puzzle;
@@ -55,6 +56,7 @@ class IqMemoryPlay extends StatefulWidget {
   final VoidCallback? onInputStart;
   final double maxSide;
   final Duration leadIn;
+  final DateTime Function() now;
 
   /// Eigene Anordnung der Teile (Standard: untereinander).
   final Widget Function(BuildContext context, IqMemoryParts parts)? layout;
@@ -63,8 +65,10 @@ class IqMemoryPlay extends StatefulWidget {
   State<IqMemoryPlay> createState() => _IqMemoryPlayState();
 }
 
-class _IqMemoryPlayState extends State<IqMemoryPlay> {
-  final List<Timer> _timers = [];
+class _IqMemoryPlayState extends State<IqMemoryPlay>
+    with WidgetsBindingObserver {
+  final List<_MemoryDelay> _timers = [];
+  bool _paused = false;
   IqMemoryPhase _phase = IqMemoryPhase.showing;
   List<int> _taps = const [];
   int? _lit;
@@ -81,26 +85,57 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _schedulePlayback();
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _cancelTimers();
     super.dispose();
   }
 
   void _cancelTimers() {
     for (final timer in _timers) {
-      timer.cancel();
+      timer.timer?.cancel();
     }
     _timers.clear();
   }
 
   void _at(Duration after, VoidCallback action) {
-    _timers.add(Timer(after, () {
-      if (mounted) action();
-    }));
+    final delay = _MemoryDelay(after, action);
+    _timers.add(delay);
+    _arm(delay);
+  }
+
+  void _arm(_MemoryDelay delay) {
+    delay.deadline = widget.now().add(delay.remaining);
+    delay.timer = Timer(delay.remaining, () {
+      _timers.remove(delay);
+      if (mounted && !_paused) delay.action();
+    });
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (!mounted) return;
+    if (state == AppLifecycleState.resumed) {
+      if (!_paused) return;
+      setState(() => _paused = false);
+      for (final delay in _timers) {
+        _arm(delay);
+      }
+    } else {
+      if (_paused) return;
+      final now = widget.now();
+      for (final delay in _timers) {
+        delay.timer?.cancel();
+        final remaining = delay.deadline!.difference(now);
+        delay.remaining = remaining.isNegative ? Duration.zero : remaining;
+      }
+      setState(() => _paused = true);
+    }
   }
 
   /// Plant die Vorführung. Ändert keinen Zustand – das macht der Aufrufer.
@@ -109,10 +144,12 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
     final sequence = _puzzle.sequence;
     for (var i = 0; i < sequence.length; i++) {
       final step = i;
-      _at(at, () => setState(() {
-            _lit = sequence[step];
-            _litStep = step;
-          }));
+      _at(
+          at,
+          () => setState(() {
+                _lit = sequence[step];
+                _litStep = step;
+              }));
       at += Duration(milliseconds: _puzzle.showMs);
       _at(at, () => setState(() => _lit = null));
       at += Duration(milliseconds: _puzzle.gapMs);
@@ -127,7 +164,7 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
   }
 
   void _replay() {
-    if (_replays >= _maxReplays) return;
+    if (_paused || _replays >= _maxReplays) return;
     _replays++;
     _cancelTimers();
     setState(() {
@@ -142,8 +179,11 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
   }
 
   void _tap(int cell) {
-    if (_phase != IqMemoryPhase.input) return;
+    if (_paused || _phase != IqMemoryPhase.input) return;
     if (_taps.length >= _puzzle.sequence.length) return;
+    // Every generated sequence uses distinct fields. A double tap on the
+    // same field must not invent another step or consume another answer.
+    if (_taps.contains(cell)) return;
     setState(() {
       _taps = [..._taps, cell];
       _flash = cell;
@@ -155,7 +195,7 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
   }
 
   void _undo() {
-    if (_phase != IqMemoryPhase.input || _taps.isEmpty) return;
+    if (_paused || _phase != IqMemoryPhase.input || _taps.isEmpty) return;
     setState(() {
       _taps = _taps.sublist(0, _taps.length - 1);
       _flash = null;
@@ -165,6 +205,13 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
 
   @override
   Widget build(BuildContext context) {
+    if (_paused) {
+      return const Center(
+          child: Text('Pause. Die Merkfolge wartet auf dich.',
+              key: ValueKey('iq-memory-paused'),
+              style: TextStyle(color: Colors.white, fontSize: 17),
+              textAlign: TextAlign.center));
+    }
     final showing = _phase == IqMemoryPhase.showing;
     final total = _puzzle.sequence.length;
     final parts = IqMemoryParts(
@@ -179,7 +226,9 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
         widget.maxSide,
         math.min(
           c.maxWidth,
-          c.hasBoundedHeight ? math.max(c.maxHeight - 150, 160.0) : double.infinity,
+          c.hasBoundedHeight
+              ? math.max(c.maxHeight - 150, 160.0)
+              : double.infinity,
         ),
       );
       return Column(
@@ -204,7 +253,9 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(showing ? Icons.visibility_rounded : Icons.touch_app_rounded,
-                color: showing ? LumoVisualTokens.gold : LumoVisualTokens.cyanBright,
+                color: showing
+                    ? LumoVisualTokens.gold
+                    : LumoVisualTokens.cyanBright,
                 size: 24),
             const SizedBox(width: 8),
             Text(
@@ -235,7 +286,8 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
                     color: i < filled
                         ? iqFlashColors[i % iqFlashColors.length]
                         : Colors.white.withValues(alpha: .22),
-                    border: Border.all(color: Colors.white.withValues(alpha: .35)),
+                    border:
+                        Border.all(color: Colors.white.withValues(alpha: .35)),
                     boxShadow: i < filled
                         ? iqGlow(iqFlashColors[i % iqFlashColors.length],
                             alpha: .6, blur: 8)
@@ -250,50 +302,55 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
   }
 
   Widget _grid() => LayoutBuilder(builder: (context, c) {
-        final side = math.min(c.maxWidth, c.maxHeight);
+        final available = math.min(c.maxWidth, c.maxHeight);
         final n = _puzzle.gridSize;
         const gap = 10.0;
+        final side = math.max(available, n * 48.0 + gap * (n - 1));
         final tile = (side - gap * (n - 1)) / n;
-        return Center(
-          child: SizedBox(
-            width: side,
-            height: side,
-            child: Semantics(
-              container: true,
-              label: 'Raster mit $n mal $n Feldern',
-              child: Column(
-                children: [
-                  for (var r = 0; r < n; r++) ...[
-                    if (r > 0) const SizedBox(height: gap),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          for (var col = 0; col < n; col++) ...[
-                            if (col > 0) const SizedBox(width: gap),
-                            SizedBox.square(
-                              dimension: tile,
-                              child: _tile(r * n + col, r, col),
-                            ),
-                          ],
+        final board = SizedBox(
+          width: side,
+          height: side,
+          child: Semantics(
+            container: true,
+            label: 'Raster mit $n mal $n Feldern',
+            child: Column(
+              children: [
+                for (var r = 0; r < n; r++) ...[
+                  if (r > 0) const SizedBox(height: gap),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        for (var col = 0; col < n; col++) ...[
+                          if (col > 0) const SizedBox(width: gap),
+                          SizedBox.square(
+                            dimension: tile,
+                            child: _tile(r * n + col, r, col),
+                          ),
                         ],
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ],
-              ),
+              ],
             ),
           ),
         );
+        if (side > available) {
+          return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SingleChildScrollView(child: board));
+        }
+        return Center(child: board);
       });
 
   Widget _tile(int cell, int row, int col) {
     final tapIndex = _taps.indexOf(cell);
     final lit = _lit == cell || _flash == cell;
-    final litStep = _lit == cell
-        ? _litStep
-        : (tapIndex >= 0 ? tapIndex : _taps.length - 1);
+    final litStep =
+        _lit == cell ? _litStep : (tapIndex >= 0 ? tapIndex : _taps.length - 1);
     final input = _phase == IqMemoryPhase.input;
-    final label = StringBuffer('Feld ${cell + 1}, Reihe ${row + 1}, Spalte ${col + 1}');
+    final label =
+        StringBuffer('Feld ${cell + 1}, Reihe ${row + 1}, Spalte ${col + 1}');
     if (tapIndex >= 0) label.write(', als ${tapIndex + 1}. angetippt');
     return Semantics(
       button: true,
@@ -314,7 +371,8 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
             lit: lit,
             marked: tapIndex >= 0,
             badge: tapIndex >= 0 ? tapIndex + 1 : null,
-            litColor: iqFlashColors[math.max(litStep, 0) % iqFlashColors.length],
+            litColor:
+                iqFlashColors[math.max(litStep, 0) % iqFlashColors.length],
           ),
         ),
       ),
@@ -347,9 +405,19 @@ class _IqMemoryPlayState extends State<IqMemoryPlay> {
               outlined: true,
               height: 50,
               fontSize: 15,
-              onPressed: _phase == IqMemoryPhase.showing || _taps.isEmpty ? null : _undo,
+              onPressed: _phase == IqMemoryPhase.showing || _taps.isEmpty
+                  ? null
+                  : _undo,
             ),
           ),
         ],
       );
+}
+
+class _MemoryDelay {
+  _MemoryDelay(this.remaining, this.action);
+  Duration remaining;
+  final VoidCallback action;
+  DateTime? deadline;
+  Timer? timer;
 }

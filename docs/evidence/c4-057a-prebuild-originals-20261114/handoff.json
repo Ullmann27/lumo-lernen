@@ -1,0 +1,49 @@
+{
+  "schema": "lumo-057a-prebuild-original-handoff-v1",
+  "repository": "Ullmann27/lumo-lernen",
+  "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+  "run_id": 43607156921,
+  "run_attempt": 1,
+  "tree_entries": [
+    {
+      "path": "docs/evidence/c4-057a-prebuild-originals-20261114/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ecd519a3463726e70dc06338f56b462efc4b911"
+    },
+    {
+      "path": "docs/evidence/c4-057a-prebuild-originals-20261114/jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e485cca4e46d2324fc1bb74e366dce7fc9969e22"
+    },
+    {
+      "path": "docs/evidence/c4-057a-prebuild-originals-20261114/artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "723a6a70e1b47b322595876c29535ef55f6a9609"
+    },
+    {
+      "path": "docs/evidence/c4-057a-prebuild-originals-20261114/connect-four-runtime-original.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90c973860e9ff0ba3d9b3e6d77251ae11058ca7e"
+    },
+    {
+      "path": "docs/evidence/c4-057a-prebuild-originals-20261114/android-host-compile-original.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45d79512b79f12038f7e2a0e131ce624eccd3778"
+    },
+    {
+      "path": "docs/evidence/c4-057a-prebuild-originals-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc11c158030e79b148e407f20b042b5c8450db92"
+    }
+  ],
+  "entries_excluding_handoff": 6,
+  "product_or_ref_changes": false,
+  "scope": "Two actually completed current prebuild jobs and contemporaneous main-in-progress API snapshot"
+}

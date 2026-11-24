@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "workflowRun": 43774460935,
+  "jobId": 132997440685,
+  "jobConclusion": "success",
+  "flutterSource": "fc5f6403cb8fb5e26a103ec2deeaa3662c5fa242",
+  "godotSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "flutterTests": {
+    "passed": 2884,
+    "failed": 0,
+    "preExistingSkipped": 202,
+    "reportedElapsed": "10:09"
+  },
+  "analyzer": {
+    "error": 0,
+    "warning": 4,
+    "info": 274
+  },
+  "hostPythonTests": {
+    "passed": 73,
+    "failed": 0,
+    "seconds": 28.69
+  },
+  "nativePrograms": [
+    {
+      "program": "learning_android_host_capability_regression",
+      "checks": 43,
+      "sha256": "d9d468b67ce6dac5381a3571f7ea360c729d9929894fcea834c44672381b412b",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    },
+    {
+      "program": "learning_companion_scope_regression",
+      "checks": 56,
+      "sha256": "aa30c2986ff93d43dbeeecc52e991bdc1da8a781282f4bf9067cf5478b33996c",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    },
+    {
+      "program": "learning_english_regression",
+      "checks": 7239,
+      "sha256": "3b1c45fd159dbd4c7b110c7adbf04b74c2b204714a58cafaf6a07bd7ebf127f4",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    },
+    {
+      "program": "learning_generation_regression",
+      "checks": 47,
+      "sha256": "10c0449a302035ab85a4df38f33db04e7bb21cf92cac38b82d5974c494c38df0",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    },
+    {
+      "program": "learning_host_payload_regression",
+      "checks": 135,
+      "sha256": "c763d84b6655eadfffb6b9fbbd62ab446baf0468976b0630248786ccb1e69387",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    },
+    {
+      "program": "learning_pattern_regression",
+      "checks": 33077,
+      "sha256": "218cf9af10b3a0b0840b6da9cc5b2ae2a0a29a155e2b343571e1254fed4a9f9b",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    },
+    {
+      "program": "learning_sharing_regression",
+      "checks": 1811,
+      "sha256": "46611a9b8519f2137a9ce2a5cf8dab5b11b66b298a062b70a5bf8e039f138b3e",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    },
+    {
+      "program": "learning_wonder_details_regression",
+      "checks": 100,
+      "sha256": "c1e35122735bf052d21f7665d9614b26ed6260852819c3fa73b8562d505b39b9",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    },
+    {
+      "program": "learning_world_regression",
+      "checks": 5351,
+      "sha256": "2c7ffff6da31d57164877f8d78c806b98945001fe89d7e894fa03756a2d825ce",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    },
+    {
+      "program": "nextgen_avatar_contract_review",
+      "checks": 300,
+      "sha256": "79b48e0fa26da1cdf8899d565b0b81d56123ce84767821a8263f81e00e77d305",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    },
+    {
+      "program": "nextgen_learning_base_audio_regression",
+      "checks": 69,
+      "sha256": "181656fbc11b99b2732ac482ca30a5e1ae03215cd5e2e467ef8baeaefcf9227c",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    },
+    {
+      "program": "nextgen_learning_route_review",
+      "checks": 7324,
+      "sha256": "216e19d5ae314153b8d005feb9999bd4acee39039f1fa53e34701bb327db574e",
+      "passed": true,
+      "environment": "Godot 4.6.3 Linux headless"
+    }
+  ],
+  "nativeReportedChecksTotal": 55552,
+  "nativeCountMeaning": "Checks/assertions across 12 headless programs, not independent device tests",
+  "projectChecks": {
+    "passed": 118,
+    "warnings": 0,
+    "failed": 0
+  },
+  "assetImport": {
+    "passed": true,
+    "actualGodotImport": true,
+    "physicalDevice": false
+  },
+  "protectedFiles": 18,
+  "coverageSourceHashes": 245,
+  "originalArtifact": {
+    "id": 14186361993,
+    "bytes": 266185,
+    "sha256": "11836833ac16042788ce5f58370e61fa3aef95d1a48347428d323a63878154db",
+    "memberCount": 55
+  },
+  "androidAcceptanceComplete": false,
+  "notes": [
+    "202 existing skipped Flutter tests remain explicit.",
+    "Analyzer reports four warnings and 274 infos; no analyzer errors.",
+    "Avatar contract fixture logs ObjectDB instances leaked at exit; this is retained and is not evidence of a production process leak or leak-free runtime.",
+    "No combined independent test total is inferred from overlapping host assertions."
+  ]
+}

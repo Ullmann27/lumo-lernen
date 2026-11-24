@@ -1,0 +1,64 @@
+{
+  "scope": "Red-before production native return routing reproduction",
+  "expected_result": "Native learning/Card table returns to the originating nested route and state",
+  "actual_result": "All four cases destroy the originating route; return event is read and acknowledged by actual EmbeddedGameService",
+  "scenes": [
+    "learning",
+    "cards"
+  ],
+  "activity_result_orders": [
+    "before resume",
+    "after resume"
+  ],
+  "test_exit_code": 1,
+  "failures": 4,
+  "checks": [
+    "Real AppShell owns the real EmbeddedGameService",
+    "Learning route opened through Academy tools and GuidedLearningHub; actual taps reach Acht und fünf",
+    "Real Cards screen, controller, storage and native-table button",
+    "Actual lifecycle observer receives pause/resume",
+    "Only MethodChannel Android boundary is controlled; no score or rewards injected"
+  ],
+  "production_changed": false,
+  "transport_contract": "Current GameEventStore: results=[] and destination=learn/games; no preserve-origin marker",
+  "source_files": [
+    {
+      "file": "test/lumo_native_origin_return_test.dart",
+      "sha256": "6e33b09d52a40532a3ff2030ab6eb516d9f67c70ed6ea4f31df8a23e74b01c44"
+    },
+    {
+      "file": "lib/app/app_shell.dart",
+      "sha256": "02087dfed14848d84c52877c7bf8d7756bd265a31f06544230cda41b74bb3cbb"
+    },
+    {
+      "file": "lib/core/embedded_game_service.dart",
+      "sha256": "1ed92caa82d678cf7b97badfa4f1dab6934449f3c0727d72b2eac00b6f816449"
+    },
+    {
+      "file": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "sha256": "09ee8c32d75600c4858eae32bfdab0d0f1c41ae6e04f965653aacb365bd49c64"
+    },
+    {
+      "file": "tools/auto_install/GameEventStore.kt",
+      "sha256": "88af554f9c6333d57eb68b1d0e9f62beaf3d2bcd0b5d8c7ffec5b4fc1c5b8b07"
+    },
+    {
+      "file": "tools/auto_install/LumoGameActivity.kt",
+      "sha256": "123024f9ccdf9eb102e426207dbb7a143665a05770251c2f95b8d9e1eaf0a99f"
+    },
+    {
+      "file": "tools/auto_install/MainActivity.kt",
+      "sha256": "eba60245c45dc8025e75cf4596279ee314afd955ed87115b075463cfb7c1a53f"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "native-origin-return-analyze.log",
+      "sha256": "d3e6b7ae14a5ad9c0d207a18f5d59bd963ce20ca9c1902a4620616cead5d4ae4"
+    },
+    {
+      "file": "native-origin-return-before.log",
+      "sha256": "945fd5bb2dd2e4fd39e6581bda935fee7661d415b3167725ef7db011b3d86ea3"
+    }
+  ]
+}

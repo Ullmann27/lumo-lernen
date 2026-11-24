@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "status": "AUXILIARY_COMPLETE_ANDROID_MAIN_PENDING",
+  "source_host": "51e92fb5afab232a29850ffefef5637359af08f7",
+  "source_tree": "a13ab981d917c7788f35318cf10d962c1bf657f7",
+  "source_local_twin": "488ef9b11f6d3c2e3164953ea82f445ef09b72ac",
+  "source_pr_merge": "3b9309ddf6b209a02f3e41b4b72bbc1e060518bd",
+  "integration_candidate_is_unchanged": true,
+  "evidence_only_branch": "checkpoint/lumo-host-51e-evidence-20261113",
+  "android_main_run_excluded": 43502594333,
+  "manifest_sha256": "ba493725b6a991687721690b1088dd6dcbe13906d9e8948ed8c692cfb9a7cf66",
+  "archive_sha256": "d42d41ed7a5619afb24c1b52bbb0340848552acff0777e28db0238065cb7a0be"
+}

@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "decision": "Activate the reviewed two-value 90-to-150-minute correction on the current quality branch and run all existing gates again",
+  "candidate": {
+    "head": "1375da193af0152af64f91d86577aa9768cd50db",
+    "tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+    "parent": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "activated": false
+  },
+  "root_observed_explicit_timeout": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-14 13:13:26 UTC",
+    "source": "GitHub public job annotation expanded in actual CUA browser; no authentication or mutation",
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772/job/132436033818",
+    "run_id": 43590864772,
+    "job_id": 132436033818,
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "job_annotation_exact": "The job has exceeded the maximum execution time of 1h30m0s",
+    "step_annotation_exact": "The operation was canceled.",
+    "step": "Build unified real Android APK",
+    "observed_ui_duration": "1h 30m 16s",
+    "joblog_blob": "1798b7ad1bfff2c01da0c6a800029c84b6b2ee66",
+    "interpretation": "The displayed service annotation explicitly identifies the job-wide 90-minute limit. Native and Dream steps completed success. APK build was interrupted; dependent Android/update/final/delivery jobs were skipped. No new APK success is claimed.",
+    "changes_allowed_for_next_attempt": "Only increase the verify-and-build job budget after exact-byte, existing-contract and independent review; retain all tests, source pins, signatures, downstream checks and permissions."
+  },
+  "independent_source_review_blob": "2e2f6a3a5163ab918fd4ddcc199b683c4fc53042",
+  "root_independent_review": {
+    "checkout_head_matches_aab": true,
+    "tracked_diff_exactly_two_requested_files": true,
+    "complete_file_bytes_equal_after_only_expected_literal_replacement": true,
+    "remote_compare_exactly_one_commit_and_two_one_line_changes": true,
+    "actual_original_testlogs_read": true,
+    "final_original_tests": 58,
+    "final_original_seconds": 2.233,
+    "final_original_exit_code": 0,
+    "original_environment_failure_preserved": true,
+    "no_additional_tests_run_by_root": true
+  },
+  "all_other_product_native_workflow_guard_and_test_assertion_bytes_preserved": true,
+  "main_branch_not_changed": true,
+  "validation_handoff": "a4732f1f20f3e06130331f85c43d4f067d59d655",
+  "activation_status": "pending at this checkpoint; no success of the new full run is implied"
+}

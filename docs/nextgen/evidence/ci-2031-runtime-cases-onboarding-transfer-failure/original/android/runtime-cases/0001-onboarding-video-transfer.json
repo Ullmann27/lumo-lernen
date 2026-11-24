@@ -1,0 +1,48 @@
+{
+  "status": "FAIL",
+  "remote": "/sdcard/lumo-learning-d73c4d5cd2164bf9b7504a398bd378e1-0001-onboarding.mp4",
+  "owned_recorder_pid": "3838",
+  "maximum_seconds": 90,
+  "maximum_transfers": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "local": "0001-onboarding.mp4.pull-1.partial",
+      "status": "TRANSFER_FAILED",
+      "error": "Command failed (1): ('adb', 'pull', '/sdcard/lumo-learning-d73c4d5cd2164bf9b7504a398bd378e1-0001-onboarding.mp4', 'evidence/android/runtime-cases/0001-onboarding.mp4.pull-1.partial')\n",
+      "error_type": "RuntimeError"
+    }
+  ],
+  "remote_observations": [
+    {
+      "stage": "before-transfer",
+      "screenrecord_pids": "",
+      "serial_output": "emulator-5554",
+      "boot_id_output": "e7c3aaa4-db01-41b6-adc6-797e3d3ad50f",
+      "size_output": "2556373",
+      "sha256_output": "060f6cc129b997041c78992ce71f18f43467760c20e2f20e9138a366e50e9457  /sdcard/lumo-learning-d73c4d5cd2164bf9b7504a398bd378e1-0001-onboarding.mp4"
+    },
+    {
+      "stage": "after-failed-transfer",
+      "screenrecord_pids": "adb: device offline",
+      "passive_offline_observation": true,
+      "elapsed_seconds": 0.438
+    },
+    {
+      "stage": "after-failed-transfer",
+      "screenrecord_pids": "adb: device 'emulator-5554' not found"
+    }
+  ],
+  "recording_or_ui_repeated": false,
+  "device_identity": {
+    "serial": "emulator-5554",
+    "boot_id": "e7c3aaa4-db01-41b6-adc6-797e3d3ad50f"
+  },
+  "expected": {
+    "bytes": 2556373,
+    "sha256": "060f6cc129b997041c78992ce71f18f43467760c20e2f20e9138a366e50e9457"
+  },
+  "error": "Owned recorder is still running or its state is unobservable",
+  "error_type": "RuntimeError",
+  "elapsed_seconds": 0.691
+}

@@ -9,6 +9,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_task_object_art.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
@@ -18,6 +19,8 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../learning_module_rounds.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 class _Wetter {
@@ -73,7 +76,9 @@ class _WetterScreenState extends State<WetterScreen>
       icon: '☁️',
       color: Color(0xFF94A3B8),
       imagePrompt: 'wolke',
-      kleidung: 'Pullover',
+      // Zu Wolken allein gibt es keine eindeutig richtige Kleidung: keine
+      // Kleidungsfrage (Fachprüfung 2026-11, S-M16).
+      kleidung: '',
     ),
     _Wetter(
       name: 'Schnee',
@@ -108,7 +113,8 @@ class _WetterScreenState extends State<WetterScreen>
     MapEntry('Ein Schneemann steht im Garten', 'Schnee'),
     MapEntry('Die Sonne scheint stark', 'Sonne'),
     MapEntry('Man braucht einen Regenschirm', 'Regen'),
-    MapEntry('Es ist laut wegen dem Donner', 'Gewitter'),
+    MapEntry('Der Donner ist sehr laut', 'Gewitter'),
+    MapEntry('Der Himmel ist grau, aber es bleibt trocken', 'Wolken'),
     MapEntry('Ein Regenguss macht die Straße nass', 'Regen'),
     MapEntry('Schnee fällt in großen Flocken vom Himmel', 'Schnee'),
     MapEntry('Blitze zucken am dunklen Himmel', 'Gewitter'),
@@ -119,7 +125,10 @@ class _WetterScreenState extends State<WetterScreen>
     MapEntry('Regentropfen prasseln an die Fensterscheibe', 'Regen'),
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
+  late final LearningModuleRounds _rounds =
+      LearningModuleRounds(progress: _progress, totalTasks: _totalTasks);
 
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
@@ -146,12 +155,19 @@ class _WetterScreenState extends State<WetterScreen>
     _round = [
       for (var weather = 0; weather < _wetterArten.length; weather++) ...[
         (kind: _WetterFrageTyp.bildErraten.index, weather: weather, hint: -1),
-        (kind: _WetterFrageTyp.kleidungWaehlen.index, weather: weather, hint: -1),
+        if (_wetterArten[weather].kleidung.isNotEmpty)
+          (
+            kind: _WetterFrageTyp.kleidungWaehlen.index,
+            weather: weather,
+            hint: -1
+          ),
       ],
       for (var i = 0; i < _hinweise.length; i++)
-        (kind: _WetterFrageTyp.hinweisErraten.index,
-         weather: _wetterArten.indexWhere((w) => w.name == _hinweise[i].value),
-         hint: i),
+        (
+          kind: _WetterFrageTyp.hinweisErraten.index,
+          weather: _wetterArten.indexWhere((w) => w.name == _hinweise[i].value),
+          hint: i
+        ),
     ]..shuffle(_rng);
     assert(_round.length == _totalTasks);
     _progress = LearningModuleProgress(
@@ -166,6 +182,7 @@ class _WetterScreenState extends State<WetterScreen>
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakTask());
   }
@@ -194,7 +211,7 @@ class _WetterScreenState extends State<WetterScreen>
       final wrong = _wetterArten
           .map((w) => w.kleidung)
           .toSet()
-          .where((k) => k != richtigeKleidung)
+          .where((k) => k.isNotEmpty && k != richtigeKleidung)
           .toList()
         ..shuffle(_rng);
       _kleidungOptions = [richtigeKleidung, ...wrong.take(3)]..shuffle(_rng);
@@ -230,6 +247,8 @@ class _WetterScreenState extends State<WetterScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey:
+          '${_round[_taskIdx].kind}:${_round[_taskIdx].weather}:${_round[_taskIdx].hint}',
       cosmosSubjectId: 's1_wetter',
       cosmosIsMath: false,
       correct: isCorrect,
@@ -257,11 +276,31 @@ class _WetterScreenState extends State<WetterScreen>
     _nextTask();
   }
 
-  void _nextTask() {
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null || !mounted || _taskIdx != 0 || _answered) return;
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -334,6 +373,61 @@ class _WetterScreenState extends State<WetterScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) {
+    final clothing = _typ == _WetterFrageTyp.kleidungWaehlen;
+    final choices = clothing
+        ? _kleidungOptions
+        : _options.map((weather) => weather.name).toList();
+    final selected = _selectedIdx;
+    return ModuleTaskScope(
+      key: _taskScopeKey,
+      appState: widget.appState,
+      progress: _progress,
+      moduleId: 's2_wetter',
+      taskKey: _taskIdx,
+      prompt: switch (_typ) {
+        _WetterFrageTyp.bildErraten => 'Welches Wetter zeigt das Bild?',
+        _WetterFrageTyp.kleidungWaehlen =>
+          'Was ist bei ${_correctWetter.name} sinnvoll?',
+        _WetterFrageTyp.hinweisErraten =>
+          'Welches Wetter passt: ${_aktuellerHinweis.key}?',
+      },
+      objective: clothing
+          ? 'Du findest einen passenden Schutz für die beschriebene Wettersituation.'
+          : 'Du erkennst Wetter an sichtbaren Merkmalen oder einer Beschreibung.',
+      answerChoices: choices,
+      onConfirmChoice: (index) => _onAnswer(
+          index,
+          clothing
+              ? choices[index] == _correctWetter.kleidung
+              : _options[index] == _correctWetter),
+      helpSteps: [
+        switch (_typ) {
+          _WetterFrageTyp.bildErraten =>
+            'Schau nach Sonne, Wolken, Tropfen, Flocken oder Blitzen. Welche Merkmale zeigt dieses Bild?',
+          _WetterFrageTyp.kleidungWaehlen =>
+            'Denke an ${_correctWetter.name}. Wovor brauchst du in dieser Situation Schutz?',
+          _WetterFrageTyp.hinweisErraten =>
+            'Lies nur den Hinweis: „${_aktuellerHinweis.key}“. Welches Merkmal des Wetters wird beschrieben?',
+        },
+        clothing
+            ? 'Prüfe jede Möglichkeit: Hilft sie gegen Nässe, Kälte, starke Sonne oder die Gefahr eines Gewitters?'
+            : 'Vergleiche die angebotenen Wetterwörter einzeln mit dem Bild oder Hinweis. Suche ein Merkmal, das wirklich dazu passt.',
+        clothing
+            ? 'Für die gezeigte Situation ist hier vorgesehen: ${_correctWetter.kleidung}. Überlege, wie dieser Schutz hilft, und wähle dann selbst.'
+            : 'Das beschriebene Wetter heißt ${_correctWetter.name}. Verbinde den Namen noch einmal mit seinem Merkmal.',
+      ],
+      answering: !_answered,
+      lastAnswer: selected == null ? null : choices[selected],
+      lastCorrect: selected == null
+          ? null
+          : clothing
+              ? choices[selected] == _correctWetter.kleidung
+              : _options[selected] == _correctWetter,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -345,10 +439,12 @@ class _WetterScreenState extends State<WetterScreen>
         icon: Icons.cloud_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
+        inRounds: true,
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -364,7 +460,7 @@ class _WetterScreenState extends State<WetterScreen>
             const SizedBox(height: 12),
             _buildOptions(),
           ]),
-        ),
+        )),
       ),
     );
   }
@@ -416,6 +512,7 @@ class _WetterScreenState extends State<WetterScreen>
         // Stattdessen: grosser Wetter-Emoji auf himmelartigem RadialGradient,
         // pro Wetter eigene Stimmung.
         return _WetterBubble(
+          name: _correctWetter.name,
           icon: _correctWetter.icon,
           colors: _himmelGradient(_correctWetter.name),
           size: 220,
@@ -424,6 +521,7 @@ class _WetterScreenState extends State<WetterScreen>
         );
       case _WetterFrageTyp.kleidungWaehlen:
         return _WetterBubble(
+          name: _correctWetter.name,
           icon: _correctWetter.icon,
           colors: _himmelGradient(_correctWetter.name),
           size: 180,
@@ -600,12 +698,14 @@ class _WetterScreenState extends State<WetterScreen>
 /// RadialGradient, mit optionaler Atem-Animation.
 class _WetterBubble extends StatelessWidget {
   const _WetterBubble({
+    this.name,
     required this.icon,
     required this.colors,
     required this.size,
     required this.bouncing,
     required this.bounceCtrl,
   });
+  final String? name;
   final String icon;
   final List<Color> colors;
   final double size;
@@ -634,7 +734,7 @@ class _WetterBubble extends StatelessWidget {
           ),
         ],
       ),
-      child: Text(icon, style: TextStyle(fontSize: size * 0.55, height: 1.0)),
+      child: LumoTaskObjectArt(name: name, emoji: icon, size: size * 0.68),
     );
     if (!bouncing) return card;
     return AnimatedBuilder(

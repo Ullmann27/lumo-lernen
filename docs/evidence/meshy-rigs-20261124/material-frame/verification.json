@@ -1,0 +1,54 @@
+{
+  "godot_revision": "21a76bcda69c20ea3a427a63098cb2fc736eb881",
+  "godot_tree": "dcf3df8eaa14b9b2cce3ecf2276fad239d344f17",
+  "local_equivalent_commit": "b0e24b6b3f7a1bfa4e36512281c454c1bdebc3ca",
+  "failed_workflow_run": 45357083172,
+  "failed_artifact_id": 14903292129,
+  "failed_artifact_sha256": "3980ff6b87503e7fc4ef9880af376888bc3ae3e027e8582811a47edff281fd9a",
+  "test_file_sha256": "59cfd54f8f7972b88ab78aa01ffdb86643cba0c28037d9e2f7325f74307ec8c1",
+  "scope": "Godot 4.6.3 desktop GLES Compatibility with Mesa llvmpipe; no Android or physical Fold performance result",
+  "gles_comparison": [
+    {
+      "variant": "original",
+      "assertions": 374,
+      "assertion_failures": 0,
+      "material_errors": 56
+    },
+    {
+      "variant": "render frame before unchanged synchronous free",
+      "assertions": 374,
+      "assertion_failures": 0,
+      "material_errors": 0
+    },
+    {
+      "variant": "final committed test with strict unchanged runner",
+      "assertions": 390,
+      "assertion_failures": 0,
+      "material_errors": 0,
+      "exit_code": 0
+    }
+  ],
+  "headless_comparison": {
+    "original_material_errors": 14,
+    "fixed_material_errors": 14,
+    "clean_pass": false,
+    "note": "Pre-existing dummy renderer errors remain; the workflow requires the actual GLES path."
+  },
+  "cards_preflight": {
+    "assertions": 119,
+    "assertion_failures": 0,
+    "engine_errors": 0,
+    "exit_code": 0
+  },
+  "sha256": {
+    "ci-original-failure.log": "e4215bf99a6985daa9c825b13c3ae932e7c4394378cffc571ba3e6d84d2a839c",
+    "original-gles.log": "a5811d2e89fe90d5ea246876c3b27d451d28d1c9358ce8feaea2a0c180e7e312",
+    "frame-only-gles.log": "605c0a3639443c8a0a65bb40f844adca9c904d7b2adfb6ad773008ff4dc593a0",
+    "fixed-gles.log": "bafb55681ccb49d5d9de8e7b96d7d7c8453f292239b10d5af08e10b36ff59161",
+    "fixed-gles-run.json": "0bfdeae21a340c9b5ed12d323c47526f142a465d518224ccfcbb8ecd11155c08",
+    "original-headless.log": "5b36a0a7f843da57e79e5ddd63e9ff9d5d4f2b61028f461c1a81a72e120c0035",
+    "fixed-headless.log": "316ba261e9bc6508eb50c8638e746b3d4d6d7b6e4a58446bcfcfbc77a75f61d3",
+    "cards-gles.log": "9faa572d233fb7b9e553659690e98af97e395127904ae450e488ba9f9b502b60",
+    "cards-gles-run.json": "7778952b152f5bbbf0bc00c0fc2c34d678a29771878093b7d9ea64d19a7180ff"
+  }
+}

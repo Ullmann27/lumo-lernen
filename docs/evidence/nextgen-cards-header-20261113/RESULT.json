@@ -1,0 +1,21 @@
+{
+  "status": "PASS targeted only",
+  "tests": 17,
+  "render_cases": 1,
+  "renderer": "actual Flutter test engine, production Cards widgets, bundled Nunito font",
+  "image": "cards-640x360.png",
+  "image_sha256": "93029cd53434e34002700740c8ecdeed3f7d2786072bbd8b93bf44ce82522a53",
+  "source_sha256": {
+    "lib/features/games/lumo_cards/widgets/lumo_cards_score_header.dart": "75937a561cd79b7d6a81dea0ebbae315fc3e7f17627f9e18a8531231c1eee43a",
+    "test/lumo_cards_header_actions_test.dart": "d7f4194a47558fda9513c5884f952d6f3ce4ffcaa14e8469d8771c46da514a00",
+    "test/lumo_cards_layout_foundation_test.dart": "18bc9606105acca6b4b204154525f36bdbb4cf25610c9f70bd5e75363f615ef6",
+    "test/lumo_cards_session_visual_test.dart": "bdccea517fdea50d90e70da29aa6505e1d4b19d60aa581a573b3ee9581e99d72"
+  },
+  "failure_before": "640x360 turn banner bottom553.6 exceeded360 due score squeezed beside four48dp actions",
+  "fix": "Separate compact score and wrapping action row in narrow sidebar; preserve explicit pause and 3D entry",
+  "not_proven": [
+    "Android rendering",
+    "physical Fold7 performance",
+    "complete Flutter acceptance at this frozen source"
+  ]
+}

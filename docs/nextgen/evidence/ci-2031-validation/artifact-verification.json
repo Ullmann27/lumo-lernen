@@ -1,0 +1,346 @@
+{
+  "artifactId": 14196419377,
+  "workflowRun": 43800892196,
+  "archiveBytes": 261315,
+  "archiveSha256": "ccea7a5476dcdf8c4b2f56dd7f49104955e092b7fd78c60e6d3aa819dc9b84c4",
+  "allMemberCRCsVerified": true,
+  "archiveRetainedLocally": true,
+  "members": [
+    {
+      "path": "analyze.log",
+      "bytes": 59743,
+      "sha256": "eea5c69b89db1b1810ba05f7fad837a8d131293a3c0ddb7a666d252f38090eda",
+      "crc32": "f4837066"
+    },
+    {
+      "path": "godot-import.log",
+      "bytes": 415942,
+      "sha256": "fb5ee1d36a9b7b0eeaf851a54f9f2411bac72579b7a789d139afa227f06a2c46",
+      "crc32": "9e6b10e3"
+    },
+    {
+      "path": "flutter-tests.log",
+      "bytes": 555243,
+      "sha256": "1cb65dab8ce8a97e6c472789afdbc602d33f959d3d107248218387b1acb6d2e7",
+      "crc32": "95fd2914"
+    },
+    {
+      "path": "godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "crc32": "12281f13"
+    },
+    {
+      "path": "host-contracts.log",
+      "bytes": 33671,
+      "sha256": "2b740ddc463369777f49b7ea8843cce73a0e2440a5a4019ad433bbfb0305402d",
+      "crc32": "43f08ca5"
+    },
+    {
+      "path": "host-python.json",
+      "bytes": 109,
+      "sha256": "70f1887bf9713ef1832b1025fc3ac405c430226c27aaa7c608742d73995565bb",
+      "crc32": "026ef739"
+    },
+    {
+      "path": "learning-english/english-apple-960x540-start.json",
+      "bytes": 3025,
+      "sha256": "20fbfd86fc78190c7ac15c33874be1943095a59ff94b0bf02f59fe28935aa89f",
+      "crc32": "f3e76233"
+    },
+    {
+      "path": "learning-english/english-apple-960x540-start.layout.json",
+      "bytes": 33628,
+      "sha256": "daa283bb9704299471fca86dbf44b07fccac5d95ce76443805bfea75ac4a06c2",
+      "crc32": "e798d1a8"
+    },
+    {
+      "path": "learning-english/english-bag-960x540-start.json",
+      "bytes": 3039,
+      "sha256": "0e6b1372c33d34bf2a2f07488c6a3a7d022c3dfc116ba05e7dd56530c6c64cc1",
+      "crc32": "d78b24b7"
+    },
+    {
+      "path": "learning-english/english-bag-960x540-start.layout.json",
+      "bytes": 44823,
+      "sha256": "d40ade4a94ad449c57ccecf918b27bc98fbdf41faf7ccd5231763a4d26da8472",
+      "crc32": "e3e3e5cd"
+    },
+    {
+      "path": "learning-english/english-ball-960x540-complete.json",
+      "bytes": 3021,
+      "sha256": "3376b9cf39dfaf5072d18ed6b041adccc3a236d37dc76a42492d941c16c37cba",
+      "crc32": "c131ff16"
+    },
+    {
+      "path": "learning-english/english-ball-960x540-complete.layout.json",
+      "bytes": 34874,
+      "sha256": "668c27b422426ce22871f78e992cd2ec1e970a930802f9b606c246c3340ce83e",
+      "crc32": "af28d4e7"
+    },
+    {
+      "path": "learning-english/english-ball-960x540-hint.json",
+      "bytes": 3018,
+      "sha256": "10db4346a2e81ca50d7a73f876d2b930e986b6315ff10d8e89a143755b669322",
+      "crc32": "fd0e4f58"
+    },
+    {
+      "path": "learning-english/english-ball-960x540-hint.layout.json",
+      "bytes": 34875,
+      "sha256": "15bd6403e909e8e9a3c4315af916fd475d8fe69140f94abf651216ba625bcb09",
+      "crc32": "d7b9a5de"
+    },
+    {
+      "path": "learning-english/english-ball-960x540-start.json",
+      "bytes": 3015,
+      "sha256": "c69d9f73bb4e07ac75e7f5b41dd165f5ac700d74e8e2a06bca2dc77c022b779e",
+      "crc32": "c4ef3b72"
+    },
+    {
+      "path": "learning-english/english-ball-960x540-start.layout.json",
+      "bytes": 34077,
+      "sha256": "7e188a07ca67b7dd5e3d024349b79a9e49dcf157953cea9063fd9b36c6b81287",
+      "crc32": "10e4b0b4"
+    },
+    {
+      "path": "learning-english/english-book-412x915-complete.json",
+      "bytes": 3013,
+      "sha256": "dc7327958a6121b85b0e1430db1bb3b84b22f22c31fff83dd6aceea146c618ff",
+      "crc32": "7bcbf161"
+    },
+    {
+      "path": "learning-english/english-book-412x915-complete.layout.json",
+      "bytes": 37821,
+      "sha256": "f8310df03602fd8ac505bc0309ab1c7975971fc9eb09f925e821f1ef52e314eb",
+      "crc32": "bee06866"
+    },
+    {
+      "path": "learning-english/english-book-412x915-start.layout.json",
+      "bytes": 37015,
+      "sha256": "a3cf416960124d923cd01a63e7822ff71df1fb13c12174758f562a3aa0a6169b",
+      "crc32": "da730afd"
+    },
+    {
+      "path": "learning-english/english-book-412x915-start.json",
+      "bytes": 3014,
+      "sha256": "f0bc5109fe4fbae365f1cac6e3a7d1055db52c73d4da3391caab50528b7936a3",
+      "crc32": "3606c2b7"
+    },
+    {
+      "path": "learning-english/english-car-2400x1080-start.json",
+      "bytes": 3282,
+      "sha256": "36a1def5a19616d08ed1b8554bde5b6390081ff7a54e226557e66efd2e616d8f",
+      "crc32": "90c0116d"
+    },
+    {
+      "path": "learning-english/english-car-2400x1080-start.layout.json",
+      "bytes": 50392,
+      "sha256": "5113783baae442a8060425798df53e88f617424d8c922d3ceaa11c0c0400edf6",
+      "crc32": "b2c2a70f"
+    },
+    {
+      "path": "learning-english/english-chair-640x360-start.json",
+      "bytes": 3013,
+      "sha256": "b063f85d9f54ae9fc51de442b0da0d7e4360da5ad49ab870acabaf4fea79c02e",
+      "crc32": "20a709df"
+    },
+    {
+      "path": "learning-english/english-chair-640x360-start.layout.json",
+      "bytes": 38421,
+      "sha256": "981f81983526f95c56fb9a3fd3fcb3c7d80363f2dd2f2e18a5e311ffa689a4d9",
+      "crc32": "02135c81"
+    },
+    {
+      "path": "learning-english/english-desk-960x540-start.json",
+      "bytes": 3016,
+      "sha256": "9cb2539ce86f40e43b91b74baf27cfe03794c0b0f0de9f145fc6641bc66d709c",
+      "crc32": "3b3d1916"
+    },
+    {
+      "path": "learning-english/english-desk-960x540-start.layout.json",
+      "bytes": 33315,
+      "sha256": "747dfb13f5934337c5b15bfd7a2e0fde8f930085d1d162d5db0e461b78599106",
+      "crc32": "f94e8003"
+    },
+    {
+      "path": "learning-english/english-paper-2400x1080-start.json",
+      "bytes": 3294,
+      "sha256": "a5433be822c1591b4fd12f3dc8821c2cbcf3121408851b5bb27c3f474882140b",
+      "crc32": "85847e51"
+    },
+    {
+      "path": "learning-english/english-paper-2400x1080-start.layout.json",
+      "bytes": 30421,
+      "sha256": "b80694b05ffec87e70a45e491ce3b3f562a56cfa0a294a19d9cca1940ad411ba",
+      "crc32": "753e4f92"
+    },
+    {
+      "path": "learning-english/english-pen-1080x2400-start.json",
+      "bytes": 3157,
+      "sha256": "68e4e98f2e420301afcdbfe6177b5906d3df4b3825cdefd93ae118abb6d9b891",
+      "crc32": "5f246001"
+    },
+    {
+      "path": "learning-english/english-pen-1080x2400-start.layout.json",
+      "bytes": 25787,
+      "sha256": "9ba497c12292086cdb8dc4fc6efa007d3de4054e8d071fcdb7409e826a11400d",
+      "crc32": "8c373dd7"
+    },
+    {
+      "path": "learning-english/english-pencil-case-1080x2400-start.json",
+      "bytes": 3358,
+      "sha256": "d0f4fac0aec2058c16f777317c5549de3b08b1e7610130628def01d83fe21e5b",
+      "crc32": "3c9b225d"
+    },
+    {
+      "path": "learning-english/english-pencil-case-1080x2400-start.layout.json",
+      "bytes": 33364,
+      "sha256": "be7c848feb73a8739deb3d2fc22ac47ff1b501b70d4561fda37d7b5c6ef04330",
+      "crc32": "c29f44e7"
+    },
+    {
+      "path": "learning-english/english-rubber-640x360-start.json",
+      "bytes": 3008,
+      "sha256": "a33173fb0d2d43fbb86ae9f29a77758b9bcdf6237d556f4c1101d35036e8d5b6",
+      "crc32": "bb38a0a8"
+    },
+    {
+      "path": "learning-english/english-rubber-640x360-start.layout.json",
+      "bytes": 30072,
+      "sha256": "c7fa8b2e4805eae6428e2cc97125491f377fcd254e284928a4d5e5c687b1f6d9",
+      "crc32": "2569412c"
+    },
+    {
+      "path": "learning-english/english-ruler-640x360-start.json",
+      "bytes": 2999,
+      "sha256": "55c3da852cf223473c032c7e9c2e0f6ba7e7f6981437c8187137d46ba197b6bd",
+      "crc32": "eaa8586a"
+    },
+    {
+      "path": "learning-english/english-ruler-640x360-start.layout.json",
+      "bytes": 41707,
+      "sha256": "751e9367164433bbbacdb42f9dd7756f68492d66e288611fbc718c5cdf49608c",
+      "crc32": "70ea482d"
+    },
+    {
+      "path": "learning-english/english-school-bag-412x915-start.json",
+      "bytes": 3057,
+      "sha256": "b761be9c22026f28a34b3db15d4402b986bc2057551d797321b6e140d0fa5a33",
+      "crc32": "ed3e4025"
+    },
+    {
+      "path": "learning-english/english-school-bag-412x915-start.layout.json",
+      "bytes": 44278,
+      "sha256": "33abb94afe43f71d394bb9879fe582e45487b6f3983e87664b037cefb842deae",
+      "crc32": "d2cd6151"
+    },
+    {
+      "path": "learning-english/english-sun-960x540-start.json",
+      "bytes": 3013,
+      "sha256": "75e6ff8b15e8e47139626da323a9f32033b5049d77f43000b1a65b5a617516d7",
+      "crc32": "ccc0123f"
+    },
+    {
+      "path": "learning-english/english-sun-960x540-start.layout.json",
+      "bytes": 30920,
+      "sha256": "96b6c3e998144e666a631f3911169c52919b4f7e1cb49186dd392284132ed414",
+      "crc32": "51a6a9f9"
+    },
+    {
+      "path": "learning-english/learning-english-report.json",
+      "bytes": 143305,
+      "sha256": "1d574cffa85982b6fec7444f97ae7cdba4e9eb7b33d3580c0c37bdd1efed1bba",
+      "crc32": "ba294ffd"
+    },
+    {
+      "path": "learning_android_host_capability_regression.log",
+      "bytes": 660,
+      "sha256": "d9d468b67ce6dac5381a3571f7ea360c729d9929894fcea834c44672381b412b",
+      "crc32": "9f72306d"
+    },
+    {
+      "path": "learning_companion_scope_regression.log",
+      "bytes": 547,
+      "sha256": "aa30c2986ff93d43dbeeecc52e991bdc1da8a781282f4bf9067cf5478b33996c",
+      "crc32": "3b3ce8ae"
+    },
+    {
+      "path": "learning_english_regression.log",
+      "bytes": 6179,
+      "sha256": "3b1c45fd159dbd4c7b110c7adbf04b74c2b204714a58cafaf6a07bd7ebf127f4",
+      "crc32": "27406cda"
+    },
+    {
+      "path": "learning_generation_regression.log",
+      "bytes": 557,
+      "sha256": "10c0449a302035ab85a4df38f33db04e7bb21cf92cac38b82d5974c494c38df0",
+      "crc32": "be6f5e86"
+    },
+    {
+      "path": "learning_host_payload_regression.log",
+      "bytes": 561,
+      "sha256": "c763d84b6655eadfffb6b9fbbd62ab446baf0468976b0630248786ccb1e69387",
+      "crc32": "eda33771"
+    },
+    {
+      "path": "learning_pattern_regression.log",
+      "bytes": 516,
+      "sha256": "218cf9af10b3a0b0840b6da9cc5b2ae2a0a29a155e2b343571e1254fed4a9f9b",
+      "crc32": "aa96b097"
+    },
+    {
+      "path": "learning_sharing_regression.log",
+      "bytes": 1482,
+      "sha256": "46611a9b8519f2137a9ce2a5cf8dab5b11b66b298a062b70a5bf8e039f138b3e",
+      "crc32": "62b4db5d"
+    },
+    {
+      "path": "learning_wonder_details_regression.log",
+      "bytes": 3912,
+      "sha256": "c1e35122735bf052d21f7665d9614b26ed6260852819c3fa73b8562d505b39b9",
+      "crc32": "380e5a9c"
+    },
+    {
+      "path": "learning_world_regression.log",
+      "bytes": 10599,
+      "sha256": "2c7ffff6da31d57164877f8d78c806b98945001fe89d7e894fa03756a2d825ce",
+      "crc32": "632b84e6"
+    },
+    {
+      "path": "native-project.log",
+      "bytes": 5519,
+      "sha256": "b9fd53306efa6c8672985028fb67cd7d0231cff60af8cb2ac23c6225e2d59e6c",
+      "crc32": "7c208bba"
+    },
+    {
+      "path": "native-test-toolchain.json",
+      "bytes": 549,
+      "sha256": "735e64f7978ecde7f4c774ed938227faf701a7d5cceb1f7447df05ff93efc3f2",
+      "crc32": "5b956984"
+    },
+    {
+      "path": "nextgen_avatar_contract_review.log",
+      "bytes": 640,
+      "sha256": "79b48e0fa26da1cdf8899d565b0b81d56123ce84767821a8263f81e00e77d305",
+      "crc32": "79e56fe8"
+    },
+    {
+      "path": "nextgen_learning_base_audio_regression.log",
+      "bytes": 514,
+      "sha256": "181656fbc11b99b2732ac482ca30a5e1ae03215cd5e2e467ef8baeaefcf9227c",
+      "crc32": "658d8884"
+    },
+    {
+      "path": "nextgen_learning_route_review.log",
+      "bytes": 1194,
+      "sha256": "216e19d5ae314153b8d005feb9999bd4acee39039f1fa53e34701bb327db574e",
+      "crc32": "ffd4e0d7"
+    },
+    {
+      "path": "source.json",
+      "bytes": 3402,
+      "sha256": "69086ca4169100851173e581b99f00f9417665a16c584ecb0c857dff3f40a3d0",
+      "crc32": "3501bf92"
+    }
+  ]
+}

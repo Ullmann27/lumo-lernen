@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "created_at": "2026-11-14T04:35:59.963909+00:00",
+  "files": [
+    {
+      "path": "source-contract/checked_memory_collector.py",
+      "bytes": 15859,
+      "sha256": "9d7b07d27657b9c9a62c7027393419006480bc3d28848cfabe6811be21a6204e",
+      "git_blob_sha1": "7ee2efab3cf83a73cb393c54a93e0b8745c0ca39"
+    },
+    {
+      "path": "source-contract/export_creative_evidence_parts.py",
+      "bytes": 12904,
+      "sha256": "2b1dc64b75456b92a46e2017b6d28ffac11e35b6dcfbb0e20a9d32f32d7fa092",
+      "git_blob_sha1": "4c113e5b73e9f6eb3c02ab48b25f0aa3331f79c9"
+    },
+    {
+      "path": "source-contract/manifest.json",
+      "bytes": 1849,
+      "sha256": "0b2b404531d00c5689428bf4cf891385d7279ef68665d9eca32f7024545d858e",
+      "git_blob_sha1": "416de9f5a7161edb66d41f2cb9dcb6e120f10b5e"
+    },
+    {
+      "path": "source-contract/original-initial-run-list.json",
+      "bytes": 116860,
+      "sha256": "d49b9e9ada3767c2bf286e19a54a624859079b9cef7b1919b730bc7023ef1f5d",
+      "git_blob_sha1": "5dcc6bc655563733051df1ee1a1fce32ec894904"
+    },
+    {
+      "path": "test_verify_creative_parts.py",
+      "bytes": 15784,
+      "sha256": "97ce8e21e3d9ca223cc9a689965dc211461cf654d441705dcb3b660ed5116ddb",
+      "git_blob_sha1": "e42477542104e3cefc38024a7b60629a5ce812ea"
+    },
+    {
+      "path": "verify_creative_parts.py",
+      "bytes": 19476,
+      "sha256": "0146cb4132dfca9cdb6c764e2d6e738083e3b590abebc8cee610c7676d668537",
+      "git_blob_sha1": "51864e5d25a28a6673ad79a9b08b161510ef19b4"
+    }
+  ],
+  "test_result": {
+    "path": "evidence/focused-test-result.json",
+    "bytes": 806,
+    "sha256": "42718881493d96b899e4a37765a3132187a38fb0cbf835484bf0373b0253f2ef",
+    "git_blob_sha1": "c09290bb9ab5c694c1c2477c45046cce9eec29c7"
+  },
+  "legacy_pack_preservation": {
+    "before": {
+      "path": "evidence/legacy-pack-before.json",
+      "bytes": 2414,
+      "sha256": "a0c196f1114681a31f269e6c068bef1a222369bd2023dac66052c8d99ec9ec1a",
+      "git_blob_sha1": "c01c798f4755b471cd55fe329dccdc66b9b1c8a7"
+    },
+    "after": {
+      "path": "evidence/legacy-pack-after.json",
+      "bytes": 2414,
+      "sha256": "a0c196f1114681a31f269e6c068bef1a222369bd2023dac66052c8d99ec9ec1a",
+      "git_blob_sha1": "c01c798f4755b471cd55fe329dccdc66b9b1c8a7"
+    },
+    "all16files_byte_identical": true
+  },
+  "scope": "New standalone PR481 transport verifier only. Existing verifier/collector/exporter sources and original run metadata unchanged."
+}

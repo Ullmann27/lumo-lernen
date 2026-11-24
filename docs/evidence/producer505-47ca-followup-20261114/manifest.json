@@ -1,0 +1,755 @@
+{
+  "schema": 1,
+  "status": "FROZEN",
+  "created_utc": "2026-11-14T15:14:02.426660+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "bytes": 4849,
+      "sha256": "bcb416923ded47083c0065f0f49175b3a536783bb793bc2242413c4519023898",
+      "git_blob": "2aeeff1fa3ba25875ef01d708bf7fe07024819eb"
+    },
+    {
+      "path": "ci-observations.json",
+      "mode": "100644",
+      "bytes": 8368,
+      "sha256": "d11c2d4d1cccd47c48f24d649cf9b7989aa1808537bde2656decbfd0cca8a94e",
+      "git_blob": "d698f5b95277a94bc0870139062c5dc031746259"
+    },
+    {
+      "path": "comparisons/.github__probes__lumo_connect_four_android_probe.py.0b-to-505-observation.patch",
+      "mode": "100644",
+      "bytes": 69580,
+      "sha256": "5b461303304194f92afc04b999fc98c0dc02e7894f910a2a55a51af987941b3d",
+      "git_blob": "163c3a0e155313484815cf888d188c55099657ef"
+    },
+    {
+      "path": "comparisons/.github__probes__lumo_connect_four_android_probe.py.8b-to-505.patch",
+      "mode": "100644",
+      "bytes": 4704,
+      "sha256": "a835822f8dd65189b92b0bb1cc1f3948838225c048d24019dd8608eac59535b7",
+      "git_blob": "4491c3256203f61a5edfc8e715d43dce644a1d75"
+    },
+    {
+      "path": "comparisons/.github__probes__studio_creative_android_probe.py.0b-to-505-observation.patch",
+      "mode": "100644",
+      "bytes": 70308,
+      "sha256": "eb86d9f9520fa80c7207429f9d78cfbf0105ac2960caf5a7f41618f723cdfbd7",
+      "git_blob": "ff7cd437414eab61ea76d277dfbc7bd01d847b17"
+    },
+    {
+      "path": "comparisons/.github__probes__studio_creative_android_probe.py.8b-to-505.patch",
+      "mode": "100644",
+      "bytes": 7512,
+      "sha256": "bc08b07811527f8394ff66a004ccb36ce412df52d5e485caf08dbf926b30e3d2",
+      "git_blob": "62985e124315212762cdd53f27db4430d56a168e"
+    },
+    {
+      "path": "comparisons/lib__domain__tutoring__native_english_vocabulary.dart.8b-to-505.patch",
+      "mode": "100644",
+      "bytes": 1728,
+      "sha256": "4e7fdb34d2c304db016d54ac03bf39138a3caa8797c5809b63288325e346eb5a",
+      "git_blob": "a4972707b7cb4a62e97e4058a2f971f15c2e4712"
+    },
+    {
+      "path": "comparisons/lib__features__games__memory__lumo_memory_game.dart.8b-to-505.patch",
+      "mode": "100644",
+      "bytes": 686,
+      "sha256": "ddc6761a7f5ef633fd98be6b64595e06cb6f521db27b4fe2d4aff7ed371e3690",
+      "git_blob": "ad0bcc2058a05b6293615fac7e9af593aab6abdd"
+    },
+    {
+      "path": "comparisons/scripts__tests__test_studio_treasure_movement.py.8b-to-505.patch",
+      "mode": "100644",
+      "bytes": 645,
+      "sha256": "43a521c42a47db3c087c5fbba72c2f207de0930886034904372ca73f74c65943",
+      "git_blob": "f5ce54a5147336ad1ae5f34fb84bf8a19fa99439"
+    },
+    {
+      "path": "comparisons/test__tutoring__native_english_activity_test.dart.8b-to-505.patch",
+      "mode": "100644",
+      "bytes": 1136,
+      "sha256": "b34f2a082fbbe3878addfcece9793364f990dd70711d965d16ed70bd8ad79605",
+      "git_blob": "b5c6ffc5e03820acad98cf936245c97e768ed189"
+    },
+    {
+      "path": "comparisons/tool__check_native_english_activity.dart.8b-to-505.patch",
+      "mode": "100644",
+      "bytes": 5081,
+      "sha256": "96e45f6dbe40cd38260dedc9697dc9430d79f3c87e8764b7f3b424122b271989",
+      "git_blob": "fe58240e52db1997730ba38848b8ab86a27a3861"
+    },
+    {
+      "path": "final-readback.json",
+      "mode": "100644",
+      "bytes": 5445,
+      "sha256": "df5789777dd5f31cb50cc0985085a4d0935a92f9371bca81854762ada52d736c",
+      "git_blob": "11ea7e45a4cf7449ed14c4d918322b4bb51b8850"
+    },
+    {
+      "path": "handoff.json",
+      "mode": "100644",
+      "bytes": 1393,
+      "sha256": "a34ff02bbe805ca3b2b70d26775fefbd17be3a4ff3527d2b21249cb71d212a1f",
+      "git_blob": "c2be0f747c6b2661a2c1dfa2ef99a250c7b4ac99"
+    },
+    {
+      "path": "independent-native-addendum/README.md",
+      "mode": "100644",
+      "bytes": 1349,
+      "sha256": "248d2836733734c764269263a7ca6db877f437215f19a7fdb6177544bfe561ff",
+      "git_blob": "0248cdbd1def5d0f4a742da275db074e8f3e92bb"
+    },
+    {
+      "path": "independent-native-addendum/SHA256SUMS",
+      "mode": "100644",
+      "bytes": 3221,
+      "sha256": "9cf0ff213889b401d207ab4775646b1f72cc9971823a4add1657e4f83c80b56d",
+      "git_blob": "b392f7bc4ed27ddbb8b70e0db77057b668eb83ee"
+    },
+    {
+      "path": "independent-native-addendum/ci-binding.json",
+      "mode": "100644",
+      "bytes": 5277,
+      "sha256": "84307a53616eae6f87e74951db4cbc361334ac7dbbd852dd69c426a941554f14",
+      "git_blob": "48fbd12808ab3bc22aa1f40c2a3dc0f9f9e2f174"
+    },
+    {
+      "path": "independent-native-addendum/handoff.json",
+      "mode": "100644",
+      "bytes": 897,
+      "sha256": "6e505a89187e0b08c92215ced1ad5cefed40500089b9550cff0b6b7a38189ba1",
+      "git_blob": "56f44437061aa046579221c92e598daaeb31a09c"
+    },
+    {
+      "path": "independent-native-addendum/manifest.json",
+      "mode": "100644",
+      "bytes": 6625,
+      "sha256": "fd8cafeaa166ab3f9efa06956124871411e249d81d53a9f5a028ae01285ebde0",
+      "git_blob": "6a1b82b45ea1a4c7162d2b6bd895c1b8175818e0"
+    },
+    {
+      "path": "independent-native-addendum/original-patches/scripts__games__quiz__quiz_studio.gd.patch",
+      "mode": "100644",
+      "bytes": 2800,
+      "sha256": "6d5d7558e7016b0affcd62f2fdc415302cdb2696860f1dacf1ee497ea9ca3c51",
+      "git_blob": "4db588adbba3954e1e724d5faf7cfb53e4e28297"
+    },
+    {
+      "path": "independent-native-addendum/original-patches/scripts__learning__english_object_gallery.gd.patch",
+      "mode": "100644",
+      "bytes": 5201,
+      "sha256": "9f63a20cd3c95b8a2217f287c3c1fb5a01d3ab27743aa7eaf1f7f2a1063593ee",
+      "git_blob": "24675a22f42c480ca2357a672da4572262ba2ebc"
+    },
+    {
+      "path": "independent-native-addendum/original-patches/scripts__learning__english_vocabulary.gd.patch",
+      "mode": "100644",
+      "bytes": 1175,
+      "sha256": "c0e25f1de687a45ba348f32fe59cec0ddcc413e62c218cf09aa0429daa11a29b",
+      "git_blob": "92673fb572104b3395c96cc7b1cac829d31eec1a"
+    },
+    {
+      "path": "independent-native-addendum/original-patches/scripts__learning__learning_world.gd.patch",
+      "mode": "100644",
+      "bytes": 937,
+      "sha256": "2580e5cbfd084830a91cba93de886db9eeace75ad46fb014c31e8c516b99ca56",
+      "git_blob": "cd375e5ed4c5afa862e6e4f1630fc9758fc14a56"
+    },
+    {
+      "path": "independent-native-addendum/original-patches/scripts__tests__fixtures__quiz_9f2e__durable-round.json.patch",
+      "mode": "100644",
+      "bytes": 4422,
+      "sha256": "2d7df6ef785c2a868d2e5291dc7ef4a70cafb74b742c571108f1eefce7773257",
+      "git_blob": "0c96e68fdaa4a9bdae0ac0c6d05186f5068103ed"
+    },
+    {
+      "path": "independent-native-addendum/original-patches/scripts__tests__fixtures__quiz_9f2e__jokers-layout.json.patch",
+      "mode": "100644",
+      "bytes": 4762,
+      "sha256": "d97476a89f224a4cb83c64fb6c26b72695f72a68dc070b968169a18adf28e689",
+      "git_blob": "5bf9d91d740b04fc334232108b4da5119e24c333"
+    },
+    {
+      "path": "independent-native-addendum/original-patches/scripts__tests__fixtures__quiz_9f2e__public-state.json.patch",
+      "mode": "100644",
+      "bytes": 889,
+      "sha256": "0f2a7ba199e537115a8a2cf64a2a9d3c1df32d8e9b501cdc4c5c262a08c439ba",
+      "git_blob": "604c0c70b75e3b217e8a90259ddc9b9d1014fb74"
+    },
+    {
+      "path": "independent-native-addendum/original-patches/scripts__tests__fixtures__quiz_9f2e__selected-phone-layout.json.patch",
+      "mode": "100644",
+      "bytes": 4736,
+      "sha256": "8f8666f39f7fd23767f3ce0fce85f6ca4f42faa0b54cae1c7d4eca5aa6e5ca93",
+      "git_blob": "74bddc31e62188c3b810c95da61587a4b057021d"
+    },
+    {
+      "path": "independent-native-addendum/original-patches/scripts__tests__learning_english_regression.gd.patch",
+      "mode": "100644",
+      "bytes": 8522,
+      "sha256": "93b6417ad56de12208eedbb6800a7fc5ea5973ab18da205af9fe0888a619b59b",
+      "git_blob": "184b2bea6044a56b729a1c15d19d40ac67cf177e"
+    },
+    {
+      "path": "independent-native-addendum/original-patches/scripts__tests__quiz_studio_runtime.gd.patch",
+      "mode": "100644",
+      "bytes": 10443,
+      "sha256": "999773255d53526e9cbf52dd6a9410eed6b4049c09838f1f129b526523895be4",
+      "git_blob": "e0a273b98cc03fd15144a3e9173a2708f9eae28d"
+    },
+    {
+      "path": "independent-native-addendum/published-source/scripts/games/quiz/quiz_studio.gd",
+      "mode": "100644",
+      "bytes": 32524,
+      "sha256": "943b85847225529f5b9b52566c748682c2b8225a7051a3443fa49f54b776b32d",
+      "git_blob": "aa3e4d91f0e64cd466fb087356fbf29264d697a3"
+    },
+    {
+      "path": "independent-native-addendum/published-source/scripts/learning/english_object_gallery.gd",
+      "mode": "100644",
+      "bytes": 13988,
+      "sha256": "9e18d9139748a5aa40e938e9800dd491b3909d69aa057080a1c2a4022445a093",
+      "git_blob": "1bc459bc88d10f48aa918014eedbb91071cd98a7"
+    },
+    {
+      "path": "independent-native-addendum/published-source/scripts/learning/english_vocabulary.gd",
+      "mode": "100644",
+      "bytes": 2849,
+      "sha256": "86c2bbab28b130ba4ae9f74f265cbb9f95c81e2a4d78fa7dd4716a1d51ef7f20",
+      "git_blob": "fa8debed147eceea108acc98ac318ac1362cf8eb"
+    },
+    {
+      "path": "independent-native-addendum/published-source/scripts/learning/learning_world.gd",
+      "mode": "100644",
+      "bytes": 62477,
+      "sha256": "a6e03b3040c498a92c6475ab4bd5a85da07344ac901b0c368fd2f616224b2218",
+      "git_blob": "f5a296f1e0394ef3ac1dd518bdf1b60912793ee9"
+    },
+    {
+      "path": "independent-native-addendum/published-source/scripts/tests/fixtures/quiz_9f2e/durable-round.json",
+      "mode": "100644",
+      "bytes": 4378,
+      "sha256": "9af91c87d473807a6c7e915668ad3e3876b830d437c5a751c7526784db143a9d",
+      "git_blob": "7624036f7e342a6d5b0c3430019c98ab13f13baf"
+    },
+    {
+      "path": "independent-native-addendum/published-source/scripts/tests/fixtures/quiz_9f2e/jokers-layout.json",
+      "mode": "100644",
+      "bytes": 4718,
+      "sha256": "30e5a562f1f3ae0bcfcf1ae4db27a482c3079f727f335e0d1848861fecfd16b6",
+      "git_blob": "4a8de3fd5d5e97da52afa3188cf63b32a0d6fe6b"
+    },
+    {
+      "path": "independent-native-addendum/published-source/scripts/tests/fixtures/quiz_9f2e/public-state.json",
+      "mode": "100644",
+      "bytes": 845,
+      "sha256": "0dcebfe884d8bc15da91bb40f6e0eef0e2cf9edcdeb917572c5bf0e66d3fb2c9",
+      "git_blob": "0d6438f6706d875c87f82e694b22a8d0a5f96352"
+    },
+    {
+      "path": "independent-native-addendum/published-source/scripts/tests/fixtures/quiz_9f2e/selected-phone-layout.json",
+      "mode": "100644",
+      "bytes": 4692,
+      "sha256": "d861f870c8117a2bc64aec8ac642ee42c70a9426fb54f6f79538f1f8d0cb9f42",
+      "git_blob": "b1e09d14f6c1b01caf6c30b89d2e12d818146031"
+    },
+    {
+      "path": "independent-native-addendum/published-source/scripts/tests/learning_english_regression.gd",
+      "mode": "100644",
+      "bytes": 33455,
+      "sha256": "c6ce712d4b8539c6cb08e0accbd94853cc7c53aa87f43c16342055073f5578e9",
+      "git_blob": "0a86b01f2f1de7058f50f185e60746fb7d7564e1"
+    },
+    {
+      "path": "independent-native-addendum/published-source/scripts/tests/quiz_studio_runtime.gd",
+      "mode": "100644",
+      "bytes": 40358,
+      "sha256": "bacb40d4b7a585c838920c423ae03a24c7b8b13c3eba79df93d91bf3d498e948",
+      "git_blob": "623e76afd47d1cd96fcaebdebacac0a684f38f7b"
+    },
+    {
+      "path": "independent-native-addendum/review.json",
+      "mode": "100644",
+      "bytes": 6267,
+      "sha256": "a322b0708a3b59224789e8bfa4ed9d77f4d4a274aaf1ff449ea65ee354efa04f",
+      "git_blob": "86c9c0b45cf7d91a520a2ba69cf6ffe7e521fbcb"
+    },
+    {
+      "path": "independent-native-addendum/source-binding.json",
+      "mode": "100644",
+      "bytes": 8966,
+      "sha256": "c14aef1b2fae1263463115de703ade4deee5fb51710cf838ef7c88cd60407a97",
+      "git_blob": "4043baa454e7c8c550a6e4c092d7c6d502c58416"
+    },
+    {
+      "path": "independent-native-addendum/static-followup-binding.json",
+      "mode": "100644",
+      "bytes": 3518,
+      "sha256": "d09114905f8551aa2fa93b66deb013d479e6378427098e2b1594a20cb40145c5",
+      "git_blob": "1ef4a354e037bf551e1a51545b33e83e32260d89"
+    },
+    {
+      "path": "independent-native-addendum-binding.json",
+      "mode": "100644",
+      "bytes": 7347,
+      "sha256": "d167cfe55daef58ae0502615b1ef7e23db144bebedd2e54a396ed3fd0605c202",
+      "git_blob": "ea5689f95f38e4f3de0d3ea2848f20ae24336065"
+    },
+    {
+      "path": "original-source/host-0b/.github/probes/lumo_connect_four_android_probe.py",
+      "mode": "100644",
+      "bytes": 28798,
+      "sha256": "4e1a449016c14f263fbfa8f57dd09d9bba028accfe8b9a84709af56d57916c19",
+      "git_blob": "681e25d4654ce9827db8f208da5a608b458fa958"
+    },
+    {
+      "path": "original-source/host-0b/.github/probes/modernization_android_tour.py",
+      "mode": "100644",
+      "bytes": 72474,
+      "sha256": "aaea18ac1db213f8370714de0de0f06a1e22da74d658b85b6fcac7547882d477",
+      "git_blob": "10d5caa657552a0168e5d90cf5bac2ec94b90521"
+    },
+    {
+      "path": "original-source/host-0b/.github/probes/studio_creative_android_probe.py",
+      "mode": "100644",
+      "bytes": 79294,
+      "sha256": "4eac8342846bf42561e45d132450ebf90648283f75c7f4333d77b6fd43739e28",
+      "git_blob": "cd3a11c2206ab31c4933df7388f2a62a07e6399f"
+    },
+    {
+      "path": "original-source/host-0b/lib/features/games/memory/lumo_memory_game.dart",
+      "mode": "100644",
+      "bytes": 52550,
+      "sha256": "28c5f0d7348354bb55f6c1ad8cb1d712360fbbe27fcf7cc36424003568c846f4",
+      "git_blob": "033e3a70bd7fff21506bea014cc16a8ee1558c06"
+    },
+    {
+      "path": "original-source/host-505/.github/probes/lumo_connect_four_android_probe.py",
+      "mode": "100644",
+      "bytes": 39906,
+      "sha256": "eb26424167b24fd2c2959bce0ba07668452147d8a1212fd4d5b525ffc9584a82",
+      "git_blob": "ffa5c6d9a0c8e4403847fd07e8436234f7af979e"
+    },
+    {
+      "path": "original-source/host-505/.github/probes/lumo_english_objects_android_probe.py",
+      "mode": "100644",
+      "bytes": 55089,
+      "sha256": "9df986992f759b10a6fb4a09565092e3c692718e427dec152f7039db58e368dd",
+      "git_blob": "ee4e1d59c43a6e27c464208e26eedc694a516df9"
+    },
+    {
+      "path": "original-source/host-505/.github/probes/studio_creative_android_probe.py",
+      "mode": "100644",
+      "bytes": 74185,
+      "sha256": "2bf513aa1486e54a3da1e512ba66ab87c0fc4510705dfcbb92d36bd5f34d0de8",
+      "git_blob": "f83ef1b958f25d188042d18605b888bddf7605c6"
+    },
+    {
+      "path": "original-source/host-505/lib/domain/tutoring/native_english_vocabulary.dart",
+      "mode": "100644",
+      "bytes": 3323,
+      "sha256": "375ecb52b84b59f34be006e2f9768e98cb8c6839e1a794e08a87760d68b7486f",
+      "git_blob": "4469849b204f91fab3e645604e11922e29cb594c"
+    },
+    {
+      "path": "original-source/host-505/lib/features/games/memory/lumo_memory_game.dart",
+      "mode": "100644",
+      "bytes": 52654,
+      "sha256": "b90ab76e89a1f8d2258e1085e96ab8b032651b75b650dd7c497807a74882c380",
+      "git_blob": "b2dd78af3ddfd8146bb9b76baf8c46b1f382ba43"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api35-home.xml",
+      "mode": "100644",
+      "bytes": 32222,
+      "sha256": "f0b5578b948a839e2fbf018ce982b17ad2645abea2932e26a892eb1b8cc4f52b",
+      "git_blob": "80349515b3c4f5b2f1e4fad4c303a9152a325edf"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api35-hub.xml",
+      "mode": "100644",
+      "bytes": 28551,
+      "sha256": "fa7a6e746ed13a0f325b2d9da0639e221f06a41ee5b953d7f77ce1517ba4472a",
+      "git_blob": "4d284085abc30785e4e0b4c34970c2e4d5a64d1f"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api35-paused.xml",
+      "mode": "100644",
+      "bytes": 34244,
+      "sha256": "ac47cdf55d8d8f9db8d266d9f1a0734b4d01dc780dbbd511f770595a7fe72b90",
+      "git_blob": "d3a07990f85c9709457bf75293865437e0aa1916"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api35-showcase.xml",
+      "mode": "100644",
+      "bytes": 15889,
+      "sha256": "9ec7b4a5e1653ee8597f05e0e3a46f7661b35b15b6feada1879b406865e051be",
+      "git_blob": "adea5bac5d52c0cfe6000f5b48288a040d40346a"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api37-paused.xml",
+      "mode": "100644",
+      "bytes": 35172,
+      "sha256": "995714f918e1b1f7e2a366a339baee5d6b1714a35aabe0ac24c73db84360b996",
+      "git_blob": "f328465dc61c58f93aeaf7a2cc5a023a785da0e6"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/api37-showcase.xml",
+      "mode": "100644",
+      "bytes": 16801,
+      "sha256": "5acfb1348da462257433d03c761a16eaab6adedfb1235d1c3aa318f895495588",
+      "git_blob": "ec4a80a2abba2bd18ffdb6b019b1aa0aabd19d96"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_c4_navigation/provenance.json",
+      "mode": "100644",
+      "bytes": 2297,
+      "sha256": "8752814041fade9e17528b1a6038bb92f0ea4dba167cfa685c89fb5c5ca94e51",
+      "git_blob": "a801d687a0e1c897e3c4fd4dc2d162ae4cc1b2b4"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_creative_ae1/0179-treasure-save-lumo_treasure_p_83f659a4a9642fc7c4e7feff8cfd1efb.json",
+      "mode": "100644",
+      "bytes": 276,
+      "sha256": "b134ba5f90c2e9de9c57161e42916829b524a702a41c079f543ef65ed91c6338",
+      "git_blob": "57041a3844fa695d9314ecf5e5b290943c4b94a4"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_creative_ae1/0182-observe-original-stick.png.ocr.json",
+      "mode": "100644",
+      "bytes": 14006,
+      "sha256": "169e4c371977282e7f3ffc96cf1f60c09bf2a2c8cba0c38270c9ac0e1e26c23f",
+      "git_blob": "fe260e034c0c0b76ebdfef7fdfa76cbf5d3315f9"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_creative_ae1/0183-before-real-input.png.ocr.json",
+      "mode": "100644",
+      "bytes": 17771,
+      "sha256": "2941c7a65c3982811d3989960466aa08d1fab030fce8d9157a7b9cc830f4ad13",
+      "git_blob": "2169f69a1b974cb367a0b038eeb1a47a1f41d160"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_creative_ae1/0185-treasure-save-lumo_treasure_p_83f659a4a9642fc7c4e7feff8cfd1efb.json",
+      "mode": "100644",
+      "bytes": 306,
+      "sha256": "8cff949dfc4f383eea1f2caf49ede60ed42c314e59db1a30f5b010d37a685534",
+      "git_blob": "110bf068456ca454fed4317b740df403c6440324"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/fixtures/studio_creative_ae1/provenance.json",
+      "mode": "100644",
+      "bytes": 2716,
+      "sha256": "7dc8ed8be9d9f7240cbab85890bdfc692f84a6d0714526d59cd44c2366175fb6",
+      "git_blob": "20ed3fe68608365b7726d7ba655d7307b6f0ca2e"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/test_studio_c4_navigation.py",
+      "mode": "100644",
+      "bytes": 3069,
+      "sha256": "378621b612f02f56c9914d3d5387e69e166ba24d104cf3e66f5b206d17a6f0e2",
+      "git_blob": "73f7b88fc567dbeb3b3cc72ad3832d7a60219012"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/test_studio_creative_clock_calibration.py",
+      "mode": "100644",
+      "bytes": 10485,
+      "sha256": "a96e0514711fb1b31ca3762c2a94123510bb8771d4ead36d8e6730e8b36f9266",
+      "git_blob": "6a49d7a43d7679dec3eaf897fa5e668aafd89104"
+    },
+    {
+      "path": "original-source/host-505/scripts/tests/test_studio_treasure_movement.py",
+      "mode": "100644",
+      "bytes": 12250,
+      "sha256": "893de0755d8a15dece6e5a784f83ad9c591584dd5ea1962c021c42dfbfe9e974",
+      "git_blob": "0282b1f95a70691502dea6901b34842981e673e1"
+    },
+    {
+      "path": "original-source/host-505/test/games/memory_result_frame_test.dart",
+      "mode": "100644",
+      "bytes": 5988,
+      "sha256": "b42ecb1c96d757f7917e9692f0101a81b3f8e76d36394a58dc89be9113f83bc1",
+      "git_blob": "a725ef713a18de925bc933705c74983952c13178"
+    },
+    {
+      "path": "original-source/host-505/test/tutoring/native_english_activity_test.dart",
+      "mode": "100644",
+      "bytes": 7686,
+      "sha256": "3f0f0c9c331c23fd1f8372349a941976657c10d450c629092d86ec59dacc396c",
+      "git_blob": "e12cadfa4bdc33be932fc1e570f5ce51d17f0c39"
+    },
+    {
+      "path": "original-source/host-505/tool/check_native_english_activity.dart",
+      "mode": "100644",
+      "bytes": 12610,
+      "sha256": "59c89f50faf62be0f06c3d7c35f4c7d517ec67c73f059779a57767951569997a",
+      "git_blob": "2d304dfbf89e7be2cd123808b8a3352d7622e87b"
+    },
+    {
+      "path": "original-source/host-505/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-complete.layout.json",
+      "mode": "100644",
+      "bytes": 43004,
+      "sha256": "a9d4da5aa6a1666edc1a15324ce9412be42c2ac420e2bda98cb7035fbd1a9a4d",
+      "git_blob": "17c5648abd3b3ba5ef5b8d884093e1e1445e62df"
+    },
+    {
+      "path": "original-source/host-505/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-hint.layout.json",
+      "mode": "100644",
+      "bytes": 43005,
+      "sha256": "d0059e9bf1351b32364747dbbb3214c2cda7dc153b2d04689b503efe015f5682",
+      "git_blob": "935b65a28f105301176a9aacf659582ba630b7d5"
+    },
+    {
+      "path": "original-source/host-505/tools/android_qa/tests/fixtures/english_objects/english-ball-960x540-start.layout.json",
+      "mode": "100644",
+      "bytes": 42195,
+      "sha256": "e1e79909c444444ac45e467d6abfd9f792f999fe1f37bf9e28425dd17885e6e8",
+      "git_blob": "a32884e7ed90cfe888aeb50e86f9ed9ba57d2391"
+    },
+    {
+      "path": "original-source/host-505/tools/android_qa/tests/fixtures/english_objects/english-pen-1080x2400-start.layout.json",
+      "mode": "100644",
+      "bytes": 37009,
+      "sha256": "91c4a6d3ce55a918b9854fd692869bb1b97fcacaa05dfc76c3dbbf711a27166f",
+      "git_blob": "1bf23985d82681f5a152790ae39cbbdbd31fe431"
+    },
+    {
+      "path": "original-source/host-505/tools/android_qa/tests/test_english_objects_android_probe.py",
+      "mode": "100644",
+      "bytes": 20503,
+      "sha256": "ecd76b3da990e5477cadd77223782ca7af853a0f8e4753b67a9008c83c460d8c",
+      "git_blob": "19f640b0f534837eb53be1e401f471a6a9e280d5"
+    },
+    {
+      "path": "original-source/host-8b/.github/probes/lumo_connect_four_android_probe.py",
+      "mode": "100644",
+      "bytes": 36483,
+      "sha256": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e",
+      "git_blob": "53679cb2a9adda7fbae82621afb29efd920c4485"
+    },
+    {
+      "path": "original-source/host-8b/.github/probes/studio_creative_android_probe.py",
+      "mode": "100644",
+      "bytes": 69712,
+      "sha256": "5b2aad1a5fe0a9bac1e52f891c836393a9ca41492da110d50fcd59d98d4fc2e0",
+      "git_blob": "4747ac3d62fddcf7ec3b12f96ca01ff3a93830b5"
+    },
+    {
+      "path": "original-source/host-8b/lib/domain/tutoring/native_english_vocabulary.dart",
+      "mode": "100644",
+      "bytes": 2941,
+      "sha256": "66f07be4fb2d573b411f8bda97330edad46003929640bf36a0ede74c2d43102a",
+      "git_blob": "e79e6342f017dd59ebfd4bbb7adad215057e0545"
+    },
+    {
+      "path": "original-source/host-8b/lib/features/games/memory/lumo_memory_game.dart",
+      "mode": "100644",
+      "bytes": 52529,
+      "sha256": "fa2ec3a8ae7c55fb14fe5fb78572c2a3e5dff3fcd7830b088fe45f02a2513e1c",
+      "git_blob": "aec0446cc1bb5a1ff6b3469c0c9606c45bfda64e"
+    },
+    {
+      "path": "original-source/host-8b/scripts/tests/test_studio_treasure_movement.py",
+      "mode": "100644",
+      "bytes": 12241,
+      "sha256": "d6401252f81e249751dc6d031efe2ceba91759255a0528496bbc249ef877fc8f",
+      "git_blob": "910d8fd814654a82f09a7c915200e7ef6e2819d1"
+    },
+    {
+      "path": "original-source/host-8b/test/tutoring/native_english_activity_test.dart",
+      "mode": "100644",
+      "bytes": 7588,
+      "sha256": "cf115557354b01a7d873654a74fa2c5e52860df1a8baf967df126d2a712a8114",
+      "git_blob": "70cacfce15bdd374d582c570b49c2a865cee63d6"
+    },
+    {
+      "path": "original-source/host-8b/tool/check_native_english_activity.dart",
+      "mode": "100644",
+      "bytes": 9307,
+      "sha256": "b812765a787a5553cd472271a4eb4ed13b2f5b6e72d8c1721408bfbcb3c28bb8",
+      "git_blob": "85a96d92e0eac2c1d9f6791820d8990d816fdc48"
+    },
+    {
+      "path": "originals/host-astra-jobs.json",
+      "mode": "100644",
+      "bytes": 2775,
+      "sha256": "8d24336b4beec5e3ed97794456655f20a0dd9914733076514c4f02aab8b150dd",
+      "git_blob": "1da85a006813ea76881e1d26432f395f75777954"
+    },
+    {
+      "path": "originals/host-feature-jobs.json",
+      "mode": "100644",
+      "bytes": 9488,
+      "sha256": "ee1eddc938caf0f1db00c801f3f3d4e4f03ca9d767044ef4fb82c9bb70355b6f",
+      "git_blob": "26dcb3d156baae0255a3b06f4beb2ff2336b1851"
+    },
+    {
+      "path": "originals/host-head-commit.json",
+      "mode": "100644",
+      "bytes": 557640,
+      "sha256": "076600f1d86272d427c6c47d900d8901b96f2b0ffd43ad3e0761a17116146c28",
+      "git_blob": "980a3448a52019f883e28c394d487ed89e9d2786"
+    },
+    {
+      "path": "originals/host-living-jobs.json",
+      "mode": "100644",
+      "bytes": 3078,
+      "sha256": "bf0b6eec389df5d057466f34c5702c06d86bbaf213abc9da68b4a70797a6eb21",
+      "git_blob": "7f9e8c5bc217cf124a4c6d504a98f777e0b3605b"
+    },
+    {
+      "path": "originals/host-new-delta.json",
+      "mode": "100644",
+      "bytes": 569170,
+      "sha256": "15072f32ba87563a61035904e99a3aa4ec5005c452b71266e8b24204b1f757a4",
+      "git_blob": "89934f8606b24d5220a60c28f4a70a9c4f494f23"
+    },
+    {
+      "path": "originals/host-runs.json",
+      "mode": "100644",
+      "bytes": 79662,
+      "sha256": "49f3efd4c085642b92bcd582af7860c70192ae6898c94d5cec1c825f0aa62c65",
+      "git_blob": "c6fed29deb1024a8540e22a90043b1178cfa867a"
+    },
+    {
+      "path": "originals/jobs/host-astra-log.log",
+      "mode": "100644",
+      "bytes": 171038,
+      "sha256": "3cbcb10e8af2e6c6dce7a5aaf32da8ab8e53414a6d55fc13adb6ebf469668151",
+      "git_blob": "027f79c83b526db3dc5d2430bad6679804029a0a"
+    },
+    {
+      "path": "originals/jobs/host-feature-log.log",
+      "mode": "100644",
+      "bytes": 116975,
+      "sha256": "25e9c54a00fa696e4419dd499829f9d7408229a4fe473ca008e9faf490bdc495",
+      "git_blob": "e4420117ff622bc9f224f328830df42ca7772677"
+    },
+    {
+      "path": "originals/jobs/host-living-log.log",
+      "mode": "100644",
+      "bytes": 666961,
+      "sha256": "bf8649047babbed951509a8696d3b9f6434737756f614dbdd751a6c7891f36e9",
+      "git_blob": "f1f3a34c39aff227928c5341fb494e16b7e01842"
+    },
+    {
+      "path": "originals/jobs/native-english-log.log",
+      "mode": "100644",
+      "bytes": 307623,
+      "sha256": "b33b49301919d893c4166e83ba87a5ec29b62e12cdc601c9a27a7fb46bb2bd99",
+      "git_blob": "b895c21efa8072f1c29385c4a30256a8007fd13c"
+    },
+    {
+      "path": "originals/jobs/native-memory-log.log",
+      "mode": "100644",
+      "bytes": 308932,
+      "sha256": "45c8521b5c1a470d30c26a4e173e0bca028f942ed5aa9a60731b45da2a731f8b",
+      "git_blob": "f968cfad669cdae8e0a8281b6df4584850e1b456"
+    },
+    {
+      "path": "originals/jobs/native-quiz-log.log",
+      "mode": "100644",
+      "bytes": 300699,
+      "sha256": "075733da70b935151b190ab31a692712b065b5f1a9fe70abb5f99acd005c006d",
+      "git_blob": "f361f571dabf8214cfb096461c70648552c4db47"
+    },
+    {
+      "path": "originals/native-authority-jobs-20261114T150433Z.json",
+      "mode": "100644",
+      "bytes": 12720,
+      "sha256": "46d9be6fbe8b9228550f77a98bdba1d000da8e6231e850694ef58c214dc750ea",
+      "git_blob": "2773fc75005608228b55976efc31a0bd52922363"
+    },
+    {
+      "path": "originals/native-authority-jobs-20261114T151027Z.json",
+      "mode": "100644",
+      "bytes": 13303,
+      "sha256": "b4baf9333e8caf4375def01db9a2a7a02e57fbc5a67079260310859c0039f450",
+      "git_blob": "fef4da6159eed80b0567c167b16e036630a9a335"
+    },
+    {
+      "path": "originals/native-authority-jobs.json",
+      "mode": "100644",
+      "bytes": 12309,
+      "sha256": "4f5ba97cf0bd1a7ac51c161511b64ae7a4f22cb589dd3f84ce1897c5b4200c47",
+      "git_blob": "e7ba32422c9b5c3cf21a1d810194b5824a83887b"
+    },
+    {
+      "path": "originals/native-authority-run-20261114T151027Z.json",
+      "mode": "100644",
+      "bytes": 13413,
+      "sha256": "d130979e0c086b22197473dce603aa37374fb985497f598040b089675b2b7417",
+      "git_blob": "4a2a82413d9161445652328090c96ae195eb4ef8"
+    },
+    {
+      "path": "originals/native-head-commit.json",
+      "mode": "100644",
+      "bytes": 72599,
+      "sha256": "fb085ac8950522724d572024a139be34c03b533801274089b9726e623f66fb58",
+      "git_blob": "9d12f1ac8bca1c554d5d48e52a0b49f41b0d9e3a"
+    },
+    {
+      "path": "originals/native-new-delta.json",
+      "mode": "100644",
+      "bytes": 80471,
+      "sha256": "948c8e85a4aa594ca59b235b509db2614e82f2cf698e029ec665fbc4fbca994c",
+      "git_blob": "ab8545c0a585824cfb6920a69540c2dff1e3d80a"
+    },
+    {
+      "path": "originals/native-runs.json",
+      "mode": "100644",
+      "bytes": 53647,
+      "sha256": "161968781769f7dfe9952af38b158c5baac946b3b107a43e2bd933a28a947922",
+      "git_blob": "88cb97e884a82ae65fae520c0cf9d30f13f56c1c"
+    },
+    {
+      "path": "originals/native-studio-jobs-20261114T150433Z.json",
+      "mode": "100644",
+      "bytes": 11993,
+      "sha256": "d2f5b42d9a3570b840f9a98a34cf3f7c3f807e91a05e8fe684bcd218aba574a3",
+      "git_blob": "22153d518a04f122e4bd8377930ea4a425e82cd4"
+    },
+    {
+      "path": "originals/native-studio-jobs.json",
+      "mode": "100644",
+      "bytes": 11950,
+      "sha256": "128c4edda5b813b7c7fd9771de56e13debac3c169df29ddc87f7528d8bfe9a07",
+      "git_blob": "e40e151d3ba61cd6392dd013870ded25cef7d4f9"
+    },
+    {
+      "path": "originals-readback.json",
+      "mode": "100644",
+      "bytes": 2674,
+      "sha256": "ff361fe740064ef26118ea813000d392bc266c0b891625ea7310b0d1470aa3c3",
+      "git_blob": "99d8573edb466f0aed93e1b27fdf3a1b0ae3603f"
+    },
+    {
+      "path": "selective-followup-review.json",
+      "mode": "100644",
+      "bytes": 37865,
+      "sha256": "0f5372a4fcf4436873f9521face867f5c66fadff0a13d334956bcd77722d50cd",
+      "git_blob": "05f8dd8e7348b4238bb63905dc32f59753807528"
+    },
+    {
+      "path": "source-materialization.json",
+      "mode": "100644",
+      "bytes": 27267,
+      "sha256": "42a1ce7d6a60c6e198e4c68ade70fa15d08fe29ef9bbb4a090a000bfce916948",
+      "git_blob": "b45603d36f6781830637ff35ebc9276ff05e1455"
+    },
+    {
+      "path": "static-dependencies-and-test-inventory.json",
+      "mode": "100644",
+      "bytes": 14850,
+      "sha256": "16a8374a5fb600ebcb7476f144ab69ea0a01520d1db492f31005c93d1f730960",
+      "git_blob": "cd98a03a3b51d61aa23252339600f20a91332468"
+    }
+  ],
+  "file_count": 106,
+  "total_bytes": 5015304,
+  "excludes": [
+    "manifest.json",
+    "SHA256SUMS"
+  ]
+}

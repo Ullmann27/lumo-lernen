@@ -1,0 +1,15 @@
+{
+  "status": "ACTUAL_54_TEST_COMPLETIONS_CONFIRMED_FROM_ORIGINAL_OUTPUT",
+  "original_stderr_sha256": "5ec291f1685f9f730c0c80835addb7e3fb876ab710ca31df651c40b03d1c0dab",
+  "count": 54,
+  "multiline_records": [
+    {
+      "id": "tools.android_qa.tests.test_connect_four_android_evidence.CompleteEvidenceTests.test_complete_synthetic_observation_replay",
+      "start_line": 20,
+      "done_line": 22
+    }
+  ],
+  "child_returncode": 0,
+  "recorder_status_preserved": "FAIL",
+  "scope": "Pure independent original-log read; no test invocation."
+}

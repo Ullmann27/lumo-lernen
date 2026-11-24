@@ -1,0 +1,24 @@
+test_first_still_capture_follows_verified_video_and_preserves_numeric_submission (test_nextgen_2031_runtime_cases.NumericCaptureOrderTests.test_first_still_capture_follows_verified_video_and_preserves_numeric_submission) ... ERROR
+
+======================================================================
+ERROR: test_first_still_capture_follows_verified_video_and_preserves_numeric_submission (test_nextgen_2031_runtime_cases.NumericCaptureOrderTests.test_first_still_capture_follows_verified_video_and_preserves_numeric_submission)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-supplemental-numeric-capture/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py", line 667, in test_first_still_capture_follows_verified_video_and_preserves_numeric_submission
+    item.numeric_wrong_then_correct()
+  File "/workspace/scratch/4fa97167812c/agent-supplemental-numeric-capture/.github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py", line 529, in numeric_wrong_then_correct
+    self.capture("numeric-before-wrong-answer")
+  File "/workspace/scratch/4fa97167812c/agent-supplemental-numeric-capture/.github/probes/lumo_nextgen_learning_android_probe.py", line 683, in capture
+    self.reader.capture_flutter_ready(self.out, name, timeout=45))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-supplemental-numeric-capture/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py", line 639, in capture_ready
+    return SURFACE.capture_when_ready(out, name, capture, timeout=timeout, wait=lambda _: None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-supplemental-numeric-capture/.github/probes/flutter_surface_readiness.py", line 85, in capture_when_ready
+    raise RuntimeError(
+RuntimeError: Flutter 0004-numeric-before-wrong-answer stayed visually unrendered after 12 frames; last entropy=2.791
+
+----------------------------------------------------------------------
+Ran 1 test in 0.695s
+
+FAILED (errors=1)

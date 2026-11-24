@@ -1,0 +1,70 @@
+name: Publish verified LUMO family build 2012
+
+on:
+  push:
+    branches:
+      - lumo-next/integration-20261110
+    paths:
+      - .github/workflows/lumo-family-2012-publish.yml
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: lumo-family-2012-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Download the already verified ARM64 artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          gh run download 42798760270             --repo Ullmann27/lumo-lernen             --name lumo-unified-arm64-verified             --dir dist
+          test -s dist/Lumo-Lernen-Neu.apk
+          test -s dist/APK-SHA256.txt
+          test -s dist/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+          test -s dist/GODOT-SOURCE.json
+          test -s dist/APP-VERSION.txt
+
+      - name: Verify immutable 2012 identity before publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "e9aade45b0f5b9f6f1c9a9da4671dfd4e93c974a696fe533d2765bbf42f82ab4  dist/Lumo-Lernen-Neu.apk" | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          verification = json.loads(Path("dist/APK-VERIFICATION.json").read_text())
+          provenance = json.loads(Path("dist/BUILD-PROVENANCE.json").read_text())
+          godot = json.loads(Path("dist/GODOT-SOURCE.json").read_text())
+          assert verification["package"] == "dev.ullmann.lumo.lumo_lernen.coachpreview"
+          assert verification["versionCode"] == 2012
+          assert verification["versionName"] == "0.13.0"
+          assert verification["sha256"] == "e9aade45b0f5b9f6f1c9a9da4671dfd4e93c974a696fe533d2765bbf42f82ab4"
+          assert verification["signingCertificateSha256"] == "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702"
+          assert godot["revision"] == "9947346ecc526512904adecec1815312020beb62"
+          assert Path("dist/APP-VERSION.txt").read_text().strip() == "version: 0.13.0+2012"
+          assert provenance["versionCode"] == 2012
+          print("PASS immutable LUMO 0.13.0+2012 family candidate")
+          PY
+
+      - name: Publish immutable family prerelease for the in-app updater
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="coachpreview-build-2012"
+          if gh release view "$TAG" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo "Refusing to overwrite existing release $TAG"
+            exit 1
+          fi
+          gh release create "$TAG"             "dist/Lumo-Lernen-Neu.apk#Lumo-Lernen-Neu.apk"             "dist/APK-SHA256.txt"             "dist/APK-VERIFICATION.json"             "dist/BUILD-PROVENANCE.json"             "dist/GODOT-SOURCE.json"             --repo Ullmann27/lumo-lernen             --target f689dd8bd1306db9ee6f25d350f759e91c1292a3             --title "Lumo Lernen + Lumo Kart 2012 – geprüftes Familienupdate"             --notes "LUMO 0.13.0+2012. ARM64 APK SHA-256 e9aade45b0f5b9f6f1c9a9da4671dfd4e93c974a696fe533d2765bbf42f82ab4. Paket dev.ullmann.lumo.lumo_lernen.coachpreview. Signatur und Godot-Pin 9947346ecc526512904adecec1815312020beb62 verifiziert. Unified Build und Android API-35 Emulator-Tour erfolgreich. Kein physischer Fold7-Performance-Test; kein main-Merge."             --prerelease
+          gh release view "$TAG" --repo Ullmann27/lumo-lernen --json url,isDraft,isPrerelease,assets,targetCommitish

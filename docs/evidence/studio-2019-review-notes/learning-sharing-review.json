@@ -1,0 +1,46 @@
+{
+  "native_revision": "9eb25fcb158342639badb0e953a8fe7945fda6ce",
+  "native_workflow_run": 43428911813,
+  "artifact_id": 14039470783,
+  "artifact_sha256": "0d89cd972c17ed22a9a62f1b342c6f6af6c3373650fbd83b83d39235d2fabd14",
+  "reviewer": "Root: tatsächliche Einzelbilder mit view_image geprüft",
+  "scope": "Sechs Original-Godot-Bilder der neuen produktiven Verteilaufgabe. Keine Freigabe des gesamten Produkts, Android-Builds oder Zielgeräte-Performance.",
+  "images": [
+    {
+      "file": "captures/learning_sharing_capture/sharing-start-1280x720.png",
+      "sha256": "8153286850252d1bf7b365b079673b1da0ecb354ffb22fe8a0f9b4dbe768c605",
+      "finding": "Querformat: Original-Lumo, dreidimensionaler Tisch und neue Blender-Requisiten sichtbar. Alle zwölf Würfel liegen im Vorrat. Drei leere Gruppen tragen jeweils die Zahl 0; Hinweis und Bedienelemente vollständig lesbar.",
+      "review_result": "PASS"
+    },
+    {
+      "file": "captures/learning_sharing_capture/sharing-first-round-1280x720.png",
+      "sha256": "364b2e326ca79abda3f0894f7d91fbb9e19e1428f2ce5bc69ac176839f45a9b2",
+      "finding": "Querformat: genau ein Würfel pro Gruppe und neun im Vorrat sichtbar. Fortschritt 3/12 und Erklärung stimmen mit der sichtbaren Verteilung überein. Aktuelle Zielgruppe hebt sich ab.",
+      "review_result": "PASS"
+    },
+    {
+      "file": "captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "sha256": "cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a",
+      "finding": "Querformat: drei Gruppen mit jeweils vier sichtbaren Würfeln; Vorrat leer. Ergebnis und Rückkehr zur eigentlichen Lernaufgabe sichtbar; Verteilknopf im abgeschlossenen Zustand deaktiviert.",
+      "review_result": "PASS"
+    },
+    {
+      "file": "captures/learning_sharing_capture/sharing-start-412x915.png",
+      "sha256": "59edf83f79a88341b04dd9d3a74bb8bc03aad42385e601d24a739cefc06fe94b",
+      "finding": "Hochformat: alle zwölf Vorratswürfel und drei leere Gruppen sichtbar. Original-Lumo oberhalb des Tisches und drei getrennte, gut erreichbare Schaltflächen. Text bricht innerhalb der Karten um; keine Überlappung.",
+      "review_result": "PASS"
+    },
+    {
+      "file": "captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "sha256": "83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8",
+      "finding": "Hochformat: drei bewegte und neun verbliebene Würfel sichtbar, Gruppenzähler jeweils 1. Fortschritt und Rundenhinweis sind vollständig lesbar.",
+      "review_result": "PASS"
+    },
+    {
+      "file": "captures/learning_sharing_capture/sharing-complete-412x915.png",
+      "sha256": "02f5f6cb203d87f15b8d5de46557d1e47b16b965072b9d6b1fc365731f6abe71",
+      "finding": "Hochformat: jeweils vier Würfel und Gruppenzahl 4 sichtbar. Abschlussanweisung und Rückkehrknopf vollständig innerhalb des Bildes. Schaltflächen bleiben getrennt.",
+      "review_result": "PASS"
+    }
+  ]
+}

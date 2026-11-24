@@ -1,0 +1,28 @@
+{
+  "host_source": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "native_source": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "run_id": 43578509499,
+  "job_id": 132397974384,
+  "artifact_id": 14106698349,
+  "artifact_bytes": 22143516,
+  "artifact_sha256": "f79fac4825b9c346e4bf3f033c1684151bb091202f9187b1226e5f74b5dd51af",
+  "source_before_after_equal": true,
+  "native_checks": 170,
+  "frames": 250,
+  "image_byte_hash_and_dimensions_checked": 259,
+  "scope": "Source-bound desktop runtime; not physical Android or measured FPS.",
+  "opened_by_root": [
+    "connect_four_empty.png",
+    "connect_four_phone_playing.png",
+    "connect_four_small_landscape.png",
+    "connect_four_win.png"
+  ],
+  "observations": [
+    "The empty and winning landscape boards expose all seven columns and the bottom controls. The winning screenshot shows four cyan discs highlighted and a Cyan gewinnt label.",
+    "The original fox character is visible beside the landscape board. It is outside the portrait playing frame.",
+    "The portrait capture contains the full board and all seven numbered controls, with substantial vertical space between header, board and controls.",
+    "The short-landscape finished-round menu is scrollable; only its first action is initially visible. This is not an inspection of every menu scroll position."
+  ],
+  "recording_fixed_fps": 24
+}
+

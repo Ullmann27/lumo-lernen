@@ -1,0 +1,7 @@
+Analyzing 3 items...                                            
+
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/games_content.dart:238:37 • curly_braces_in_flow_control_structures
+   info • Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check • lib/features/games/games_content.dart:247:11 • use_build_context_synchronously
+   info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/games_content.dart:258:61 • curly_braces_in_flow_control_structures
+
+3 issues found. (ran in 8.3s)

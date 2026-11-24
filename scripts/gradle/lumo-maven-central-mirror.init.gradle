@@ -1,0 +1,83 @@
+// Lumo CI: resolve Maven-Central-hosted artifacts through Google's official
+// Maven Central mirror first. Coordinates, versions and every repository a
+// build already declares stay unchanged and remain the fallback.
+//
+// Why (Actions run 38896179742): Maven Central throttles shared CI egress
+// addresses. Existing artifacts are then answered with HTTP 404 plus
+// Retry-After, or with HTTP 429. Gradle reports the 404 as "Could not find"
+// and stops. Flutter's own Gradle plugin build (flutter_tools/gradle) declares
+// no pluginManagement repositories, so its Kotlin plugin classpath reaches
+// Maven Central only through the Gradle Plugin Portal redirect and had no
+// other source.
+//
+// Installed by scripts/build_unified_apk.sh only on CI (or when
+// LUMO_GRADLE_CENTRAL_MIRROR=1). Applies to every build of the tree,
+// including the Flutter plugin build included from the SDK.
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
+final String mirrorName = 'LumoMavenCentralMirror'
+final String mirrorUrl = 'https://maven-central.storage-download.googleapis.com/maven2/'
+
+def addMirror = { repositories ->
+    if (repositories.findByName(mirrorName) != null) {
+        return
+    }
+    def mirror = repositories.maven {
+        name = mirrorName
+        url = mirrorUrl
+        content {
+            // Google-hosted Android and Flutter groups never come from Maven
+            // Central; skipping them avoids needless 404 round trips.
+            excludeGroupByRegex(/androidx\..*/)
+            excludeGroupByRegex(/com\.android(\..*)?/)
+            excludeGroupByRegex(/com\.google\.android\..*/)
+            excludeGroupByRegex(/io\.flutter(\..*)?/)
+        }
+    }
+    // Repositories added before this point are searched after the mirror.
+    if (repositories.size() > 1) {
+        repositories.remove(mirror)
+        repositories.addFirst(mirror)
+    }
+}
+
+// Per build of the tree: may project repositories receive the mirror?
+boolean projectRepositoriesOnly = false
+
+beforeSettings { settings ->
+    addMirror(settings.pluginManagement.repositories)
+    addMirror(settings.dependencyResolutionManagement.repositories)
+}
+
+settingsEvaluated { settings ->
+    def pluginRepositories = settings.pluginManagement.repositories
+    if (pluginRepositories.size() == 1) {
+        // The build declared none: keep Gradle's implicit default behind the mirror.
+        pluginRepositories.gradlePluginPortal()
+    }
+    def management = settings.dependencyResolutionManagement
+    // Builds that resolve only through project repositories (the generated
+    // Android host) get the mirror there too. Builds that forbid or prefer
+    // settings repositories (flutter_tools/gradle) are left as declared.
+    projectRepositoriesOnly =
+        management.repositoriesMode.get() == RepositoriesMode.PREFER_PROJECT &&
+        management.repositories.size() == 1
+}
+
+allprojects { project ->
+    if (projectRepositoriesOnly) {
+        addMirror(project.buildscript.repositories)
+        addMirror(project.repositories)
+    }
+}
+
+// Evidence in the build log: which repositories each build actually searches.
+gradle.projectsEvaluated { evaluated ->
+    def root = evaluated.rootProject
+    def names = { repositories -> repositories.collect { it.name }.join(', ') }
+    def settings = evaluated.settings
+    println("[LumoMavenMirror] build=${root.name} " +
+        "plugins=[${names(settings.pluginManagement.repositories)}] " +
+        "settings=[${names(settings.dependencyResolutionManagement.repositories)}] " +
+        "root=[${names(root.repositories)}]")
+}

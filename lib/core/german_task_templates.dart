@@ -1,3 +1,4 @@
+import 'holo_lesson_catalog.dart';
 import 'primary_school_word_data.dart';
 
 part 'german_curriculum_extensions.dart';
@@ -43,12 +44,33 @@ class GermanTaskTemplates {
         unit: 'Erste Sätze',
         kind: GermanTemplateKind.sentenceOrder,
         promptPattern: 'satzstellung-einfach'),
+    // Satz aus Wortkarten bauen (Holo-Raum mit beweglichen Karten).
+    GermanTaskTemplate(
+        id: 'g1_sentence_build',
+        grade: 1,
+        unit: 'Erste Sätze',
+        kind: GermanTemplateKind.sentenceOrder,
+        promptPattern: 'satz-bauen'),
+    // Satz lesen und das passende Bild wählen (Holo-Raum mit drei Szenen).
+    GermanTaskTemplate(
+        id: 'g1_sentence_read',
+        grade: 1,
+        unit: 'Erste Sätze',
+        kind: GermanTemplateKind.sentenceOrder,
+        promptPattern: 'satz-lesen-bild'),
     GermanTaskTemplate(
         id: 'g1_syllables',
         grade: 1,
         unit: 'Silben',
         kind: GermanTemplateKind.syllables,
         promptPattern: 'silben-klatschen'),
+    // Silben klatschen mit den geprüften Wörtern des Holo-Raums (1–4 Silben).
+    GermanTaskTemplate(
+        id: 'g1_syllables_clap',
+        grade: 1,
+        unit: 'Silben',
+        kind: GermanTemplateKind.syllables,
+        promptPattern: 'silben-klatschen-holo'),
     GermanTaskTemplate(
         id: 'g1_articles',
         grade: 1,
@@ -98,12 +120,33 @@ class GermanTaskTemplates {
         unit: 'Tunwoerter',
         kind: GermanTemplateKind.wordTypes,
         promptPattern: 'wortart-verb'),
+    // Namenwort in einem echten Satz finden (Holo-Raum mit Wortkarten).
+    GermanTaskTemplate(
+        id: 'g2_noun_in_sentence',
+        grade: 2,
+        unit: 'Namenwoerter',
+        kind: GermanTemplateKind.wordTypes,
+        promptPattern: 'namenwort-im-satz'),
+    // Tunwort in einem echten Satz finden (Holo-Raum mit Wortkarten).
+    GermanTaskTemplate(
+        id: 'g2_verb_in_sentence',
+        grade: 2,
+        unit: 'Tunwoerter',
+        kind: GermanTemplateKind.wordTypes,
+        promptPattern: 'tunwort-im-satz'),
     GermanTaskTemplate(
         id: 'g2_adjectives',
         grade: 2,
         unit: 'Wiewoerter',
         kind: GermanTemplateKind.wordTypes,
         promptPattern: 'wortart-adjektiv'),
+    // Wiewort in einem echten Satz finden (Holo-Raum mit Wortkarten).
+    GermanTaskTemplate(
+        id: 'g2_adjective_in_sentence',
+        grade: 2,
+        unit: 'Wiewoerter',
+        kind: GermanTemplateKind.wordTypes,
+        promptPattern: 'wiewort-im-satz'),
 
     GermanTaskTemplate(
         id: 'g3_synonyms',
@@ -255,7 +298,13 @@ class GermanTaskTemplates {
       {required int grade, required String unit, required int seed}) {
     // Die Auswahl der Familie muss unabhängig vom Wiederholungsviertel sein.
     // seed % pool.length ließ bei Pools mit acht Familien manche nie zu.
-    final available = templatesForGrade(grade, unit: unit);
+    final availableWithAliases = templatesForGrade(grade, unit: unit);
+    // For a named topic, never substitute a loosely related legacy family.
+    // The general pool and unknown legacy keys keep their former behavior.
+    final exact = availableWithAliases
+        .where((item) => item.unit == unit)
+        .toList(growable: false);
+    final available = exact.isNotEmpty ? exact : availableWithAliases;
     final current =
         available.where((item) => item.grade == grade.clamp(1, 4)).toList();
     final earlier =
@@ -308,7 +357,9 @@ class GermanTaskTemplate {
       case GermanTemplateKind.letterSound:
         final entry = _letterSounds[_positive(seed, _letterSounds.length)];
         return _choice(
-            'Welche Buchstaben passen zum Laut „${entry.sound}“?',
+            entry.letter.length == 1
+                ? 'Welcher Buchstabe passt zum Laut „${entry.sound}“?'
+                : 'Welche Buchstaben passen zum Laut „${entry.sound}“?',
             entry.letter,
             entry.choices,
             'Sprich den Laut langsam und suche den passenden Buchstaben.',
@@ -317,7 +368,7 @@ class GermanTaskTemplate {
         final pair = PrimarySchoolWordData.rhymePairForSeed(seed);
         final excluded = <String>{
           ...pair.map((word) => word.toLowerCase()),
-          ...PrimarySchoolWordData.rhymePartnersFor(pair.first)
+          ...PrimarySchoolWordData.rhymeBlockedFor(pair.first)
         };
         final distractors = _nouns(seed, grade)
             .where((word) => !excluded.contains(word.toLowerCase()))
@@ -369,6 +420,44 @@ class GermanTaskTemplate {
             'Verbinde das Bild mit dem passenden Namenwort.',
             'word_image');
       case GermanTemplateKind.sentenceOrder:
+        if (promptPattern == 'satz-lesen-bild') {
+          final item = HoloLessonCatalog.readingSentences[
+              _positive(seed, HoloLessonCatalog.readingSentences.length)];
+          // Antworten sind die Lagewörter zum Möbel (darauf, darunter …):
+          // Das Kind muss das Lagewort im Satz verstehen, nicht abschreiben.
+          return _choice(
+              HoloLessonCatalog.readingPrompt(item),
+              item.answer,
+              <String>[
+                for (final relation
+                    in HoloLessonCatalog.readingScenes(item, seed))
+                  relation,
+              ],
+              'Das Wort „${HoloLessonCatalog.relationWords[item.answer]}“ '
+                  'sagt, wo es ist: ${item.answer}.',
+              'sentence');
+        }
+        if (promptPattern == 'satz-bauen') {
+          final item = HoloLessonCatalog.orderSentences[
+              _positive(seed, HoloLessonCatalog.orderSentences.length)];
+          final words = item.words;
+          // Gemischte Kärtchen: nie die richtige Reihenfolge, nie das erste
+          // Wort vorn. Die Ablenker sind echte Vertauschungen derselben Wörter.
+          final shown = <String>[...words.sublist(1), words.first];
+          final wrong = <String>[
+            '${words.reversed.join(' ')}.',
+            '${<String>[...words.sublist(1), words.first].join(' ')}.',
+            '${<String>[words[1], words[0], ...words.sublist(2)].join(' ')}.',
+          ];
+          return _choice(
+              HoloLessonCatalog.orderPrompt(shown),
+              item.sentence,
+              <String>[item.sentence, ...wrong],
+              'Zuerst steht, wer etwas tut. ${item.question} – das Tunwort '
+                  '„${item.verb}“ kommt gleich danach. Der Satz beginnt groß '
+                  'und endet mit einem Punkt.',
+              'sentence');
+        }
         final item = _sentenceActors[_positive(seed, _sentenceActors.length)];
         final noun = item[1];
         final article = item[0];
@@ -386,6 +475,21 @@ class GermanTaskTemplate {
             'In diesen kurzen Aussagesätzen steht zuerst, wer etwas tut. Danach steht das Tunwort.',
             'sentence');
       case GermanTemplateKind.syllables:
+        if (promptPattern == 'silben-klatschen-holo') {
+          final item = HoloLessonCatalog.syllableWords[
+              _positive(seed, HoloLessonCatalog.syllableWords.length)];
+          final count = item.syllables.length;
+          return _choice(
+              HoloLessonCatalog.syllablePrompt(item.word),
+              '$count',
+              <String>[
+                '$count',
+                '${count + 1}',
+                '${count == 1 ? 3 : count - 1}'
+              ],
+              'Klatsche jede Silbe: ${item.syllables.join(' - ')}.',
+              'syllables');
+        }
         final word = _wordWithSyllables(seed, grade);
         final syllables =
             PrimarySchoolWordData.syllablesFor(word) ?? <String>[word];
@@ -423,7 +527,7 @@ class GermanTaskTemplate {
       case GermanTemplateKind.plural:
         final item = _plurals[_positive(seed, _plurals.length)];
         return _choice(
-            'Welche Mehrzahl ist richtig: ${item.singular}?',
+            'Wie heißt die Mehrzahl von „${item.singular}“?',
             item.plural,
             <String>[item.plural, ...item.distractors],
             'Die Mehrzahl sagt: mehr als eines.',
@@ -434,7 +538,7 @@ class GermanTaskTemplate {
             'Was ist die Verkleinerungsform von ${item.base}?',
             item.answer,
             <String>[item.answer, ...item.distractors],
-            'Verkleinerungen enden oft auf -chen oder -lein.',
+            'Verkleinerungen enden auf -chen oder -lein. Aus a, o, u wird dabei oft ä, ö, ü.',
             'diminutive');
       case GermanTemplateKind.opposites:
         final item = _opposites[_positive(seed, _opposites.length)];
@@ -461,6 +565,85 @@ class GermanTaskTemplate {
             'Synonyme haben eine ähnliche Bedeutung.',
             'synonym');
       case GermanTemplateKind.wordTypes:
+        if (promptPattern == 'wortarten-unterscheiden') {
+          // Klasse 3 (Fachprüfung D-M17): Wörter im Satz bestimmen, dazu
+          // Begleiter und Fürwörter – nicht dieselbe Aufgabe wie Klasse 2.
+          final item =
+              _wordTypeSentences[_positive(seed, _wordTypeSentences.length)];
+          const types = _WordTypeSentence.typeNames;
+          final asked =
+              types[_positive(seed ~/ _wordTypeSentences.length, types.length)];
+          final answer = item.wordFor(asked);
+          final others = types.where((type) => type != asked).toList();
+          final shift = _positive(seed ~/ 7, others.length);
+          final distractors = <String>[
+            for (var i = 0; i < 3; i++)
+              item.wordFor(others[(shift + i) % others.length]),
+          ];
+          return _choice(
+              'Lies den Satz: „${item.sentence}“\n'
+                  'Welches Wort ist ${_WordTypeSentence.articleFor(asked)}?',
+              answer,
+              <String>[answer, ...distractors],
+              '${_WordTypeSentence.ruleFor(asked)} '
+                  'Im Satz ist „$answer“ ${_WordTypeSentence.articleFor(asked)}.',
+              'word_type');
+        }
+        if (promptPattern == 'tunwort-im-satz') {
+          final item = HoloLessonCatalog.verbSentences[
+              _positive(seed, HoloLessonCatalog.verbSentences.length)];
+          // Ablenker sind die anderen Wörter desselben Satzes: zuerst das
+          // Namenwort, dann Wiewort/Begleiter. Keine Farb- oder Lagehinweise.
+          final others = <String>[
+            for (final type in const ['nomen', 'adjektiv', 'artikel', 'andere'])
+              for (var i = 0; i < item.words.length; i++)
+                if (item.types[i] == type) item.words[i],
+          ];
+          return _choice(
+              HoloLessonCatalog.verbPrompt(item),
+              item.verb,
+              <String>[item.verb, ...others],
+              'Tunwörter sagen, was jemand tut. ${item.question} '
+                  '– „${item.verb}“.',
+              'sentence');
+        }
+        if (promptPattern == 'wiewort-im-satz') {
+          final item = HoloLessonCatalog.adjectiveSentences[
+              _positive(seed, HoloLessonCatalog.adjectiveSentences.length)];
+          // Ablenker sind die anderen Wörter desselben Satzes: Namenwort,
+          // Tunwort, Begleiter. Keine Farb- oder Lagehinweise.
+          final others = <String>[
+            for (final type in const ['nomen', 'verb', 'artikel', 'andere'])
+              for (var i = 0; i < item.words.length; i++)
+                if (item.types[i] == type) item.words[i],
+          ];
+          return _choice(
+              HoloLessonCatalog.adjectivePrompt(item),
+              item.adjective,
+              <String>[item.adjective, ...others],
+              'Wiewörter sagen, wie jemand oder etwas ist. '
+                  '„${item.adjective}“ sagt, '
+                  '${item.question.replaceFirst('Welches Wort sagt, ', '').replaceFirst('?', '')}.',
+              'sentence');
+        }
+        if (promptPattern == 'namenwort-im-satz') {
+          final item = HoloLessonCatalog.nounSentences[
+              _positive(seed, HoloLessonCatalog.nounSentences.length)];
+          // Ablenker sind die anderen Wörter desselben Satzes: zuerst das
+          // Tunwort, dann Wiewort/Begleiter. Keine Farb- oder Lagehinweise.
+          final others = <String>[
+            for (final type in const ['verb', 'adjektiv', 'artikel', 'andere'])
+              for (var i = 0; i < item.words.length; i++)
+                if (item.types[i] == type) item.words[i],
+          ];
+          return _choice(
+              HoloLessonCatalog.nounPrompt(item),
+              item.noun,
+              <String>[item.noun, ...others],
+              'Namenwörter sagen, wer oder was. ${item.question} '
+                  '– „${item.noun}“.',
+              'sentence');
+        }
         final selector = promptPattern.contains('nomen')
             ? 0
             : promptPattern.contains('verb')
@@ -508,7 +691,7 @@ class GermanTaskTemplate {
       case GermanTemplateKind.pastTense:
         final item = _pastTenses[_positive(seed, _pastTenses.length)];
         return _choice(
-            'Wie heißt „${item.left}“ in der Mitvergangenheit (Präteritum)?',
+            'Wie heißt „${item.left}“ in der Mitvergangenheit (Präteritum)? Er …',
             item.right,
             <String>[item.right, ...item.distractors],
             'Die Mitvergangenheit (Präteritum) erzählt von früher: Er ging, er lief, er sah.',
@@ -604,7 +787,9 @@ class GermanTaskTemplate {
           'Welches Wort passt? „${item.sentence}“',
           item.answer,
           <String>[item.answer, ...item.distractors],
-          '„Das“ kannst du hier durch „dieses“ oder „welches“ ersetzen. „Dass“ verbindet Sätze, zum Beispiel: Ich hoffe, dass du kommst.',
+          item.answer.toLowerCase().contains('dass')
+              ? 'Hier passt weder „dieses“ noch „welches“. „Dass“ mit zwei s verbindet zwei Sätze, zum Beispiel: Ich hoffe, dass du kommst.'
+              : 'Probe: „dieses“ oder „welches“ passt hier. Darum schreibst du „das“ mit einem s.',
           'dass_das',
         );
       case GermanTemplateKind.adverbs:
@@ -749,6 +934,80 @@ class _LetterSound {
   final List<String> choices;
 }
 
+class _WordTypeSentence {
+  const _WordTypeSentence(this.sentence, this.pronoun, this.verb, this.article,
+      this.adjective, this.noun);
+  final String sentence;
+  final String pronoun;
+  final String verb;
+  final String article;
+  final String adjective;
+  final String noun;
+
+  static const typeNames = <String>[
+    'Fürwort',
+    'Tunwort',
+    'Begleiter',
+    'Wiewort',
+    'Namenwort',
+  ];
+
+  String wordFor(String type) => switch (type) {
+        'Fürwort' => pronoun,
+        'Tunwort' => verb,
+        'Begleiter' => article,
+        'Wiewort' => adjective,
+        _ => noun,
+      };
+
+  static String articleFor(String type) => switch (type) {
+        'Fürwort' => 'ein Fürwort',
+        'Tunwort' => 'ein Tunwort',
+        'Begleiter' => 'ein Begleiter (Artikel)',
+        'Wiewort' => 'ein Wiewort',
+        _ => 'ein Namenwort',
+      };
+
+  static String ruleFor(String type) => switch (type) {
+        'Fürwort' =>
+          'Ein Fürwort steht für ein Namenwort: ich, du, er, sie, es, wir, ihr.',
+        'Tunwort' => 'Ein Tunwort sagt, was jemand tut.',
+        'Begleiter' =>
+          'Ein Begleiter steht vor einem Namenwort: der, die, das, ein, eine.',
+        'Wiewort' => 'Ein Wiewort sagt, wie etwas ist.',
+        _ => 'Ein Namenwort bezeichnet einen Menschen, ein Tier, eine Pflanze '
+            'oder ein Ding. Du schreibst es groß.',
+      };
+}
+
+/// Klasse-3-Sätze: in jedem Satz genau ein Wort je Wortart.
+const _wordTypeSentences = <_WordTypeSentence>[
+  _WordTypeSentence('Sie liest das spannende Buch.', 'Sie', 'liest', 'das',
+      'spannende', 'Buch'),
+  _WordTypeSentence(
+      'Er trinkt den warmen Kakao.', 'Er', 'trinkt', 'den', 'warmen', 'Kakao'),
+  _WordTypeSentence('Wir bauen eine hohe Sandburg.', 'Wir', 'bauen', 'eine',
+      'hohe', 'Sandburg'),
+  _WordTypeSentence('Ich male einen bunten Drachen.', 'Ich', 'male', 'einen',
+      'bunten', 'Drachen'),
+  _WordTypeSentence('Du findest die kleine Muschel.', 'Du', 'findest', 'die',
+      'kleine', 'Muschel'),
+  _WordTypeSentence('Ihr singt ein fröhliches Lied.', 'Ihr', 'singt', 'ein',
+      'fröhliches', 'Lied'),
+  _WordTypeSentence('Sie füttern die hungrige Katze.', 'Sie', 'füttern', 'die',
+      'hungrige', 'Katze'),
+  _WordTypeSentence(
+      'Er trägt den roten Schal.', 'Er', 'trägt', 'den', 'roten', 'Schal'),
+  _WordTypeSentence(
+      'Wir besuchen die alte Burg.', 'Wir', 'besuchen', 'die', 'alte', 'Burg'),
+  _WordTypeSentence('Ich esse eine saftige Birne.', 'Ich', 'esse', 'eine',
+      'saftige', 'Birne'),
+  _WordTypeSentence('Du gießt die durstige Blume.', 'Du', 'gießt', 'die',
+      'durstige', 'Blume'),
+  _WordTypeSentence('Ihr streichelt das weiche Kaninchen.', 'Ihr', 'streichelt',
+      'das', 'weiche', 'Kaninchen'),
+];
+
 class _PairItem {
   const _PairItem(this.left, this.right, this.distractors);
   final String left;
@@ -863,6 +1122,16 @@ const List<_LetterSound> _letterSounds = <_LetterSound>[
   _LetterSound('ffff', 'F', <String>['F', 'W', 'M', 'S']),
   _LetterSound('rrrr', 'R', <String>['R', 'L', 'N', 'M']),
   _LetterSound('aaaa', 'A', <String>['A', 'O', 'E', 'U']),
+  _LetterSound('llll', 'L', <String>['L', 'R', 'N', 'M']),
+  _LetterSound('nnnn', 'N', <String>['N', 'M', 'L', 'R']),
+  _LetterSound('wwww', 'W', <String>['W', 'F', 'B', 'M']),
+  _LetterSound('eeee', 'E', <String>['E', 'I', 'A', 'O']),
+  _LetterSound('iiii', 'I', <String>['I', 'E', 'A', 'U']),
+  _LetterSound('oooo', 'O', <String>['O', 'A', 'U', 'E']),
+  _LetterSound('uuuu', 'U', <String>['U', 'O', 'A', 'I']),
+  _LetterSound('jjjj', 'J', <String>['J', 'I', 'G', 'L']),
+  _LetterSound('auuu', 'Au', <String>['Au', 'Ei', 'Eu', 'A']),
+  _LetterSound('eiii', 'Ei', <String>['Ei', 'Au', 'E', 'I']),
 ];
 
 const List<_FamilyItem> _families = <_FamilyItem>[
@@ -910,12 +1179,16 @@ const List<_PluralItem> _plurals = <_PluralItem>[
 ];
 
 const List<_DiminutiveItem> _diminutives = <_DiminutiveItem>[
-  _DiminutiveItem('Buch', 'Büchlein', <String>['Bucher', 'Buchig', 'Buchung']),
-  _DiminutiveItem('Haus', 'Häuschen', <String>['Hauser', 'Hauslein', 'Häuser']),
-  _DiminutiveItem('Maus', 'Mäuschen', <String>['Mäuser', 'Mausen', 'Mauslein']),
   _DiminutiveItem(
-      'Katze', 'Kätzchen', <String>['Katzen', 'Katzlein', 'Katzung']),
-  _DiminutiveItem('Hund', 'Hündchen', <String>['Hunde', 'Hundchen', 'Hundung']),
+      'Buch', 'Büchlein', <String>['Buchlein', 'Buchchen', 'Bücher']),
+  _DiminutiveItem(
+      'Haus', 'Häuschen', <String>['Hauschen', 'Hauslein', 'Häuser']),
+  _DiminutiveItem(
+      'Maus', 'Mäuschen', <String>['Mauschen', 'Mauslein', 'Mäuse']),
+  _DiminutiveItem(
+      'Katze', 'Kätzchen', <String>['Katzchen', 'Katzelein', 'Katzen']),
+  _DiminutiveItem(
+      'Hund', 'Hündchen', <String>['Hundchen', 'Hundlein', 'Hunde']),
   ..._diminutivesExtension,
 ];
 
@@ -951,7 +1224,7 @@ const List<_PairItem> _synonyms = <_PairItem>[
   _PairItem('sprechen', 'reden', <String>['laufen', 'essen', 'schlafen']),
   _PairItem('beginnen', 'anfangen', <String>['enden', 'verlieren', 'fallen']),
   _PairItem('klug', 'gescheit', <String>['müde', 'nass', 'leer']),
-  _PairItem('fröhlich', 'lustig', <String>['wütend', 'hart', 'gerade']),
+  _PairItem('fröhlich', 'heiter', <String>['wütend', 'hart', 'gerade']),
   ..._synonymsExtension,
 ];
 
@@ -1160,7 +1433,7 @@ const List<_CaseItem> _caseNomAkkItems = <_CaseItem>[
       <String>['Wer-Fall', 'Wem-Fall']),
   _CaseItem('Die Sonne scheint heute warm.', 'Die Sonne', 'Wer-Fall',
       <String>['Wen-Fall', 'Wem-Fall']),
-  _CaseItem('Mama bäckt einen Kuchen.', 'einen Kuchen', 'Wen-Fall',
+  _CaseItem('Mama backt einen Kuchen.', 'einen Kuchen', 'Wen-Fall',
       <String>['Wer-Fall', 'Wem-Fall']),
   ..._caseNomAkkItemsExtension,
 ];
@@ -1171,13 +1444,13 @@ const List<_SentenceMcItem> _capitalizationItems = <_SentenceMcItem>[
   _SentenceMcItem(
       'Mein Bruder liest ein buch.', 'Buch', <String>['liest', 'ein', 'Mein']),
   _SentenceMcItem('Wir gehen heute in die schule.', 'Schule',
-      <String>['gehen', 'heute', 'in']),
+      <String>['gehen', 'heute', 'Wir']),
   _SentenceMcItem('Papa kocht die suppe für uns.', 'Suppe',
-      <String>['kocht', 'für', 'uns']),
+      <String>['kocht', 'für', 'Papa']),
   _SentenceMcItem(
       'Der hund jagt eine Katze.', 'Hund', <String>['jagt', 'eine', 'Der']),
   _SentenceMcItem('Ich male einen schönen baum.', 'Baum',
-      <String>['male', 'einen', 'schönen']),
+      <String>['male', 'schönen', 'Ich']),
   ..._capitalizationItemsExtension,
 ];
 
@@ -1246,16 +1519,16 @@ const List<_SentenceMcItem> _adverbItems = <_SentenceMcItem>[
 
 const List<_VerbFormMcItem> _plusquamItems = <_VerbFormMcItem>[
   _VerbFormMcItem(
-      'lesen', 'hatte gelesen', <String>['liest', 'las', 'wird lesen']),
-  _VerbFormMcItem(
-      'gehen', 'war gegangen', <String>['geht', 'ging', 'wird gehen']),
+      'lesen', 'hatte gelesen', <String>['war gelesen', 'hatte gelest', 'las']),
+  _VerbFormMcItem('gehen', 'war gegangen',
+      <String>['hatte gegangen', 'war gegeht', 'ging']),
   _VerbFormMcItem('schreiben', 'hatte geschrieben',
-      <String>['schreibt', 'schrieb', 'wird schreiben']),
-  _VerbFormMcItem(
-      'kommen', 'war gekommen', <String>['kommt', 'kam', 'wird kommen']),
+      <String>['war geschrieben', 'hatte geschreibt', 'schrieb']),
+  _VerbFormMcItem('kommen', 'war gekommen',
+      <String>['hatte gekommen', 'war gekommt', 'kam']),
   _VerbFormMcItem('spielen', 'hatte gespielt',
-      <String>['spielt', 'spielte', 'wird spielen']),
-  _VerbFormMcItem(
-      'singen', 'hatte gesungen', <String>['singt', 'sang', 'wird singen']),
+      <String>['war gespielt', 'hatte gespielen', 'spielte']),
+  _VerbFormMcItem('singen', 'hatte gesungen',
+      <String>['war gesungen', 'hatte gesingt', 'sang']),
   ..._plusquamItemsExtension,
 ];

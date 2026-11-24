@@ -1,0 +1,78 @@
+{
+  "source_head": "bb97ab6b2e563f3662f1ce5e6141e95cf62d79a7",
+  "scope": "Actual Flutter widget-test capture PNGs, no Android/native-runtime/video evidence",
+  "images": [
+    {
+      "path": "village-captures/village-fold-cover.png",
+      "bytes": 337946,
+      "sha256": "fa00127e0316de2b083ba8d55578f79e01197203cacc2ad5ff3431d0a47b6361",
+      "dimensions": [
+        344,
+        882
+      ],
+      "mode": "RGBA",
+      "complete_pixel_decode": true,
+      "visual_review": false
+    },
+    {
+      "path": "village-captures/village-fold-landscape.png",
+      "bytes": 1102593,
+      "sha256": "213edb9568f70aa0cb1673d06cc5ce242a37385cc29803b69fe5371698ee92ac",
+      "dimensions": [
+        1200,
+        900
+      ],
+      "mode": "RGBA",
+      "complete_pixel_decode": true,
+      "visual_review": false
+    },
+    {
+      "path": "village-captures/village-fold-open-large-text.png",
+      "bytes": 600959,
+      "sha256": "a2397df28ac69a41b918a0ea6ffb741bc92b2b7c7cb833874881652bf6ec6d18",
+      "dimensions": [
+        690,
+        829
+      ],
+      "mode": "RGBA",
+      "complete_pixel_decode": true,
+      "visual_review": false
+    },
+    {
+      "path": "village-captures/village-fold-open.png",
+      "bytes": 595416,
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+      "dimensions": [
+        690,
+        829
+      ],
+      "mode": "RGBA",
+      "complete_pixel_decode": true,
+      "visual_review": false
+    },
+    {
+      "path": "village-captures/village-fold-wide-min.png",
+      "bytes": 555532,
+      "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9",
+      "dimensions": [
+        640,
+        829
+      ],
+      "mode": "RGBA",
+      "complete_pixel_decode": true,
+      "visual_review": false
+    },
+    {
+      "path": "village-captures/village-phone.png",
+      "bytes": 401998,
+      "sha256": "12e3d0ca6f514f12b58106ddb1a197bdaa09a773a2703e5d4708db8d6e710dc7",
+      "dimensions": [
+        412,
+        915
+      ],
+      "mode": "RGBA",
+      "complete_pixel_decode": true,
+      "visual_review": false
+    }
+  ]
+}

@@ -115,6 +115,9 @@ class RewardItem {
     this.parentApprovalRequired = false,
     this.isPremiumReward = false,
     this.estimatedTasksNeeded = 0,
+    this.minLevel = 1,
+    this.revision = 0,
+    this.category,
   });
 
   final String id;
@@ -136,10 +139,318 @@ class RewardItem {
 
   /// Grobe Schaetzung: wie viele Aufgaben braucht das Kind (~10 Sterne/Aufgabe).
   final int estimatedTasksNeeded;
+  final int minLevel;
+  final int revision;
+  final CustomRewardCategory? category;
+
+  bool get isCustom => id.startsWith('custom_');
 
   /// Prueft ob diese Belohnung in der aktuellen Jahreszeit verfuegbar ist.
   bool availableIn(Season season) =>
       seasons.isEmpty || seasons.contains(season);
+}
+
+/// The categories of the original, working parent voucher editor.
+enum CustomRewardCategory {
+  food('Essen'),
+  shopping('Einkaufen'),
+  leisure('Freizeit'),
+  sport('Sport'),
+  entertainment('Entertainment'),
+  creative('Kreativ'),
+  family('Familie'),
+  lumo('Lumo');
+
+  const CustomRewardCategory(this.label);
+  final String label;
+}
+
+/// An immutable revision. Editing or deactivating appends a revision; a
+/// confirmation already showing the previous price keeps that exact snapshot.
+class CustomRewardDefinition {
+  const CustomRewardDefinition({
+    required this.id,
+    required this.revision,
+    required this.title,
+    required this.emoji,
+    required this.cost,
+    required this.category,
+    this.description = '',
+    this.minLevel = 1,
+    this.active = true,
+  });
+
+  final String id;
+  final int revision;
+  final String title;
+  final String emoji;
+  final String description;
+  final int cost;
+  final int minLevel;
+  final CustomRewardCategory category;
+  final bool active;
+
+  void validate() {
+    if (!RegExp(r'^custom_[a-f0-9]{32}$').hasMatch(id) ||
+        revision < 1 ||
+        revision > 1000000 ||
+        !_validRewardText(title, 100) ||
+        !_validRewardText(emoji, 32) ||
+        !_validRewardText(description, 500, empty: true) ||
+        cost < 1 ||
+        cost > _maxRewardCurrency ||
+        minLevel < 1 ||
+        minLevel > 25000) {
+      throw const FormatException('Ungültiger eigener Gutschein');
+    }
+  }
+
+  RewardItem get item => RewardItem(
+        id: id,
+        title: title,
+        emoji: emoji,
+        description: description,
+        cost: cost,
+        currency: RewardCurrency.stars,
+        seasons: const [],
+        tier: cost < 300
+            ? RewardTier.micro
+            : cost < 1000
+                ? RewardTier.small
+                : cost < 5000
+                    ? RewardTier.medium
+                    : cost < 20000
+                        ? RewardTier.big
+                        : RewardTier.premium,
+        parentApprovalRequired: true,
+        minLevel: minLevel,
+        revision: revision,
+        category: category,
+      );
+
+  CustomRewardDefinition nextRevision({
+    String? title,
+    String? emoji,
+    String? description,
+    int? cost,
+    int? minLevel,
+    CustomRewardCategory? category,
+    bool? active,
+  }) =>
+      CustomRewardDefinition(
+        id: id,
+        revision: revision + 1,
+        title: title ?? this.title,
+        emoji: emoji ?? this.emoji,
+        description: description ?? this.description,
+        cost: cost ?? this.cost,
+        minLevel: minLevel ?? this.minLevel,
+        category: category ?? this.category,
+        active: active ?? this.active,
+      );
+
+  Map<String, Object?> toJson() => {
+        'id': id,
+        'revision': revision,
+        'title': title,
+        'emoji': emoji,
+        'description': description,
+        'cost': cost,
+        'minLevel': minLevel,
+        'category': category.name,
+        'active': active,
+      };
+
+  factory CustomRewardDefinition.fromJson(Map<String, Object?> json) {
+    final value = CustomRewardDefinition(
+      id: json['id'] as String,
+      revision: json['revision'] as int,
+      title: json['title'] as String,
+      emoji: json['emoji'] as String,
+      description: json['description'] as String,
+      cost: json['cost'] as int,
+      minLevel: json['minLevel'] as int,
+      category: CustomRewardCategory.values.byName(json['category'] as String),
+      active: json['active'] as bool,
+    );
+    value.validate();
+    return value;
+  }
+}
+
+bool _validRewardText(String value, int maximum, {bool empty = false}) =>
+    (empty || value.trim().isNotEmpty) &&
+    value == value.trim() &&
+    value.runes.length <= maximum &&
+    !RegExp(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]').hasMatch(value);
+
+/// The same immutable receipt is staged after adult approval and committed
+/// inside the existing wallet together with the debit. No catalog lookup can
+/// change its meaning later.
+class RewardShopRedemption {
+  const RewardShopRedemption({
+    required this.transactionId,
+    required this.ownerId,
+    required this.itemId,
+    required this.itemRevision,
+    required this.title,
+    required this.emoji,
+    required this.cost,
+    required this.minLevel,
+    required this.redeemedAt,
+    this.description = '',
+    this.category,
+  });
+
+  final String transactionId;
+  final String ownerId;
+  final String itemId;
+  final int itemRevision;
+  final String title;
+  final String emoji;
+  final String description;
+  final int cost;
+  final int minLevel;
+  final DateTime redeemedAt;
+  final CustomRewardCategory? category;
+
+  void validate() {
+    if (!RegExp(r'^shop:[a-f0-9]{64}:[a-f0-9]{32}$').hasMatch(transactionId) ||
+        !_validRewardText(ownerId, 160) ||
+        !RegExp(r'^[a-zA-Z0-9_-]{1,100}$').hasMatch(itemId) ||
+        itemRevision < 0 ||
+        itemRevision > 1000000 ||
+        !_validRewardText(title, 100) ||
+        !_validRewardText(emoji, 32) ||
+        !_validRewardText(description, 500, empty: true) ||
+        cost < 1 ||
+        cost > _maxRewardCurrency ||
+        minLevel < 1 ||
+        minLevel > 25000 ||
+        (itemId.startsWith('custom_') &&
+            (itemRevision == 0 || category == null))) {
+      throw const FormatException('Ungültige Gutschein-Einlösung');
+    }
+  }
+
+  Map<String, Object?> toJson() => {
+        'transactionId': transactionId,
+        'ownerId': ownerId,
+        'itemId': itemId,
+        'itemRevision': itemRevision,
+        'title': title,
+        'emoji': emoji,
+        'description': description,
+        'cost': cost,
+        'minLevel': minLevel,
+        'redeemedAt': redeemedAt.toIso8601String(),
+        if (category != null) 'category': category!.name,
+      };
+
+  factory RewardShopRedemption.fromJson(Map<String, Object?> json) {
+    final value = RewardShopRedemption(
+      transactionId: json['transactionId'] as String,
+      ownerId: json['ownerId'] as String,
+      itemId: json['itemId'] as String,
+      itemRevision: json['itemRevision'] as int,
+      title: json['title'] as String,
+      emoji: json['emoji'] as String,
+      description: json['description'] as String,
+      cost: json['cost'] as int,
+      minLevel: json['minLevel'] as int,
+      redeemedAt: DateTime.parse(json['redeemedAt'] as String),
+      category: json['category'] == null
+          ? null
+          : CustomRewardCategory.values.byName(json['category'] as String),
+    );
+    value.validate();
+    return value;
+  }
+
+  RedeemedReward get historyEntry => RedeemedReward(
+        itemId: itemId,
+        title: title,
+        redeemedAt: redeemedAt,
+        cost: cost,
+        currency: RewardCurrency.stars,
+        transactionId: transactionId,
+        itemRevision: itemRevision,
+        emoji: emoji,
+      );
+}
+
+/// Stable child identity, not a name/grade-derived legacy key. The earlier
+/// revisions and approved pending receipts survive editing and deactivation.
+class RewardShopProfile {
+  RewardShopProfile({
+    required this.ownerId,
+    List<CustomRewardDefinition> revisions = const [],
+    List<RewardShopRedemption> pendingRedemptions = const [],
+  })  : revisions = List.unmodifiable(revisions),
+        pendingRedemptions = List.unmodifiable(pendingRedemptions);
+
+  final String ownerId;
+  final List<CustomRewardDefinition> revisions;
+  final List<RewardShopRedemption> pendingRedemptions;
+
+  List<CustomRewardDefinition> get currentDefinitions {
+    final current = <String, CustomRewardDefinition>{};
+    for (final item in revisions) {
+      if ((current[item.id]?.revision ?? 0) < item.revision) {
+        current[item.id] = item;
+      }
+    }
+    return List.unmodifiable(current.values);
+  }
+
+  RewardShopProfile copyWith({
+    List<CustomRewardDefinition>? revisions,
+    List<RewardShopRedemption>? pendingRedemptions,
+  }) =>
+      RewardShopProfile(
+        ownerId: ownerId,
+        revisions: revisions ?? this.revisions,
+        pendingRedemptions: pendingRedemptions ?? this.pendingRedemptions,
+      );
+
+  Map<String, Object?> toJson() => {
+        'version': 1,
+        'ownerId': ownerId,
+        'revisions': revisions.map((v) => v.toJson()).toList(),
+        'pendingRedemptions':
+            pendingRedemptions.map((v) => v.toJson()).toList(),
+      };
+
+  factory RewardShopProfile.fromJson(Map<String, Object?> json) {
+    if (json['version'] != 1 ||
+        json['revisions'] is! List ||
+        json['pendingRedemptions'] is! List ||
+        (json['revisions'] as List).length > 5000 ||
+        (json['pendingRedemptions'] as List).length > 100) {
+      throw const FormatException('Unbekannter Gutschein-Speicherstand');
+    }
+    final value = RewardShopProfile(
+      ownerId: json['ownerId'] as String,
+      revisions: (json['revisions'] as List)
+          .map((v) => CustomRewardDefinition.fromJson(
+              (v as Map).cast<String, Object?>()))
+          .toList(),
+      pendingRedemptions: (json['pendingRedemptions'] as List)
+          .map((v) =>
+              RewardShopRedemption.fromJson((v as Map).cast<String, Object?>()))
+          .toList(),
+    );
+    final ids = <String>{};
+    final receiptIds = <String>{};
+    if (!_validRewardText(value.ownerId, 160) ||
+        value.currentDefinitions.length > 100 ||
+        value.revisions.any((v) => !ids.add('${v.id}:${v.revision}')) ||
+        value.pendingRedemptions.any((v) =>
+            v.ownerId != value.ownerId || !receiptIds.add(v.transactionId))) {
+      throw const FormatException('Widersprüchlicher Gutschein-Speicherstand');
+    }
+    return value;
+  }
 }
 
 /// Eine Eltern-Freigabe-Anfrage fuer eine grosse Belohnung.
@@ -209,8 +520,7 @@ class RewardApprovalRequest {
       ),
       requestedAt: DateTime.tryParse(json['requestedAt']?.toString() ?? '') ??
           DateTime.now(),
-      resolvedAt:
-          DateTime.tryParse(json['resolvedAt']?.toString() ?? ''),
+      resolvedAt: DateTime.tryParse(json['resolvedAt']?.toString() ?? ''),
       parentNote: json['parentNote']?.toString(),
     );
   }
@@ -227,6 +537,9 @@ class RedeemedReward {
     required this.cost,
     required this.currency,
     this.note,
+    this.transactionId,
+    this.itemRevision = 0,
+    this.emoji,
   });
 
   final String itemId;
@@ -234,6 +547,10 @@ class RedeemedReward {
   final DateTime redeemedAt;
   final int cost;
   final RewardCurrency currency;
+  final String? transactionId;
+  final int itemRevision;
+  final String? emoji;
+
   /// Optional: Eltern-Notiz beim Einloesen ("Eingeloest am Samstag im Park").
   final String? note;
 
@@ -244,19 +561,26 @@ class RedeemedReward {
         'cost': cost,
         'currency': currency.name,
         if (note != null) 'note': note,
+        if (transactionId != null) 'transactionId': transactionId,
+        if (itemRevision != 0) 'itemRevision': itemRevision,
+        if (emoji != null) 'emoji': emoji,
       };
 
   factory RedeemedReward.fromJson(Map<String, Object?> json) {
     return RedeemedReward(
       itemId: json['itemId']?.toString() ?? '',
       title: json['title']?.toString() ?? '',
-      redeemedAt: DateTime.tryParse(json['redeemedAt']?.toString() ?? '') ?? DateTime.now(),
+      redeemedAt: DateTime.tryParse(json['redeemedAt']?.toString() ?? '') ??
+          DateTime.now(),
       cost: (json['cost'] as num?)?.toInt() ?? 0,
       currency: RewardCurrency.values.firstWhere(
         (c) => c.name == json['currency']?.toString(),
         orElse: () => RewardCurrency.stars,
       ),
       note: json['note']?.toString(),
+      transactionId: json['transactionId'] as String?,
+      itemRevision: (json['itemRevision'] as num?)?.toInt() ?? 0,
+      emoji: json['emoji'] as String?,
     );
   }
 }
@@ -278,6 +602,7 @@ class TestPhotoEntry {
   final int note;
   final DateTime recordedAt;
   final int pointsAwarded;
+
   /// Pfad zum lokal gespeicherten Foto (optional).
   final String? imagePath;
 
@@ -295,7 +620,8 @@ class TestPhotoEntry {
       subject: json['subject']?.toString() ?? '',
       grade: (json['grade'] as num?)?.toInt() ?? 1,
       note: (json['note'] as num?)?.toInt() ?? 5,
-      recordedAt: DateTime.tryParse(json['recordedAt']?.toString() ?? '') ?? DateTime.now(),
+      recordedAt: DateTime.tryParse(json['recordedAt']?.toString() ?? '') ??
+          DateTime.now(),
       pointsAwarded: (json['pointsAwarded'] as num?)?.toInt() ?? 0,
       imagePath: json['imagePath']?.toString(),
     );
@@ -310,11 +636,16 @@ class TestPhotoEntry {
   ///   Note 5 (Nicht gen.) = 0 Punkte
   static int pointsForNote(int note) {
     switch (note) {
-      case 1: return 50;
-      case 2: return 25;
-      case 3: return 10;
-      case 4: return 3;
-      default: return 0;
+      case 1:
+        return 50;
+      case 2:
+        return 25;
+      case 3:
+        return 10;
+      case 4:
+        return 3;
+      default:
+        return 0;
     }
   }
 }
@@ -352,11 +683,9 @@ class RewardShopState {
   }) {
     return RewardShopState(
       availableStars:
-          (availableStars ?? this.availableStars)
-              .clamp(0, _maxRewardCurrency),
-      availablePoints:
-          (availablePoints ?? this.availablePoints)
-              .clamp(0, _maxRewardCurrency),
+          (availableStars ?? this.availableStars).clamp(0, _maxRewardCurrency),
+      availablePoints: (availablePoints ?? this.availablePoints)
+          .clamp(0, _maxRewardCurrency),
       redeemed: redeemed ?? this.redeemed,
       testPhotos: testPhotos ?? this.testPhotos,
       approvalRequests: approvalRequests ?? this.approvalRequests,
@@ -376,28 +705,24 @@ class RewardShopState {
 
   factory RewardShopState.fromJson(Map<String, Object?> json) {
     return RewardShopState(
-      availableStars:
-          ((json['availableStars'] as num?)?.toInt() ?? 0)
-              .clamp(0, _maxRewardCurrency),
-      availablePoints:
-          ((json['availablePoints'] as num?)?.toInt() ?? 0)
-              .clamp(0, _maxRewardCurrency),
+      availableStars: ((json['availableStars'] as num?)?.toInt() ?? 0)
+          .clamp(0, _maxRewardCurrency),
+      availablePoints: ((json['availablePoints'] as num?)?.toInt() ?? 0)
+          .clamp(0, _maxRewardCurrency),
       redeemed: (json['redeemed'] as List?)
               ?.whereType<Map>()
-              .map((m) =>
-                  RedeemedReward.fromJson(m.cast<String, Object?>()))
+              .map((m) => RedeemedReward.fromJson(m.cast<String, Object?>()))
               .toList(growable: false) ??
           const <RedeemedReward>[],
       testPhotos: (json['testPhotos'] as List?)
               ?.whereType<Map>()
-              .map((m) =>
-                  TestPhotoEntry.fromJson(m.cast<String, Object?>()))
+              .map((m) => TestPhotoEntry.fromJson(m.cast<String, Object?>()))
               .toList(growable: false) ??
           const <TestPhotoEntry>[],
       approvalRequests: (json['approvalRequests'] as List?)
               ?.whereType<Map>()
-              .map((m) => RewardApprovalRequest.fromJson(
-                  m.cast<String, Object?>()))
+              .map((m) =>
+                  RewardApprovalRequest.fromJson(m.cast<String, Object?>()))
               .toList(growable: false) ??
           const <RewardApprovalRequest>[],
       goalItemId: json['goalItemId']?.toString(),
@@ -410,15 +735,21 @@ class RewardShopEngine {
   const RewardShopEngine();
 
   /// Liefert alle aktuell verfuegbaren Belohnungen, gefiltert nach Jahreszeit.
-  List<RewardItem> availableRewards({DateTime? now}) {
+  List<RewardItem> availableRewards({
+    DateTime? now,
+    Iterable<CustomRewardDefinition> customRewards = const [],
+  }) {
     final season = Season.fromDate(now ?? DateTime.now());
-    return RewardCatalog.all
-        .where((r) => r.availableIn(season))
-        .toList(growable: false);
+    return <RewardItem>[
+      ...RewardCatalog.all,
+      for (final reward in customRewards)
+        if (reward.active) reward.item,
+    ].where((r) => r.availableIn(season)).toList(growable: false);
   }
 
   /// Prueft ob die aktuelle Belohnung leistbar ist.
-  bool canAfford(RewardShopState state, RewardItem item) {
+  bool canAfford(RewardShopState state, RewardItem item, {int level = 1}) {
+    if (level < item.minLevel) return false;
     if (item.currency == RewardCurrency.stars) {
       return state.availableStars >= item.cost;
     }
@@ -432,8 +763,9 @@ class RewardShopEngine {
     RewardItem item, {
     String? note,
     DateTime? now,
+    int level = 1,
   }) {
-    if (!canAfford(state, item)) return null;
+    if (!canAfford(state, item, level: level)) return null;
     final entry = RedeemedReward(
       itemId: item.id,
       title: item.title,
@@ -478,7 +810,8 @@ class RewardShopEngine {
   }
 
   /// Eltern genehmigen eine Anfrage.
-  RewardShopState approveRequest(RewardShopState state, String requestId, {DateTime? now}) {
+  RewardShopState approveRequest(RewardShopState state, String requestId,
+      {DateTime? now}) {
     return state.copyWith(
       approvalRequests: state.approvalRequests.map((r) {
         if (r.id == requestId) {
@@ -514,7 +847,8 @@ class RewardShopEngine {
   }
 
   /// Markiert eine genehmigte Anfrage als eingeloest.
-  RewardShopState markRedeemed(RewardShopState state, String requestId, {DateTime? now}) {
+  RewardShopState markRedeemed(RewardShopState state, String requestId,
+      {DateTime? now}) {
     return state.copyWith(
       approvalRequests: state.approvalRequests.map((r) {
         if (r.id == requestId) {

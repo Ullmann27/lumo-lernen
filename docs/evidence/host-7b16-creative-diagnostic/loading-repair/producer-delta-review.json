@@ -1,0 +1,23 @@
+{
+  "head": "7d7b703f18100b82ce59591ce48fe2d90852ec5e",
+  "tree": "9254883a0723c7ad1544b01949e9db5c1175fd97",
+  "base": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "coverage": "All26 paths in the complete supplied Compare; concrete code/test deltas inspected, PNGs accepted only after exact published Gitblob+manifest hash checks",
+  "new_connection": "Explicit negative loading-caption opt-in for returned Flutter pixel capture",
+  "already_connected": [
+    "PR46686445 Gold OCR bodies, now with our independently repaired full-match collection",
+    "Cards layout JSONDecodeError converted to bounded retryable RuntimeError",
+    "The four byte-identical earlier Learning PNGs; test_native_caption_ocr code blob equals the previously named replay file"
+  ],
+  "not_adopted": [
+    "Old-source-specific lumo-studio-4ab-ocr-recheck workflow",
+    "Old4ab-specific recheck_studio_4ab.py and its candidate metadata binding"
+  ],
+  "existing_gate_preservation": [
+    "Rootguards and APK identities unchanged by this delta",
+    "Gold complete-region opt-in and all matching components preserved",
+    "No observation cap or timeout increased",
+    "Loading resets confirmation; exactly two later positive captured frames remain required"
+  ],
+  "source_test_copy": "Ten published files exactly byte-matched; two new local integrity negatives kept in a separate test file"
+}

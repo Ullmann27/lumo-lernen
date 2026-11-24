@@ -1,0 +1,62 @@
+{
+  "captured_utc": "20261021-014435",
+  "original_branch": "design/lumo-home-cinematic-20261020",
+  "original_head": "4746aebdefb10c7c5aaa4d0258a46797bfd7def6",
+  "files": [
+    {
+      "path": "lib/app/app_shell.dart",
+      "bytes": 34615,
+      "sha256": "de52dc74f8e9bbab9df3b77582a7d3cb6da2cb8bacc429b43ca1eca4379e51da"
+    },
+    {
+      "path": "lib/features/home/home_content.dart",
+      "bytes": 47678,
+      "sha256": "49ed688adce7fe074e8c3e2981c202c26dad9ee9c96bef4d766b18ea3240ff62"
+    },
+    {
+      "path": "lib/features/home/widgets/lumo_home_hero.dart",
+      "bytes": 8174,
+      "sha256": "309801e7ea8a6ca2126e010ad46cf781437149457007a54d8f50be3fa6f9854b"
+    },
+    {
+      "path": "lib/theme/lumo_visual_tokens.dart",
+      "bytes": 993,
+      "sha256": "d46c725ccd670a8fc8e31fc9d9b279a3f2dbfc6adc52fb5b8e9c2ecc003a4015"
+    },
+    {
+      "path": "lib/widgets/design/lumo_design_system.dart",
+      "bytes": 57996,
+      "sha256": "f854a2c152b37783bb0bbebeab0ab4c0345d1b6eab9c35699755ab9d5f313e05"
+    },
+    {
+      "path": "lib/widgets/design/lumo_glass_optics.dart",
+      "bytes": 4364,
+      "sha256": "8936036ab7bbc0e59cfe08dd0efb3e4f588810eaf5bfaf014c0dc19a4fd2f222"
+    },
+    {
+      "path": "lib/widgets/design/lumo_materials.dart",
+      "bytes": 4354,
+      "sha256": "acb06f02515b45460c1d754ddad712b5c19c22f2f52f4b1cd1d825bdf21e5dae"
+    },
+    {
+      "path": "lib/widgets/design/lumo_scene_artwork.dart",
+      "bytes": 771,
+      "sha256": "862e02de131f1d15364fcc8e54e5f66828b50eddc89cf0433447b52583a67f40"
+    },
+    {
+      "path": "lib/widgets/design/lumo_scene_atmosphere.dart",
+      "bytes": 7146,
+      "sha256": "b687f0ce71e5383cedf85a258a9835e78b8960415ddfa697af8599a1f2cf97cb"
+    },
+    {
+      "path": "test/home_hero_accessibility_test.dart",
+      "bytes": 2638,
+      "sha256": "d8fc79228eb150d6b619bfd1249712331f9136a7d824a55062a27da7ef84b21b"
+    },
+    {
+      "path": "test/lumo_scene_atmosphere_test.dart",
+      "bytes": 3699,
+      "sha256": "01984475c0644572fc09803211762e785af10cf4047355629696f23ff85a28d9"
+    }
+  ]
+}

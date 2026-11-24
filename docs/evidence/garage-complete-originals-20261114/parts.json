@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "original": "/workspace/scratch/b3485b7bb989/host-pr493-garage-observer-review-0b7-20261114/complete-original-pack.tar.gz",
+  "original_bytes": 9061457,
+  "original_sha256": "f350d58397c6ecad1282071acce0eb7277a3460471f745a849be53ca12982e00",
+  "members_full_byte_compared_by_root": 76,
+  "parts": [
+    {
+      "file": "complete-garage-original-pack.tar.gz.part01",
+      "bytes": 4600000,
+      "sha256": "8f1e419f2f245163787c77108d22acf432666ad555e536ff3af75660f9e2cc0a",
+      "path": "/workspace/scratch/b3485b7bb989/integration-evidence-batch-5ad-20261114/complete-garage-original-pack.tar.gz.part01"
+    },
+    {
+      "file": "complete-garage-original-pack.tar.gz.part02",
+      "bytes": 4461457,
+      "sha256": "c422201dfed140204992be3d4dc0b79bec687bee95f4898906922118303ff962",
+      "path": "/workspace/scratch/b3485b7bb989/integration-evidence-batch-5ad-20261114/complete-garage-original-pack.tar.gz.part02"
+    }
+  ],
+  "reassembly": "Concatenate part01 then part02, then verify the complete SHA256 before reading the gzip archive.",
+  "reason": "Compact transfer chunks; no assertion that an API has a specific hard size limit.",
+  "product_change": false
+}

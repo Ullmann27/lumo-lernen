@@ -1,0 +1,254 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T04:23:15.085806+00:00",
+  "status": "READ_ONLY_SOURCE_REVIEW_ACCEPTED",
+  "concrete_blockers": [],
+  "scope": "Independent review of the final device-logger, narrow log-preservation and fresh-speech-section source. No tests, emulators, downloads or source edits by this reviewer. No new Android pass.",
+  "source_freeze": {
+    "path": "/workspace/scratch/b3485b7bb989/host-61c-api37-device-log-continuity/source-freeze.json",
+    "bytes": 3342,
+    "sha256": "7dbfd55ec64708b7740bda5e6018765e2ec99ea4c049e268d2f1ffa4fac8a11f",
+    "git_blob_sha1": "ad1e3e71db8a3fc04d750bb30333adbb3885b54d"
+  },
+  "sources": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/android_framework_ready.py",
+      "bytes": 47400,
+      "sha256": "9d26d8141dd9aeacf6a57be29959b4dc442ed9c5db09e452dc4cf92b7653396a",
+      "git_blob_sha1": "3537f5a57ac32e7ae300a791b3d8dbd46c3e7f5d"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/verify_android_runtime_anr.py",
+      "bytes": 37662,
+      "sha256": "96e17dad46b487ec3215d917e525d09a0be3515b4c9f7a025971cf7a4e137a57",
+      "git_blob_sha1": "0e91d99d4ea8ecfe656f616a7f8d801563e8b252"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/run_unchanged_apk_diagnostic.sh",
+      "bytes": 6960,
+      "sha256": "02d369163de84cb80bf63ef55ecb6397f9df2a2c2c0356fd13efdf399a4f12a5",
+      "git_blob_sha1": "ec6f1250f22ad3cea4dad1a505d93075b09f862b"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/.github/probes/modernization_android_tour.py",
+      "bytes": 71882,
+      "sha256": "dcf7ba4c315efe600ac5001de0935a5597e1ac25f63711e9f8732fd92de9257f",
+      "git_blob_sha1": "a59e2129b21dd1dac6b3192532e420e7d632b630"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 50962,
+      "sha256": "6b572feb22830651f99f5b01678bcb0532b433c861d040f04916ae8a1b0466ec",
+      "git_blob_sha1": "f22376dbb33464ce6591fbcd7e2c9b95d8947159"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/test_android_runtime_device_logger.py",
+      "bytes": 16836,
+      "sha256": "bf6b1e4f547f844287f9e0e1afa860427a3838d0384b5527488875cd48df6ae2",
+      "git_blob_sha1": "9ce904fea964b92b207bf77f4b0224068f4daa57"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/test_runtime_logcat_sections.py",
+      "bytes": 12513,
+      "sha256": "745703233623614da345102745322a49b9aa75bcfba1849ee6ac71201023de58",
+      "git_blob_sha1": "eb3b5115a9709e46cac2ec8642741b8eafda94b0"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/fixtures/android37_root_monitor_61c/host-gms-events-anr.stdout",
+      "bytes": 321,
+      "sha256": "cdea9d527ca2d3ef09ebdbf26ff496f2dda5f4af0aedfbbb3e0bf4eb3e1e8d31",
+      "git_blob_sha1": "fbc952ad651045f29252a57114841298718a5365"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/fixtures/android37_root_monitor_61c/host-monitor-finished.json",
+      "bytes": 1074,
+      "sha256": "8af85369c2b34f0de7e26a49fef151ccb69bdab9195446c8076b3dab7f1c3cf1",
+      "git_blob_sha1": "4d64053ad968ff26983390c55d1b29b1c9f3a991"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/fixtures/android37_root_monitor_61c/manifest.json",
+      "bytes": 1390,
+      "sha256": "87c8604d17b5c7586c1a3e2a6a33398fab3d8dfeb7ae18e054cbe08b4af16d0f",
+      "git_blob_sha1": "1401a1b7626167fef034c050ce427a64122d26e2"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/fixtures/android37_root_monitor_61c/swiftshader-monitor-finished.json",
+      "bytes": 1074,
+      "sha256": "be9d7574f67d4cb37a6755ca7f923b468653cb05b9a07cda240b9258bc7f46ed",
+      "git_blob_sha1": "3236c0c89f91fc8e2b07932cc2a2066634b744ee"
+    }
+  ],
+  "exact_original_fixture_bindings": [
+    {
+      "fixture": {
+        "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/fixtures/android37_root_monitor_61c/host-gms-events-anr.stdout",
+        "bytes": 321,
+        "sha256": "cdea9d527ca2d3ef09ebdbf26ff496f2dda5f4af0aedfbbb3e0bf4eb3e1e8d31",
+        "git_blob_sha1": "fbc952ad651045f29252a57114841298718a5365"
+      },
+      "original": {
+        "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-host-14096004123/selected-originals/runtime-anr/commands/0005-events-anr.stdout",
+        "bytes": 321,
+        "sha256": "cdea9d527ca2d3ef09ebdbf26ff496f2dda5f4af0aedfbbb3e0bf4eb3e1e8d31",
+        "git_blob_sha1": "fbc952ad651045f29252a57114841298718a5365"
+      },
+      "artifact_id": 14096004123,
+      "artifact_digest": "sha256:29eae3364927c91522d3771b63b56ce97c6d3400566deb6b037c1a86059f60a2"
+    },
+    {
+      "fixture": {
+        "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/fixtures/android37_root_monitor_61c/host-monitor-finished.json",
+        "bytes": 1074,
+        "sha256": "8af85369c2b34f0de7e26a49fef151ccb69bdab9195446c8076b3dab7f1c3cf1",
+        "git_blob_sha1": "4d64053ad968ff26983390c55d1b29b1c9f3a991"
+      },
+      "original": {
+        "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-host-14096004123/selected-originals/framework-start/monitor-finished.json",
+        "bytes": 1074,
+        "sha256": "8af85369c2b34f0de7e26a49fef151ccb69bdab9195446c8076b3dab7f1c3cf1",
+        "git_blob_sha1": "4d64053ad968ff26983390c55d1b29b1c9f3a991"
+      },
+      "artifact_id": 14096004123,
+      "artifact_digest": "sha256:29eae3364927c91522d3771b63b56ce97c6d3400566deb6b037c1a86059f60a2"
+    },
+    {
+      "fixture": {
+        "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/scripts/tests/fixtures/android37_root_monitor_61c/swiftshader-monitor-finished.json",
+        "bytes": 1074,
+        "sha256": "be9d7574f67d4cb37a6755ca7f923b468653cb05b9a07cda240b9258bc7f46ed",
+        "git_blob_sha1": "3236c0c89f91fc8e2b07932cc2a2066634b744ee"
+      },
+      "original": {
+        "path": "/workspace/scratch/b3485b7bb989/host-pr480-61c94cfb-qa-pipeline-evidence/artifacts/api37-swiftshader-14096976074/selected-originals/framework-start/monitor-finished.json",
+        "bytes": 1074,
+        "sha256": "be9d7574f67d4cb37a6755ca7f923b468653cb05b9a07cda240b9258bc7f46ed",
+        "git_blob_sha1": "3236c0c89f91fc8e2b07932cc2a2066634b744ee"
+      },
+      "artifact_id": 14096976074,
+      "artifact_digest": "sha256:9aaa2850bc96b39833a3e5893f020a5ecf19d7038fc326f18affed7448e37055"
+    }
+  ],
+  "probe_ast_comparison": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "before": {
+        "path": "/workspace/scratch/b3485b7bb989/host-61c-api37-device-log-continuity/before-clear-speech/.github/probes/modernization_android_tour.py",
+        "bytes": 69612,
+        "sha256": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba",
+        "git_blob_sha1": "4af46a7ea3478ee64798fbae1290e69444444833"
+      },
+      "after": {
+        "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/.github/probes/modernization_android_tour.py",
+        "bytes": 71882,
+        "sha256": "dcf7ba4c315efe600ac5001de0935a5597e1ac25f63711e9f8732fd92de9257f",
+        "git_blob_sha1": "a59e2129b21dd1dac6b3192532e420e7d632b630"
+      },
+      "changed_top_level_functions": [
+        "diagnostic_logcat_context",
+        "main"
+      ],
+      "all_other_functions_and_classes_ast_identical": true
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "before": {
+        "path": "/workspace/scratch/b3485b7bb989/host-61c-api37-device-log-continuity/before-clear-speech/.github/probes/lumo_studio_surfaces_android_probe.py",
+        "bytes": 48262,
+        "sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34",
+        "git_blob_sha1": "33f725e2114b4cedc43a65297232866311946d5d"
+      },
+      "after": {
+        "path": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16/.github/probes/lumo_studio_surfaces_android_probe.py",
+        "bytes": 50962,
+        "sha256": "6b572feb22830651f99f5b01678bcb0532b433c861d040f04916ae8a1b0466ec",
+        "git_blob_sha1": "f22376dbb33464ce6591fbcd7e2c9b95d8947159"
+      },
+      "changed_top_level_functions": [
+        "_speech_logcat",
+        "_start_learning_speech_section",
+        "completed_native_speech",
+        "learning_roundtrip"
+      ],
+      "all_other_functions_and_classes_ast_identical": true
+    }
+  ],
+  "reviewed_patches": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-61c-api37-device-log-continuity/repair.patch",
+      "bytes": 90955,
+      "sha256": "f418526bde34e552f891bf9cc2cae8bd2cb02a3deca99efdab9f94898281e7a8",
+      "git_blob_sha1": "a39fb74158a3dc9f1670680f6f614ffd5906c494"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/host-61c-api37-device-log-continuity/clear-speech.patch",
+      "bytes": 9201,
+      "sha256": "b035936cab662306f0b1a208208bd83df3468047a0a54a805543f236edb945d9",
+      "git_blob_sha1": "51f7fa54e08178457173912eee3c06ab8a9a130e"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Independent recording before root",
+      "finding": "The real all-buffer logcat is detached with nohup/setsid before the explicit root request. Literal argv, actual PID/startticks/session/process group, six regular-file identities and exact script hash are observed; the same process and files must survive root and endpoint observations."
+    },
+    {
+      "name": "Observed overlap and prefix",
+      "finding": "A unique written start marker must be read in both original host and device streams with identical original bytes; the pre-root full-file prefix must remain an exact prefix of the final complete device log. No reconnect, guessed continuity or filtered logger is accepted."
+    },
+    {
+      "name": "Root transport distinction",
+      "finding": "Only the explicitly requested root phase may explain host transport exit255, and only when the full independent device protocol passes. Exact observed root-closed text is not enough: actual UID0, boot1 and unchanged live session are still required. Other stderr/disconnects remain failures."
+    },
+    {
+      "name": "Endpoint and stop",
+      "finding": "Before/after-endpoint snapshots bracket all fixed original system dumps. A fresh end marker and checked original PID precede TERM; exit143 and complete stable original file reads are required. Logger stderr/session stdout/session stderr must be empty. Only separate wait.stderr may contain the exact POSIX Terminated newline after confirmed TERM143."
+    },
+    {
+      "name": "No history-clearing during explicit API37 diagnosis",
+      "finding": "The runner exports the absolute runtime-start path only after successful begin, in its API37 branch. Both real clear sites bypass clearing only for this output interval, source-hashed positive device start, same actual emulator serial and API37. Completed or foreign intervals fail. API35 and normal callers keep their prior mode."
+    },
+    {
+      "name": "Fresh functional speech evidence",
+      "finding": "Before native entry a nonce-bound LumoSpeechSection marker is really written and read back. All initial voice, movement and final voice readers use that same observed boundary; missing, duplicated or changed markers fail. Every full filtered read is preserved separately and only functional parsing excludes the earlier records. Native PID equality and strictly increasing completed utterance IDs remain required."
+    },
+    {
+      "name": "Failures preserved",
+      "finding": "Actual original GMS am_anr bytes are bound and remain terminal despite later empty event reads. Tour exit failure cannot be overridden by continuous logs. Exit trap preserves the original tour exit or promotes a failed runtime verifier; the unchanged historical61c failures are not relabelled."
+    },
+    {
+      "name": "Disjoint repairs preserved",
+      "finding": "The exact other main-tour functions/classes including garage/driver/race boundaries and the Studio Cards/Flutter-return/default gates are AST unchanged across the authorized clear/speech delta."
+    }
+  ],
+  "existing_validation_read": {
+    "logs": [
+      {
+        "path": "/workspace/scratch/b3485b7bb989/host-61c-api37-device-log-continuity/focused-green.log",
+        "bytes": 18082,
+        "sha256": "3fe9549bfc9df36c252a4a7bb0136b43e76c743758b9dab8ceffc36be5bed33a",
+        "git_blob_sha1": "10b8a628ed644414c56cc23e58cba0f97fab4fd0"
+      },
+      {
+        "path": "/workspace/scratch/b3485b7bb989/host-61c-api37-device-log-continuity/speech-old-source-red.log",
+        "bytes": 1912,
+        "sha256": "b3dbbe537b0811a8ac46b636c66c57bdee2736d1e28893bcadcaf0392c16e353",
+        "git_blob_sha1": "2a7f4534fd18e532e64faba7a9b7f060a8be905f"
+      },
+      {
+        "path": "/workspace/scratch/b3485b7bb989/host-61c-api37-device-log-continuity/original-source-red.log",
+        "bytes": 1643,
+        "sha256": "e7ebc7bfb0408eb7d4481e036847b52d42698e70b556648af691a47455d3d9a4",
+        "git_blob_sha1": "8c550abf607cf9ab4eb1bbfabeb2d85a2aef5603"
+      }
+    ],
+    "green": "Existing producer run:88 focused tests,0 skips,exit0; original log inspected, not rerun.",
+    "speech_red": "Two behavioural old-source cases fail with RuntimeError not raised when old completed speech/movement are presented before the new boundary.",
+    "logger_red": "The initial old-source countercheck is an interface TypeError for missing preserve_through_adb_root; it is not an actual Android reproduction. The real failed61c originals and subsequent explicitly synthetic protocol cases remain separate."
+  },
+  "limitations": [
+    "The independent device process surviving real adbd root and complete genuine API37 run still require the next device job. Synthetic transport success is not an emulator/runtime result.",
+    "Actual historical61c GMS ANR and app/HUD/Studio errors remain failures; no GMS exception or restart/reconnect acceptance was introduced.",
+    "Full recording claims are limited to the captured interval and observed bytes; no future health, audible speech quality, graphics performance or APK product change is asserted.",
+    "A clean committed-source binder check is separate from this dirty-worktree source review."
+  ]
+}

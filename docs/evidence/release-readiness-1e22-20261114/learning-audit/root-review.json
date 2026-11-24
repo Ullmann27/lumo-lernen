@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "status": "VERIFIED_ORIGINAL_STRUCTURAL_SAMPLE_AUDIT",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "host_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "acceptance_run": 43596913210,
+  "attempt": 1,
+  "artifact_id": 14115026558,
+  "archive_bytes": 212135,
+  "archive_sha256": "a1a78a3661ec4b41a784662605ccc987bdcf49038b67d2ba57bb9abc62f0570e",
+  "all_zip_member_crcs_verified": true,
+  "original_file_hashes_reverified": 6,
+  "current_source_file_hashes_reverified": 6,
+  "actual_families": 236,
+  "actual_sample_rows": 7552,
+  "actual_distinct_grade_subject_unit_combinations": 236,
+  "samples_per_combination": 32,
+  "sample_issues": 0,
+  "grades": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "all_existing_tasks_reviewed": false,
+  "all_variants_enumerated": false,
+  "official_curriculum_approval": false,
+  "scope": "ExerciseFactory core structural samples only; no specialist pedagogical, full-app task or 3D-scene approval."
+}

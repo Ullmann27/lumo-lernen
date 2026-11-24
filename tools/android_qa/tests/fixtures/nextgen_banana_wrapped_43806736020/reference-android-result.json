@@ -1,0 +1,283 @@
+{
+  "schema": "lumo.nextgen.reference.android.probe",
+  "version": 1,
+  "status": "FAIL",
+  "mode": "immutable-replay",
+  "run_id": "a95894cdea3e47378b60c256d1274813",
+  "started_utc": "2026-11-16T05:06:53Z",
+  "qa_commit": "51a3bfdedf4d6a745fb574ae9186c1094eb11abf",
+  "qa_workflow_run": 43806736020,
+  "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "source_build_run": 43800892196,
+  "probe_sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c",
+  "reference_probe_sha256": "bfd5278e3fd1683a48da9887914c9b5d120d59089b4b874ff4af6c0b2baf84e2",
+  "historical_tour_pass_used": false,
+  "private_app_data_written_by_probe": false,
+  "apk_rebuilt_by_probe": false,
+  "fullModernizationComplete": false,
+  "previous_complete_probe": {
+    "original_result_sha256": "ceb0b7aa402fe64eea840cbd9f31e5c84ca4fa27132e2609c4acef30ea338eb1",
+    "original_result": "evidence/android/original-android/learning-android-result.json",
+    "original_status": "PASS_WITH_LIMITATIONS",
+    "original_run_id": "5b1b1e57ab374bd7b8f753e458d186d2",
+    "installed_before_reset": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 2031,
+      "versionName": "0.13.19",
+      "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+    },
+    "synthetic_profile_before_reset": {
+      "id": "1794805073887311",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T04:57:53.887311"
+    },
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "reason": "Fresh UI-created fixture for additional scenes after complete original PASS",
+    "uninstall_output": "Success"
+  },
+  "candidate": {
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "flutter_source_commit": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+    "versionCode": 2031,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.19",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "94b0a84b8715537fff9ff84e451c889ca1fe1b8440a4448ded93989b3feb0aef",
+      "bytes": 278589756
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "api": 35,
+    "abi": "x86_64",
+    "package_absent_before_install": true,
+    "physical_device": false
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2031,
+    "versionName": "0.13.19",
+    "sha256": "8e96a05c51fc12504a19831cee14b64c6a8e9a35a8a36863db455bed0e2cec1a",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "onboarding": {
+    "profile": {
+      "id": "1794805652767598",
+      "name": "LumoNextTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-16T05:07:32.767598"
+    },
+    "input": "real Android text input",
+    "synthetic": true
+  },
+  "screenshots": [
+    {
+      "file": "0024-home-after-onboarding.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "276b0e9eee838c15ef38a1485525d9d4631061caafc3ff2f93c5587e9fae4319",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 7.082,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0059-local-model-conditions.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "edaf60523641cff7c506778ab7fe48feebc8f4510e099c92572a385b5ecbb0cf",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 4.322,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0076-local-voice-ready.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "6e0487cb320c21c6195ff5dd71d13201b4c7ef17a4a2843ce3a1ba50c065fa55",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.215,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0097-banana-guided-step.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "e05734717de444eec32394097f70ed9ae897ef87494e03176bf188645ecaf6ae",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.567,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0103-banana-guided-step.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "61ea1406ecab56a665e1aefc312aaa7e72b436e8a3414093eb9538de49979654",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.57,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0109-banana-guided-before-native.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "eee9028a86b2a57613dd020c9cf230d198108d78843ecc099a662011956823b2",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2340,
+        "content_entropy_bits": 6.51,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      }
+    },
+    {
+      "file": "0119-banana-native-entry.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "e235dbb00d864b5a50248ff71c36100ee0aa4a343ab4e3779d8a7e6cc43a255e"
+    },
+    {
+      "file": "0128-banana-syllable-1.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "2a695ff52eefa906c44a9a02ed10e32b400116b6f7d7b731692e00d92f1e816a"
+    },
+    {
+      "file": "0134-banana-syllable-2.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "a21fba8eb981346f2b9928cb21948deb190765430ef63402df39df06d089ae2c"
+    },
+    {
+      "file": "0139-failure-current-screen.png",
+      "width": 1080,
+      "height": 2340,
+      "sha256": "55c4c9533caf62a00b70f6745a82deba53f2463bfb40cb5ef95c9c94035129be"
+    }
+  ],
+  "videos": [
+    {
+      "file": "0002-onboarding.mp4",
+      "sha256": "f8250434dec798100a6bf1db96f3ac97f88365264d35b9a1b69b28e5dabf159b",
+      "bytes": 1662692,
+      "duration_seconds": 13.905511,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 16.91,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0091-banana-guided-navigation.mp4",
+      "sha256": "1a5cc2c023dc3e4b91ceaedee06274832d84131a4299086e0d49a5b1b9571a73",
+      "bytes": 911823,
+      "duration_seconds": 9.176233,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 10.62,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0111-banana-native-entry-and-first-playback.mp4",
+      "sha256": "330593cba3d86691aacff4cb47bab58167ceea20dc014be1378acbd5ddedd95b",
+      "bytes": 1768402,
+      "duration_seconds": 52.370378,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 51.53,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0123-banana-visible-syllable-step-1.mp4",
+      "sha256": "f69707ca77fd8becc9c4b0f2ad38460310c96a3b7e654654d7d947a6f8a9d3bc",
+      "bytes": 855178,
+      "duration_seconds": 66.9288,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 68.06,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0129-banana-visible-syllable-step-2.mp4",
+      "sha256": "0679b5a2c3d8b47c9b539f21348b88cab685c10ffcac63960d42abf32b78a9b0",
+      "bytes": 792166,
+      "duration_seconds": 59.237656,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 61.09,
+      "whole_block_within_recording_limit": true
+    },
+    {
+      "file": "0135-banana-visible-syllable-step-3.mp4",
+      "sha256": "f13a6e62a1dcd9ea6b59b5b74617a3938a5e3156976d5ffdf28b045acf5df8f3",
+      "bytes": 2086808,
+      "duration_seconds": 180.004033,
+      "width": 1080,
+      "height": 2340,
+      "audio_recorded": false,
+      "maximum_seconds": 180,
+      "block_elapsed_seconds": 264.94,
+      "whole_block_within_recording_limit": false
+    }
+  ],
+  "local_voice_settings": {
+    "license": true,
+    "voice": true,
+    "auto_read": true,
+    "microphone": true,
+    "calm_mode": false,
+    "online_services_changed": false
+  },
+  "error": "Current native screenshot lacks Das Wort hat 3 Silben",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_2031_replay_reference_android_probe.py\", line 307, in run\n    probe.run()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_reference_android_probe.py\", line 660, in run\n    self.banana()\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_reference_android_probe.py\", line 537, in banana\n    self.native_see(expected, \"banana-syllable-status-\" + str(index))\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_current_reference_android_probe.py\", line 75, in native_see\n    return super().native_see(label, tag, exact=exact)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_nextgen_reference_android_probe.py\", line 417, in native_see\n    self.reader.native_text(self.out, label, self.fresh(tag), exact=exact, orientation=\"responsive\")\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 695, in native_text\n    raise RuntimeError('Current native screenshot lacks '+label)\nRuntimeError: Current native screenshot lacks Das Wort hat 3 Silben\n",
+  "finished_utc": "2026-11-16T05:16:03Z"
+}

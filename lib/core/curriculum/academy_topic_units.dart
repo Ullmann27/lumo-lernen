@@ -8,7 +8,6 @@ class AcademyTopicUnits {
   static const Map<String, String> _aliases = {
     'm1_zahlen10': 'Mengenvergleich',
     'm1_formen': 'Geometrie Formen',
-    'm2_zahlen100': 'Plus bis 100',
     'm2_einmaleins': 'Einmaleins Vorbereitung',
     'm2_uhr': 'Uhrzeit',
     'm2_geld': 'Geld wechseln',
@@ -18,7 +17,6 @@ class AcademyTopicUnits {
     'm4_million': 'Zahlenraum bis 1 Million',
     'm4_bruch': 'Bruchrechnen einfach',
     'm4_textaufgaben': 'Sachaufgaben drei Schritte',
-    'd1_schreibcoach': 'Buchstaben-Lautierung',
     'd1_buchstaben_alle': 'Buchstaben-Lautierung',
     'd1_woerter': 'Wort-Bild-Zuordnung',
     'd2_saetze': 'Erste Sätze',
@@ -30,6 +28,7 @@ class AcademyTopicUnits {
     's1_koerper': 'Körper',
     's3_oesterreich': 'Bundesländer Österreichs',
     's3_natur': 'Pflanzen',
+    's3_tiere': 'Tiere',
     's4_europa': 'Kontinente und Ozeane',
     'en1_3': 'Begruessung',
   };
@@ -44,9 +43,12 @@ class AcademyTopicUnits {
     required int grade,
   }) {
     if (grade < 1 || grade > 4 ||
-        topicId == 'd3_geschichten' || topicId == 'd4_aufsatz') {
+        topicId == 'd3_geschichten' || topicId == 'd4_aufsatz' ||
+        topicId == 'm2_zahlen100' || topicId == 'd1_schreibcoach') {
       return null;
     }
+    // Zahlen bis 100 is a dedicated mixed number-sense module, not addition.
+    // Der Schreibcoach öffnet immer das Schreibmodul, nie eine Lautierungsrunde.
     final unit = _aliases[topicId] ?? title;
     return Curriculum.unitsForGrade(subject, grade).contains(unit)
         ? unit

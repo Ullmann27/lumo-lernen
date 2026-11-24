@@ -1,0 +1,2433 @@
+{
+  "kind": "independent_touch_density_review",
+  "native_candidate_before_followup_fixes": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+  "status": "treasure_button_density_blocker_confirmed",
+  "godot_version": "4.6.3.stable.official.7d41c59c4",
+  "physical_surface_configuration": [
+    2400,
+    1080
+  ],
+  "configured_android_display_density": 2.625,
+  "physical_android_device_measurement": false,
+  "product_files_modified_by_reviewer": false,
+  "method": "Instantiate real production scenes in Godot; transform all local Control rectangle corners by get_global_transform_with_canvas, then multiply by window-pixels/visible-viewport ratio and divide by displayDensity. Distinct large manual hit targets and 3D card ray-pick planes are measured separately.",
+  "production_scenes": [
+    "scenes/games/cards_table.tscn",
+    "scenes/creative/rhythm_world.tscn",
+    "scenes/creative/treasure_world.tscn"
+  ],
+  "input_source_sha256": {
+    "scripts/games/cards/cards_table.gd": "43eb3d55b8572f0ff2da67e5bf080d100b64e9511419a03d409b3278878fde03",
+    "scripts/creative/rhythm_world.gd": "b1aecb909e950c11d543891ab53faf241c1fa631ac34363bb900d8d775f90944",
+    "scripts/creative/treasure_world.gd": "2232ee9120975e2880b0986ea285a6799c5dee1a0ff37e232c545061503ac76b",
+    "scripts/creative/creative_runtime.gd": "7f28fa392b7a3ae7aba144d2072bba937b5cc9578fb6bb8e4970de4f0cd7fd6c",
+    "scripts/creative/creative_kit.gd": "a3d32bb117ba62f984575907d99c8b95b0e92849cab46b2a5ef097998ea4fed7"
+  },
+  "isolation": "XDG_DATA_HOME=/tmp/lumo-other-touch-density-review-data; unique child key; no existing child progress used or modified",
+  "cards_host_state": "Existing cards_table_regression.wire_fixture supplies the JSON-roundtripped authoritative-state contract; native room, controls, card rendering and ray picking remain the production implementation.",
+  "findings": [
+    {
+      "module": "cards",
+      "status": "no_48dp_geometry_blocker_found",
+      "button_minimum_dp": [
+        52.0,
+        52.0
+      ],
+      "card_ray_pick_minimum_dp": [
+        78.1017,
+        105.7627
+      ],
+      "scope": "play UI, four decision phases and scrolled modal controls; seven actual projected card hit planes"
+    },
+    {
+      "module": "rhythm",
+      "status": "no_48dp_geometry_blocker_found",
+      "button_minimum_height_dp": 48.0501,
+      "lane_minimum_dp": [
+        215.0672,
+        86.0897
+      ],
+      "actual_input_result": "[OtherTouchDensity] RHYTHM_LANE_ACTUAL_INPUT=0",
+      "scope": "menu, menu scroll, active play lane input, pause button and pause menu; lane and pause use the same manually tested rectangles in production"
+    },
+    {
+      "module": "treasure",
+      "status": "confirmed_blocker",
+      "file": "scripts/creative/treasure_world.gd",
+      "cause": "RUNTIME.enter(self) keeps the legacy1280x720 content scale instead of fitting Android dp. On the configured surface the expanded viewport is1600x720, so a48-unit GUI button has72physical pixels, or27.42857dp.",
+      "examples": [
+        {
+          "button": "‹ Spiele",
+          "pixels": [
+            123,
+            72
+          ],
+          "dp": [
+            46.857143,
+            27.428572
+          ]
+        },
+        {
+          "button": "Pause",
+          "pixels": [
+            78,
+            72
+          ],
+          "dp": [
+            29.714285,
+            27.428572
+          ]
+        },
+        {
+          "button": "Springen",
+          "pixels": [
+            165,
+            72
+          ],
+          "dp": [
+            62.857143,
+            27.428572
+          ]
+        },
+        {
+          "button": "Answer / Weiter erkunden",
+          "pixels": [
+            744,
+            72
+          ],
+          "dp": [
+            283.428558,
+            27.428572
+          ]
+        }
+      ],
+      "separate_input_targets": {
+        "joystick_dp": [
+          107.4286,
+          107.4286
+        ],
+        "interaction_action_dp": [
+          86.8571,
+          86.8571
+        ],
+        "status": "large_enough; do_not_replace_with_button_glyph_measurements"
+      },
+      "states_measured": [
+        "active exploration header and jump",
+        "inventory",
+        "real clue answer modal opened through interaction action",
+        "pause menu"
+      ],
+      "repair_scope_note": "Density-aware viewport fitting must be accompanied by a check that the existing fixed-position modal and header still fit shorter dp heights; no product repair was attempted by this reviewer."
+    }
+  ],
+  "measurement_count": 68,
+  "measurements": [
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        70.476188659668,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Header/Top/@HBoxContainer@199/Back",
+      "pixels": [
+        185.0,
+        136.5
+      ],
+      "scope": "cards_play",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Zurück",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        185.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        62.476188659668,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Header/Top/@HBoxContainer@199/@Button@201",
+      "pixels": [
+        164.0,
+        136.5
+      ],
+      "scope": "cards_play",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Pause",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        164.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        52.0,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Footer/@HBoxContainer@204/@HBoxContainer@205/@Button@206",
+      "pixels": [
+        136.5,
+        136.5
+      ],
+      "scope": "cards_play",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "‹",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        136.5,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        52.0,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Footer/@HBoxContainer@204/@HBoxContainer@205/@Button@208",
+      "pixels": [
+        136.5,
+        136.5
+      ],
+      "scope": "cards_play",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "›",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        136.5,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": true,
+      "dp": [
+        101.333335876465,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Footer/@HBoxContainer@204/Actions/@Button@209",
+      "pixels": [
+        266.0,
+        136.5
+      ],
+      "scope": "cards_play",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Karte legen",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        266.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        69.3333358764648,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Footer/@HBoxContainer@204/Actions/@Button@210",
+      "pixels": [
+        182.0,
+        136.5
+      ],
+      "scope": "cards_play",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Ziehen",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        182.0,
+        136.5
+      ]
+    },
+    {
+      "dp": [
+        78.1016540527344,
+        105.7626953125
+      ],
+      "id": "r1",
+      "input_contract": "production _unhandled_input local hit.x<=0.48 and hit.z<=0.65, projected through actual Camera3D",
+      "meets_48dp": true,
+      "pixels": [
+        205.016845703125,
+        277.627075195312
+      ],
+      "scope": "cards_real_ray_pick"
+    },
+    {
+      "dp": [
+        78.101676940918,
+        105.7626953125
+      ],
+      "id": "b2",
+      "input_contract": "production _unhandled_input local hit.x<=0.48 and hit.z<=0.65, projected through actual Camera3D",
+      "meets_48dp": true,
+      "pixels": [
+        205.016906738281,
+        277.627075195312
+      ],
+      "scope": "cards_real_ray_pick"
+    },
+    {
+      "dp": [
+        78.1016998291016,
+        105.7626953125
+      ],
+      "id": "wild",
+      "input_contract": "production _unhandled_input local hit.x<=0.48 and hit.z<=0.65, projected through actual Camera3D",
+      "meets_48dp": true,
+      "pixels": [
+        205.016967773438,
+        277.627075195312
+      ],
+      "scope": "cards_real_ray_pick"
+    },
+    {
+      "dp": [
+        78.1016540527344,
+        105.7626953125
+      ],
+      "id": "g4",
+      "input_contract": "production _unhandled_input local hit.x<=0.48 and hit.z<=0.65, projected through actual Camera3D",
+      "meets_48dp": true,
+      "pixels": [
+        205.016845703125,
+        277.627075195312
+      ],
+      "scope": "cards_real_ray_pick"
+    },
+    {
+      "dp": [
+        78.1016998291016,
+        105.7626953125
+      ],
+      "id": "y5",
+      "input_contract": "production _unhandled_input local hit.x<=0.48 and hit.z<=0.65, projected through actual Camera3D",
+      "meets_48dp": true,
+      "pixels": [
+        205.016967773438,
+        277.627075195312
+      ],
+      "scope": "cards_real_ray_pick"
+    },
+    {
+      "dp": [
+        78.1016998291016,
+        105.7626953125
+      ],
+      "id": "r6",
+      "input_contract": "production _unhandled_input local hit.x<=0.48 and hit.z<=0.65, projected through actual Camera3D",
+      "meets_48dp": true,
+      "pixels": [
+        205.016967773438,
+        277.627075195312
+      ],
+      "scope": "cards_real_ray_pick"
+    },
+    {
+      "dp": [
+        78.1016998291016,
+        105.7626953125
+      ],
+      "id": "pause",
+      "input_contract": "production _unhandled_input local hit.x<=0.48 and hit.z<=0.65, projected through actual Camera3D",
+      "meets_48dp": true,
+      "pixels": [
+        205.016967773438,
+        277.627075195312
+      ],
+      "scope": "cards_real_ray_pick"
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@315",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_chooseColor",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Rot",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@316",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_chooseColor",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Gelb",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@317",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_chooseColor",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Blau",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@318",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_chooseColor",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Grün",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@315",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_chooseColor_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Rot",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@316",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_chooseColor_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Gelb",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@317",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_chooseColor_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Blau",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@318",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_chooseColor_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Grün",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@369",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_learningQuestion",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "12",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@370",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_learningQuestion",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "13",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@371",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_learningQuestion",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "14",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@369",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_learningQuestion_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "12",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@370",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_learningQuestion_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "13",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@371",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_learningQuestion_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "14",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@422",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_passDevice",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Ich bin bereit",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@422",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_passDevice_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Ich bin bereit",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@473",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_gameOver",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Ergebnis ansehen",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        544.761901855469,
+        52.0
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumoCardsTable/@CanvasLayer@197/@Control@198/Decision/@ScrollContainer@214/@VBoxContainer@215/@Button@473",
+      "pixels": [
+        1430.0,
+        136.5
+      ],
+      "scope": "cards_gameOver_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Ergebnis ansehen",
+      "viewport_logical": [
+        2400.0,
+        1080.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1430.0,
+        136.5
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        82.025634765625,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@HBoxContainer@675/@Button@676",
+      "pixels": [
+        215.317291259766,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "‹ Spiele",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        215.31729221344,
+        126.13138961792
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        52.0162582397461,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 2,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@HBoxContainer@675/@Button@679",
+      "pixels": [
+        136.542678833008,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Ⅱ",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        136.542673110962,
+        126.13138961792
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        215.06721496582,
+        86.0896835327148
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 2,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@HBoxContainer@683/@Button@684",
+      "pixels": [
+        564.551452636719,
+        225.985412597656
+      ],
+      "scope": "rhythm_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "1 / D",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        564.551436901093,
+        225.985406398773
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        216.067520141602,
+        86.0896835327148
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 2,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@HBoxContainer@683/@Button@685",
+      "pixels": [
+        567.17724609375,
+        225.985412597656
+      ],
+      "scope": "rhythm_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "2 / F",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        567.177257537842,
+        225.985406398773
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        215.06721496582,
+        86.0896835327148
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 2,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@HBoxContainer@683/@Button@686",
+      "pixels": [
+        564.551452636719,
+        225.985412597656
+      ],
+      "scope": "rhythm_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "3 / G",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        564.551436901093,
+        225.985406398773
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        216.067520141602,
+        86.0896835327148
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 2,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@HBoxContainer@683/@Button@687",
+      "pixels": [
+        567.17724609375,
+        225.985412597656
+      ],
+      "scope": "rhythm_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "4 / H",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        567.177257537842,
+        225.985406398773
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        548.171325683594,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@694",
+      "pixels": [
+        1438.94970703125,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Modus: Freies Spielen",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1438.9497089386,
+        126.13138961792
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        548.171325683594,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@697",
+      "pixels": [
+        1438.94970703125,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "♫  Sternentanz  ·  1/4",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1438.9497089386,
+        52.5547456741333
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        548.171325683594,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@698",
+      "pixels": [
+        1438.94970703125,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Entdecken · mehr Zeit",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        548.171325683594,
+        48.0500564575195
+      ],
+      "fully_in_view": false,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@699",
+      "pixels": [
+        1438.94970703125,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Los geht’s!",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        548.171325683594,
+        48.0500564575195
+      ],
+      "fully_in_view": false,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@700",
+      "pixels": [
+        1438.94970703125,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "‹ Zur Spielewelt",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        548.171325683594,
+        48.0500564575195
+      ],
+      "fully_in_view": false,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@694",
+      "pixels": [
+        1438.94970703125,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Modus: Freies Spielen",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        548.171325683594,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@697",
+      "pixels": [
+        1438.94970703125,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "♫  Sternentanz  ·  1/4",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1438.9497089386,
+        112.992703199387
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        548.171325683594,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@698",
+      "pixels": [
+        1438.94970703125,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Entdecken · mehr Zeit",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1438.9497089386,
+        126.13138961792
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        548.171325683594,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@699",
+      "pixels": [
+        1438.94970703125,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Los geht’s!",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1438.9497089386,
+        126.13138961792
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        548.171325683594,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@700",
+      "pixels": [
+        1438.94970703125,
+        126.131393432617
+      ],
+      "scope": "rhythm_menu_scrolled",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "‹ Zur Spielewelt",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1438.9497089386,
+        126.13138961792
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        215.06721496582,
+        86.0896835327148
+      ],
+      "fully_in_view": true,
+      "input_contract": "_lane_at uses the exact get_global_rect, not a smaller displayed glyph",
+      "meets_48dp": true,
+      "mouse_filter": 2,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@HBoxContainer@683/@Button@684",
+      "pixels": [
+        564.551452636719,
+        225.985412597656
+      ],
+      "scope": "rhythm_lane_actual_manual_hit",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "1 / D",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        564.551436901093,
+        225.985406398773
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        216.067520141602,
+        86.0896835327148
+      ],
+      "fully_in_view": true,
+      "input_contract": "_lane_at uses the exact get_global_rect, not a smaller displayed glyph",
+      "meets_48dp": true,
+      "mouse_filter": 2,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@HBoxContainer@683/@Button@685",
+      "pixels": [
+        567.17724609375,
+        225.985412597656
+      ],
+      "scope": "rhythm_lane_actual_manual_hit",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "2 / F",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        567.177257537842,
+        225.985406398773
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        215.06721496582,
+        86.0896835327148
+      ],
+      "fully_in_view": true,
+      "input_contract": "_lane_at uses the exact get_global_rect, not a smaller displayed glyph",
+      "meets_48dp": true,
+      "mouse_filter": 2,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@HBoxContainer@683/@Button@686",
+      "pixels": [
+        564.551452636719,
+        225.985412597656
+      ],
+      "scope": "rhythm_lane_actual_manual_hit",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "3 / G",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        564.551436901093,
+        225.985406398773
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        216.067520141602,
+        86.0896835327148
+      ],
+      "fully_in_view": true,
+      "input_contract": "_lane_at uses the exact get_global_rect, not a smaller displayed glyph",
+      "meets_48dp": true,
+      "mouse_filter": 2,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@HBoxContainer@683/@Button@687",
+      "pixels": [
+        567.17724609375,
+        225.985412597656
+      ],
+      "scope": "rhythm_lane_actual_manual_hit",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "4 / H",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        567.177257537842,
+        225.985406398773
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        52.0162582397461,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "_input uses the exact pause_button.get_global_rect while running",
+      "meets_48dp": true,
+      "mouse_filter": 2,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@HBoxContainer@675/@Button@679",
+      "pixels": [
+        136.542678833008,
+        126.131393432617
+      ],
+      "scope": "rhythm_pause_actual_manual_hit",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Ⅱ",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        136.542673110962,
+        126.13138961792
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        556.173828125,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@798",
+      "pixels": [
+        1459.95629882812,
+        126.131393432617
+      ],
+      "scope": "rhythm_pause_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Weiter im Takt",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1459.95627403259,
+        126.13138961792
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        556.173828125,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@799",
+      "pixels": [
+        1459.95629882812,
+        126.131393432617
+      ],
+      "scope": "rhythm_pause_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Lied neu starten",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1459.95627403259,
+        126.13138961792
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        556.173828125,
+        48.0500564575195
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/Sternenrhythmus/@CanvasLayer@673/@Control@674/@PanelContainer@688/@ScrollContainer@691/@VBoxContainer@692/@Button@800",
+      "pixels": [
+        1459.95629882812,
+        126.131393432617
+      ],
+      "scope": "rhythm_pause_menu",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Zur Spielewelt",
+      "viewport_logical": [
+        914.0,
+        411.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        1459.95627403259,
+        126.13138961792
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        46.8571434020996,
+        27.4285717010498
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": false,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@HBoxContainer@1293/@Button@1294",
+      "pixels": [
+        123.0,
+        72.0
+      ],
+      "scope": "treasure_play",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "‹ Spiele",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        123.0,
+        72.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        54.8571434020996,
+        27.4285717010498
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": false,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@HBoxContainer@1293/@Button@1297",
+      "pixels": [
+        144.0,
+        72.0
+      ],
+      "scope": "treasure_play",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Rucksack",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        144.0,
+        72.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        29.7142848968506,
+        27.4285717010498
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": false,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@HBoxContainer@1293/@Button@1298",
+      "pixels": [
+        78.0,
+        72.0
+      ],
+      "scope": "treasure_play",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Ⅱ",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        78.0,
+        72.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        62.8571434020996,
+        27.4285717010498
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": false,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@Button@1306",
+      "pixels": [
+        165.0,
+        72.0
+      ],
+      "scope": "treasure_play",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Springen",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        165.0,
+        72.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        107.428573608398,
+        107.428573608398
+      ],
+      "fully_in_view": true,
+      "input_contract": "production joystick Control receives gui_input",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@Control@1302",
+      "pixels": [
+        282.0,
+        282.0
+      ],
+      "scope": "treasure_stick",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        282.0,
+        282.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        86.8571395874023,
+        86.8571395874023
+      ],
+      "fully_in_view": true,
+      "input_contract": "production KartTouchAction Control receives gui_input",
+      "meets_48dp": true,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@Control@1303",
+      "pixels": [
+        228.0,
+        228.0
+      ],
+      "scope": "treasure_action",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        228.0,
+        228.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        283.428558349609,
+        27.4285717010498
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": false,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@PanelContainer@1307/@VBoxContainer@1308/@Button@1311",
+      "pixels": [
+        744.0,
+        72.0
+      ],
+      "scope": "treasure_inventory",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Weiter erkunden",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        744.0,
+        72.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        283.428558349609,
+        27.4285717010498
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": false,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@PanelContainer@1307/@VBoxContainer@1308/@Button@1314",
+      "pixels": [
+        744.0,
+        72.0
+      ],
+      "scope": "treasure_clue",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Ein Tropfen Wasser",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        744.0,
+        72.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        283.428558349609,
+        27.4285717010498
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": false,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@PanelContainer@1307/@VBoxContainer@1308/@Button@1315",
+      "pixels": [
+        744.0,
+        72.0
+      ],
+      "scope": "treasure_clue",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Ein Stein im Ast",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        744.0,
+        72.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        283.428558349609,
+        27.4285717010498
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": false,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@PanelContainer@1307/@VBoxContainer@1308/@Button@1316",
+      "pixels": [
+        744.0,
+        72.0
+      ],
+      "scope": "treasure_clue",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Ein leerer Becher",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        744.0,
+        72.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        283.428558349609,
+        27.4285717010498
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": false,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@PanelContainer@1307/@VBoxContainer@1308/@Button@1317",
+      "pixels": [
+        744.0,
+        72.0
+      ],
+      "scope": "treasure_clue",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Weiter erkunden",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        744.0,
+        72.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        283.428558349609,
+        27.4285717010498
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": false,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@PanelContainer@1307/@VBoxContainer@1308/@Button@1319",
+      "pixels": [
+        744.0,
+        72.0
+      ],
+      "scope": "treasure_pause",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Weiter erkunden",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        744.0,
+        72.0
+      ]
+    },
+    {
+      "canvas_global_scale": [
+        1.0,
+        1.0
+      ],
+      "density": 2.625,
+      "disabled": false,
+      "dp": [
+        283.428558349609,
+        27.4285717010498
+      ],
+      "fully_in_view": true,
+      "input_contract": "Control GUI rectangle",
+      "meets_48dp": false,
+      "mouse_filter": 0,
+      "node": "/root/LumosSternenschatz/@CanvasLayer@1291/@Control@1292/@PanelContainer@1307/@VBoxContainer@1308/@Button@1320",
+      "pixels": [
+        744.0,
+        72.0
+      ],
+      "scope": "treasure_pause",
+      "surface_pixels": [
+        2400,
+        1080
+      ],
+      "text": "Zur Spielewelt",
+      "viewport_logical": [
+        1600.0,
+        720.0
+      ],
+      "visible": true,
+      "visible_pixels_after_clipping": [
+        744.0,
+        72.0
+      ]
+    }
+  ],
+  "evidence_files": {
+    "probe": "/tmp/lumo_cards_rhythm_treasure_density_review.gd",
+    "probe_sha256": "c30ab99d4af89a95fabe3da1176e52d10e5c9cd9cea19b75e31261e521fd134b",
+    "log": "/tmp/lumo-cards-rhythm-treasure-density-review.log",
+    "log_sha256": "4de28c2e11567da15f2ce210bb814803e1bbbce969637381305f09cfbf48db1b",
+    "raw_measurement_sha256": "9c24771408a99ac218d581c912c3b4f780f9bcdd8736a1627d29ed37c1ddbb44"
+  },
+  "limits": [
+    "This is a real headless layout/input measurement with an Android-density fixture, not a screenshot or a physical-device touch test.",
+    "Visibility is recorded separately from full rectangle size; partially clipped scrollable controls are not automatically classified as undersized.",
+    "No assertions about Android frame rate, touch latency or final release acceptance."
+  ]
+}

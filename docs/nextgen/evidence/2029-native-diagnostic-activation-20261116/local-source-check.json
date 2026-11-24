@@ -1,0 +1,32 @@
+{
+  "kind": "local-committed-source-check",
+  "ci_runtime_executed": false,
+  "qa_workflow_run": null,
+  "commit": "eab96422d13e986e10d5cf28cda995cd03d1c2cc",
+  "tree": "0db92d99d263f16fd42f27ed0865893c13f56518",
+  "parent": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "changes": [
+    {
+      "status": "A",
+      "path": ".github/probes/lumo_nextgen_2029_native_diagnostic.py"
+    },
+    {
+      "status": "A",
+      "path": ".github/probes/run_lumo_nextgen_2029_native_diagnostic.sh"
+    },
+    {
+      "status": "A",
+      "path": ".github/workflows/lumo-nextgen-2029-native-diagnostic.yml"
+    },
+    {
+      "status": "A",
+      "path": "docs/nextgen/NATIVE_DIAGNOSTIC_2029.md"
+    },
+    {
+      "status": "A",
+      "path": "tools/android_qa/tests/test_nextgen_2029_native_diagnostic.py"
+    }
+  ],
+  "runtime_source_changed": false,
+  "existing_acceptance_gates_changed": false
+}

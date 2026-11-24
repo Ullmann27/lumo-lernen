@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+"""Run native Banane/pattern acceptance after this build's complete Android tour.
+
+The historical 2027 downloader/replay remains pinned to its original bytes.
+This entry point accepts identity only from the current build job's outputs,
+checks the real candidate hash/provenance again and retains every previous-tour,
+same-device, synthetic-profile and installed-hash gate before the existing reset.
+"""
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import json
+import os
+from pathlib import Path
+import shutil
+import sys
+import time
+import traceback
+import uuid
+
+HERE = Path(__file__).resolve().parent
+SPEC = importlib.util.spec_from_file_location("current_reference_helpers", HERE / "lumo_nextgen_reference_android_probe.py")
+reference = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(reference)
+READER_SPEC = importlib.util.spec_from_file_location("current_native_reader", HERE / "lumo_nextgen_native_reader.py")
+native_reader = importlib.util.module_from_spec(READER_SPEC)
+READER_SPEC.loader.exec_module(native_reader)
+STOP_SPEC = importlib.util.spec_from_file_location("current_native_stop", HERE / "lumo_nextgen_current_native_stop.py")
+native_stop = importlib.util.module_from_spec(STOP_SPEC)
+STOP_SPEC.loader.exec_module(native_stop)
+learning = reference.learning
+require, digest, read_json = reference.require, reference.digest, reference.read_json
+
+
+def current_candidate(args) -> dict:
+    require(args.expected_version > reference.VERSION_CODE, "Current candidate must be newer than the rejected 2027 build")
+    proof = read_json((args.candidate / "BUILD-PROVENANCE.json").read_text())
+    identity = learning.verify_provenance(proof, sha256=args.expected_sha256, source=args.expected_source,
+                                          native=args.expected_native, version=args.expected_version,
+                                          certificate=args.expected_certificate)
+    require(identity["versionName"] == args.expected_version_name, "Current candidate versionName mismatch")
+    require(args.qa_commit == args.expected_source, "Current QA and APK must use the same source commit")
+    require(digest(args.candidate / "Lumo-Lernen-Neu.apk") == identity["sha256"], "Current candidate APK hash mismatch")
+    return identity
+
+
+def verify_current_original(original, identity, original_probe_sha256):
+    reference.verify_complete_original(original, identity)
+    require(learning.valid_hex(original_probe_sha256, 64) and
+            original.get("probe_sha256") == original_probe_sha256,
+            "Original result was not produced by this checkout's complete probe")
+    why = original.get("native_learning", {}).get("why_question", {})
+    require(why.get("question") == "Warum zuerst zwei?" and
+            why.get("input_method") == "observed Godot input plus real Android keyboard text" and
+            type(why.get("observed_initial_moved")) is int and why["observed_initial_moved"] == 0 and
+            type(why.get("observed_final_moved")) is int and why["observed_final_moved"] == 2 and
+            why.get("manual_move_buttons_pressed_after_question") is False and
+            why.get("answer_or_score_api_called") is False and
+            learning.why_response([why.get("response", {}).get("text", "")]) and
+            why.get("playback", {}).get("utterance_ids") and
+            why.get("video", {}).get("whole_block_within_recording_limit") is True,
+            "Current native why-two question, automatic demonstration or playback was not observed")
+
+
+def verify_ci_context(args, environment):
+    require(type(args.workflow_run_id) is int and args.workflow_run_id > 0, "Current workflow run ID required")
+    require(environment.get("GITHUB_REPOSITORY") == reference.REPOSITORY and
+            environment.get("GITHUB_SHA") == args.qa_commit == args.expected_source and
+            environment.get("GITHUB_RUN_ID") == str(args.workflow_run_id),
+            "Current candidate must be checked within its own source workflow run")
+
+
+class CurrentCandidateProbe(reference.ReferenceProbe):
+    def banana(self):
+        super().banana()
+        if self.args.expected_version >= 2032:
+            native_stop.run_current_native_stop(self)
+
+    def native_see(self, label, tag, *, exact=False):
+        if label in ("Was kommt als Nächstes", "Das Wort hat 3 Silben") and not exact:
+            return native_reader.see_wrapped_text(self.reader, self.out, label, self.fresh(tag))
+        return super().native_see(label, tag, exact=exact)
+
+    def candidate_identity(self):
+        return current_candidate(self.args)
+
+    def verify_previous_result(self, original, identity):
+        verify_current_original(original, identity, digest(HERE / "lumo_nextgen_learning_android_probe.py"))
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    for flag in ("candidate", "previous-probe-out", "out"):
+        parser.add_argument("--" + flag, type=Path, required=True)
+    for flag in ("qa-commit", "expected-sha256", "expected-source", "expected-native",
+                 "expected-certificate", "expected-version-name"):
+        parser.add_argument("--" + flag, required=True)
+    parser.add_argument("--expected-version", type=int, required=True)
+    parser.add_argument("--workflow-run-id", type=int, required=True)
+    parser.add_argument("--submit-core-answer", action="store_true")
+    parser.add_argument("--serial")
+    args = parser.parse_args(argv)
+    require(not args.out.exists() or not any(args.out.iterdir()), "Current runtime evidence must be new")
+    args.out.mkdir(parents=True, exist_ok=True)
+    result = {"schema": "lumo.nextgen.reference.android.probe", "version": 1, "status": "RUNNING",
+              "mode": "current-build", "run_id": uuid.uuid4().hex,
+              "started_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+              "qa_commit": args.qa_commit, "apk_source": args.expected_source,
+              "native_source": args.expected_native, "source_workflow_run": args.workflow_run_id,
+              "probe_sha256": digest(Path(__file__)),
+              "reference_probe_sha256": digest(HERE / "lumo_nextgen_reference_android_probe.py"),
+              "historical_tour_pass_used": False, "private_app_data_written_by_probe": False,
+              "apk_rebuilt_by_probe": False, "fullModernizationComplete": False}
+    probe = None
+    try:
+        verify_ci_context(args, os.environ)
+        current_candidate(args)
+        args.apk = args.candidate / "Lumo-Lernen-Neu.apk"
+        args.provenance = args.candidate / "BUILD-PROVENANCE.json"
+        args.conversation_ui = "ea"
+        require(shutil.which("ffprobe"), "ffprobe is required for actual video validation")
+        probe = CurrentCandidateProbe(args, result)
+        probe.run()
+        return 0
+    except Exception as error:
+        result.update(status="FAIL", error=str(error), traceback=traceback.format_exc())
+        if probe:
+            try:
+                probe.capture("failure-current-screen", native=True)
+            except Exception as failure:
+                result["failure_capture_error"] = str(failure)
+        print(traceback.format_exc(), file=sys.stderr, flush=True)
+        return 1
+    finally:
+        result["finished_utc"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        reference.write_json(args.out / "reference-android-result.json", result)
+        print(json.dumps({key: result[key] for key in ("status", "run_id", "qa_commit", "apk_source")}), flush=True)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

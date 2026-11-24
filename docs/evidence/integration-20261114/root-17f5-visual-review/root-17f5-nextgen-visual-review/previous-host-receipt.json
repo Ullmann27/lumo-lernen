@@ -1,0 +1,257 @@
+{
+  "schema": 1,
+  "status": "approved",
+  "versionCode": 2019,
+  "native_revision": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+  "native_workflow_run_id": 43489950659,
+  "native_artifact_id": 14072020645,
+  "native_artifact_sha256": "69b9112e524a6e204d8504c787768513e57e2c59a236d1488b8d6ec4e49cada0",
+  "reviewed_by": "Root integration reviewer",
+  "reviewed_at": "2026-11-13T19:52:18.453128+00:00",
+  "notes": "Root directly inspected all 22 current originals: nine separate production families, three Touch groups, four Village states and six Puzzle-menu lifecycle states. Each selected original was compared byte for byte with this final 993c Nextgen bundle. Findings retain observed truncation, wrapping and scroll viewport limits. Acceptance covers current renderer captures and the frozen native contract; Android application, natural touch and device performance remain separate gates.",
+  "images": [
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8-learning-bridge_hundred-complete-2400x1080.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "findings": "Opened the current Worlds 2400x1080 original. The 180 + 50 lesson displays 230, a completed group of ten tens and three remaining tens; both equality signs have two bars. Lumo, the explanation, Noch einmal and Zur Aufgabe are visible. Ein Objekt zeigen is visibly disabled in this completed state."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/e8f1f9383986abf68fa0d0a5c47f7f74aed83bb8fe063a2606559c5527dd80a8-jump-jump_2400x1080_airborne.png",
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_airborne.png",
+      "sha256": "e8f1f9383986abf68fa0d0a5c47f7f74aed83bb8fe063a2606559c5527dd80a8",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "findings": "Opened the current 2400x1080 airborne frame. Lumo is centered above the first island; the route of floating platforms, collectible stars and the next landing platform are visible. Island, crystal and stage labels are readable, with separate Spiele, Pause, movement and SPRINGEN controls. The image alone does not establish jump timing or input response."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/5ec8579dfd82daffdfffdce9f2188a95fbd5092b57b9645580f1bbc6e0ade70c-build-03_build_walking.png",
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/03_build_walking.png",
+      "sha256": "5ec8579dfd82daffdfffdce9f2188a95fbd5092b57b9645580f1bbc6e0ade70c",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Opened the current 1280x720 walking frame. Lumo stands beside the constructed wall, with the river, bridge and surrounding islands visible. Welt/Teile/Ebene status, the movement instruction, Weiterbauen, Ansehen and SPRINGEN are readable. The wall partly occludes the character from this camera angle; this is preserved as an actual scene observation."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/5bb22d71f741e27dd8d16fa4065af80f9f182946ef6c3ec14816c38fe0e13adf-settlement-04_settlement_lumo.png",
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/04_settlement_lumo.png",
+      "sha256": "5bb22d71f741e27dd8d16fa4065af80f9f182946ef6c3ec14816c38fe0e13adf",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Opened the separate current classic settlement 1280x720 original. Lumo, plots, buildings and trees are visible below the LUMO WETTBAU overlay. Resources, population, day, stage goals and opponent status are readable, and Planen, pause, Bauwelt, movement and jump controls are separated. The overlay covers part of the distant world labels; this image is not substituted for the separate Village capture set."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/a1b4ba93b2bbd663aaa0ef81b41f4cdd1e2c7d9c0cf8709c5e4e9ff6522ad080-garage-garage-2400x1080.png",
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-2400x1080.png",
+      "sha256": "a1b4ba93b2bbd663aaa0ef81b41f4cdd1e2c7d9c0cf8709c5e4e9ff6522ad080",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "findings": "Opened the current 2400x1080 garage original. Lumo stands beside the selected Comet kart on the platform. All five top tabs, selected Comet card, view selector, Lack, Teile & Effekte, Kart-Menü and Rennen starten are readable. The next kart is only partly visible in the scrollable list; no claim is made that all kart entries fit in this viewport."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31-cards-cards-table-412x915.png",
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Opened the current 412x915 portrait card-table original. Lumo and the card table are visible beneath readable turn and hand-count labels. Three hand cards, page indicator 1/3, both paging arrows and Ziehen are visible; Karte legen is visibly disabled in this captured state. Back and pause remain separate at the top."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/aaa1be61a7b404e1bee9109bcf3cc2c4b6d0d1cda427281928403ba3c13f3db4-rhythm-02_rhythm_slide.png",
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "sha256": "aaa1be61a7b404e1bee9109bcf3cc2c4b6d0d1cda427281928403ba3c13f3db4",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Opened the current 1280x720 rhythm original. Four luminous tracks and their colored targets are visible with Lumo on stage. Score, next-track instruction, Wiesenbühne progress and four bottom lane controls are readable and separated. The still image does not verify music timing or latency."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9-puzzle-puzzle_rotation_placed.png",
+      "module": "puzzle",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Opened the separate current 1280x720 placed-rotation original. A single piece sits on the central board, remaining pieces occupy the side trays, and the header reports Drehpuzzle, 1/6 Teile and 0 Tipps. The bottom actions are readable; Drehen is visibly disabled in this state. This is the production rotation family image, separate from the six menu-lifecycle captures."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/83d68a6a309f01c89ec30fa63adc1f58dde4157673cf2b2bdf690e685d38be55-treasure-treasure_garden_first.png",
+      "module": "treasure",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/treasure_exploration_regression/treasure_garden_first.png",
+      "sha256": "83d68a6a309f01c89ec30fa63adc1f58dde4157673cf2b2bdf690e685d38be55",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Opened the current 1280x720 garden frame. Lumo is visible among the flowers beside the castle, with the Mondblüte discovery message and the next clue readable. Spiele, Rucksack, pause, movement, Springen and Ansehen controls are separated. The discovery counter wraps onto a second line; the static image does not verify exploration interaction."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/cef48afdf710990c9d46784b4b3bd8d92ddd6d6e3344844b70e0b14c2c989c9e-garage-workshop-1080x2400-performance.png",
+      "module": "garage",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-performance.png",
+      "sha256": "cef48afdf710990c9d46784b4b3bd8d92ddd6d6e3344844b70e0b14c2c989c9e",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "findings": "Opened the current 1080x2400 portrait Workshop original. Lumo and the kart are clearly visible above the five labeled tuning bars; the free-star count, back action, and Prüflauf starten button are readable. Motor, Bremsen and Reifen cards have separated text and large upgrade actions. The workshop title is visibly ellipsized, and the lower content is a scrolled viewport: its top starts part-way through the performance details and the vertical scrollbar is visible. This static view does not establish natural scrolling, touch interaction, simulation accuracy or device frame rate."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/564ac313536e0c917d69e5fc66b77c533c8ee4e287d1692d5a13893e5214bd04-treasure-treasure-1080x2400-question.png",
+      "module": "treasure",
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-1080x2400-question.png",
+      "sha256": "564ac313536e0c917d69e5fc66b77c533c8ee4e287d1692d5a13893e5214bd04",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "findings": "Opened the current1080x2400 portrait Treasure original. The old star-tree question, three answer choices and Weiter erkunden are readable and fully visible within the central panel. Header navigation, backpack/pause, exploration instruction and bottom movement/look controls remain separated. The world title is visibly ellipsized and the discovery counter wraps onto another line; the review preserves these actual compact-layout limits instead of claiming every label is fully expanded. No touch gesture was executed by this static inspection."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/572cb837e0ad1c94abc54f3d96ee0bd6e3bc267de402685d16cd531afdebe7c0-build-build-dialog-640x360-current-goal.png",
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "sha256": "572cb837e0ad1c94abc54f3d96ee0bd6e3bc267de402685d16cd531afdebe7c0",
+      "dimensions": [
+        640,
+        360
+      ],
+      "findings": "Root opened the actual current 640x360 Build-dialog original. Aktuelles Bauziel, Verbinde die Inseln and the wrapped river-path instruction are legible. Both Mein Bauwerk testen and Abbrechen remain fully visible inside the foreground dialog. The underlying toolbar is partially obscured by the modal, as visible; this review does not interpret background controls as exposed or claim execution of a natural touch gesture."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/013f72f6d938297df05b26a3da165cbb0beea366be170b2860b8b8c158db1cf5-settlement-village-overview-1280x720.png",
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-overview-1280x720.png",
+      "sha256": "013f72f6d938297df05b26a3da165cbb0beea366be170b2860b8b8c158db1cf5",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Opened the current 1280x720 Village overview. The market, trader, inhabitants and nine brown plots are visible within the grass grid. Resources, treasury, satisfaction, water and chapter goals are readable. The two lower tool rows show horizontal scrollbars and some edge entries are partly outside their viewports; Nächster Tag remains fully visible."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/4f8504d727f8dbf84f1290d7faa2f8887919887eeb6b56fe3f215e1fe25af557-settlement-village-chapters-412x915.png",
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-chapters-412x915.png",
+      "sha256": "4f8504d727f8dbf84f1290d7faa2f8887919887eeb6b56fe3f215e1fe25af557",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Opened the current 412x915 portrait Village chapters image. Deine Dorfgeschichte, Schließen, the chapter title, narrative, both building goals and Lumo's tip fit in the central panel and are readable. The world title is ellipsized in the header, and lower building/action rows are horizontally cropped with scrollbars. Nächster Tag remains a separate visible action; no natural scrolling was performed."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/e6ea86ac81244b1b8d7d70a16e6a936d78a747b098ca67e6f7afb74e8e4c1d05-settlement-village-trader-2176x1812.png",
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-trader-2176x1812.png",
+      "sha256": "e6ea86ac81244b1b8d7d70a16e6a936d78a747b098ca67e6f7afb74e8e4c1d05",
+      "dimensions": [
+        2176,
+        1812
+      ],
+      "findings": "Opened the current 2176x1812 Village trader original. Tildas Lieferwagen, Schließen, the remaining-delivery count and all three offers are fully readable with distinct large buttons. The modal intentionally overlays parts of the village header and lower building row; background action rows retain horizontal scrollbars. No purchase or natural touch action was performed."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/1c4da4ab1bcd3df52ab18b0cf2060d1cba2300accbff3fafe4dea377e7a25953-settlement-village-treasury-640x360.png",
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-treasury-640x360.png",
+      "sha256": "1c4da4ab1bcd3df52ab18b0cf2060d1cba2300accbff3fafe4dea377e7a25953",
+      "dimensions": [
+        640,
+        360
+      ],
+      "findings": "Opened the current 640x360 Village treasury original. Unsere Stadtkasse, Schließen, zero coins and the contribution explanation are readable. The shared-playground action is visibly disabled at zero coins, and its description is readable. A vertical scrollbar marks the modal viewport; the underlying village is partly obscured by the modal."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb-puzzle-960x540-rotation-menu.png",
+      "module": "puzzle",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "dimensions": [
+        960,
+        540
+      ],
+      "findings": "Opened the current 960x540 rotation-menu original. The centered selection panel shows the image choice, Mini / 6 Teile, Drehpuzzle mode, Neues Puzzle beginnen and Zur Spielewelt fully within the frame. Bottom puzzle actions remain visible behind the modal. This observation concerns the original static menu state."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f-puzzle-960x540-rotation-play.png",
+      "module": "puzzle",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "dimensions": [
+        960,
+        540
+      ],
+      "findings": "Opened the current 960x540 rotation-play original. The menu is absent, the header reports Mini / Drehpuzzle / 0 of 6 pieces, and the quarter-turn instruction is readable. Pieces occupy both trays around the empty board. Drehen and all remaining bottom actions fit visibly across the frame."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/aa9180953c51ee59d0cabfc4d605fd1907c3e3fc66d0301ad908df9be5a95ad4-puzzle-960x540-classic-play.png",
+      "module": "puzzle",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "sha256": "aa9180953c51ee59d0cabfc4d605fd1907c3e3fc66d0301ad908df9be5a95ad4",
+      "dimensions": [
+        960,
+        540
+      ],
+      "findings": "Opened the current 960x540 classic-play original. The header shows Mini / 1 of 6 pieces and the successful-placement message, with one piece on the board and the others in the side trays. The visible bottom row includes paging, edge pieces, image, hint, save and new puzzle; no Drehen control is displayed in this classic state."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec-puzzle-640x360-rotation-menu.png",
+      "module": "puzzle",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "dimensions": [
+        640,
+        360
+      ],
+      "findings": "Opened the current 640x360 rotation-menu original. Image choice, Mini / 6 Teile, Drehpuzzle and Neues Puzzle beginnen are readable. The last Zur Spielewelt control is partly below the modal viewport, and a vertical scrollbar is visible. The background toolbar also overflows horizontally. This review explicitly does not claim that every action fits or that natural scrolling was tested."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/d1eb675bc182b34fa7b1b385119ba0e35faa267d6dc0fd87922f12c4d092b07d-puzzle-640x360-rotation-play.png",
+      "module": "puzzle",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "sha256": "d1eb675bc182b34fa7b1b385119ba0e35faa267d6dc0fd87922f12c4d092b07d",
+      "dimensions": [
+        640,
+        360
+      ],
+      "findings": "Opened the current 640x360 rotation-play original. The menu is absent, and the Drehpuzzle status, quarter-turn instruction, board and side pieces are visible. Drehen through Ein Tipp are readable in the current toolbar viewport; a horizontal scrollbar indicates additional actions outside that viewport. No gesture or frame-rate measurement was performed."
+    },
+    {
+      "path": "docs/evidence/nextgen-2019-reviewed/f50cb8748923cfa1ea83c04bcdcb4414c141f1c78b60f15f74f45eda75492005-puzzle-640x360-classic-play.png",
+      "module": "puzzle",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "sha256": "f50cb8748923cfa1ea83c04bcdcb4414c141f1c78b60f15f74f45eda75492005",
+      "dimensions": [
+        640,
+        360
+      ],
+      "findings": "Opened the current 640x360 classic-play original. The header reports 1 of 6 pieces and successful placement; one piece is visible on the board. Paging through Speichern are readable, while the following action is partly beyond the horizontal viewport. The scrollbar and absence of a visible Drehen control match this captured classic state."
+    }
+  ],
+  "native_profile": "nextgen-2019"
+}

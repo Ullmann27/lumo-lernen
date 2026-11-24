@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "scope": "Independent read-only source/dependency review; no Dart/Flutter tests or edits",
+  "source_freeze_sha256": "28959c1988fceaf417aed080a308c3daaeab77223b3dafb228ae627f26fa25be",
+  "base": {
+    "head": "0411b62f59425bc4f36226ca59e9ed5ef901709a",
+    "tree": "6a439dddafaaf7319cfabe28a2149e8de8c363df"
+  },
+  "producer": {
+    "head": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "pr": 491
+  },
+  "source_identities": [
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "bytes": 49784,
+      "sha256": "5db29aaa2d18a8b8eb3dc4f3dffd433b13ec364e7768fb27a90a7d16926854d2",
+      "git_blob": "85fbad4a0b09753a7f22663690a9660f98382f39"
+    },
+    {
+      "path": "test/math_exact_topic_selection_test.dart",
+      "bytes": 402,
+      "sha256": "bde1d7a8e48f9ebaa97fb043d9a27ae5a00f31e13189f52d73c05bca168463cc",
+      "git_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8"
+    },
+    {
+      "path": "test/support/math_exact_topic_selection_contract.dart",
+      "bytes": 7699,
+      "sha256": "645b5522f49de05500da645a0961f8c00c5a8b628e2a81fb9a4759a0c434668b",
+      "git_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2"
+    }
+  ],
+  "conclusion": "No concrete source blocker identified",
+  "findings": [
+    "The three final files match the already independently retrieved immutable aab09275 producer bytes; the exact f5febd9c baseline is unchanged on0411.",
+    "generate chooses cumulative exact-unit templates before current-grade aliases. Current-grade exact templates remain preferred in strict slots when available; prior aliases/general fallback remain when no exact template exists.",
+    "All template records and generator bytes outside the single generate delta remain unchanged.",
+    "The new package-free contract calls real MathTaskTemplates and ExerciseFactory.nextExact. It checks actual template pattern/difficulty/answer, exact curriculum identity, same-topic current/earlier-grade reachability and legacy aliases; it does not merely relabel output units.",
+    "The immutable0411 nextExact dependency was directly read and hash matched: ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65 / cf7dfba7e5d587be0eef4cbec853f016211ee0715b460f1c365064142165c778. It validates allowed grade/subject/unit, then rejects changed output identity.",
+    "No existing test assertions were removed by these two new test paths; foreign workflows/pins/branch changes are outside this proposal."
+  ],
+  "limits": [
+    "Runtime outcomes require the separately authorized later original run.",
+    "The3d Android vehicle-selection failure is unrelated to this generator source change."
+  ],
+  "tests_executed": 0,
+  "source_edits": 0,
+  "git_mutations": 0
+}

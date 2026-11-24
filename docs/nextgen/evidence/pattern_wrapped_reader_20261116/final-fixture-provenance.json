@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_nextgen_native_reader.py",
+    "-k",
+    "test_current_candidate_reads_complete_question_from_actual_wrapped_frame",
+    "-v"
+  ],
+  "baseCommit": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+  "testSha256": "7278cc973050f2f3db82ce6a1e4c7960630875163965104101142a85bcdd940b",
+  "readerSha256": "51c4e7a0e1fdda803714a56568553642609dbd183cf6e9d6a8729bee6bb80d97",
+  "runs": [
+    {
+      "phase": "red",
+      "exitCode": 1,
+      "entrySha256": "be77d5ee20ddff7620f93b76257e30bc9491bc485582739247c20daf0b71a1cc"
+    },
+    {
+      "phase": "green",
+      "exitCode": 0,
+      "entrySha256": "7f5074b592e4dde1b8159575ec578ec36a2fae36d50d8e3642715ce8ca01b97c"
+    }
+  ],
+  "scope": "Identical final fixture regression against unchanged committed entry, then fixed entry. Historical helpers and real PNG/JSON unchanged. Transport replay only; these single-test runs overlap the 11-test suite."
+}

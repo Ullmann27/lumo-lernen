@@ -1,7 +1,10 @@
 import '../../../core/primary_school_word_data.dart';
+import '../../../core/checked_task_patterns.dart';
+import '../../../core/math_task_templates.dart';
 import '../../../core/safe_fallback_pool.dart';
 import '../../../core/school_exercise_generator.dart';
 import '../../../core/task_quality_guard.dart';
+import '../../../core/task_hint_service.dart';
 import '../../../core/writing_target_parser.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../domain/learning/seed_memory_service.dart';
@@ -16,6 +19,7 @@ class LegacyLumoTaskAdapter {
 
   static const _qualityGuard = TaskQualityGuard();
   static const _fallbackPool = SafeFallbackPool();
+  static const _taskHints = TaskHintService();
   static int _fallbackCounter = 0;
 
   TaskInstance toTaskInstance({
@@ -33,8 +37,23 @@ class LegacyLumoTaskAdapter {
     final taskType = isShapeTrace
         ? TaskType.shapeTrace
         : (fixedTask.handwriting ? TaskType.writingCanvas : _taskType(fixedTask.visual));
-    final visualType = _visual(fixedTask.visual, handwriting: fixedTask.handwriting);
-    final correctAnswer = _payload(fixedTask.answer);
+    final visualData = _visualData(fixedTask);
+    final decimalOperation = visualData['operation'] == 'decimal_addition' ||
+        visualData['operation'] == 'decimal_subtraction';
+    // Decimal place values are not a count of whole objects. The exact
+    // scaled values remain available to the interactive place-value view.
+    final visualType = decimalOperation
+        ? VisualType.none
+        : fixedTask.subject == 'Mathematik' && fixedTask.unit == 'Rechengeschichten'
+            ? VisualType.storyStage
+            : _visual(fixedTask.visual, handwriting: fixedTask.handwriting);
+    // A semantically equivalent card (e.g. 0,50 for 0.5) must score exactly
+    // like the same card rendered below. Preserve its unit and punctuation.
+    final correctLabel = fixedTask.choices.isEmpty
+        ? fixedTask.answer
+        : fixedTask.choices.firstWhere(
+            (choice) => _qualityGuard.matchesAnswer(fixedTask, choice));
+    final correctAnswer = _payload(correctLabel);
 
     final rawSeed = '${fixedTask.id}|$childId|${fixedTask.prompt}|${fixedTask.answer}';
     final seedHash = SeedMemoryService.stableSeedHash(rawSeed);
@@ -50,6 +69,7 @@ class LegacyLumoTaskAdapter {
       difficulty: difficulty,
       parameters: <String, Object?>{
         'legacyId': fixedTask.id,
+        'grade': fixedTask.grade,
         'unit': fixedTask.unit,
         'visual': fixedTask.visual,
         if (fixedTask.handwriting) 'symbol': WritingTargetParser.parse(fixedTask.prompt),
@@ -67,11 +87,11 @@ class LegacyLumoTaskAdapter {
       correctAnswer: correctAnswer,
       visualPayload: VisualPayload(
         type: visualType,
-        data: _visualData(fixedTask),
+        data: visualData,
       ),
       helpPayload: HelpPayload(
         level: _helpLevel(fixedTask),
-        shortHint: fixedTask.explanation,
+        shortHint: _taskHints.explain(fixedTask),
         guidedSteps: _guidedSteps(fixedTask),
       ),
       generatedAt: generatedAt,
@@ -85,18 +105,48 @@ class LegacyLumoTaskAdapter {
     final sanitized = _sanitizeTask(task);
     if (_qualityGuard.validate(sanitized)) return sanitized;
     final fallback = _safeFallbackTask(sanitized);
-    final repaired = _sanitizeTask(fallback);
-    return _qualityGuard.validate(repaired) ? repaired : fallback;
+    if (_qualityGuard.validate(fallback)) return fallback;
+    // An unchecked fallback is still an unchecked task. Keep invalid content
+    // out of the renderer even when recovery cannot produce a valid task.
+    throw StateError('No validated replacement for ${task.subject}/${task.unit}');
   }
 
   LumoTask _safeFallbackTask(LumoTask task) {
-    if (task.handwriting) return task;
-    return _fallbackPool.pick(
+    if (task.handwriting || task.visual == 'shape_trace' ||
+        task.grade < 1 || task.grade > 4) {
+      return task;
+    }
+    // Prefer a new checked variant of the exact selected lesson. A broken
+    // pattern must not become spelling, or division become an addition task.
+    LumoTask? replacement;
+    if (Curriculum.exerciseSubjectsForGrade(task.grade).contains(task.subject) &&
+        Curriculum.unitsForGrade(task.subject, task.grade).contains(task.unit)) {
+      try {
+        replacement = ExerciseFactory(seed: ++_fallbackCounter).nextExact(
+          grade: task.grade, subject: task.subject, unit: task.unit);
+      } on StateError {
+        // The small local fallback below still has to pass the same gate.
+      }
+    }
+    replacement ??= _fallbackPool.pick(
       subject: task.subject,
       grade: task.grade,
       counter: _fallbackCounter++,
       unit: task.unit,
-      difficulty: task.difficulty,
+      difficulty: task.difficulty.clamp(1, task.grade),
+      missionTag: task.missionTag,
+    );
+    return LumoTask(
+      id: task.id,
+      grade: task.grade,
+      subject: task.subject,
+      unit: replacement.unit,
+      prompt: replacement.prompt,
+      choices: replacement.choices,
+      answer: replacement.answer,
+      explanation: replacement.explanation,
+      visual: replacement.visual,
+      difficulty: task.difficulty.clamp(1, task.grade),
       missionTag: task.missionTag,
     );
   }
@@ -589,6 +639,7 @@ class LegacyLumoTaskAdapter {
       'dots' => VisualType.dots,
       'line' => VisualType.numberLine,
       'sequence' => VisualType.numberLine,
+      'pattern' => VisualType.sequence,
       'shape' => VisualType.shape,
       'syllables' => VisualType.syllables,
       'writing' => VisualType.writingPath,
@@ -600,6 +651,7 @@ class LegacyLumoTaskAdapter {
       // Heinz' neue Templates (Mai 2026):
       'number_line' => VisualType.numberLine,
       'quantity_compare' => VisualType.quantityCompare,
+      'quantity' => VisualType.quantityCompare,
       'clock' => VisualType.clock,
       'money_coins' => VisualType.money,
       'shape_choice' => VisualType.shape,
@@ -623,10 +675,15 @@ class LegacyLumoTaskAdapter {
       // nutzen (vorher fielen viele auf VisualType.none zurueck).
       'money' => VisualType.money,
       'money_change' => VisualType.money,
+      // Preisvergleich: beide Beträge nebeneinander als 1-€-Münzen.
+      'money_compare' => VisualType.quantityCompare,
       'fraction_half' => VisualType.fractionPizza,
       'fraction_add' => VisualType.fractionPizza,
       'fraction_expand' => VisualType.fractionPizza,
-      'symmetry' => VisualType.shape,
+      // Symmetrie-Aufgaben haben „ja/nein“ oder Zahlen als Karten. Die
+      // „Formenhilfe“ zeichnet nur Formen, die als Karte vorkommen, und
+      // blieb deshalb leer.
+      'symmetry' => VisualType.none,
       'family' => VisualType.wordFamilyTree,
       'category' => VisualType.wordFamilyTree,
       'word_type' => VisualType.wordTypeColor,
@@ -658,6 +715,100 @@ class LegacyLumoTaskAdapter {
       return <String, Object?>{'symbol': WritingTargetParser.parse(task.prompt)};
     }
 
+    if (task.subject == 'Mathematik' && const {'story_two', 'story_three'}.contains(task.visual)) {
+      // Preserve independent branches too, e.g. juice crates and water crates
+      // are counted separately before combining their subtotals.
+      final steps = <List<Object>>[];
+      for (final match in RegExp(r'(\d+)\s*([+−·:])\s*(\d+)\s*=\s*(\d+)').allMatches(task.explanation)) {
+        final a = int.parse(match[1]!);
+        final op = match[2]!;
+        final b = int.parse(match[3]!);
+        final result = int.parse(match[4]!);
+        final valid = switch (op) {
+          '+' => a + b == result,
+          '−' => a - b == result,
+          '·' => a * b == result,
+          ':' => b > 0 && result * b == a,
+          _ => false,
+        };
+        if (!valid) return const {};
+        steps.add([a, op, b, result]);
+      }
+      if (steps.length >= 2 && steps.length <= 4 && steps.last.last.toString() == task.answer) {
+        return {'storyEquations': steps};
+      }
+      return const {};
+    }
+    if (task.subject == 'Mathematik' && (task.visual == 'story' || task.unit == 'Rechengeschichten')) {
+      // Only bind a counter model to the exact equation supplied by the authored
+      // story. Equal-looking numbers in an unrelated story remain plain evidence.
+      final equation = RegExp(r'(\d+) ([+−]) (\d+) = (\d+)').firstMatch(task.explanation);
+      final given = RegExp(r'\b\d+\b').allMatches(task.prompt).map((m) => m[0]).toList();
+      if (equation != null && given.length == 2 && given[0] == equation[1] &&
+          given[1] == equation[3] && task.answer == equation[4]) {
+        final start = int.parse(equation[1]!);
+        final change = int.parse(equation[3]!);
+        final subtract = equation[2] == '−';
+        if (task.prompt.contains('mehr als') && subtract && start - change == int.parse(equation[4]!)) {
+          final names = RegExp(r'(\S+) hat \d+').allMatches(task.prompt).map((m) => m[1]!).toList();
+          if (names.length == 2) {
+            return {'operation': 'story_comparison', 'left': start, 'right': change, 'names': names};
+          }
+          return const {};
+        }
+        if (!task.prompt.contains('mehr als') && start <= 30 && change <= 20 && (subtract ? start - change : start + change) == int.parse(equation[4]!)) {
+          return {'storyStart': start, 'storyChange': change, 'storySubtract': subtract};
+        }
+      }
+      return const {};
+    }
+
+    if (task.subject == 'Logik' && task.unit == 'Muster') {
+      final pattern = CheckedShapePattern.fromPrompt(task.prompt);
+      if (pattern == null) return const {};
+      return <String, Object?>{
+        'sequence': pattern.sequence,
+        'period': pattern.period,
+        'group': pattern.group,
+      };
+    }
+
+    if (task.subject == 'Logik' && task.unit == 'Zahlenmuster') {
+      final pattern = CheckedNumberPattern.fromPrompt(task.prompt);
+      if (pattern == null) return const {};
+      return <String, Object?>{
+        'sequence': pattern.sequence,
+        'step': pattern.step,
+      };
+    }
+
+    if (task.subject == 'Mathematik' && task.visual == 'compare') {
+      final comparison = comparePromptPattern.firstMatch(task.prompt.trim());
+      final left = comparison == null ? null : parseGroupedNumber(comparison[1]!);
+      final right = comparison == null ? null : parseGroupedNumber(comparison[2]!);
+      if (left == null || right == null) return const {};
+      return <String, Object?>{'left': left, 'right': right};
+    }
+
+    if (task.subject == 'Sachunterricht') {
+      // These pairs are drawn from the existing curated science bank. A word
+      // merely containing "Pflanze" is not enough to invent a scene or focus.
+      const plants = <String, (String, String)>{
+        'Welcher Teil einer Pflanze ist meist grün?': ('Blatt', 'leaf'),
+        'Welcher Pflanzenteil nimmt Wasser auf?': ('Wurzel', 'root'),
+        'Welcher Teil trägt Blätter und Blüten?': ('Stamm', 'stem'),
+        'Was lockt oft Bienen an?': ('Blüte', 'flower'),
+        'Welche Aufgabe hat die Blüte?': ('sie hilft bei der Fortpflanzung', 'flower'),
+      };
+      final plant = plants[task.prompt];
+      if (plant != null && task.answer == plant.$1) {
+        return <String, Object?>{
+          'sceneKind': 'plant_parts',
+          'plantPart': plant.$2,
+        };
+      }
+    }
+
     final soundTask = _basicSoundTaskData(task);
     if (soundTask != null) return soundTask;
 
@@ -683,7 +834,104 @@ class LegacyLumoTaskAdapter {
       return <String, Object?>{'tens': value ~/ 10, 'ones': value % 10, 'value': value};
     }
 
-    final plus = RegExp(r'(\d+)\s*\+\s*(\d+)').firstMatch(task.prompt);
+    // Fraction tasks must be parsed before integer operations: 1/4 + 2/4
+    // must never produce the unrelated integer payload 4 + 2.
+    if (task.visual == 'fraction_add') {
+      final sum = RegExp(r'^\s*(\d+)\s*/\s*(\d+)\s*\+\s*(\d+)\s*/\s*(\d+)\s*=\s*\?\s*$')
+          .firstMatch(task.prompt);
+      if (sum == null) return const <String, Object?>{};
+      final numerator = int.tryParse(sum[1]!);
+      final denominator = int.tryParse(sum[2]!);
+      final extra = int.tryParse(sum[3]!);
+      final otherDenominator = int.tryParse(sum[4]!);
+      if (numerator == null || denominator == null || extra == null ||
+          denominator < 1 || denominator != otherDenominator) {
+        return const <String, Object?>{};
+      }
+      return <String, Object?>{
+        'operation': 'fraction_addition',
+        'numerator': numerator,
+        'denominator': denominator,
+        'extra': extra,
+      };
+    }
+
+    // Säulendiagramm: ein Balken je Wert der Aufgabe, passend beschriftet.
+    if (task.visual == 'chart') {
+      final children = RegExp(
+              r'^(?:Knobelaufgabe: )?Drei Kinder sammeln Sterne: (\d+), (\d+) und (\d+)\.')
+          .firstMatch(task.prompt.trim());
+      if (children != null) {
+        return <String, Object?>{
+          'bars': <int>[for (var i = 1; i <= 3; i++) int.parse(children[i]!)],
+          'labels': const <String>['Kind 1', 'Kind 2', 'Kind 3'],
+        };
+      }
+      const days = <String, String>{
+        'Montag': 'Mo', 'Dienstag': 'Di', 'Mittwoch': 'Mi', 'Donnerstag': 'Do',
+        'Freitag': 'Fr', 'Samstag': 'Sa', 'Sonntag': 'So',
+      };
+      final entries = RegExp('(${days.keys.join('|')}) (\\d+)')
+          .allMatches(task.prompt)
+          .toList(growable: false);
+      if (task.prompt.startsWith('Diagramm:') && entries.length >= 2) {
+        return <String, Object?>{
+          'bars': <int>[for (final entry in entries) int.parse(entry[2]!)],
+          'labels': <String>[for (final entry in entries) days[entry[1]]!],
+        };
+      }
+      return const <String, Object?>{};
+    }
+
+    // Erweitern: Die Pizza muss den Bruch aus der Aufgabe zeigen. Ohne diese
+    // Daten zeichnete das Bild immer 1 von n Stücken.
+    if (task.visual == 'fraction_expand') {
+      final expansion =
+          RegExp(r'^(?:Knobelaufgabe: )?Erweitere den Bruch (\d+)/(\d+) mit (\d+)\.')
+              .firstMatch(task.prompt.trim());
+      if (expansion == null) return const <String, Object?>{};
+      return <String, Object?>{
+        'operation': 'fraction_expansion',
+        'numerator': int.parse(expansion[1]!),
+        'denominator': int.parse(expansion[2]!),
+        'factor': int.parse(expansion[3]!),
+      };
+    }
+
+    if (task.visual == 'times_table' || task.visual == 'written_mul' ||
+        task.visual == 'division') {
+      final operation = RegExp(r'^\s*(?:Schriftlich:\s*)?(\d+)\s*([×·*:÷])\s*(\d+)\s*=\s*\?\s*$')
+          .firstMatch(task.prompt);
+      if (operation != null) {
+        final left = int.tryParse(operation[1]!);
+        final right = int.tryParse(operation[3]!);
+        final division = operation[2] == ':' || operation[2] == '÷';
+        if (left != null && right != null &&
+            division == (task.visual == 'division')) {
+          return <String, Object?>{
+            'operation': division ? 'division' : 'multiplication',
+            'left': left,
+            'right': right,
+          };
+        }
+      }
+      return const <String, Object?>{};
+    }
+
+    final decimalExpression = RegExp(
+      r'^\s*(?:(?:Schriftlich|Blitzlicht):\s*)?([+-]?\d+(?:[.,]\d+)?)\s*([+\-−])\s*([+-]?\d+(?:[.,]\d+)?)\s*=\s*\?\s*$',
+    ).firstMatch(task.prompt);
+    if (decimalExpression != null &&
+        (decimalExpression[1]!.contains(RegExp(r'[.,]')) ||
+            decimalExpression[3]!.contains(RegExp(r'[.,]')))) {
+      return _decimalData(task, decimalExpression[1]!, decimalExpression[3]!,
+          decimalExpression[2] != '+');
+    }
+
+    // Match the complete integer exercise. Substrings of 1,5 + 2,5 or
+    // 1/4 + 2/4 are not countable integer groups.
+    final plus = RegExp(r'^\s*(?:(?:Schriftlich|Blitzlicht):\s*)?(\d+)\s*\+\s*(\d+)\s*=\s*\?\s*$')
+        .firstMatch(task.prompt);
     if (plus != null) {
       return <String, Object?>{
         'operation': 'addition',
@@ -692,10 +940,13 @@ class LegacyLumoTaskAdapter {
       };
     }
 
-    final minus = RegExp(r'(\d+)\s*-\s*(\d+)').firstMatch(task.prompt);
+    final minus = RegExp(r'^\s*(?:(?:Schriftlich|Blitzlicht):\s*)?(\d+)\s*[-−]\s*(\d+)\s*=\s*\?\s*$')
+        .firstMatch(task.prompt);
     if (minus != null) {
       return <String, Object?>{
         'operation': 'subtraction',
+        'left': int.tryParse(minus.group(1) ?? '0') ?? 0,
+        'right': int.tryParse(minus.group(2) ?? '0') ?? 0,
         'start': int.tryParse(minus.group(1) ?? '0') ?? 0,
         'takeAway': int.tryParse(minus.group(2) ?? '0') ?? 0,
       };
@@ -734,7 +985,7 @@ class LegacyLumoTaskAdapter {
       return const <String, Object?>{};
     }
 
-    if (task.visual == 'fraction_pizza') {
+    if (task.visual == 'fraction_pizza' || task.visual == 'fraction_half') {
       // 1/2 im Prompt oder in der Antwort
       final fracInPrompt = RegExp(r'(\d+)\s*/\s*(\d+)').firstMatch(task.prompt);
       if (fracInPrompt != null) {
@@ -750,24 +1001,62 @@ class LegacyLumoTaskAdapter {
       if (task.prompt.toLowerCase().contains('viertel')) {
         return <String, Object?>{'numerator': 1, 'denominator': 4};
       }
+      if (task.prompt.toLowerCase().contains('achtel')) {
+        return <String, Object?>{'numerator': 1, 'denominator': 8};
+      }
       if (task.prompt.toLowerCase().contains('drittel')) {
         return <String, Object?>{'numerator': 1, 'denominator': 3};
       }
       return const <String, Object?>{};
     }
 
+    // Preisvergleich: Das Bild legt beide Beträge, nicht nur den ersten.
+    if (task.visual == 'money_compare') {
+      final prices = RegExp(r'kostet (\d+) €')
+          .allMatches(task.prompt)
+          .map((match) => int.parse(match[1]!))
+          .toList(growable: false);
+      if (prices.length != 2) return const <String, Object?>{};
+      return <String, Object?>{
+        'left': prices[0],
+        'right': prices[1],
+        'emoji': '🪙',
+      };
+    }
+
     if (task.visual == 'money_coins' || task.visual == 'money' || task.visual == 'money_change') {
       // Euro-Betrag im Prompt - akzeptiert '1,50€', '1,50 Euro', '1.50 EUR'
-      final euro = RegExp(r'(\d+)\s*(?:[.,](\d{1,2}))?\s*(?:€|Euro|EUR)', caseSensitive: false).firstMatch(task.prompt);
+      final euro = RegExp(
+        r'(?<![\d.,])(\d+)\s*(?:[.,](\d{1,2}))?\s*(?:€|Euro\b|EUR\b)',
+        caseSensitive: false,
+      ).firstMatch(task.prompt);
       if (euro != null) {
-        final e = int.tryParse(euro.group(1)!) ?? 0;
-        final c = int.tryParse(euro.group(2) ?? '0') ?? 0;
-        return <String, Object?>{'cents': e * 100 + c, 'amount': e * 100 + c};
+        final e = int.tryParse(euro.group(1)!);
+        final fraction = euro.group(2) ?? '';
+        final c = int.tryParse(fraction.padRight(2, '0'));
+        if (e == null || c == null || e > 1000000) return const {};
+        return <String, Object?>{
+          'cents': e * 100 + c,
+          'amount': e * 100 + c,
+          // „Wie viele 2-€-Münzen ergeben 20 €?“: Nur der Zielbetrag wird
+          // gezeigt. Ein 20-€-Schein im Bild wäre das Gegenteil der Frage.
+          if (task.visual == 'money_change') 'pieces': false,
+        };
       }
       return const <String, Object?>{};
     }
 
     if (task.visual == 'quantity_compare' || task.visual == 'quantity') {
+      final apples = RegExp(
+              r'^(🍎+) oder (🍎+) – wo (?:ist mehr|sind mehr Äpfel)\?$',
+              unicode: true)
+          .firstMatch(task.prompt);
+      if (apples != null) {
+        return <String, Object?>{
+          'left': '🍎'.allMatches(apples[1]!).length,
+          'right': '🍎'.allMatches(apples[2]!).length,
+        };
+      }
       // Zwei Zahlen im Prompt vergleichen
       final nums = RegExp(r'\d+').allMatches(task.prompt).map((m) => int.parse(m.group(0)!)).toList();
       if (nums.length >= 2) {
@@ -807,6 +1096,52 @@ class LegacyLumoTaskAdapter {
     }
 
     return const <String, Object?>{};
+  }
+
+  /// Scale all three terms to the same decimal place without floating-point
+  /// rounding. Unsupported precision keeps the written task, never fake dots.
+  Map<String, Object?> _decimalData(
+      LumoTask task, String leftText, String rightText, bool subtraction) {
+    int placesIn(String text) {
+      final normalized = text.trim().replaceAll(',', '.');
+      final dot = normalized.indexOf('.');
+      return dot < 0 ? 0 : normalized.length - dot - 1;
+    }
+
+    var places = placesIn(leftText);
+    for (final text in [rightText, task.answer]) {
+      final candidate = placesIn(text);
+      if (candidate > places) places = candidate;
+    }
+    if (places < 1 || places > 6) return const {};
+
+    int? scaled(String text) {
+      final normalized = text.trim().replaceAll(',', '.');
+      if (!RegExp(r'^[+-]?\d+(?:\.\d+)?$').hasMatch(normalized)) return null;
+      final parts = normalized.split('.');
+      final fraction = parts.length == 2 ? parts[1] : '';
+      final digits = '${parts[0]}${fraction.padRight(places, '0')}';
+      if (digits.replaceAll(RegExp(r'[+-]'), '').length > 12) return null;
+      return int.tryParse(digits);
+    }
+
+    final left = scaled(leftText);
+    final right = scaled(rightText);
+    final result = scaled(task.answer);
+    if (left == null || right == null || result == null ||
+        result != (subtraction ? left - right : left + right)) {
+      return const {};
+    }
+    return <String, Object?>{
+      'operation': subtraction ? 'decimal_subtraction' : 'decimal_addition',
+      'leftMinorUnits': left,
+      'rightMinorUnits': right,
+      'resultMinorUnits': result,
+      'decimalPlaces': places,
+      'leftText': leftText,
+      'rightText': rightText,
+      'resultText': task.answer,
+    };
   }
 
   Map<String, Object?>? _basicSoundTaskData(LumoTask task) {
@@ -876,23 +1211,10 @@ class LegacyLumoTaskAdapter {
   }
 
   List<String> _guidedSteps(LumoTask task) {
-    if (task.visual == 'line' && task.prompt.contains('-')) {
-      final minus = RegExp(r'(\d+)\s*-\s*(\d+)').firstMatch(task.prompt);
-      final start = int.tryParse(minus?.group(1) ?? '') ?? 0;
-      final takeAway = int.tryParse(minus?.group(2) ?? '') ?? 0;
-      if (start > 10 && takeAway > start - 10) {
-        final first = start - 10;
-        final second = takeAway - first;
-        return <String>['Erst $first weg bis zur 10.', 'Dann noch $second weg.', 'Jetzt bleibt ${start - takeAway}.'];
-      }
-    }
-    if (task.visual == 'number_house') {
-      return const <String>['Schau auf die Dachzahl.', 'Welche Zahl fehlt im Zimmer?', 'Beide Zahlen zusammen ergeben das Dach.'];
-    }
-    if (task.visual == 'sound_choice') {
-      return const <String>['Sprich das Wort langsam.', 'Hoerst du am Anfang St oder Sp?', 'Waehle die passende Karte.'];
-    }
-    return const <String>[];
+    return List<String>.generate(
+      3, (index) => _taskHints.explain(task, level: index + 1),
+      growable: false,
+    );
   }
 
   int _helpLevel(LumoTask task) {
@@ -912,8 +1234,10 @@ class LegacyLumoTaskAdapter {
   }
 
   Object _payload(String value) {
-    final number = int.tryParse(value.replaceAll(RegExp(r'[^0-9-]'), ''));
-    return number ?? value;
+    // Only a complete integer is an integer answer. Deleting punctuation or
+    // units conflates different decimals, times, fractions and measurements.
+    final trimmed = value.trim();
+    return int.tryParse(trimmed) ?? trimmed;
   }
 
   int _payloadInt(String value) {

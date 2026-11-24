@@ -15,6 +15,8 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../learning_module_rounds.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 class _PluralWort {
@@ -56,11 +58,11 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     _PluralWort('Blume', 'Blumen', ['Blumes', 'Blume\'s', 'Blumern']),
     _PluralWort('Fenster', 'Fenster', ['Fensters', 'Fenstern', 'Fensteren']),
     _PluralWort('Lampe', 'Lampen', ['Lampes', 'Lampe\'s', 'Lamper']),
-    _PluralWort('Vogel', 'Vögel', ['Vogels', 'Vogeln', 'Voegels']),
+    _PluralWort('Vogel', 'Vögel', ['Vogels', 'Vogeln', 'Vögels']),
     _PluralWort('Katze', 'Katzen', ['Katzes', 'Katze\'s', 'Katzer']),
     _PluralWort('Tasche', 'Taschen', ['Tasches', 'Tasche\'s', 'Tascher']),
     _PluralWort('Frau', 'Frauen', ['Fraus', 'Frauer', 'Frauenes']),
-    _PluralWort('Mann', 'Männer', ['Mannes', 'Mannen', 'Maenner']),
+    _PluralWort('Mann', 'Männer', ['Mannes', 'Manns', 'Männe']),
     _PluralWort('Hand', 'Hände', ['Handen', 'Hands', 'Händer']),
     _PluralWort('Hut', 'Hüte', ['Huten', 'Huts', 'Hüter']),
     _PluralWort('Tür', 'Türen', ['Türs', 'Türe', 'Türer']),
@@ -75,7 +77,10 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     _PluralWort('Lied', 'Lieder', ['Liedes', 'Lieds', 'Lieden']),
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
+  late final LearningModuleRounds _rounds =
+      LearningModuleRounds(progress: _progress, totalTasks: _totalTasks);
 
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
@@ -109,6 +114,7 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakTask());
   }
@@ -148,6 +154,7 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     });
     final isCorrect = idx == _correctIdx;
     final saved = await _progress.saveAnswer(
+      problemKey: 'Mehrzahl: ${_korrektWort.singular}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,
@@ -173,11 +180,31 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     _nextTask();
   }
 
-  void _nextTask() {
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null || !mounted || _taskIdx != 0 || _answered) return;
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -250,6 +277,27 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
+        appState: widget.appState,
+        progress: _progress,
+        moduleId: 'd2_mehrzahl',
+        taskKey: _taskIdx,
+        prompt: 'Wie heißt die Mehrzahl von „${_korrektWort.singular}“?',
+        objective: 'Du bildest aus einem Nomen die Form für mehrere.',
+        answerChoices: _options,
+        onConfirmChoice: (index) => _onAnswer(index),
+        helpSteps: [
+          'Hier steht die Einzahl „${_korrektWort.singular}“. Gesucht ist die Form für mehrere.',
+          'Probiere jede Antwort hinter „viele“. Achte auf die Endung und darauf, ob sich ein Vokal verändert.',
+          'Sprich beide Formen: ${_korrektWort.singular} – ${_korrektWort.plural}. Vergleiche die Buchstaben und wähle dann selbst.',
+        ],
+        answering: !_answered,
+        lastAnswer: _selectedIdx == null ? null : _options[_selectedIdx!],
+        lastCorrect: _answered ? _selectedIdx == _correctIdx : null,
+        child: child,
+      );
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -261,10 +309,12 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
         icon: Icons.auto_stories_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
+        inRounds: true,
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -280,7 +330,7 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
             const SizedBox(height: 12),
             _buildOptions(),
           ]),
-        ),
+        )),
       ),
     );
   }

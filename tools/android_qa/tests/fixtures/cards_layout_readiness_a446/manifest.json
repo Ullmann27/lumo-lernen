@@ -1,0 +1,36 @@
+{
+  "scope": "Unchanged failed API35 Android artifact members. Replay sequence is synthetic transport around historical original pre-draw pixels; it is not new post-draw/Android acceptance.",
+  "run_id": 43542310963,
+  "job_id": 132285770589,
+  "qa_source": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "product_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "artifact_id": 14093032556,
+  "archive_sha256": "a3ce928355c8af0054d5dba738213385b86059a3e579555134a91111acf4b171",
+  "files": [
+    {
+      "file": "missing-layout-original.txt",
+      "artifact_entry": "nextgen/12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+      "bytes": 113,
+      "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679"
+    },
+    {
+      "file": "layout-original.json",
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-check-01-before-layout.json",
+      "bytes": 1329,
+      "sha256": "626a29902fbb78b9a6d45ba8f380a5273ee3e10206f932f1bbf739d354cc91a1"
+    },
+    {
+      "file": "face-evidence-original.json",
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "bytes": 33358,
+      "sha256": "b36efd207308604078e9ead899796fda1b2197b7d8ec19157027ff2d1378c6ef"
+    },
+    {
+      "file": "cards-before-original.png",
+      "artifact_entry": "nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 1163505,
+      "sha256": "952586b28ef93fd26bedd29d406e49ab98347af6b534d9bef147ac61dd8609c9"
+    }
+  ]
+}

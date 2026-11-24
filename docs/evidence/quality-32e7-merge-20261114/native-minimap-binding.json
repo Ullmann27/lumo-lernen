@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "revision": "6ecc560ea16202b935c4f1d32b08b93cda358e02",
+  "tree": "2fa788fed751a2b526a6f69d648d57eb6e181953",
+  "parent": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+  "reachable_branch": "checkpoint/lumo-kart-minimap-verified-20261114-2708",
+  "production_blob": "83b3b6b548cffa2790c582e061a74e37bbfcf356",
+  "test_blob": "6c58c08b8c47a7bf7c957c448b88474a984b9509",
+  "actual_headless": {
+    "checks": 380,
+    "original_failures": 26,
+    "corrected_failures": 0,
+    "engine": "4.6.3",
+    "same_test": true
+  },
+  "actual_new_local_rasters": false,
+  "render_blocker": "Xorg cannot create listening socket; own AF_UNIX probe returns EPERM",
+  "native_evidence_url": "https://github.com/Ullmann27/lumo-godot/tree/6ecc560ea16202b935c4f1d32b08b93cda358e02/docs/evidence/kart-minimap-safe-area-20261114",
+  "independent_review_blob": "fb45674454d43a5365d67f45c9eb83cbaad66fa9",
+  "root_verified_comparison": {
+    "commits": 1,
+    "modified_product_files": 2,
+    "added_evidence_files": 20,
+    "all_other_parent_paths_preserved": true
+  },
+  "release_approval": false
+}

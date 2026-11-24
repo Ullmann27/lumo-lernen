@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_studio_delivery",
+    "scripts.tests.test_nextgen_2019_review",
+    "scripts.tests.test_kart_graphics_delivery",
+    "-v"
+  ],
+  "started_utc": "2026-11-13T17:17:19.317271+00:00",
+  "finished_utc": "2026-11-13T17:18:12.478085+00:00",
+  "seconds": 53.161,
+  "exit_code": 0,
+  "source_before": {
+    "scripts/verify_studio_delivery.py": "56859949a678bfdbe0dd2d749bbae661a10a83be9a8af5c64fe34e190ea101c2",
+    "scripts/tests/test_nextgen_2019_review.py": "e7948f67cf9e4bfc2ec2aca9ec99d86578db110b9063a0c31544be7968bc9f29",
+    "scripts/tests/test_kart_graphics_delivery.py": "4d20ba926da3219030300f7c5ae440410512bb7e1267b59e4d993682371d12b1"
+  },
+  "source_after": {
+    "scripts/verify_studio_delivery.py": "56859949a678bfdbe0dd2d749bbae661a10a83be9a8af5c64fe34e190ea101c2",
+    "scripts/tests/test_nextgen_2019_review.py": "e7948f67cf9e4bfc2ec2aca9ec99d86578db110b9063a0c31544be7968bc9f29",
+    "scripts/tests/test_kart_graphics_delivery.py": "4d20ba926da3219030300f7c5ae440410512bb7e1267b59e4d993682371d12b1"
+  },
+  "sources_unchanged": true,
+  "log_sha256": "d07a641853645f841767a8bdb3d6cb159d6d274bcf73c8c486e1286127d0494d"
+}

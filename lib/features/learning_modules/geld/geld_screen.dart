@@ -19,6 +19,8 @@ import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
 import '../learning_module_progress.dart';
+import '../learning_module_rounds.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 
 class _Muenze {
   const _Muenze({
@@ -82,7 +84,10 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
+  late final LearningModuleRounds _rounds =
+      LearningModuleRounds(progress: _progress, totalTasks: _totalTasks);
   final _rng = math.Random();
 
   int _taskIdx = 0;
@@ -111,6 +116,7 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakTask());
   }
@@ -148,12 +154,8 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
         _muenzenAufTisch.add(_muenzen[0]);
         _gesamtWert = _muenzen[0].wert;
       }
-      final wrong = <int>{};
-      while (wrong.length < 3) {
-        final delta = (10 + _rng.nextInt(50)) * (_rng.nextBool() ? 1 : -1);
-        final cand = _gesamtWert + delta;
-        if (cand > 0 && cand != _gesamtWert) wrong.add(cand);
-      }
+      final wrong = geldAblenker(
+          _muenzenAufTisch.map((coin) => coin.wert).toList(), _rng);
       _answers = [_gesamtWert, ...wrong]..shuffle(_rng);
     } else {
       // muenzeFinden: zeige 4 Muenzen, frage nach einer bestimmten
@@ -182,11 +184,7 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
     } catch (_) {}
   }
 
-  String _formatCent(int cent) {
-    if (cent < 100) return '$cent Cent';
-    if (cent % 100 == 0) return '${cent ~/ 100} Euro';
-    return '${cent ~/ 100} Euro ${cent % 100}';
-  }
+  String _formatCent(int cent) => geldBetrag(cent);
 
   void _onAnswer(int idx, bool isCorrect) async {
     if (_answered || _progress.hasPending) return;
@@ -196,6 +194,9 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey: _typ == _GeldFrageTyp.zaehlen
+          ? 'Münzen: ${(_muenzenAufTisch.map((m) => m.wert).toList()..sort()).join(",")}'
+          : 'Münze finden: ${_gefragteMuenze.wert}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,
@@ -221,11 +222,31 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
     _nextTask();
   }
 
-  void _nextTask() {
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null || !mounted || _taskIdx != 0 || _answered) return;
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -296,6 +317,52 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
     );
   }
 
+  Widget _withTaskContext(Widget child) {
+    final counting = _typ == _GeldFrageTyp.zaehlen;
+    final choices = counting
+        ? _answers.map(_formatCent).toList()
+        : _muenzenAufTisch.map((coin) => coin.label).toList();
+    final selected = _selectedAnswer;
+    return ModuleTaskScope(
+      key: _taskScopeKey,
+      appState: widget.appState,
+      progress: _progress,
+      moduleId: 'm2_geld',
+      taskKey: _taskIdx,
+      prompt: counting
+          ? 'Wie viel Geld siehst du? Münzen: ${_muenzenAufTisch.map((coin) => coin.label).join(', ')}.'
+          : 'Welche Münze ist ${_gefragteMuenze.label}?',
+      objective: counting
+          ? 'Du addierst die Werte der Münzen in Euro und Cent.'
+          : 'Du erkennst eine Münze an ihrer Zahl und ihrer Einheit.',
+      answerChoices: choices,
+      onConfirmChoice: (index) => _onAnswer(
+          index,
+          counting
+              ? _answers[index] == _gesamtWert
+              : _muenzenAufTisch[index] == _gefragteMuenze),
+      helpSteps: counting
+          ? [
+              'Lies den Wert jeder Münze. Die Anzahl der Münzen allein sagt noch nicht, wie viel Geld es ist.',
+              'Rechne zunächst in Cent: 1 Euro sind 100 Cent. Hier stehen ${_muenzenAufTisch.map((coin) => coin.wert).join(' + ')} Cent.',
+              'Beginne mit der ersten Münze: ${_formatCent(_muenzenAufTisch.first.wert)}. Addiere jeden weiteren Münzwert genau einmal und vergleiche dann mit den Antworten.',
+            ]
+          : [
+              'Gesucht ist ${_gefragteMuenze.label}. Vergleiche die Zahl auf jeder Münze.',
+              'Achte auch auf die Einheit: Das Eurozeichen bedeutet Euro; „c“ bedeutet Cent. 1 Euro sind 100 Cent.',
+              'Prüfe Zahl und Einheit gemeinsam. Eine ähnlich aussehende Münze kann einen anderen Wert haben.',
+            ],
+      answering: !_answered,
+      lastAnswer: selected == null ? null : choices[selected],
+      lastCorrect: selected == null
+          ? null
+          : counting
+              ? _answers[selected] == _gesamtWert
+              : _muenzenAufTisch[selected] == _gefragteMuenze,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -307,10 +374,12 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
         icon: Icons.payments_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
+        inRounds: true,
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -330,7 +399,7 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
               _buildCoinAnswerGrid(),
             ],
           ]),
-        ),
+        )),
       ),
     );
   }
@@ -557,4 +626,45 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
       }).toList(),
     );
   }
+}
+
+/// Betrag in der Schreibweise der Schule: „50 Cent“, „1,50 €“, „2,00 €“.
+/// Befund L8/L2: früher „1 Euro 50“.
+@visibleForTesting
+String geldBetrag(int cent) {
+  if (cent < 100) return '$cent Cent';
+  final rest = cent % 100;
+  return '${cent ~/ 100},${rest.toString().padLeft(2, '0')} €';
+}
+
+/// Drei falsche Beträge aus typischen Zählfehlern: eine Münze vergessen,
+/// eine Münze doppelt gezählt, um 10 Cent verzählt. Alle lassen sich mit
+/// den Münzen (10, 20, 50 Cent, 1 und 2 Euro) legen. Befund L8: früher
+/// zufällige Abstände wie 83 Cent.
+@visibleForTesting
+List<int> geldAblenker(List<int> coins, math.Random rng) {
+  final total = coins.fold<int>(0, (sum, coin) => sum + coin);
+  final candidates = <int>{
+    for (final coin in coins) total - coin,
+    for (final coin in coins) total + coin,
+    total - 10,
+    total + 10,
+    total + 20,
+    total - 20,
+    total + 50,
+  }..removeWhere((value) => value <= 0 || value == total);
+  final pool = candidates.toList()..shuffle(rng);
+  // Vergessene und doppelte Münze zuerst, damit die typischen Fehler dabei
+  // sind; der Rest füllt auf.
+  final typical = <int>[
+    for (final coin in coins)
+      if (total - coin > 0) total - coin,
+    for (final coin in coins) total + coin,
+  ]..shuffle(rng);
+  final out = <int>{};
+  for (final value in [...typical, ...pool]) {
+    if (out.length == 3) break;
+    if (value > 0 && value != total) out.add(value);
+  }
+  return out.toList();
 }

@@ -1,0 +1,219 @@
+{
+  "schema": 1,
+  "scope": "Independent root source/byte review, not a new execution",
+  "old_blob": "f5febd9c1e65516eef23b3d1ba40d670f62a2f89",
+  "product_blob": "85fbad4a0b09753a7f22663690a9660f98382f39",
+  "contract_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2",
+  "wrapper_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8",
+  "findings": [
+    "Only MathTaskTemplates.generate changes its template pool selection; unchanged prefix and suffix include every template and concretizer.",
+    "Exact allowed cumulative topic is selected before current-grade preference; current/earlier grade mixing remains within that topic.",
+    "Legacy fallback and Alle retain the prior choice path; no output relabelling is introduced.",
+    "The contract imports actual production templates and factory, checks pattern/difficulty identity as well as topic, and is discovered by a standard Flutter test wrapper.",
+    "Final test blob differs from the first reviewed test only in its scope description.",
+    "Root read actual factory nextExact and coach source; preserved source-level reachability is distinguished from unexecuted UI behavior."
+  ],
+  "protected_sources": [
+    {
+      "path": "lib/app/app_state.dart",
+      "manifest": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "current": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "incoming": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "equal": true
+    },
+    {
+      "path": "lib/app/app_shell.dart",
+      "manifest": "db141faa7f922d136a822cfd6c49b4153d904a9a",
+      "current": "db141faa7f922d136a822cfd6c49b4153d904a9a",
+      "incoming": "db141faa7f922d136a822cfd6c49b4153d904a9a",
+      "equal": true
+    },
+    {
+      "path": "lib/core/profile_repository.dart",
+      "manifest": "35cfa44b277284cdb1310b778760367a331b5ebe",
+      "current": "35cfa44b277284cdb1310b778760367a331b5ebe",
+      "incoming": "35cfa44b277284cdb1310b778760367a331b5ebe",
+      "equal": true
+    },
+    {
+      "path": "lib/core/user_profile.dart",
+      "manifest": "98539dbc430424f42a0483f832adabd7d92cca88",
+      "current": "98539dbc430424f42a0483f832adabd7d92cca88",
+      "incoming": "98539dbc430424f42a0483f832adabd7d92cca88",
+      "equal": true
+    },
+    {
+      "path": "lib/core/progress_repository.dart",
+      "manifest": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "current": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "incoming": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "equal": true
+    },
+    {
+      "path": "lib/core/learning_profile_engine.dart",
+      "manifest": "aafcd2dd5b2a400f04b58518351e4fb152237f26",
+      "current": "aafcd2dd5b2a400f04b58518351e4fb152237f26",
+      "incoming": "aafcd2dd5b2a400f04b58518351e4fb152237f26",
+      "equal": true
+    },
+    {
+      "path": "lib/core/native_profile_key_repository.dart",
+      "manifest": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+      "current": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+      "incoming": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+      "equal": true
+    },
+    {
+      "path": "lib/core/reading_progress_repository.dart",
+      "manifest": "ffd5b243633492fa5aae3b8648eb07af949a2e71",
+      "current": "ffd5b243633492fa5aae3b8648eb07af949a2e71",
+      "incoming": "ffd5b243633492fa5aae3b8648eb07af949a2e71",
+      "equal": true
+    },
+    {
+      "path": "lib/core/writing_progress_repository.dart",
+      "manifest": "4bb609a76be4cc64a316798debc2bafa24274803",
+      "current": "4bb609a76be4cc64a316798debc2bafa24274803",
+      "incoming": "4bb609a76be4cc64a316798debc2bafa24274803",
+      "equal": true
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "manifest": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "current": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "incoming": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "equal": true
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "manifest": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "current": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "incoming": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "equal": true
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "manifest": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "current": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "incoming": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "equal": true
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "manifest": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "current": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "incoming": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "equal": true
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "manifest": "123c13786584c3f9c487ae1b71317841d2995420",
+      "current": "123c13786584c3f9c487ae1b71317841d2995420",
+      "incoming": "123c13786584c3f9c487ae1b71317841d2995420",
+      "equal": true
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+      "manifest": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+      "current": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+      "incoming": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+      "equal": true
+    },
+    {
+      "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+      "manifest": "74d92c94837cb258e405d2bb04baf5e54ec8d477",
+      "current": "74d92c94837cb258e405d2bb04baf5e54ec8d477",
+      "incoming": "74d92c94837cb258e405d2bb04baf5e54ec8d477",
+      "equal": true
+    },
+    {
+      "path": "lib/features/learning/cross_grade_writing_screen.dart",
+      "manifest": "47a7ba1ffd9dbe6e68dc7d6dbe08396815f2f10e",
+      "current": "47a7ba1ffd9dbe6e68dc7d6dbe08396815f2f10e",
+      "incoming": "47a7ba1ffd9dbe6e68dc7d6dbe08396815f2f10e",
+      "equal": true
+    },
+    {
+      "path": "lib/features/learning/renderers/writing_task_renderer.dart",
+      "manifest": "adfb91debd8af1b7077c2289fd913419afe23b7c",
+      "current": "adfb91debd8af1b7077c2289fd913419afe23b7c",
+      "incoming": "adfb91debd8af1b7077c2289fd913419afe23b7c",
+      "equal": true
+    },
+    {
+      "path": "lib/widgets/profile_screen.dart",
+      "manifest": "56980b0c3867e52df7011fd968f1a50423bbd467",
+      "current": "56980b0c3867e52df7011fd968f1a50423bbd467",
+      "incoming": "56980b0c3867e52df7011fd968f1a50423bbd467",
+      "equal": true
+    },
+    {
+      "path": "lib/widgets/shell/left_navigation.dart",
+      "manifest": "5fbc8f28250bb7baf340bec6a75f01ce9eeed086",
+      "current": "5fbc8f28250bb7baf340bec6a75f01ce9eeed086",
+      "incoming": "5fbc8f28250bb7baf340bec6a75f01ce9eeed086",
+      "equal": true
+    }
+  ],
+  "unchanged_dependencies": [
+    {
+      "path": "lib/core/school_exercise_generator.dart",
+      "equal": true
+    },
+    {
+      "path": "lib/core/german_task_templates.dart",
+      "equal": true
+    },
+    {
+      "path": "lib/core/shape_question_data.dart",
+      "equal": true
+    },
+    {
+      "path": "lib/core/adventure/lumo_adventure_tasks.dart",
+      "equal": true
+    },
+    {
+      "path": "lib/core/english_vocabulary_extensions.dart",
+      "equal": true
+    },
+    {
+      "path": "lib/core/primary_school_word_data.dart",
+      "equal": true
+    },
+    {
+      "path": "lib/core/reading_comprehension_data.dart",
+      "equal": true
+    },
+    {
+      "path": "lib/core/science_task_data.dart",
+      "equal": true
+    },
+    {
+      "path": "lib/core/science_quality_extension.dart",
+      "equal": true
+    },
+    {
+      "path": "lib/core/spelling_context_data.dart",
+      "equal": true
+    },
+    {
+      "path": "lib/core/german_curriculum_extensions.dart",
+      "equal": true
+    },
+    {
+      "path": "lib/core/adventure/adventure_word_data.dart",
+      "equal": true
+    }
+  ],
+  "assets": {
+    "quality": "e344fab9b20ff85379d48984a778a0ab2a392b53",
+    "incoming": "e344fab9b20ff85379d48984a778a0ab2a392b53",
+    "identical": true
+  },
+  "actual_executions": {
+    "previous_diagnostic": "Child's preserved original real Dart output: three wrong topics; diagnostic exit0 is not correctness PASS",
+    "new_regression": false,
+    "new_flutter": false,
+    "new_android": false
+  }
+}

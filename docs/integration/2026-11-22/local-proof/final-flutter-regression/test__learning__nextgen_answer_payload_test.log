@@ -1,0 +1,12 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/learning/nextgen_answer_payload_test.dart
+00:00 +0: decimal, currency and time choices keep distinct scoring identities
+00:00 +1: only whole integer answers become numeric counts
+00:00 +2: decimal arithmetic exposes exact place values, never integer dots
+00:00 +3: different decimal precision is scaled without floating point rounding
+00:00 +4: all generated decimal variants preserve their exact arithmetic
+00:00 +5: whole-object formula is complete and still reaches native 8 plus 5
+00:00 +6: one decimal digit in an amount means tenths of a euro
+00:00 +7: actual answer renderer rejects a colliding distractor: 1,2
+00:00 +8: actual answer renderer rejects a colliding distractor: 1 €
+00:00 +9: actual answer renderer rejects a colliding distractor: 1:30 Uhr
+00:00 +10: All tests passed!

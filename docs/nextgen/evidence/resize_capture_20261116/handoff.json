@@ -1,0 +1,99 @@
+{
+  "schema": "lumo.resize_capture_fix.v1",
+  "producer_commit": "e7d085f481d23f1f9b1171a76b57aceb2375544e",
+  "tree": "7e669473e55735ff20b25fb9aba6059f52fa82a8",
+  "base": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+  "branch": "qa/lumo-resize-capture-20261116",
+  "worktree": "/workspace/scratch/4fa97167812c/agent-resize-capture",
+  "worktree_clean": true,
+  "files": {
+    ".github/probes/lumo_nextgen_learning_android_probe.py": {
+      "bytes": 82520,
+      "sha256": "f4f4b1426cc99a69aab5850f388f4b40b3c95464eaccc8f112eb00c13bf09157"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/0181-bridge-resize-compact.mp4": {
+      "bytes": 93539,
+      "sha256": "8f436741a6b25fbccef4ee7784ef54ae41786bcbbc5e4c342352db9355c0300a"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/README.md": {
+      "bytes": 1115,
+      "sha256": "6ac544b39970d05c85e4b1538a2538faa71f7d1d1b32eaaf67f3ef704463bbfc"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/ffprobe-original.json": {
+      "bytes": 5513,
+      "sha256": "7802e4d4f1d0771e1c5d1831d6b990592380e6f83f3b896988e9aa83bc40790e"
+    },
+    "tools/android_qa/tests/fixtures/nextgen_resize_43790915460/manifest.json": {
+      "bytes": 533,
+      "sha256": "6388aadf1ce219bc8ea1bb083bd3222bc606021a413d6e487ab0dd250fbcca75"
+    },
+    "tools/android_qa/tests/test_nextgen_learning_android_probe.py": {
+      "bytes": 66485,
+      "sha256": "487aa7923a89a685c4a41e1ca28827d3d059c5ff6cec2d13bad5ef69d7880b79"
+    }
+  },
+  "original": {
+    "run": 43790915460,
+    "job": 133056371546,
+    "artifact": 14192539626,
+    "source": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+    "status": "FAIL",
+    "mp4_bytes": 93539,
+    "mp4_sha256": "8f436741a6b25fbccef4ee7784ef54ae41786bcbbc5e4c342352db9355c0300a",
+    "decodable_frames": 1,
+    "width": 720,
+    "height": 1600,
+    "pts": 0,
+    "positive_video_duration": false,
+    "stderr_bytes": 0
+  },
+  "change": "Start the existing recording and capture the initial real view before WM mutation; keep all existing WM/PNG/checkpoint/profile/progress checks and record raw ffprobe before its unchanged duration gate.",
+  "qa_only": true,
+  "product_or_data_changes": false,
+  "new_app_inputs": false,
+  "new_retries_or_timeouts": false,
+  "encoder": "No encoder reconfiguration. Per-clip fixed dimensions are read from actual ffprobe; target display pixels remain independently verified via WM and PNG.",
+  "start_readiness": "Existing unique owned Android screenrecord PID gate unchanged; initial screenshot now occurs inside that same recording before display mutation. No new Android first-frame/presentation success claim.",
+  "tests": {
+    "red": {
+      "total": 2,
+      "pass": 1,
+      "fail": 1,
+      "error": 0,
+      "original_MP4_rejected": true
+    },
+    "green": {
+      "total": 3,
+      "pass": 3,
+      "fail": 0,
+      "error": 0,
+      "skip": 0,
+      "scope": "Actual ffprobe on original MP4 through unchanged recording gate; constructed call-order for all four existing layouts; changed target pixels/progress refuse and restore."
+    },
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v tools.android_qa.tests.test_nextgen_learning_android_probe.ResizeRecordingTest",
+    "broad_suite_run": false
+  },
+  "limits": [
+    "No new Android run, actual resize playback success or complete tour claimed.",
+    "Original 2030 FAIL retained.",
+    "The initial test-harness attempt omitted subprocess.STDOUT and is preserved separately; production was not changed for that fixture mistake."
+  ],
+  "logs": {
+    "red-first-test-boundary-error.log": {
+      "bytes": 3286,
+      "sha256": "9ae4bdda74dacfb9b614b3db6f07224cd70db8df52a7c462ebea6d4d1ceb7317"
+    },
+    "red.log": {
+      "bytes": 1693,
+      "sha256": "c38c85f4b99ae8c803151dfd884ec73f9d7c327fc88e190115f1681108307d51"
+    },
+    "green.log": {
+      "bytes": 750,
+      "sha256": "bff2cfdbd9b6f9acad239977746e2430dc75b691a6cbfcdcbf3e5d14a50eb4b0"
+    },
+    "source-check.json": {
+      "bytes": 252,
+      "sha256": "54cbf16c4ea94c098aca87d782679369de0b6011450b67627f9449bb932600ef"
+    }
+  }
+}

@@ -6,9 +6,9 @@
 // .defaultRouteName. Wir parsen sie hier ohne neues Plugin und mappen den
 // section-Parameter auf eine LumoSection.
 //
-// Warm-Start / running-process Deep-Links sind nicht implementiert
-// (brauechten ein natives Plugin wie app_links). Da der typische Flow
-// vom Godot-Hub aus ohnehin cold-startet, reicht das hier.
+// LumoApp verwendet denselben Parser für Flutter-Platform-Route-Ereignisse
+// bei laufender App. AppShell übernimmt das Ziel, ohne Profil oder Wallet
+// neu anzulegen; dafür ist kein weiteres natives Plugin erforderlich.
 
 import '../app/app_state.dart';
 
@@ -24,7 +24,12 @@ class DeepLinkRouter {
     final uri = Uri.tryParse(routeName);
     if (uri == null) return null;
     if (uri.scheme != 'lumolernen') return null;
-    final section = uri.queryParameters['section'];
+    final String? section;
+    try {
+      section = uri.queryParameters['section'];
+    } on FormatException {
+      return null;
+    }
     if (section == null || section.isEmpty) return null;
     return _mapSection(section);
   }

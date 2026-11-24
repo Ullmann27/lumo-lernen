@@ -1,0 +1,105 @@
+{
+  "recorded_utc": "2026-11-16T05:35:11.984318+00:00",
+  "base_qa_commit": "51a3bfdedf4d6a745fb574ae9186c1094eb11abf",
+  "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "branch": "qa/lumo-2031-lab-runtime-cases-20261116",
+  "test_provenance": {
+    "source_state": "new uncommitted files on the exact clean committed base; hashes bind tested bytes",
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/android_qa/tests",
+      "-p",
+      "test_nextgen_2031_runtime_cases.py",
+      "-v"
+    ],
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "log": "focused-final-14.log",
+    "scope": "synthetic pure/ET.Element and bounded transport fixtures; native verifier dependency is isolated and delegation checked",
+    "native_owner_module_executed": false,
+    "android_executed": false
+  },
+  "tested_files": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py",
+      "bytes": 30885,
+      "sha256": "9b86c48ff904b24384128860437a95c05ea83ddeef00f945076bfef76cce6fbd"
+    },
+    {
+      "path": "tools/android_qa/tests/test_nextgen_2031_runtime_cases.py",
+      "bytes": 20454,
+      "sha256": "7b8821b69535aad2e1fda3e293b334291ce04840a0d7048bd4519b05ebf2f730"
+    }
+  ],
+  "unchanged_inherited_sources": [
+    {
+      "path": ".github/probes/lumo_nextgen_2031_replay_reference_android_probe.py",
+      "bytes": 21096,
+      "sha256": "d78282cef9ba534e3b107902c1c346154ced953e379e35709c79e63417e4102c"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_current_reference_android_probe.py",
+      "bytes": 7200,
+      "sha256": "7f5074b592e4dde1b8159575ec578ec36a2fae36d50d8e3642715ce8ca01b97c"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_reference_android_probe.py",
+      "bytes": 44199,
+      "sha256": "bfd5278e3fd1683a48da9887914c9b5d120d59089b4b874ff4af6c0b2baf84e2"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_learning_android_probe.py",
+      "bytes": 86111,
+      "sha256": "5c5c8a7483c9d4c6e860febcf660613a10acee8ba07e1e3dec5c1cd0eb0c88a9"
+    },
+    {
+      "path": ".github/probes/lumo_nextgen_native_reader.py",
+      "bytes": 5817,
+      "sha256": "51c4e7a0e1fdda803714a56568553642609dbd183cf6e9d6a8729bee6bb80d97"
+    },
+    {
+      "path": "tools/nextgen/prepare_current_learning_release.py",
+      "bytes": 11091,
+      "sha256": "4943b286dde1c44eb7236341bb6c16b25ccbfe27e2ed6cec7cbb623c86d19994"
+    },
+    {
+      "path": "config/nextgen-2031-replay.json",
+      "bytes": 851,
+      "sha256": "ef86eb63f316252d9a7b5dafb6a13e982f449c428a1b58cd9ba6b67bc7a49001"
+    }
+  ],
+  "raw_logs": [
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-final-14.log",
+      "bytes": 2974,
+      "sha256": "b693381043e48004a96bafde179502ae7c51b2c4c6b6f09d5411130ad581aa9c"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-final.log",
+      "bytes": 2794,
+      "sha256": "e2e4eff1ce09d7aa1bb1ec600931c2083a322fc9e2823994bc979d82f2280627"
+    },
+    {
+      "path": "docs/nextgen/evidence/runtime_cases_2031_20261116/focused-first.log",
+      "bytes": 2558,
+      "sha256": "8e7a3786a51aeaea715760d0e16b16f5289d9d977a713cad78989412f864bf91"
+    }
+  ],
+  "integration_dependencies": [
+    "Root-owned .github/probes/lumo_nextgen_2031_runtime_cases.json and separate workflow",
+    "Conversation-owned new lumo_nextgen_2031_native_runtime_cases.py with verify_native_cases",
+    "Root-owned current-candidate adjacent-line reader correction for the actually failed final Banane caption"
+  ],
+  "existing_tracked_files_changed": [],
+  "no_remote_action": true,
+  "no_apk_rebuild": true,
+  "runtime_pass_claimed": false,
+  "release_eligible": false
+}

@@ -1,0 +1,648 @@
+{
+  "schema": 1,
+  "kind": "terminal_original_publication_catalog",
+  "created_at": "2026-11-14T20:10:21.997980+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 43632790204,
+  "attempt": 1,
+  "head": "7ac736fdbd042769592e88de0f9849632242316d",
+  "tree": "f7c4f29460cab5a5728acff117d21e2562bd0af2",
+  "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+  "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+  "workflow_blob": "05329a8f7ac3d51d95a9151ead0b7e482ae09064",
+  "terminal": {
+    "status": "completed",
+    "conclusion": "failure",
+    "original_snapshot_utc": "2026-11-14T19:57:50Z",
+    "run_created_at": "2026-11-14T19:34:03Z",
+    "run_updated_at": "2026-11-14T19:56:21Z",
+    "job_count": 7,
+    "success_jobs": 2,
+    "failed_jobs": 1,
+    "skipped_jobs": 4
+  },
+  "jobs": [
+    {
+      "id": 132562871412,
+      "name": "connect-four-runtime",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T19:34:05Z",
+      "completed_at": "2026-11-14T19:36:29Z"
+    },
+    {
+      "id": 132562871774,
+      "name": "android-host-compile",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T19:34:06Z",
+      "completed_at": "2026-11-14T19:38:26Z"
+    },
+    {
+      "id": 132564123163,
+      "name": "verify-and-build",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-14T19:38:28Z",
+      "completed_at": "2026-11-14T19:56:20Z"
+    },
+    {
+      "id": 132569070277,
+      "name": "update-2020-from-2017",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T19:56:20Z",
+      "completed_at": "2026-11-14T19:56:20Z"
+    },
+    {
+      "id": 132569070562,
+      "name": "android-c4",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T19:56:21Z",
+      "completed_at": "2026-11-14T19:56:20Z"
+    },
+    {
+      "id": 132569070664,
+      "name": "verify-c4-candidate",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T19:56:21Z",
+      "completed_at": "2026-11-14T19:56:20Z"
+    },
+    {
+      "id": 132569071465,
+      "name": "prepare-c4-delivery",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T19:56:21Z",
+      "completed_at": "2026-11-14T19:56:20Z"
+    }
+  ],
+  "raw_timestamp_policy": "All original skipped-job API timestamps are retained unchanged, including completed_at earlier than started_at in three skipped entries; no duration is inferred for skipped jobs.",
+  "failure": {
+    "first_failed_step": {
+      "name": "Verify all build and preservation contracts",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 20,
+      "started_at": "2026-11-14T19:51:05Z",
+      "completed_at": "2026-11-14T19:56:15Z"
+    },
+    "setup_error": "ERROR: setUpClass (test_speech_envelope_contract.SpeechEnvelopeContractTest)",
+    "complete_contract_log_locations": {
+      "error": [
+        {
+          "line": 1033,
+          "original_text": "ERROR: setUpClass (test_speech_envelope_contract.SpeechEnvelopeContractTest)"
+        }
+      ],
+      "count": [
+        {
+          "line": 1064,
+          "original_text": "Ran 921 tests in 309.572s"
+        }
+      ],
+      "result": [
+        {
+          "line": 1066,
+          "original_text": "FAILED (errors=1)"
+        }
+      ]
+    },
+    "complete_build_log_locations": {
+      "error": [
+        {
+          "line": 2725,
+          "original_text": "2026-11-14T19:56:15.5252479Z ERROR: setUpClass (test_speech_envelope_contract.SpeechEnvelopeContractTest)"
+        }
+      ],
+      "count": [
+        {
+          "line": 2756,
+          "original_text": "2026-11-14T19:56:15.5271285Z Ran 921 tests in 309.572s"
+        }
+      ],
+      "result": [
+        {
+          "line": 2758,
+          "original_text": "2026-11-14T19:56:15.5271617Z FAILED (errors=1)"
+        }
+      ],
+      "exit_one": [
+        {
+          "line": 2826,
+          "original_text": "2026-11-14T19:56:15.6260194Z ##[error]Process completed with exit code 1."
+        }
+      ]
+    },
+    "reported_compile_errors": [
+      "LumoLearningSpeech.kt:31 optJSONObject",
+      "LumoLearningSpeech.kt:103 LumoOfflineSpeechEngine.PRESET",
+      "LumoLearningSpeech.kt:104 LumoOfflineSpeechEngine.SAMPLE_RATE",
+      "LumoLearningSpeech.kt:138 LumoOfflineSpeechBridge.synthesizeEnglishLesson",
+      "LumoLearningSpeech.kt:224 optJSONObject",
+      "LumoLearningSpeech.kt:244 type inference"
+    ],
+    "test_count_claim": "The original states Ran 921 and FAILED(errors=1); no all-pass count is inferred.",
+    "repair_scope": "Root owns the separately checkpointed Speech-fixture repair. This catalog preserves the actual failed old source unchanged."
+  },
+  "flutter": {
+    "stage": {
+      "name": "Full Flutter regression suite including every capture",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-14T19:40:10Z",
+      "completed_at": "2026-11-14T19:50:02Z"
+    },
+    "counts": {
+      "visible_success": 2686,
+      "hidden_success": 583,
+      "paired_test_ids": 3269,
+      "failures": 0,
+      "skips": 0,
+      "error_events": 0,
+      "suites": 399
+    },
+    "done": {
+      "success": true,
+      "type": "done",
+      "time": 591081
+    },
+    "original_summary_matches": true,
+    "independent_review_sha256": "be4adf6f8b4a706220e54f6c676cb8835fa9540d4c4d968dd52eb381425a63c1",
+    "image_limit": "552 PNG members are integrity-indexed, not visually reviewed or PNG-decoded by this collector."
+  },
+  "runtime": {
+    "job_id": 132562871412,
+    "artifact_id": 14128583501,
+    "status": "success",
+    "scope": "Actual desktop Runtime170, Return21, Wisp14 with exact pure replay. No full CI, APK, Android, human visual or FPS acceptance.",
+    "peer_handoff_path": "/tmp/host7ac-runtime-originals-checkpoint-20261114/handoff.json",
+    "host_scoped_files": 458,
+    "native_scoped_files": 1295,
+    "source_binding": "Peer frozen exact-tree and before/after source inventories; exact-source pure replay. No new engine invocation in this catalog."
+  },
+  "host_compile": {
+    "job_id": 132562871774,
+    "artifact_id": 14128952438,
+    "status": "success",
+    "actual_result": {
+      "registry_and_embedded_methods": 10,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "required_host_class_reports": 15,
+      "required_c4_class_reports": 3
+    },
+    "peer_handoff_path": "/tmp/host7ac-c4-host-compile-evidence-20261114/handoff.json",
+    "limits": [
+      "Compile-stage success only; no APK, device, renderer, audio or release claim.",
+      "The full Flutter suite is a separate active Build-job stage owned by the central observer. Its current actual outcome is not inferred from this compile job.",
+      "Producer 28462 full-suite/24-case results are not counted as integrated 7ac results.",
+      "The six-member artifact contains original compiler-generated path/size/SHA256 reports. No .class bytes are archived; this audit does not claim independent bytecode rehashing.",
+      "No full before/after tracked/index/package_config inventory is present in this compile artifact. The source claim uses exact checkout SHA, authenticated commit/tree, untouched compiler/workflow source, original source-sha and report SHAs, and the successful original compiler diff guards. No stronger package-path or binary-index invariance is inferred."
+    ]
+  },
+  "not_reached": {
+    "native_52_dream_discovery_steps": [
+      {
+        "name": "Require actual gameplay gates on the exact pinned native source",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 31,
+        "started_at": "2026-11-14T19:56:16Z",
+        "completed_at": "2026-11-14T19:56:16Z"
+      },
+      {
+        "name": "Require actual Dream gates on the exact pinned native source",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 32,
+        "started_at": "2026-11-14T19:56:16Z",
+        "completed_at": "2026-11-14T19:56:16Z"
+      },
+      {
+        "name": "Require actual Discovery gates on the exact pinned native source",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 33,
+        "started_at": "2026-11-14T19:56:16Z",
+        "completed_at": "2026-11-14T19:56:16Z"
+      }
+    ],
+    "apk_build_step": {
+      "name": "Build unified real Android APK",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 35,
+      "started_at": "2026-11-14T19:56:17Z",
+      "completed_at": "2026-11-14T19:56:17Z"
+    },
+    "native_build_artifact_present": false,
+    "apk_present": false,
+    "android_or_update_evidence_present": false,
+    "delivery_bundle_present": false,
+    "four_downstream_jobs": "All four were skipped, not failed device tests and not successful acceptance."
+  },
+  "artifacts": [
+    {
+      "id": 14129421118,
+      "name": "lumo-tutor-2001-actual-flutter-captures",
+      "bytes": 5779493,
+      "digest": "sha256:ad433186ba75401605a3128c7d36e498554ae71a701f22f64a8635326841c286",
+      "evidence_status": "METADATA_ONLY_NOT_DOWNLOADED_BY_THIS_COLLECTOR"
+    },
+    {
+      "id": 14129167785,
+      "name": "lumo-connect-four-2020-build-contracts",
+      "bytes": 28741,
+      "digest": "sha256:725e8d8af09e89621ada7374a1166071d37b0816ab97edaad64a01fd6abfe62c",
+      "evidence_status": "ORIGINAL_ARCHIVE_COLLECTED_AND_BOUND"
+    },
+    {
+      "id": 14129126813,
+      "name": "lumo-connect-four-2020-learning-curriculum-audit",
+      "bytes": 212134,
+      "digest": "sha256:51d90e82373d8560d16633bda712b203a5dff64de8997b094df758909926c7e7",
+      "evidence_status": "METADATA_ONLY_NOT_DOWNLOADED_BY_THIS_COLLECTOR"
+    },
+    {
+      "id": 14128952438,
+      "name": "lumo-connect-four-2020-android-host-compile",
+      "bytes": 6637,
+      "digest": "sha256:5e0ce83ac08aaff276ac16134a88a09c74a4a88ff95fad881a23db215e36e1c2",
+      "evidence_status": "ORIGINAL_ARCHIVE_COLLECTED_AND_BOUND"
+    },
+    {
+      "id": 14128708328,
+      "name": "lumo-1983-quiz-studio-captures",
+      "bytes": 10603026,
+      "digest": "sha256:d03ee810b26833512a4f3adb74a0247c63a4c9c4d76ca05a5e49831bde122fcf",
+      "evidence_status": "METADATA_ONLY_NOT_DOWNLOADED_BY_THIS_COLLECTOR"
+    },
+    {
+      "id": 14128583501,
+      "name": "lumo-connect-four-2020-desktop-runtime",
+      "bytes": 22161754,
+      "digest": "sha256:3af82b995a9c92c72f72a90b9293094e07c7ece6f5eabaf27e40a7f2af4d09e1",
+      "evidence_status": "ORIGINAL_ARCHIVE_COLLECTED_AND_BOUND"
+    },
+    {
+      "id": 14128439571,
+      "name": "lumo-candidate-all-flutter-tests-and-captures",
+      "bytes": 335911148,
+      "digest": "sha256:e5f1e4e986e83531f7306c41f039f0c25aa449a6f075e0241eb0ccbd876746c8",
+      "evidence_status": "ORIGINAL_ARCHIVE_COLLECTED_AND_BOUND"
+    }
+  ],
+  "publication_files": [
+    {
+      "source_path": "/tmp/host7ac-c4-run43632790204-evidence-20261114/terminal-20261114T195750Z/run.original.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/terminal/run.original.json",
+      "kind": "original",
+      "evidence_status": "Exact complete original terminal API response",
+      "bytes": 12986,
+      "sha256": "eb6288647435b909b35c44d593c1948150ebeb7947ae9bf495c0688bd9ee1e31",
+      "git_blob": "423df78c2d4f40c62bfc8a912c1f26950c790b92"
+    },
+    {
+      "source_path": "/tmp/host7ac-c4-run43632790204-evidence-20261114/terminal-20261114T195750Z/jobs.original.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/terminal/jobs.original.json",
+      "kind": "original",
+      "evidence_status": "Exact complete original terminal API response",
+      "bytes": 19684,
+      "sha256": "885aae4ed4db945acdfcac0b876d50fb89590c7715e5a379d5b3d418328c0a5c",
+      "git_blob": "7efad1a185b6bdf3541bd20dfbe154320aee8eb6"
+    },
+    {
+      "source_path": "/tmp/host7ac-c4-run43632790204-evidence-20261114/terminal-20261114T195750Z/artifacts.original.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/terminal/artifacts.original.json",
+      "kind": "original",
+      "evidence_status": "Exact complete original terminal API response",
+      "bytes": 5266,
+      "sha256": "d5fa683dc61dbafbf2de50963f5dae0b69dc04ba5f23fd9e4074e29e9c9911d5",
+      "git_blob": "b8eb5e9bfd82ce652a20f99b2764dfd6fb597d7d"
+    },
+    {
+      "source_path": "/tmp/host7ac-c4-run43632790204-evidence-20261114/terminal-20261114T195750Z/raw-manifest.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/terminal/raw-manifest.json",
+      "kind": "collection_manifest",
+      "evidence_status": "Original terminal collection manifest",
+      "bytes": 914,
+      "sha256": "e61bb91ddb907f409f24c2576b61bbf37ba27317e5a026c06c119f08317db96d",
+      "git_blob": "1820896ad857f5ccfcda007467bb5e643fd9d7f9"
+    },
+    {
+      "source_path": "/tmp/host7ac-c4-run43632790204-evidence-20261114/terminal-20261114T195750Z/job-132564123163.original.log",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/terminal/job-132564123163.original.log",
+      "kind": "original",
+      "evidence_status": "Once-downloaded complete original terminal build job log",
+      "bytes": 408052,
+      "sha256": "1cba4f6f36e86a4f3b6576ded5b283c23dfd8188200902fa020aa995997caa42",
+      "git_blob": "8170f522af474be7bd40a3f347ca864a0a51ab34"
+    },
+    {
+      "source_path": "/tmp/host7ac-build-contracts-originals-20261114/originals/build-contracts.log",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/contracts/build-contracts.original.log",
+      "kind": "original",
+      "evidence_status": "Exact complete failed build-contract stdout/stderr artifact member",
+      "bytes": 183983,
+      "sha256": "b197b423ca3f96a5b5ddd4f55e0df6361c193c27b1c5eef6b131e0299b50b798",
+      "git_blob": "eead824749ec5e91c30a5be176bc2ab788a983f5"
+    },
+    {
+      "source_path": "/tmp/host7ac-build-contracts-originals-20261114/zip-members.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/contracts/zip-members.json",
+      "kind": "archive_index",
+      "evidence_status": "Complete original artifact member CRC/SHA index",
+      "bytes": 234,
+      "sha256": "1c8fa69418ff0682d51e4099f1cf2a5110dd3428992408bfa703a5e6958b271b",
+      "git_blob": "7eb5f5baeeef30c3d5a386b3b00961188f779bc4"
+    },
+    {
+      "source_path": "/tmp/host7ac-build-contracts-originals-20261114/host7ac-build-contracts-14129167785.zip",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/contracts/artifact-14129167785.original.zip",
+      "kind": "original_archive",
+      "evidence_status": "Original small artifact bytes; API SHA and sole member CRC/SHA verified",
+      "bytes": 28741,
+      "sha256": "725e8d8af09e89621ada7374a1166071d37b0816ab97edaad64a01fd6abfe62c",
+      "git_blob": "44ca0f76e5820d0b8b076cb06257e7b7de3946e7"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-originals-20261114/api-originals/run.original.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/upload-api/run.original.json",
+      "kind": "original",
+      "evidence_status": "Exact original API response collected with the finished Flutter artifact; earlier than terminal snapshot",
+      "bytes": 12983,
+      "sha256": "885553209e32238b91ec0c1576e6907750fc06181dcfb2abfe651a7c63299f3e",
+      "git_blob": "233bc215591b7c3d069c7911d050cb390a71638a"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-originals-20261114/api-originals/jobs.original.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/upload-api/jobs.original.json",
+      "kind": "original",
+      "evidence_status": "Exact original API response collected with the finished Flutter artifact; earlier than terminal snapshot",
+      "bytes": 14633,
+      "sha256": "300086fe62e437675d7568fb8837690faf86978d84315acb2c870c3b3591dfa2",
+      "git_blob": "0f9dd1172ded92e89eb0122f14779a96d39e5dbb"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-originals-20261114/api-originals/artifacts.original.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/upload-api/artifacts.original.json",
+      "kind": "original",
+      "evidence_status": "Exact original API response collected with the finished Flutter artifact; earlier than terminal snapshot",
+      "bytes": 3775,
+      "sha256": "3160b8e73a667051130abfb6669894bf76321a40dff3e1ec5dab75830b31997a",
+      "git_blob": "e848d0f7a995bce95aa6795c955f8724b50d3db3"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-originals-20261114/originals/acceptance-summary.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/originals/acceptance-summary.json",
+      "kind": "original",
+      "evidence_status": "Unchanged original Flutter artifact member; current run only",
+      "bytes": 2202,
+      "sha256": "d4df84959a4a46e4cea36f45a88fe45834359aa3ec2e8d0b59180046ee1b1951",
+      "git_blob": "ec330383ac178eabc70e85fa6afa0a1e3e9a530e"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-originals-20261114/originals/flutter-machine.jsonl",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/originals/flutter-machine.jsonl",
+      "kind": "original",
+      "evidence_status": "Unchanged original Flutter artifact member; current run only",
+      "bytes": 1806743,
+      "sha256": "02a34eb91fa9da319ffa11b0b1a8dd8b80e7e6c362823d86228ba8f3b7f7b307",
+      "git_blob": "9b6bd67d5195aaeffcd1173d1c5c885686c6f03c"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-originals-20261114/zip-members.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/zip-members.json",
+      "kind": "archive_integrity_report",
+      "evidence_status": "All 554 original ZIP members were decompressed and CRC/SHA/size checked at original collection",
+      "bytes": 259403,
+      "sha256": "5048f2414abc758d83844458c67565d4b7486745680602fadd5a11f482b52030",
+      "git_blob": "2daca83ee724df439219482b0276a11a0dec3c04"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-originals-20261114/archive-verification.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/archive-verification.json",
+      "kind": "archive_integrity_report",
+      "evidence_status": "All 554 original ZIP members were decompressed and CRC/SHA/size checked at original collection",
+      "bytes": 2139,
+      "sha256": "f4dd5888b522e498e34ef5e9f67ef0d20fc7f1a0e6b662583f6b2ec2990aab1e",
+      "git_blob": "97db789e0d91278e76f6c6126df64b3bea3f3f03"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-originals-20261114/machine-inspection/recount.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/inspection/recount.json",
+      "kind": "derived_original_analysis",
+      "evidence_status": "Existing read-only recount of the original machine stream; not a new test run",
+      "bytes": 2082,
+      "sha256": "3e295e5885a8ff37668456849337a6a85aeaf31113c69c762dd6295f96f10b54",
+      "git_blob": "d769bfc37e40fe648e892b4de61c52b6405352b5"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-originals-20261114/machine-inspection/suite-results.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/inspection/suite-results.json",
+      "kind": "derived_original_analysis",
+      "evidence_status": "Existing read-only recount of the original machine stream; not a new test run",
+      "bytes": 454322,
+      "sha256": "52ecadee758324fb976bf716491442915b3a64ce1f229eeacb2505a797e8273c",
+      "git_blob": "13ab2225641f3b8ebf73402a03a6fb42669fd9a3"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-originals-20261114/machine-inspection/non-protocol-lines.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/inspection/non-protocol-lines.json",
+      "kind": "derived_original_analysis",
+      "evidence_status": "Existing read-only recount of the original machine stream; not a new test run",
+      "bytes": 99120,
+      "sha256": "acc784ad9079526ccc3c4e30ac93445faccdf338c73ebe2a899a04505078c031",
+      "git_blob": "8713367eeb788cb0bc6c048bf81da55de06b0772"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-originals-20261114/recount-program/read_original_machine.py",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/read_original_machine.py",
+      "kind": "read_only_program",
+      "evidence_status": "Exact program used for the existing read-only recount",
+      "bytes": 4673,
+      "sha256": "608afe60d23b5dc6c049522bb451867512a8f49afb89da2e3837d1644b043cf9",
+      "git_blob": "05581d00a0d633c502a7a1b88c45f6af7e6d8c87"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-independent-review-20261114/review.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/independent-review/review.json",
+      "kind": "peer_review",
+      "evidence_status": "Existing independent original-stream count and binding; no test replay",
+      "bytes": 12241,
+      "sha256": "be4adf6f8b4a706220e54f6c676cb8835fa9540d4c4d968dd52eb381425a63c1",
+      "git_blob": "7338c96444588d9cba8b16511443848bcc798b7b"
+    },
+    {
+      "source_path": "/tmp/host7ac-full-flutter-independent-review-20261114/manifest.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/flutter/independent-review/manifest.json",
+      "kind": "peer_review",
+      "evidence_status": "Existing independent original-stream count and binding; no test replay",
+      "bytes": 283,
+      "sha256": "fbebb3bb5d64122c56721d83a7ca1a9bb61316b4761c6b873319cd3d50b9240a",
+      "git_blob": "f969a7ab3f87b3575f93c1419d23f60038a73185"
+    },
+    {
+      "source_path": "/tmp/host7ac-runtime-originals-checkpoint-20261114/handoff.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/runtime/handoff.json",
+      "kind": "peer_handoff",
+      "evidence_status": "Existing peer-frozen current Runtime original pack and exact source binding",
+      "bytes": 1970,
+      "sha256": "e64e9e88cda8f23a74c195e318799cb736e7d88bbdfffe8691c93aa3442b1c7a",
+      "git_blob": "6920951ab8565cdd4700b7b130d957c1f2774b78"
+    },
+    {
+      "source_path": "/tmp/host7ac-runtime-originals-checkpoint-20261114/manifest.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/runtime/manifest.json",
+      "kind": "peer_handoff",
+      "evidence_status": "Existing peer-frozen current Runtime original pack and exact source binding",
+      "bytes": 1346,
+      "sha256": "907034b927c03d4e9e452fe93950dc5883c6c61e86bb182caccece2a7b02496b",
+      "git_blob": "f89c9f566ec936b1478b8188f1c27494d1d52e0a"
+    },
+    {
+      "source_path": "/tmp/host7ac-runtime-native-evidence-20261114/runtime/job-132562871412.original.log",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/runtime/job-132562871412.original.log",
+      "kind": "original",
+      "evidence_status": "Existing once-downloaded complete Runtime job log",
+      "bytes": 294105,
+      "sha256": "40d9065d6f9a5bd9e2ade07f834d9f2c38e20870de7e6561875e4e83e759616a",
+      "git_blob": "42b770e26473a8a00ec91c35725d5c1b145aab73"
+    },
+    {
+      "source_path": "/tmp/host7ac-runtime-native-evidence-20261114/runtime/runtime-original-replay.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/runtime/runtime-original-replay.json",
+      "kind": "peer_pure_replay",
+      "evidence_status": "Existing exact-source pure original replay, not an engine rerun",
+      "bytes": 58658,
+      "sha256": "d68d1e4c1243966998b052606f0badd14354d00e7c9280647d3a1d15185919e3",
+      "git_blob": "58536f51f37342ba9b2399e6f5134c46b25401b1"
+    },
+    {
+      "source_path": "/tmp/host7ac-c4-host-compile-evidence-20261114/handoff.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/host-compile/handoff.json",
+      "kind": "peer_handoff",
+      "evidence_status": "Existing peer-frozen current compile evidence and archive integrity",
+      "bytes": 2333,
+      "sha256": "90d9feac548b0cae884547c5ec0d84f2248adda737d37937e136a81fd4874852",
+      "git_blob": "5ccb470c238fac46c3a44f6b3c851bd994d692ac"
+    },
+    {
+      "source_path": "/tmp/host7ac-c4-host-compile-evidence-20261114/manifest.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/host-compile/manifest.json",
+      "kind": "peer_handoff",
+      "evidence_status": "Existing peer-frozen current compile evidence and archive integrity",
+      "bytes": 6262,
+      "sha256": "fc28f1620930cd387bdb67ff2697107046a365988ed45e362eb861b3a24ddf42",
+      "git_blob": "459e26de8260649792bdb19743aa38384014ec11"
+    },
+    {
+      "source_path": "/tmp/host7ac-c4-host-compile-evidence-20261114/archive-verification.json",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/host-compile/archive-verification.json",
+      "kind": "peer_handoff",
+      "evidence_status": "Existing peer-frozen current compile evidence and archive integrity",
+      "bytes": 3473,
+      "sha256": "6a1925469ed4a8eb92b8b77a57021a8c53c245483a88d38f0eb7452e18b2f599",
+      "git_blob": "c820af99b8f1f8c829eba1e892603d01d2c040e6"
+    },
+    {
+      "source_path": "/tmp/host7ac-c4-host-compile-evidence-20261114/originals/host-compile-132562871774.original.log",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/host-compile/job-132562871774.original.log",
+      "kind": "original",
+      "evidence_status": "Existing once-downloaded complete HostCompile job log",
+      "bytes": 243420,
+      "sha256": "44a44e14ffba14bb946f5617b8726a9e2936ff29f3733ec42601dc115a8a1fa5",
+      "git_blob": "880b5215c8a80d7771cd5e3955fd8213b389edb5"
+    },
+    {
+      "source_path": "/tmp/host7ac-c4-host-compile-evidence-20261114/originals/artifact-14128952438.original.zip",
+      "repository_path": "docs/evidence/host7ac-terminal-43632790204-20261114/host-compile/artifact-14128952438.original.zip",
+      "kind": "original_archive",
+      "evidence_status": "Original small six-member compile artifact; API SHA/CRC checked",
+      "bytes": 6637,
+      "sha256": "5e0ce83ac08aaff276ac16134a88a09c74a4a88ff95fad881a23db215e36e1c2",
+      "git_blob": "9f0658b4cd981949e8b0f19e97293c60ef747df6"
+    }
+  ],
+  "publication_payload_bytes": 3952663,
+  "separate_original_archives": [
+    {
+      "artifact_id": 14128439571,
+      "name": "lumo-candidate-all-flutter-tests-and-captures",
+      "path": "/tmp/host7ac-full-flutter-originals-20261114/host7ac-full-flutter-14128439571.zip",
+      "bytes": 335911148,
+      "sha256": "e5f1e4e986e83531f7306c41f039f0c25aa449a6f075e0241eb0ccbd876746c8",
+      "git_blob": "542a29adb2650a74f0c7e15dd78322c802f3d276",
+      "original_api_digest": "sha256:e5f1e4e986e83531f7306c41f039f0c25aa449a6f075e0241eb0ccbd876746c8",
+      "new_download": false,
+      "include_in_compact_payload": false,
+      "crc_members_checked_at_original_collection": 554
+    },
+    {
+      "artifact_id": 14128583501,
+      "name": "lumo-connect-four-2020-desktop-runtime",
+      "path": "/tmp/host7ac-runtime-native-evidence-20261114/runtime/original-14128583501.zip",
+      "bytes": 22161754,
+      "sha256": "3af82b995a9c92c72f72a90b9293094e07c7ece6f5eabaf27e40a7f2af4d09e1",
+      "git_blob": "5ac61a12d2cb50e2871fa3e731b42ad9a5814ead",
+      "original_api_digest": "sha256:3af82b995a9c92c72f72a90b9293094e07c7ece6f5eabaf27e40a7f2af4d09e1",
+      "new_download": false,
+      "include_in_compact_payload": false,
+      "crc_members_checked_at_original_collection": 399
+    },
+    {
+      "artifact_id": 14129167785,
+      "name": "lumo-connect-four-2020-build-contracts",
+      "path": "/tmp/host7ac-build-contracts-originals-20261114/host7ac-build-contracts-14129167785.zip",
+      "bytes": 28741,
+      "sha256": "725e8d8af09e89621ada7374a1166071d37b0816ab97edaad64a01fd6abfe62c",
+      "git_blob": "44ca0f76e5820d0b8b076cb06257e7b7de3946e7",
+      "original_api_digest": "sha256:725e8d8af09e89621ada7374a1166071d37b0816ab97edaad64a01fd6abfe62c",
+      "new_download": false,
+      "include_in_compact_payload": true,
+      "crc_members_checked_at_original_collection": 1
+    },
+    {
+      "artifact_id": 14128952438,
+      "name": "lumo-connect-four-2020-android-host-compile",
+      "path": "/tmp/host7ac-c4-host-compile-evidence-20261114/originals/artifact-14128952438.original.zip",
+      "bytes": 6637,
+      "sha256": "5e0ce83ac08aaff276ac16134a88a09c74a4a88ff95fad881a23db215e36e1c2",
+      "git_blob": "9f0658b4cd981949e8b0f19e97293c60ef747df6",
+      "original_api_digest": "sha256:5e0ce83ac08aaff276ac16134a88a09c74a4a88ff95fad881a23db215e36e1c2",
+      "new_download": false,
+      "include_in_compact_payload": true,
+      "crc_members_checked_at_original_collection": 6
+    }
+  ],
+  "existing_peer_technical_archive": {
+    "path": "/tmp/host7ac-runtime-originals-checkpoint-20261114/technical-originals.tar.gz",
+    "bytes": 3564820,
+    "sha256": "a04c8eb381c27b2ec8e5eee6d62a480ffbd1afb887197bc23e0a09567eeab382",
+    "git_blob": "2081ae50be9fd7846fd7af6945125504ea54a799",
+    "scope": "Existing peer-produced compact Runtime original/reader pack; not duplicated here"
+  },
+  "restrictions": {
+    "remote_downloads_during_catalog": 0,
+    "tests_during_catalog": 0,
+    "engine_or_device_runs": 0,
+    "ci_or_ref_changes": 0,
+    "source_changes": 0,
+    "terminal_watch_stopped": true,
+    "publication_or_release_authorized_by_this_result": false
+  },
+  "overall_claim": "Historical current-run FAILURE remains. Successful substage originals are preserved; neither Android acceptance, release, nor a later repaired-source PASS is claimed."
+}

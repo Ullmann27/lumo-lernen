@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_nextgen_native_reader.py",
+    "-v"
+  ],
+  "recordedUtc": "2026-11-16T05:32:42.098093+00:00",
+  "repositoryBase": "dc6f7f562c903dd631f010834a852edc50268285",
+  "uncommittedChanges": "Only added original Banane fixtures and regression tests; current dispatch unchanged",
+  "exitCode": 1,
+  "logSha256": "aa14433181ed14fee324aa1de5321c5d13d6e3e5730ed4627ef609ab2dcac1da",
+  "currentProbeSha256": "7f5074b592e4dde1b8159575ec578ec36a2fae36d50d8e3642715ce8ca01b97c",
+  "testsSha256": "514b5b9ceedd8f6128ea9e459adb9dc31a7327970a88aba89dbf54a7e2ef6664"
+}

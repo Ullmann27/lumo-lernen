@@ -6,6 +6,8 @@ import '../widgets/fox/lumo_companion_requests.dart';
 import 'lumo_ai_proxy_client.dart';
 import 'lumo_companion_engine.dart';
 import 'lumo_context_engine.dart';
+import 'lumo_learning_dialogue_intent.dart';
+import 'lumo_learning_session_contract.dart';
 import 'lumo_sulafat_client.dart';
 import 'lumo_voice.dart';
 
@@ -18,59 +20,154 @@ enum LumoConversationPhase {
   error
 }
 
-/// One short-lived conversation over actual context. History is RAM-only,
-/// limited to four exchanges and discarded on task/profile/screen changes.
-/// This controller has no reward or navigation capabilities.
+/// One bounded conversation over the existing task bus. Only the task owner
+/// handles permitted requests; this controller cannot score or grant rewards.
 class LumoConversationController extends ChangeNotifier {
   LumoConversationController(
     this.context, {
     LumoAiProxyClient proxy = const LumoAiProxyClient(),
+    this.onInterrupt,
   }) : _proxy = proxy {
+    _conversationScope = context.conversationScope;
     context.addListener(_contextChanged);
+    context.requests.learningCancellation.addListener(_busCancelled);
     LumoVoice.instance.status.addListener(_voiceChanged);
+    LumoVoice.instance.clipMouth.addListener(_publishAudio);
+    LumoVoice.instance.mediaAudibility.addListener(_publishAudio);
   }
 
   final LumoContextEngine context;
   final LumoAiProxyClient _proxy;
+  final VoidCallback? onInterrupt;
   final List<LumoAiChatTurn> _history = [];
   List<LumoAiChatTurn> get history => List.unmodifiable(_history);
   LumoConversationPhase phase = LumoConversationPhase.idle;
   LumoSpeechCancellation? _request;
+  String _conversationScope = '';
   int _generation = 0;
+  int _turnSequence = 0;
+  int _utteranceSequence = 0;
+  int _responseGeneration = -1;
+  int _responseRevision = -1;
+  int _responseTurn = 0;
+  double _responseSpeed = 1;
+  bool _responseMaySpeak = false;
+  LumoLearningIdentity? _interactionIdentity;
+  int? _interactionVoiceRevision;
+  LumoLearningIdentity? _responseIdentity;
+  LumoLearningIdentity? _audioIdentity;
+  int? _audioRequestRevision;
+  LumoLearningPresentation? _audioPresentation;
+  int? _audioUtterance;
+  String _subtitle = '';
+  String? _lastHelpKey;
+  String _lastHelpReply = '';
+  String _lastHelpInput = '';
+  int _audioCompletionBefore = 0;
   bool _disposed = false;
   bool _paused = false;
+  bool _dispatchingAction = false;
+  String? _actionScope;
+  bool _emittingCancellation = false;
+
+  bool get responseMaySpeak => _responseMaySpeak;
+  int get turnId => _responseTurn;
+  LumoLearningIdentity? get responseIdentity => _responseIdentity;
+  bool get handlingCurrentLessonAction => _ownCompatibleAction;
 
   static const cancelled =
       LumoAiProxyResponse(reply: '', blocked: false, source: 'cancelled');
 
   Future<LumoAiProxyResponse> ask(String question) async {
-    if (_disposed || _paused || question.trim().isEmpty || _request != null) {
-      return cancelled;
+    final input = question.trim();
+    if (_disposed || input.isEmpty) return cancelled;
+    final intent = LumoLearningDialogueIntent.parse(input, context.task);
+    if (intent?.action == LumoLearningAction.stop) {
+      interrupt();
+      if (intent!.declinesHelp) {
+        return const LumoAiProxyResponse(
+            reply: 'Gerne. Versuch es zuerst selbst. Ich gebe dir keinen '
+                'weiteren Tipp. Wenn du Hilfe möchtest, frag mich einfach.',
+            blocked: false,
+            source: 'local_try_myself');
+      }
+      return const LumoAiProxyResponse(
+          reply: 'Ich habe aufgehört. Du kannst in Ruhe weitermachen.',
+          blocked: false,
+          source: 'local_stopped');
     }
-    if (question.length > 1200) {
+    if (_paused) return cancelled;
+    if (input.length > 1200) {
       return const LumoAiProxyResponse(
           reply: 'Stell mir bitte eine kürzere Frage. '
               'Wir gehen sie dann gemeinsam durch.',
           blocked: false,
           source: 'local_input_too_long');
     }
-    final generation = ++_generation;
-    final revision = context.revision;
-    await LumoVoice.instance.stop();
-    if (_disposed || _paused || generation != _generation) return cancelled;
-    final request = LumoSpeechCancellation();
-    _request = request;
+
+    // A child may replace a pending question. Stop old work before capturing
+    // the new lease, so the replacement's gesture is never cancelled by it.
+    final preparing = _beginInteraction('new_turn');
+    final generation = _generation;
+    final turn = ++_turnSequence;
+    final scope = context.conversationScope;
+    if (!await preparing ||
+        !_current(generation) ||
+        scope != context.conversationScope) {
+      return cancelled;
+    }
     _setPhase(LumoConversationPhase.thinking);
-    final app = context.appState;
-    final state = app.state;
-    final local = const LumoCompanionEngine()
-        .answer(input: question, state: state, task: context.task);
-    final safeInput = LumoChildSafetyFilter.inspect(question).allowed;
+    final safeInput = LumoChildSafetyFilter.inspect(input).allowed;
     if (safeInput && !context.isAssessment) {
       context.requests.recordLearningEvent(
           LumoLearningEventKind.childAskedQuestion,
           context: context.task);
     }
+
+    if (safeInput && intent != null) {
+      final command = _handleCommand(input, intent, turn, scope);
+      if (!_current(generation) || scope != context.conversationScope) {
+        return cancelled;
+      }
+      _completeResponse(input, command, generation, turn,
+          speed: intent.action == LumoLearningAction.slower ? .75 : 1);
+      return command;
+    }
+
+    if (context.isAssessment) {
+      final response = LumoAiProxyResponse(
+          reply:
+              'Im Test löst du die Aufgabe selbst. Danach üben wir gemeinsam.',
+          blocked: !safeInput,
+          source: 'local_assessment_no_help');
+      _completeResponse(input, response, generation, turn);
+      return response;
+    }
+    final visibleTask = context.task;
+    if (safeInput &&
+        visibleTask != null &&
+        !visibleTask.allowedActions.contains(LumoLearningAction.explain) &&
+        !visibleTask.allowedActions.contains(LumoLearningAction.hint)) {
+      // Unclassified wording cannot bypass the task owner's help permissions
+      // through either the local fallback engine or the online provider.
+      _completeResponse(input, _unavailable, generation, turn);
+      return _unavailable;
+    }
+    if (safeInput &&
+        visibleTask != null &&
+        LumoLearningDialogueIntent.isAmbiguousReference(input)) {
+      // Neither the local engine nor a provider may guess the pointed object.
+      _completeResponse(input, _clarifyReference, generation, turn);
+      return _clarifyReference;
+    }
+
+    final revision = context.revision;
+    final identity = context.learningIdentity;
+    final request = LumoSpeechCancellation();
+    _request = request;
+    final state = context.appState.state;
+    final local = const LumoCompanionEngine()
+        .answer(input: input, state: state, task: context.task);
     var response = LumoAiProxyResponse(
         reply: context.isAssessment
             ? 'Im Test löst du die Aufgabe selbst. Danach üben wir gemeinsam.'
@@ -84,43 +181,247 @@ class LumoConversationController extends ChangeNotifier {
         final online = await _proxy.ask(
             settings: state.settings,
             state: state,
-            message: question,
+            message: input,
             history: history,
             context: context.aiContext,
             extras: context.remoteContext,
             cancellation: request);
         if (online.isCloudAnswer || online.blocked) response = online;
       } catch (_) {
-        // Keep the real local task help; never expose raw provider errors.
+        // The verified local help remains available without provider errors.
       }
     }
-    if (_disposed ||
-        _paused ||
-        generation != _generation ||
+    if (!_current(generation) ||
         revision != context.revision ||
-        request.cancelled) {
+        request.cancelled ||
+        (identity != null &&
+            !context.requests.isCurrentLearningIdentity(identity))) {
       return cancelled;
     }
     _request = null;
+    _completeResponse(input, response, generation, turn);
+    return response;
+  }
+
+  LumoAiProxyResponse _handleCommand(
+      String input, LumoLearningDialogueIntent intent, int turn, String scope) {
+    final requests = context.requests;
+    final identity = context.learningIdentity;
+    final asked = context.task;
+    if (context.isAssessment) {
+      final task = context.task;
+      final instructionOnly = task != null &&
+          task.hasExplicitAllowedActions &&
+          (intent.action == LumoLearningAction.repeat ||
+              intent.action == LumoLearningAction.slower) &&
+          task.allowedActions.contains(intent.action);
+      if (!instructionOnly) {
+        return const LumoAiProxyResponse(
+            reply:
+                'Im Test löst du die Aufgabe selbst. Danach üben wir gemeinsam.',
+            blocked: false,
+            source: 'local_assessment_no_help');
+      }
+    }
+    var accepted = false;
+    if (identity != null) {
+      _dispatchingAction = true;
+      _actionScope = scope;
+      try {
+        accepted = requests.requestLearningAction(intent.action,
+            identity: identity, candidate: intent.candidate, turnId: turn);
+      } finally {
+        _dispatchingAction = false;
+        _actionScope = null;
+      }
+    }
+    if (scope != context.conversationScope) return cancelled;
+    if (intent.action == LumoLearningAction.proposeAnswer) {
+      return LumoAiProxyResponse(
+          reply: accepted
+              ? '${intent.isCorrection ? 'Ich ändere deinen Vorschlag auf' : 'Dein Vorschlag ist'} '
+                  '„${intent.candidate}“. Schau ihn dir bei der Aufgabe an. '
+                  'Erst wenn du ihn bestätigst, wird die Antwort geprüft.'
+              : 'Du kannst deine Antwort direkt bei der Aufgabe eingeben '
+                  'und dort selbst bestätigen.',
+          blocked: false,
+          source:
+              accepted ? 'local_answer_proposal' : 'local_action_unavailable');
+    }
+    if (!accepted) {
+      // The task owner determines the next permitted help. A rejected bus
+      // request must not fall through to a generated/local explanation or a
+      // figure gesture, even when an older snapshot still contains help text.
+      return _unavailable;
+    }
+    final task = context.task;
+    if (context.isAssessment) {
+      // Reading the visible instruction is a distinct permission. Never
+      // inspect stored hints, worked examples or the local/provider engine.
+      if (task == null || task.prompt.trim().isEmpty) return _unavailable;
+      return LumoAiProxyResponse(
+          reply: task.prompt,
+          blocked: false,
+          source: 'local_assessment_instruction');
+    }
+    // "Noch einmal" and "Langsamer" repeat what Lumo just said about this
+    // still open task. Otherwise the task's own explanation is used.
+    final replay = (intent.action == LumoLearningAction.repeat ||
+                intent.action == LumoLearningAction.slower) &&
+            task != null &&
+            (task.answering || task.isExplanation) &&
+            _lastHelpReply.isNotEmpty &&
+            _lastHelpKey != null &&
+            _lastHelpKey == _helpKey(identity, asked)
+        ? _lastHelpReply
+        : null;
+    final explanation = replay ??
+        const LumoCompanionEngine()
+            .answer(
+                input: 'Erklär mir: $input',
+                state: context.appState.state,
+                task: task)
+            .text;
+    final targetInput = replay == null ? input : _lastHelpInput;
+    final current = context.learningIdentity;
+    if (current != null && task != null) {
+      final target = task.objectIds.contains('bridge_two') &&
+              RegExp(r'\b(warum|wieso|weshalb)\b', caseSensitive: false)
+                  .hasMatch(targetInput)
+          ? 'bridge_two'
+          : task.objectIds.contains('pattern_group')
+              ? 'pattern_group'
+              : task.objectIds.contains('syllable_0')
+                  ? 'syllable_0'
+                  : task.objectIds.isEmpty
+                      ? null
+                      : task.objectIds.first;
+      requests.publishLearningPresentation(LumoLearningPresentation(
+        identity: current,
+        turnId: turn,
+        gazeObjectId: task.allowedActions.contains(LumoLearningAction.look)
+            ? target
+            : null,
+        pointObjectId: task.allowedActions.contains(LumoLearningAction.point)
+            ? target
+            : null,
+        expression: task.lastCorrect == false ? 'comfort' : 'attentive',
+        animationState: 'explaining',
+      ));
+    }
+    return LumoAiProxyResponse(
+        reply: explanation,
+        blocked: false,
+        source: 'local_lesson_${intent.action.name}');
+  }
+
+  static const _clarifyReference = LumoAiProxyResponse(
+      reply: 'Was genau meinst du? Sag mir bitte, was darauf steht, '
+          'welche Farbe es hat oder wo es liegt.',
+      blocked: false,
+      source: 'local_clarify');
+
+  static const _unavailable = LumoAiProxyResponse(
+      reply: 'Diese Hilfe ist bei der aktuellen Aufgabe nicht freigegeben. '
+          'Du kannst dort in Ruhe selbst weiterarbeiten.',
+      blocked: false,
+      source: 'local_action_unavailable');
+
+  void _completeResponse(
+      String input, LumoAiProxyResponse response, int generation, int turn,
+      {double speed = 1}) {
+    if (response.source == 'cancelled') return;
     if (!response.blocked) {
       _history.addAll([
-        LumoAiChatTurn(role: 'user', content: question),
+        LumoAiChatTurn(role: 'user', content: input),
         LumoAiChatTurn(role: 'assistant', content: response.reply),
       ]);
+      while (_history.length > 8) {
+        _history.removeAt(0);
+      }
     }
-    while (_history.length > 8) {
-      _history.removeAt(0);
+    _responseGeneration = generation;
+    _responseRevision = context.revision;
+    _responseIdentity = context.learningIdentity;
+    final helpKey = _helpKey(_responseIdentity, context.task);
+    if (!response.blocked &&
+        helpKey != null &&
+        response.reply.trim().isNotEmpty &&
+        (response.source.startsWith('local_lesson_') ||
+            response.source == 'local_companion' ||
+            response.isCloudAnswer)) {
+      if (_lastHelpKey != helpKey || _lastHelpReply != response.reply) {
+        _lastHelpInput = input;
+      }
+      _lastHelpKey = helpKey;
+      _lastHelpReply = response.reply;
     }
+    _interactionIdentity = _responseIdentity;
+    _responseTurn = turn;
+    _responseSpeed = speed;
+    _responseMaySpeak = true;
     _setPhase(LumoConversationPhase.idle);
-    return response;
+  }
+
+  bool _current(int generation) =>
+      !_disposed && !_paused && generation == _generation;
+
+  /// Owners publish raised help as a new revision or step of the same task,
+  /// and a stop only changes the cancel epoch: the last help may be repeated.
+  /// After a new attempt or result the child needs the task's current help;
+  /// another task, conversation scope or profile session never reuses it.
+  String? _helpKey(
+          LumoLearningIdentity? identity, LumoCompanionTaskContext? task) =>
+      identity == null || task == null
+          ? null
+          : '${context.conversationScope}|${identity.sessionId}|'
+              '${identity.taskId}|${task.attempts}|${task.lastCorrect}';
+
+  void _forgetHelp() {
+    _lastHelpKey = null;
+    _lastHelpReply = '';
+    _lastHelpInput = '';
   }
 
   Future<void> speak(String text,
       {VoiceStyle style = VoiceStyle.explain}) async {
-    if (_disposed || _paused || !context.appState.state.settings.voiceEnabled) {
+    if (!_current(_responseGeneration) ||
+        !_responseMaySpeak ||
+        _responseRevision != context.revision ||
+        !context.appState.state.settings.voiceEnabled ||
+        (_responseIdentity != null &&
+            !context.requests.isCurrentLearningIdentity(_responseIdentity!))) {
       return;
     }
-    await LumoVoice.instance.speakAndWait(text, style: style);
+    final generation = _generation;
+    final utterance = ++_utteranceSequence;
+    _audioUtterance = utterance;
+    _audioIdentity = _responseIdentity;
+    _audioPresentation = context.requests.learningPresentation.value;
+    _audioCompletionBefore = LumoVoice.instance.completedPlaybackCount;
+    _subtitle = text;
+    final voice = LumoVoice.instance;
+    final before = voice.requestRevision;
+    final speaking =
+        voice.speakAndWait(text, style: style, speedFactor: _responseSpeed);
+    // Capture before the first await, including requests still in preflight.
+    // Empty/disabled speech cannot acquire an unrelated transport owner.
+    _audioRequestRevision =
+        voice.requestRevision == before ? null : voice.requestRevision;
+    if (_audioRequestRevision != null) {
+      _interactionVoiceRevision = _audioRequestRevision;
+    }
+    try {
+      await speaking;
+    } finally {
+      if (_current(generation) && _audioUtterance == utterance) {
+        _publishAudio();
+        _audioUtterance = null;
+        _audioIdentity = null;
+        _audioPresentation = null;
+        _audioRequestRevision = null;
+      }
+    }
   }
 
   void listening(bool value) {
@@ -132,7 +433,7 @@ class LumoConversationController extends ChangeNotifier {
 
   void pause() {
     _paused = true;
-    interrupt();
+    _retireOwnedInteraction('app_interrupted');
   }
 
   void resume() {
@@ -140,23 +441,120 @@ class LumoConversationController extends ChangeNotifier {
     _setPhase(LumoConversationPhase.idle);
   }
 
-  void interrupt() {
+  void interrupt({String reason = 'stop'}) {
+    if (_disposed) return;
+    unawaited(_beginInteraction(reason, retainIdentity: false));
+  }
+
+  /// An explicit microphone tap shares the same cancellable preparation as a
+  /// typed turn. The caller must still check its route and tap after awaiting.
+  Future<bool> prepareListening() {
+    if (_disposed || _paused) return Future.value(false);
+    return _beginInteraction('listening_started');
+  }
+
+  Future<bool> _beginInteraction(String reason,
+      {bool retainIdentity = true}) async {
+    if (_disposed) return false;
+    final scope = context.conversationScope;
+    final identity = context.learningIdentity;
+    final generation = _generation + 1;
+    _invalidateWork(stopAudio: false);
+    if (generation != _generation || scope != context.conversationScope) {
+      return false;
+    }
+    // Only a new explicit interaction may interrupt the current transport.
+    // Passive retirement never adopts whichever owner happens to be latest.
+    final voice = LumoVoice.instance;
+    final stopping = voice.stop();
+    final voiceRevision = voice.requestRevision;
+    _cancelIdentity(identity, reason);
+    if (retainIdentity &&
+        generation == _generation &&
+        scope == context.conversationScope) {
+      _interactionIdentity = context.learningIdentity;
+      _interactionVoiceRevision = voiceRevision;
+    }
+    await stopping;
+    return _current(generation) &&
+        scope == context.conversationScope &&
+        voice.requestRevision == voiceRevision;
+  }
+
+  void _cancelIdentity(LumoLearningIdentity? identity, String reason) {
+    if (identity == null ||
+        !context.requests.isCurrentLearningIdentity(identity)) {
+      return;
+    }
+    _emittingCancellation = true;
+    try {
+      context.requests.cancelLearningInteraction(reason: reason);
+    } finally {
+      _emittingCancellation = false;
+    }
+  }
+
+  void _retireOwnedInteraction(String reason) {
+    // Another speaker on the same task also retires this controller's right
+    // to clear that speaker's gesture. Stop remains an explicit active action.
+    if (_interactionVoiceRevision == LumoVoice.instance.requestRevision) {
+      _cancelIdentity(_interactionIdentity, reason);
+    }
+    _invalidateWork();
+  }
+
+  void _invalidateWork({bool stopAudio = true}) {
+    final voiceRevision = _audioRequestRevision;
     _generation++;
     _request?.cancel();
     _request = null;
-    unawaited(LumoVoice.instance.stop());
+    _responseMaySpeak = false;
+    _interactionIdentity = null;
+    _interactionVoiceRevision = null;
+    _audioUtterance = null;
+    _audioIdentity = null;
+    _audioPresentation = null;
+    _audioRequestRevision = null;
+    if (stopAudio &&
+        voiceRevision != null &&
+        voiceRevision == LumoVoice.instance.requestRevision) {
+      unawaited(LumoVoice.instance.stop());
+    }
+    onInterrupt?.call();
     _setPhase(
         _paused ? LumoConversationPhase.paused : LumoConversationPhase.idle);
   }
 
+  bool get _ownCompatibleAction =>
+      _dispatchingAction && context.conversationScope == _actionScope;
+
+  void _busCancelled() {
+    if (_disposed || _emittingCancellation) return;
+    if (_ownCompatibleAction &&
+        context.requests.learningCancellation.value?.reason ==
+            'context_changed') {
+      return;
+    }
+    _invalidateWork();
+  }
+
   void _contextChanged() {
-    _history.clear();
-    interrupt();
+    final scope = context.conversationScope;
+    if (scope != _conversationScope) {
+      _history.clear();
+      _forgetHelp();
+      _conversationScope = scope;
+    } else if (_ownCompatibleAction) {
+      return;
+    }
+    _retireOwnedInteraction('context_changed');
   }
 
   void _voiceChanged() {
+    _publishAudio();
     if (_disposed ||
         _paused ||
+        !_ownsAudio ||
         _request != null ||
         phase == LumoConversationPhase.listening) {
       return;
@@ -170,6 +568,59 @@ class LumoConversationController extends ChangeNotifier {
     });
   }
 
+  void _publishAudio() {
+    final identity = _audioIdentity;
+    final utterance = _audioUtterance;
+    if (_disposed ||
+        !_ownsAudio ||
+        identity == null ||
+        utterance == null ||
+        !context.requests.isCurrentLearningIdentity(identity)) {
+      return;
+    }
+    final voice = LumoVoice.instance;
+    final status = voice.status.value;
+    final playing = status == VoiceStatus.speaking;
+    final audioState = switch (status) {
+      VoiceStatus.preparing => 'preparing',
+      VoiceStatus.speaking => 'playing',
+      VoiceStatus.paused => 'paused',
+      VoiceStatus.error => 'unavailable',
+      VoiceStatus.idle => voice.completedPlaybackCount > _audioCompletionBefore
+          ? 'completed'
+          : 'idle',
+    };
+    context.requests.publishLearningAudio(LumoLearningAudioFrame(
+      identity: identity,
+      turnId: _responseTurn,
+      utteranceId: utterance,
+      state: audioState,
+      subtitle: _subtitle,
+      positionMs: voice.mediaPosition.inMilliseconds,
+      durationMs: voice.mediaDuration.inMilliseconds,
+      audible: playing && voice.mediaAudible,
+      envelopeAvailable: playing && voice.mouthEnvelopeAvailable,
+      envelope:
+          playing && voice.mediaAudible ? (voice.clipMouth.value ?? 0) : 0,
+    ));
+    final presentation = _audioPresentation;
+    if (presentation != null && presentation.identity.matches(identity)) {
+      context.requests.publishLearningPresentation(LumoLearningPresentation(
+        identity: identity,
+        turnId: _responseTurn,
+        utteranceId: utterance,
+        gazeObjectId: presentation.gazeObjectId,
+        pointObjectId: playing ? presentation.pointObjectId : null,
+        expression: presentation.expression,
+        animationState: playing && voice.mediaAudible ? 'speaking' : 'idle',
+      ));
+    }
+  }
+
+  bool get _ownsAudio =>
+      _audioRequestRevision != null &&
+      _audioRequestRevision == LumoVoice.instance.requestRevision;
+
   void _setPhase(LumoConversationPhase value) {
     if (_disposed || value == phase) return;
     phase = value;
@@ -178,12 +629,17 @@ class LumoConversationController extends ChangeNotifier {
 
   @override
   void dispose() {
+    if (_disposed) return;
+    _retireOwnedInteraction('page_exit');
     _disposed = true;
     context.removeListener(_contextChanged);
+    context.requests.learningCancellation.removeListener(_busCancelled);
     LumoVoice.instance.status.removeListener(_voiceChanged);
+    LumoVoice.instance.clipMouth.removeListener(_publishAudio);
+    LumoVoice.instance.mediaAudibility.removeListener(_publishAudio);
     _request?.cancel();
     _history.clear();
-    unawaited(LumoVoice.instance.stop());
+    _forgetHelp();
     super.dispose();
   }
 }

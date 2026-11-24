@@ -1,0 +1,68 @@
+{
+  "observedAtUtc": "2026-11-16T02:52:10.393077+00:00",
+  "runId": 43790915460,
+  "jobId": 133053281508,
+  "status": "PASS",
+  "flutterSource": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+  "sourceBinding": "Observed immutable Actions workflow head and full original build job log; actual CI verifier used expected source identity.",
+  "nativeSource": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "produced": {
+    "arm64": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionName": "0.13.18",
+      "versionCode": 2030,
+      "bytes": 535021298,
+      "sha256": "96e4bcd060df8f18b015532f7a58f2073d6a9225e7c6d32af50bd219b6a01fa3",
+      "abis": [
+        "arm64-v8a"
+      ],
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+        "engine": "4.6.3",
+        "pck_sha256": "8a92cb22afabe31dfba7fc80f73e4b92aa7fb469c69699745fcb7c00d84b484b",
+        "bytes": 278589724
+      },
+      "minSdk": 24,
+      "targetSdk": 36,
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true
+    },
+    "x86": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionName": "0.13.18",
+      "versionCode": 2030,
+      "bytes": 538184607,
+      "sha256": "66870e9232eaf05e5cad893d410cb8046318ae6d226c0bd0e90e1af0a178a4f2",
+      "abis": [
+        "x86_64"
+      ],
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+        "engine": "4.6.3",
+        "pck_sha256": "8a92cb22afabe31dfba7fc80f73e4b92aa7fb469c69699745fcb7c00d84b484b",
+        "bytes": 278589724
+      },
+      "minSdk": 24,
+      "targetSdk": 36,
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true
+    }
+  },
+  "actualAPKsVerifiedInCI": true,
+  "localAPKBytesDownloadedOrChecked": false,
+  "publicDownloadVerified": false,
+  "androidTourPassed": false,
+  "buildProofArtifactId": 14193361409,
+  "buildProofArchiveBytes": 63093,
+  "buildProofArchiveSha256": "cdf61b87e319545e0f0110322be399456d92f0623837a21f9496ec58309de58c",
+  "jobLog": {
+    "bytes": 1225899,
+    "sha256": "f9fedfba5ffa0b551e3e763cc89b557553dca73684f1df12a322e9e7184a2692",
+    "gzipSha256": "9b96aa9b06f5f5627bffc12bcf557c823a4c909af46c5fa4233beda8be6d761a",
+    "whitespaceNormalized": false
+  }
+}

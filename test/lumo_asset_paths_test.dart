@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/lumo_asset_paths.dart';
-import 'package:lumo_lernen/core/lumo_companion_pose.dart';
 
 /// Smoke-Test fuer die Asset-Registry. Verifiziert dass jeder
 /// const-Pfad eine echte Datei im Repo trifft - faengt Tippfehler in
@@ -59,40 +58,6 @@ void main() {
       for (final path in LumoAssetPaths.allQuestionBundles) {
         expect(File(path).existsSync(), isTrue,
             reason: 'Question-Bundle fehlt: $path');
-      }
-    });
-  });
-
-  group('LumoCompanionPose', () {
-    test('jede Pose hat einen PNG-Pfad der existiert', () {
-      for (final pose in LumoCompanionPose.values) {
-        expect(File(pose.pngPath).existsSync(), isTrue,
-            reason: 'Pose ${pose.name} PNG fehlt: ${pose.pngPath}');
-      }
-    });
-
-    test('4 von 5 Posen haben Lottie-Pfade, surprised hat null', () {
-      expect(LumoCompanionPose.idle.lottiePath, isNotNull);
-      expect(LumoCompanionPose.cheer.lottiePath, isNotNull);
-      expect(LumoCompanionPose.think.lottiePath, isNotNull);
-      expect(LumoCompanionPose.sad.lottiePath, isNotNull);
-      expect(LumoCompanionPose.surprised.lottiePath, isNull,
-          reason: 'fuer surprised wurde keine Lottie generiert - PNG-Fallback');
-    });
-
-    test('jede Lottie-Datei die referenziert wird existiert', () {
-      for (final pose in LumoCompanionPose.values) {
-        final lottie = pose.lottiePath;
-        if (lottie != null) {
-          expect(File(lottie).existsSync(), isTrue,
-              reason: 'Lottie fuer ${pose.name} fehlt: $lottie');
-        }
-      }
-    });
-
-    test('semanticLabel ist nicht leer fuer jede Pose', () {
-      for (final pose in LumoCompanionPose.values) {
-        expect(pose.semanticLabel.isNotEmpty, isTrue);
       }
     });
   });

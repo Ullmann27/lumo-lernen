@@ -1,0 +1,25 @@
+00:00 +0: loading /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/native_english_activity_test.dart
+00:00 +0: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/native_english_activity_test.dart: actual generator, task ownership and malformed descriptor contracts
+00:01 +1: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/native_english_activity_test.dart: actual generator, task ownership and malformed descriptor contracts
+Shell: PASS actual generator and unchanged checked adapter reach all fourteen words
+Shell: PASS both first school grades retain all ten real school objects
+Shell: PASS multiword objects require the exact prompt and actual answer
+Shell: PASS fallback prompt remains bound to its actual German answer
+Shell: PASS unknown words, text injection and wrong meanings fail closed
+Shell: PASS missing, duplicate or misleading visible answer choices fail closed
+Shell: PASS stable task chooses stable positions without always revealing the first slot
+Shell: PASS launch maps cannot mutate retained task descriptor
+Shell: PASS existing arithmetic descriptors retain the same operands
+Shell: PASS existing German syllable descriptor remains exact
+Shell: NATIVE_ENGLISH_DART_PASS cases=10 checks=2955
+00:02 +2: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/learning_profile_boundaries_test.dart: same-name classmates keep error owners and reject a late previous-child help reply
+00:02 +3: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/learning_profile_boundaries_test.dart: same-name classmates keep error owners and reject a late previous-child help reply
+00:03 +4: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/learning_profile_boundaries_test.dart: same-name classmates keep error owners and reject a late previous-child help reply
+00:03 +5: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/native_english_activity_test.dart: late English return cannot attach to another profile generation
+00:03 +6: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/native_english_activity_test.dart: late English return cannot attach to another profile generation
+00:03 +7: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/learning_profile_boundaries_test.dart: revoking parent AI permission rejects an already requested reply
+00:04 +8: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/learning_profile_boundaries_test.dart: late typed callbacks never act on the next child
+00:04 +9: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/learning_profile_boundaries_test.dart: late skipped callbacks never act on the next child
+00:05 +10: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/learning_profile_boundaries_test.dart: late practice callbacks never act on the next child
+00:05 +11: /workspace/scratch/4fa97167812c/agent-conversation/test/tutoring/learning_profile_boundaries_test.dart: late shape callbacks never act on the next child
+00:06 +12: All tests passed!

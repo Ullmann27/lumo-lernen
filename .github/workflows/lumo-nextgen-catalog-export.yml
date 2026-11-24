@@ -1,0 +1,98 @@
+name: LUMO Next Generation – current finite catalog export
+
+on:
+  push:
+    branches: [integration/lumo-nextgen-learning-20261115]
+    paths: [config/nextgen-catalog-export.json]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-nextgen-current-catalog
+  cancel-in-progress: true
+
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve the unchanged locked dependencies
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/catalog
+          flutter --version --machine > evidence/catalog/flutter-version.json
+          flutter pub get --enforce-lockfile 2>&1 | tee evidence/catalog/dependencies.log
+          git diff --exit-code -- pubspec.yaml pubspec.lock
+      - name: Export the actual current Dart catalogs with source provenance
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import datetime, hashlib, json, os, re, subprocess
+          from pathlib import Path
+          root = Path.cwd()
+          out = root / 'evidence/catalog'
+          head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          assert head == os.environ['GITHUB_SHA']
+          config = json.loads(Path('config/nextgen-catalog-export.json').read_text())
+          native = json.loads(Path('config/godot-source.json').read_text())
+          version = re.search(r'^version: (\S+)\+(\d+)$', Path('pubspec.yaml').read_text(), re.M)
+          assert config['schemaVersion'] == 1 and config['exportAttempt'] > 0
+          assert version.groups() == (config['versionName'], str(config['versionCode']))
+          assert native['revision'] == config['nativeSource'] and native['engine'] == '4.6.3'
+          paths = subprocess.check_output(['git', 'ls-files', '-z', '--', 'lib', 'pubspec.yaml',
+              'pubspec.lock', 'config/godot-source.json', 'config/nextgen-catalog-export.json',
+              'tools/nextgen/export_learning_catalog_test.dart', 'tools/nextgen/build_coverage.py',
+              '.github/workflows/lumo-nextgen-catalog-export.yml']).decode().strip('\0').split('\0')
+          def sources():
+              return [{'path': path, 'bytes': Path(path).stat().st_size,
+                       'sha256': hashlib.sha256(Path(path).read_bytes()).hexdigest()} for path in sorted(paths)]
+          before = sources()
+          command = ['flutter', 'test', '--no-pub', '--no-test-assets', '--reporter', 'expanded',
+              'tools/nextgen/export_learning_catalog_test.dart',
+              '--dart-define=LUMO_CATALOG_OUTPUT=' + str(out / 'catalog.json')]
+          report = {'schema': 'lumo.nextgen.current.catalog.export', 'version': 1,
+              'status': 'RUNNING', 'sourceHead': head, 'workflowRun': int(os.environ['GITHUB_RUN_ID']),
+              'startedUtc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'configuration': config, 'command': command, 'sources': before,
+              'scope': 'Finite actual Dart catalogs only; no Android, student-data, rendering or all-variant acceptance.'}
+          (out / 'export-provenance.json').write_text(json.dumps(report, indent=2) + '\n')
+          with (out / 'export.log').open('wb') as stream:
+              result = subprocess.run(command, stdout=stream, stderr=subprocess.STDOUT, timeout=600)
+          report.update(exitCode=result.returncode,
+              finishedUtc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              sourcesUnchanged=(before == sources()))
+          for name in ('export.log', 'catalog.json', 'flutter-version.json'):
+              file = out / name
+              if file.is_file():
+                  report[name] = {'bytes': file.stat().st_size,
+                                  'sha256': hashlib.sha256(file.read_bytes()).hexdigest()}
+          report['catalogSourceHeadMatches'] = ((out / 'catalog.json').is_file() and
+              json.loads((out / 'catalog.json').read_text()).get('sourceHead') == head)
+          report['trackedSourceClean'] = subprocess.run(['git', 'diff', '--exit-code']).returncode == 0
+          report['status'] = 'PASS' if (result.returncode == 0 and report['sourcesUnchanged'] and
+              report['catalogSourceHeadMatches'] and report['trackedSourceClean']) else 'FAIL'
+          (out / 'export-provenance.json').write_text(json.dumps(report, indent=2) + '\n')
+          print((out / 'export.log').read_text())
+          assert report['status'] == 'PASS'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-catalog-export
+          path: evidence/catalog/
+          if-no-files-found: error
+          retention-days: 30

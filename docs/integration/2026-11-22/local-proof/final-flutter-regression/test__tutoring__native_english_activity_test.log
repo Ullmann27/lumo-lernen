@@ -1,0 +1,17 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/native_english_activity_test.dart
+00:00 +0: actual generator, task ownership and malformed descriptor contracts
+Shell: PASS actual generator and unchanged checked adapter reach all fourteen words
+Shell: PASS both first school grades retain all ten real school objects
+Shell: PASS multiword objects require the exact prompt and actual answer
+Shell: PASS fallback prompt remains bound to its actual German answer
+Shell: PASS unknown words, text injection and wrong meanings fail closed
+Shell: PASS missing, duplicate or misleading visible answer choices fail closed
+Shell: PASS stable task chooses stable positions without always revealing the first slot
+Shell: PASS launch maps cannot mutate retained task descriptor
+Shell: PASS existing arithmetic descriptors retain the same operands
+Shell: PASS existing German syllable descriptor remains exact
+Shell: NATIVE_ENGLISH_DART_PASS cases=10 checks=2887
+00:01 +1: all reviewed English descriptors use the existing learning bridge
+00:01 +2: English help preserves the actual parent voice and license gates
+00:01 +3: late English return cannot attach to another profile generation
+00:02 +4: All tests passed!

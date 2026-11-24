@@ -1,0 +1,30 @@
+test_candidate_hash_and_size_are_read_from_real_fixture_bytes (test_nextgen_2029_native_diagnostic.IdentityTests.test_candidate_hash_and_size_are_read_from_real_fixture_bytes) ... ok
+test_ci_requires_new_run_commit_exact_branch_and_matching_scene (test_nextgen_2029_native_diagnostic.IdentityTests.test_ci_requires_new_run_commit_exact_branch_and_matching_scene) ... ok
+test_download_binding_rejects_cross_scene_or_modified_origin_records (test_nextgen_2029_native_diagnostic.IdentityTests.test_download_binding_rejects_cross_scene_or_modified_origin_records) ... ok
+test_fixed_identity_rejects_other_apk_source_version_pack_and_signer (test_nextgen_2029_native_diagnostic.IdentityTests.test_fixed_identity_rejects_other_apk_source_version_pack_and_signer) ... ok
+test_only_new_named_qa_files_may_differ_from_apk_source (test_nextgen_2029_native_diagnostic.IdentityTests.test_only_new_named_qa_files_may_differ_from_apk_source) ... ok
+test_original_jobs_and_artifact_are_bound_and_original_failure_is_required (test_nextgen_2029_native_diagnostic.IdentityTests.test_original_jobs_and_artifact_are_bound_and_original_failure_is_required) ... ok
+test_each_scene_uses_fresh_install_ui_setup_and_only_its_existing_route (test_nextgen_2029_native_diagnostic.IsolationTests.test_each_scene_uses_fresh_install_ui_setup_and_only_its_existing_route) ... ok
+test_full_tour_and_reset_methods_cannot_be_invoked (test_nextgen_2029_native_diagnostic.IsolationTests.test_full_tour_and_reset_methods_cannot_be_invoked) ... ok
+test_original_acceptance_rejects_even_completed_diagnostic (test_nextgen_2029_native_diagnostic.IsolationTests.test_original_acceptance_rejects_even_completed_diagnostic) ... FAIL
+test_success_and_failure_are_diagnostic_only_and_never_submit_core_answer (test_nextgen_2029_native_diagnostic.IsolationTests.test_success_and_failure_are_diagnostic_only_and_never_submit_core_answer) ... ok
+test_wrapper_passes_exact_scene_and_propagates_real_process_exit (test_nextgen_2029_native_diagnostic.IsolationTests.test_wrapper_passes_exact_scene_and_propagates_real_process_exit) ... ok
+test_wrong_api_or_existing_package_stops_before_profile_navigation (test_nextgen_2029_native_diagnostic.IsolationTests.test_wrong_api_or_existing_package_stops_before_profile_navigation) ... ok
+
+======================================================================
+FAIL: test_original_acceptance_rejects_even_completed_diagnostic (test_nextgen_2029_native_diagnostic.IsolationTests.test_original_acceptance_rejects_even_completed_diagnostic)
+----------------------------------------------------------------------
+RuntimeError: Wrong immutable original candidate
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-2029-native-diagnostic/tools/android_qa/tests/test_nextgen_2029_native_diagnostic.py", line 281, in test_original_acceptance_rejects_even_completed_diagnostic
+    with self.assertRaisesRegex(RuntimeError, "Original probe has not passed"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Original probe has not passed" does not match "Wrong immutable original candidate"
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.063s
+
+FAILED (failures=1)

@@ -1,0 +1,34 @@
+Analyzing connect_four_small_result_actions_qa.dart...
+
+  error - connect_four_small_result_actions_qa.dart:10:8 - Target of URI doesn't exist: 'package:shared_preferences/shared_preferences.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist. - uri_does_not_exist
+  error - connect_four_small_result_actions_qa.dart:41:5 - Undefined name 'SharedPreferences'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:43:18 - Undefined name 'isNotNull'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:45:36 - Undefined name 'isTrue'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:85:52 - Undefined name 'isTrue'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:90:32 - Undefined name 'isTrue'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:91:32 - Undefined name 'isEmpty'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:93:45 - Undefined name 'isTrue'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:108:41 - Undefined name 'isTrue'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:114:22 - Undefined name 'isNotEmpty'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:117:40 - Undefined name 'isNull'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:119:45 - The function 'greaterThan' isn't defined. Try importing the library that defines 'greaterThan', correcting the name to the name of an existing function, or defining a function named 'greaterThan'. - undefined_function
+  error - connect_four_small_result_actions_qa.dart:125:26 - The function 'greaterThan' isn't defined. Try importing the library that defines 'greaterThan', correcting the name to the name of an existing function, or defining a function named 'greaterThan'. - undefined_function
+  error - connect_four_small_result_actions_qa.dart:130:65 - Undefined name 'isTrue'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:141:34 - Undefined name 'isTrue'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:142:38 - Undefined name 'isTrue'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:143:36 - Undefined name 'isTrue'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:149:34 - The function 'isNot' isn't defined. Try importing the library that defines 'isNot', correcting the name to the name of an existing function, or defining a function named 'isNot'. - undefined_function
+  error - connect_four_small_result_actions_qa.dart:153:33 - Undefined name 'isFalse'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:154:31 - Undefined name 'isFalse'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:155:34 - Undefined name 'isTrue'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:157:35 - Undefined name 'isFalse'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:158:34 - Undefined name 'isEmpty'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:159:38 - Undefined name 'isEmpty'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:162:71 - Undefined name 'isFalse'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:166:35 - Undefined name 'isTrue'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:168:31 - Undefined name 'isEmpty'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:169:34 - Undefined name 'isFalse'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:170:32 - Undefined name 'isFalse'. Try correcting the name to one that is defined, or defining the name. - undefined_identifier
+  error - connect_four_small_result_actions_qa.dart:217:21 - The name 'Timeout' isn't a class. Try correcting the name to match an existing class. - creation_with_non_type
+
+30 issues found.

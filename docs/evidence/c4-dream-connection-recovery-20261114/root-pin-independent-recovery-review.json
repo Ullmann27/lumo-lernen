@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "kind": "new_recovery_statement_after_executor_loss",
+  "created_at_utc": "2026-11-14 10:58:59 UTC",
+  "original_review": {
+    "path": "/tmp/host-root-dream-pin-independent-review-20261114/review.json",
+    "bytes": 8976,
+    "sha256": "bb005c0d0e514a1282cc5053d9d0c0543c46d50ab66a09b8192d0bfd5324d722",
+    "git_blob": "27b4ee93c73e3f14e5d5a2b6efbf723c8b8bfdf7",
+    "manifest_sha256": "d3490f7a600740c11257bb090f3d91b7c0ff7261045ccf98a44d501ff41bdcfc",
+    "original_complete_text_retained_in_function_store": false,
+    "limitation": "The original was successfully written and hashed before the executor became unavailable. Only the tool-confirmed identities and review facts are retained here; this newly written statement is not the original freeze."
+  },
+  "result": "NO_CONCRETE_SOURCE_BLOCKER_IN_THE_COMPLETED_READ_ONLY_REVIEW",
+  "reviewed_root_pack": {
+    "path": "/tmp/lumo-root-recovery-0900/root-dream-pin-20261114",
+    "manifest_sha256": "82da94c157e10e9aba083c2df5034727cb4e60bf8255643b2cef34d0d51f00e7",
+    "verified_objects": 13
+  },
+  "source": {
+    "host_before": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+    "host_tree": "10234debe8d5f2f9577ac28aa05ae99322d9190f",
+    "native_before": "f052c2795b765265dbb6f5c27b9e92b557d39a39",
+    "native_after": "bd0712259bb64908a5649ee1999638826c9eb597",
+    "native_tree": "2eb628d3e3a327ee8985385130c96168db7aa852"
+  },
+  "checked_changes": [
+    {
+      "path": "config/godot-source.json",
+      "before_blob": "a07c0176806321daf8e7a0d6df5c8697f82ba3b2",
+      "after_blob": "9dcf0ce0e38caa676777c02eb71aa09c1b425fad",
+      "after_sha256": "9190ff1a60b61ce8cb40d44daea300315a359a5ff1d7d47b4623a4c4ae9bb240",
+      "after_bytes": 145,
+      "change": "Only revision replaces f052 with bd071225."
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "before_blob": "fc050358bce96db9e6cb1ffec77a4ea9e53c1cbb",
+      "after_blob": "b10d2ba20c93d17f723b9c190652060968505b53",
+      "after_sha256": "14f363f836072e194b0a188af43bc76c9133adcc8a5c04157f25fc7a1217ca2c",
+      "after_bytes": 10687,
+      "change": "APPROVED[2020] and its explanatory comment only."
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "before_blob": "3f3a74806b29f07b18bcc3ecc88da982bb28f3c1",
+      "after_blob": "b0373f0f8efb8bda20faf49fbde9d7cb7c54cc06",
+      "after_sha256": "512094ced303fdffb955eee93fce5ce71a8de757a9510940b8f6cac3da0ac931",
+      "after_bytes": 17393,
+      "change": "Only CONNECT_FOUR_2020_REVISION changes."
+    }
+  ],
+  "completed_checks": {
+    "original_files_equal_host32_git_objects_and_worktree": true,
+    "root_pack_all_13_byte_sha256_and_git_blob_checks": true,
+    "policy_entire_ast_equal_after_restoring_only_approved_2020": true,
+    "test_entire_ast_equal_after_restoring_only_2020_constant": true,
+    "other_historical_approved_entries_preserved": 50,
+    "approved_2019_preserved": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+    "unchanged_files": [
+      "pubspec.yaml",
+      "tools/android_qa/tests/test_update_2019_preservation.py",
+      ".github/probes/lumo_2019_update_android_probe.py"
+    ],
+    "historical_2019_2020_negative_case": "Existing test_actual_wrapper_rejects_2020_and_unreviewed_2019_before_runner takes policy['APPROVED'][2020] dynamically; no fixture change is required.",
+    "host_head_tree_status_and_index_unchanged": true
+  },
+  "existing_native_originals_read": {
+    "pack": "/tmp/native-dream-bd071225-ci-evidence-20261114/originals/api",
+    "files": [
+      "run.original.json",
+      "jobs.original.json",
+      "commit.original.json"
+    ],
+    "run": 43585768986,
+    "attempt": 1,
+    "job": 132419791499,
+    "head": "bd0712259bb64908a5649ee1999638826c9eb597",
+    "tree": "2eb628d3e3a327ee8985385130c96168db7aa852",
+    "run_and_job_conclusions": "success",
+    "all_listed_steps_success": true,
+    "new_network_ci_query": false
+  },
+  "release_tag": {
+    "tag": "coachpreview-build-2020",
+    "existing_root_originals_both": "404 NOT_FOUND",
+    "read_timing": null,
+    "scope": "Root's recorded Release and Git-tag responses were read; no independent fresh lookup was performed."
+  },
+  "boundaries": [
+    "No product tests, engine, APK, Android, audio, update or release acceptance is claimed.",
+    "No sources, index, commits, refs or workflows were changed in this review.",
+    "This blob is only a new honest recovery statement; the original review bytes were not reconstructed."
+  ]
+}

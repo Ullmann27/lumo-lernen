@@ -1,0 +1,657 @@
+﻿2026-11-14T14:05:56.6020845Z Current runner version: '2.338.2'
+2026-11-14T14:05:56.6044523Z ##[group]Runner Image Provisioner
+2026-11-14T14:05:56.6045345Z Hosted Compute Agent
+2026-11-14T14:05:56.6045877Z Version: 20261103.629
+2026-11-14T14:05:56.6046641Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T14:05:56.6047370Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T14:05:56.6048065Z Worker ID: {3c9a5b6c-245b-416b-ba7a-bebe7710c3a4}
+2026-11-14T14:05:56.6048769Z Region: eastus2
+2026-11-14T14:05:56.6049291Z Cloud: Azure
+2026-11-14T14:05:56.6049907Z ##[endgroup]
+2026-11-14T14:05:56.6051708Z ##[group]Operating System
+2026-11-14T14:05:56.6052388Z Ubuntu
+2026-11-14T14:05:56.6052907Z 24.04.5
+2026-11-14T14:05:56.6053398Z LTS
+2026-11-14T14:05:56.6053939Z ##[endgroup]
+2026-11-14T14:05:56.6054508Z ##[group]Runner Image
+2026-11-14T14:05:56.6055063Z Image: ubuntu-24.04
+2026-11-14T14:05:56.6055681Z Version: 20261111.370.1
+2026-11-14T14:05:56.6056893Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T14:05:56.6058501Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T14:05:56.6059423Z ##[endgroup]
+2026-11-14T14:05:56.6060572Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T14:05:56.6062684Z Contents: read
+2026-11-14T14:05:56.6063398Z Metadata: read
+2026-11-14T14:05:56.6063975Z ##[endgroup]
+2026-11-14T14:05:56.6066135Z Secret source: Actions
+2026-11-14T14:05:56.6067007Z Cache mode: write
+2026-11-14T14:05:56.6067759Z Prepare workflow directory
+2026-11-14T14:05:56.6471564Z Prepare all required actions
+2026-11-14T14:05:56.6519354Z Getting action download info
+2026-11-14T14:05:56.8549400Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T14:05:56.9666597Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+2026-11-14T14:05:57.0862953Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T14:05:57.2768045Z Getting action download info
+2026-11-14T14:05:57.3558272Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+2026-11-14T14:05:57.5836033Z Complete job name: capture
+2026-11-14T14:05:57.6490075Z ##[group]Run actions/checkout@v4
+2026-11-14T14:05:57.6490970Z with:
+2026-11-14T14:05:57.6491433Z   ref: 21e0368603e38d1dfd063485f5307ec201f0d872
+2026-11-14T14:05:57.6491971Z   fetch-depth: 2
+2026-11-14T14:05:57.6492407Z   persist-credentials: false
+2026-11-14T14:05:57.6492892Z   repository: Ullmann27/lumo-lernen
+2026-11-14T14:05:57.6495551Z   token: ***
+2026-11-14T14:05:57.6495974Z   ssh-strict: true
+2026-11-14T14:05:57.6496395Z   ssh-user: git
+2026-11-14T14:05:57.6496803Z   clean: true
+2026-11-14T14:05:57.6497232Z   sparse-checkout-cone-mode: true
+2026-11-14T14:05:57.6497709Z   fetch-tags: false
+2026-11-14T14:05:57.6498134Z   show-progress: true
+2026-11-14T14:05:57.6498576Z   lfs: false
+2026-11-14T14:05:57.6498992Z   submodules: false
+2026-11-14T14:05:57.6499456Z   set-safe-directory: true
+2026-11-14T14:05:57.6499925Z   allow-unsafe-pr-checkout: false
+2026-11-14T14:05:57.6500495Z env:
+2026-11-14T14:05:57.6501024Z   CI: true
+2026-11-14T14:05:57.6501421Z   BOT: true
+2026-11-14T14:05:57.6501863Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:05:57.6502343Z ##[endgroup]
+2026-11-14T14:05:57.8391375Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T14:05:57.8393493Z ##[group]Getting Git version info
+2026-11-14T14:05:57.8394522Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T14:05:57.8395837Z [command]/usr/bin/git version
+2026-11-14T14:05:57.8396563Z git version 2.56.1
+2026-11-14T14:05:57.8398793Z ##[endgroup]
+2026-11-14T14:05:57.8404144Z Temporarily overriding HOME='/home/runner/work/_temp/756c02b0-7842-4f03-982c-723fda55791e' before making global git config changes
+2026-11-14T14:05:57.8405807Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T14:05:57.8407473Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T14:05:57.8445369Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T14:05:57.8448143Z ##[group]Initializing the repository
+2026-11-14T14:05:57.8451156Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T14:05:57.8529748Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T14:05:57.8530767Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T14:05:57.8531554Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T14:05:57.8532195Z hint: call:
+2026-11-14T14:05:57.8532628Z hint:
+2026-11-14T14:05:57.8533142Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T14:05:57.8533703Z hint:
+2026-11-14T14:05:57.8534444Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T14:05:57.8535197Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T14:05:57.8535951Z hint:
+2026-11-14T14:05:57.8536557Z hint: 	git branch -m <name>
+2026-11-14T14:05:57.8537225Z hint:
+2026-11-14T14:05:57.8538041Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T14:05:57.8539251Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T14:05:57.8545464Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T14:05:57.8586952Z ##[endgroup]
+2026-11-14T14:05:57.8587893Z ##[group]Disabling automatic garbage collection
+2026-11-14T14:05:57.8588733Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T14:05:57.8614887Z ##[endgroup]
+2026-11-14T14:05:57.8615544Z ##[group]Setting up auth
+2026-11-14T14:05:57.8618440Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T14:05:57.8646124Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T14:05:57.8953477Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T14:05:57.8978083Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T14:05:57.9163979Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T14:05:57.9191579Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T14:05:57.9374236Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T14:05:57.9405807Z ##[endgroup]
+2026-11-14T14:05:57.9406626Z ##[group]Fetching the repository
+2026-11-14T14:05:57.9414768Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=2 origin 21e0368603e38d1dfd063485f5307ec201f0d872
+2026-11-14T14:06:06.0466123Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T14:06:06.0466889Z  * branch            21e0368603e38d1dfd063485f5307ec201f0d872 -> FETCH_HEAD
+2026-11-14T14:06:06.0471542Z ##[endgroup]
+2026-11-14T14:06:06.0472004Z ##[group]Determining the checkout info
+2026-11-14T14:06:06.0472553Z ##[endgroup]
+2026-11-14T14:06:06.0478126Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T14:06:06.0526265Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T14:06:06.0586876Z ##[group]Checking out the ref
+2026-11-14T14:06:06.0589442Z [command]/usr/bin/git checkout --progress --force 21e0368603e38d1dfd063485f5307ec201f0d872
+2026-11-14T14:06:07.0674090Z Updating files:  93% (4252/4524)
+2026-11-14T14:06:07.0809445Z Updating files:  94% (4253/4524)
+2026-11-14T14:06:07.0939723Z Updating files:  95% (4298/4524)
+2026-11-14T14:06:07.1020935Z Updating files:  96% (4344/4524)
+2026-11-14T14:06:07.1081850Z Updating files:  97% (4389/4524)
+2026-11-14T14:06:07.1107549Z Updating files:  98% (4434/4524)
+2026-11-14T14:06:07.1128656Z Updating files:  99% (4479/4524)
+2026-11-14T14:06:07.1128893Z Updating files: 100% (4524/4524)
+2026-11-14T14:06:07.1129067Z Updating files: 100% (4524/4524), done.
+2026-11-14T14:06:07.1163674Z Note: switching to '21e0368603e38d1dfd063485f5307ec201f0d872'.
+2026-11-14T14:06:07.1163939Z 
+2026-11-14T14:06:07.1164074Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T14:06:07.1166065Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T14:06:07.1166490Z state without impacting any branches by switching back to a branch.
+2026-11-14T14:06:07.1166771Z 
+2026-11-14T14:06:07.1166945Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T14:06:07.1167350Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T14:06:07.1167623Z 
+2026-11-14T14:06:07.1167728Z   git switch -c <new-branch-name>
+2026-11-14T14:06:07.1167894Z 
+2026-11-14T14:06:07.1168035Z Or undo this operation with:
+2026-11-14T14:06:07.1168209Z 
+2026-11-14T14:06:07.1168307Z   git switch -
+2026-11-14T14:06:07.1168427Z 
+2026-11-14T14:06:07.1168664Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T14:06:07.1168931Z 
+2026-11-14T14:06:07.1169135Z HEAD is now at 21e0368 qa: capture the isolated PromptCard label contrast correction
+2026-11-14T14:06:07.1272793Z ##[endgroup]
+2026-11-14T14:06:07.1312155Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T14:06:07.1333112Z 21e0368603e38d1dfd063485f5307ec201f0d872
+2026-11-14T14:06:07.1340614Z ##[group]Removing auth
+2026-11-14T14:06:07.1343643Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T14:06:07.1368083Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T14:06:07.1553969Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T14:06:07.1575063Z http.https://github.com/.extraheader
+2026-11-14T14:06:07.1580004Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T14:06:07.1636408Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T14:06:07.1822541Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T14:06:07.1846884Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T14:06:07.2031877Z ##[endgroup]
+2026-11-14T14:06:07.2204878Z ##[group]Run set -euo pipefail
+2026-11-14T14:06:07.2205197Z [36;1mset -euo pipefail[0m
+2026-11-14T14:06:07.2205352Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T14:06:07.2205491Z [36;1mimport hashlib[0m
+2026-11-14T14:06:07.2205622Z [36;1mimport json[0m
+2026-11-14T14:06:07.2205745Z [36;1mimport os[0m
+2026-11-14T14:06:07.2205875Z [36;1mfrom pathlib import Path[0m
+2026-11-14T14:06:07.2206062Z [36;1mimport subprocess[0m
+2026-11-14T14:06:07.2206194Z [36;1m[0m
+2026-11-14T14:06:07.2206350Z [36;1mbase = '1375da193af0152af64f91d86577aa9768cd50db'[0m
+2026-11-14T14:06:07.2206583Z [36;1mbase_tree = 'ebaf259b92a4c7923782e195c3a932112ce81027'[0m
+2026-11-14T14:06:07.2206846Z [36;1mworkflow = '.github/workflows/lumo-prompt-label-contrast-qa.yml'[0m
+2026-11-14T14:06:07.2207099Z [36;1mprompt = 'lib/widgets/lumo/lumo_prompt_card.dart'[0m
+2026-11-14T14:06:07.2207359Z [36;1moutput = Path(os.environ['RUNNER_TEMP']) / 'lumo-prompt-label-contrast'[0m
+2026-11-14T14:06:07.2207616Z [36;1moutput.mkdir(exist_ok=False)[0m
+2026-11-14T14:06:07.2207942Z [36;1mwith open(os.environ['GITHUB_ENV'], 'a') as env:[0m
+2026-11-14T14:06:07.2208140Z [36;1m    env.write(f'QA_OUTPUT={output}\n')[0m
+2026-11-14T14:06:07.2208299Z [36;1m[0m
+2026-11-14T14:06:07.2208412Z [36;1mdef git(*args):[0m
+2026-11-14T14:06:07.2208579Z [36;1m    return subprocess.check_output(['git', *args])[0m
+2026-11-14T14:06:07.2208754Z [36;1m[0m
+2026-11-14T14:06:07.2208871Z [36;1mdef require(condition, message):[0m
+2026-11-14T14:06:07.2209036Z [36;1m    if not condition:[0m
+2026-11-14T14:06:07.2209188Z [36;1m        raise SystemExit(message)[0m
+2026-11-14T14:06:07.2209340Z [36;1m[0m
+2026-11-14T14:06:07.2209452Z [36;1mdef binding(data):[0m
+2026-11-14T14:06:07.2209588Z [36;1m    return {[0m
+2026-11-14T14:06:07.2209720Z [36;1m        'bytes': len(data),[0m
+2026-11-14T14:06:07.2209898Z [36;1m        'sha256': hashlib.sha256(data).hexdigest(),[0m
+2026-11-14T14:06:07.2210090Z [36;1m        'git_blob': hashlib.sha1([0m
+2026-11-14T14:06:07.2210301Z [36;1m            b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest(),[0m
+2026-11-14T14:06:07.2210510Z [36;1m    }[0m
+2026-11-14T14:06:07.2210622Z [36;1m[0m
+2026-11-14T14:06:07.2210955Z [36;1mhead = git('rev-parse', 'HEAD').decode().strip()[0m
+2026-11-14T14:06:07.2211236Z [36;1mrequire(head == os.environ['GITHUB_SHA'], 'Checkout differs from the push head')[0m
+2026-11-14T14:06:07.2211566Z [36;1mrequire(git('show', '-s', '--format=%P', 'HEAD').decode().strip() == base,[0m
+2026-11-14T14:06:07.2211855Z [36;1m        'QA revision must have exactly the frozen candidate as its sole parent')[0m
+2026-11-14T14:06:07.2212148Z [36;1mrequire(git('rev-parse', base + '^{tree}').decode().strip() == base_tree,[0m
+2026-11-14T14:06:07.2212385Z [36;1m        'Frozen candidate tree mismatch')[0m
+2026-11-14T14:06:07.2212646Z [36;1mchanges = git('diff', '--name-status', '--no-renames', base, 'HEAD').decode().splitlines()[0m
+2026-11-14T14:06:07.2212936Z [36;1mrequire(changes == [f'A\t{workflow}', f'M\t{prompt}'],[0m
+2026-11-14T14:06:07.2213207Z [36;1m        'QA revision must contain only the workflow and the prompt label change')[0m
+2026-11-14T14:06:07.2213453Z [36;1mold = git('show', base + ':' + prompt)[0m
+2026-11-14T14:06:07.2213632Z [36;1mnew = Path(prompt).read_bytes()[0m
+2026-11-14T14:06:07.2213869Z [36;1mrequire(binding(old)['git_blob'] == '033fb56a1033b7659d6ca7e7386e7ae9cd1074fd',[0m
+2026-11-14T14:06:07.2214119Z [36;1m        'Unexpected original prompt card')[0m
+2026-11-14T14:06:07.2214359Z [36;1mrequire(binding(new)['git_blob'] == '643c3bd6868da34550bbc9fa7761818c7b1e6afb',[0m
+2026-11-14T14:06:07.2214603Z [36;1m        'Unexpected reviewed prompt card')[0m
+2026-11-14T14:06:07.2214815Z [36;1mrequire(old.count(b'color: LumoColors.ink600,') == 1 and[0m
+2026-11-14T14:06:07.2215106Z [36;1m        old.replace(b'color: LumoColors.ink600,', b'color: LumoColors.ink100,') == new,[0m
+2026-11-14T14:06:07.2215545Z [36;1m        'Prompt card contains changes beyond the reviewed color line')[0m
+2026-11-14T14:06:07.2215764Z [36;1mpreserved = [[0m
+2026-11-14T14:06:07.2215922Z [36;1m    'scripts/run_full_flutter_acceptance.py',[0m
+2026-11-14T14:06:07.2216137Z [36;1m    'test/design/lumo_modernization_capture_test.dart',[0m
+2026-11-14T14:06:07.2216340Z [36;1m    'test/helpers/lumo_capture.dart',[0m
+2026-11-14T14:06:07.2216555Z [36;1m    'pubspec.yaml', 'pubspec.lock', 'config/godot-source.json',[0m
+2026-11-14T14:06:07.2216821Z [36;1m    'lib/widgets/lumo/lumo_design_kit.dart', 'lib/app/app_theme.dart',[0m
+2026-11-14T14:06:07.2217079Z [36;1m    'lib/features/writing/lumo_writing_coach_screen.dart',[0m
+2026-11-14T14:06:07.2217322Z [36;1m    'lib/features/writing/lumo_writing_word_coach_screen.dart',[0m
+2026-11-14T14:06:07.2217589Z [36;1m    'assets/fonts/Nunito-Regular.ttf', 'assets/fonts/Nunito-Bold.ttf',[0m
+2026-11-14T14:06:07.2217878Z [36;1m    'assets/fonts/Nunito-ExtraBold.ttf', 'assets/fonts/Nunito-Black.ttf',[0m
+2026-11-14T14:06:07.2218100Z [36;1m][0m
+2026-11-14T14:06:07.2218211Z [36;1mfiles = {}[0m
+2026-11-14T14:06:07.2218450Z [36;1mfor path in [workflow, prompt, *preserved]:[0m
+2026-11-14T14:06:07.2218639Z [36;1m    data = Path(path).read_bytes()[0m
+2026-11-14T14:06:07.2218876Z [36;1m    require(data == git('show', 'HEAD:' + path), 'Working source differs: ' + path)[0m
+2026-11-14T14:06:07.2219110Z [36;1m    if path in preserved:[0m
+2026-11-14T14:06:07.2219293Z [36;1m        require(data == git('show', base + ':' + path),[0m
+2026-11-14T14:06:07.2219520Z [36;1m                'Preserved source differs from candidate: ' + path)[0m
+2026-11-14T14:06:07.2219726Z [36;1m    files[path] = binding(data)[0m
+2026-11-14T14:06:07.2219948Z [36;1msubprocess.run(['git', 'diff', '--exit-code', 'HEAD', '--'], check=True)[0m
+2026-11-14T14:06:07.2220225Z [36;1muntracked = git('ls-files', '--others', '--exclude-standard', '--',[0m
+2026-11-14T14:06:07.2220517Z [36;1m                'lib', 'test', 'assets', 'config', 'scripts', 'tools').decode().splitlines()[0m
+2026-11-14T14:06:07.2221011Z [36;1mrequire(not untracked, 'Untracked source inputs are not permitted')[0m
+2026-11-14T14:06:07.2221362Z [36;1msnapshot = {[0m
+2026-11-14T14:06:07.2221610Z [36;1m    'repository': os.environ['GITHUB_REPOSITORY'],[0m
+2026-11-14T14:06:07.2221922Z [36;1m    'ref': os.environ['GITHUB_REF'],[0m
+2026-11-14T14:06:07.2222206Z [36;1m    'run_id': os.environ['GITHUB_RUN_ID'],[0m
+2026-11-14T14:06:07.2222516Z [36;1m    'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],[0m
+2026-11-14T14:06:07.2222801Z [36;1m    'head_commit': head,[0m
+2026-11-14T14:06:07.2223003Z [36;1m    'head_tree': git('rev-parse', 'HEAD^{tree}').decode().strip(),[0m
+2026-11-14T14:06:07.2223233Z [36;1m    'sole_parent': base, 'base_tree': base_tree,[0m
+2026-11-14T14:06:07.2223426Z [36;1m    'changes': changes, 'files': files,[0m
+2026-11-14T14:06:07.2223631Z [36;1m    'tracked_changes': '', 'untracked_source_inputs': [],[0m
+2026-11-14T14:06:07.2223813Z [36;1m}[0m
+2026-11-14T14:06:07.2224016Z [36;1m(output / 'source-before.json').write_text(json.dumps(snapshot, indent=2) + '\n')[0m
+2026-11-14T14:06:07.2224368Z [36;1m(output / 'tracked-source-tree.txt').write_bytes(git('ls-tree', '-r', '--full-tree', 'HEAD'))[0m
+2026-11-14T14:06:07.2224668Z [36;1m(output / 'prompt-card-before.dart').write_bytes(old)[0m
+2026-11-14T14:06:07.2224896Z [36;1m(output / 'prompt-card-after.dart').write_bytes(new)[0m
+2026-11-14T14:06:07.2225137Z [36;1mprint(json.dumps({'source_preflight': 'PASS', 'head': head,[0m
+2026-11-14T14:06:07.2225474Z [36;1m                  'tree': snapshot['head_tree'], 'changed_files': changes}))[0m
+2026-11-14T14:06:07.2225679Z [36;1mPY[0m
+2026-11-14T14:06:07.2245557Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T14:06:07.2245766Z env:
+2026-11-14T14:06:07.2245879Z   CI: true
+2026-11-14T14:06:07.2245990Z   BOT: true
+2026-11-14T14:06:07.2246110Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:07.2246262Z ##[endgroup]
+2026-11-14T14:06:07.4096012Z {"source_preflight": "PASS", "head": "21e0368603e38d1dfd063485f5307ec201f0d872", "tree": "0a5042254cd27c70597952842fdc8d71b089b417", "changed_files": ["A\t.github/workflows/lumo-prompt-label-contrast-qa.yml", "M\tlib/widgets/lumo/lumo_prompt_card.dart"]}
+2026-11-14T14:06:07.4275946Z ##[group]Run subosito/flutter-action@v2
+2026-11-14T14:06:07.4276144Z with:
+2026-11-14T14:06:07.4276275Z   flutter-version: 3.44.9
+2026-11-14T14:06:07.4276417Z   channel: stable
+2026-11-14T14:06:07.4276539Z   cache: true
+2026-11-14T14:06:07.4276660Z   architecture: X64
+2026-11-14T14:06:07.4276793Z   pub-cache-path: default
+2026-11-14T14:06:07.4276930Z   dry-run: false
+2026-11-14T14:06:07.4277089Z   git-source: https://github.com/flutter/flutter.git
+2026-11-14T14:06:07.4277272Z env:
+2026-11-14T14:06:07.4277381Z   CI: true
+2026-11-14T14:06:07.4277492Z   BOT: true
+2026-11-14T14:06:07.4277621Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:07.4277830Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:07.4278030Z ##[endgroup]
+2026-11-14T14:06:07.4323084Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+2026-11-14T14:06:07.4337075Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+2026-11-14T14:06:07.4338463Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+2026-11-14T14:06:07.4357490Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+2026-11-14T14:06:07.4357720Z [36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"[0m
+2026-11-14T14:06:07.4376042Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T14:06:07.4376242Z env:
+2026-11-14T14:06:07.4376354Z   CI: true
+2026-11-14T14:06:07.4376463Z   BOT: true
+2026-11-14T14:06:07.4376586Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:07.4376788Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:07.4376988Z ##[endgroup]
+2026-11-14T14:06:07.4428720Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=8]
+2026-11-14T14:06:07.4430167Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+2026-11-14T14:06:07.4455503Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+2026-11-14T14:06:07.4455747Z [36;1m$GITHUB_ACTION_PATH/setup.sh -p \[0m
+2026-11-14T14:06:07.4455921Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T14:06:07.4456053Z [36;1m  -f '' \[0m
+2026-11-14T14:06:07.4456178Z [36;1m  -a 'X64' \[0m
+2026-11-14T14:06:07.4456301Z [36;1m  -k '' \[0m
+2026-11-14T14:06:07.4456417Z [36;1m  -c '' \[0m
+2026-11-14T14:06:07.4456532Z [36;1m  -l '' \[0m
+2026-11-14T14:06:07.4456653Z [36;1m  -d 'default' \[0m
+2026-11-14T14:06:07.4456835Z [36;1m  -g 'https://github.com/flutter/flutter.git' \[0m
+2026-11-14T14:06:07.4457018Z [36;1m  stable[0m
+2026-11-14T14:06:07.4471908Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T14:06:07.4472100Z env:
+2026-11-14T14:06:07.4472214Z   CI: true
+2026-11-14T14:06:07.4472328Z   BOT: true
+2026-11-14T14:06:07.4472450Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:07.4472655Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:07.4472857Z ##[endgroup]
+2026-11-14T14:06:07.6009871Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=157]
+2026-11-14T14:06:07.6013622Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+2026-11-14T14:06:07.6086776Z ##[group]Run actions/cache@v5
+2026-11-14T14:06:07.6086929Z with:
+2026-11-14T14:06:07.6087087Z   path: /opt/hostedtoolcache/flutter/stable-3.44.9-x64
+2026-11-14T14:06:07.6087362Z   key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T14:06:07.6087616Z   enableCrossOsArchive: false
+2026-11-14T14:06:07.6087768Z   fail-on-cache-miss: false
+2026-11-14T14:06:07.6087908Z   lookup-only: false
+2026-11-14T14:06:07.6088034Z   save-always: false
+2026-11-14T14:06:07.6088154Z env:
+2026-11-14T14:06:07.6088260Z   CI: true
+2026-11-14T14:06:07.6088368Z   BOT: true
+2026-11-14T14:06:07.6088500Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:07.6088700Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:07.6089103Z ##[endgroup]
+2026-11-14T14:06:07.7738293Z Cache hit for: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T14:06:08.8131090Z Received 264241152 of 1692352766 (15.6%), 252.0 MBs/sec
+2026-11-14T14:06:09.8134340Z Received 536870912 of 1692352766 (31.7%), 255.9 MBs/sec
+2026-11-14T14:06:10.8144257Z Received 864026624 of 1692352766 (51.1%), 274.6 MBs/sec
+2026-11-14T14:06:11.8144814Z Received 1203765248 of 1692352766 (71.1%), 286.9 MBs/sec
+2026-11-14T14:06:12.8146615Z Received 1488977920 of 1692352766 (88.0%), 283.9 MBs/sec
+2026-11-14T14:06:13.4613010Z Received 1692352766 of 1692352766 (100.0%), 285.7 MBs/sec
+2026-11-14T14:06:13.4615319Z Cache Size: ~1614 MB (1692352766 B)
+2026-11-14T14:06:13.4705564Z [command]/usr/bin/tar -xf /home/runner/work/_temp/663a6fe7-1718-4d12-8b74-3945a44b3a81/cache.tzst -P -C /home/runner/work/lumo-lernen/lumo-lernen --use-compress-program unzstd
+2026-11-14T14:06:25.0531212Z Cache restored successfully
+2026-11-14T14:06:25.1287059Z Cache restored from key: flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33
+2026-11-14T14:06:25.1443041Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=17542]
+2026-11-14T14:06:25.1445244Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+2026-11-14T14:06:25.3751038Z ##[group]Run actions/cache@v5
+2026-11-14T14:06:25.3751249Z with:
+2026-11-14T14:06:25.3751379Z   path: /home/runner/.pub-cache
+2026-11-14T14:06:25.3751796Z   key: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-1830e2ce280613b2e958baee17b0740e1e106a41bef69ae8bb0e5aec9b8ee639
+2026-11-14T14:06:25.3752211Z   enableCrossOsArchive: false
+2026-11-14T14:06:25.3752362Z   fail-on-cache-miss: false
+2026-11-14T14:06:25.3752502Z   lookup-only: false
+2026-11-14T14:06:25.3752640Z   save-always: false
+2026-11-14T14:06:25.3752759Z env:
+2026-11-14T14:06:25.3752866Z   CI: true
+2026-11-14T14:06:25.3752974Z   BOT: true
+2026-11-14T14:06:25.3753103Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:25.3753301Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:25.3753498Z ##[endgroup]
+2026-11-14T14:06:25.5233870Z Cache hit for: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-1830e2ce280613b2e958baee17b0740e1e106a41bef69ae8bb0e5aec9b8ee639
+2026-11-14T14:06:26.0729003Z Received 81849709 of 81849709 (100.0%), 161.9 MBs/sec
+2026-11-14T14:06:26.0729403Z Cache Size: ~78 MB (81849709 B)
+2026-11-14T14:06:26.0753021Z [command]/usr/bin/tar -xf /home/runner/work/_temp/24df914a-8631-4a22-af5b-2bd72d15eeb3/cache.tzst -P -C /home/runner/work/lumo-lernen/lumo-lernen --use-compress-program unzstd
+2026-11-14T14:06:26.7871567Z Cache restored successfully
+2026-11-14T14:06:26.7960133Z Cache restored from key: flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-1830e2ce280613b2e958baee17b0740e1e106a41bef69ae8bb0e5aec9b8ee639
+2026-11-14T14:06:26.8132079Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=1668]
+2026-11-14T14:06:26.8134089Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+2026-11-14T14:06:26.8162542Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+2026-11-14T14:06:26.8162759Z [36;1m$GITHUB_ACTION_PATH/setup.sh \[0m
+2026-11-14T14:06:26.8162933Z [36;1m  -n '3.44.9' \[0m
+2026-11-14T14:06:26.8163072Z [36;1m  -a 'x64' \[0m
+2026-11-14T14:06:26.8163254Z [36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.44.9-x64' \[0m
+2026-11-14T14:06:26.8163471Z [36;1m  -d '/home/runner/.pub-cache' \[0m
+2026-11-14T14:06:26.8163627Z [36;1m  stable[0m
+2026-11-14T14:06:26.8180832Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T14:06:26.8181045Z env:
+2026-11-14T14:06:26.8181174Z   CI: true
+2026-11-14T14:06:26.8181297Z   BOT: true
+2026-11-14T14:06:26.8181418Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:26.8181631Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:26.8182022Z ##[endgroup]
+2026-11-14T14:06:26.9533880Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=139]
+2026-11-14T14:06:26.9569057Z ##[group]Run set -euo pipefail
+2026-11-14T14:06:26.9569258Z [36;1mset -euo pipefail[0m
+2026-11-14T14:06:26.9569440Z [36;1msudo apt-get -o Acquire::Retries=2 update -qq[0m
+2026-11-14T14:06:26.9569712Z [36;1msudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji[0m
+2026-11-14T14:06:26.9569997Z [36;1mtest -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf[0m
+2026-11-14T14:06:26.9570347Z [36;1msha256sum /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf > "$QA_OUTPUT/linux-emoji-font.sha256"[0m
+2026-11-14T14:06:26.9570972Z [36;1mflutter --version --machine > "$QA_OUTPUT/flutter-version.json"[0m
+2026-11-14T14:06:26.9571391Z [36;1mpython3 --version > "$QA_OUTPUT/python-version.txt"[0m
+2026-11-14T14:06:26.9571619Z [36;1mgit --version > "$QA_OUTPUT/git-version.txt"[0m
+2026-11-14T14:06:26.9589301Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T14:06:26.9589500Z env:
+2026-11-14T14:06:26.9589614Z   CI: true
+2026-11-14T14:06:26.9589747Z   BOT: true
+2026-11-14T14:06:26.9589872Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:26.9590083Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:26.9590348Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T14:06:26.9590592Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T14:06:26.9590927Z ##[endgroup]
+2026-11-14T14:06:32.8866559Z Reading package lists...
+2026-11-14T14:06:33.0700982Z Building dependency tree...
+2026-11-14T14:06:33.0706621Z Reading state information...
+2026-11-14T14:06:33.2053073Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+2026-11-14T14:06:33.2053469Z 0 upgraded, 0 newly installed, 0 to remove and 20 not upgraded.
+2026-11-14T14:06:34.3029178Z ##[group]Run set -euo pipefail
+2026-11-14T14:06:34.3029402Z [36;1mset -euo pipefail[0m
+2026-11-14T14:06:34.3029631Z [36;1mflutter pub get --enforce-lockfile 2>&1 | tee "$QA_OUTPUT/pub-get.log"[0m
+2026-11-14T14:06:34.3046748Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T14:06:34.3046947Z env:
+2026-11-14T14:06:34.3047068Z   CI: true
+2026-11-14T14:06:34.3047184Z   BOT: true
+2026-11-14T14:06:34.3047308Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:34.3047522Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:34.3047787Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T14:06:34.3048013Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T14:06:34.3048171Z ##[endgroup]
+2026-11-14T14:06:34.4282203Z Resolving dependencies...
+2026-11-14T14:06:34.7697961Z Downloading packages...
+2026-11-14T14:06:35.8388275Z   clock 1.1.2 (1.1.3 available)
+2026-11-14T14:06:35.8388709Z   code_assets 1.2.1 (2.2.0 available)
+2026-11-14T14:06:35.8388924Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-11-14T14:06:35.8389091Z   crypto 3.0.7 (3.0.8 available)
+2026-11-14T14:06:35.8389280Z   file_selector_macos 0.9.5+1 (0.9.5+2 available)
+2026-11-14T14:06:35.8389459Z   flutter_lints 4.0.0 (6.0.0 available)
+2026-11-14T14:06:35.8389636Z   google_mlkit_commons 0.8.1 (1.0.3 available)
+2026-11-14T14:06:35.8389835Z   google_mlkit_text_recognition 0.13.1 (1.0.3 available)
+2026-11-14T14:06:35.8390021Z   hooks 2.0.2 (2.2.0 available)
+2026-11-14T14:06:35.8390175Z   image_picker 1.2.3 (1.2.4 available)
+2026-11-14T14:06:35.8390346Z   image_picker_ios 0.8.13+9 (0.8.13+15 available)
+2026-11-14T14:06:35.8390551Z   image_picker_platform_interface 2.11.1 (2.11.2 available)
+2026-11-14T14:06:35.8390898Z   jni 1.1.0 (1.1.2 available)
+2026-11-14T14:06:35.8391043Z   jni_flutter 1.0.3 (1.0.4+1 available)
+2026-11-14T14:06:35.8391197Z   lints 4.0.0 (6.1.0 available)
+2026-11-14T14:06:35.8391451Z   matcher 0.12.19 (0.12.20 available)
+2026-11-14T14:06:35.8391718Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-11-14T14:06:35.8391990Z   meta 1.18.0 (1.19.0 available)
+2026-11-14T14:06:35.8392215Z   objective_c 9.5.0 (9.6.4 available)
+2026-11-14T14:06:35.8392563Z   record_use 0.6.0 (1.1.1 available)
+2026-11-14T14:06:35.8392815Z   shared_preferences 2.5.5 (2.5.6 available)
+2026-11-14T14:06:35.8393290Z   shared_preferences_android 2.4.28 (2.5.5 available)
+2026-11-14T14:06:35.8393592Z   shared_preferences_foundation 2.5.7 (2.6.2 available)
+2026-11-14T14:06:35.8393915Z   stack_trace 1.12.1 (1.12.2 available)
+2026-11-14T14:06:35.8394205Z   synchronized 3.4.2 (3.6.1+1 available)
+2026-11-14T14:06:35.8394445Z   test_api 0.7.11 (0.7.15 available)
+2026-11-14T14:06:35.8394743Z   vector_math 2.2.0 (2.4.4 available)
+2026-11-14T14:06:35.8394979Z   vm_service 15.3.0 (15.4.0 available)
+2026-11-14T14:06:35.8395299Z   web 1.1.1 (1.1.2 available)
+2026-11-14T14:06:35.8395564Z Got dependencies!
+2026-11-14T14:06:35.8396008Z 29 packages have newer versions incompatible with dependency constraints.
+2026-11-14T14:06:35.8396398Z Try `flutter pub outdated` for more information.
+2026-11-14T14:06:36.0228039Z ##[group]Run set -euo pipefail
+2026-11-14T14:06:36.0228256Z [36;1mset -euo pipefail[0m
+2026-11-14T14:06:36.0228424Z [36;1mflutter_binary="$(command -v flutter)"[0m
+2026-11-14T14:06:36.0228901Z [36;1mprintf '%s\n' "python3 scripts/run_full_flutter_acceptance.py --output $QA_OUTPUT/focused --flutter $flutter_binary test/design/lumo_modernization_capture_test.dart" > "$QA_OUTPUT/command.txt"[0m
+2026-11-14T14:06:36.0229341Z [36;1mset +e[0m
+2026-11-14T14:06:36.0229504Z [36;1mpython3 scripts/run_full_flutter_acceptance.py \[0m
+2026-11-14T14:06:36.0229715Z [36;1m  --output "$QA_OUTPUT/focused" \[0m
+2026-11-14T14:06:36.0229894Z [36;1m  --flutter "$flutter_binary" \[0m
+2026-11-14T14:06:36.0230092Z [36;1m  test/design/lumo_modernization_capture_test.dart \[0m
+2026-11-14T14:06:36.0230303Z [36;1m  > "$QA_OUTPUT/runner-stdout.log" 2>&1[0m
+2026-11-14T14:06:36.0230486Z [36;1mrunner_exit=$?[0m
+2026-11-14T14:06:36.0230618Z [36;1mset -e[0m
+2026-11-14T14:06:36.0231073Z [36;1mprintf '%s\n' "$runner_exit" > "$QA_OUTPUT/runner-exit-code.txt"[0m
+2026-11-14T14:06:36.0231305Z [36;1mcat "$QA_OUTPUT/runner-stdout.log"[0m
+2026-11-14T14:06:36.0231472Z [36;1mexit "$runner_exit"[0m
+2026-11-14T14:06:36.0248103Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T14:06:36.0248299Z env:
+2026-11-14T14:06:36.0248414Z   CI: true
+2026-11-14T14:06:36.0248524Z   BOT: true
+2026-11-14T14:06:36.0248647Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:36.0248863Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:36.0249125Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T14:06:36.0249351Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T14:06:36.0249506Z ##[endgroup]
+2026-11-14T14:06:59.0249137Z {"status": "PASS", "passed": 36, "failed": [], "skipped": [], "capture_error_files": [], "flutter_exit_code": 0, "runner_completed_successfully": true, "runner_errors": [], "scope": ["test/design/lumo_modernization_capture_test.dart"], "capture_png_counts": {"LUMO_TUTORING_CAPTURE_DIR": {"directory": "tutoring", "pngs": 0}, "LUMO_RIG_STRESS": {"directory": "rig-stress", "pngs": 0}, "LUMO_CARDS_OPPONENT_CAPTURE": {"directory": "cards-opponents", "pngs": 0}, "LUMO_STREAM_E_CAPTURE": {"directory": "cards-memory", "pngs": 0}, "LUMO_NAVIGATION_CAPTURES": {"directory": "navigation", "pngs": 0}, "LUMO_GUIDED_CAPTURE_DIR": {"directory": "guided-learning", "pngs": 0}, "LUMO_VISUAL_CAPTURE_DIR": {"directory": "reasoning", "pngs": 0}, "LUMO_TOUR_DIR": {"directory": "tour", "pngs": 0}, "LUMO_FLUTTER_GAMES_CAPTURE": {"directory": "games", "pngs": 0}, "LUMO_LEARNING_CAPTURE_DIR": {"directory": "learning-adventure", "pngs": 0}, "LUMO_COMPANION_CAPTURE_DIR": {"directory": "companion", "pngs": 0}, "LUMO_SPATIAL_CAPTURES": {"directory": "reading", "pngs": 0}, "LUMO_CAPTURE_DIR": {"directory": "modernization", "pngs": 42}, "LUMO_CARD_FACE_EXPORT_DIR": {"directory": "card-face-exports", "pngs": 0}, "LUMO_NEXTGEN_READING_CAPTURES": {"directory": "nextgen-reading", "pngs": 0}, "LUMO_READING_CAPTURES": {"directory": "reading-passages", "pngs": 0}, "LUMO_ASSISTED_LEARNING_CAPTURES": {"directory": "assisted-learning", "pngs": 0}, "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {"directory": "native-profiles", "pngs": 0}}, "capture_file_outputs": {"LUMO_CARDS_CUP_CAPTURE": {"path": "cards-cup/trophy.png", "created": false}}, "rendered_png_count": 42}
+2026-11-14T14:06:59.0277100Z ##[group]Run set -euo pipefail
+2026-11-14T14:06:59.0277355Z [36;1mset -euo pipefail[0m
+2026-11-14T14:06:59.0277509Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T14:06:59.0277651Z [36;1mimport hashlib[0m
+2026-11-14T14:06:59.0277788Z [36;1mimport json[0m
+2026-11-14T14:06:59.0277915Z [36;1mimport os[0m
+2026-11-14T14:06:59.0278051Z [36;1mfrom pathlib import Path[0m
+2026-11-14T14:06:59.0278209Z [36;1mimport struct[0m
+2026-11-14T14:06:59.0278480Z [36;1m[0m
+2026-11-14T14:06:59.0278679Z [36;1moutput = Path(os.environ['RUNNER_TEMP']) / 'lumo-prompt-label-contrast'[0m
+2026-11-14T14:06:59.0278931Z [36;1moutput.mkdir(exist_ok=True)[0m
+2026-11-14T14:06:59.0279098Z [36;1mfocus = output / 'focused'[0m
+2026-11-14T14:06:59.0279302Z [36;1mtest = 'test/design/lumo_modernization_capture_test.dart'[0m
+2026-11-14T14:06:59.0279564Z [36;1mreport = {'status': 'FAIL', 'scope': [test], 'expected_passed': 36,[0m
+2026-11-14T14:06:59.0279856Z [36;1m          'expected_pngs': 42, 'visual_review_performed': False}[0m
+2026-11-14T14:06:59.0280054Z [36;1mtry:[0m
+2026-11-14T14:06:59.0280249Z [36;1m    summary = json.loads((focus / 'acceptance-summary.json').read_text())[0m
+2026-11-14T14:06:59.0280478Z [36;1m    expected = {[0m
+2026-11-14T14:06:59.0280774Z [36;1m        'status': 'PASS', 'scope': [test], 'passed': 36, 'failed': [],[0m
+2026-11-14T14:06:59.0281160Z [36;1m        'skipped': [], 'capture_error_files': [], 'flutter_exit_code': 0,[0m
+2026-11-14T14:06:59.0281434Z [36;1m        'runner_completed_successfully': True, 'runner_errors': [],[0m
+2026-11-14T14:06:59.0281665Z [36;1m        'rendered_png_count': 42,[0m
+2026-11-14T14:06:59.0281820Z [36;1m    }[0m
+2026-11-14T14:06:59.0281964Z [36;1m    for key, value in expected.items():[0m
+2026-11-14T14:06:59.0282152Z [36;1m        if summary.get(key) != value:[0m
+2026-11-14T14:06:59.0282387Z [36;1m            raise ValueError(f'Unexpected focused acceptance field {key}')[0m
+2026-11-14T14:06:59.0282680Z [36;1m    if (output / 'runner-exit-code.txt').read_text().strip() != '0':[0m
+2026-11-14T14:06:59.0282960Z [36;1m        raise ValueError('The original runner did not exit successfully')[0m
+2026-11-14T14:06:59.0283229Z [36;1m    if not (focus / 'flutter-machine.jsonl').stat().st_size:[0m
+2026-11-14T14:06:59.0283486Z [36;1m        raise ValueError('The original Flutter machine log is empty')[0m
+2026-11-14T14:06:59.0283744Z [36;1m    sizes = {'fold-cover': (688, 1764), 'phone': (824, 1830),[0m
+2026-11-14T14:06:59.0283966Z [36;1m             'fold-open': (1380, 1658)}[0m
+2026-11-14T14:06:59.0284134Z [36;1m    screens = [[0m
+2026-11-14T14:06:59.0284323Z [36;1m        'rechentricks', 'achievements', 'journal', 'lumo_welt',[0m
+2026-11-14T14:06:59.0284580Z [36;1m        'foto_lektion', 'reading_buddy', 'lumo_quest', 'lumo_magic',[0m
+2026-11-14T14:06:59.0284811Z [36;1m        'schreibcoach', 'schreibaufgabe',[0m
+2026-11-14T14:06:59.0284981Z [36;1m    ][0m
+2026-11-14T14:06:59.0285109Z [36;1m    expected_pngs = {[0m
+2026-11-14T14:06:59.0285306Z [36;1m        f'modernization/{screen}_{size}.png': dimensions[0m
+2026-11-14T14:06:59.0285553Z [36;1m        for size, dimensions in sizes.items() for screen in screens[0m
+2026-11-14T14:06:59.0285756Z [36;1m    }[0m
+2026-11-14T14:06:59.0285888Z [36;1m    expected_pngs.update({[0m
+2026-11-14T14:06:59.0286114Z [36;1m        f'modernization/trainer_{symbol}_{size}_{state}.png': dimensions[0m
+2026-11-14T14:06:59.0286366Z [36;1m        for size, dimensions in sizes.items()[0m
+2026-11-14T14:06:59.0286611Z [36;1m        for symbol in ['B', 'klein_a'] for state in ['leer', 'geuebt'][0m
+2026-11-14T14:06:59.0286815Z [36;1m    })[0m
+2026-11-14T14:06:59.0287028Z [36;1m    actual = {str(path.relative_to(focus)): path for path in focus.rglob('*.png')}[0m
+2026-11-14T14:06:59.0287291Z [36;1m    if set(actual) != set(expected_pngs):[0m
+2026-11-14T14:06:59.0287553Z [36;1m        raise ValueError('The original PNG roster differs from the unchanged focus')[0m
+2026-11-14T14:06:59.0288019Z [36;1m    frames = [][0m
+2026-11-14T14:06:59.0288204Z [36;1m    for path, dimensions in sorted(expected_pngs.items()):[0m
+2026-11-14T14:06:59.0288424Z [36;1m        data = actual[path].read_bytes()[0m
+2026-11-14T14:06:59.0288635Z [36;1m        if data[:16] != b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR':[0m
+2026-11-14T14:06:59.0288887Z [36;1m            raise ValueError('Invalid original PNG header: ' + path)[0m
+2026-11-14T14:06:59.0289134Z [36;1m        if struct.unpack('>II', data[16:24]) != dimensions:[0m
+2026-11-14T14:06:59.0289483Z [36;1m            raise ValueError('Unexpected original PNG dimensions: ' + path)[0m
+2026-11-14T14:06:59.0289747Z [36;1m        frames.append({'path': path, 'bytes': len(data),[0m
+2026-11-14T14:06:59.0289979Z [36;1m                       'sha256': hashlib.sha256(data).hexdigest(),[0m
+2026-11-14T14:06:59.0290221Z [36;1m                       'width': dimensions[0], 'height': dimensions[1]})[0m
+2026-11-14T14:06:59.0290502Z [36;1m    report.update(status='PASS', passed=summary['passed'], originals=frames,[0m
+2026-11-14T14:06:59.0291051Z [36;1m                  font_scope='Unchanged Nunito/MaterialIcons helper; no emoji-helper change')[0m
+2026-11-14T14:06:59.0291310Z [36;1mexcept Exception as error:[0m
+2026-11-14T14:06:59.0291477Z [36;1m    report['error'] = str(error)[0m
+2026-11-14T14:06:59.0291748Z [36;1m(output / 'capture-verification.json').write_text(json.dumps(report, indent=2) + '\n')[0m
+2026-11-14T14:06:59.0292022Z [36;1mprint(json.dumps(report))[0m
+2026-11-14T14:06:59.0292227Z [36;1mraise SystemExit(0 if report['status'] == 'PASS' else 1)[0m
+2026-11-14T14:06:59.0292426Z [36;1mPY[0m
+2026-11-14T14:06:59.0308798Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T14:06:59.0308995Z env:
+2026-11-14T14:06:59.0309114Z   CI: true
+2026-11-14T14:06:59.0309225Z   BOT: true
+2026-11-14T14:06:59.0309352Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:59.0309568Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:59.0309837Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T14:06:59.0310058Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T14:06:59.0310216Z ##[endgroup]
+2026-11-14T14:06:59.0851178Z {"status": "PASS", "scope": ["test/design/lumo_modernization_capture_test.dart"], "expected_passed": 36, "expected_pngs": 42, "visual_review_performed": false, "passed": 36, "originals": [{"path": "modernization/achievements_fold-cover.png", "bytes": 692042, "sha256": "84c50d3df7c7b057bafa237e673b6a71b07ba34465bb07d18e79f7a9473e2be8", "width": 688, "height": 1764}, {"path": "modernization/achievements_fold-open.png", "bytes": 986908, "sha256": "f463e2c6720b8a3817d4b415dd882cb72f806ec151c82f4071f5dee171b88d43", "width": 1380, "height": 1658}, {"path": "modernization/achievements_phone.png", "bytes": 822071, "sha256": "b883ab24760c235cad25788ca08dc218f52281266bf2c26854e8605f258d12b1", "width": 824, "height": 1830}, {"path": "modernization/foto_lektion_fold-cover.png", "bytes": 1229380, "sha256": "e229d4ca74b2e1a6437e19307c561cea1920a04400af19aa5dbfcf186deeccbc", "width": 688, "height": 1764}, {"path": "modernization/foto_lektion_fold-open.png", "bytes": 2169731, "sha256": "c8081122a5a6c7000f10352df5e1cf56f124781c74ddf41b0bb9ce8e833a3b2a", "width": 1380, "height": 1658}, {"path": "modernization/foto_lektion_phone.png", "bytes": 1506221, "sha256": "b176c65640aa90367b68664063b591015e65c83c0fe715bfc088931abdd8d4f6", "width": 824, "height": 1830}, {"path": "modernization/journal_fold-cover.png", "bytes": 1313410, "sha256": "a71c9c0d2e62e2e3d50f225bb6418fa4e1cf351aa7382e2b2718dad1334ba054", "width": 688, "height": 1764}, {"path": "modernization/journal_fold-open.png", "bytes": 2348916, "sha256": "21f03e9387a686d1d3b9623d74b23ffca9a42b34c4792fb8f4fbd0b9e32979c3", "width": 1380, "height": 1658}, {"path": "modernization/journal_phone.png", "bytes": 1623870, "sha256": "16a4b8bdfca91fcff5eaf3b7047b1990fca64d1c83f23eaa6cf9704da2616c7d", "width": 824, "height": 1830}, {"path": "modernization/lumo_magic_fold-cover.png", "bytes": 1175667, "sha256": "77c94690406f4acb500ad63b2377d297df1456608b5ddee759f990828d2ab979", "width": 688, "height": 1764}, {"path": "modernization/lumo_magic_fold-open.png", "bytes": 2040482, "sha256": "79691f85233b7bed71ead246ce66f663dac7c893255d91a8554a780dcc43fc8d", "width": 1380, "height": 1658}, {"path": "modernization/lumo_magic_phone.png", "bytes": 1460798, "sha256": "011a4f374d535f18fdbbcb95979c2b74d1d37894df4c3c4590dec18addda15ef", "width": 824, "height": 1830}, {"path": "modernization/lumo_quest_fold-cover.png", "bytes": 855842, "sha256": "2f6bb64832fcfdd5e81dc8195dc94a59df3aaa9ffcba9685a2604c6a214df986", "width": 688, "height": 1764}, {"path": "modernization/lumo_quest_fold-open.png", "bytes": 1538204, "sha256": "c26ab28647581ae98cf68d1e5849162dc0cf03ad038891669f09558c4fe133e1", "width": 1380, "height": 1658}, {"path": "modernization/lumo_quest_phone.png", "bytes": 1181846, "sha256": "9fe6e43d0dd9dd58f981d6add36325eadd110fa9a643ff647b72b4f53916fe26", "width": 824, "height": 1830}, {"path": "modernization/lumo_welt_fold-cover.png", "bytes": 774121, "sha256": "7b0c3e614ebb276a11814d801b2ab548dcb781ed73443ba2cb586793d71f9dc0", "width": 688, "height": 1764}, {"path": "modernization/lumo_welt_fold-open.png", "bytes": 1135928, "sha256": "3230ac08b9d7428611f542c586fbbb94cc78dce59f5c65b1920a1c8fa407a5ca", "width": 1380, "height": 1658}, {"path": "modernization/lumo_welt_phone.png", "bytes": 881813, "sha256": "d68921ae22d8285cd1f847f86252f9ee426f18f27628747313ff1ad238cd3441", "width": 824, "height": 1830}, {"path": "modernization/reading_buddy_fold-cover.png", "bytes": 700926, "sha256": "222c0352db3b2ec3a25037b42f594837181fad4dcb5747d68e6aa18a0b951737", "width": 688, "height": 1764}, {"path": "modernization/reading_buddy_fold-open.png", "bytes": 1056781, "sha256": "8c553d8941f75c3896f18941691a504d6be7e81498f8bc221d9e5be5ee90401d", "width": 1380, "height": 1658}, {"path": "modernization/reading_buddy_phone.png", "bytes": 824343, "sha256": "0bc9f2901eb7bf26cd0ac79f2752b5e9a52e11c15470a8a83389f4bc1fe30f23", "width": 824, "height": 1830}, {"path": "modernization/rechentricks_fold-cover.png", "bytes": 957403, "sha256": "756254a8f333eeca54a546fb05b75a9750a35b77d14882746fef9f458bd25b90", "width": 688, "height": 1764}, {"path": "modernization/rechentricks_fold-open.png", "bytes": 1533696, "sha256": "79639deca82eab8f9924423e4ce6bf485629644fbc00c997e644e44c2fddadb3", "width": 1380, "height": 1658}, {"path": "modernization/rechentricks_phone.png", "bytes": 1184203, "sha256": "dc9b747301963ffa3e8abe16ddd880c2fcfef06eaec1bd5e650dfd118ce7c66b", "width": 824, "height": 1830}, {"path": "modernization/schreibaufgabe_fold-cover.png", "bytes": 331307, "sha256": "d37e9d9d238bb8edca618d71c8b1aaf3c63fa56f31f50651b26a8374a8f05e19", "width": 688, "height": 1764}, {"path": "modernization/schreibaufgabe_fold-open.png", "bytes": 495048, "sha256": "7fd42c976ac55b61164474cc1ba1ed54f3c177a90032a7f7a1e143efb461d87a", "width": 1380, "height": 1658}, {"path": "modernization/schreibaufgabe_phone.png", "bytes": 372820, "sha256": "160969df1fae5af3bc701b411f5f66d6b7192898be39663fed75735ee28d0a0b", "width": 824, "height": 1830}, {"path": "modernization/schreibcoach_fold-cover.png", "bytes": 119662, "sha256": "3b9cb685ed110fbfe4f18e234eca203577c5814170952621b49e624b925ab93f", "width": 688, "height": 1764}, {"path": "modernization/schreibcoach_fold-open.png", "bytes": 176913, "sha256": "acab4d0f71b0f5ad98cfe9fcef94890b282f21bd9bd3142c928bf9cd5bf895ea", "width": 1380, "height": 1658}, {"path": "modernization/schreibcoach_phone.png", "bytes": 133033, "sha256": "49130519fa8610bfdb1ba5160137a100340ebf55926dcb1d37686fd47f62c129", "width": 824, "height": 1830}, {"path": "modernization/trainer_B_fold-cover_geuebt.png", "bytes": 448685, "sha256": "443107e75ca5dccb62aac20bd1fcf19ae53d2e55e843a053c62ce5b9ab76a6d9", "width": 688, "height": 1764}, {"path": "modernization/trainer_B_fold-cover_leer.png", "bytes": 384350, "sha256": "061d8e9fcbc45579382126fc671eed3e20e64644b02d2a19ea64b94c172e01dd", "width": 688, "height": 1764}, {"path": "modernization/trainer_B_fold-open_geuebt.png", "bytes": 667884, "sha256": "188a30d90e523428c5fb8f69a754307c442dfb4fe263f4bb05d212c41107418f", "width": 1380, "height": 1658}, {"path": "modernization/trainer_B_fold-open_leer.png", "bytes": 643243, "sha256": "9a78b135d805762bf213c71854fa279793b19dbce2ffc31e3fc33b6337a5367f", "width": 1380, "height": 1658}, {"path": "modernization/trainer_B_phone_geuebt.png", "bytes": 558344, "sha256": "b29974e44e52d0055de6d9dd17bacbab02ecefa546ccfcfe13d5c505b4060fc6", "width": 824, "height": 1830}, {"path": "modernization/trainer_B_phone_leer.png", "bytes": 489085, "sha256": "386f180138813ebb38bdbe6167b1e2f3b7573f2aebc7eea12c69018d4c479387", "width": 824, "height": 1830}, {"path": "modernization/trainer_klein_a_fold-cover_geuebt.png", "bytes": 429285, "sha256": "44dd0054530f0971915838edf4bdf081ed305c8947f5ece34268ea0ed0a96462", "width": 688, "height": 1764}, {"path": "modernization/trainer_klein_a_fold-cover_leer.png", "bytes": 358743, "sha256": "2f4eb9af583a401782f63011d5c80fa0cacabfacbb964cdc6279889b66273206", "width": 688, "height": 1764}, {"path": "modernization/trainer_klein_a_fold-open_geuebt.png", "bytes": 635561, "sha256": "fa4a4fd1878ae502b22b8bd85676ec7007d69b82948c710f3c06f7906d42fccc", "width": 1380, "height": 1658}, {"path": "modernization/trainer_klein_a_fold-open_leer.png", "bytes": 599242, "sha256": "4784592e8dcaaad29d60b78e85941651a392eccc8a758140b5313eee0fd304f5", "width": 1380, "height": 1658}, {"path": "modernization/trainer_klein_a_phone_geuebt.png", "bytes": 533225, "sha256": "7dbd13e6b812a74f4c86bdb334a68c6703ff15ed8a5eb9aa4c2bd76be031a68f", "width": 824, "height": 1830}, {"path": "modernization/trainer_klein_a_phone_leer.png", "bytes": 457713, "sha256": "79c215c448a5717c48b287fc3c99812d37e91f76f1f75063417ad25bcd36d23d", "width": 824, "height": 1830}], "font_scope": "Unchanged Nunito/MaterialIcons helper; no emoji-helper change"}
+2026-11-14T14:06:59.0910016Z ##[group]Run set -euo pipefail
+2026-11-14T14:06:59.0910266Z [36;1mset -euo pipefail[0m
+2026-11-14T14:06:59.0910417Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T14:06:59.0910561Z [36;1mimport hashlib[0m
+2026-11-14T14:06:59.0910893Z [36;1mimport json[0m
+2026-11-14T14:06:59.0911028Z [36;1mimport os[0m
+2026-11-14T14:06:59.0911168Z [36;1mfrom pathlib import Path[0m
+2026-11-14T14:06:59.0911332Z [36;1mimport subprocess[0m
+2026-11-14T14:06:59.0911473Z [36;1m[0m
+2026-11-14T14:06:59.0911674Z [36;1moutput = Path(os.environ['RUNNER_TEMP']) / 'lumo-prompt-label-contrast'[0m
+2026-11-14T14:06:59.0911938Z [36;1moutput.mkdir(exist_ok=True)[0m
+2026-11-14T14:06:59.0912158Z [36;1mreport = {'status': 'FAIL', 'source_before_after_identical': False}[0m
+2026-11-14T14:06:59.0912371Z [36;1mtry:[0m
+2026-11-14T14:06:59.0912561Z [36;1m    before = json.loads((output / 'source-before.json').read_text())[0m
+2026-11-14T14:06:59.0912785Z [36;1m    after = dict(before)[0m
+2026-11-14T14:06:59.0912996Z [36;1m    after['head_commit'] = subprocess.check_output([0m
+2026-11-14T14:06:59.0913225Z [36;1m        ['git', 'rev-parse', 'HEAD'], text=True).strip()[0m
+2026-11-14T14:06:59.0913444Z [36;1m    after['head_tree'] = subprocess.check_output([0m
+2026-11-14T14:06:59.0913674Z [36;1m        ['git', 'rev-parse', 'HEAD^{tree}'], text=True).strip()[0m
+2026-11-14T14:06:59.0913877Z [36;1m    after['files'] = {}[0m
+2026-11-14T14:06:59.0914038Z [36;1m    for path in before['files']:[0m
+2026-11-14T14:06:59.0914220Z [36;1m        data = Path(path).read_bytes()[0m
+2026-11-14T14:06:59.0914402Z [36;1m        after['files'][path] = {[0m
+2026-11-14T14:06:59.0914622Z [36;1m            'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(),[0m
+2026-11-14T14:06:59.0914859Z [36;1m            'git_blob': hashlib.sha1([0m
+2026-11-14T14:06:59.0915095Z [36;1m                b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest(),[0m
+2026-11-14T14:06:59.0915312Z [36;1m        }[0m
+2026-11-14T14:06:59.0915487Z [36;1m    after['tracked_changes'] = subprocess.check_output([0m
+2026-11-14T14:06:59.0915711Z [36;1m        ['git', 'diff', 'HEAD', '--'], text=True)[0m
+2026-11-14T14:06:59.0915940Z [36;1m    after['untracked_source_inputs'] = subprocess.check_output([0m
+2026-11-14T14:06:59.0916204Z [36;1m        ['git', 'ls-files', '--others', '--exclude-standard', '--',[0m
+2026-11-14T14:06:59.0916448Z [36;1m         'lib', 'test', 'assets', 'config', 'scripts', 'tools'],[0m
+2026-11-14T14:06:59.0916654Z [36;1m        text=True).splitlines()[0m
+2026-11-14T14:06:59.0916899Z [36;1m    (output / 'source-after.json').write_text(json.dumps(after, indent=2) + '\n')[0m
+2026-11-14T14:06:59.0917277Z [36;1m    if after != before:[0m
+2026-11-14T14:06:59.0917512Z [36;1m        raise ValueError('Source identity changed during the focused capture')[0m
+2026-11-14T14:06:59.0917815Z [36;1m    report.update(status='PASS', source_before_after_identical=True,[0m
+2026-11-14T14:06:59.0918107Z [36;1m                  head_commit=after['head_commit'], head_tree=after['head_tree'])[0m
+2026-11-14T14:06:59.0918342Z [36;1mexcept Exception as error:[0m
+2026-11-14T14:06:59.0918507Z [36;1m    report['error'] = str(error)[0m
+2026-11-14T14:06:59.0918772Z [36;1m(output / 'source-verification.json').write_text(json.dumps(report, indent=2) + '\n')[0m
+2026-11-14T14:06:59.0919022Z [36;1mfiles = [][0m
+2026-11-14T14:06:59.0919176Z [36;1mfor path in sorted(output.rglob('*')):[0m
+2026-11-14T14:06:59.0919399Z [36;1m    if path.is_file() and path.name != 'original-index.json':[0m
+2026-11-14T14:06:59.0919615Z [36;1m        data = path.read_bytes()[0m
+2026-11-14T14:06:59.0919858Z [36;1m        files.append({'path': str(path.relative_to(output)), 'bytes': len(data),[0m
+2026-11-14T14:06:59.0920137Z [36;1m                      'sha256': hashlib.sha256(data).hexdigest()})[0m
+2026-11-14T14:06:59.0920381Z [36;1m(output / 'original-index.json').write_text(json.dumps({[0m
+2026-11-14T14:06:59.0920940Z [36;1m    'repository': os.environ['GITHUB_REPOSITORY'],[0m
+2026-11-14T14:06:59.0921153Z [36;1m    'head_sha': os.environ['GITHUB_SHA'],[0m
+2026-11-14T14:06:59.0921349Z [36;1m    'run_id': os.environ['GITHUB_RUN_ID'],[0m
+2026-11-14T14:06:59.0921686Z [36;1m    'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],[0m
+2026-11-14T14:06:59.0921901Z [36;1m    'files': files,[0m
+2026-11-14T14:06:59.0922050Z [36;1m}, indent=2) + '\n')[0m
+2026-11-14T14:06:59.0922198Z [36;1mprint(json.dumps(report))[0m
+2026-11-14T14:06:59.0922401Z [36;1mraise SystemExit(0 if report['status'] == 'PASS' else 1)[0m
+2026-11-14T14:06:59.0922601Z [36;1mPY[0m
+2026-11-14T14:06:59.0939731Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T14:06:59.0939930Z env:
+2026-11-14T14:06:59.0940045Z   CI: true
+2026-11-14T14:06:59.0940160Z   BOT: true
+2026-11-14T14:06:59.0940285Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:59.0940496Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:59.0940891Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T14:06:59.0941112Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T14:06:59.0941270Z ##[endgroup]
+2026-11-14T14:06:59.2614960Z {"status": "PASS", "source_before_after_identical": true, "head_commit": "21e0368603e38d1dfd063485f5307ec201f0d872", "head_tree": "0a5042254cd27c70597952842fdc8d71b089b417"}
+2026-11-14T14:06:59.2706909Z ##[group]Run actions/upload-artifact@v4
+2026-11-14T14:06:59.2707088Z with:
+2026-11-14T14:06:59.2707233Z   name: lumo-prompt-label-contrast-originals
+2026-11-14T14:06:59.2707451Z   path: /home/runner/work/_temp/lumo-prompt-label-contrast/
+2026-11-14T14:06:59.2707669Z   if-no-files-found: error
+2026-11-14T14:06:59.2707810Z   retention-days: 14
+2026-11-14T14:06:59.2707945Z   compression-level: 6
+2026-11-14T14:06:59.2708076Z   overwrite: false
+2026-11-14T14:06:59.2708209Z   include-hidden-files: false
+2026-11-14T14:06:59.2708378Z env:
+2026-11-14T14:06:59.2708487Z   CI: true
+2026-11-14T14:06:59.2708598Z   BOT: true
+2026-11-14T14:06:59.2708726Z   FLUTTER_SUPPRESS_ANALYTICS: true
+2026-11-14T14:06:59.2708929Z   QA_OUTPUT: /home/runner/work/_temp/lumo-prompt-label-contrast
+2026-11-14T14:06:59.2709189Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-14T14:06:59.2709407Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-14T14:06:59.2709560Z ##[endgroup]
+2026-11-14T14:06:59.3882934Z (node:3097) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T14:06:59.3883359Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T14:06:59.3983534Z With the provided path, there will be 60 files uploaded
+2026-11-14T14:06:59.3986688Z Artifact name is valid!
+2026-11-14T14:06:59.3987158Z Root directory input is valid!
+2026-11-14T14:06:59.6014232Z Beginning upload of artifact content to blob storage
+2026-11-14T14:06:59.8050741Z (node:3097) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T14:07:00.0306258Z Uploaded bytes 8388608
+2026-11-14T14:07:00.2129745Z Uploaded bytes 16777216
+2026-11-14T14:07:00.3502307Z Uploaded bytes 25165824
+2026-11-14T14:07:00.5415428Z Uploaded bytes 33554432
+2026-11-14T14:07:00.6358549Z Uploaded bytes 37588911
+2026-11-14T14:07:00.6546578Z Finished uploading artifact content to blob storage!
+2026-11-14T14:07:00.6548885Z SHA256 digest of uploaded artifact zip is a56100f13efd22974046aa94ec1d2d67549d92a025701b47e47d37e3ff0e6bc7
+2026-11-14T14:07:00.6550303Z Finalizing artifact upload
+2026-11-14T14:07:00.9841527Z Artifact lumo-prompt-label-contrast-originals.zip successfully finalized. Artifact ID 14116624494
+2026-11-14T14:07:00.9842369Z Artifact lumo-prompt-label-contrast-originals has been successfully uploaded! Final size is 37588911 bytes. Artifact ID is 14116624494
+2026-11-14T14:07:00.9845642Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43603068259/artifacts/14116624494
+2026-11-14T14:07:01.0101557Z Post job cleanup.
+2026-11-14T14:07:01.0104249Z ##[start-action display=Cache pub dependencies;id=__d145be01-ee52-4d76-a4eb-9faa5c01cfcb.cache-pub]
+2026-11-14T14:07:01.2479646Z Post job cleanup.
+2026-11-14T14:07:01.3382013Z Cache hit occurred on the primary key flutter-pub-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33-1830e2ce280613b2e958baee17b0740e1e106a41bef69ae8bb0e5aec9b8ee639, not saving cache.
+2026-11-14T14:07:01.3449024Z ##[end-action id=__d145be01-ee52-4d76-a4eb-9faa5c01cfcb.cache-pub;outcome=success;conclusion=success;duration_ms=334]
+2026-11-14T14:07:01.3451318Z ##[start-action display=Cache Flutter;id=__d145be01-ee52-4d76-a4eb-9faa5c01cfcb.cache-flutter]
+2026-11-14T14:07:01.3478915Z Post job cleanup.
+2026-11-14T14:07:01.4418388Z Cache hit occurred on the primary key flutter-linux-stable-3.44.9-x64-6b182d2c7585eba26d4edce0f97630effd256c33, not saving cache.
+2026-11-14T14:07:01.4494352Z ##[end-action id=__d145be01-ee52-4d76-a4eb-9faa5c01cfcb.cache-flutter;outcome=success;conclusion=success;duration_ms=104]
+2026-11-14T14:07:01.4543110Z Post job cleanup.
+2026-11-14T14:07:01.5134474Z [command]/usr/bin/git version
+2026-11-14T14:07:01.5166560Z git version 2.56.1
+2026-11-14T14:07:01.5192641Z Temporarily overriding HOME='/home/runner/work/_temp/ca62b4ca-243b-4b3d-8770-cbca6f54f3f5' before making global git config changes
+2026-11-14T14:07:01.5193493Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T14:07:01.5198339Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T14:07:01.5230520Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T14:07:01.5283286Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T14:07:01.5486294Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T14:07:01.5515462Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T14:07:01.5712334Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T14:07:01.5740954Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T14:07:01.6058572Z Cleaning up orphan processes
+2026-11-14T14:07:01.6365994Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

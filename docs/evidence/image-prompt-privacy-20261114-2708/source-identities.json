@@ -1,0 +1,56 @@
+{
+  "baseline_commit": "01575aafc3f5b9032900bb57520ee65e98d7546c",
+  "baseline_tree": "7c5d36998ebcd1a78740b26f8a6c587976806e4b",
+  "dart_version": "3.12.2 (stable), linux_x64",
+  "files": [
+    {
+      "path": "lib/core/lumo_image_generator.dart",
+      "baseline_git_blob": "c9e8e01014362f2d1f9ab1b8dd1de893928fe3b4",
+      "baseline_sha256": "6f76a7bd574fca6b4373759d512a1a53d1712e5fd2d5624df156515743c48d05",
+      "patched_git_blob": "d8f14f1c344e7c3721f6f337b733fded012db897",
+      "patched_sha256": "0ef4a90b39fe41a6e28f2e3348a3e3e4fabd73ebf32c3c77e11e3f00787178c6",
+      "harness_bytes_identical": true
+    },
+    {
+      "path": "test/core/lumo_image_generator_test.dart",
+      "baseline_git_blob": "a6d7315ecf417519126ae0536bdf1321b1c61fb5",
+      "baseline_sha256": "0fb5fcede761d0fc576bb177ddbd5ee0ba01a174d096f505df92f15f72bfa2c6",
+      "patched_git_blob": "59fe89a46a5d52e2f97529a21832240ecf2a8a46",
+      "patched_sha256": "5657def9a23642db265916ea3fa22c8ab577f466ab7b800980404b1f541be55f",
+      "harness_bytes_identical": true
+    }
+  ],
+  "evidence": {
+    "README.md": {
+      "bytes": 3470,
+      "sha256": "05fdcdfeeaa828ba55cc2ed7842dfc0dcde4fb61a4a5879aa37f432098dfe5ea"
+    },
+    "green-execution.json": {
+      "bytes": 671,
+      "sha256": "f3586a44a85a5ae7f08672ae4aa07abe2c243f705b4457dbadfaba7cf79b7a98"
+    },
+    "green.log": {
+      "bytes": 661,
+      "sha256": "e5f7b9b768c61adfa4a9bf4cff6da786ecb0d1f9461ec60249af380c10b84571"
+    },
+    "harness-pubspec.lock": {
+      "bytes": 5382,
+      "sha256": "62c4fd2156e21d885e90c94723f40fc0fb63ccdf6fe47fa2e17420cac6c7ea1a"
+    },
+    "harness-pubspec.yaml": {
+      "bytes": 165,
+      "sha256": "4cb929eba14a4f134c4e5b7c8ef46d98c26fa520971b605c45818a58abef9f8b"
+    },
+    "red-execution.json": {
+      "bytes": 538,
+      "sha256": "4184637060b7472632b03cc111a9278d3129c8dde30daa9e0a227b4459514269"
+    },
+    "red.log": {
+      "bytes": 1971,
+      "sha256": "13c3858615c0144fa7f6b319eb7d217f0d6df68232c12d3731fdd21e3807a5f8"
+    }
+  },
+  "independent_review": "pending",
+  "full_app_build": "not run by this bounded task",
+  "network_request_performed": false
+}

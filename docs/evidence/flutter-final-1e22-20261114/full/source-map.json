@@ -1,0 +1,19 @@
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "host": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+  "native": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "run": 43596913210,
+  "attempt": 1,
+  "job": 132454178537,
+  "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+  "workflow_blob": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6",
+  "runner": "scripts/run_full_flutter_acceptance.py",
+  "runner_blob": "f6db83c08db2a89c8d422f33a874fde8a0b62f72",
+  "artifact_id": 14115282912,
+  "artifact_size": 363833462,
+  "artifact_sha256": "81132f79c596df4a70f87f4a39b3cebe8fb3405384d34a471cb40c8416d4b6ab",
+  "primary_scope": "Complete unfiltered Flutter suite with captures enabled; not an APK or Android acceptance.",
+  "full_job_log_owner": "android_qa will fetch the terminal complete build log exactly once; not fetched here.",
+  "no_new_test_execution": true
+}

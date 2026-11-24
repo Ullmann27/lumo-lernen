@@ -1,0 +1,10 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/rewards/custom_rewards_flow_test.dart
+00:00 +0: Parent UI creates a voucher; restart, cancel, redeem, edit and archive retain the original history
+00:02 +1: Own voucher remains locked until its actual wallet level is reached
+00:03 +2: A profile switch while the editor is open disables the old save
+00:04 +3: A profile switch during adult approval cannot debit either child
+00:05 +4: A failed parent save remains visible and retries the same definition durably
+00:06 +5: An interrupted debit resumes after cold restart with the original receipt
+00:07 +6: Editing and deactivating during approval preserves the price that was displayed
+00:08 +7: Editor and shop remain usable on a narrow screen with large text
+00:08 +8: All tests passed!

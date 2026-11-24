@@ -1,0 +1,203 @@
+name: Lumo family draft release pipeline
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/lumo-family-draft-release.yml'
+      - 'scripts/release_pipeline_gates.py'
+      - 'scripts/prepare_family_draft_release.sh'
+      - 'scripts/tests/test_release_pipeline_gates.py'
+      - 'scripts/verify_unified_apk.py'
+      - 'lib/core/app_update_service.dart'
+      - 'docs/releases/LUMO_FAMILIEN_UPDATEKANAL.md'
+      - 'pubspec.yaml'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'verify-only checks gates; build-only builds and verifies an APK without any GitHub release; draft-release additionally uploads a DRAFT (never a published prerelease)'
+        type: choice
+        options:
+          - verify-only
+          - build-only
+          - draft-release
+        default: verify-only
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-family-draft-${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}-${{ github.event.inputs.mode || 'verify-only' }}
+  cancel-in-progress: true
+
+jobs:
+  verify-pipeline:
+    name: Family download gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run release-pipeline unit tests
+        run: python3 -m unittest discover -s scripts/tests -p 'test_release_pipeline_gates.py' -v
+
+      - name: Check pubspec, updater contract and last published family build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          updater = Path('lib/core/app_update_service.dart').read_text(encoding='utf-8')
+          script = Path('scripts/build_unified_apk.sh').read_text(encoding='utf-8')
+          assert "prefix = 'coachpreview-build-'" in updater
+          assert "const parallelName = 'Lumo-Lernen-Neu.apk'" in updater
+          assert "if (raw['draft'] != false || raw['prerelease'] != true) continue;" in updater
+          assert "'/Ullmann27/lumo-lernen/releases/download/$tag/Lumo-Lernen-Neu.apk'" in updater
+          assert '--dart-define=LUMO_SIDE_BY_SIDE=true' in script
+          print('Updater static channel contract: confirmed')
+          PY
+          gh api "repos/${GITHUB_REPOSITORY}/releases?per_page=100" > /tmp/family-releases.json
+          python3 scripts/release_pipeline_gates.py \
+            --pubspec pubspec.yaml \
+            --releases-json /tmp/family-releases.json \
+            --source-sha "$(git rev-parse HEAD)" | tee dist-gate-report.json
+          mkdir -p dist
+          mv dist-gate-report.json dist/FAMILY-GATE-REPORT.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('dist/FAMILY-GATE-REPORT.json').read_text(encoding='utf-8'))
+          print(
+              f"Declared {report['versionName']}+{report['versionCode']} "
+              f"can update past published family build {report['lastPublishedFamilyBuild']} "
+              f"as draft tag {report['tag']}."
+          )
+          print('Intended next published family update remains 0.13.0+2012 after the lead bumps pubspec.')
+          print('No GitHub release was created.')
+          PY
+
+  build-and-verify:
+    name: Build family APK without publishing
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'verify-only'
+    needs: verify-pipeline
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Resolve locked Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+
+      - name: Analyze with the CI flags
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Full Flutter regression suite
+        run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+
+      - name: Install matching Godot engine
+        run: bash scripts/install_godot_for_build.sh
+
+      - name: Build and verify the single family application
+        run: bash scripts/build_unified_apk.sh
+
+      - name: Enforce family download gates and write SHA-256 sidecar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test -s dist/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a \
+            | tee dist/APK-VERIFICATION.json
+          gh api "repos/${GITHUB_REPOSITORY}/releases?per_page=100" > dist/family-releases.json
+          python3 scripts/release_pipeline_gates.py \
+            --pubspec pubspec.yaml \
+            --apk dist/Lumo-Lernen-Neu.apk \
+            --verification dist/APK-VERIFICATION.json \
+            --releases-json dist/family-releases.json \
+            --source-sha "$(git rev-parse HEAD)" \
+            --write-sha256 dist/Lumo-Lernen-Neu.apk.sha256 \
+            | tee dist/FAMILY-GATE-REPORT.json
+          test -s dist/Lumo-Lernen-Neu.apk.sha256
+          sha256sum -c dist/Lumo-Lernen-Neu.apk.sha256
+          grep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt
+          cp config/godot-source.json dist/GODOT-SOURCE.json
+
+      - name: Upload verified family APK without creating a release
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-family-apk-${{ github.run_id }}
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/Lumo-Lernen-Neu.apk.sha256
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            dist/FAMILY-GATE-REPORT.json
+            dist/APP-VERSION.txt
+            dist/GODOT-SOURCE.json
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+      - name: Record that nothing was published
+        run: |
+          {
+            echo "## Family APK built, not published"
+            echo
+            echo "Artifact: \`lumo-family-apk-${GITHUB_RUN_ID}\`"
+            echo "Run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "No GitHub release, tag or prerelease was created."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  upload-family-draft:
+    name: Upload draft family release
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'draft-release'
+    needs: build-and-verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Download the verified APK from this run
+        uses: actions/download-artifact@v4
+        with:
+          name: lumo-family-apk-${{ github.run_id }}
+          path: dist
+
+      - name: Create a DRAFT GitHub release only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test -s dist/Lumo-Lernen-Neu.apk
+          test -s dist/APK-VERIFICATION.json
+          bash scripts/prepare_family_draft_release.sh \
+            --apk dist/Lumo-Lernen-Neu.apk \
+            --verification dist/APK-VERIFICATION.json \
+            --source-sha "$(git rev-parse HEAD)" \
+            --create-draft

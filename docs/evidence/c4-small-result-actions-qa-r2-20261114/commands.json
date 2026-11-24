@@ -1,0 +1,82 @@
+[
+  {
+    "name": "python-compile",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-c",
+      "from pathlib import Path; p=Path('/home/agent/lumo-c4-small-modal-qa-2708/prepared-r2/scripts/run_connect_four_small_result_actions_qa.py'); compile(p.read_bytes(),str(p),\"exec\"); print(\"Python compile() succeeded; runtime entrypoint not executed\")"
+    ],
+    "exit_code": 0,
+    "log": "python-compile.log"
+  },
+  {
+    "name": "uid-boundary-tests",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/home/agent/lumo-c4-small-modal-qa-2708/r2-evidence/test_uid_metadata_boundary.py"
+    ],
+    "exit_code": 0,
+    "log": "uid-boundary-tests.log"
+  },
+  {
+    "name": "actionlint",
+    "command": [
+      "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+      "-shellcheck=",
+      "-pyflakes=",
+      "/home/agent/lumo-c4-small-modal-qa-2708/prepared-r2/.github/workflows/lumo-c4-small-result-actions-qa.yml"
+    ],
+    "exit_code": 0,
+    "log": "actionlint.log"
+  },
+  {
+    "name": "bash-step-03",
+    "command": [
+      "bash",
+      "-n",
+      "/home/agent/lumo-c4-small-modal-qa-2708/r2-evidence/workflow-step-03.sh"
+    ],
+    "exit_code": 0,
+    "log": "bash-step-03.log"
+  },
+  {
+    "name": "bash-step-05",
+    "command": [
+      "bash",
+      "-n",
+      "/home/agent/lumo-c4-small-modal-qa-2708/r2-evidence/workflow-step-05.sh"
+    ],
+    "exit_code": 0,
+    "log": "bash-step-05.log"
+  },
+  {
+    "name": "bash-step-06",
+    "command": [
+      "bash",
+      "-n",
+      "/home/agent/lumo-c4-small-modal-qa-2708/r2-evidence/workflow-step-06.sh"
+    ],
+    "exit_code": 0,
+    "log": "bash-step-06.log"
+  },
+  {
+    "name": "bash-step-07",
+    "command": [
+      "bash",
+      "-n",
+      "/home/agent/lumo-c4-small-modal-qa-2708/r2-evidence/workflow-step-07.sh"
+    ],
+    "exit_code": 0,
+    "log": "bash-step-07.log"
+  },
+  {
+    "name": "bash-step-08",
+    "command": [
+      "bash",
+      "-n",
+      "/home/agent/lumo-c4-small-modal-qa-2708/r2-evidence/workflow-step-08.sh"
+    ],
+    "exit_code": 0,
+    "log": "bash-step-08.log"
+  }
+]

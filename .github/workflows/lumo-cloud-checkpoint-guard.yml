@@ -1,0 +1,29 @@
+name: Cloud checkpoint guard – safe handoff tests
+
+on:
+  pull_request:
+    paths:
+      - AGENTS.md
+      - tools/lumo_autosave.py
+      - tools/tests/test_lumo_autosave.py
+      - .github/workflows/lumo-cloud-checkpoint-guard.yml
+      - docs/CLOUD_RECOVERY_PROTOCOL_2026-10-20.md
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checkpoint-safety:
+    name: Verify checkpoint script without publishing changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout proposed rescue configuration
+        uses: actions/checkout@v4
+      - name: Check Python syntax
+        run: python3 -m py_compile tools/lumo_autosave.py tools/tests/test_lumo_autosave.py
+      - name: Run checkpoint safety unit tests
+        run: python3 -m unittest discover -v -s tools/tests -p test_lumo_autosave.py
+      - name: Verify safe inspection mode on PR branch
+        run: python3 tools/lumo_autosave.py check

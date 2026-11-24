@@ -1,0 +1,18 @@
+test_production_native_scope_permissions_and_stale_callbacks (scripts.tests.test_learning_conversation_contract.LearningConversationContractTest.test_production_native_scope_permissions_and_stale_callbacks) ... FAIL
+
+======================================================================
+FAIL: test_production_native_scope_permissions_and_stale_callbacks (scripts.tests.test_learning_conversation_contract.LearningConversationContractTest.test_production_native_scope_permissions_and_stale_callbacks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-conversation-scope/scripts/tests/test_learning_conversation_contract.py", line 348, in test_production_native_scope_permissions_and_stale_callbacks
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : Exception in thread "main" java.lang.IllegalStateException: Use parameters.patternUnit from the checked sequence
+	at dev.ullmann.lumo.ContractKt.verify(Contract.kt:13)
+	at dev.ullmann.lumo.ContractKt.main(Contract.kt:154)
+	at dev.ullmann.lumo.ContractKt.main(Contract.kt)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 6.614s
+
+FAILED (failures=1)

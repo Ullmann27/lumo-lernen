@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "scope": "Fixed additional Village contract; source capture probe and product UI owned by Root. Parser fixtures are synthetic, not renderer evidence.",
+  "core_pairs": [
+    [
+      "bauwelt_identity_2013_regression",
+      "headless"
+    ],
+    [
+      "build_frontier_regression",
+      "headless"
+    ],
+    [
+      "build_nextgen_play_regression",
+      "headless"
+    ],
+    [
+      "build_nextgen_play_regression",
+      "rendered"
+    ],
+    [
+      "build_settlement_play_regression",
+      "headless"
+    ],
+    [
+      "build_settlement_play_regression",
+      "rendered"
+    ],
+    [
+      "build_settlement_regression",
+      "headless"
+    ],
+    [
+      "build_transform_regression",
+      "headless"
+    ],
+    [
+      "build_village_art_regression",
+      "headless"
+    ],
+    [
+      "build_village_economy_regression",
+      "headless"
+    ],
+    [
+      "build_village_scene_regression",
+      "headless"
+    ],
+    [
+      "build_village_scene_regression",
+      "rendered"
+    ],
+    [
+      "cards_table_capture",
+      "rendered"
+    ],
+    [
+      "cards_table_regression",
+      "headless"
+    ],
+    [
+      "creative_nextgen_environment_regression",
+      "headless"
+    ],
+    [
+      "creative_nextgen_environment_regression",
+      "rendered"
+    ],
+    [
+      "jump_expeditions_regression",
+      "headless"
+    ],
+    [
+      "jump_nextgen_capture",
+      "rendered"
+    ],
+    [
+      "jump_nextgen_regression",
+      "headless"
+    ],
+    [
+      "kart_nextgen_garage_regression",
+      "headless"
+    ],
+    [
+      "kart_nextgen_garage_regression",
+      "rendered"
+    ],
+    [
+      "kart_player_full_route_regression",
+      "rendered"
+    ],
+    [
+      "kart_track_pass_regression",
+      "headless"
+    ],
+    [
+      "learning_host_payload_regression",
+      "headless"
+    ],
+    [
+      "learning_sharing_capture",
+      "rendered"
+    ],
+    [
+      "learning_sharing_regression",
+      "headless"
+    ],
+    [
+      "learning_studio_regression",
+      "headless"
+    ],
+    [
+      "learning_world_capture",
+      "rendered"
+    ],
+    [
+      "learning_world_regression",
+      "headless"
+    ],
+    [
+      "lumo_65bone_walk_gait_regression",
+      "headless"
+    ],
+    [
+      "lumo_original_jump_visual_regression",
+      "headless"
+    ],
+    [
+      "lumo_studio_motion_capture",
+      "rendered"
+    ],
+    [
+      "lumo_studio_motion_regression",
+      "headless"
+    ],
+    [
+      "lumo_teacher_pose_regression",
+      "headless"
+    ],
+    [
+      "puzzle_rotation_regression",
+      "headless"
+    ],
+    [
+      "puzzle_rotation_regression",
+      "rendered"
+    ],
+    [
+      "rhythm_tour_play_regression",
+      "headless"
+    ],
+    [
+      "rhythm_tour_play_regression",
+      "rendered"
+    ],
+    [
+      "rhythm_tour_regression",
+      "headless"
+    ],
+    [
+      "treasure_exploration_regression",
+      "headless"
+    ],
+    [
+      "treasure_exploration_regression",
+      "rendered"
+    ]
+  ],
+  "added_pairs": [
+    [
+      "build_village_art_regression",
+      "headless"
+    ],
+    [
+      "build_village_economy_regression",
+      "headless"
+    ],
+    [
+      "build_village_scene_regression",
+      "headless"
+    ],
+    [
+      "build_village_scene_regression",
+      "rendered"
+    ]
+  ],
+  "studio_rasters": 24,
+  "studio_roster_unchanged": true,
+  "touch_probe_pairs": 6,
+  "touch_rasters": 32,
+  "touch_roster_unchanged": true,
+  "village_roster": "nextgen-evidence/nextgen/village-images.json",
+  "village_images": {
+    "captures/build_village_scene_regression/village-overview-1280x720.png": [
+      1280,
+      720
+    ],
+    "captures/build_village_scene_regression/village-chapters-412x915.png": [
+      412,
+      915
+    ],
+    "captures/build_village_scene_regression/village-trader-2176x1812.png": [
+      2176,
+      1812
+    ],
+    "captures/build_village_scene_regression/village-treasury-640x360.png": [
+      640,
+      360
+    ]
+  },
+  "village_review_group": "nextgen-evidence/nextgen/captures/build_village_scene_regression",
+  "village_module": "settlement",
+  "production_module_families": [
+    "build",
+    "cards",
+    "garage",
+    "jump",
+    "learning",
+    "puzzle",
+    "rhythm",
+    "settlement",
+    "treasure"
+  ],
+  "studio_default_profile_unchanged": true,
+  "original_37_pairs_preserved": true,
+  "source_sha_tree_and_original_zip_binding_preserved": true
+}

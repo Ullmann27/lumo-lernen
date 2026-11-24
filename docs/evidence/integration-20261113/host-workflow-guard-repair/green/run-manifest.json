@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "base_commit": "f80fe6b3d6a3c58c89f8507853dcbfc15a84525e",
+  "base_tree": "bc925bfebb77fa58ae4b82b93204906ae9265172",
+  "tested_delta": [
+    "scripts/tests/test_nextgen_workflow_contract.py"
+  ],
+  "patch_sha256": "692144ffd5de2b5ba9bdfaabc0e522b0966bdf8ac11d297aa9980e732fc46c40",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "started_at_utc": "2026-11-13T15:32:28.128885+00:00",
+  "finished_at_utc": "2026-11-13T15:34:06.181164+00:00",
+  "elapsed_seconds": 98.052,
+  "exit_code": 0,
+  "tests": 409,
+  "unittest_seconds": 97.705,
+  "skipped": 0,
+  "source_stable_during_gate": true,
+  "original_failure_preserved": "/workspace/scratch/b3485b7bb989/host-build-release-f80fe6b-evidence/build-contracts.log",
+  "error": null,
+  "status": "PASS",
+  "artifacts": {
+    "workflow-guard.patch": {
+      "bytes": 1520,
+      "sha256": "692144ffd5de2b5ba9bdfaabc0e522b0966bdf8ac11d297aa9980e732fc46c40"
+    },
+    "build-contracts-green.log": {
+      "bytes": 82249,
+      "sha256": "19fa23cd97a0b57997f51e42e4312d3262da8cf925c424d7d445146c38f6cd22"
+    },
+    "test_nextgen_workflow_contract.red.py": {
+      "bytes": 12221,
+      "sha256": "a70febad7969ed6baba5aec9f62619585232bab86d66a8514fe77b464ac6113e"
+    },
+    "source-after-green.json": {
+      "bytes": 272222,
+      "sha256": "73b72279de333e7fc42146bdc0045b2bce0d8420ea6567f1d4556f6674e610ff"
+    },
+    "targeted-red.json": {
+      "bytes": 613,
+      "sha256": "1235164232938db17a97bac0b229e231223e40e915e8380ebb0772ca2c87ff12"
+    },
+    "targeted-green.json": {
+      "bytes": 743,
+      "sha256": "e82154d29b4d216e8fbd020cf8e789a351da9e4b8753708eeaa501c1fdc69492"
+    },
+    "source-before-green.json": {
+      "bytes": 272222,
+      "sha256": "c7f144bbec8da34b3ec2eac351bc823b37a501f3514dabcc1a4c7aae19e6fb41"
+    },
+    "targeted-green.log": {
+      "bytes": 330,
+      "sha256": "4b7882991245cb3284f5882c6d9c1cb357a913b382da0f8e332fca4352983c44"
+    },
+    "targeted-red.log": {
+      "bytes": 8430,
+      "sha256": "d9c47849ebbfb9045494bf91b58f0a51628c471fd64436ee73d2155c59c7a96e"
+    }
+  }
+}

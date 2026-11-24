@@ -1,0 +1,253 @@
+{
+  "reviewed_at": "2026-11-14T17:00:38.053847+00:00",
+  "status": "SOURCE_READ_NO_EXECUTION",
+  "workflow": {
+    "bytes": 46286,
+    "lines": 685,
+    "sha256": "efe60d3b94da7ace00eeeab849ec5904b686afc92a3529d44802c7bb1c164ece",
+    "git_blob": "821df1e199079b6fc3d1e7ec3609d328c7b5d332"
+  },
+  "whole_workflow_read": true,
+  "archive": {
+    "bytes": 167763,
+    "sha256": "e88442f88ff8a648afa7bf6c8ee0b8ee9ea67db2cdb8f31888e961dc75eeea78",
+    "members": [
+      {
+        "path": "README.md",
+        "bytes": 3872,
+        "sha256": "5d7258e57a37366a8c46c8d15d4e230d49ed87824b257915789c61c999eccc14"
+      },
+      {
+        "path": "build_source_pack.py",
+        "bytes": 42161,
+        "sha256": "81197c393ce60ffdd388706fc06d668d47444d46cc97acc1d5d62282bc5c90e5"
+      },
+      {
+        "path": "final-source/.github/workflows/lumo-next-table-authorities.yml",
+        "bytes": 46286,
+        "sha256": "efe60d3b94da7ace00eeeab849ec5904b686afc92a3529d44802c7bb1c164ece"
+      },
+      {
+        "path": "freeze_pack.py",
+        "bytes": 18795,
+        "sha256": "322bbb9db487b2bcdc80b8d12cf49b326259f052c311bbb2dab2903b570e9017"
+      },
+      {
+        "path": "integration.patch",
+        "bytes": 47284,
+        "sha256": "e552927dd31007323944277d3763e787217e6b6175036cf571a4da6dff5b0bed"
+      },
+      {
+        "path": "original-source-map.json",
+        "bytes": 11818,
+        "sha256": "6514aeebbcc835b1c890ac9f8adc93e42323248c4d1171a5da3476b197e8530d"
+      },
+      {
+        "path": "originals/host3fac/.github/workflows/lumo-connect-four-2020.yml",
+        "bytes": 49103,
+        "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226"
+      },
+      {
+        "path": "originals/host3fac/pubspec.lock",
+        "bytes": 24469,
+        "sha256": "4c612feb2e36fa91b798da5d032b73148ece9897a66197c125013e7f7b0764ea"
+      },
+      {
+        "path": "originals/host3fac/pubspec.yaml",
+        "bytes": 2718,
+        "sha256": "c81dc1a0e41cce6888fbcd031249d01da6e71e44dcc3be8d43312641efca26a1"
+      },
+      {
+        "path": "originals/host3fac/scripts/compile_android_host.sh",
+        "bytes": 3364,
+        "sha256": "fb7c338e9c551fdbb5711ed30bb19c7b799ecf75f87176757eede9cac7e7bb03"
+      },
+      {
+        "path": "originals/host3fac/scripts/run_full_flutter_acceptance.py",
+        "bytes": 6523,
+        "sha256": "d51614e941cc3c8cec83da860aa9e6b47a0cc47fd5ec8df25c441b8a023c547d"
+      },
+      {
+        "path": "originals/host3fac/scripts/verify_connect_four_candidate.py",
+        "bytes": 11403,
+        "sha256": "d4355d1f4ae56fa294fe6ba8c66b1bd145cb772ca9ceda0cc8ac2f803dea0cea"
+      },
+      {
+        "path": "originals/host3fac/scripts/verify_connect_four_delivery.py",
+        "bytes": 67003,
+        "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18"
+      },
+      {
+        "path": "originals/host3fac/test/games/memory_native_entry_test.dart",
+        "bytes": 15014,
+        "sha256": "7bdc82668c385d1b99a68ee1e5e471d25c778500b09fd4a7f769a4c76b46eee5"
+      },
+      {
+        "path": "originals/host3fac/test/games/memory_result_frame_test.dart",
+        "bytes": 6098,
+        "sha256": "7212a9483853a37bc0e3cc533ae77552db4424a2fadccc8868f0d2ca7605696d"
+      },
+      {
+        "path": "originals/host3fac/test/quiz_native_roundtrip_lifecycle_test.dart",
+        "bytes": 14514,
+        "sha256": "3436faf0dfdc0ba386f2881c057b265b2419aacaff53892d106dac70270b57de"
+      },
+      {
+        "path": "originals/host3fac/test/reward_wallet_queue_zone_test.dart",
+        "bytes": 9797,
+        "sha256": "7062af9ecdcb3ecdccd428adadfb72a67e529e81cb670735b2b3f73042acf347"
+      },
+      {
+        "path": "originals/host3fac/test/table_games_launcher_binding_test.dart",
+        "bytes": 10384,
+        "sha256": "ccc6299e38586ffcc86e787a8c194b85218118e2dc637bb4dda7b57a59c16ef1"
+      },
+      {
+        "path": "originals/host3fac/test/table_games_wallet_profile_test.dart",
+        "bytes": 12489,
+        "sha256": "1d15b4610b84c3432cac20446be22f47884af749472fae45570c273a0aab9f3b"
+      },
+      {
+        "path": "originals/host3fac/test/tutoring/native_english_activity_test.dart",
+        "bytes": 7686,
+        "sha256": "3f0f0c9c331c23fd1f8372349a941976657c10d450c629092d86ec59dacc396c"
+      },
+      {
+        "path": "originals/host3fac/tool/check_native_english_activity.dart",
+        "bytes": 12610,
+        "sha256": "59c89f50faf62be0f06c3d7c35f4c7d517ec67c73f059779a57767951569997a"
+      },
+      {
+        "path": "originals/host3fac/tools/android_qa/memory_native_authority.dart",
+        "bytes": 15449,
+        "sha256": "e3de35b76215e65923d7f45787f2b1351e9bc08c791741c016d8cc9ed4fecf9b"
+      },
+      {
+        "path": "originals/host3fac/tools/android_qa/quiz_native_authority.dart",
+        "bytes": 5561,
+        "sha256": "c17053575ab585f637806927c433ad7b82db3d6782321d09d6b475e8d3b65a34"
+      },
+      {
+        "path": "originals/native-ce909/scripts/tests/learning_english_regression.gd",
+        "bytes": 33455,
+        "sha256": "c6ce712d4b8539c6cb08e0accbd94853cc7c53aa87f43c16342055073f5578e9"
+      },
+      {
+        "path": "originals/native-ce909/scripts/tests/memory_table_regression.gd",
+        "bytes": 14227,
+        "sha256": "60d2145c830c4f93f38153031be35aa42760eb646b4a594a1ab8174ef8a3155d"
+      },
+      {
+        "path": "originals/native-ce909/scripts/tests/memory_table_runtime.gd",
+        "bytes": 14860,
+        "sha256": "d911b1ce4bb19b83aa919827f4484281898c4eb4ee8621d8c7e5869345c2c775"
+      },
+      {
+        "path": "originals/native-ce909/scripts/tests/quiz_studio_runtime.gd",
+        "bytes": 40358,
+        "sha256": "bacb40d4b7a585c838920c423ae03a24c7b8b13c3eba79df93d91bf3d498e948"
+      },
+      {
+        "path": "originals/native-ce909/tools/run_godot_probe.py",
+        "bytes": 2934,
+        "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13"
+      },
+      {
+        "path": "originals/native-ce909/tools/run_memory_native_authority.py",
+        "bytes": 12800,
+        "sha256": "0b5f2234fc8ecfcf25f9d7c134a02538e3978d2d7d7413a48cc2a931ddd0c15c"
+      },
+      {
+        "path": "originals/native-ce909/tools/run_quiz_native_authority.py",
+        "bytes": 10531,
+        "sha256": "ac5b669d565a9f0158af450a6e86cf05a7acc869af63a858cfc817a7b9a6388b"
+      },
+      {
+        "path": "originals/native-ce909/tools/validate_project.py",
+        "bytes": 13288,
+        "sha256": "c2309d85ac895296b426a5b0054d1a4dfb5b99dc93381e3c3430e4682f978615"
+      },
+      {
+        "path": "originals/native-ce909/tools/verify_dream_rasters.py",
+        "bytes": 20254,
+        "sha256": "f7296a802d15c382dbcc77640373a0f53e30306fcaab3de869549ff1656de89d"
+      },
+      {
+        "path": "originals/native290-authority-workflow.original.yml",
+        "bytes": 9280,
+        "sha256": "1c2402dd44a8f9abe13a5d1bdb72c655ef1bcada58e96bfb7f31cbbffc90fd6f"
+      },
+      {
+        "path": "qualification-contract.json",
+        "bytes": 5734,
+        "sha256": "35998be08062bdb7c23ef6dfa8e5310e6a264626ba08a0646bb9feca81d58f4f"
+      },
+      {
+        "path": "review-only-inline-code/asset_preflight.py",
+        "bytes": 3058,
+        "sha256": "beda31b27a5779f491053c3ec5d089926444486245a1b842fc8dcfce45bdf1b6"
+      },
+      {
+        "path": "review-only-inline-code/flutter_focused_invocation.py",
+        "bytes": 4741,
+        "sha256": "f706459d7986f59a165da156905773e1dd26135e4a59e7a7c19b06819ec9d913"
+      },
+      {
+        "path": "review-only-inline-code/renderer_validation.py",
+        "bytes": 10534,
+        "sha256": "626a71cb698a72db466df66c625a4371c819e07acf27eb0087c386222b271d1c"
+      },
+      {
+        "path": "review-only-inline-code/source_snapshot.py",
+        "bytes": 6207,
+        "sha256": "fd020d787fe98822be46450eb9a5b4091a7fb558db2576edeef914cfe07b896a"
+      },
+      {
+        "path": "source-freeze.json",
+        "bytes": 1262,
+        "sha256": "c78308c9ad99be6517d9c6cfca8e24fb7826300fd4d09f1f7e23943b24565ae4"
+      },
+      {
+        "path": "static-self-review.json",
+        "bytes": 2289,
+        "sha256": "23da19655bbef083f6cd1170e5c458c61ecaea5032756c13df7db725d47084d8"
+      },
+      {
+        "path": "manifest.json",
+        "bytes": 9883,
+        "sha256": "e3c2ff10386c305793a7a13d5744c61f3960c7957cee5ca491c644ca750f5eb3"
+      },
+      {
+        "path": "SHA256SUMS",
+        "bytes": 4682,
+        "sha256": "dcf0ef47dcfc6cb6d0b8fa506c77d09acda8a6149b20f7198db4c794a84985d2"
+      }
+    ]
+  },
+  "source_parent": "36274db2941963c59b1f819ad7bc2358470d3a76",
+  "host_runtime_binding": "actual github.sha and original Git commit/tree/index/tracked file identities",
+  "native": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+  "native_tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00",
+  "matrix": [
+    "memory",
+    "quiz",
+    "english",
+    "android-host-compile",
+    "flutter-contracts"
+  ],
+  "permissions": "contents: read",
+  "guards_reviewed": [
+    "Branch and repository guards; source snapshots before/after; full pubspec asset materialization; exact helper hashes and source objects.",
+    "Fresh original Dart English inputs, real memory/quiz two-process pairs, original report/PNG/sidecar identities.",
+    "Existing unmodified actual Android compile helper with original class files.",
+    "Seven explicit Flutter suites, complete original stdout/stderr, actual exit and timeout, no errors/failures/skips, one successful done event and positive visible test count.",
+    "Unmodified full-suite summarizer definition read; no fallback outcome or validation retry.",
+    "Separate scope: no current C4 workflow, product, pin, release or device-acceptance change."
+  ],
+  "lint_or_tests_executed": false,
+  "pending": [
+    "Independent peer review",
+    "Checkpoint then actual actionlint",
+    "Only then activation with original source identity"
+  ]
+}

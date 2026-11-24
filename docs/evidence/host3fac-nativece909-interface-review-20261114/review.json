@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "status": "NO_CONCRETE_INTERFACE_BLOCKER_FOUND_IN_SCOPED_READ_ONLY_REVIEW",
+  "host": "3fac2cfaf23b80a127e711130fc6d7692776d316",
+  "host_tree": "e76ef3862a0b2c73706d425a2b92a484fda5f9f3",
+  "native": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+  "native_tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00",
+  "scope": "Focused Host/Native launch, authority transport, state, lifecycle, return, English object contract and Android probe adapter review. This is not a complete independent audit of all 68 Host or 34 Native files.",
+  "findings": [
+    {
+      "area": "Launch and authority ownership",
+      "finding": "The Dart launch captures and rechecks the profile lease; MainActivity routes memory/quiz only with the current 32-hex table token and live main-process authority. Native validated_options preserves the table token while retaining the Village branch and existing return/ACK functions."
+    },
+    {
+      "area": "Memory and Quiz transport",
+      "finding": "Dart retains production deck/question/reward ownership. Java/Kotlin request validation and Native requests share token, roundId, revision and monotonic sequence. The private bound service guards authority; public Native state contains no unrevealed Memory motifs or Quiz correct answer."
+    },
+    {
+      "area": "Quiz field contract",
+      "finding": "All 36 emitted Dart view fields match Native STATE_KEYS in exact order. Nullable explanations after reveal and normalized fifty-fifty option indices are accepted by the actual published Native parser; hidden correct-answer fields remain forbidden before reveal."
+    },
+    {
+      "area": "Lifecycle and durable return",
+      "finding": "The table Activity uses the existing visible lease, remote authority and pause/stop/destroy invalidation. Dart pauses on expired heartbeat or increased pause epoch. Exit waits for authority acknowledgement and the existing durable game-event write; failed persistence does not claim return success."
+    },
+    {
+      "area": "Android window observations",
+      "finding": "The Native shared safe-area reader obtains the actual Godot render View via AndroidRuntime/JavaClassWrapper on the UI thread. It does not require a missing custom method on TableGamesHostPlugin. This source consistency is not an Android inset test."
+    },
+    {
+      "area": "English objects",
+      "finding": "Host and Native use the same closed 14-word catalogue and German meanings, three distinct permitted objects and a target present among them. The English illustration returns to the existing Flutter learning task without submitting a graded answer/mastery result. Existing PCM and Wisp production hunks remain in the combined source."
+    },
+    {
+      "area": "Android adapter",
+      "finding": "The new shared table adapter checks candidate working directory, committed helper bytes and source identity before import, and again afterward. The game probes require real prior-tour/same-APK/PCK binding, actual private activity/PID, current rendered layout and real ADB touches. Saved deck/answer access is a declared read-only QA oracle; no seed/reset/write adapter is introduced by this merge. Individual visual algorithms were not exhaustively re-audited here."
+    },
+    {
+      "area": "Actual Android compile",
+      "finding": "The unchanged scripts/compile_android_host.sh invokes real Gradle Kotlin/Java compilation against the Godot Android AAR and verifies actual class-file magic/hashes for TableGameActivity, TableGamesHostPlugin, TableGamesBridge, TableAuthorityService and TableGameIntent in addition to existing Host classes."
+    }
+  ],
+  "open_gates": [
+    "The Host checkpoint still pins Native 2281 for APK export. The separate desktop qualification must explicitly bind ce909; a later APK needs a Root-approved matching Native pin.",
+    "Neither of the two local ce909 imports completed: both actual SIGKILL results are preserved separately and their cause is unresolved. No further local engine attempts are made.",
+    "The new exact Host/Native Memory, Quiz and English renderer pairs have not yet run. Producer29080/Host50503 results are historical and are not transferred.",
+    "The local seven-file Flutter runs completed no widget cases; the missing-asset failure and later compiler/controlled-stop failure remain original negative evidence. The new five-group CI must run the actual focused tests and reject skips.",
+    "Memory/Quiz/English Android probe artifacts are not yet consumed by the existing C4 candidate/delivery pipeline. Separate desktop and compile qualification is not APK, Binder, SharedPreferences or device acceptance.",
+    "All existing 52/17, Dream, Discovery, Wisp/Return and release/device gates remain mandatory for their existing delivery scope; this review and the new workflow replace none of them."
+  ],
+  "executions_by_this_review": {
+    "imports": 0,
+    "tests": 0,
+    "engine": 0,
+    "android": 0
+  },
+  "source_or_index_changes_by_this_review": false
+}

@@ -1,0 +1,173 @@
+Activity Resolver Table:
+  Schemes:
+      lumolernen:
+        3c94578 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity filter b23c4b6
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "lumolernen"
+
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        3c94578 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity filter 2ad5451
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      androidx.profileinstaller.action.SAVE_PROFILE:
+        eee65b7 dev.ullmann.lumo.lumo_lernen.coachpreview/androidx.profileinstaller.ProfileInstallReceiver filter 29f7642
+          Action: "androidx.profileinstaller.action.SAVE_PROFILE"
+      androidx.profileinstaller.action.INSTALL_PROFILE:
+        eee65b7 dev.ullmann.lumo.lumo_lernen.coachpreview/androidx.profileinstaller.ProfileInstallReceiver filter 1094124
+          Action: "androidx.profileinstaller.action.INSTALL_PROFILE"
+      androidx.profileinstaller.action.SKIP_FILE:
+        eee65b7 dev.ullmann.lumo.lumo_lernen.coachpreview/androidx.profileinstaller.ProfileInstallReceiver filter 8a1e48d
+          Action: "androidx.profileinstaller.action.SKIP_FILE"
+      androidx.profileinstaller.action.BENCHMARK_OPERATION:
+        eee65b7 dev.ullmann.lumo.lumo_lernen.coachpreview/androidx.profileinstaller.ProfileInstallReceiver filter cf9a653
+          Action: "androidx.profileinstaller.action.BENCHMARK_OPERATION"
+
+Service Resolver Table:
+  Non-Data Actions:
+      com.google.android.gms.metadata.MODULE_DEPENDENCIES:
+        e2b4b90 dev.ullmann.lumo.lumo_lernen.coachpreview/com.google.android.gms.metadata.ModuleDependencies filter ad53c89
+          Action: "com.google.android.gms.metadata.MODULE_DEPENDENCIES"
+
+Domain verification status:
+
+Permissions:
+  Permission [dev.ullmann.lumo.lumo_lernen.coachpreview.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (576011d):
+    sourcePackage=dev.ullmann.lumo.lumo_lernen.coachpreview
+    uid=10209 gids=[] type=0 prot=signature
+    perm=PermissionInfo{1037f92 dev.ullmann.lumo.lumo_lernen.coachpreview.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}
+    flags=0x0
+
+Registered ContentProviders:
+  dev.ullmann.lumo.lumo_lernen.coachpreview/androidx.core.content.FileProvider:
+    Provider{c47fd63 dev.ullmann.lumo.lumo_lernen.coachpreview/androidx.core.content.FileProvider}
+  dev.ullmann.lumo.lumo_lernen.coachpreview/com.google.mlkit.common.internal.MlKitInitProvider:
+    Provider{76d3d60 dev.ullmann.lumo.lumo_lernen.coachpreview/com.google.mlkit.common.internal.MlKitInitProvider}
+  dev.ullmann.lumo.lumo_lernen.coachpreview/androidx.startup.InitializationProvider:
+    Provider{a769219 dev.ullmann.lumo.lumo_lernen.coachpreview/androidx.startup.InitializationProvider}
+  dev.ullmann.lumo.lumo_lernen.coachpreview/io.flutter.plugins.imagepicker.ImagePickerFileProvider:
+    Provider{d5602de dev.ullmann.lumo.lumo_lernen.coachpreview/io.flutter.plugins.imagepicker.ImagePickerFileProvider}
+
+ContentProvider Authorities:
+  [dev.ullmann.lumo.lumo_lernen.coachpreview.androidx-startup]:
+    Provider{a769219 dev.ullmann.lumo.lumo_lernen.coachpreview/androidx.startup.InitializationProvider}
+      applicationInfo=ApplicationInfo{8330cbf dev.ullmann.lumo.lumo_lernen.coachpreview}
+  [dev.ullmann.lumo.lumo_lernen.coachpreview.flutter.image_provider]:
+    Provider{d5602de dev.ullmann.lumo.lumo_lernen.coachpreview/io.flutter.plugins.imagepicker.ImagePickerFileProvider}
+      applicationInfo=ApplicationInfo{658cf8c dev.ullmann.lumo.lumo_lernen.coachpreview}
+  [dev.ullmann.lumo.lumo_lernen.coachpreview.mlkitinitprovider]:
+    Provider{76d3d60 dev.ullmann.lumo.lumo_lernen.coachpreview/com.google.mlkit.common.internal.MlKitInitProvider}
+      applicationInfo=ApplicationInfo{55536d5 dev.ullmann.lumo.lumo_lernen.coachpreview}
+  [dev.ullmann.lumo.lumo_lernen.coachpreview.fileprovider]:
+    Provider{c47fd63 dev.ullmann.lumo.lumo_lernen.coachpreview/androidx.core.content.FileProvider}
+      applicationInfo=ApplicationInfo{9bb6eea dev.ullmann.lumo.lumo_lernen.coachpreview}
+
+Key Set Manager:
+  [dev.ullmann.lumo.lumo_lernen.coachpreview]
+      Signing KeySets: 59
+
+Packages:
+  Package [dev.ullmann.lumo.lumo_lernen.coachpreview] (188ca43):
+    appId=10209
+    pkg=Package{395b5db dev.ullmann.lumo.lumo_lernen.coachpreview}
+    codePath=/data/app/~~knB-_CHoNr85ys_wdYK8kg==/dev.ullmann.lumo.lumo_lernen.coachpreview-BsgoYtQDw19eJiI67wF7pg==
+    resourcePath=/data/app/~~knB-_CHoNr85ys_wdYK8kg==/dev.ullmann.lumo.lumo_lernen.coachpreview-BsgoYtQDw19eJiI67wF7pg==
+    legacyNativeLibraryDir=/data/app/~~knB-_CHoNr85ys_wdYK8kg==/dev.ullmann.lumo.lumo_lernen.coachpreview-BsgoYtQDw19eJiI67wF7pg==/lib
+    extractNativeLibs=true
+    primaryCpuAbi=x86_64
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=2020 minSdk=24 targetSdk=36
+    minExtensionVersions=[]
+    versionName=0.13.8
+    hiddenApiEnforcementPolicy=2
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=2
+    flags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PARTIALLY_DIRECT_BOOT_AWARE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    queriesIntents=[Intent { act=android.intent.action.PROCESS_TEXT dat=content://*/... typ=text/plain }, Intent { act=android.speech.RecognitionService }]
+    scannedAsStoppedSystemApp=false
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    usesOptionalLibraries:
+      androidx.window.extensions
+      androidx.window.sidecar
+    usesLibraryFiles:
+      /system_ext/framework/androidx.window.extensions.jar
+      /system_ext/framework/androidx.window.sidecar.jar
+    timeStamp=2026-11-14 15:00:08
+    lastUpdateTime=2026-11-14 15:00:11
+    installerPackageName=null
+    installerPackageUid=-1
+    initiatingPackageName=com.android.shell
+    originatingPackageName=null
+    packageSource=1
+    appMetadataFilePath=null
+    appMetadataSource=0
+    signatures=PackageSignatures{7b4022 version:2, signatures:[9b71d560], past signatures:[]}
+    installPermissionsFixed=false
+    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PARTIALLY_DIRECT_BOOT_AWARE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    apexModuleName=null
+    declared permissions:
+      dev.ullmann.lumo.lumo_lernen.coachpreview.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature
+    requested permissions:
+      android.permission.INTERNET
+      dev.ullmann.lumo.lumo_lernen.coachpreview.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+      android.permission.ACCESS_NETWORK_STATE
+      android.permission.CAMERA
+      android.permission.REQUEST_INSTALL_PACKAGES
+      android.permission.RECORD_AUDIO
+    install permissions:
+      android.permission.INTERNET: granted=true
+      dev.ullmann.lumo.lumo_lernen.coachpreview.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+    User 0: ceDataInode=353073 deDataInode=106557 installed=true hidden=false suspended=false distractionFlags=0 stopped=true notLaunched=false enabled=0 instant=false virtual=false quarantined=false
+      installReason=0
+      dataDir=/data/user/0/dev.ullmann.lumo.lumo_lernen.coachpreview
+      firstInstallTime=2026-11-14 14:57:07
+      uninstallReason=0
+      overlay paths:
+        /product/overlay/EmulationPixel5/EmulationPixel5Overlay.apk
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      legacy overlay paths:
+        /product/overlay/EmulationPixel5/EmulationPixel5Overlay.apk
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      gids=[3003]
+      runtime permissions:
+        android.permission.CAMERA: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.RECORD_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+  queries via component:
+    com.google.android.apps.messaging:
+      dev.ullmann.lumo.lumo_lernen.coachpreview
+    com.google.android.as:
+      dev.ullmann.lumo.lumo_lernen.coachpreview
+    com.google.android.settings.intelligence:
+      dev.ullmann.lumo.lumo_lernen.coachpreview
+    dev.ullmann.lumo.lumo_lernen.coachpreview:
+      com.google.android.as
+      com.google.android.googlequicksearchbox
+  queryable via interaction:
+    User 0:
+  queryable via uses-library:
+
+Dexopt state:
+  [dev.ullmann.lumo.lumo_lernen.coachpreview]
+    path: /data/app/~~knB-_CHoNr85ys_wdYK8kg==/dev.ullmann.lumo.lumo_lernen.coachpreview-BsgoYtQDw19eJiI67wF7pg==/base.apk
+      x86_64: [status=verify] [reason=install] [primary-abi]
+        [location is /data/app/~~knB-_CHoNr85ys_wdYK8kg==/dev.ullmann.lumo.lumo_lernen.coachpreview-BsgoYtQDw19eJiI67wF7pg==/oat/x86_64/base.odex]
+
+Compiler stats:
+  [dev.ullmann.lumo.lumo_lernen.coachpreview]
+     base.apk - 522

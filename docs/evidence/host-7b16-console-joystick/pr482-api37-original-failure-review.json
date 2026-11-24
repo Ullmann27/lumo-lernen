@@ -1,0 +1,1072 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T05:02:35.941702+00:00",
+  "scope": "Independent original API37 failure analysis; no new execution or repair",
+  "source": {
+    "run_id": 43558497857,
+    "attempt": 1,
+    "qa_head": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+    "qa_tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+    "snapshot_run": {
+      "path": "snapshots/20261114T050138Z/run.json",
+      "bytes": 13025,
+      "sha256": "88fc476bd48d580b98478e0cd909eaead2b3021361822b5ce2cca2ac24a31808"
+    },
+    "snapshot_jobs": {
+      "path": "snapshots/20261114T050138Z/jobs.json",
+      "bytes": 27483,
+      "sha256": "c79ed768d4ba52207f1a2c6c2b8a9fbdbb621b848fae092e309b581c0c6758d6"
+    },
+    "apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+    "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845"
+  },
+  "cases": [
+    {
+      "artifact_id": 14099605898,
+      "job_id": 132336853139,
+      "name": "api37-host",
+      "github_job_conclusion": "failure",
+      "failed_steps": [
+        {
+          "name": "Run the Android17 renderer comparison with continuous ANR observation",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 15,
+          "started_at": "2026-11-14T04:52:25Z",
+          "completed_at": "2026-11-14T04:53:47Z"
+        }
+      ],
+      "archive": {
+        "path": "artifacts/14099605898/artifact.json",
+        "bytes": 753,
+        "sha256": "feb6df166f2744f7c9335eae4a5355a39d85388b7f0369625f7d64249bf60f92"
+      },
+      "archive_size": 1600288,
+      "archive_digest": "sha256:db8cbc80bee73025dddf1119d22e7f1f6cca7ac1696b05c16ec6ba1ec6354999",
+      "all_archive_members_crc_sha_verified": true,
+      "archive_member_count": 303,
+      "materialized_members": 203,
+      "materialized_bytes": 9158635,
+      "collector_report": {
+        "path": "artifacts/14099605898/selected-originals/report.json",
+        "bytes": 93687,
+        "sha256": "68024af5a620b0495f93b704d82ac675986910cc695f7d6dc9bce7c5ef1599e4"
+      },
+      "archive_inventory": {
+        "path": "artifacts/14099605898/verified-memory-inventory.json",
+        "bytes": 81078,
+        "sha256": "aabb044beb40f4003833cbe596a67579d635151b2883afcbb8bf8925114b6667"
+      },
+      "zip_local_retention": false,
+      "original_zip_retention": "External original GitHub Actions artifact; complete ZIP read in RAM, not retained locally",
+      "framework_observation": {
+        "status": "PASS",
+        "reason": "required_framework_and_interactive_surface_observed_stable",
+        "scope": "Sampled pre-app framework, keyguard, visible focus and ANR observations. The same stable positive window is required after any unlock request. No app input delivery, later system stability or physical-device performance is certified."
+      },
+      "source_apk_preflight": {
+        "status": "BOUND",
+        "diagnostic_qa": {
+          "branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+          "job_conclusion": null,
+          "job_id": 132336853139,
+          "job_name": "unchanged-apk-followup-api37-host",
+          "job_status": "in_progress",
+          "run_attempt": 1,
+          "run_conclusion": null,
+          "run_id": 43558497857,
+          "run_status": "in_progress",
+          "source": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+          "tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+          "workflow_path": ".github/workflows/lumo-android-runtime-7b16-followup.yml"
+        },
+        "candidate_build": {
+          "archive_validation": "Original API digest/size bound; complete artifact ZIP is not read by this preflight",
+          "artifact_bytes": 648186489,
+          "artifact_digest": "sha256:3f613c64c78c2b20dd0a91741627ab93a418a66bfc6df6292b041f06c36c2e30",
+          "artifact_id": 14093773196,
+          "artifact_name": "lumo-kart-graphics-2019-candidate",
+          "build_conclusion": "success",
+          "build_job_id": 132278438809,
+          "host_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+          "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+          "run_attempt": 1,
+          "run_conclusion": "failure",
+          "run_id": 43540111465,
+          "run_status": "completed",
+          "tree": "fe430b86449e4f4e221cadfc802f42db639f3133",
+          "workflow_path": ".github/workflows/lumo-kart-graphics-2019.yml"
+        },
+        "apk": {
+          "apk_bytes": 325657350,
+          "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+          "certificate_scope": "Original signer provenance bound by unchanged APK SHA; no new apksigner invocation",
+          "existing_apk_identity": {
+            "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+            "checks": {
+              "flutter_source_is_this_commit": true,
+              "godot_revision_is_pinned": true,
+              "sha256_matches_build_sums": true,
+              "sha256_matches_provenance": true,
+              "signing_certificate": true,
+              "tracked_source_clean": true,
+              "version_matches_pubspec": true,
+              "x86_64_native_code": true
+            },
+            "flutter_source_commit": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+            "godot_pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d",
+            "godot_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+            "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+            "versionCode": 2019,
+            "versionName": "0.13.7"
+          },
+          "pck_bytes": 66595192,
+          "pck_member": "assets/lumo_game.pck",
+          "pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d"
+        }
+      },
+      "logger": {
+        "status": "FAIL",
+        "errors": [
+          "RuntimeError: Device logger command failed: after-root"
+        ],
+        "session": {
+          "pid": 2337,
+          "ppid": 1,
+          "pgrp": 2337,
+          "session": 2337,
+          "start_ticks": "6533",
+          "argv": [
+            "/system/bin/sh",
+            "/data/local/tmp/lumo-runtime-d12309ef0102673539f2cc2cc8dbc2d6/run.sh"
+          ]
+        },
+        "logcat_before_root": {
+          "pid": 2350,
+          "ppid": 2337,
+          "pgrp": 2337,
+          "session": 2337,
+          "start_ticks": "6560",
+          "argv": [
+            "/system/bin/logcat",
+            "-b",
+            "all",
+            "-v",
+            "threadtime"
+          ]
+        },
+        "root": {
+          "started_at": "2026-11-14T04:53:44.354980+00:00",
+          "requested": true,
+          "uid_before": "2000",
+          "command": {
+            "command": [
+              "/usr/local/lib/android/sdk/platform-tools/adb",
+              "-s",
+              "emulator-5554",
+              "root"
+            ],
+            "started_at": "2026-11-14T04:53:44.564928+00:00",
+            "finished_at": "2026-11-14T04:53:45.946344+00:00",
+            "returncode": 0,
+            "timed_out": false,
+            "stdout_file": "commands/0008-root-request.stdout",
+            "stderr_file": "commands/0008-root-request.stderr"
+          },
+          "uid_after": "0",
+          "boot_completed": "1"
+        },
+        "after_root": {
+          "returncode": 1,
+          "timed_out": false,
+          "stdout": "__session_stat__\n",
+          "stderr": "cat: /proc/2337/stat: No such file or directory\n",
+          "started_at": "2026-11-14T04:53:46.041149+00:00",
+          "finished_at": "2026-11-14T04:53:46.216403+00:00"
+        },
+        "same_process_before_root": true,
+        "host_device_overlap_marker_observed": true
+      },
+      "job_log": {
+        "path": "jobs/api37-host-132336853139.log",
+        "bytes": 143600,
+        "sha256": "d23cc67501fbe7b66be1a2659ef97c09587922b050799097dd8a55fe8c93cb27"
+      },
+      "original_terminal_error_lines": [
+        {
+          "line": 1481,
+          "text": "2026-11-14T04:53:46.2379529Z {\"status\": \"FAIL\", \"result\": \"ANDROID_RUNTIME_ANR_REJECTED\", \"errors\": [\"RuntimeError: Device logger command failed: after-root\"], \"scope\": \"Bounded recorded Android ANR and observation-completeness check. No APK functionality, visual quality, FPS, physical-device performance, future stability or retroactive framework-readiness approval.\"}"
+        }
+      ],
+      "original_checkout_lines": [
+        {
+          "line": 40,
+          "text": "2026-11-14T04:49:51.5715194Z   ref: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 56,
+          "text": "2026-11-14T04:49:51.5728372Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 101,
+          "text": "2026-11-14T04:49:51.9827225Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 110,
+          "text": "2026-11-14T04:50:13.7940151Z [command]/usr/bin/git checkout --progress --force e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 181,
+          "text": "2026-11-14T04:50:15.3111344Z e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 215,
+          "text": "2026-11-14T04:50:15.4123223Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 323,
+          "text": "2026-11-14T04:50:16.1239532Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 418,
+          "text": "2026-11-14T04:50:16.6625781Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 451,
+          "text": "2026-11-14T04:50:22.2547408Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 710,
+          "text": "2026-11-14T04:50:40.6476240Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 733,
+          "text": "2026-11-14T04:50:44.4955992Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 738,
+          "text": "2026-11-14T04:50:46.0533289Z UNCHANGED_APK_DIAGNOSTIC BOUND: APK source 7b16f2f5ab16f3d913ee170aefd9807c87216260; QA source e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 748,
+          "text": "2026-11-14T04:50:46.0869830Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 764,
+          "text": "2026-11-14T04:50:46.1426241Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 778,
+          "text": "2026-11-14T04:50:53.2274734Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 795,
+          "text": "2026-11-14T04:52:24.6597768Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 825,
+          "text": "2026-11-14T04:52:25.1213658Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 1504,
+          "text": "2026-11-14T04:53:47.8028826Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 1515,
+          "text": "2026-11-14T04:53:47.8796874Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 1531,
+          "text": "2026-11-14T04:53:47.9658732Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        }
+      ],
+      "key_originals": [
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/candidate-and-probe-binding.json",
+          "bytes": 7457,
+          "sha256": "b09665038d5247d507c88e1905cc958714e074feee0b3afe4b3aae1428601802"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start.json",
+          "bytes": 21657,
+          "sha256": "a9e44b4ef4132e1c838650914598d433d6230d269b72d96dd0d66156e093ec02"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/framework-start/framework-readiness.json",
+          "bytes": 34729,
+          "sha256": "3e734313d0480f47b81f04e0a0c0f658bf09a3646247954f0128db0f5c417541"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0002-initial.stdout",
+          "bytes": 1421,
+          "sha256": "73ba33856963e249936167513189f197baf74527345014c6098dbe663c7148c6"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+          "bytes": 1421,
+          "sha256": "c375d980e392ade3173dd2f1e7e56485f486ed148841f439def53800e7fc3829"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+          "bytes": 372,
+          "sha256": "998bf4f324317fa20dec5802c57e4b6b80832da48f428b5c8ea55c3f4f5b42bf"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+          "bytes": 1901,
+          "sha256": "dd5f311a64726c804a536a1a9aa2e80c81ffa3d0f1afbfb5e19182bf0b79f63b"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+          "bytes": 17,
+          "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+          "bytes": 48,
+          "sha256": "3f38ab20e70604000892987cdd42fe47498abeb9eaf80a33f20e5a08c21f3415"
+        }
+      ],
+      "metadata_input_bytes_independently_verified": [
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/binding-inputs/candidate/artifacts.json",
+          "bytes": 11187,
+          "sha256": "bda9b1dcbea0c4c583cbb316eb6844c579cba8ba4dd79f6ae5daa037c956a77c"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/binding-inputs/candidate/jobs.json",
+          "bytes": 29940,
+          "sha256": "06f1dca91f9eaed20b563cfd7e06aecfc2aeb45efe8e910d8b8158d5ce1b2e98"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/binding-inputs/candidate/run.json",
+          "bytes": 12963,
+          "sha256": "af9dee2a1a7330935226c2cd829f0f359d33830236d400199a25abb732d6c762"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/binding-inputs/qa/jobs.json",
+          "bytes": 24616,
+          "sha256": "5f776fd533b64669cc896d20960b8f5b797ae83e110e603456c1689883cc2eb3"
+        },
+        {
+          "path": "artifacts/14099605898/selected-originals/originals/binding-inputs/qa/run.json",
+          "bytes": 13025,
+          "sha256": "88fc476bd48d580b98478e0cd909eaead2b3021361822b5ce2cca2ac24a31808"
+        }
+      ],
+      "local_selected_originals_all_hash_verified": true
+    },
+    {
+      "artifact_id": 14099915399,
+      "job_id": 132336853178,
+      "name": "api37-swangle",
+      "github_job_conclusion": "failure",
+      "failed_steps": [
+        {
+          "name": "Run the Android17 renderer comparison with continuous ANR observation",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 15,
+          "started_at": "2026-11-14T04:52:07Z",
+          "completed_at": "2026-11-14T04:53:36Z"
+        }
+      ],
+      "archive": {
+        "path": "artifacts/14099915399/artifact.json",
+        "bytes": 756,
+        "sha256": "41cfd3f62e47ea64a49a486e87db7cd9886b5458ae4e21e3395ad7e3219a9840"
+      },
+      "archive_size": 1755569,
+      "archive_digest": "sha256:a7f8a7c25ebcafa0f4842d62531d0307dced3801f043c597f848e62a172ba105",
+      "all_archive_members_crc_sha_verified": true,
+      "archive_member_count": 303,
+      "materialized_members": 203,
+      "materialized_bytes": 9987516,
+      "collector_report": {
+        "path": "artifacts/14099915399/selected-originals/report.json",
+        "bytes": 93692,
+        "sha256": "97c1408b0c93ba18cb80838c457608e6a36a559fe18e6cbdecf64cadd34d2cae"
+      },
+      "archive_inventory": {
+        "path": "artifacts/14099915399/verified-memory-inventory.json",
+        "bytes": 81083,
+        "sha256": "d8fce3820d12c82d94a94766debf7995e855e237bf3004af066b0ab51533d29a"
+      },
+      "zip_local_retention": false,
+      "original_zip_retention": "External original GitHub Actions artifact; complete ZIP read in RAM, not retained locally",
+      "framework_observation": {
+        "status": "PASS",
+        "reason": "required_framework_and_interactive_surface_observed_stable",
+        "scope": "Sampled pre-app framework, keyguard, visible focus and ANR observations. The same stable positive window is required after any unlock request. No app input delivery, later system stability or physical-device performance is certified."
+      },
+      "source_apk_preflight": {
+        "status": "BOUND",
+        "diagnostic_qa": {
+          "branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+          "job_conclusion": null,
+          "job_id": 132336853178,
+          "job_name": "unchanged-apk-followup-api37-swangle",
+          "job_status": "in_progress",
+          "run_attempt": 1,
+          "run_conclusion": null,
+          "run_id": 43558497857,
+          "run_status": "in_progress",
+          "source": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+          "tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+          "workflow_path": ".github/workflows/lumo-android-runtime-7b16-followup.yml"
+        },
+        "candidate_build": {
+          "archive_validation": "Original API digest/size bound; complete artifact ZIP is not read by this preflight",
+          "artifact_bytes": 648186489,
+          "artifact_digest": "sha256:3f613c64c78c2b20dd0a91741627ab93a418a66bfc6df6292b041f06c36c2e30",
+          "artifact_id": 14093773196,
+          "artifact_name": "lumo-kart-graphics-2019-candidate",
+          "build_conclusion": "success",
+          "build_job_id": 132278438809,
+          "host_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+          "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+          "run_attempt": 1,
+          "run_conclusion": "failure",
+          "run_id": 43540111465,
+          "run_status": "completed",
+          "tree": "fe430b86449e4f4e221cadfc802f42db639f3133",
+          "workflow_path": ".github/workflows/lumo-kart-graphics-2019.yml"
+        },
+        "apk": {
+          "apk_bytes": 325657350,
+          "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+          "certificate_scope": "Original signer provenance bound by unchanged APK SHA; no new apksigner invocation",
+          "existing_apk_identity": {
+            "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+            "checks": {
+              "flutter_source_is_this_commit": true,
+              "godot_revision_is_pinned": true,
+              "sha256_matches_build_sums": true,
+              "sha256_matches_provenance": true,
+              "signing_certificate": true,
+              "tracked_source_clean": true,
+              "version_matches_pubspec": true,
+              "x86_64_native_code": true
+            },
+            "flutter_source_commit": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+            "godot_pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d",
+            "godot_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+            "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+            "versionCode": 2019,
+            "versionName": "0.13.7"
+          },
+          "pck_bytes": 66595192,
+          "pck_member": "assets/lumo_game.pck",
+          "pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d"
+        }
+      },
+      "logger": {
+        "status": "FAIL",
+        "errors": [
+          "RuntimeError: Device logger command failed: after-root"
+        ],
+        "session": {
+          "pid": 2476,
+          "ppid": 1,
+          "pgrp": 2476,
+          "session": 2476,
+          "start_ticks": "6706",
+          "argv": [
+            "/system/bin/sh",
+            "/data/local/tmp/lumo-runtime-0b351ab89989e74a62fc26b3e47773f6/run.sh"
+          ]
+        },
+        "logcat_before_root": {
+          "pid": 2500,
+          "ppid": 2476,
+          "pgrp": 2476,
+          "session": 2476,
+          "start_ticks": "6763",
+          "argv": [
+            "/system/bin/logcat",
+            "-b",
+            "all",
+            "-v",
+            "threadtime"
+          ]
+        },
+        "root": {
+          "started_at": "2026-11-14T04:53:31.900834+00:00",
+          "requested": true,
+          "uid_before": "2000",
+          "command": {
+            "command": [
+              "/usr/local/lib/android/sdk/platform-tools/adb",
+              "-s",
+              "emulator-5554",
+              "root"
+            ],
+            "started_at": "2026-11-14T04:53:32.400494+00:00",
+            "finished_at": "2026-11-14T04:53:34.921423+00:00",
+            "returncode": 0,
+            "timed_out": false,
+            "stdout_file": "commands/0008-root-request.stdout",
+            "stderr_file": "commands/0008-root-request.stderr"
+          },
+          "uid_after": "0",
+          "boot_completed": "1"
+        },
+        "after_root": {
+          "returncode": 1,
+          "timed_out": false,
+          "stdout": "__session_stat__\n",
+          "stderr": "cat: /proc/2476/stat: No such file or directory\n",
+          "started_at": "2026-11-14T04:53:35.026462+00:00",
+          "finished_at": "2026-11-14T04:53:35.342218+00:00"
+        },
+        "same_process_before_root": true,
+        "host_device_overlap_marker_observed": true
+      },
+      "job_log": {
+        "path": "jobs/api37-swangle-132336853178.log",
+        "bytes": 104882,
+        "sha256": "10bf9dfa8ee9a9503eec0ed4a75e15573a58fc9b4053f4a3504fa04ead6b56ce"
+      },
+      "original_terminal_error_lines": [
+        {
+          "line": 1059,
+          "text": "2026-11-14T04:53:35.3805774Z {\"status\": \"FAIL\", \"result\": \"ANDROID_RUNTIME_ANR_REJECTED\", \"errors\": [\"RuntimeError: Device logger command failed: after-root\"], \"scope\": \"Bounded recorded Android ANR and observation-completeness check. No APK functionality, visual quality, FPS, physical-device performance, future stability or retroactive framework-readiness approval.\"}"
+        }
+      ],
+      "original_checkout_lines": [
+        {
+          "line": 40,
+          "text": "2026-11-14T04:49:52.5412401Z   ref: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 56,
+          "text": "2026-11-14T04:49:52.5425727Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 101,
+          "text": "2026-11-14T04:49:53.3415159Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 110,
+          "text": "2026-11-14T04:50:11.9967912Z [command]/usr/bin/git checkout --progress --force e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 172,
+          "text": "2026-11-14T04:50:13.3218505Z e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 206,
+          "text": "2026-11-14T04:50:13.4406273Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 314,
+          "text": "2026-11-14T04:50:14.3809081Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 409,
+          "text": "2026-11-14T04:50:15.1252674Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 442,
+          "text": "2026-11-14T04:50:38.6269766Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 701,
+          "text": "2026-11-14T04:50:57.1780118Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 724,
+          "text": "2026-11-14T04:50:59.6955103Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 729,
+          "text": "2026-11-14T04:51:01.2085528Z UNCHANGED_APK_DIAGNOSTIC BOUND: APK source 7b16f2f5ab16f3d913ee170aefd9807c87216260; QA source e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 739,
+          "text": "2026-11-14T04:51:01.2391768Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 755,
+          "text": "2026-11-14T04:51:01.3079603Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 769,
+          "text": "2026-11-14T04:51:05.5036417Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 786,
+          "text": "2026-11-14T04:52:07.2019471Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 816,
+          "text": "2026-11-14T04:52:07.6799125Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 1081,
+          "text": "2026-11-14T04:53:36.5653842Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 1092,
+          "text": "2026-11-14T04:53:36.6325449Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 1108,
+          "text": "2026-11-14T04:53:36.7236395Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        }
+      ],
+      "key_originals": [
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/candidate-and-probe-binding.json",
+          "bytes": 7460,
+          "sha256": "8a8b2e55a522cb8e40d3682990e3d22b558c85a1cfa1ee943fbbe34870a687ef"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start.json",
+          "bytes": 21657,
+          "sha256": "06f044b1a4f16ece90aa00903704c50a60162c5d2f1e963b0f3fbd11c6c91099"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/framework-start/framework-readiness.json",
+          "bytes": 34732,
+          "sha256": "fdcfd660df4d6255267aaf72ca1b0b1fa74acca30d5bbbee4fa7f10f2721db96"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0002-initial.stdout",
+          "bytes": 1416,
+          "sha256": "f160a48aaa7199c6e32018f4111001e3f032dca9a8c630606373c45ca11e2afe"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+          "bytes": 1416,
+          "sha256": "a99129d256708928f990411d1cd606a772089a6a0d14f221c762ee3c34e6ee14"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+          "bytes": 372,
+          "sha256": "c2a4c29a602034ecece4db7bb1f5f410a168ae099898476e84c354b532fbf95e"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+          "bytes": 1901,
+          "sha256": "daef88511900cb4fc709371957a305779a260be46847f89f211403afc6d76db3"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+          "bytes": 17,
+          "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+          "bytes": 48,
+          "sha256": "42f216cb88b8a9ff51d0372c47767a59fb6990ce29a128744b929ab5d620b2dc"
+        }
+      ],
+      "metadata_input_bytes_independently_verified": [
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/binding-inputs/candidate/artifacts.json",
+          "bytes": 11187,
+          "sha256": "bda9b1dcbea0c4c583cbb316eb6844c579cba8ba4dd79f6ae5daa037c956a77c"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/binding-inputs/candidate/jobs.json",
+          "bytes": 29940,
+          "sha256": "06f1dca91f9eaed20b563cfd7e06aecfc2aeb45efe8e910d8b8158d5ce1b2e98"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/binding-inputs/candidate/run.json",
+          "bytes": 12963,
+          "sha256": "af9dee2a1a7330935226c2cd829f0f359d33830236d400199a25abb732d6c762"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/binding-inputs/qa/jobs.json",
+          "bytes": 25261,
+          "sha256": "34d075d5a80aab22c1b0eda2e9ffe0294b144168aaff749098e1325fb9c1e6fb"
+        },
+        {
+          "path": "artifacts/14099915399/selected-originals/originals/binding-inputs/qa/run.json",
+          "bytes": 13025,
+          "sha256": "88fc476bd48d580b98478e0cd909eaead2b3021361822b5ce2cca2ac24a31808"
+        }
+      ],
+      "local_selected_originals_all_hash_verified": true
+    },
+    {
+      "artifact_id": 14099222913,
+      "job_id": 132336853183,
+      "name": "api37-swiftshader",
+      "github_job_conclusion": "failure",
+      "failed_steps": [
+        {
+          "name": "Run the Android17 renderer comparison with continuous ANR observation",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 15,
+          "started_at": "2026-11-14T04:53:24Z",
+          "completed_at": "2026-11-14T04:54:39Z"
+        }
+      ],
+      "archive": {
+        "path": "artifacts/14099222913/artifact.json",
+        "bytes": 760,
+        "sha256": "65ca7f7ba3eade1856bef05dff0ff9c92c392b37f6e51e60c8aae0d1d059a216"
+      },
+      "archive_size": 1667428,
+      "archive_digest": "sha256:111a3a05cbfbddfac160d2e0650182f43528892bafb651c34208855264dc5796",
+      "all_archive_members_crc_sha_verified": true,
+      "archive_member_count": 302,
+      "materialized_members": 203,
+      "materialized_bytes": 9552395,
+      "collector_report": {
+        "path": "artifacts/14099222913/selected-originals/report.json",
+        "bytes": 93421,
+        "sha256": "e60a09f1461e7092c50d24e434490bcab80a361812bde09719fef29e90120938"
+      },
+      "archive_inventory": {
+        "path": "artifacts/14099222913/verified-memory-inventory.json",
+        "bytes": 80812,
+        "sha256": "89109980c800d67d6617d9430c3d4b5a0d9653d16c88798bc0b30d7a5d255dbb"
+      },
+      "zip_local_retention": false,
+      "original_zip_retention": "External original GitHub Actions artifact; complete ZIP read in RAM, not retained locally",
+      "framework_observation": {
+        "status": "PASS",
+        "reason": "required_framework_and_interactive_surface_observed_stable",
+        "scope": "Sampled pre-app framework, keyguard, visible focus and ANR observations. The same stable positive window is required after any unlock request. No app input delivery, later system stability or physical-device performance is certified."
+      },
+      "source_apk_preflight": {
+        "status": "BOUND",
+        "diagnostic_qa": {
+          "branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+          "job_conclusion": null,
+          "job_id": 132336853183,
+          "job_name": "unchanged-apk-followup-api37-swiftshader",
+          "job_status": "in_progress",
+          "run_attempt": 1,
+          "run_conclusion": null,
+          "run_id": 43558497857,
+          "run_status": "in_progress",
+          "source": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+          "tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+          "workflow_path": ".github/workflows/lumo-android-runtime-7b16-followup.yml"
+        },
+        "candidate_build": {
+          "archive_validation": "Original API digest/size bound; complete artifact ZIP is not read by this preflight",
+          "artifact_bytes": 648186489,
+          "artifact_digest": "sha256:3f613c64c78c2b20dd0a91741627ab93a418a66bfc6df6292b041f06c36c2e30",
+          "artifact_id": 14093773196,
+          "artifact_name": "lumo-kart-graphics-2019-candidate",
+          "build_conclusion": "success",
+          "build_job_id": 132278438809,
+          "host_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+          "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+          "run_attempt": 1,
+          "run_conclusion": "failure",
+          "run_id": 43540111465,
+          "run_status": "completed",
+          "tree": "fe430b86449e4f4e221cadfc802f42db639f3133",
+          "workflow_path": ".github/workflows/lumo-kart-graphics-2019.yml"
+        },
+        "apk": {
+          "apk_bytes": 325657350,
+          "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+          "certificate_scope": "Original signer provenance bound by unchanged APK SHA; no new apksigner invocation",
+          "existing_apk_identity": {
+            "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+            "checks": {
+              "flutter_source_is_this_commit": true,
+              "godot_revision_is_pinned": true,
+              "sha256_matches_build_sums": true,
+              "sha256_matches_provenance": true,
+              "signing_certificate": true,
+              "tracked_source_clean": true,
+              "version_matches_pubspec": true,
+              "x86_64_native_code": true
+            },
+            "flutter_source_commit": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+            "godot_pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d",
+            "godot_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+            "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+            "versionCode": 2019,
+            "versionName": "0.13.7"
+          },
+          "pck_bytes": 66595192,
+          "pck_member": "assets/lumo_game.pck",
+          "pck_sha256": "04acb69c117bc245186a65cb35d8b392d3846df7222bf6de610f8abce7da368d"
+        }
+      },
+      "logger": {
+        "status": "FAIL",
+        "errors": [
+          "RuntimeError: Device logger command failed: after-root"
+        ],
+        "session": {
+          "pid": 2491,
+          "ppid": 1,
+          "pgrp": 2491,
+          "session": 2491,
+          "start_ticks": "6023",
+          "argv": [
+            "/system/bin/sh",
+            "/data/local/tmp/lumo-runtime-cec910c40d560c2f3abc40cfc424e0cd/run.sh"
+          ]
+        },
+        "logcat_before_root": {
+          "pid": 2494,
+          "ppid": 2491,
+          "pgrp": 2491,
+          "session": 2491,
+          "start_ticks": "6029",
+          "argv": [
+            "/system/bin/logcat",
+            "-b",
+            "all",
+            "-v",
+            "threadtime"
+          ]
+        },
+        "root": {
+          "started_at": "2026-11-14T04:54:37.605728+00:00",
+          "requested": true,
+          "uid_before": "2000",
+          "command": {
+            "command": [
+              "/usr/local/lib/android/sdk/platform-tools/adb",
+              "-s",
+              "emulator-5554",
+              "root"
+            ],
+            "started_at": "2026-11-14T04:54:37.723993+00:00",
+            "finished_at": "2026-11-14T04:54:38.837947+00:00",
+            "returncode": 0,
+            "timed_out": false,
+            "stdout_file": "commands/0008-root-request.stdout",
+            "stderr_file": "commands/0008-root-request.stderr"
+          },
+          "uid_after": "0",
+          "boot_completed": "1"
+        },
+        "after_root": {
+          "returncode": 1,
+          "timed_out": false,
+          "stdout": "__session_stat__\n",
+          "stderr": "cat: /proc/2491/stat: No such file or directory\n",
+          "started_at": "2026-11-14T04:54:38.886681+00:00",
+          "finished_at": "2026-11-14T04:54:38.940241+00:00"
+        },
+        "same_process_before_root": true,
+        "host_device_overlap_marker_observed": true
+      },
+      "job_log": {
+        "path": "jobs/api37-swiftshader-132336853183.log",
+        "bytes": 104232,
+        "sha256": "5a6500cbdf2f628352b877231d22eb14128d773913920cac033c359efb76c8c4"
+      },
+      "original_terminal_error_lines": [
+        {
+          "line": 1050,
+          "text": "2026-11-14T04:54:38.9494491Z {\"status\": \"FAIL\", \"result\": \"ANDROID_RUNTIME_ANR_REJECTED\", \"errors\": [\"RuntimeError: Device logger command failed: after-root\"], \"scope\": \"Bounded recorded Android ANR and observation-completeness check. No APK functionality, visual quality, FPS, physical-device performance, future stability or retroactive framework-readiness approval.\"}"
+        }
+      ],
+      "original_checkout_lines": [
+        {
+          "line": 40,
+          "text": "2026-11-14T04:49:54.8849225Z   ref: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 56,
+          "text": "2026-11-14T04:49:54.8855946Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 101,
+          "text": "2026-11-14T04:49:58.4370072Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 110,
+          "text": "2026-11-14T04:50:24.9976277Z [command]/usr/bin/git checkout --progress --force e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 169,
+          "text": "2026-11-14T04:50:26.1858485Z e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 203,
+          "text": "2026-11-14T04:50:26.2632935Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 311,
+          "text": "2026-11-14T04:50:27.0605605Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 406,
+          "text": "2026-11-14T04:50:27.6526529Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 439,
+          "text": "2026-11-14T04:51:16.2975592Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 698,
+          "text": "2026-11-14T04:51:55.8114088Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 721,
+          "text": "2026-11-14T04:52:00.6179682Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 726,
+          "text": "2026-11-14T04:52:01.4657834Z UNCHANGED_APK_DIAGNOSTIC BOUND: APK source 7b16f2f5ab16f3d913ee170aefd9807c87216260; QA source e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 736,
+          "text": "2026-11-14T04:52:01.4975624Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 752,
+          "text": "2026-11-14T04:52:01.5468611Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 766,
+          "text": "2026-11-14T04:52:08.9455937Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 783,
+          "text": "2026-11-14T04:53:24.5746253Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 813,
+          "text": "2026-11-14T04:53:24.8110523Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 1072,
+          "text": "2026-11-14T04:54:39.9600063Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 1083,
+          "text": "2026-11-14T04:54:40.0109027Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        },
+        {
+          "line": 1099,
+          "text": "2026-11-14T04:54:40.0765959Z   QA_SOURCE: e6a9407c5f089cf1776daf364ff7ca6760025a2e"
+        }
+      ],
+      "key_originals": [
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/candidate-and-probe-binding.json",
+          "bytes": 7464,
+          "sha256": "62999fa82f02445a26ebf518dae53a3762e07bc6dae7df54ebc6d83e1460428c"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start.json",
+          "bytes": 21658,
+          "sha256": "1ba7b9c340249725b3f9b3596a0d4bb7b0c35f8576f6298a0c4a88b6a9eba4db"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/framework-start/framework-readiness.json",
+          "bytes": 34729,
+          "sha256": "64bf3c049448f09924d0d0e4a64216f9258b723d7a97500364a58ba7efdd109f"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0002-initial.stdout",
+          "bytes": 1416,
+          "sha256": "d58842812838965409fac896e705d01096ec5b96b1e90eba86e0ad7fad254cba"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0006-before-root.stdout",
+          "bytes": 1416,
+          "sha256": "eec37ca6aed7a2319efd144f4a8477e512bfe6b5fca11c6fb4110f3ea79c64c2"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0008-root-request.json",
+          "bytes": 372,
+          "sha256": "d5192a2ef99a9e4620412df9ed233474d814a02cc35d74d10e3dce29e0615ba6"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0010-root-after-uid.stdout",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0011-root-boot.stdout",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.json",
+          "bytes": 1901,
+          "sha256": "06a524d5a2fdd442aeaaef6be5c351119874e82303d466349aac7874bd0ca0ad"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stdout",
+          "bytes": 17,
+          "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/runtime-anr/device-logger/start/commands/0012-after-root.stderr",
+          "bytes": 48,
+          "sha256": "c95c24165c0f7bee0ac6b01634e6e5ca911bc614b6cafaa6c59d435dc324730c"
+        }
+      ],
+      "metadata_input_bytes_independently_verified": [
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/binding-inputs/candidate/artifacts.json",
+          "bytes": 11187,
+          "sha256": "bda9b1dcbea0c4c583cbb316eb6844c579cba8ba4dd79f6ae5daa037c956a77c"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/binding-inputs/candidate/jobs.json",
+          "bytes": 29940,
+          "sha256": "06f1dca91f9eaed20b563cfd7e06aecfc2aeb45efe8e910d8b8158d5ce1b2e98"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/binding-inputs/candidate/run.json",
+          "bytes": 12963,
+          "sha256": "af9dee2a1a7330935226c2cd829f0f359d33830236d400199a25abb732d6c762"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/binding-inputs/qa/jobs.json",
+          "bytes": 25562,
+          "sha256": "7faa6a7253170004eed29950592efbcc6996b3193d9319b7947f78071f2053e0"
+        },
+        {
+          "path": "artifacts/14099222913/selected-originals/originals/binding-inputs/qa/run.json",
+          "bytes": 13025,
+          "sha256": "88fc476bd48d580b98478e0cd909eaead2b3021361822b5ce2cca2ac24a31808"
+        }
+      ],
+      "local_selected_originals_all_hash_verified": true
+    }
+  ],
+  "finding": "All three independently verified original archives show the previously live session shell absent from /proc immediately after successful adb root and confirmed root UID/boot. The continuity guard rejects before the wrapper proceeds to its application installation and tours.",
+  "limitations": [
+    "The post-root snapshot aborts at the session-shell stat. It never observes the later logcat child PID, so the child disappearance and the exact terminating signal/cgroup cause are not independently demonstrated.",
+    "The framework PASS is a sampled pre-app readiness observation only. No API37 app, input, speech, renderer comparison or update acceptance was reached.",
+    "Original candidate run failure is preserved; only its successful build and actual unchanged APK/PCK/source bindings are established here.",
+    "API35 and update jobs remain separate ongoing observations at this snapshot."
+  ],
+  "local_sampler_note": {
+    "path": "artifacts/14099605898/local-selection-handoff-error.json",
+    "bytes": 466,
+    "sha256": "70e58e70241f7bd1e5e90f803ff44369a9d28555aecf00724483fa3d53062380"
+  }
+}

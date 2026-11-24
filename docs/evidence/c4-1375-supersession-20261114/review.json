@@ -1,0 +1,83 @@
+{
+  "schema": "lumo-1375-cancelled-run-review-v1",
+  "old_source": {
+    "host": "1375da193af0152af64f91d86577aa9768cd50db",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "run_id": 43599456596,
+    "run_attempt": 1,
+    "job_id": 132461940239
+  },
+  "replacement": {
+    "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "run_id": 43607156921,
+    "run_attempt": 1,
+    "created_at": "2026-11-14T14:52:50Z",
+    "event": "pull_request"
+  },
+  "observed_terminal": {
+    "run_status": "completed",
+    "run_conclusion": "cancelled",
+    "job_started_at": "2026-11-14T13:26:58Z",
+    "job_completed_at": "2026-11-14T14:53:49Z",
+    "native_step_started_at": "2026-11-14T13:50:10Z",
+    "native_step_cancelled_at": "2026-11-14T14:53:03Z",
+    "native_step_conclusion": "cancelled",
+    "return_step": "skipped",
+    "dream_step": "skipped",
+    "apk_build": "skipped",
+    "dependent_jobs": "Four downstream jobs have cancelled conclusions and no executed step records"
+  },
+  "transition_basis": {
+    "root_authorized_replacement_activation_at": "2026-11-14T14:52:47Z",
+    "original_workflow_concurrency": [
+      "concurrency:",
+      "  group: lumo-connect-four-2020-${{ github.head_ref || github.ref_name }}",
+      "  cancel-in-progress: true"
+    ],
+    "original_job_message": "2026-11-14T14:53:03.2837786Z ##[error]The operation was canceled.",
+    "interpretation": "The timing matches the authorized replacement in the same cancel-in-progress workflow group. This record reports cancellation, not a 150-minute timeout or a failed APK build."
+  },
+  "full_job_log": {
+    "git_blob": "e47fc9478140dc9f8899650abae13c48d5d9a8f4",
+    "text_utf16_code_units": 1310856,
+    "lines": 10297,
+    "source": "Complete decoded original job log as returned by the official GitHub job-log endpoint"
+  },
+  "log_review": {
+    "native_error_scan": "No Native FAIL/engine-error termination appeared before cancellation in the reviewed native segment; the matching source audit summary says 117 PASS / 7 WARN / 0 FAIL.",
+    "earlier_expected_negative_markers": "Two CompleteKartAndroid FAIL: TEST_STOP_AFTER_VERIFIED_ROOT_BEFORE_INSTALLED_APK_READ lines are inside named successful synthetic unit-test contexts, whose following lines report ok; they are not an actual installed-APK run.",
+    "last_completed_native_result": "connect_four_visual_capture rendered PASS",
+    "partial_tsv_rows": 51,
+    "partial_tsv_pass_rows": 51,
+    "complete_native52_approval": false,
+    "return_and_dream_approval": false,
+    "new_apk_produced": false
+  },
+  "partial_native_archive": {
+    "artifact_id": 14118835734,
+    "bytes": 179491488,
+    "sha256": "314d3e73a60ffa9eb54d4ba9f8963db73711cf1286c0c1d406d71cc0d1501e33",
+    "single_official_download": true,
+    "local_path": "/workspace/scratch/2708c7907f28/1375-native-partial-originals-14118835734/artifact.zip",
+    "api_size_and_hash_match": true,
+    "canonical_member_type_and_duplicate_checks": true,
+    "all_members_read_with_crc_and_size_checks": true,
+    "files": 4386,
+    "decoded_bytes": 471746300,
+    "source_sha_original": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73\n",
+    "complete_file_hash_index_gzip_blob": "61b985b007d390cf888c89bd118b0fcaa3859ef8",
+    "index_gzip_sha256": "eb9b3744f87de5f97a48baa258e065c31398c2dfdf82fe8fde8edd851c55fb88",
+    "index_gzip_bytes": 419606,
+    "selected_originals_saved": "Unchanged nextgen runner log, reported results.tsv, engine version and native source stamp",
+    "whole_zip_in_git": false,
+    "readers_engine_renderer_or_tests_reexecuted": false
+  },
+  "limits": [
+    "Only original evidence integrity and the actual cancellation/partial results were reviewed.",
+    "Reported 51 PASS rows do not satisfy the complete 52-mode/native-raster gate.",
+    "No Android, update, candidate, delivery, Play, physical-device or FPS approval is inferred.",
+    "The old1375 outputs remain separate from current057a and cannot approve its changed source.",
+    "The full partial archive remains locally and in its Actions artifact; this Git handoff preserves complete index and selected originals, not all archive payload bytes."
+  ]
+}

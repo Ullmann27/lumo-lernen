@@ -17,7 +17,7 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_shop_repository.dart';
 import 'package:lumo_lernen/core/settings_repository.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_screen.dart';
+import 'package:lumo_lernen/features/games/star_trail/star_trail_screen.dart';
 import 'package:lumo_lernen/features/settings/settings_content.dart';
 import 'package:lumo_lernen/features/settings/writing_report_card.dart';
 import 'package:lumo_lernen/features/rewards/test_photo_entry_card.dart';
@@ -232,30 +232,30 @@ void main() {
   });
 
   testWidgets(
-      'both real game start controls appear before the decorative world',
+      'the Spielwelt exposes one unified World and the real game portals',
       (tester) async {
     final app = await stateFor(tester);
     await mount(tester, GamesContent(appState: app));
     await capture(tester, 'games_phone');
-    for (final name in ['launch-lumo-cards', 'launch-lumo-kart']) {
-      final button = find.byKey(ValueKey(name));
-      expect(button, findsOneWidget);
-      final rect = tester.getRect(button);
-      expect(rect.height, greaterThanOrEqualTo(48));
-      expect(rect.bottom, lessThanOrEqualTo(800));
-      expect(button.hitTestable(), findsOneWidget);
+    for (final id in [
+      'world', 'logic', 'memory', 'cards', 'puzzle', 'jumpRun',
+      'rhythm', 'chess', 'skypost', 'kart', 'connectFour', 'quizShow',
+    ]) {
+      expect(find.byKey(ValueKey('spielwelt-portal-$id')), findsOneWidget);
     }
-    expect(find.text('Lumo Cards'), findsOneWidget);
-    expect(find.text('Lumo Kart'), findsOneWidget);
-    expect(find.textContaining('zwölf Rennwelten'), findsOneWidget);
-    expect(find.text('12 Welten'), findsOneWidget);
-    expect(find.text('5 Spielmodi'), findsOneWidget);
+    expect(find.byKey(const ValueKey('games-1990-hero')), findsNothing);
+    expect(find.byKey(const ValueKey('games-lumo-meister-portal')),
+        findsNothing);
+    expect(find.text('Weitere Spielwelten entdecken'), findsNothing);
+    expect(find.byKey(const ValueKey('spielwelt-lumo')), findsOneWidget);
+    expect(find.byKey(const ValueKey('spielwelt-portal-treasure')), findsNothing);
+    expect(find.byKey(const ValueKey('spielwelt-portal-build')), findsNothing);
+    expect(find.byKey(const ValueKey('spielwelt-portal-village')), findsNothing);
     expect(tester.takeException(), isNull);
-    await tester.pumpWidget(const SizedBox());
   });
 
   testWidgets(
-      'game entries resize without replacing state or clipping enlarged labels',
+      'Lumo Spielwelt cards survive cover Fold inner and larger typography',
       (tester) async {
     final app = await stateFor(tester);
     await mount(tester, GamesContent(appState: app));
@@ -270,76 +270,29 @@ void main() {
       await tester.binding.setSurfaceSize(entry.$2);
       await mount(tester, GamesContent(appState: app), textScale: entry.$3);
       expect(tester.state(find.byType(GamesContent)), same(initial));
-      expect(tester.takeException(), isNull, reason: entry.$1);
-      // A resize can leave the lazy first sliver above the current scroll offset.
-      // Scroll as a user would before asking for its buttons or capturing it.
-      await tester.scrollUntilVisible(find.text('Jetzt spielen'), -300,
-          scrollable: find.byType(Scrollable).first);
-      await tester.pump();
-      await capture(tester, entry.$1);
-      for (final name in ['launch-lumo-cards', 'launch-lumo-kart']) {
-        final button = find.byKey(ValueKey(name));
-        await tester.scrollUntilVisible(button, -300,
-            scrollable: find.byType(Scrollable).first);
+      for (final id in ['kart', 'quizShow']) {
+        final card = find.byKey(ValueKey('spielwelt-portal-$id'));
+        expect(card, findsOneWidget, reason: entry.$1);
+        await tester.ensureVisible(card);
         await tester.pump();
-        final rect = tester.getRect(button);
-        const viewportEpsilon = 0.001;
+        final rect = tester.getRect(card);
+        expect(rect.width, greaterThanOrEqualTo(48), reason: entry.$1);
         expect(rect.height, greaterThanOrEqualTo(48), reason: entry.$1);
-        expect(rect.left, greaterThanOrEqualTo(-viewportEpsilon),
-            reason: entry.$1);
-        expect(rect.right, lessThanOrEqualTo(entry.$2.width + viewportEpsilon),
-            reason: entry.$1);
-        expect(rect.top, greaterThanOrEqualTo(-viewportEpsilon),
-            reason: entry.$1);
-        expect(rect.bottom,
-            lessThanOrEqualTo(entry.$2.height + viewportEpsilon),
-            reason: entry.$1);
-        expect(button.hitTestable(), findsOneWidget, reason: entry.$1);
-        final label = tester.getRect(find.descendant(
-          of: button,
-          matching: find.byType(Text),
-        ));
-        expect(rect.contains(label.topLeft), isTrue, reason: entry.$1);
-        expect(rect.contains(label.bottomRight), isTrue, reason: entry.$1);
       }
       expect(tester.takeException(), isNull, reason: entry.$1);
+      await capture(tester, entry.$1);
     }
     await tester.pumpWidget(const SizedBox());
   });
 
+  // Jump & Run opens Lumo Lauf, Karten opens the 3D card table (Sternenstich,
+  // Sternenleiter, Lumo-Quartett). Neither opens a Flutter card screen.
+  for (final portal in <(String, String)>[
+    ('jumpRun', 'run'),
+    ('cards', 'cards'),
+  ])
   testWidgets(
-      'Cards rapid double activation opens one route and permits returning',
-      (tester) async {
-    final app = await stateFor(tester);
-    final observer = _PushObserver();
-    await tester.pumpWidget(MaterialApp(
-      navigatorObservers: [observer],
-      theme: ThemeData.light(),
-      home: Scaffold(body: GamesContent(appState: app)),
-    ));
-    await settleData(tester);
-    final before = observer.count;
-    final cardButton = find.byKey(const ValueKey('launch-lumo-cards'));
-    expect(cardButton, findsOneWidget);
-    final onPressed = tester.widget<FilledButton>(cardButton).onPressed!;
-    onPressed();
-    onPressed();
-    await tester.pump();
-    await tester.pump(const Duration(seconds: 1));
-    expect(observer.count - before, 1);
-    expect(find.byType(LumoCardsScreen), findsOneWidget);
-    final routeContext = tester.element(find.byType(LumoCardsScreen));
-    Navigator.of(routeContext).pop();
-    await tester.pump(const Duration(seconds: 3));
-    await settleData(tester);
-    expect(find.byType(LumoCardsScreen), findsNothing);
-    expect(tester.widget<FilledButton>(cardButton).onPressed, isNotNull);
-    expect(tester.takeException(), isNull);
-    await tester.pumpWidget(const SizedBox());
-  });
-
-  testWidgets(
-      'Kart spotlight uses the existing native launcher and unlocks after return',
+      '${portal.$1} Spielwelt portal launches actual Godot 3D scene once',
       (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
     try {
@@ -352,31 +305,59 @@ void main() {
         return returned.future;
       });
       await mount(tester, GamesContent(appState: app));
-      final start = find.byKey(const ValueKey('launch-lumo-kart'));
-      final onPressed = tester.widget<FilledButton>(start).onPressed!;
-      onPressed();
-      onPressed();
+      final card = find.byKey(ValueKey('spielwelt-portal-${portal.$1}'));
+      expect(card, findsOneWidget);
+      final detector = find.descendant(
+          of: card, matching: find.byType(GestureDetector)).first;
+      final tap = tester.widget<GestureDetector>(detector).onTap!;
+      tap();
+      tap();
       await settleData(tester);
-      expect(calls, hasLength(1));
+      expect(calls, hasLength(1),
+          reason: 'Only one native game may start per double tap');
       expect(calls.single.method, 'launch3D');
-      expect((calls.single.arguments as Map)['scene'], 'kart');
-      expect(tester.widget<FilledButton>(start).onPressed, isNull);
+      expect((calls.single.arguments as Map)['scene'], portal.$2);
+      expect((calls.single.arguments as Map).containsKey('cardsToken'), isFalse);
+      expect(find.byType(LumoStarTrailScreen), findsNothing);
       returned.complete({'destination': 'games'});
       await settleData(tester);
-      expect(tester.widget<FilledButton>(start).onPressed, isNotNull);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
     } finally {
       debugDefaultTargetPlatformOverride = null;
     }
   });
-}
 
-class _PushObserver extends NavigatorObserver {
-  int count = 0;
-  @override
-  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    count++;
-    super.didPush(route, previousRoute);
-  }
+  testWidgets('Kart spotlight uses the existing native launcher and unlocks after return',
+      (tester) async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    try {
+      final app = await stateFor(tester);
+      final returned = Completer<Map<String, Object?>>();
+      final calls = <MethodCall>[];
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(bridge, (call) {
+        calls.add(call);
+        return returned.future;
+      });
+      await mount(tester, GamesContent(appState: app));
+      final card = find.byKey(const ValueKey('spielwelt-portal-kart'));
+      final detector = find.descendant(
+        of: card, matching: find.byType(GestureDetector)).first;
+      final tap = tester.widget<GestureDetector>(detector).onTap!;
+      tap();
+      tap();
+      await settleData(tester);
+      expect(calls, hasLength(1));
+      expect(calls.single.method, 'launch3D');
+      expect((calls.single.arguments as Map)['scene'], 'kart');
+      returned.complete({'destination': 'games'});
+      await settleData(tester);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    } finally {
+      debugDefaultTargetPlatformOverride = null;
+    }
+  });
+
 }

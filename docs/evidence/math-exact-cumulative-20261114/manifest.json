@@ -1,0 +1,362 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14 11:00:01 UTC",
+  "repository": "Ullmann27/lumo-lernen",
+  "source": {
+    "commit": "f4df466ed004879fc56284b024475a0ab0661259",
+    "tree": "350c713c20e58d17991d8bd09a160206e97dd119",
+    "preceding_product_commit": "faaf9d906bd72c2ffe9ab677c76355fe538cddfe",
+    "comparison_base": "803a4e960ffb804a46b6d09417731c031f00f680"
+  },
+  "later_checkpoint_readback": {
+    "commit": "182e5e236a9a08fa4e8b33778338ac22ac05575a",
+    "unchanged_relevant_files": [
+      {
+        "path": "lib/core/math_task_templates.dart",
+        "blob": "f5febd9c1e65516eef23b3d1ba40d670f62a2f89"
+      },
+      {
+        "path": "lib/core/school_exercise_generator.dart",
+        "blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65"
+      },
+      {
+        "path": "lib/features/learning/learning_content.dart",
+        "blob": "5e62d675606d5e9b0024fa1476c0459343b5da7a"
+      }
+    ]
+  },
+  "patch": [
+    {
+      "path": "lib/core/math_task_templates.dart",
+      "old_blob": "f5febd9c1e65516eef23b3d1ba40d670f62a2f89",
+      "new_blob": "85fbad4a0b09753a7f22663690a9660f98382f39"
+    },
+    {
+      "path": "test/support/math_exact_topic_selection_contract.dart",
+      "old_blob": null,
+      "new_blob": "becda7215230494989c04a71ee9f0b6a09c4fda2"
+    },
+    {
+      "path": "test/math_exact_topic_selection_test.dart",
+      "old_blob": null,
+      "new_blob": "f82604a4239bd8982ac666b97aa478b65a8fa2e8"
+    }
+  ],
+  "unchanged_pure_dart_dependencies": [
+    {
+      "path": "lib/core/school_exercise_generator.dart",
+      "blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65"
+    },
+    {
+      "path": "lib/core/german_task_templates.dart",
+      "blob": "47843a70ed106d25001481c995b339fc31894f5d"
+    },
+    {
+      "path": "lib/core/shape_question_data.dart",
+      "blob": "1234048061f3b187aeaf59cbb3b4a07324045395"
+    },
+    {
+      "path": "lib/core/adventure/lumo_adventure_tasks.dart",
+      "blob": "cd28cf0f81903bbd0a68a462782c853feadc27e7"
+    },
+    {
+      "path": "lib/core/english_vocabulary_extensions.dart",
+      "blob": "13f29bd61dc325bd351cd98dc4bf619abf8f292f"
+    },
+    {
+      "path": "lib/core/primary_school_word_data.dart",
+      "blob": "1288d888554349b5d84ea9b96cf63e98b4965f0e"
+    },
+    {
+      "path": "lib/core/reading_comprehension_data.dart",
+      "blob": "25e9a13d147ed023a4e4615f58bb490b40f41f4d"
+    },
+    {
+      "path": "lib/core/science_task_data.dart",
+      "blob": "41f7f14751d328d54de28b122f67fe53cd9427fa"
+    },
+    {
+      "path": "lib/core/science_quality_extension.dart",
+      "blob": "952999462e8424e1cb33bd2c31633884b39f1d8a"
+    },
+    {
+      "path": "lib/core/spelling_context_data.dart",
+      "blob": "061ccc33862ef610e1589ee54cd2628755105265"
+    },
+    {
+      "path": "lib/core/german_curriculum_extensions.dart",
+      "blob": "2d0cc7d168606dd82e7e808d6fcf9bfcbb0cd732"
+    },
+    {
+      "path": "lib/core/adventure/adventure_word_data.dart",
+      "blob": "b98029abd17aed104d4c79fe948c18d96bb4811f"
+    }
+  ],
+  "original_diagnostic": {
+    "executed": true,
+    "scope": "Actual unmodified pure Dart MathTaskTemplates; no Flutter or Android run.",
+    "dart": "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "cwd": "/home/agent/lumo-host-diff-review-2708/math-probe",
+    "command": [
+      "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+      "probe.dart"
+    ],
+    "original_template_blob": "f5febd9c1e65516eef23b3d1ba40d670f62a2f89",
+    "original_shape_dependency_blob": "1234048061f3b187aeaf59cbb3b4a07324045395",
+    "probe_blob": "d1fab3136c7d683b2f7c59e86e8271197dddb3ba",
+    "tool_output_blob": "b0c92c312c9fa6683ad3f67099156581de144ff6",
+    "diagnostic_process_exit": 0,
+    "correctness_pass": false,
+    "observed_mismatches": [
+      {
+        "grade": 2,
+        "requested_unit": "Geld",
+        "seed": 1,
+        "actual_unit": "Geld wechseln"
+      },
+      {
+        "grade": 3,
+        "requested_unit": "Geometrie Formen",
+        "seed": 1,
+        "actual_unit": "Umfang"
+      },
+      {
+        "grade": 4,
+        "requested_unit": "Geometrie Formen",
+        "seed": 1,
+        "actual_unit": "Flächeninhalt"
+      }
+    ]
+  },
+  "new_regression": {
+    "executed": false,
+    "local_red_green": false,
+    "flutter_executed": false,
+    "android_executed": false,
+    "reason": "Runtime became unavailable before the new shared regression was staged or executed.",
+    "coverage": [
+      "All actual cumulative Mathematik units for grades 1–4, 32 seeds per grade/topic.",
+      "Production MathTaskTemplates pattern/difficulty membership and ExerciseFactory.nextExact metadata with competing weak skills.",
+      "Three fixed real counterexamples.",
+      "128 seeds for current-grade and earlier review inside Textaufgaben.",
+      "Three real legacy aliases, 16 seeds each; no relabelling of aliases."
+    ],
+    "planned_pure_dart_command": [
+      "dart",
+      "test/support/math_exact_topic_selection_contract.dart"
+    ],
+    "flutter_discovery_path": "test/math_exact_topic_selection_test.dart",
+    "contract_scope": "pure Dart production generator contract; no widget or Android assertions"
+  },
+  "reachability": [
+    {
+      "path": "lib/domain/school/learning_analysis.dart",
+      "blob": "333d5276a6bd539e6f019e99629e82a30a7d85e5",
+      "lines": "137-145,184-194,241-245",
+      "behavior": "Historical attempts are grouped without a grade filter; the weakest recorded unit enters CoachMessage."
+    },
+    {
+      "path": "lib/features/report/lumo_coach_card.dart",
+      "blob": "76dccff139f8651e89d46f2496f86d743b58a2b9",
+      "lines": "34-39,81",
+      "behavior": "Active student's attempts are analyzed; the help action passes the stored subject/unit."
+    },
+    {
+      "path": "lib/domain/school/school_model.dart",
+      "blob": "0990cb47cc6c1564400e1991a597a4e7382f582c",
+      "lines": "280-293",
+      "behavior": "Teacher assignments are filtered by class/target/archive, not by a current-grade unit substitution."
+    },
+    {
+      "path": "lib/features/teacher/student_assignments_card.dart",
+      "blob": "946c2a75d32a7ce570a099573edffde5cb87167a",
+      "lines": "83-86,150",
+      "behavior": "An open assignment passes its stored subject/unit unchanged."
+    },
+    {
+      "path": "lib/features/home/home_content.dart",
+      "blob": "9d980f6c2663ebe965195af3c15d8533867503ba",
+      "lines": "54-71,519-528",
+      "behavior": "Explicit unit overrides only the implicit last-topic resume filter and opens exercises."
+    },
+    {
+      "path": "lib/app/app_shell.dart",
+      "blob": "db141faa7f922d136a822cfd6c49b4153d904a9a",
+      "lines": "536-548",
+      "behavior": "Non-reading exercises open LearningContent with the selected grade/subject/unit."
+    },
+    {
+      "path": "lib/features/learning/learning_content.dart",
+      "blob": "5e62d675606d5e9b0024fa1476c0459343b5da7a",
+      "lines": "806-815",
+      "behavior": "An allowed cumulative explicit topic selects nextExact."
+    },
+    {
+      "path": "lib/core/school_exercise_generator.dart",
+      "blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65",
+      "lines": "160-186,286-317,577-591",
+      "behavior": "Cumulative topics are valid; nextExact rejects a changed grade, subject, or unit."
+    }
+  ],
+  "review_scope": {
+    "new_flutter_execution": false,
+    "protected_sources": [
+      {
+        "path": "lib/app/app_state.dart",
+        "before": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+        "after": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+        "identical": true
+      },
+      {
+        "path": "lib/app/app_shell.dart",
+        "before": "db141faa7f922d136a822cfd6c49b4153d904a9a",
+        "after": "db141faa7f922d136a822cfd6c49b4153d904a9a",
+        "identical": true
+      },
+      {
+        "path": "lib/core/profile_repository.dart",
+        "before": "35cfa44b277284cdb1310b778760367a331b5ebe",
+        "after": "35cfa44b277284cdb1310b778760367a331b5ebe",
+        "identical": true
+      },
+      {
+        "path": "lib/core/user_profile.dart",
+        "before": "98539dbc430424f42a0483f832adabd7d92cca88",
+        "after": "98539dbc430424f42a0483f832adabd7d92cca88",
+        "identical": true
+      },
+      {
+        "path": "lib/core/progress_repository.dart",
+        "before": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+        "after": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+        "identical": true
+      },
+      {
+        "path": "lib/core/learning_profile_engine.dart",
+        "before": "aafcd2dd5b2a400f04b58518351e4fb152237f26",
+        "after": "aafcd2dd5b2a400f04b58518351e4fb152237f26",
+        "identical": true
+      },
+      {
+        "path": "lib/core/native_profile_key_repository.dart",
+        "before": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+        "after": "b6c61c6bcedda1765b8e4a2858cedd3646d9aa98",
+        "identical": true
+      },
+      {
+        "path": "lib/core/reading_progress_repository.dart",
+        "before": "ffd5b243633492fa5aae3b8648eb07af949a2e71",
+        "after": "ffd5b243633492fa5aae3b8648eb07af949a2e71",
+        "identical": true
+      },
+      {
+        "path": "lib/core/writing_progress_repository.dart",
+        "before": "4bb609a76be4cc64a316798debc2bafa24274803",
+        "after": "4bb609a76be4cc64a316798debc2bafa24274803",
+        "identical": true
+      },
+      {
+        "path": "lib/features/journal/journal_repository.dart",
+        "before": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+        "after": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+        "identical": true
+      },
+      {
+        "path": "lib/features/journal/lumo_journal_screen.dart",
+        "before": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+        "after": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+        "identical": true
+      },
+      {
+        "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+        "before": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+        "after": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+        "identical": true
+      },
+      {
+        "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+        "before": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+        "after": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+        "identical": true
+      },
+      {
+        "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+        "before": "123c13786584c3f9c487ae1b71317841d2995420",
+        "after": "123c13786584c3f9c487ae1b71317841d2995420",
+        "identical": true
+      },
+      {
+        "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+        "before": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+        "after": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+        "identical": true
+      },
+      {
+        "path": "lib/features/teacher_mode/letter_writing_screen.dart",
+        "before": "74d92c94837cb258e405d2bb04baf5e54ec8d477",
+        "after": "74d92c94837cb258e405d2bb04baf5e54ec8d477",
+        "identical": true
+      },
+      {
+        "path": "lib/features/learning/cross_grade_writing_screen.dart",
+        "before": "47a7ba1ffd9dbe6e68dc7d6dbe08396815f2f10e",
+        "after": "47a7ba1ffd9dbe6e68dc7d6dbe08396815f2f10e",
+        "identical": true
+      },
+      {
+        "path": "lib/features/learning/renderers/writing_task_renderer.dart",
+        "before": "adfb91debd8af1b7077c2289fd913419afe23b7c",
+        "after": "adfb91debd8af1b7077c2289fd913419afe23b7c",
+        "identical": true
+      },
+      {
+        "path": "lib/widgets/profile_screen.dart",
+        "before": "56980b0c3867e52df7011fd968f1a50423bbd467",
+        "after": "56980b0c3867e52df7011fd968f1a50423bbd467",
+        "identical": true
+      },
+      {
+        "path": "lib/widgets/shell/left_navigation.dart",
+        "before": "5fbc8f28250bb7baf340bec6a75f01ce9eeed086",
+        "after": "5fbc8f28250bb7baf340bec6a75f01ce9eeed086",
+        "identical": true
+      }
+    ],
+    "assets_tree_before": "e344fab9b20ff85379d48984a778a0ab2a392b53",
+    "assets_tree_after": "e344fab9b20ff85379d48984a778a0ab2a392b53",
+    "six_lib_changes": [
+      {
+        "path": "lib/core/school_exercise_generator.dart",
+        "old_blob": "fd577a04dd677bdfa41d3e61763cfc3f2cb39430",
+        "new_blob": "ae96f9d4e7c0a2d0fa4dca661c7873dc6d716d65"
+      },
+      {
+        "path": "lib/features/home/widgets/lumo_home_hero.dart",
+        "old_blob": "75305c7ff374fa9ee4da224f27c19fb4a4862955",
+        "new_blob": "963a7840b964cd82954c784247aa2a244b9b44af"
+      },
+      {
+        "path": "lib/features/learning/learning_content.dart",
+        "old_blob": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+        "new_blob": "5e62d675606d5e9b0024fa1476c0459343b5da7a"
+      },
+      {
+        "path": "lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+        "old_blob": "58dabfde2972afcd085ee9a685f15c4d23cfce08",
+        "new_blob": "7972da58499ec771414eaeacfcd83155997b510c"
+      },
+      {
+        "path": "lib/widgets/design/lumo_adventure_card.dart",
+        "old_blob": "8b5094784ede6969422e1db58de0fad9cb47828d",
+        "new_blob": "94b9f5eece1570631a6bf7428b8d8cc5d83e3360"
+      },
+      {
+        "path": "lib/widgets/design/lumo_scene_atmosphere.dart",
+        "old_blob": "33f100820f35b2a6fda79c1594cf49d00896cb6b",
+        "new_blob": "2a5ba8203a9777a28820ab36f7c2a979709c8620"
+      }
+    ]
+  },
+  "refs_updated": false,
+  "readiness_claim": false
+}

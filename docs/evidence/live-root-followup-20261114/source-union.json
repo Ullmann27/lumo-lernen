@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "parent_host": "7fd9e91683ecf703c00f100e314aced9191f7847",
+  "sources": {
+    "village_host": "99f04bff80f82a3ee4963aaf29f970a7f79ba0cc",
+    "compact_home_title": "4a5649ec245c970f2ad7113a60752f4fa8c34035",
+    "connect_four_navigation": "de3b74c56052794196b9f14fc65a13412209651f"
+  },
+  "integration_decisions": [
+    "Preserve the current MainActivity outside the three exact village patch hunks; the producer's older full file would remove the current export handler.",
+    "Require the exact explicit settlement/livingVillage/settlementMode contract through Flutter, Android and the paired native source.",
+    "Include original village captures and home premium captures in the complete Flutter acceptance runner without weakening its skip, failure or incomplete-run guards.",
+    "Retain current stronger Connect Four visual/gameplay assertions and add the independent route restoration regression."
+  ],
+  "acceptance_runner": {
+    "command": "python3 -m unittest discover -s scripts/tests -v",
+    "tests": 6,
+    "exit_code": 0,
+    "runner_blob": "7b48a18f52ac23b973f166ea5c2bfba50e75e0f4",
+    "unchanged_test_blob": "6d02175784f728a528cfa34a53b16302fe160950",
+    "original_tool_chunk": "d79512"
+  },
+  "status": "Prepared host union. New Flutter UI, Kotlin and paired native union require actual final-source CI; no new rendered or Android result is claimed."
+}

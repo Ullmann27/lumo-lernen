@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "sources": [
+    {
+      "id": "android-acceleration-doc",
+      "url": "https://developer.android.com/studio/run/emulator-acceleration",
+      "retrieval_refs": [
+        "turn618059436view0",
+        "turn960454706view0",
+        "turn960454706view1"
+      ],
+      "retrieved_utc_date": "2026-11-14",
+      "page_last_updated": "2026-11-13 UTC",
+      "supported_claim": "The current official emulator option table distinguishes direct SwiftShader software GLES/Vulkan from the swangle option using ANGLE with SwiftShader. It marks both *_indirect forms deprecated since 36.4.9.",
+      "version_limit": "General current documentation, not proof of behavior or success of exact emulator build 37.2.13/16740729."
+    },
+    {
+      "id": "aosp-emugl-config",
+      "url": "https://android.googlesource.com/platform/external/qemu/+/refs/heads/emu-master-dev/android/android-ui/modules/aemu-gl-init/src/android/opengl/emugl_config.cpp",
+      "retrieval_refs": [
+        "turn618059436view1",
+        "turn960454706view2",
+        "turn960454706view3"
+      ],
+      "retrieved_utc_date": "2026-11-14",
+      "git_blob_shown": "07c1a129a599927cc2aa0a7f674c0de835c4c5e5",
+      "branch": "refs/heads/emu-master-dev",
+      "supported_claim": "The observed implementation selects ANGLE libraries for swangle and configures ANGLE_DEFAULT_PLATFORM and ANDROID_EMU_VK_ICD for SwiftShader.",
+      "version_limit": "Moving upstream branch; this source was not mapped to exact emulator build 37.2.13/16740729."
+    },
+    {
+      "id": "godot-upstream-109550",
+      "url": "https://github.com/godotengine/godot/issues/109550",
+      "retrieval_refs": [
+        "turn571350366view0",
+        "turn618059436view3",
+        "turn618059436view4"
+      ],
+      "retrieved_utc_date": "2026-11-14",
+      "opened": "2025-08-12",
+      "reported_versions": "Original issue Godot 4.5 beta5 / SwiftShader 4.1.0.7; later 2026-09-11 report Godot 4.7.2 with swiftshader_indirect.",
+      "supported_claim": "The upstream issue contains the same SceneShaderGLES3 and CanvasShaderGLES3 uniform-vector error; maintainer comments suggest a SwiftShader bug.",
+      "version_limit": "An upstream diagnosis hypothesis for other versions, not proof of the low-level cause of this exact Godot 4.6.3 / SwiftShader 4.0.0.1 run and not a verified fix."
+    }
+  ],
+  "not_claimed": "Exact Godot 4.6.3 renderer implementation source was not successfully retrieved; no assertion is based on unread engine driver files."
+}

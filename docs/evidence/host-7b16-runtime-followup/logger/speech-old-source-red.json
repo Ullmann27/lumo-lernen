@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_runtime_logcat_sections.RuntimeLogcatSectionTests.test_earlier_completed_speech_is_not_current_evidence",
+    "scripts.tests.test_runtime_logcat_sections.RuntimeLogcatSectionTests.test_earlier_movement_and_final_speech_cannot_satisfy_current_result"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16",
+  "source_override": "/workspace/scratch/b3485b7bb989/host-61c-api37-device-log-continuity/before-clear-speech",
+  "exit_code": 1,
+  "elapsed_seconds": 0.0922,
+  "log_bytes": 1912,
+  "log_sha256": "b3dbbe537b0811a8ac46b636c66c57bdee2736d1e28893bcadcaf0392c16e353",
+  "scope": "Original unmodified speech functions with explicitly synthetic earlier lesson; actual parser accepts old events because no fresh section boundary exists. No Android run."
+}

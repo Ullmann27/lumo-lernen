@@ -1,0 +1,23 @@
+{
+  "baseCommit": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_nextgen_native_reader.py",
+    "-v"
+  ],
+  "exitCode": 1,
+  "expectedFailure": "Current native screenshot lacks Was kommt als Nächstes",
+  "sourceSha256": {
+    ".github/probes/lumo_nextgen_current_reference_android_probe.py": "be77d5ee20ddff7620f93b76257e30bc9491bc485582739247c20daf0b71a1cc",
+    ".github/probes/lumo_nextgen_reference_android_probe.py": "bfd5278e3fd1683a48da9887914c9b5d120d59089b4b874ff4af6c0b2baf84e2",
+    ".github/probes/creative_android_probe.py": "aeea464a5973bceafcea069449d08e2acb7a32e0390f12b3380bab71b6b76ced",
+    "tools/android_qa/tests/test_nextgen_native_reader.py": "d9b9d95f98ebcfdd110b2a6c66dabb93e9e50174f89ca6eb870b1aa188db98c0"
+  },
+  "scope": "Actual legacy native_see/native_text dispatch with only ADB/Tesseract transport and sleep replaced by byte-identical original fixture replay. No Android run."
+}

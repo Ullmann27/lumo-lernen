@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "0395-runtime-banana-return-academy",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "0395-runtime-banana-return-academy-render-candidate-1.png",
+      "sha256": "43c97074f49c3f5042cd9329035365c6f2fdeb17139aa8b3c1379dc351942c67",
+      "width": 1080,
+      "height": 2340,
+      "content_entropy_bits": 6.286,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 1.061
+}

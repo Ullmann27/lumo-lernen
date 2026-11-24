@@ -1,0 +1,196 @@
+﻿2026-11-14T16:31:14.9124073Z Current runner version: '2.338.2'
+2026-11-14T16:31:14.9162603Z ##[group]Runner Image Provisioner
+2026-11-14T16:31:14.9163243Z Hosted Compute Agent
+2026-11-14T16:31:14.9163714Z Version: 20261103.629
+2026-11-14T16:31:14.9164203Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T16:31:14.9164747Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T16:31:14.9165257Z Worker ID: {0d90cf47-90df-4289-9cb5-c46af9c30510}
+2026-11-14T16:31:14.9165752Z Region: us-east-1
+2026-11-14T16:31:14.9166178Z Cloud: AWS
+2026-11-14T16:31:14.9166558Z ##[endgroup]
+2026-11-14T16:31:14.9167547Z ##[group]Operating System
+2026-11-14T16:31:14.9168008Z Ubuntu
+2026-11-14T16:31:14.9168378Z 24.04.5
+2026-11-14T16:31:14.9168754Z LTS
+2026-11-14T16:31:14.9169147Z ##[endgroup]
+2026-11-14T16:31:14.9169537Z ##[group]Runner Image
+2026-11-14T16:31:14.9169999Z Image: ubuntu-24.04
+2026-11-14T16:31:14.9170391Z Version: 20261111.127.1
+2026-11-14T16:31:14.9171326Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T16:31:14.9172636Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.127
+2026-11-14T16:31:14.9173393Z ##[endgroup]
+2026-11-14T16:31:14.9174207Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T16:31:14.9175862Z Contents: read
+2026-11-14T16:31:14.9176267Z Metadata: read
+2026-11-14T16:31:14.9176710Z ##[endgroup]
+2026-11-14T16:31:14.9178208Z Secret source: Actions
+2026-11-14T16:31:14.9178883Z Cache mode: write
+2026-11-14T16:31:14.9179376Z Prepare workflow directory
+2026-11-14T16:31:14.9416498Z Prepare all required actions
+2026-11-14T16:31:14.9452802Z Getting action download info
+2026-11-14T16:31:15.1129284Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-14T16:31:17.2595613Z Complete job name: Verify checkpoint script without publishing changes
+2026-11-14T16:31:17.3458186Z ##[group]Run actions/checkout@v4
+2026-11-14T16:31:17.3459379Z with:
+2026-11-14T16:31:17.3460321Z   repository: Ullmann27/lumo-lernen
+2026-11-14T16:31:17.3467281Z   token: ***
+2026-11-14T16:31:17.3468080Z   ssh-strict: true
+2026-11-14T16:31:17.3468899Z   ssh-user: git
+2026-11-14T16:31:17.3469736Z   persist-credentials: true
+2026-11-14T16:31:17.3470607Z   clean: true
+2026-11-14T16:31:17.3471462Z   sparse-checkout-cone-mode: true
+2026-11-14T16:31:17.3472602Z   fetch-depth: 1
+2026-11-14T16:31:17.3473430Z   fetch-tags: false
+2026-11-14T16:31:17.3474239Z   show-progress: true
+2026-11-14T16:31:17.3475048Z   lfs: false
+2026-11-14T16:31:17.3475867Z   submodules: false
+2026-11-14T16:31:17.3476689Z   set-safe-directory: true
+2026-11-14T16:31:17.3477582Z   allow-unsafe-pr-checkout: false
+2026-11-14T16:31:17.3478765Z ##[endgroup]
+2026-11-14T16:31:21.2081362Z Syncing repository: Ullmann27/lumo-lernen
+2026-11-14T16:31:21.2082954Z ##[group]Getting Git version info
+2026-11-14T16:31:21.2083568Z Working directory is '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T16:31:21.2084175Z [command]/usr/bin/git version
+2026-11-14T16:31:21.4842773Z git version 2.56.1
+2026-11-14T16:31:21.4856947Z ##[endgroup]
+2026-11-14T16:31:21.4867939Z Temporarily overriding HOME='/home/runner/work/_temp/c5a151ab-bb6c-4f25-8f46-cba706961b39' before making global git config changes
+2026-11-14T16:31:21.4868842Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T16:31:21.4871949Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:31:21.4927116Z Deleting the contents of '/home/runner/work/lumo-lernen/lumo-lernen'
+2026-11-14T16:31:21.4931479Z ##[group]Initializing the repository
+2026-11-14T16:31:21.4935588Z [command]/usr/bin/git init /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:31:21.5710054Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T16:31:21.5710878Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T16:31:21.5711595Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T16:31:21.5712618Z hint: call:
+2026-11-14T16:31:21.5712888Z hint:
+2026-11-14T16:31:21.5713267Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T16:31:21.5713589Z hint:
+2026-11-14T16:31:21.5713956Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T16:31:21.5714465Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T16:31:21.5714986Z hint:
+2026-11-14T16:31:21.5715334Z hint: 	git branch -m <name>
+2026-11-14T16:31:21.5715671Z hint:
+2026-11-14T16:31:21.5716197Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T16:31:21.5716903Z Initialized empty Git repository in /home/runner/work/lumo-lernen/lumo-lernen/.git/
+2026-11-14T16:31:21.5725140Z [command]/usr/bin/git remote add origin https://github.com/Ullmann27/lumo-lernen
+2026-11-14T16:31:21.5781146Z ##[endgroup]
+2026-11-14T16:31:21.5782047Z ##[group]Disabling automatic garbage collection
+2026-11-14T16:31:21.5784233Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T16:31:21.5806314Z ##[endgroup]
+2026-11-14T16:31:21.5807147Z ##[group]Setting up auth
+2026-11-14T16:31:21.5811577Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:31:21.5840069Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:31:21.9512199Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:31:21.9541497Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:31:21.9687728Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:31:21.9711172Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:31:21.9858027Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T16:31:21.9882753Z ##[endgroup]
+2026-11-14T16:31:21.9883218Z ##[group]Fetching the repository
+2026-11-14T16:31:21.9896839Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ad00203a8eae65faac476d3dcbe78b8518f39197:refs/remotes/pull/497/merge
+2026-11-14T16:31:28.2145273Z From https://github.com/Ullmann27/lumo-lernen
+2026-11-14T16:31:28.2145815Z  * [new ref]         ad00203a8eae65faac476d3dcbe78b8518f39197 -> pull/497/merge
+2026-11-14T16:31:28.2157775Z ##[endgroup]
+2026-11-14T16:31:28.2158410Z ##[group]Determining the checkout info
+2026-11-14T16:31:28.2159016Z ##[endgroup]
+2026-11-14T16:31:28.2168912Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T16:31:28.2242254Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T16:31:28.2262695Z ##[group]Checking out the ref
+2026-11-14T16:31:28.2265747Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/497/merge
+2026-11-14T16:31:29.2712787Z Updating files:  65% (3251/4975)
+2026-11-14T16:31:29.3005335Z Updating files:  66% (3284/4975)
+2026-11-14T16:31:29.3248516Z Updating files:  67% (3334/4975)
+2026-11-14T16:31:29.3427467Z Updating files:  68% (3383/4975)
+2026-11-14T16:31:29.3452883Z Updating files:  69% (3433/4975)
+2026-11-14T16:31:29.3477520Z Updating files:  70% (3483/4975)
+2026-11-14T16:31:29.3502059Z Updating files:  71% (3533/4975)
+2026-11-14T16:31:29.3532771Z Updating files:  72% (3582/4975)
+2026-11-14T16:31:29.3575002Z Updating files:  73% (3632/4975)
+2026-11-14T16:31:29.3606982Z Updating files:  74% (3682/4975)
+2026-11-14T16:31:29.3638795Z Updating files:  75% (3732/4975)
+2026-11-14T16:31:29.3665245Z Updating files:  76% (3781/4975)
+2026-11-14T16:31:29.3692235Z Updating files:  77% (3831/4975)
+2026-11-14T16:31:29.3712805Z Updating files:  78% (3881/4975)
+2026-11-14T16:31:29.3727434Z Updating files:  79% (3931/4975)
+2026-11-14T16:31:29.3864636Z Updating files:  80% (3980/4975)
+2026-11-14T16:31:29.3888105Z Updating files:  81% (4030/4975)
+2026-11-14T16:31:29.3915395Z Updating files:  82% (4080/4975)
+2026-11-14T16:31:29.3933358Z Updating files:  83% (4130/4975)
+2026-11-14T16:31:29.3951169Z Updating files:  84% (4179/4975)
+2026-11-14T16:31:29.3968096Z Updating files:  85% (4229/4975)
+2026-11-14T16:31:29.3983099Z Updating files:  86% (4279/4975)
+2026-11-14T16:31:29.4002058Z Updating files:  87% (4329/4975)
+2026-11-14T16:31:29.4017470Z Updating files:  88% (4378/4975)
+2026-11-14T16:31:29.4033530Z Updating files:  89% (4428/4975)
+2026-11-14T16:31:29.4049360Z Updating files:  90% (4478/4975)
+2026-11-14T16:31:29.4075247Z Updating files:  91% (4528/4975)
+2026-11-14T16:31:29.4477412Z Updating files:  92% (4577/4975)
+2026-11-14T16:31:29.4685080Z Updating files:  93% (4627/4975)
+2026-11-14T16:31:29.4844374Z Updating files:  94% (4677/4975)
+2026-11-14T16:31:29.5038990Z Updating files:  95% (4727/4975)
+2026-11-14T16:31:29.5071083Z Updating files:  96% (4776/4975)
+2026-11-14T16:31:29.5213999Z Updating files:  97% (4826/4975)
+2026-11-14T16:31:29.5239538Z Updating files:  98% (4876/4975)
+2026-11-14T16:31:29.5259077Z Updating files:  99% (4926/4975)
+2026-11-14T16:31:29.5259446Z Updating files: 100% (4975/4975)
+2026-11-14T16:31:29.5259885Z Updating files: 100% (4975/4975), done.
+2026-11-14T16:31:29.5310392Z Note: switching to 'refs/remotes/pull/497/merge'.
+2026-11-14T16:31:29.5310662Z 
+2026-11-14T16:31:29.5311071Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T16:31:29.5311504Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T16:31:29.5312039Z state without impacting any branches by switching back to a branch.
+2026-11-14T16:31:29.5312573Z 
+2026-11-14T16:31:29.5312730Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T16:31:29.5313154Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T16:31:29.5313339Z 
+2026-11-14T16:31:29.5313511Z   git switch -c <new-branch-name>
+2026-11-14T16:31:29.5313653Z 
+2026-11-14T16:31:29.5313777Z Or undo this operation with:
+2026-11-14T16:31:29.5313912Z 
+2026-11-14T16:31:29.5314013Z   git switch -
+2026-11-14T16:31:29.5314171Z 
+2026-11-14T16:31:29.5314346Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T16:31:29.5314597Z 
+2026-11-14T16:31:29.5314847Z HEAD is now at ad00203 Merge 6b3047b7979dfb86d837e74a21b0fd890e4f9e66 into 057a4e8d067872c4f3514b126aa04c3706d2e5b5
+2026-11-14T16:31:29.5382637Z ##[endgroup]
+2026-11-14T16:31:29.5429107Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T16:31:29.5448571Z ad00203a8eae65faac476d3dcbe78b8518f39197
+2026-11-14T16:31:29.5658900Z ##[group]Run python3 -m py_compile tools/lumo_autosave.py tools/tests/test_lumo_autosave.py
+2026-11-14T16:31:29.5659573Z [36;1mpython3 -m py_compile tools/lumo_autosave.py tools/tests/test_lumo_autosave.py[0m
+2026-11-14T16:31:29.8904421Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:31:29.8904823Z ##[endgroup]
+2026-11-14T16:31:29.9278313Z ##[group]Run python3 -m unittest discover -v -s tools/tests -p test_lumo_autosave.py
+2026-11-14T16:31:29.9278846Z [36;1mpython3 -m unittest discover -v -s tools/tests -p test_lumo_autosave.py[0m
+2026-11-14T16:31:29.9304107Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:31:29.9304398Z ##[endgroup]
+2026-11-14T16:31:30.1002422Z test_known_secret_patterns_are_not_uploaded (test_lumo_autosave.CheckpointSafetyTest.test_known_secret_patterns_are_not_uploaded) ... ok
+2026-11-14T16:31:30.1007403Z test_only_known_design_and_code_paths_are_allowed (test_lumo_autosave.CheckpointSafetyTest.test_only_known_design_and_code_paths_are_allowed) ... ok
+2026-11-14T16:31:30.1010035Z test_symlinks_and_oversized_assets_are_rejected (test_lumo_autosave.CheckpointSafetyTest.test_symlinks_and_oversized_assets_are_rejected) ... ok
+2026-11-14T16:31:30.1010939Z 
+2026-11-14T16:31:30.1011449Z ----------------------------------------------------------------------
+2026-11-14T16:31:30.1012462Z Ran 3 tests in 0.002s
+2026-11-14T16:31:30.1012913Z 
+2026-11-14T16:31:30.1013116Z OK
+2026-11-14T16:31:30.1108530Z ##[group]Run python3 tools/lumo_autosave.py check
+2026-11-14T16:31:30.1108913Z [36;1mpython3 tools/lumo_autosave.py check[0m
+2026-11-14T16:31:30.1134494Z shell: /usr/bin/bash -e {0}
+2026-11-14T16:31:30.1134840Z ##[endgroup]
+2026-11-14T16:31:30.1428385Z [LUMO-CHECKPOINT] Working branch: (detached); no branch mutation in check mode.
+2026-11-14T16:31:30.7243760Z [LUMO-CHECKPOINT] Allowed pending paths: 0; filtered: 0
+2026-11-14T16:31:30.7398908Z Post job cleanup.
+2026-11-14T16:31:30.8064850Z [command]/usr/bin/git version
+2026-11-14T16:31:30.8092762Z git version 2.56.1
+2026-11-14T16:31:30.8116485Z Temporarily overriding HOME='/home/runner/work/_temp/1f9c6543-c33c-494a-8c74-015cb4f70fb1' before making global git config changes
+2026-11-14T16:31:30.8117328Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T16:31:30.8120128Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lumo-lernen/lumo-lernen
+2026-11-14T16:31:30.8147312Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T16:31:30.8169659Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T16:31:30.8327198Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T16:31:30.8350364Z http.https://github.com/.extraheader
+2026-11-14T16:31:30.8357036Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-14T16:31:30.8379250Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T16:31:30.8532333Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T16:31:30.8554452Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T16:31:30.8815905Z Cleaning up orphan processes
+2026-11-14T16:31:30.9094211Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

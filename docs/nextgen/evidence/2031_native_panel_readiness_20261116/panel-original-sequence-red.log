@@ -1,0 +1,39 @@
+test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap (test_nextgen_reference_android_probe.QuestionPanelReadinessTest.test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap) ... ERROR
+test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap (test_nextgen_2031_native_runtime_cases.SlowerPanelReadinessTest.test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap) ... ERROR
+
+======================================================================
+ERROR: test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap (test_nextgen_reference_android_probe.QuestionPanelReadinessTest.test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-native-panel-readiness/tools/android_qa/tests/test_nextgen_reference_android_probe.py", line 429, in test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap
+    target = sequence.instance.question_repeat_target()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-native-panel-readiness/.github/probes/lumo_nextgen_reference_android_probe.py", line 471, in question_repeat_target
+    panel = observed_panel_background(source)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-native-panel-readiness/.github/probes/lumo_nextgen_reference_android_probe.py", line 286, in observed_panel_background
+    require(box and box[2] - box[0] >= 160 and box[3] - box[1] >= 100,
+  File "/workspace/scratch/4fa97167812c/agent-native-panel-readiness/.github/probes/lumo_nextgen_learning_android_probe.py", line 71, in require
+    raise RuntimeError(message)
+RuntimeError: Current question-panel background not observed
+
+======================================================================
+ERROR: test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap (test_nextgen_2031_native_runtime_cases.SlowerPanelReadinessTest.test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-native-panel-readiness/tools/android_qa/tests/test_nextgen_2031_native_runtime_cases.py", line 288, in test_original_no_panel_then_open_panel_is_observed_after_only_one_question_tap
+    target = cases.question_slower_target(sequence.instance)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-native-panel-readiness/.github/probes/lumo_nextgen_2031_native_runtime_cases.py", line 101, in question_slower_target
+    panel = reference.observed_panel_background(source)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-native-panel-readiness/.github/probes/lumo_nextgen_reference_android_probe.py", line 286, in observed_panel_background
+    require(box and box[2] - box[0] >= 160 and box[3] - box[1] >= 100,
+  File "/workspace/scratch/4fa97167812c/agent-native-panel-readiness/.github/probes/lumo_nextgen_learning_android_probe.py", line 71, in require
+    raise RuntimeError(message)
+RuntimeError: Current question-panel background not observed
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.264s
+
+FAILED (errors=2)

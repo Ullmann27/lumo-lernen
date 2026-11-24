@@ -1,0 +1,451 @@
+--- a/tools/android_qa/kart_garage_evidence.py
++++ b/tools/android_qa/kart_garage_evidence.py
+@@ -216,7 +216,92 @@
+             'scope': 'Observed landscape driver card; saved fox selection remains mandatory'}
+ 
+ 
+-def stage_garage_scroll_observation(frame: dict, lines: list[dict]) -> dict:
++def stage_garage_word_observations(out: Path, tag: str, lines: list[dict]) -> dict:
++    """Recover complete known card captions from this frame's original words.
++
++    Decorative artwork may share the OCR line. Matching still requires whole,
++    consecutive words in one original TSV line, with observed word rectangles.
++    The evidence authorizes a list gesture only, never a vehicle selection.
++    """
++    captions = ('Comet', 'Gecko Velo', 'Boru Rally', 'Glider', 'Nala Comet', 'Noa Tide')
++    scales = {'contrast': 2, 'raw': 2, 'white-text': 2, 'white-latin': 2,
++              'navy-latin': 2, 'navy-latin-1x': 1, 'teal-text-1x': 1}
++    demand(Path(tag).name == tag, 'Invalid current vehicle OCR tag')
++    variants = list(dict.fromkeys(row.get('variant') for row in lines))
++    demand(variants and all(variant in scales for variant in variants),
++           'Original full-frame vehicle OCR variants are required')
++    observed, sources = [], []
++    for variant in variants:
++        source = out / f'{tag}-ocr-{variant}.tsv'
++        demand(source.is_file(), 'Original current-frame vehicle TSV is missing')
++        raw = source.read_bytes()
++        scale = scales[variant]
++        sources.append({'file': source.name, 'sha256': hashlib.sha256(raw).hexdigest(),
++                        'bytes': len(raw), 'scale': scale})
++        reader = csv.DictReader(io.StringIO(raw.decode('utf-8')), delimiter='\t',
++                                quoting=csv.QUOTE_NONE)
++        required = {'level', 'page_num', 'block_num', 'par_num', 'line_num',
++                    'word_num', 'text', 'conf', 'left', 'top', 'width', 'height'}
++        demand(required <= set(reader.fieldnames or ()), 'Invalid original vehicle TSV columns')
++        groups = {}
++        for word in reader:
++            if word['level'] == '5':
++                key = tuple(word[field] for field in ('page_num', 'block_num', 'par_num', 'line_num'))
++                groups.setdefault(key, []).append(word)
++        for key, words in groups.items():
++            matches = []
++            for caption in captions:
++                wanted = caption.casefold().split()
++                for start in range(len(words) - len(wanted) + 1):
++                    span = words[start:start + len(wanted)]
++                    actual = [unicodedata.normalize('NFKC', word['text']).strip().casefold()
++                              for word in span]
++                    if actual != wanted:
++                        continue
++                    numbers = [int(word['word_num']) for word in span]
++                    if numbers[0] < 1 or numbers != list(range(numbers[0], numbers[0] + len(span))):
++                        continue
++                    confidence = [float(word['conf']) for word in span]
++                    demand(all(math.isfinite(value) for value in confidence),
++                           'Nonfinite original vehicle OCR confidence')
++                    if any(value < 15 for value in confidence):
++                        continue
++                    boxes = []
++                    for word in span:
++                        left, top, width, height = (int(word[field]) for field in
++                                                   ('left', 'top', 'width', 'height'))
++                        demand(left >= 0 and top >= 0 and width > 0 and height > 0,
++                               'Invalid original vehicle word rectangle')
++                        boxes.append((left, top, left + width, top + height))
++                    # One TSV line alone must not join distant columns or
++                    # vertically disjoint words into a fictitious card title.
++                    if any(not (0 <= right[0] - left[2] <= max(left[3] - left[1],
++                                                              right[3] - right[1]) and
++                                max(left[1], right[1]) < min(left[3], right[3]))
++                           for left, right in zip(boxes, boxes[1:])):
++                        continue
++                    bounds = [min(box[0] for box in boxes) / scale,
++                              min(box[1] for box in boxes) / scale,
++                              max(box[2] for box in boxes) / scale,
++                              max(box[3] for box in boxes) / scale]
++                    matches.append({'start': start, 'end': start + len(span),
++                                    'text': caption, 'bounds': bounds, 'variant': variant,
++                                    'source_tsv': source.name, 'line_identity': list(key),
++                                    'word_numbers': numbers})
++            for match in matches:
++                # Comet inside the complete known Nala Comet caption is not
++                # a second card. Retain only the maximal known word sequence.
++                if any(other['start'] <= match['start'] and match['end'] <= other['end'] and
++                       (other['start'], other['end']) != (match['start'], match['end'])
++                       for other in matches):
++                    continue
++                observed.append({key: value for key, value in match.items()
++                                 if key not in ('start', 'end')})
++    return {'captions': observed, 'sources': sources}
++
++
++def stage_garage_scroll_observation(frame: dict, lines: list[dict], *,
++                                    caption_words: list[dict] | None = None) -> dict:
+     """Adapt PR #456's observed list drag to the current spatial menu anchors.
+ 
+     The title is intentionally hidden on short screens. The actual Karts tab,
+@@ -233,11 +318,33 @@
+     demand(headers and footers, 'Actual Karts tab and menu/start footer required before list scrolling')
+     header_bottom = min(row['bounds'][3] for row in headers)
+     footer_top = min(row['bounds'][1] for row in footers)
+-    cards = [row for row in lines if normalize(row['text']) in
++    candidates = lines if caption_words is None else caption_words
++    if caption_words is not None:
++        for row in headers + footers + candidates:
++            bounds = row.get('bounds')
++            demand(isinstance(bounds, (list, tuple)) and len(bounds) == 4 and
++                   all(isinstance(value, (int, float)) and not isinstance(value, bool) and
++                       math.isfinite(value) for value in bounds),
++                   'Invalid observed vehicle/menu bounds')
++            x0, y0, x1, y1 = bounds
++            demand(0 <= x0 < x1 <= width and 0 <= y0 < y1 <= height,
++                   'Observed vehicle/menu bounds exceed the current screenshot')
++    cards = [row for row in candidates if normalize(row['text']) in
+              ('comet', 'geckovelo', 'borurally', 'glider', 'nalacomet', 'noatide') and
+              0 < row['bounds'][0] < row['bounds'][2] < width * .50 and
+              header_bottom < row['bounds'][1] < row['bounds'][3] < footer_top]
+     demand(cards, 'No currently visible vehicle card in the actual left list')
++    if caption_words is not None:
++        for index, left in enumerate(cards):
++            x0, y0, x1, y1 = left['bounds']
++            for right in cards[index + 1:]:
++                a0, b0, a1, b1 = right['bounds']
++                overlap = max(0, min(x1, a1) - max(x0, a0)) * max(0, min(y1, b1) - max(y0, b0))
++                union = (x1 - x0) * (y1 - y0) + (a1 - a0) * (b1 - b0) - overlap
++                if normalize(left['text']) == normalize(right['text']):
++                    demand(overlap / union >= .6, 'Ambiguous repeated vehicle caption regions')
++                else:
++                    demand(overlap == 0, 'Conflicting vehicle captions in one observed region')
+     card = min(cards, key=lambda row: row['bounds'][1])
+     x0, y0, x1, y1 = card['bounds']
+     x, start = round((x0 + x1) / 2), round((y0 + y1) / 2)
+--- a/.github/probes/modernization_android_tour.py
++++ b/.github/probes/modernization_android_tour.py
+@@ -380,7 +380,17 @@
+ 
+     def recovery(frame, lines, source, *, deadline, previous_missing_frame):
+         nonlocal previous, swipes
+-        current = garage_evidence.stage_garage_scroll_observation(frame, lines)
++        try:
++            current = garage_evidence.stage_garage_scroll_observation(frame, lines)
++        except RuntimeError as error:
++            if str(error) != 'No currently visible vehicle card in the actual left list':
++                raise
++            words = garage_evidence.stage_garage_word_observations(
++                source.parent, source.stem, lines)
++            current = garage_evidence.stage_garage_scroll_observation(
++                frame, lines, caption_words=words['captions'])
++            current['caption_source'] = 'original_tsv_word_sequences'
++            current['ocr_sources'] = words['sources']
+         stable = (previous is not None and previous_missing_frame is not None and
+                   previous_missing_frame.get('pixels') == frame['pixels'] and
+                   max(abs(a - b) for a, b in zip(current['gesture'], previous['gesture'])) <= 12)
+--- /dev/null
++++ b/tools/android_qa/tests/test_kart_scroll_word_evidence.py
+@@ -0,0 +1,296 @@
++"""Original 3d91 card/OCR replay and bounded synthetic counterexamples.
++
++No Android run, OCR rerun, vehicle selection or race completion is claimed.
++"""
++from __future__ import annotations
++
++import ast
++import copy
++import csv
++import hashlib
++import importlib.util
++import io
++import json
++import os
++from pathlib import Path
++import shutil
++import tempfile
++from types import SimpleNamespace
++import unittest
++from unittest.mock import Mock, patch
++
++from PIL import Image
++
++
++ROOT = Path(__file__).resolve().parents[3]
++SOURCE_ROOT = Path(os.environ.get('LUMO_KART_WORD_SOURCE_ROOT', ROOT))
++HELPER = SOURCE_ROOT / 'tools/android_qa/kart_garage_evidence.py'
++TOUR = SOURCE_ROOT / '.github/probes/modernization_android_tour.py'
++SPEC = importlib.util.spec_from_file_location('kart_scroll_word_subject', HELPER)
++evidence = importlib.util.module_from_spec(SPEC)
++SPEC.loader.exec_module(evidence)
++FIXTURES = Path(__file__).parent / 'fixtures/kart-scroll-3d91'
++TAG = '21_stage_select_gecko_velo-2'
++FIELDS = ['level', 'page_num', 'block_num', 'par_num', 'line_num', 'word_num',
++          'left', 'top', 'width', 'height', 'conf', 'text']
++
++
++def digest(path):
++    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
++
++
++class GarageOriginalWordSequenceTests(unittest.TestCase):
++    def setUp(self):
++        temporary = tempfile.TemporaryDirectory()
++        self.addCleanup(temporary.cleanup)
++        self.out = Path(temporary.name)
++        for source in FIXTURES.glob(TAG + '*'):
++            shutil.copyfile(source, self.out / source.name)
++        self.source = self.out / (TAG + '.png')
++        self.lines = json.loads((self.out / (TAG + '-ocr.json')).read_text())
++        readiness = json.loads((FIXTURES / '21_stage_select_gecko_velo-surface-readiness.json').read_text())
++        self.frame = copy.deepcopy(readiness['frames'][2])
++        self.adb = Mock()
++        self.clock = SimpleNamespace(monotonic=lambda: 0.0)
++
++    def controller(self):
++        module = ast.parse(TOUR.read_text())
++        function = next(node for node in module.body if isinstance(node, ast.FunctionDef)
++                        and node.name == '_stage_kart_scroll_recovery')
++        scope = {'garage_evidence': evidence, 'probe': SimpleNamespace(digest=digest),
++                 'base': SimpleNamespace(adb=self.adb), 'time': self.clock}
++        exec(compile(ast.Module(body=[function], type_ignores=[]), str(TOUR), 'exec'), scope)
++        return scope['_stage_kart_scroll_recovery']()
++
++    def recovered(self):
++        return evidence.stage_garage_word_observations(self.out, TAG, self.lines)
++
++    def observe(self):
++        return evidence.stage_garage_scroll_observation(
++            self.frame, self.lines, caption_words=self.recovered()['captions'])
++
++    def tsv_rows(self):
++        source = self.out / (TAG + '-ocr-raw.tsv')
++        reader = csv.DictReader(io.StringIO(source.read_text()), delimiter='\t',
++                                quoting=csv.QUOTE_NONE)
++        return list(reader)
++
++    def write_rows(self, rows, variant='raw'):
++        stream = io.StringIO()
++        writer = csv.DictWriter(stream, FIELDS, delimiter='\t', quoting=csv.QUOTE_NONE,
++                                quotechar=None, lineterminator='\n')
++        writer.writeheader()
++        writer.writerows(rows)
++        (self.out / (TAG + '-ocr-' + variant + '.tsv')).write_text(stream.getvalue())
++
++    @staticmethod
++    def synthetic_words(tokens, *, block='900', top=1186, left=629):
++        rows = []
++        for index, token in enumerate(tokens, 1):
++            width = max(20, len(token) * 25)
++            rows.append(dict(zip(FIELDS, ['5', '1', block, '1', '1', str(index),
++                                         str(left), str(top), str(width), '56', '95', token])))
++            left += width + 20
++        return rows
++
++    def test_original_boru_frame_recovers_only_scroll_after_two_bound_frames(self):
++        # Replaying the same original as two controlled observations tests the
++        # production callback. It does not invent a second Android capture.
++        callback = self.controller()
++        first = callback(self.frame, self.lines, self.source, deadline=10,
++                         previous_missing_frame=None)
++        self.assertEqual(first['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
++        self.adb.assert_not_called()
++        second = callback(self.frame, self.lines, self.source, deadline=10,
++                          previous_missing_frame=copy.deepcopy(self.frame))
++        self.assertEqual(second['status'], 'SWIPE_SENT')
++        self.assertEqual(second['card']['text'], 'Boru Rally')
++        self.assertEqual(second['card']['bounds'], [314.5, 593.0, 511.0, 629.0])
++        self.assertEqual(second['gesture'], [413, 611, 413, 431])
++        self.assertEqual(second['caption_source'], 'original_tsv_word_sequences')
++        self.assertEqual(len(second['ocr_sources']), 7)
++        for source in second['ocr_sources']:
++            self.assertEqual(source['sha256'], digest(self.out / source['file']))
++        self.adb.assert_called_once_with('shell', 'input', 'swipe', '413', '611',
++                                         '413', '431', '650', timeout=10)
++
++    def test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job(self):
++        provenance = json.loads((FIXTURES / 'provenance.json').read_text())
++        self.assertEqual(provenance['run_id'], 43589206933)
++        self.assertEqual(provenance['job_id'], 132447694895)
++        self.assertEqual(provenance['artifact_id'], 14114895060)
++        self.assertEqual(provenance['host'], '3d91bd8355a539c3c2413760959684cd3fee985a')
++        self.assertEqual(provenance['native'], 'bd0712259bb64908a5649ee1999638826c9eb597')
++        self.assertEqual(provenance['archive_sha256'],
++                         '5a2bcf963a14ac300e1cab483a59c68fd77c1dbcf711110e2fcdab7102a0c790')
++        for item in provenance['files']:
++            source = FIXTURES / item['path']
++            self.assertEqual(source.stat().st_size, item['bytes'])
++            self.assertEqual(digest(source), item['sha256'])
++            if source.suffix == '.png':
++                with Image.open(source) as image:
++                    self.assertEqual(image.size, (2400, 1080))
++                    image.verify()
++
++    def test_original_line_failure_and_existing_exact_comet_path_are_preserved(self):
++        with self.assertRaisesRegex(RuntimeError, 'No currently visible vehicle card'):
++            evidence.stage_garage_scroll_observation(self.frame, self.lines)
++        lines = json.loads((FIXTURES / '21_stage_select_gecko_velo-0-ocr.json').read_text())
++        current = evidence.stage_garage_scroll_observation(self.frame, lines)
++        self.assertEqual(current['card']['text'], 'Comet')
++        self.assertEqual(current['gesture'], [374, 486, 374, 351])
++
++    def test_known_complete_names_keep_case_whitespace_and_longest_caption(self):
++        for caption in ('Comet', 'Gecko Velo', 'Boru Rally', 'Glider', 'Nala Comet', 'Noa Tide'):
++            with self.subTest(caption=caption):
++                tokens = ['decoration'] + ['  ' + token.swapcase() + '  '
++                                           for token in caption.split()] + ['detail']
++                self.write_rows(self.synthetic_words(tokens, left=10))
++                current = evidence.stage_garage_word_observations(
++                    self.out, TAG, [dict(self.lines[0], variant='raw')])
++                self.assertEqual([item['text'] for item in current['captions']], [caption])
++        # In particular Nala Comet must not yield an additional Comet card.
++
++    def test_partial_interrupted_cross_line_and_word_number_gap_are_rejected(self):
++        cases = [
++            self.synthetic_words(['BoruX', 'Rally']),
++            self.synthetic_words(['Boru', 'extra', 'Rally']),
++            self.synthetic_words(['BoruRally']),
++        ]
++        cross_line = self.synthetic_words(['Boru', 'Rally'])
++        cross_line[1]['line_num'] = '2'
++        cases.append(cross_line)
++        cross_block = self.synthetic_words(['Boru', 'Rally'])
++        cross_block[1]['block_num'] = '901'
++        cases.append(cross_block)
++        gap = self.synthetic_words(['Boru', 'Rally'])
++        gap[1]['word_num'] = '3'
++        cases.append(gap)
++        for rows in cases:
++            with self.subTest(rows=rows):
++                self.write_rows(rows)
++                self.assertEqual(self.recovered()['captions'], [])
++                with self.assertRaisesRegex(RuntimeError, 'No currently visible vehicle card'):
++                    self.observe()
++        self.adb.assert_not_called()
++
++    def test_distant_columns_or_disjoint_word_rows_are_not_joined(self):
++        for field, value in [('left', '1800'), ('top', '1300')]:
++            with self.subTest(field=field):
++                rows = self.synthetic_words(['Boru', 'Rally'])
++                rows[1][field] = value
++                self.write_rows(rows)
++                self.assertEqual(self.recovered()['captions'], [])
++
++    def test_word_confidence_and_original_tsv_presence_remain_mandatory(self):
++        rows = self.synthetic_words(['Boru', 'Rally'])
++        rows[0]['conf'] = '14.999'
++        self.write_rows(rows)
++        self.assertEqual(self.recovered()['captions'], [])
++        rows[0]['conf'] = 'nan'
++        self.write_rows(rows)
++        with self.assertRaisesRegex(RuntimeError, 'Nonfinite'):
++            self.recovered()
++        (self.out / (TAG + '-ocr-raw.tsv')).unlink()
++        with self.assertRaisesRegex(RuntimeError, 'TSV is missing'):
++            self.recovered()
++
++    def test_invalid_or_outside_word_rectangles_are_rejected(self):
++        for field, value in [('width', '0'), ('height', '-1'), ('left', '-2')]:
++            with self.subTest(field=field):
++                rows = self.synthetic_words(['Boru', 'Rally'])
++                rows[0][field] = value
++                self.write_rows(rows)
++                with self.assertRaisesRegex(RuntimeError, 'Invalid original vehicle word rectangle'):
++                    self.recovered()
++        self.write_rows(self.synthetic_words(['Boru', 'Rally'], left=5000))
++        with self.assertRaisesRegex(RuntimeError, 'bounds exceed'):
++            self.observe()
++
++    def test_right_preview_header_and_footer_captions_cannot_be_scroll_cards(self):
++        for top, left in [(1186, 3000), (400, 629), (1900, 629)]:
++            with self.subTest(top=top, left=left):
++                self.write_rows(self.synthetic_words(['Boru', 'Rally'], top=top, left=left))
++                with self.assertRaisesRegex(RuntimeError, 'No currently visible vehicle card'):
++                    self.observe()
++        self.adb.assert_not_called()
++
++    def test_duplicate_real_regions_and_conflicting_names_are_ambiguous(self):
++        original = self.tsv_rows()
++        duplicate = [dict(row, block_num='999', top=str(int(row['top']) + 200))
++                     for row in original if row['level'] == '5' and row['text'] in ('Boru', 'Rally')]
++        self.write_rows(original + duplicate)
++        with self.assertRaisesRegex(RuntimeError, 'Ambiguous repeated vehicle caption'):
++            self.observe()
++        self.write_rows(original + self.synthetic_words(['Gecko', 'Velo'], block='998'))
++        with self.assertRaisesRegex(RuntimeError, 'Conflicting vehicle captions'):
++            self.observe()
++
++    def test_same_card_ocr_variants_remain_one_region_and_top_card_order_is_preserved(self):
++        captions = self.recovered()['captions']
++        self.assertEqual(len(captions), 1)
++        second = dict(captions[0], variant='contrast', bounds=[315.0, 593.0, 511.0, 629.0])
++        proof = evidence.stage_garage_scroll_observation(
++            self.frame, self.lines, caption_words=captions + [second])
++        self.assertEqual(proof['card']['text'], 'Boru Rally')
++        comet = {'text': 'Comet', 'bounds': [314.0, 472.0, 434.0, 499.0], 'variant': 'contrast'}
++        proof = evidence.stage_garage_scroll_observation(
++            self.frame, self.lines, caption_words=captions + [comet])
++        self.assertEqual(proof['card'], comet)
++
++    def test_unstable_words_need_a_new_pair_and_changed_png_or_deadline_never_swipe(self):
++        callback = self.controller()
++        callback(self.frame, self.lines, self.source, deadline=10, previous_missing_frame=None)
++        rows = self.tsv_rows()
++        for row in rows:
++            if row['level'] == '5' and row['text'] in ('Boru', 'Rally'):
++                row['left'] = str(int(row['left']) + 40)
++        self.write_rows(rows)
++        observed = callback(self.frame, self.lines, self.source, deadline=10,
++                            previous_missing_frame=self.frame)
++        self.assertEqual(observed['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
++        self.adb.assert_not_called()
++        self.source.write_bytes(b'changed after observation')
++        with self.assertRaisesRegex(RuntimeError, 'screenshot changed'):
++            callback(self.frame, self.lines, self.source, deadline=10,
++                     previous_missing_frame=self.frame)
++        self.adb.assert_not_called()
++        shutil.copyfile(FIXTURES / (TAG + '.png'), self.source)
++        self.clock.monotonic = lambda: 10.0
++        with self.assertRaisesRegex(RuntimeError, 'bounded deadline'):
++            callback(self.frame, self.lines, self.source, deadline=10,
++                     previous_missing_frame=self.frame)
++        self.adb.assert_not_called()
++
++    def test_five_gesture_limit_remains_hard_after_word_recovery(self):
++        callback = self.controller()
++        for number in range(1, 6):
++            callback(self.frame, self.lines, self.source, deadline=10,
++                     previous_missing_frame=None)
++            result = callback(self.frame, self.lines, self.source, deadline=10,
++                              previous_missing_frame=self.frame)
++            self.assertEqual(result['swipe_number'], number)
++        callback(self.frame, self.lines, self.source, deadline=10, previous_missing_frame=None)
++        with self.assertRaisesRegex(RuntimeError, 'after five observed list gestures'):
++            callback(self.frame, self.lines, self.source, deadline=10,
++                     previous_missing_frame=self.frame)
++        self.assertEqual(self.adb.call_count, 5)
++
++    def test_missing_anchors_or_incomplete_surface_never_activate_word_recovery(self):
++        missing = [row for row in self.lines if evidence.normalize(row['text']) not in
++                   ('kartmenu', 'menu', 'start', 'rennenstarten')]
++        cases = [(self.frame, missing),
++                 (dict(self.frame, acceptable_for_target_sampling=False), self.lines),
++                 (dict(self.frame, pixels=[1080, 2400]), self.lines)]
++        with patch.object(evidence, 'stage_garage_word_observations',
++                          side_effect=AssertionError('must not reach word reader')) as words:
++            for frame, lines in cases:
++                with self.subTest(frame=frame, lines=lines), self.assertRaises(RuntimeError):
++                    self.controller()(frame, lines, self.source, deadline=10,
++                                      previous_missing_frame=None)
++            words.assert_not_called()
++        self.adb.assert_not_called()
++
++
++if __name__ == '__main__':
++    unittest.main()

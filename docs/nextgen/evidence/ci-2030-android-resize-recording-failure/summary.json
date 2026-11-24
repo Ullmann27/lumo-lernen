@@ -1,0 +1,163 @@
+{
+  "schema": "lumo.nextgen.original-android-failure-archive",
+  "version": 1,
+  "status": "FAIL",
+  "release_eligible": false,
+  "new_android_pass_claimed": false,
+  "workflow_run": 43790915460,
+  "android_job": 133056371546,
+  "artifact_id": 14192539626,
+  "source_commit": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+  "workflow_outcome": {
+    "validate": "SUCCESS",
+    "build": "SUCCESS",
+    "android": "FAILURE",
+    "publish": "SKIPPED",
+    "basis": "Validate/build and skipped publication supplied by Root; original Android result and full job log are archived here."
+  },
+  "candidate": {
+    "sha256": "66870e9232eaf05e5cad893d410cb8046318ae6d226c0bd0e90e1af0a178a4f2",
+    "flutter_source_commit": "c4e330faa61e231dd3fd44c21085c95ddcd5b7c9",
+    "versionCode": 2030,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "versionName": "0.13.18",
+    "godot": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+      "engine": "4.6.3",
+      "pck_sha256": "8a92cb22afabe31dfba7fc80f73e4b92aa7fb469c69699745fcb7c00d84b484b",
+      "bytes": 278589724
+    },
+    "abis": [
+      "x86_64"
+    ],
+    "tracked_source_clean": true
+  },
+  "installed": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2030,
+    "versionName": "0.13.18",
+    "sha256": "66870e9232eaf05e5cad893d410cb8046318ae6d226c0bd0e90e1af0a178a4f2",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "signature_binding": "installed base.apk hash equals independently signature-verified input APK"
+  },
+  "artifact": {
+    "bytes": 19467723,
+    "sha256": "e7ca12c47729ece9ca880db91a80beea0dec63cc5d82f5d7c0c975e3c9885b35",
+    "members": 225
+  },
+  "original_probe_started_utc": "2026-11-16T02:40:21Z",
+  "original_probe_finished_utc": "2026-11-16T02:43:25Z",
+  "observed": {
+    "conversation": {
+      "ui_contract": "ea",
+      "typed_question": "Warum zuerst zwei?",
+      "visible_explanation": "Im Zehnerfeld sind 8 Plätze besetzt. Bis zur Zehn fehlen 2, denn 10 minus 8 ist 2. Von den 5 zusätzlichen Objekten ergänzen wir deshalb zuerst 2. Dann bleiben 3 übrig.",
+      "task_grounding_label_observed": true,
+      "stop_visible": true,
+      "microphone_request_observed": true,
+      "microphone_ui_outcome": "explicit_device_limitation",
+      "postgrant_explicit_start": false,
+      "recognition": "NOT_VERIFIED",
+      "limitation": "No real spoken utterance was supplied; emulator recognizer availability is recorded separately."
+    },
+    "first_stone_touch": {
+      "before_checkpoint": "selected-originals/0153-conversation-learning-after-preferences.xml",
+      "touch": "selected-originals/0156-bridge-move-one-touch.json",
+      "after_checkpoint": "selected-originals/0157-bridge-checkpoint-preferences.xml",
+      "moved_before": 0,
+      "moved_after": 1
+    },
+    "pause_resume": {
+      "profile_id": "1794796892544150",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true
+    },
+    "route_return": {
+      "profile_id": "1794796892544150",
+      "learning_keys_compared": 2,
+      "same_task_checkpoint": true
+    },
+    "read_only_archival_comparison": {
+      "all_parsed_preferences_equal_from_first_moved1_through_compact": true,
+      "profile_preserved": true,
+      "wallet_preserved": true,
+      "task_checkpoint_preserved": true,
+      "checkpoint": {
+        "topicId": "bridge",
+        "seed": 0,
+        "sessionId": "lab-attempt-9439bf04ee1e33f2e0af88d3c2711647",
+        "phase": "example",
+        "problemId": "bridge-8-5",
+        "moved": 1,
+        "pieces": [],
+        "tokens": [],
+        "patternChoice": null,
+        "hint": 3,
+        "support": 3,
+        "wrongBefore": false,
+        "attempt": 0,
+        "answer": "",
+        "done": false,
+        "pendingAttemptId": null,
+        "lastSavedAttemptId": null
+      }
+    },
+    "compact_display": {
+      "layout": "compact",
+      "width": 720,
+      "height": 1600,
+      "android_test_density_dpi": 320,
+      "wm_size": "Physical size: 1080x2340\nOverride size: 720x1600",
+      "wm_density": "Physical density: 440\nOverride density: 320",
+      "physical_ppi_claimed": false
+    },
+    "compact_png": {
+      "path": "selected-originals/0186-bridge-compact.png",
+      "width": 720,
+      "height": 1600,
+      "bytes": 380051,
+      "sha256": "7c1f82e316bfcaeca28383fa0d18d5e866c11e45711eddcecc6fb7d9fd0ea847"
+    },
+    "compact_capture": {
+      "path": "selected-originals/0181-bridge-resize-compact.mp4",
+      "bytes": 93539,
+      "sha256": "8f436741a6b25fbccef4ee7784ef54ae41786bcbbc5e4c342352db9355c0300a",
+      "video_streams": 1,
+      "codec": "h264",
+      "encoded_width": 720,
+      "encoded_height": 1600,
+      "nb_frames": 1,
+      "nb_read_frames": 1,
+      "stream_duration_seconds": 0.0,
+      "format_duration_present": false,
+      "recording_stderr_bytes": 0,
+      "positive_duration_gate_passed": false,
+      "inspection": "derived-inspection/root-ffprobe-original.json",
+      "inspection_is_derived_not_original_zip_member": true
+    }
+  },
+  "failure": {
+    "message": "No decodable actual video was recorded",
+    "stage": "resize_bridge: first compact recording finalizer",
+    "source_location": ".github/probes/lumo_nextgen_learning_android_probe.py:737",
+    "interpretation": "The original MP4 has one readable video frame and no positive duration. The existing generic error wording does not establish codec corruption. The source recorded the resting target only after the WM change and settling delay.",
+    "compact_resize_stage_passed": false
+  },
+  "not_reached": [
+    "expanded resize",
+    "emulated Fold7 cover resize",
+    "emulated Fold7 inner resize",
+    "later laboratory Banane and pattern stages",
+    "native 8+5 reference",
+    "native Banane reference",
+    "native pattern reference",
+    "native audio/avatar/performance gates"
+  ],
+  "limits": [
+    "No successful real speech recognition is claimed.",
+    "No whole Android tour, release eligibility or native reference success is claimed.",
+    "Later source/capture corrections do not change this original run outcome."
+  ]
+}

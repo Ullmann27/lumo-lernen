@@ -1,0 +1,20 @@
+{
+  "scope": "Only after fresh complete required gates pass",
+  "source_parent": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "reader": {
+    "first_parent": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+    "additional_parent": "ee08fd14b38aae89120b5f6200ca16a97a7a2861",
+    "tree": "ae8028d17967e75fe5ca2f750ae85beb3365652c",
+    "branch": "qa/lumo-original-replay-04-20261114",
+    "workflow_blob": "7779c3d5f90269104be3f289865d744b3e788d11"
+  },
+  "publisher": {
+    "first_parent": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+    "additional_parent": "1dbf11115923fa5c2ef8f30d8a2ecf990d91e5db",
+    "tree": "fae2b113809611fd7dd28704d8ba7d2a2e3e378c",
+    "branch": "delivery/lumo-live-2020-20261114",
+    "workflow_blob": "712529847807e1d0a7135654703a13b7a63a1e1e"
+  },
+  "reason": "Keep every reviewed workflow byte while making the actual workflow addition visible against the first parent. The earlier same-tree selftest push did not start a path-filtered run. Prepared checkpoint ancestry is retained as second parent. Always verify actual started run, do not infer success from ref creation.",
+  "no_activation_yet": true
+}

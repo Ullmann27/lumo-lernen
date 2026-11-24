@@ -1,0 +1,73 @@
+00:00 +0: loading /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart
+00:00 +0: three illustrated answers remain practice without assessed mastery
+00:00 +0 -1: three illustrated answers remain practice without assessed mastery [E]
+  Expected: <0.2>
+    Actual: <0.8500000000000001>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/assisted_learning_evidence_test.dart 37:7      main.<fn>
+  
+00:00 +0 -1: guided errors do not become a weakness or frustration diagnosis
+00:00 +0 -2: guided errors do not become a weakness or frustration diagnosis [E]
+  Expected: <0.65>
+    Actual: <0.285>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/assisted_learning_evidence_test.dart 56:5      main.<fn>
+  
+00:00 +0 -2: assisted counts cannot re-enter mastery on the next assessed answer
+00:00 +0 -3: assisted counts cannot re-enter mastery on the next assessed answer [E]
+  Expected: a value less than or equal to <0.2>
+    Actual: <0.745>
+     Which: is not a value less than or equal to <0.2>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/assisted_learning_evidence_test.dart 71:5      main.<fn>
+  
+00:00 +0 -3: genuine unaided transfer can subsequently raise difficulty
+00:00 +0 -4: genuine unaided transfer can subsequently raise difficulty [E]
+  Expected: <1>
+    Actual: <4>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/assisted_learning_evidence_test.dart 86:7      main.<fn>
+  
+00:00 +0 -4: profile reload preserves practice without inventing assessment
+00:00 +0 -5: profile reload preserves practice without inventing assessment [E]
+  Expected: <0>
+    Actual: <87>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/assisted_learning_evidence_test.dart 106:5     main.<fn>
+  
+00:00 +0 -5: guided profile errors do not trigger a diagnosis after JSON restore
+00:00 +0 -6: guided profile errors do not trigger a diagnosis after JSON restore [E]
+  Expected: <0>
+    Actual: <0.9169999999999999>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/assisted_learning_evidence_test.dart 132:5     main.<fn>
+  
+00:00 +0 -6: legacy mixed JSON keeps all history without claiming an attribution
+00:00 +0 -7: legacy mixed JSON keeps all history without claiming an attribution [E]
+  Expected: <0>
+    Actual: <73>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test/assisted_learning_evidence_test.dart 153:5     main.<fn>
+  
+00:00 +0 -7: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: assisted counts cannot re-enter mastery on the next assessed answer
+  /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: genuine unaided transfer can subsequently raise difficulty
+  /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: guided errors do not become a weakness or frustration diagnosis
+  /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: guided profile errors do not trigger a diagnosis after JSON restore
+  ... and 3 more

@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14T15:16:22.035981+00:00",
+  "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+  "run_id": 43607156921,
+  "artifact_id": 14119611994,
+  "images_actually_opened_by_root": 3,
+  "images": [
+    {
+      "path": "modernization/schreibcoach_phone.png",
+      "bytes": 133033,
+      "sha256": "49130519fa8610bfdb1ba5160137a100340ebf55926dcb1d37686fd47f62c129",
+      "git_blob": "1f301f386e5dc257a7a7fb77d38cc2b6a7a3d279",
+      "dimensions_px": [
+        824,
+        1830
+      ],
+      "observations": [
+        "The corrected helper sentence is dark and fully readable on the white prompt card.",
+        "Main instruction, drawing area and both bottom buttons visible. A small outlined missing-glyph box remains in the prompt illustration in this Linux capture; Android appearance is not inferred."
+      ]
+    },
+    {
+      "path": "modernization/journal_phone.png",
+      "bytes": 1623870,
+      "sha256": "16a4b8bdfca91fcff5eaf3b7047b1990fca64d1c83f23eaa6cf9704da2616c7d",
+      "git_blob": "b5d1df905e54b40a0926b59ed377409a3f6be397",
+      "dimensions_px": [
+        824,
+        1830
+      ],
+      "observations": [
+        "Empty-journal heading, helper text, plus control and orange writing action are readable with no obvious overlap in this captured state.",
+        "The background and fox artwork are visible; this still image does not prove editor interaction or saved-data persistence."
+      ]
+    },
+    {
+      "path": "reading-passages/reading-phone.png",
+      "bytes": 289963,
+      "sha256": "80d434d326d1439f42522bd48ceda53a3fef3a283711c00bb52072787243a108",
+      "git_blob": "e73bea5318499c85c6c1258507e46973403185dd",
+      "dimensions_px": [
+        540,
+        1200
+      ],
+      "observations": [
+        "Question and three answers are readable in the captured scrolled feedback state. The passage begins above the cropped viewport.",
+        "Wrong and correct answers have red and green styling; small outlined replacement glyphs remain at their left edges in this Linux capture. No Android rendering defect or comprehensive accessibility approval is inferred."
+      ]
+    }
+  ],
+  "scope": "Three existing actual Linux Flutter captures visually reviewed; no new renderer/test execution and no signed APK, Android or physical FPS approval."
+}

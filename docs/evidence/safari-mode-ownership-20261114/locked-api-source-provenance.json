@@ -1,0 +1,85 @@
+{
+  "packages": [
+    {
+      "package": "speech_to_text",
+      "version": "7.5.0",
+      "archive_url": "https://pub.dev/api/archives/speech_to_text-7.5.0.tar.gz",
+      "archive_bytes": 311312,
+      "locked_sha256": "f2fabd017b5cb07f4e06d496b2d4b957e39534bc848f92b1e6acac80a10f4967",
+      "actual_sha256": "f2fabd017b5cb07f4e06d496b2d4b957e39534bc848f92b1e6acac80a10f4967",
+      "source_files": [
+        {
+          "path": "lib/speech_recognition_error.dart",
+          "sha256": "f1b45073dea71b9ab0a97e437cc8e7c9b1fae1f09a60b509609b337ab604868e"
+        },
+        {
+          "path": "lib/speech_to_text_provider.dart",
+          "sha256": "0800f9de4d04510565445175e1ea0b0f332cd8f3e73ff5ab1abcf051cc197025"
+        },
+        {
+          "path": "lib/speech_recognition_result.dart",
+          "sha256": "d7ec440c72f51b59449a8102bc5906c98f9aa0bfd0272fca9c08e8de2c1d9291"
+        },
+        {
+          "path": "lib/speech_recognition_event.dart",
+          "sha256": "1e936d2d19f27d29b0993fc154ab40988f5ec1f635d16094eaed3733d5054750"
+        },
+        {
+          "path": "lib/speech_to_text.dart",
+          "sha256": "88845451fb16114b285706238c72ac20d8abf5bf63e4a5d6901da4da9f29ac50"
+        },
+        {
+          "path": "lib/balanced_alternates.dart",
+          "sha256": "c7ad1fe4d1fb3fbaa508ea69a5f344bdc2727e339f1cdc251b26ad64322324fd"
+        },
+        {
+          "path": "lib/speech_recognition_error.g.dart",
+          "sha256": "2e8274ba80607f7b4557ea078afed22b924d7b9ad4ccd4e27adc6ba718d7da0b"
+        },
+        {
+          "path": "lib/speech_recognition_result.g.dart",
+          "sha256": "dc5c0b3b500098bd01442401144afc20021d4cca3d2b58bc79df545c3170603d"
+        },
+        {
+          "path": "lib/speech_to_text_web.dart",
+          "sha256": "5aa4c5c9f90bf571a71f923451ef7cba4a25e1f9612bf13300099c8afd9e6fd8"
+        },
+        {
+          "path": "pubspec.yaml",
+          "sha256": "ce18f8da6ebc50b6a20d4dbe24f7512f971f5dc74f42d44fc809c6255f9583f3"
+        }
+      ]
+    },
+    {
+      "package": "speech_to_text_platform_interface",
+      "version": "2.5.0",
+      "archive_url": "https://pub.dev/api/archives/speech_to_text_platform_interface-2.5.0.tar.gz",
+      "archive_bytes": 9912,
+      "locked_sha256": "7e447356be3074c471223c9d179ef3f822475350b67ca923ec71ab3bf2ede214",
+      "actual_sha256": "7e447356be3074c471223c9d179ef3f822475350b67ca923ec71ab3bf2ede214",
+      "source_files": [
+        {
+          "path": "lib/method_channel_speech_to_text.dart",
+          "sha256": "ebe096ab73c531db7a200f7667da1653d4b0a5d9203ecde26c3df1fd3af30c15"
+        },
+        {
+          "path": "lib/speech_to_text_platform_interface.dart",
+          "sha256": "78f238ef6df49a8aa1bc8bb17f367ccc35e1905502386eb022ce961d9624b4ed"
+        },
+        {
+          "path": "pubspec.yaml",
+          "sha256": "8d26fe249f8717cc8456e52b4e5995e4c83ddae50fce2775dff11cb22c27f624"
+        }
+      ]
+    }
+  ],
+  "flutter_test_api": {
+    "repository": "flutter/flutter",
+    "ref": "3.44.9",
+    "path": "packages/flutter_test/lib/src/test_default_binary_messenger.dart",
+    "blob": "996d3d8f339a2bf1baf32c1fdd816297f7d5e818",
+    "verified_signature": "Future<ByteData?> handlePlatformMessage(String channel, ByteData? data, ui.PlatformMessageResponseCallback? callback)",
+    "source_url": "https://github.com/flutter/flutter/blob/3.44.9/packages/flutter_test/lib/src/test_default_binary_messenger.dart"
+  },
+  "scope": "Read-only inspection of locked package and SDK API sources; no package installation, Dart compiler, Flutter engine or device was executed."
+}

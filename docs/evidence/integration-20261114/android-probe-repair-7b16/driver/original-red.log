@@ -1,0 +1,49 @@
+test_actual_api35_icon_line_uses_exact_word_after_two_original_frames (test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_actual_api35_icon_line_uses_exact_word_after_two_original_frames) ... ERROR
+test_actual_update_overlapping_icon_line_uses_exact_word_after_two_original_frames (test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_actual_update_overlapping_icon_line_uses_exact_word_after_two_original_frames) ... ERROR
+
+======================================================================
+ERROR: test_actual_api35_icon_line_uses_exact_word_after_two_original_frames (test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_actual_api35_icon_line_uses_exact_word_after_two_original_frames)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/tests/test_kart_driver_word_evidence.py", line 83, in test_actual_api35_icon_line_uses_exact_word_after_two_original_frames
+    self.assert_original_word_touch('api35', [168.0, 490.0, 276.0, 519.0], [222, 504])
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/tests/test_kart_driver_word_evidence.py", line 59, in assert_original_word_touch
+    result = self.replay(scope)
+             ^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/tests/test_kart_driver_word_evidence.py", line 56, in replay
+    return tour._select_stage_driver(self.out)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/.github/probes/modernization_android_tour.py", line 405, in _select_stage_driver
+    scoped = garage_evidence.stage_driver_target_observation(frame, lines)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/kart_garage_evidence.py", line 155, in stage_driver_target_observation
+    demand(targets, 'No exact Lumo driver caption in the observed left-hand list')
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/kart_garage_evidence.py", line 17, in demand
+    raise RuntimeError(message)
+RuntimeError: No exact Lumo driver caption in the observed left-hand list
+
+======================================================================
+ERROR: test_actual_update_overlapping_icon_line_uses_exact_word_after_two_original_frames (test_kart_driver_word_evidence.ActualDriverWordEvidenceTests.test_actual_update_overlapping_icon_line_uses_exact_word_after_two_original_frames)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/tests/test_kart_driver_word_evidence.py", line 86, in test_actual_update_overlapping_icon_line_uses_exact_word_after_two_original_frames
+    self.assert_original_word_touch('update', [304.0, 490.0, 412.0, 519.0], [358, 504])
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/tests/test_kart_driver_word_evidence.py", line 59, in assert_original_word_touch
+    result = self.replay(scope)
+             ^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/tests/test_kart_driver_word_evidence.py", line 56, in replay
+    return tour._select_stage_driver(self.out)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/.github/probes/modernization_android_tour.py", line 405, in _select_stage_driver
+    scoped = garage_evidence.stage_driver_target_observation(frame, lines)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/kart_garage_evidence.py", line 162, in stage_driver_target_observation
+    demand(overlap / union >= .6, 'Ambiguous Lumo driver captions in the observed list')
+  File "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/kart_garage_evidence.py", line 17, in demand
+    raise RuntimeError(message)
+RuntimeError: Ambiguous Lumo driver captions in the observed list
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.162s
+
+FAILED (errors=2)

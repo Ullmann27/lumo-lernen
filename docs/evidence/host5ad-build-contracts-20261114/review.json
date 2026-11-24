@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "host": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+  "run_id": 43614047730,
+  "run_attempt": 1,
+  "job_id": 132506515793,
+  "artifact_id": 14122695689,
+  "artifact": {
+    "bytes": 27252,
+    "sha256": "9872837fd1522b10c3918d6d05b7d83f66a21d81e3f4a982c2f9f893d1e55fef",
+    "all_member_crc_sha_verified": true,
+    "members": 1
+  },
+  "original_log": {
+    "bytes": 174562,
+    "sha256": "4d42db3efc95a9db1cff503536aade325e8a009632d92781ca8976c5ee6d6d0a",
+    "git_blob": "36829c1f1adc3b93bdb559f6805c00808dcbdcfd"
+  },
+  "actual_unittest_count": 877,
+  "duration_seconds_reported": 361.943,
+  "footer_line": 988,
+  "ok_line": 990,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "exact_pcm_markers": [
+    {
+      "line": 1029,
+      "text": "LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+    },
+    {
+      "line": 1030,
+      "text": "LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true"
+    },
+    {
+      "line": 1031,
+      "text": "LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47"
+    }
+  ],
+  "actual_step": {
+    "name": "Verify all build and preservation contracts",
+    "status": "completed",
+    "conclusion": "success",
+    "number": 20,
+    "started_at": "2026-11-14T16:28:05Z",
+    "completed_at": "2026-11-14T16:34:08Z"
+  },
+  "limitations": [
+    "Original current CI log analysis only; no test or JVM execution was repeated.",
+    "PCM markers explicitly describe a synthetic JVM boundary, not Android playback.",
+    "This build-contract stage is not an APK, Android, update or delivery approval."
+  ],
+  "previous_candidate_result_transferred": false
+}

@@ -1,0 +1,137 @@
+[
+  {
+    "test": {
+      "id": 3955,
+      "name": "d1_woerter real registry answer persists its exact subject and topic",
+      "suiteID": 3945,
+      "groupIDs": [
+        3947
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 283,
+      "root_column": 5,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart"
+    },
+    "events": [
+      {
+        "testID": 3955,
+        "messageType": "print",
+        "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following StateError was thrown running a test:\nBad state: No element\n\nWhen the exception was thrown, this was the stack:\n#0      Iterable.first (dart:core/iterable.dart:663:7)\n#1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)\n#3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)\n#4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)\n#5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)\n#6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)\n#7      WidgetController.drag (package:flutter_test/src/controller.dart:1602:31)\n#8      _revealWrittenWord (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:195:16)\n#9      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:293:15)\n<asynchronous suspension>\n#10     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#11     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided 2 frames from dart:async-patch and package:stack_trace)\n\nThe test description was:\n  d1_woerter real registry answer persists its exact subject and topic\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+        "type": "print",
+        "time": 442255
+      },
+      {
+        "testID": 3955,
+        "error": "Test failed. See exception logs above.\nThe test description was: d1_woerter real registry answer persists its exact subject and topic",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 442260
+      },
+      {
+        "testID": 3955,
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 442261
+      }
+    ]
+  },
+  {
+    "test": {
+      "id": 3974,
+      "name": "actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+      "suiteID": 3945,
+      "groupIDs": [
+        3947
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 494,
+      "root_column": 3,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart"
+    },
+    "events": [
+      {
+        "testID": 3974,
+        "messageType": "print",
+        "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following StateError was thrown running a test:\nBad state: No element\n\nWhen the exception was thrown, this was the stack:\n#0      Iterable.first (dart:core/iterable.dart:663:7)\n#1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)\n#3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)\n#4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)\n#5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)\n#6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)\n#7      WidgetController.drag (package:flutter_test/src/controller.dart:1602:31)\n#8      _revealWrittenWord (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:195:16)\n#9      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:502:11)\n<asynchronous suspension>\n#10     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#11     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided 2 frames from dart:async-patch and package:stack_trace)\n\nThe test description was:\n  actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+        "type": "print",
+        "time": 451094
+      },
+      {
+        "testID": 3974,
+        "error": "Test failed. See exception logs above.\nThe test description was: actual Diktat canvas and duplicate self-ratings persist one correct and one wrong word",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 451094
+      },
+      {
+        "testID": 3974,
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 451095
+      }
+    ]
+  },
+  {
+    "test": {
+      "id": 3975,
+      "name": "two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+      "suiteID": 3945,
+      "groupIDs": [
+        3947
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 531,
+      "root_column": 3,
+      "root_url": "file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart"
+    },
+    "events": [
+      {
+        "testID": 3975,
+        "messageType": "print",
+        "message": "══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════\nThe following StateError was thrown running a test:\nBad state: No element\n\nWhen the exception was thrown, this was the stack:\n#0      Iterable.first (dart:core/iterable.dart:663:7)\n#1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)\n#3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)\n#4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)\n#5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)\n#6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)\n#7      WidgetController.drag (package:flutter_test/src/controller.dart:1602:31)\n#8      _revealWrittenWord (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:195:16)\n#9      main.<anonymous closure> (file:///home/runner/work/lumo-lernen/lumo-lernen/test/learning_modules/deutsch_sach_module_progress_test.dart:541:15)\n<asynchronous suspension>\n#10     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#11     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided 2 frames from dart:async-patch and package:stack_trace)\n\nThe test description was:\n  two complete actual Diktat sessions show twenty words and award each earned bonus without extra\n  Daily\n════════════════════════════════════════════════════════════════════════════════════════════════════",
+        "type": "print",
+        "time": 451378
+      },
+      {
+        "testID": 3975,
+        "error": "Test failed. See exception logs above.\nThe test description was: two complete actual Diktat sessions show twenty words and award each earned bonus without extra Daily",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 451378
+      },
+      {
+        "testID": 3975,
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 451378
+      }
+    ]
+  }
+]

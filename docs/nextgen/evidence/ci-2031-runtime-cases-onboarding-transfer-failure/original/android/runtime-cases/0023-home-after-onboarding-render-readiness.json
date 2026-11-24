@@ -1,0 +1,39 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "0023-home-after-onboarding",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "0023-home-after-onboarding-render-candidate-1.png",
+      "sha256": "2114754d1b0048f7ef72df07e518972dd04125e12e92087758eacfa77001293a",
+      "width": 1080,
+      "height": 2340,
+      "content_entropy_bits": 0.006,
+      "threshold_bits": 3.0,
+      "visually_ready": false,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    },
+    {
+      "capture": "0023-home-after-onboarding-render-candidate-2.png",
+      "sha256": "2114754d1b0048f7ef72df07e518972dd04125e12e92087758eacfa77001293a",
+      "width": 1080,
+      "height": 2340,
+      "content_entropy_bits": 0.006,
+      "threshold_bits": 3.0,
+      "visually_ready": false,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    },
+    {
+      "capture": "0023-home-after-onboarding-render-candidate-3.png",
+      "sha256": "86824330887207b940a50e457e9a9ac53479310e5a87586052c465d9f5f8fd99",
+      "width": 1080,
+      "height": 2340,
+      "content_entropy_bits": 7.082,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 9.026
+}

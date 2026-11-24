@@ -1,0 +1,80 @@
+{
+  "schema": "lumo.c4.small-result-actions.r2-original-review.v1",
+  "run": {
+    "id": 43595002861,
+    "attempt": 1,
+    "job_id": 132447521284,
+    "qa_head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+    "qa_tree": "767d74b03ea977547c83aa412bb0a96da9253b4f",
+    "conclusion": "failure"
+  },
+  "product": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e"
+  },
+  "artifact": {
+    "id": 14113299183,
+    "name": "lumo-c4-small-result-actions-aab092",
+    "bytes": 1507887,
+    "sha256": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
+    "git_blob": "5ffcca7542bfd0c990e82630a6688a9764fc877c",
+    "official_download_count": 1,
+    "zip_crc_valid": true,
+    "canonical_unique_regular_paths": true,
+    "files": 95,
+    "png_files": 0,
+    "archive_code_executed": false
+  },
+  "runtime": {
+    "dart_exit_code": 1,
+    "godot_exit_code": 1,
+    "native_checks": 123,
+    "completed_target_actions": 0,
+    "native_error": "small_result_restart_before waits for the matching fresh settled layout",
+    "dart_failure": "test/games/connect_four_small_result_actions_qa.dart:90:7 expected native['passed'] true, received false",
+    "last_state": {
+      "revision": 18,
+      "ack": 10,
+      "phase": "won",
+      "paused": true,
+      "twoPlayers": true,
+      "rewarded": true
+    },
+    "observed_requests": 10,
+    "first_round_stars": 5,
+    "first_round_xp": 40,
+    "restart_requested": false,
+    "target_solo_mode_requested": false
+  },
+  "cause": {
+    "classification": "QA-only impossible geometry comparisons",
+    "qa_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+    "function": "_layout_matches",
+    "lines": [
+      128,
+      129,
+      131
+    ],
+    "reason": "Godot 4.6.3 JSON arrays contain FLOAT elements; the three expected literal arrays contain INT elements. Array equality uses type-sensitive Variant::hash_compare. Thus these predicates reject even numerically correct JSON geometry.",
+    "independent_review_blob": "653f6be25398506e27565bbaa32dfafaea6878af"
+  },
+  "source_review": {
+    "before_after_byte_identical": true,
+    "source_snapshot_blob": "6d2c38683631976dfa41a057da9059c50853b3cf",
+    "source_snapshot_sha256": "798649037b014221bc168aea241b0e77dccae9716cb4aefcc558cd37657313ae",
+    "host_entries_matched": 447,
+    "native_entries_matched": 1256,
+    "qa_entries_matched": 4,
+    "generated_uid_entries": 334,
+    "uid_source_blobs_and_reconstructed_uid_hashes_verified": true
+  },
+  "limitations": [
+    "No completed target result-dialog action, no PNG and no passed gameplay gate.",
+    "The original transient layout observation is absent: production _exit_tree deletes it. Exact observed geometry cannot be reconstructed from this archive.",
+    "Other _layout_matches predicates have not all been shown true; fixing the demonstrated impossible comparisons does not imply a successful future runtime.",
+    "This review executes no archive code, production tests, engine, rendering, Android tour or APK build. The separate later minimal QA reproduction must not be conflated with the failed R2 gameplay run."
+  ],
+  "supersedes_availability_only": "The earlier cb336ebb4fa867f21692d22dd6a95f3e526763c1 checkpoint correctly recorded unavailable local artifact access at its creation; original ZIP access and the failure diagnosis are now completed."
+}

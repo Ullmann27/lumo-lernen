@@ -1,0 +1,808 @@
+--- a/scripts/prepare_android.py
++++ b/scripts/prepare_android.py
+@@ -130,6 +130,7 @@
+         ('LumoOfflineSpeechEngine.java', 'java'),
+         ('LumoOfflineSpeechBridge.kt', 'kotlin'),
+         ('LumoLearningSpeech.kt', 'kotlin'),
++        ('LumoSpeechEnvelope.kt', 'kotlin'),
+     ):
+         source = root / 'tools/auto_install' / filename
+         if source.is_file():
+--- /dev/null
++++ b/scripts/tests/fixtures/speech_envelope_contract/LearningSpeechBuildContract.kt
+@@ -0,0 +1,117 @@
++package dev.ullmann.lumo
++
++import android.content.Context
++import android.media.MediaPlayer
++import android.os.Handler
++import org.json.JSONObject
++import java.io.File
++import kotlin.math.abs
++
++private var checks = 0
++
++private fun verify(condition: Boolean, label: String) {
++    checks++
++    check(condition) { label }
++}
++
++private fun options(
++    game: String = "build",
++    voice: Boolean = true,
++    licensed: Boolean = true,
++    rate: Double = 1.3,
++) = JSONObject().put("game", game)
++    .put("learningVoiceEnabled", voice)
++    .put("localVoiceLicenseAccepted", licensed)
++    .put("learningVoiceRate", rate)
++
++private fun request(id: Int) = "{\"id\":$id,\"text\":\"Apfel\",\"style\":\"explain\"}"
++
++private fun prepare(speech: LumoLearningSpeech, bytes: ByteArray, id: Int): MediaPlayer {
++    val calls = LumoOfflineSpeechBridge.calls
++    verify(speech.speak(request(id)), "Licensed active build accepts the original speech request")
++    Handler.drain()
++    verify(LumoOfflineSpeechBridge.calls == calls + 1, "Build reaches the same local synthesis bridge once")
++    val pending = checkNotNull(LumoOfflineSpeechBridge.pending)
++    pending.success(mapOf("wav" to bytes))
++    val deadline = System.nanoTime() + 2_000_000_000L
++    while (Handler.pending() == 0 && System.nanoTime() < deadline) Thread.sleep(1)
++    check(Handler.pending() > 0) { "The envelope worker did not complete within the fixture deadline" }
++    Handler.drain()
++    return checkNotNull(MediaPlayer.latest)
++}
++
++fun main(args: Array<String>) {
++    val clip = File(args.single()).readBytes()
++    for ((rate, expected) in listOf(1.3 to 1.3f, 0.1 to 0.70f, 9.0 to 1.60f)) {
++        val context = Context()
++        val speech = LumoLearningSpeech(context, options(rate = rate))
++        speech.setActive(true)
++        Handler.drain()
++        val player = prepare(speech, clip, 31)
++        verify(!player.isPlaying, "Deriving the build envelope does not start playback")
++        checkNotNull(player.prepared).invoke(player)
++        Handler.drain()
++        player.currentPosition = 300
++        Handler.advance()
++        val playing = JSONObject(speech.status())
++        verify(abs(player.playbackParams.rate - expected) < 0.0001f,
++            "The existing playback rate and its bounds are retained for build")
++        verify(playing.optInt("id") == 31 && playing.optInt("positionMs") == 300 &&
++            playing.optString("state") == "playing" && playing.optBoolean("audible") &&
++            playing.optBoolean("envelopeAvailable") && playing.optDouble("envelope") > 0.0,
++            "Build exposes the measured PCM at the actual matching playback position")
++        speech.setActive(false)
++        Handler.drain()
++        val idle = JSONObject(speech.status())
++        verify(player.released && idle.optString("state") == "idle" &&
++            !idle.optBoolean("audible") && idle.optDouble("envelope") == 0.0,
++            "Activity pause releases build playback and immediately closes articulation")
++        speech.destroy()
++        Handler.drain()
++    }
++
++    for (game in listOf("learning", "build")) {
++        for ((voice, licensed) in listOf(false to true, true to false, false to false)) {
++            val speech = LumoLearningSpeech(Context(), options(game, voice, licensed))
++            speech.setActive(true)
++            Handler.drain()
++            val calls = LumoOfflineSpeechBridge.calls
++            verify(!speech.speak(request(41)) && LumoOfflineSpeechBridge.calls == calls,
++                "Both existing consent gates remain required for $game")
++            speech.destroy()
++            Handler.drain()
++        }
++    }
++    for (game in listOf("kart", "cards", "treasure", "")) {
++        val speech = LumoLearningSpeech(Context(), options(game = game))
++        speech.setActive(true)
++        Handler.drain()
++        val calls = LumoOfflineSpeechBridge.calls
++        verify(!speech.speak(request(42)) && LumoOfflineSpeechBridge.calls == calls,
++            "The learning/build allow-list is not widened to another scene")
++        speech.destroy()
++        Handler.drain()
++    }
++
++    val inactive = LumoLearningSpeech(Context(), options())
++    val calls = LumoOfflineSpeechBridge.calls
++    inactive.speak(request(51))
++    Handler.drain()
++    verify(LumoOfflineSpeechBridge.calls == calls, "Inactive build cannot begin local synthesis")
++    inactive.setActive(true)
++    Handler.drain()
++    inactive.speak(request(52))
++    Handler.drain()
++    val late = checkNotNull(LumoOfflineSpeechBridge.pending)
++    val created = MediaPlayer.created
++    inactive.setActive(false)
++    Handler.drain()
++    late.success(mapOf("wav" to clip))
++    Handler.drain()
++    verify(MediaPlayer.created == created && JSONObject(inactive.status()).optString("state") == "idle",
++        "A build synthesis result after pause cannot create a player")
++    inactive.destroy()
++    Handler.drain()
++
++    println("LUMO_BUILD_SPEECH_PASS checks=$checks platform=synthetic_JVM_boundary no_Android_playback_claim=true")
++}
+--- /dev/null
++++ b/scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt
+@@ -0,0 +1,52 @@
++package dev.ullmann.lumo
++import android.content.Context
++import android.media.MediaPlayer
++import android.os.Handler
++import org.json.JSONObject
++import java.io.File
++
++private var checks=0
++private fun verify(ok:Boolean, label:String){checks++;check(ok){label}}
++private fun waitPrepared():MediaPlayer {
++ val deadline=System.nanoTime()+2_000_000_000L
++ while(Handler.pending()==0 && System.nanoTime()<deadline)Thread.sleep(1)
++ Handler.drain();return checkNotNull(MediaPlayer.latest)
++}
++fun main(args:Array<String>){
++ val clip=File(args.single()).readBytes()
++ fun options(licensed:Boolean=true)=JSONObject("{\"game\":\"learning\",\"learningVoiceEnabled\":true,\"localVoiceLicenseAccepted\":$licensed,\"learningVoiceRate\":1.3}")
++ fun request(id:Int)="{\"id\":$id,\"text\":\"Apfel\",\"style\":\"explain\"}"
++ val context=Context();val speech=LumoLearningSpeech(context,options())
++ speech.setActive(true);Handler.drain()
++ verify(speech.speak(request(1)),"Licensed lesson accepts actual synthesis request")
++ Handler.drain();verify(JSONObject(speech.status()).optString("state")=="preparing","Synthesis state is separate from playback")
++ verify(JSONObject(speech.status()).optDouble("envelope")==0.0,"Preparing never talks")
++ LumoOfflineSpeechBridge.pending!!.success(mapOf("wav" to clip));val player=waitPrepared()
++ verify(!player.isPlaying,"Envelope derivation does not start playback")
++ player.prepared!!(player);Handler.drain();player.currentPosition=300;Handler.advance()
++ val playing=JSONObject(speech.status())
++ verify(playing.optString("state")=="playing" && playing.optBoolean("audible"),"Only actual player-start state is audible")
++ verify(playing.optInt("positionMs")==300,"Snapshot uses player media position, not elapsed timer")
++ verify(playing.optBoolean("envelopeAvailable") && playing.optDouble("envelope")>0.0,"Measured original PCM amplitude is exposed")
++ context.audioManager.volume=0;Handler.advance()
++ verify(!JSONObject(speech.status()).optBoolean("audible") && JSONObject(speech.status()).optDouble("envelope")==0.0,"Zero media volume closes")
++ context.audioManager.volume=7;context.audioManager.muted=true;Handler.advance()
++ verify(JSONObject(speech.status()).optDouble("envelope")==0.0,"System stream mute closes")
++ context.audioManager.muted=false;player.isPlaying=false;Handler.advance()
++ verify(!JSONObject(speech.status()).optBoolean("audible"),"Paused player cannot create articulation")
++ player.isPlaying=true;Handler.advance();verify(JSONObject(speech.status()).optBoolean("audible"),"Unmuted active player can resume measured articulation")
++ speech.stop();Handler.drain()
++ verify(player.released && JSONObject(speech.status()).optString("state")=="idle" && JSONObject(speech.status()).optDouble("envelope")==0.0,"Stop releases playback and closes immediately")
++ speech.speak(request(2));Handler.drain();val old=LumoOfflineSpeechBridge.pending!!;val before=MediaPlayer.created
++ speech.setActive(false);Handler.drain();old.success(mapOf("wav" to clip));Handler.drain()
++ verify(MediaPlayer.created==before && JSONObject(speech.status()).optString("state")=="idle","Late synthesis after Activity pause cannot prepare a player")
++ speech.setActive(true);Handler.drain();speech.speak(request(3));Handler.drain();LumoOfflineSpeechBridge.pending!!.success(mapOf("wav" to ByteArray(44)));val invalid=waitPrepared();invalid.prepared!!(invalid);Handler.drain()
++ verify(!JSONObject(speech.status()).optBoolean("envelopeAvailable") && JSONObject(speech.status()).optDouble("envelope")==0.0,"Unsupported WAV cannot invent amplitude")
++ invalid.completed!!(invalid);Handler.drain()
++ verify(JSONObject(speech.status()).optString("state")=="completed" && JSONObject(speech.status()).optDouble("envelope")==0.0,"Completion releases envelope")
++ val noLicense=LumoLearningSpeech(context,options(false));noLicense.setActive(true);Handler.drain();val synths=LumoOfflineSpeechBridge.calls
++ verify(!noLicense.speak(request(4)) && LumoOfflineSpeechBridge.calls==synths,"No parent license means no synthesis or articulation")
++ noLicense.destroy();speech.destroy();Handler.drain();val created=MediaPlayer.created;speech.speak(request(5));Handler.drain()
++ verify(MediaPlayer.created==created,"Destroyed owner cannot prepare playback")
++ println("LUMO_SPEECH_LIFECYCLE_PASS checks=$checks platform=synthetic_JVM_boundary no_Android_playback_claim=true")
++}
+--- /dev/null
++++ b/scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt
+@@ -0,0 +1,63 @@
++package dev.ullmann.lumo
++
++import java.io.ByteArrayOutputStream
++import java.io.File
++import java.nio.ByteBuffer
++import java.nio.ByteOrder
++import java.util.concurrent.CancellationException
++import kotlin.math.abs
++
++private var checks = 0
++private fun verify(ok: Boolean, label: String) {
++    checks++
++    check(ok) { label }
++}
++private fun wave(rate: Int = 44100, channels: Int = 1, padding: Boolean = false): ByteArray {
++    val frames = rate / 10
++    val pcm = ByteBuffer.allocate(frames * channels * 2).order(ByteOrder.LITTLE_ENDIAN)
++    for (i in 0 until frames) for (c in 0 until channels) {
++        val value = if (i < rate / 50 || i >= rate * 3 / 50) 0 else 8192
++        pcm.putShort(value.toShort())
++    }
++    val chunks = ByteArrayOutputStream()
++    if (padding) { chunks.write("JUNK".toByteArray()); chunks.write(byteArrayOf(1,0,0,0,55,0)) }
++    chunks.write("fmt ".toByteArray())
++    chunks.write(ByteBuffer.allocate(20).order(ByteOrder.LITTLE_ENDIAN).putInt(16)
++        .putShort(1).putShort(channels.toShort()).putInt(rate).putInt(rate * channels * 2)
++        .putShort((channels * 2).toShort()).putShort(16).array())
++    chunks.write("data".toByteArray())
++    chunks.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(pcm.array().size).array())
++    chunks.write(pcm.array())
++    val out = ByteArrayOutputStream();out.write("RIFF".toByteArray())
++    out.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(chunks.size()+4).array())
++    out.write("WAVE".toByteArray());out.write(chunks.toByteArray());return out.toByteArray()
++}
++fun main(args: Array<String>) {
++    val bytes = wave();val original = bytes.clone();val envelope = LumoSpeechEnvelope.fromWave(bytes)
++    verify(envelope.available && envelope.sampleRate == 44100 && envelope.channels == 1, "Actual F2 header format accepted")
++    verify(envelope.durationMs == 100, "Media duration derives from exact PCM frames")
++    verify(envelope.amplitudeAt(0) == 0.0 && envelope.amplitudeAt(19) == 0.0, "True initial silence is closed")
++    verify(envelope.amplitudeAt(20) > .99 && envelope.amplitudeAt(59) > .99, "Only actual nonzero PCM opens the jaw")
++    verify(envelope.amplitudeAt(60) == 0.0 && envelope.amplitudeAt(99) == 0.0, "Silent tail does not invent motion")
++    verify(envelope.amplitudeAt(-1) == 0.0 && envelope.amplitudeAt(100) == 0.0, "Negative/end positions are closed")
++    verify(bytes.contentEquals(original), "Parsing does not alter playback bytes")
++    verify(LumoSpeechEnvelope.fromWave(wave(padding=true)).amplitudeAt(20) == envelope.amplitudeAt(20), "Odd padded RIFF chunks are parsed correctly")
++    verify(LumoSpeechEnvelope.fromWave(wave(channels=2)).amplitudeAt(20) == envelope.amplitudeAt(20), "Interleaved channels normalized correctly")
++    for ((offset,value,label) in listOf(Triple(0,0,"RIFF magic"),Triple(4,0,"RIFF declared size"),Triple(20,3,"Float encoding"),Triple(22,3,"Channel count"),Triple(32,4,"Block alignment"),Triple(34,24,"Bit depth"),Triple(40,255,"Data length"))) {
++        val bad=bytes.clone();bad[offset]=value.toByte();verify(!LumoSpeechEnvelope.fromWave(bad).available,"Malformed $label is fail-closed")
++    }
++    verify(!LumoSpeechEnvelope.fromWave(ByteArray(43)).available,"Short WAV is fail-closed")
++    verify(!LumoSpeechEnvelope.fromWave(ByteArray(3*1024*1024+1)).available,"Oversized data is bounded")
++    Thread.currentThread().interrupt()
++    var cancelled=false
++    try { LumoSpeechEnvelope.fromWave(bytes) } catch (_: CancellationException) { cancelled=true }
++    finally { Thread.interrupted() }
++    verify(cancelled,"Stop/destroy can interrupt off-main analysis")
++    val actual=File(args.single()).readBytes();val measured=LumoSpeechEnvelope.fromWave(actual)
++    verify(measured.available && measured.sampleRate==22050 && measured.channels==1,"Original apfel.wav PCM accepted without resampling")
++    verify(measured.durationMs in 928..929,"Original 20463-frame word duration preserved")
++    val values=(0 until measured.durationMs step 20).map { measured.amplitudeAt(it) }
++    verify(values.any { it>.1 } && values.distinct().size>8,"Actual original voice has measured time-varying amplitude")
++    verify(values.all { it.isFinite() && it in 0.0..1.0 },"Actual envelope remains finite and bounded")
++    println("LUMO_SPEECH_ENVELOPE_PASS checks=$checks original_apfel_duration_ms=${measured.durationMs} bins=${values.size}")
++}
+--- /dev/null
++++ b/scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt
+@@ -0,0 +1,9 @@
++package dev.ullmann.lumo
++import android.content.Context
++import io.flutter.plugin.common.MethodChannel
++class LumoOfflineSpeechBridge(context:Context) {
++ fun synthesize(text:String,style:String,approved:Boolean,result:MethodChannel.Result){calls++;pending=result}
++ fun cancel(){};fun release(){};fun destroy(){}
++ companion object {var calls=0;var pending:MethodChannel.Result?=null}
++}
++object LumoOfflineSpeechEngine {const val PROFILE="test-platform-not-Android"}
+--- /dev/null
++++ b/scripts/tests/fixtures/speech_envelope_contract/platform/Channel.kt
+@@ -0,0 +1,2 @@
++package io.flutter.plugin.common
++class MethodChannel {interface Result {fun success(result:Any?);fun error(code:String,message:String?,details:Any?);fun notImplemented()}}
+--- /dev/null
++++ b/scripts/tests/fixtures/speech_envelope_contract/platform/Context.kt
+@@ -0,0 +1,7 @@
++package android.content
++import android.media.AudioManager
++open class Context(val audioManager: AudioManager = AudioManager()) {
++ val applicationContext: Context get()=this
++ fun getSystemService(name:String): Any? = if(name==AUDIO_SERVICE) audioManager else null
++ companion object { const val AUDIO_SERVICE="audio" }
++}
+--- /dev/null
++++ b/scripts/tests/fixtures/speech_envelope_contract/platform/Handler.kt
+@@ -0,0 +1,13 @@
++package android.os
++class Looper { companion object { private val main=Looper();fun getMainLooper()=main } }
++class Handler(looper:Looper) {
++ fun post(task:Runnable):Boolean { synchronized(immediate){immediate.add(task)};return true }
++ fun postDelayed(task:Runnable,delay:Long):Boolean { synchronized(delayed){delayed.add(task)};return true }
++ fun removeCallbacks(task:Runnable) { synchronized(immediate){immediate.removeAll{it===task}};synchronized(delayed){delayed.removeAll{it===task}} }
++ companion object {
++  private val immediate=mutableListOf<Runnable>();private val delayed=mutableListOf<Runnable>()
++  fun pending():Int=synchronized(immediate){immediate.size}
++  fun drain() { var count=0;while(true){val next=synchronized(immediate){if(immediate.isEmpty())null else immediate.removeAt(0)}?:break;check(++count<1000);next.run()} }
++  fun advance(){val jobs=synchronized(delayed){val copy=delayed.toList();delayed.clear();copy};synchronized(immediate){immediate.addAll(jobs)};drain()}
++ }
++}
+--- /dev/null
++++ b/scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt
+@@ -0,0 +1,11 @@
++package org.json
++class JSONObject(text:String="{}") {
++ private val data=linkedMapOf<String,Any?>()
++ init { val regex=Regex("\"([^\"]+)\"\\s*:\\s*(\"[^\"]*\"|true|false|-?[0-9]+(?:\\.[0-9]+)?)");for(m in regex.findAll(text)){val v=m.groupValues[2];data[m.groupValues[1]]=when{v.startsWith("\"")->v.substring(1,v.length-1);v=="true"->true;v=="false"->false;v.contains('.') -> v.toDouble();else->v.toInt()}} }
++ fun optString(key:String,fallback:String="")=data[key] as? String ?:fallback
++ fun optInt(key:String,fallback:Int=0)=(data[key] as? Number)?.toInt()?:fallback
++ fun optDouble(key:String,fallback:Double=0.0)=(data[key] as? Number)?.toDouble()?:fallback
++ fun optBoolean(key:String,fallback:Boolean=false)=data[key] as? Boolean ?:fallback
++ fun put(key:String,value:Any?):JSONObject {data[key]=value;return this}
++ override fun toString()=data.entries.joinToString(",","{","}"){"\"${it.key}\":"+if(it.value is String)"\"${it.value}\"" else it.value.toString()}
++}
+--- /dev/null
++++ b/scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt
+@@ -0,0 +1,2 @@
++package android.util
++object Log {fun i(tag:String,message:String):Int=0}
+--- /dev/null
++++ b/scripts/tests/fixtures/speech_envelope_contract/platform/Media.kt
+@@ -0,0 +1,19 @@
++package android.media
++class AudioAttributes { class Builder { fun setUsage(v:Int)=this;fun setContentType(v:Int)=this;fun build()=AudioAttributes() };companion object {const val USAGE_MEDIA=1;const val CONTENT_TYPE_SPEECH=1} }
++class AudioManager {var muted=false;var volume=7;fun isStreamMute(stream:Int)=muted;fun getStreamVolume(stream:Int)=volume;companion object {const val STREAM_MUSIC=3} }
++abstract class MediaDataSource:AutoCloseable {abstract fun getSize():Long;abstract fun readAt(position:Long,buffer:ByteArray,offset:Int,size:Int):Int}
++class PlaybackParams {var rate=1f;fun setSpeed(value:Float):PlaybackParams{rate=value;return this}}
++class MediaPlayer {
++ var isPlaying=false;var released=false;var currentPosition=20;val duration=100;var playbackParams=PlaybackParams()
++ var prepared:((MediaPlayer)->Unit)?=null;var completed:((MediaPlayer)->Unit)?=null;var errored:((MediaPlayer,Int,Int)->Boolean)?=null
++ init {latest=this;created++}
++ fun setAudioAttributes(value:AudioAttributes){}
++ fun setDataSource(value:MediaDataSource){check(value.getSize()>=44)}
++ fun setOnPreparedListener(value:(MediaPlayer)->Unit){prepared=value}
++ fun setOnCompletionListener(value:(MediaPlayer)->Unit){completed=value}
++ fun setOnErrorListener(value:(MediaPlayer,Int,Int)->Boolean){errored=value}
++ fun prepareAsync(){}
++ fun start(){check(!released);isPlaying=true}
++ fun release(){isPlaying=false;released=true}
++ companion object {var latest:MediaPlayer?=null;var created=0}
++}
+--- /dev/null
++++ b/scripts/tests/fixtures/speech_envelope_contract/provenance.json
+@@ -0,0 +1,92 @@
++{
++  "schema": 1,
++  "stage_only": true,
++  "scope": "Original Kotlin test sources and explicitly synthetic platform fixtures are byte-preserved from the frozen producer stage. The WAV is the existing original voice asset. No Android/device playback result is claimed.",
++  "frozen_stage_source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e",
++  "producer_source_freeze_sha256": "ee7abfc2eee1d932e50042432be720ea8c4c25311752dafdce35f3f4e563acfe",
++  "producer_host_base": "86445f53af5d573549fc8cf03405261611f3cb7e",
++  "integration_host_base": "43db2662e890b6468cf77f7044da16364a259482",
++  "files": [
++    {
++      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/SpeechEnvelopeContract.kt",
++      "path": "scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt",
++      "bytes": 4381,
++      "sha256": "6cb28dd0820679705bc9ee39ff9aced59ec4191aeec00a286916fb660bba6dc6",
++      "git_blob": "a836cfcf07c40b5cd67c53b7c33a00729b400f5a",
++      "byte_equal_to_frozen_original": true
++    },
++    {
++      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/LearningSpeechLifecycleContract.kt",
++      "path": "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt",
++      "bytes": 4342,
++      "sha256": "d7649f5ce36771c1cf886279f2cbc81fca8e6032dd13d935738d869cc6024523",
++      "git_blob": "fc50fad0bb37d59880a1ca6fd675ce523d314292",
++      "byte_equal_to_frozen_original": true
++    },
++    {
++      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/runtime/assets/audio/voice/words/apfel.wav",
++      "path": "scripts/tests/fixtures/speech_envelope_contract/apfel.wav",
++      "bytes": 40970,
++      "sha256": "39aba71e80a9230d832f038630eaff8fa0fc0c5eae104581ce487bce9ebbd586",
++      "git_blob": "671784b6bdf9ebb3c0aa994b762e236c7f3a8905",
++      "byte_equal_to_frozen_original": true
++    },
++    {
++      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Bridge.kt",
++      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
++      "bytes": 462,
++      "sha256": "86c558d488458ecb25dec947fd0935114cfbe9c69b35c08b45ce592536c930c6",
++      "git_blob": "3560fa5b3537dcd6b881dc9090ef4f0099b20e50",
++      "byte_equal_to_frozen_original": true
++    },
++    {
++      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Channel.kt",
++      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Channel.kt",
++      "bytes": 172,
++      "sha256": "c42bc41b86360bc28f84f59fbec760a633460ffab930439921c344cafc093950",
++      "git_blob": "56fe64be87d4489133e83855df5a612b6225a174",
++      "byte_equal_to_frozen_original": true
++    },
++    {
++      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Context.kt",
++      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Context.kt",
++      "bytes": 318,
++      "sha256": "bfadda67fce0bcfd940e6d275f0e4184c2a592febb7ab3c5639a40c1f6ec21ac",
++      "git_blob": "0685bbdf9b4cf3efe20bbb4d0e646e94e647c33c",
++      "byte_equal_to_frozen_original": true
++    },
++    {
++      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Handler.kt",
++      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Handler.kt",
++      "bytes": 992,
++      "sha256": "2baa97b0f65a6a7cc59a26f5f80e823608d5e18f546236db7850d902c7963dce",
++      "git_blob": "855d09cd8dbc4af5bd91b29fa1db1e52488dbd9e",
++      "byte_equal_to_frozen_original": true
++    },
++    {
++      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Json.kt",
++      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
++      "bytes": 964,
++      "sha256": "457539a65101608c93b64b1fab0705406814d4fc7c7da64ed0914c94f815d1b9",
++      "git_blob": "8bf77f00b631df5027e17d6eb84dd29f5594f462",
++      "byte_equal_to_frozen_original": true
++    },
++    {
++      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Log.kt",
++      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
++      "bytes": 73,
++      "sha256": "d9bef1b203ec4e7cfe515061ee7cae2d333c7bce7fdee8e460e8554c00ec43e6",
++      "git_blob": "c060a6b11c5e44f72ea3b0204b49d69995ec0e04",
++      "byte_equal_to_frozen_original": true
++    },
++    {
++      "source": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/host/tests/platform-fixture/Media.kt",
++      "path": "scripts/tests/fixtures/speech_envelope_contract/platform/Media.kt",
++      "bytes": 1466,
++      "sha256": "26dadd1a5347836a72d034e925f3098221a86055ede2c4e80906fb41893dd962",
++      "git_blob": "6857f886fada7cdba117053b559024ef2c0386bd",
++      "byte_equal_to_frozen_original": true
++    }
++  ],
++  "new_neighbor_harness": "LearningSpeechBuildContract.kt is a new integration-only synthetic JVM boundary contract; it is not presented as a producer original."
++}
+--- a/scripts/tests/test_prepare_android.py
++++ b/scripts/tests/test_prepare_android.py
+@@ -28,6 +28,7 @@
+                 templates = root / 'tools/auto_install'
+                 templates.mkdir(parents=True)
+                 for name in ('MainActivity.kt', 'LumoOfflineSpeechBridge.kt', 'LumoLearningSpeech.kt',
++                             'LumoSpeechEnvelope.kt',
+                              'LumoOfflineSpeechEngine.java', 'lumo_file_paths.xml'):
+                     shutil.copyfile(source / name, templates / name)
+                 (root / 'tools/lumo-debug.keystore').write_bytes(b'test-fixture')
+@@ -40,6 +41,7 @@
+                         ('LumoOfflineSpeechEngine.java', 'java'),
+                         ('LumoOfflineSpeechBridge.kt', 'kotlin'),
+                         ('LumoLearningSpeech.kt', 'kotlin'),
++                        ('LumoSpeechEnvelope.kt', 'kotlin'),
+                         ('MainActivity.kt', 'kotlin'),
+                     ):
+                         target = main / language / Path(*namespace.split('.')) / name
+--- /dev/null
++++ b/scripts/tests/test_speech_envelope_contract.py
+@@ -0,0 +1,85 @@
++"""Compile the actual PCM speech sources against explicit synthetic JVM fixtures.
++
++The two producer contracts and original voice WAV are preserved byte for byte.
++This gate proves neither Android playback nor an audible/visual device result.
++It uses only already installed Gradle Kotlin libraries and never downloads tools.
++"""
++from pathlib import Path
++import os
++import shutil
++import subprocess
++import tempfile
++import unittest
++
++
++ROOT = Path(__file__).resolve().parents[2]
++FIXTURES = Path(__file__).resolve().parent / 'fixtures/speech_envelope_contract'
++
++
++class SpeechEnvelopeContractTest(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls):
++        configured = Path(os.environ.get('JAVA_HOME', '/nonexistent')) / 'bin/java'
++        cls.java = str(configured) if configured.is_file() else shutil.which('java')
++        candidates = [Path(os.environ.get('LUMO_KOTLIN_LIB_DIR', '/nonexistent')),
++                      Path(os.environ.get('GRADLE_HOME', '/nonexistent')) / 'lib']
++        gradle = shutil.which('gradle')
++        if gradle:
++            candidates.append(Path(gradle).resolve().parents[1] / 'lib')
++        libraries = next((p for p in candidates
++                          if list(p.glob('kotlin-compiler-embeddable-*.jar'))), None)
++        if not cls.java or libraries is None:
++            raise RuntimeError('Use the existing JDK and verified Gradle Kotlin libraries; no compiler download')
++        cls.temp = tempfile.TemporaryDirectory(prefix='lumo-speech-envelope-')
++        cls.addClassCleanup(cls.temp.cleanup)
++        classes = Path(cls.temp.name) / 'classes'
++        classes.mkdir()
++        stdlib = next(libraries.glob('kotlin-stdlib-*.jar'))
++        cls.classpath = os.pathsep.join(map(str, (classes, stdlib)))
++        sources = [ROOT / 'tools/auto_install/LumoSpeechEnvelope.kt',
++                   ROOT / 'tools/auto_install/LumoLearningSpeech.kt',
++                   *sorted(FIXTURES.glob('*.kt')),
++                   *sorted((FIXTURES / 'platform').glob('*.kt'))]
++        cls.run_checked([
++            cls.java, '-cp', os.pathsep.join(map(str, sorted(libraries.glob('*.jar')))),
++            'org.jetbrains.kotlin.cli.jvm.K2JVMCompiler', '-no-stdlib', '-no-reflect',
++            '-classpath', cls.classpath, '-jvm-target', '1.8', '-d', str(classes),
++            *map(str, sources),
++        ])
++
++    @classmethod
++    def run_checked(cls, command):
++        result = subprocess.run(command, capture_output=True, text=True, timeout=90)
++        if result.returncode:
++            raise AssertionError(result.stdout + result.stderr)
++        return result
++
++    def run_contract(self, main, marker):
++        result = self.run_checked([
++            self.java, '-cp', self.classpath, 'dev.ullmann.lumo.' + main,
++            str(FIXTURES / 'apfel.wav'),
++        ])
++        self.assertIn(marker, result.stdout.splitlines())
++        print(result.stdout, end='')
++
++    def test_original_pcm_envelope_contract(self):
++        self.run_contract(
++            'SpeechEnvelopeContractKt',
++            'LUMO_SPEECH_ENVELOPE_PASS checks=23 original_apfel_duration_ms=929 bins=47',
++        )
++
++    def test_original_learning_lifecycle_contract(self):
++        self.run_contract(
++            'LearningSpeechLifecycleContractKt',
++            'LUMO_SPEECH_LIFECYCLE_PASS checks=17 platform=synthetic_JVM_boundary no_Android_playback_claim=true',
++        )
++
++    def test_build_consent_rate_and_activity_contract(self):
++        self.run_contract(
++            'LearningSpeechBuildContractKt',
++            'LUMO_BUILD_SPEECH_PASS checks=30 platform=synthetic_JVM_boundary no_Android_playback_claim=true',
++        )
++
++
++if __name__ == '__main__':
++    unittest.main()
+--- a/tools/auto_install/LumoLearningSpeech.kt
++++ b/tools/auto_install/LumoLearningSpeech.kt
+@@ -2,6 +2,7 @@
+ 
+ import android.content.Context
+ import android.media.AudioAttributes
++import android.media.AudioManager
+ import android.media.MediaPlayer
+ import android.media.MediaDataSource
+ import android.os.Handler
+@@ -9,12 +10,21 @@
+ import android.util.Log
+ import io.flutter.plugin.common.MethodChannel
+ import org.json.JSONObject
++import java.util.concurrent.CancellationException
++import java.util.concurrent.Executors
++import java.util.concurrent.Future
+ 
+ /** Original F2 synthesis and real playback for the native lesson and village.
+  * No microphone, system TTS, online service or learning score is involved. */
+ class LumoLearningSpeech(context: Context, options: JSONObject) {
+     private val main = Handler(Looper.getMainLooper())
+     private val bridge = LumoOfflineSpeechBridge(context.applicationContext)
++    private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
++    private val envelopeWorker = Executors.newSingleThreadExecutor { job ->
++        Thread(job, "LumoSpeechEnvelope").apply { isDaemon = true }
++    }
++    private var envelopeTask: Future<*>? = null
++    private var envelope = LumoSpeechEnvelope.EMPTY
+     private val allowed = options.optString("game") in setOf("learning", "build") &&
+         options.optBoolean("learningVoiceEnabled", false) &&
+         options.optBoolean("localVoiceLicenseAccepted", false)
+@@ -27,7 +37,7 @@
+     private var state = "idle"
+     private var active = false
+     private var destroyed = false
+-    @Volatile private var snapshot = "{\"state\":\"idle\",\"id\":0,\"positionMs\":0,\"durationMs\":0}"
++    @Volatile private var snapshot = "{\"state\":\"idle\",\"id\":0,\"positionMs\":0,\"durationMs\":0,\"envelope\":0,\"audible\":false}"
+ 
+     // Avoid blocking the UI/render thread on a temporary WAV write. Android
+     // reads the completed local synthesis buffer directly; release drops it.
+@@ -47,7 +57,7 @@
+     private val pulse = object : Runnable {
+         override fun run() {
+             publish()
+-            if (!destroyed && state == "playing") main.postDelayed(this, 150)
++            if (!destroyed && state == "playing") main.postDelayed(this, 50)
+         }
+     }
+ 
+@@ -87,35 +97,23 @@
+                         failed(token)
+                         return
+                     }
+-                    try {
+-                        val source = WavSource(bytes)
+-                        audioSource = source
+-                        val playback = MediaPlayer()
+-                        player = playback
+-                        playback.setAudioAttributes(AudioAttributes.Builder()
+-                            .setUsage(AudioAttributes.USAGE_MEDIA)
+-                            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
+-                        playback.setDataSource(source)
+-                        playback.setOnPreparedListener {
+-                            if (token != generation || !active || destroyed) return@setOnPreparedListener
+-                            try {
+-                                playback.playbackParams = playback.playbackParams.setSpeed(speed)
+-                                playback.start()
+-                                state = "playing"
+-                                Log.i("LumoLearningSpeech", "started id=$id profile=${LumoOfflineSpeechEngine.PROFILE}")
+-                                main.post(pulse)
+-                            } catch (_: Exception) { failed(token) }
++                    // Synthesis is complete, but there is no audible playback
++                    // yet. Derive its real envelope away from the UI thread.
++                    envelopeTask = envelopeWorker.submit {
++                        try {
++                            val measured = LumoSpeechEnvelope.fromWave(bytes)
++                            main.post {
++                                if (token != generation || !active || destroyed) return@post
++                                envelopeTask = null
++                                envelope = measured
++                                preparePlayback(bytes, token, id)
++                            }
++                        } catch (_: CancellationException) {
++                            // Stop/pause owns the published idle state.
++                        } catch (_: Exception) {
++                            main.post { failed(token) }
+                         }
+-                        playback.setOnCompletionListener {
+-                            if (token != generation) return@setOnCompletionListener
+-                            releasePlayer()
+-                            state = "completed"
+-                            publish()
+-                            Log.i("LumoLearningSpeech", "completed id=$id")
+-                        }
+-                        playback.setOnErrorListener { _, _, _ -> failed(token); true }
+-                        playback.prepareAsync()
+-                    } catch (_: Exception) { failed(token) }
++                    }
+                 }
+ 
+                 override fun error(code: String, message: String?, details: Any?) { failed(token) }
+@@ -123,6 +121,38 @@
+             })
+         }
+         return true
++    }
++
++    private fun preparePlayback(bytes: ByteArray, token: Long, id: Int) {
++        try {
++            val source = WavSource(bytes)
++            audioSource = source
++            val playback = MediaPlayer()
++            player = playback
++            playback.setAudioAttributes(AudioAttributes.Builder()
++                .setUsage(AudioAttributes.USAGE_MEDIA)
++                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
++            playback.setDataSource(source)
++            playback.setOnPreparedListener {
++                if (token != generation || !active || destroyed) return@setOnPreparedListener
++                try {
++                    playback.playbackParams = playback.playbackParams.setSpeed(speed)
++                    playback.start()
++                    state = "playing"
++                    Log.i("LumoLearningSpeech", "started id=$id profile=${LumoOfflineSpeechEngine.PROFILE}")
++                    main.post(pulse)
++                } catch (_: Exception) { failed(token) }
++            }
++            playback.setOnCompletionListener {
++                if (token != generation) return@setOnCompletionListener
++                releasePlayer()
++                state = "completed"
++                publish()
++                Log.i("LumoLearningSpeech", "completed id=$id")
++            }
++            playback.setOnErrorListener { _, _, _ -> failed(token); true }
++            playback.prepareAsync()
++        } catch (_: Exception) { failed(token) }
+     }
+ 
+     fun stop() { main.post { if (!destroyed) stopOnMain() } }
+@@ -144,6 +174,9 @@
+ 
+     private fun releasePlayer() {
+         main.removeCallbacks(pulse)
++        envelopeTask?.cancel(true)
++        envelopeTask = null
++        envelope = LumoSpeechEnvelope.EMPTY
+         player?.let { try { it.release() } catch (_: Exception) {} }
+         player = null
+         audioSource?.close()
+@@ -152,11 +185,18 @@
+ 
+     private fun publish() {
+         val playback = player
+-        val playing = state == "playing" && playback != null
++        val playing = state == "playing" && playback != null &&
++            try { playback.isPlaying } catch (_: Exception) { false }
+         val position = if (playing) try { playback!!.currentPosition } catch (_: Exception) { 0 } else 0
+         val duration = if (playing) try { playback!!.duration } catch (_: Exception) { 0 } else 0
++        val audible = playing && allowed && active && !destroyed && try {
++            audioManager != null && !audioManager.isStreamMute(AudioManager.STREAM_MUSIC) &&
++                audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) > 0
++        } catch (_: Exception) { false }
+         snapshot = JSONObject().put("state", state).put("id", utterance)
+-            .put("positionMs", position).put("durationMs", duration).toString()
++            .put("positionMs", position).put("durationMs", duration)
++            .put("audible", audible).put("envelopeAvailable", envelope.available)
++            .put("envelope", if (audible) envelope.amplitudeAt(position) else 0.0).toString()
+     }
+ 
+     fun destroy() {
+@@ -166,6 +206,7 @@
+             destroyed = true
+             active = false
+             bridge.destroy()
++            envelopeWorker.shutdownNow()
+         }
+     }
+ }
+--- /dev/null
++++ b/tools/auto_install/LumoSpeechEnvelope.kt
+@@ -0,0 +1,89 @@
++package dev.ullmann.lumo
++
++import java.util.concurrent.CancellationException
++import kotlin.math.sqrt
++
++/** A bounded RMS envelope from the actual local PCM bytes.
++ * This controls the closed muzzle's amplitude; it is not a phoneme/viseme map.
++ * Parse once off the main thread. Sampling is allocation-free and uses the
++ * MediaPlayer's media position, including its actual playback-rate changes. */
++class LumoSpeechEnvelope private constructor(
++    private val amplitudes: FloatArray,
++    val durationMs: Int,
++    val sampleRate: Int,
++    val channels: Int,
++) {
++    val available: Boolean get() = amplitudes.isNotEmpty()
++
++    fun amplitudeAt(positionMs: Int): Double {
++        if (positionMs < 0 || positionMs >= durationMs || amplitudes.isEmpty()) return 0.0
++        return amplitudes[(positionMs / WINDOW_MS).coerceAtMost(amplitudes.lastIndex)].toDouble()
++    }
++
++    companion object {
++        const val WINDOW_MS = 20
++        private const val MAX_BYTES = 3 * 1024 * 1024
++        private const val MAX_SECONDS = 30
++        val EMPTY = LumoSpeechEnvelope(FloatArray(0), 0, 0, 0)
++
++        fun fromWave(bytes: ByteArray): LumoSpeechEnvelope {
++            if (bytes.size < 44 || bytes.size > MAX_BYTES) return EMPTY
++            fun tag(at: Int, value: String): Boolean = at >= 0 && at + 4 <= bytes.size &&
++                (0..3).all { bytes[at + it].toInt() and 255 == value[it].code }
++            fun u16(at: Int): Int = (bytes[at].toInt() and 255) or
++                ((bytes[at + 1].toInt() and 255) shl 8)
++            fun u32(at: Int): Long = u16(at).toLong() or (u16(at + 2).toLong() shl 16)
++            if (!tag(0, "RIFF") || !tag(8, "WAVE") || u32(4) + 8 != bytes.size.toLong()) return EMPTY
++            var rate = 0; var channelCount = 0; var alignment = 0
++            var dataStart = -1; var dataBytes = 0; var cursor = 12; var chunks = 0
++            while (cursor + 8 <= bytes.size) {
++                if (Thread.currentThread().isInterrupted) throw CancellationException("Envelope cancelled")
++                if (++chunks > 512) return EMPTY
++                val size = u32(cursor + 4)
++                val start = cursor + 8
++                val end = start.toLong() + size
++                if (size > Int.MAX_VALUE || end > bytes.size || end < start) return EMPTY
++                when {
++                    tag(cursor, "fmt ") -> {
++                        if (rate != 0 || size < 16 || u16(start) != 1 || u16(start + 14) != 16) return EMPTY
++                        channelCount = u16(start + 2)
++                        val sampleRate = u32(start + 4)
++                        if (channelCount !in 1..2 || sampleRate !in 8000..48000) return EMPTY
++                        rate = sampleRate.toInt(); alignment = u16(start + 12)
++                        if (alignment != channelCount * 2 || u32(start + 8) != rate.toLong() * alignment) return EMPTY
++                    }
++                    tag(cursor, "data") -> {
++                        if (dataStart >= 0 || size == 0L) return EMPTY
++                        dataStart = start; dataBytes = size.toInt()
++                    }
++                }
++                cursor = (end + (size and 1)).toInt()
++                if (cursor > bytes.size) return EMPTY
++            }
++            if (cursor != bytes.size || rate == 0 || dataStart < 0 || dataBytes % alignment != 0) return EMPTY
++            val frames = dataBytes / alignment
++            if (frames < 1 || frames > rate * MAX_SECONDS) return EMPTY
++            val windowFrames = rate * WINDOW_MS / 1000
++            val windows = (frames + windowFrames - 1) / windowFrames
++            val result = FloatArray(windows)
++            for (window in result.indices) {
++                if (Thread.currentThread().isInterrupted) throw CancellationException("Envelope cancelled")
++                val first = window * windowFrames
++                val last = minOf(frames, first + windowFrames)
++                var squared = 0.0
++                for (frame in first until last) {
++                    for (channel in 0 until channelCount) {
++                        val at = dataStart + frame * alignment + channel * 2
++                        val signed = u16(at).toShort().toInt()
++                        val sample = signed / 32768.0
++                        squared += sample * sample
++                    }
++                }
++                val rms = sqrt(squared / ((last - first) * channelCount))
++                // Fixed, documented art gain; silence never creates motion.
++                result[window] = ((rms - 0.006) / 0.24).coerceIn(0.0, 1.0).toFloat()
++            }
++            return LumoSpeechEnvelope(result, ((frames.toLong() * 1000 + rate - 1) / rate).toInt(), rate, channelCount)
++        }
++    }
++}

@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/discovery_progress.dart';
+import '../../core/learning_journey.dart';
+import '../../core/learning_attempt_id.dart';
+import '../../core/tutor_coordination_engine.dart';
 
 /// Durable answer/reward boundary shared by the direct Akademie modules.
 /// A failed write keeps the accepted answer locked until Retry flushes it.
@@ -34,6 +37,8 @@ class LearningModuleProgress extends ChangeNotifier
   Completer<bool>? _feedback;
   Duration _feedbackRemaining = Duration.zero;
   final Stopwatch _feedbackClock = Stopwatch();
+  Object? _presentedTaskKey;
+  int _presentationHelpLevel = 0;
 
   bool get hasPending => !_disposed && _pending != null;
   bool get saving => _saving;
@@ -42,13 +47,33 @@ class LearningModuleProgress extends ChangeNotifier
       ? 'Die Entdeckungsfreigabe wird gespeichert…'
       : discoveryTarget != null
           ? 'Dein Entdeckungsweg wird gespeichert…'
-          : _pending?.correct == null
-              ? 'Wir speichern deine Belohnung…'
-              : 'Wir speichern deine Antwort…';
+          : _pending?.learningEvidence != null && _pending?.correct == null
+              ? 'Wir speichern deinen Lernschritt…'
+              : _pending?.correct == null
+                  ? 'Wir speichern deine Belohnung…'
+                  : 'Wir speichern deine Antwort…';
 
   /// Zeitpunkt der letzten Antwort (oder des Starts); daraus ergibt sich die
   /// Bearbeitungszeit der nächsten Aufgabe fürs Aufgabenprotokoll.
   DateTime _lastAnswerAt = DateTime.now();
+
+  /// The presentation may offer method hints without owning answer logic.
+  /// Rebuilding or retrying the same problem must not erase that assistance.
+  /// No new persistent format is introduced: [saveAnswer] uses the existing
+  /// hint/evidence fields of the module's accepted answer.
+  void beginPresentedTask(Object key) {
+    if (_disposed || hasPending || _presentedTaskKey == key) return;
+    _presentedTaskKey = key;
+    _presentationHelpLevel = 0;
+  }
+
+  void notePresentationHelp({int level = 1}) {
+    if (level < 1 || level > 5) {
+      throw ArgumentError.value(level, 'level', 'Expected 1..5');
+    }
+    if (_disposed || hasPending || appState.resetting) return;
+    if (level > _presentationHelpLevel) _presentationHelpLevel = level;
+  }
 
   Future<bool> saveAnswer({
     required bool correct,
@@ -58,13 +83,59 @@ class LearningModuleProgress extends ChangeNotifier
     String prompt = '',
     String given = '',
     String expected = '',
+    String? problemKey,
     String? cosmosSubjectId,
     bool cosmosIsMath = false,
     bool cosmosIsPerfect = false,
     DiscoveryStepKind discoveryStep = DiscoveryStepKind.independent,
+    LearningEvidence? learningEvidence,
   }) {
+    learningEvidence?.validate();
+    if (learningEvidence != null && discoveryTarget != null) {
+      throw StateError('Discovery uses its own existing observation model');
+    }
+    if (learningEvidence != null && learningEvidence.correct != correct) {
+      throw ArgumentError('Answer and learning evidence must agree');
+    }
+    if (learningEvidence != null &&
+        hintUsed &&
+        learningEvidence.helpLevel == 0) {
+      throw ArgumentError('Assisted answers require assisted evidence');
+    }
+    if (_presentationHelpLevel > 0) {
+      hintUsed = true;
+      final evidence = learningEvidence;
+      if (evidence != null && evidence.helpLevel < _presentationHelpLevel) {
+        learningEvidence = LearningEvidence(
+          taskId: evidence.taskId,
+          problemId: evidence.problemId,
+          correct: evidence.correct,
+          helpLevel: _presentationHelpLevel,
+          transferCheck: evidence.transferCheck,
+          errorTag: evidence.errorTag,
+        );
+      }
+    }
+    hintUsed = hintUsed || (learningEvidence?.helpLevel ?? 0) > 0;
     if (_disposed || appState.resetting) return Future<bool>.value(false);
     if (_pending != null) return _pending!.completion.future;
+    // A real assessed prompt supplies stable problem identity. Legacy calls
+    // without a prompt keep their progress without invented transfer evidence.
+    if (learningEvidence == null &&
+        discoveryTarget == null &&
+        (prompt.trim().isNotEmpty ||
+            (problemKey?.trim().isNotEmpty ?? false))) {
+      learningEvidence = LearningEvidence(
+          taskId: newLearningAttemptId(),
+          problemId: TutorTaskScope.problemIdentity(
+              subject, unit, problemKey ?? prompt),
+          correct: correct,
+          helpLevel: _presentationHelpLevel > 0
+              ? _presentationHelpLevel
+              : hintUsed
+                  ? 1
+                  : 0);
+    }
     final owner = appState.beginLearningAction();
     final now = DateTime.now();
     final ms = now.difference(_lastAnswerAt).inMilliseconds.clamp(0, 60000);
@@ -83,6 +154,30 @@ class LearningModuleProgress extends ChangeNotifier
       expected: expected,
       durationMs: ms,
       discoveryStep: discoveryStep,
+      learningEvidence: learningEvidence,
+      missionTaskId: discoveryTarget == null
+          ? learningEvidence?.taskId ?? newLearningAttemptId()
+          : null,
+    ));
+  }
+
+  /// Accompanied construction is an observation, never a school answer,
+  /// Daily increment or reward. It uses the same captured owner and retry.
+  Future<bool> saveObservation(LearningEvidence evidence) {
+    evidence.validate();
+    if (evidence.helpLevel == 0) {
+      throw ArgumentError('Accompanied observations require support metadata');
+    }
+    if (discoveryTarget != null) {
+      throw StateError('Discovery uses its own existing observation model');
+    }
+    if (_disposed || appState.resetting) return Future<bool>.value(false);
+    if (_pending != null) return _pending!.completion.future;
+    return _enqueue(_PendingModuleSave(
+      stars: 0,
+      xp: 0,
+      owner: appState.beginLearningAction(),
+      learningEvidence: evidence,
     ));
   }
 
@@ -151,6 +246,8 @@ class LearningModuleProgress extends ChangeNotifier
   bool resetSession() {
     if (_disposed || hasPending) return false;
     _bonusSaved = false;
+    _presentedTaskKey = null;
+    _presentationHelpLevel = 0;
     _cancelFeedback();
     return true;
   }
@@ -224,9 +321,18 @@ class LearningModuleProgress extends ChangeNotifier
       }
       // Flags precede writes: both services mutate before persistence and a
       // failure must retry the same queued state instead of awarding/counting.
+      if (pending.learningEvidence != null) {
+        // Loading is fallible before any mutation. Do not mark an observation
+        // recorded until its original owner's bytes are safely available.
+        await owner.profile.loadJourney();
+        if (!appState.canUseLearningLease(owner)) {
+          _complete(pending, false);
+          return;
+        }
+      }
       if (!pending.rewardBooked) {
         pending.rewardBooked = true;
-        appState.addRewards(stars: pending.stars, xp: pending.xp);
+        appState.addRewards(stars: pending.stars, xp: pending.xp, lease: owner);
       }
       await appState.flushRewards();
       if (!appState.canUseLearningLease(owner)) {
@@ -247,6 +353,7 @@ class LearningModuleProgress extends ChangeNotifier
             correct: pending.correct!,
             hintUsed: pending.hintUsed,
             requireSaved: true,
+            taskId: pending.missionTaskId,
             lease: owner,
             prompt: pending.prompt,
             given: pending.given,
@@ -279,6 +386,17 @@ class LearningModuleProgress extends ChangeNotifier
         }
       } else if (pending.sessionBonus) {
         _bonusSaved = true;
+      }
+      final evidence = pending.learningEvidence;
+      if (evidence != null) {
+        if (!appState.canUseLearningLease(owner)) {
+          _complete(pending, false);
+          return;
+        }
+        // Re-submit the identical accepted identity: the journal deduplicates
+        // it after mutation, and retries validation/load failures before it.
+        await owner.profile.recordJourneyEvidence(
+            subject: subject, unit: unit, evidence: evidence);
       }
       // Unmount cancels UI continuations, not the accepted storage operation.
       _complete(
@@ -386,6 +504,7 @@ class LearningModuleProgress extends ChangeNotifier
 class _PendingModuleSave {
   _PendingModuleSave({
     this.correct,
+    this.missionTaskId,
     this.hintUsed = false,
     required this.stars,
     required this.xp,
@@ -401,6 +520,7 @@ class _PendingModuleSave {
     this.discoveryIntroduction = false,
     this.discoveryStep = DiscoveryStepKind.independent,
     this.discoveryPermission,
+    this.learningEvidence,
   });
 
   final String prompt;
@@ -410,7 +530,9 @@ class _PendingModuleSave {
   final bool discoveryIntroduction;
   final DiscoveryStepKind discoveryStep;
   final ({bool enabled, int maxGrade})? discoveryPermission;
+  final LearningEvidence? learningEvidence;
 
+  final String? missionTaskId;
   final bool? correct;
   final bool hintUsed;
   final int stars;

@@ -2,6 +2,7 @@ import '../../core/german_task_templates.dart';
 import '../../core/math_task_templates.dart';
 import '../../core/scanned_work_analysis.dart';
 import '../../core/school_exercise_generator.dart';
+import '../learning/adapters/legacy_lumo_task_adapter.dart';
 
 class PhotoLessonPractice {
   const PhotoLessonPractice({required this.tasks, this.notice = ''});
@@ -25,9 +26,12 @@ class PhotoLessonPractice {
     }
     final cappedGrade = grade.clamp(1, 4).toInt();
     final unit = analysis.nextPracticeUnit;
-    final supported = Curriculum.unitsForGrade(subject, cappedGrade).contains(unit) ||
-        (subject == 'Mathematik' && MathTaskTemplates.supportsUnit(cappedGrade, unit)) ||
-        (subject == 'Deutsch' && GermanTaskTemplates.supportsUnit(cappedGrade, unit));
+    final supported =
+        Curriculum.unitsForGrade(subject, cappedGrade).contains(unit) ||
+            (subject == 'Mathematik' &&
+                MathTaskTemplates.supportsUnit(cappedGrade, unit)) ||
+            (subject == 'Deutsch' &&
+                GermanTaskTemplates.supportsUnit(cappedGrade, unit));
     final factory = ExerciseFactory(seed: seed);
     final tasks = <LumoTask>[];
     for (var i = 0; i < 5; i++) {
@@ -38,7 +42,7 @@ class PhotoLessonPractice {
           unit: unit,
           seed: (seed + i * 7919) & 0x7fffffff,
         );
-        tasks.add(LumoTask(
+        tasks.add(const LegacyLumoTaskAdapter().qualityCheckedTask(LumoTask(
           id: 'photo-math-$seed-$i',
           grade: cappedGrade,
           subject: subject,
@@ -49,7 +53,7 @@ class PhotoLessonPractice {
           explanation: task.explanation,
           visual: task.visual,
           difficulty: task.difficulty,
-        ));
+        )));
       } else {
         tasks.add(factory.next(
           grade: cappedGrade,

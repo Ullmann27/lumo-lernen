@@ -9,9 +9,6 @@
 // stattdessen LumoAssetPaths.companionIdle, LumoAssetPaths.sfxCardWhoosh,
 // etc. So gibt's bei einem Pfad-Wechsel nur eine Aenderung im Repo.
 //
-// Companion-Posen + Lottie-Animationen haben zusaetzlich enum-basierte
-// Convenience-Mapper in lumo_companion_pose.dart.
-//
 // SVG-Icons haben eine eigene Klasse LumoIconPaths in lumo_icon_paths.dart
 // (40 Stueck, zu viel fuer diese Datei).
 // ════════════════════════════════════════════════════════════════════════

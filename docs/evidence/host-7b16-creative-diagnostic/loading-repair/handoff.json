@@ -1,0 +1,14 @@
+{
+  "status": "FROZEN",
+  "source_freeze": "source-freeze.json",
+  "source_freeze_sha256": "385d1d3bc3d5546700c9eb939fdc5f933a34d40c8690ab6a065f2ba3dcb783d8",
+  "paths": "owned-source-paths.txt",
+  "count": 12,
+  "bytes": 4324238,
+  "helper_sha256": "e31118906b577cdb1bca5312d47d227378786b273de13b559847339cd79744c2",
+  "validation": "validation.json",
+  "patch": "loading-only.patch",
+  "producer_review": "producer-delta-review.json",
+  "source_only_change": "creative_android_probe.py/image_lines; Root owned surfaces callsite was read/tested but not edited here",
+  "scope": "Local original replay and guard correctness; no new Android acceptance"
+}

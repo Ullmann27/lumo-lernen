@@ -1,0 +1,123 @@
+name: Lumo 2001 direct Chrome APK release after verified 2000 update
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/lumo-2001-direct-release.yml'
+      - '.github/workflows/lumo-2001-actual-update-gate.yml'
+      - '.github/probes/lumo_2001_update_android_probe.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-2001-publication-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  publish-chrome-2001:
+    if: github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'feat/lumo-tutor-brain-2001-20261028'
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+      VERSION: '0.12.89+2001'
+      GODOT_SHA: 'adcce3093caa42bf3da47262f70bdf03cdefa347'
+      TAG: 'lumo-0.12.89-2001'
+      FILE: 'Lumo-Lernen-0.12.89-2001-ARM64.apk'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Require exact-head successful Android build and actual 2000-2001 update
+        run: |
+          set -euo pipefail
+          test "$(grep '^version:' pubspec.yaml | cut -d' ' -f2)" = "$VERSION"
+          test "$(python3 -c 'import json;print(json.load(open("config/godot-source.json"))["revision"])')" = "$GODOT_SHA"
+          for attempt in $(seq 1 87); do
+            gh api "repos/Ullmann27/lumo-lernen/actions/runs?head_sha=$SOURCE_SHA&per_page=100" > runs.json
+            for label in "Lumo Lernen Kart unified integration APK" "Lumo 2001 actual 2000 in-place upgrade and native Kart QA"; do
+              row="$(jq -r --arg sha "$SOURCE_SHA" --arg label "$label" '[.workflow_runs[] | select(.name==$label and .head_sha==$sha)] | sort_by(.created_at) | reverse | .[0] | if .==null then "waiting waiting" else "\(.id) \(.conclusion // .status)" end' runs.json)"
+              read -r run state <<< "$row"
+              echo "$label: $run $state (attempt $attempt)"
+              case "$label" in
+                "Lumo Lernen Kart unified integration APK") BUILD_RUN="$run"; BUILD_STATE="$state" ;;
+                *) UPDATE_RUN="$run"; UPDATE_STATE="$state" ;;
+              esac
+            done
+            if [ "$BUILD_STATE" = 'success' ] && [ "$UPDATE_STATE" = 'success' ]; then
+              echo "BUILD_RUN=$BUILD_RUN" >> "$GITHUB_ENV"
+              echo "UPDATE_RUN=$UPDATE_RUN" >> "$GITHUB_ENV"
+              break
+            fi
+            if [ "$BUILD_STATE" = 'failure' ] || [ "$UPDATE_STATE" = 'failure' ] || [ "$BUILD_STATE" = 'cancelled' ] || [ "$UPDATE_STATE" = 'cancelled' ]; then
+              echo "Refusing publication after failing Android tour/update gate"
+              exit 1
+            fi
+            sleep 60
+          done
+          test "$BUILD_STATE" = 'success' && test "$UPDATE_STATE" = 'success'
+      - name: Fetch only exact verified ARM64 and 2000 update proof
+        run: |
+          set -euo pipefail
+          mkdir -p dist update-proof
+          gh run download "$BUILD_RUN" --repo Ullmann27/lumo-lernen \
+            --name lumo-unified-arm64-verified --dir dist
+          gh run download "$UPDATE_RUN" --repo Ullmann27/lumo-lernen \
+            --name lumo-2001-actual-2000-update-proof --dir update-proof
+      - name: Verify real learning-preserving installation, source, package and signing
+        run: |
+          set -euo pipefail
+          sha256sum -c dist/APK-SHA256.txt
+          python3 - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          dist=Path('dist')
+          apk=dist/'Lumo-Lernen-Neu.apk'
+          digest=hashlib.sha256(apk.read_bytes()).hexdigest()
+          provenance=json.loads((dist/'BUILD-PROVENANCE.json').read_text())
+          verification=json.loads((dist/'APK-VERIFICATION.json').read_text())
+          pin=json.loads((dist/'GODOT-SOURCE.json').read_text())
+          assert provenance['flutter_source_commit']==os.environ['SOURCE_SHA']
+          assert provenance['tracked_source_clean'] is True
+          assert provenance['godot']['revision']==os.environ['GODOT_SHA']
+          assert pin['revision']==os.environ['GODOT_SHA'] and pin['engine']=='4.6.3'
+          assert (dist/'APP-VERSION.txt').read_text().strip()=='version: '+os.environ['VERSION']
+          assert provenance['versionCode']==2001 and provenance['versionName']=='0.12.89'
+          assert verification['versionCode']==2001 and verification['versionName']=='0.12.89'
+          assert verification['sha256']==digest
+          assert verification['package']=='dev.ullmann.lumo.lumo_lernen.coachpreview'
+          assert verification['signingCertificateSha256'].lower()=='a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+          assert 'arm64-v8a' in verification['abis']
+          results=list(Path('update-proof').rglob('update-result.json'))
+          assert len(results)==1,'Missing actual update result proof'
+          result=json.loads(results[0].read_text())
+          assert result['status']=='PASS' and result['offline'] is True
+          assert result['fatal_crashes']==0
+          for step in ['learning_journey','installation','after_update','native_tour','after_kart','after_restart','fold']:
+            assert result[step],f'Missing strict phase: {step}'
+          assert set(result['fold'])=={'cover','open','landscape'}
+          assert result['candidate_source']==os.environ['SOURCE_SHA']
+          print('RELEASE_VERIFIED',digest,apk.stat().st_size,os.environ['SOURCE_SHA'])
+          PY
+      - name: Publish exact 2001 ARM64 APK as a direct Chrome HTTPS release
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo "Version 2001 already published; never overwrite an immutable release"
+            exit 1
+          fi
+          cp dist/Lumo-Lernen-Neu.apk "dist/$FILE"
+          (cd dist && sha256sum "$FILE" > "$FILE.sha256")
+          gh release create "$TAG" "dist/$FILE" "dist/$FILE.sha256" \
+            dist/BUILD-PROVENANCE.json dist/APK-VERIFICATION.json dist/GODOT-SOURCE.json \
+            --repo Ullmann27/lumo-lernen --target "$SOURCE_SHA" \
+            --title "Lumo Lernen + Lumo Kart 0.12.89 (2001) Android ARM64" \
+            --notes "Signed direct APK for Google Chrome. Local tutor coordination, voluntary explanations, interactive base-ten construction with transfer check, and profile-grounded daily plan. Existing Sonnenhafen native integration preserved. Exact Godot source $GODOT_SHA; Flutter source $SOURCE_SHA. Full Flutter tests, Kart Android tour and actual 2000->2001 install-r with preserved profile, rewards and offline Fold views all passed. Release is a device test candidate, NOT proof of Fold 60 FPS or Play Store certification. Previous releases preserved." \
+            --prerelease
+          gh release view "$TAG" --repo Ullmann27/lumo-lernen --json assets \
+            --jq '.assets[].name' | grep -Fx -- "$FILE"
+          echo "HTTPS_APK=https://github.com/Ullmann27/lumo-lernen/releases/download/$TAG/$FILE"

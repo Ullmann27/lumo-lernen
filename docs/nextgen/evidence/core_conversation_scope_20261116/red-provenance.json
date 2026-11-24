@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "b49cf9c7e1e60c4e3901883d1c6bfc4a46e9ede4",
+  "productSourcesUnchanged": true,
+  "files": {
+    "lib/app/app_shell.dart": "f7989ba9b40d431d48a1fbeb7535d0cfdd7cb15666b0d1fd68aeb024cc1b3731",
+    "lib/features/learning/learning_content.dart": "90b2768678d916dd7a13f811ba8290a9759870fdbbf77f6943c105cb89aa0cb2",
+    "test/learning/core_conversation_route_test.dart": "99ca990647f4090da914951af4a1cbec41522e86159db1f74a77e9c58ec69770"
+  },
+  "command": "flutter test --no-pub --no-test-assets --reporter expanded test/learning/core_conversation_route_test.dart",
+  "result": "FAIL: exact current task ID becomes null after actual AppShell header opens its conversation",
+  "testBoundary": "Actual AppShell, Academy, Core, Header, dialog and task bus; synthetic PNG transport and SDK fonts, no rendered asset quality or device claim"
+}

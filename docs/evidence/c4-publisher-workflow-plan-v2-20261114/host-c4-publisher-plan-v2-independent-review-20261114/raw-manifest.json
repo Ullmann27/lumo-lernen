@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "review.json",
+      "bytes": 5060,
+      "sha256": "71b829b0a853fa4cd0c14474bbac6feef124c4163b925419dcf62f7893a6cfac",
+      "git_blob": "1f4c2475916ad512e7c9bb32fbdb230b666e8dc8"
+    },
+    {
+      "path": "inspection-first.original.json",
+      "bytes": 267,
+      "sha256": "11388ce14e6b556450cb9d5462cd87f92f29c6413802a19336e0973953f53e90",
+      "git_blob": "00830255e85a0cbb33f4d42f537668215b882c67"
+    },
+    {
+      "path": "inspection-corrected.original.json",
+      "bytes": 2160,
+      "sha256": "56adacfaedaf1f25d842f55e62f8620fad913624ba1237cb75ef47382d3cddfa",
+      "git_blob": "553ccee14357fe57a5801b533e441eba90f42234"
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "schema": 1,
+  "status": "NO_ADDITIONAL_HOST497_502_SOURCE_PATCH_REQUIRED",
+  "observed_at_utc": "2026-11-14T12:30:44Z",
+  "baseline": {
+    "time": "2026-11-14T10:50:14Z",
+    "review_sha256": "d214e53b5472958deb47d51e7e1a58836d92ae2b11654c52bb74fedc2c9fb9e7"
+  },
+  "host497": {
+    "before": "07cac7225e2f7b6451665dfda9c38841f51c758b",
+    "head": "9516068cfb67938fc90d48ff45d56169f00941fc",
+    "tree": "3dc30b78041ba873ef72f2a99172586b3b88099c",
+    "delta": "Exactly1 file: .github/workflows/lumo-connect-four-2020.yml, build outer timeout90→150. No product code changes. Root120/80 budget decision remains separately justified and is not replaced."
+  },
+  "host502": {
+    "before": "c3f44ea7acdfe2ee8be68e8c37ad5fa25f2a1e23",
+    "head": "53a9816e8412e31feee19a965c75dbf93790dfc1",
+    "tree": "38b4ff8ec42b5d67e7b14627eed3092b44bed54b",
+    "parents": [
+      "034fb8742a12675fff140321ccf140a518c45a65",
+      "07cac7225e2f7b6451665dfda9c38841f51c758b"
+    ],
+    "comparison_files": 44,
+    "docs_files": 26,
+    "other_files": 18,
+    "flutter_product_changes": 0,
+    "village_capture": {
+      "path": "test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "intermediate_source": {
+        "bytes": 5234,
+        "sha256": "b985d75c182f6d876230920a28cfe0f048940c907bb0672965e60c9b624abc74",
+        "git_blob": "f9c45cbcbd38c94b0d3b6acd6bbd5005f565f100"
+      },
+      "final_source": {
+        "bytes": 5217,
+        "sha256": "cc42bda018a3433cebaef86177bb72fc1279f38f91e2def6f59b2fb66289db0a",
+        "git_blob": "935ca225a6fa67df73f520494d61480943435595"
+      },
+      "already_integrated_product16_freeze": "c5df8d36119680d4b634f3c294545d7d43be5b43fc6a1e8e819f956bfc9426c8",
+      "resolution": "The final source935ca225 uses Flutter TargetPlatformVariant.only(android), with no manual global override. The intermediate034 try/finally is superseded by the already-integrated framework-managed lifecycle. Initial lost-fix suspicion disproved."
+    },
+    "already_integrated_exact_blobs": [
+      {
+        "path": "scripts/verify_connect_four_candidate.py",
+        "blob": "bb496435fe24ecd34fd24809e12d51df6c2952be",
+        "scope": "frozen five-file pack"
+      },
+      {
+        "path": "tools/android_qa/village_android_evidence.py",
+        "blob": "013fe059fdbe1dd49ded63b3378f302f10fface3",
+        "scope": "QA-V2"
+      },
+      {
+        "path": "test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+        "blob": "935ca225a6fa67df73f520494d61480943435595",
+        "scope": "product16"
+      }
+    ],
+    "stricter_current_sources_preserved": [
+      {
+        "path": ".github/probes/lumo_village_android_probe.py",
+        "producer": "97434207488900ac8f9364d5120f163cbc3ff0d5",
+        "current_v2": "20c2b8007ccb8278c16e11a1c6fc5bc5a1c01a99"
+      },
+      {
+        "path": "tools/android_qa/tests/test_village_android_evidence.py",
+        "producer": "55053f72145aec5d10a2d1669ff93618c36a7ee3",
+        "current_v2": "f515e404428edc8003f1191c77df214384f0eac7"
+      }
+    ],
+    "excluded_foreign_branch": {
+      "branch": "repair/lumo-single-apk-20261114",
+      "paths": [
+        {
+          "path": "tools/android_qa/connect_four_android_evidence.py",
+          "blob": "803bebf5a88b8ab84922348294148a4afb0e91e9"
+        },
+        {
+          "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+          "blob": "cfc8cb292407de5369acc7339e7e2bd5069a9a6b"
+        },
+        {
+          "path": ".github/workflows/lumo-unified-integration-2026.yml",
+          "blob": "3f32af023591874ea2102ddcf23aee61f1b590c3"
+        }
+      ],
+      "reason": "Only foreign exact-branch approval and tests; unnecessary for Root current integration route."
+    },
+    "other_exclusions": "Producer pins/policy/constants, status/planning docs excluded. Existing Homecapture4259e169 is already in the10:50 baseline and inherited from07cac, not a new discovery. Full Village workflow/delivery remains covered by the separate five-file pack with current Dream/Discovery gates."
+  },
+  "unchanged_heads": {
+    "host492": "de3b74c56052794196b9f14fc65a13412209651f",
+    "host500": "64b0b9f93802902978c140cdae9b0fc9d50e0938",
+    "host501": "b5b7f6d9c2c33fd43234fc28fefd1f84f933dcea",
+    "native173": "71a4c1e2304b52005950b12490d070c286c45438",
+    "native174": "f2edd325142b92a534b06518f66eadad3551412b",
+    "native171": "bebf7bba48f09afc834469db0ea3c5541a184f55"
+  },
+  "delegated": {
+    "godot": [
+      "Native181570bcde→be58fe0a",
+      "Native167785413→34421df8"
+    ],
+    "pipeline": [
+      "Host491803a→aab09275",
+      "Host49374a0→6f42fa8c",
+      "Host4940787→ae1ba5e6",
+      "Host4775e39→946ed588"
+    ],
+    "notes": "No duplicate source reads assigned. Native a7bb5815009ea4ae9b8842026f4f3761ae99c98b and known Wisp delta stay protected. Host491 comparison at300 files may be API-limited; peer warned."
+  },
+  "originals": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/baseline-review.json",
+      "bytes": 28768,
+      "sha256": "d214e53b5472958deb47d51e7e1a58836d92ae2b11654c52bb74fedc2c9fb9e7",
+      "git_blob": "fe3a1f15eecf4647693dd258c307d69a0584779c",
+      "full_utf8_json_readback": true
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/lumo-lernen-open-pulls.json",
+      "bytes": 1819250,
+      "sha256": "69063efbe37ce7063667a914ae7ff170d256954eac3c8c2f39a52dc6c2622c83",
+      "git_blob": "79d75a412bdd30d5958d0ef3daed342a1cdd4d0a",
+      "full_utf8_json_readback": true
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/lumo-godot-open-pulls.json",
+      "bytes": 1759869,
+      "sha256": "95adc96a412b561d20431666eb2b2259e9384a700172809400190a6c856e28c2",
+      "git_blob": "4d4bc039f5d4d9833cd6628167dfcc1a1d39bf3c",
+      "full_utf8_json_readback": true
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/host491-compare.json",
+      "bytes": 1404725,
+      "sha256": "4d5d55958dce9068a4687e23dfd6870005c6357e138c2233840f4fb853c0ff6d",
+      "git_blob": "e88f6facbb0536429ea313aca55bb4f1787c30d3",
+      "full_utf8_json_readback": true
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/host493-compare.json",
+      "bytes": 32633,
+      "sha256": "16e1e88a48bb69ba866b3da755ee1d189e7ee8d832805038f0dfe169c35b8c9c",
+      "git_blob": "acf5e1963a05909ff8830237a42f03622c4e16fb",
+      "full_utf8_json_readback": true
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/host494-compare.json",
+      "bytes": 144857,
+      "sha256": "fafa54a1265efc0e41541ea78ac3422cecf4bda7fb0267310bb9cb7b678806f9",
+      "git_blob": "0a860bb21ee5e80d4a96654ca7ba35bd0c29a73d",
+      "full_utf8_json_readback": true
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/host497-compare.json",
+      "bytes": 13822,
+      "sha256": "f3ade58afa8106b7487fb5c568df510e3af79f3bbcf68e90ea82f21ace282743",
+      "git_blob": "846a0c853c8b27d6cc55f326fa34253e9752f2cb",
+      "full_utf8_json_readback": true
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/host502-compare.json",
+      "bytes": 577855,
+      "sha256": "20bc8526abdbea7b29a81c497ddb04912ba2442b76935945dba1ac0315ed4aab",
+      "git_blob": "45da8eddbbc45fdedc6046dd5f1a4b242c182c06",
+      "full_utf8_json_readback": true
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/host477-compare.json",
+      "bytes": 654598,
+      "sha256": "a8e250dcf616e04b7194e1cfb24281a4bbc7fc50b6e74202f5fd701eea9ce3c3",
+      "git_blob": "1c5e51d23ab00eb085f84de84ede4f2127f5a347",
+      "full_utf8_json_readback": true
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/native167-compare.json",
+      "bytes": 19896,
+      "sha256": "e6ab5ca3c929a55ed54cfbb011e01a8b680d56b5a8a224e28c099b6f5d532454",
+      "git_blob": "1f6327e8cc1f340888defc3b4974e85a3d9f0985",
+      "full_utf8_json_readback": true
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/producer-incremental-20261114-122521/originals/native181-compare.json",
+      "bytes": 101892,
+      "sha256": "a3b413322279d0c5348d06d9c6b4b677c1752b1eed7b4e2964a53367201494a7",
+      "git_blob": "81614236cbf53519bd69b6c349305f953a8132e9",
+      "full_utf8_json_readback": true
+    }
+  ],
+  "supplemental_originals": [
+    {
+      "key": "host502_test_commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/034fb8742a12675fff140321ccf140a518c45a65",
+      "identity": {
+        "bytes": 16496,
+        "sha256": "631ef1e93896b7d5faea25f4ea83e712f5d86f792d57c4f77abf7a0b9bc93eb5",
+        "git_blob": "70165ce78a2487bdf5e756efe502a8df9ac47505"
+      },
+      "storage": "Complete original function-store string; not yet materialized locally due executor outage"
+    },
+    {
+      "key": "village034_source",
+      "url": "https://github.com/Ullmann27/lumo-lernen/raw/034fb8742a12675fff140321ccf140a518c45a65/test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "identity": {
+        "bytes": 5234,
+        "sha256": "b985d75c182f6d876230920a28cfe0f048940c907bb0672965e60c9b624abc74",
+        "git_blob": "f9c45cbcbd38c94b0d3b6acd6bbd5005f565f100"
+      },
+      "storage": "Complete original function-store string; not yet materialized locally due executor outage"
+    },
+    {
+      "key": "village053_source",
+      "url": "https://github.com/Ullmann27/lumo-lernen/raw/53a9816e8412e31feee19a965c75dbf93790dfc1/test/design/dorfwirtschaft_spielewelt_capture_test.dart",
+      "identity": {
+        "bytes": 5217,
+        "sha256": "cc42bda018a3433cebaef86177bb72fc1279f38f91e2def6f59b2fb66289db0a",
+        "git_blob": "935ca225a6fa67df73f520494d61480943435595"
+      },
+      "storage": "Complete original function-store string; not yet materialized locally due executor outage"
+    }
+  ],
+  "limits": {
+    "tests": "NOT_RUN",
+    "ci_reads": "none",
+    "source_or_git_or_ref_or_pin_writes": false,
+    "environment": "Executor unavailable; no repeated local attempts. Eleven initial original files fully read back with strict UTF8/JSON and hashes before outage. Supplemental commit/source strings hash-verified remotely. Report stored in functions.store, local report write pending."
+  }
+}

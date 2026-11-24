@@ -1,0 +1,5147 @@
+{
+  "source_sha": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "run_id": 43628840534,
+  "run_attempt": 1,
+  "download_started_utc": "2026-11-14T19:06:13.906687+00:00",
+  "download_completed_utc": "2026-11-14T19:06:22.348752+00:00",
+  "inventory_completed_utc": "2026-11-14T19:06:24.250262+00:00",
+  "original_metadata": {
+    "id": 14127492329,
+    "node_id": "MDg6QXJ0aWZhY3QxNDEyNzQ5MjMyOQ==",
+    "name": "lumo-candidate-all-flutter-tests-and-captures",
+    "size_in_bytes": 363820201,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14127492329",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14127492329/zip",
+    "expired": false,
+    "digest": "sha256:a7f4184021a42782bef47380ecc0514ade032dfa44d455acf9dcfa27716a2868",
+    "created_at": "2026-11-14T19:04:37Z",
+    "updated_at": "2026-11-14T19:04:37Z",
+    "expires_at": "2026-12-14T19:04:27Z",
+    "workflow_run": {
+      "id": 43628840534,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-live-connections-20261114",
+      "head_sha": "04a8e850d4c198e16ff758df614ce6e53eab4524"
+    }
+  },
+  "archive": {
+    "path": "original-artifact-14127492329.zip",
+    "bytes": 363820201,
+    "sha256": "a7f4184021a42782bef47380ecc0514ade032dfa44d455acf9dcfa27716a2868",
+    "original_api_digest_matches": true
+  },
+  "all_zip_member_crcs": "PASS",
+  "png_count": 566,
+  "members": [
+    {
+      "path": "acceptance-summary.json",
+      "bytes": 2382,
+      "sha256": "cb14619f303fd22a19b9148e593886f75662960bbd10c440a9bc5ce4b93ffa12",
+      "zip_crc32": "a91ae537",
+      "extracted_original_text": true
+    },
+    {
+      "path": "assisted-learning/independent-review.png",
+      "bytes": 77980,
+      "sha256": "5dd2f063ab2def0f2f6a65f7a1d1793584a0b1eb59e6ab05693d6286406fc10d",
+      "zip_crc32": "d3903b75",
+      "extracted_original_text": false,
+      "width": 454,
+      "height": 600
+    },
+    {
+      "path": "assisted-learning/independent-strength.png",
+      "bytes": 78693,
+      "sha256": "22e6ecdf8355bf94268dcadcbc5d02d90f88dc7446666cb2583044a472c7f147",
+      "zip_crc32": "fefbc0d4",
+      "extracted_original_text": false,
+      "width": 461,
+      "height": 600
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_0.png",
+      "bytes": 38892,
+      "sha256": "afe8a88ac5b0d1fa5eebf95900799c550fbc72b6bef7cf9679b37e499c3ce194",
+      "zip_crc32": "3e4bce18",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_1.png",
+      "bytes": 37529,
+      "sha256": "e9cc39989f0cd8bd6fa13c3987ab0264978ef9c6384814fe1c45c9ad80782225",
+      "zip_crc32": "070b45f7",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_3.png",
+      "bytes": 39400,
+      "sha256": "588b1b2005f2b359a4cca864082d8d0d69eca2164d3e424aaef0cc2e8d91ffd7",
+      "zip_crc32": "7c977cf6",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_4.png",
+      "bytes": 38307,
+      "sha256": "9d6046a3aa9fa3a57ccb7ce68c4bc2c5996d4d9375317f402f45f914313e4fd4",
+      "zip_crc32": "05ecde1e",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_2.png",
+      "bytes": 38817,
+      "sha256": "2b15f4a324deb6557d02c19ae376a8cab4e3f685acb5bffe76734bcf25d8ab98",
+      "zip_crc32": "8cc916e4",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_5.png",
+      "bytes": 39117,
+      "sha256": "30463f0349145d994be81bff8a99b0829abf34a8dadd6dc262b4741634e4b63d",
+      "zip_crc32": "f035aa1f",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_6.png",
+      "bytes": 39534,
+      "sha256": "7903a3dd60286cba00b7002aba531c8acc3d1ab834297ae39f23318646725e5b",
+      "zip_crc32": "4d5bf644",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_7.png",
+      "bytes": 38327,
+      "sha256": "e1fa88a1efb9614ff5dd362e0f3a843906783b5bb5a95a820390b9787e0d1d4b",
+      "zip_crc32": "518dc798",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_8.png",
+      "bytes": 39519,
+      "sha256": "ca3b8b6c66c9f7eead858a7d12709d57b86e4769a7516fad325212c9de4757f7",
+      "zip_crc32": "84859977",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_9.png",
+      "bytes": 39539,
+      "sha256": "41aa65b4304939d80529ceebebafee3d61db73edc648513f52ebeb7e8ea8835b",
+      "zip_crc32": "b8a62805",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_draw_two.png",
+      "bytes": 39114,
+      "sha256": "dcb98ac9e22a9b5540501bbe5e9d4394b1c05030181d5e8fe7ba2b501f98f930",
+      "zip_crc32": "8decc92a",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_reverse.png",
+      "bytes": 43624,
+      "sha256": "81085fba3d8f374614063ada858146fd262fb0ec6ba10bcaa95d6bb92debb8ca",
+      "zip_crc32": "119bada4",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_skip.png",
+      "bytes": 40076,
+      "sha256": "63ba64b6bb14faebedac636e6ba9ec2bdaf96d29437e6e94f96b8f62f1d5f76a",
+      "zip_crc32": "c52ee790",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/blue/blue_think_pause.png",
+      "bytes": 40543,
+      "sha256": "2210f6c24393e2ae726d8015aab8b5cb9a0ccdf3be1f956c99fef43f7aa6a8e3",
+      "zip_crc32": "a759e72c",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_0.png",
+      "bytes": 35970,
+      "sha256": "59ce645b64d9c41946f84f20b92b73791b46899f67a7bbb856098a894ca1ef01",
+      "zip_crc32": "d6aba6b3",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_1.png",
+      "bytes": 34715,
+      "sha256": "70688a98b70a99ef3a84bebda4bc0d8bfb0b4b2709c8fcf7f8175ba88686e893",
+      "zip_crc32": "b63b82e3",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_2.png",
+      "bytes": 35818,
+      "sha256": "60a57bdbdc9b3caca4ed6d2cdcc322b4b03261eac1a254b52eab28e6f27ce379",
+      "zip_crc32": "0ab1da42",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_3.png",
+      "bytes": 36306,
+      "sha256": "af2695c57b43f1f24af720c34131d41493318b5195a9ec26894639b0ea4a37af",
+      "zip_crc32": "8dee759a",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_5.png",
+      "bytes": 36083,
+      "sha256": "676b25c7481696c97f20aaceefeb491191ded524c0d9feefd9a67225f9d9dec0",
+      "zip_crc32": "e6408be1",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_4.png",
+      "bytes": 35244,
+      "sha256": "ca78fe99e2339eca495839dbdc48810ff6fd7fb5a53ac6dd34a1939ded64489d",
+      "zip_crc32": "a871c1f0",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_6.png",
+      "bytes": 36526,
+      "sha256": "4489a5afb62a9cab7df575ef20b6e7a809314b6b4cbfc0841f8a2023f07cc22a",
+      "zip_crc32": "f78b4661",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_7.png",
+      "bytes": 35332,
+      "sha256": "4a0892e9096adfe7e3f5ab6575583093b45649d876a2abd1a80de36df8b8738f",
+      "zip_crc32": "8a588cd0",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_8.png",
+      "bytes": 36503,
+      "sha256": "8afb6fe616a47a4ba74bd2eff2a0799393cc3dd4f0f28326f23200c85d566bba",
+      "zip_crc32": "55c974ec",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_9.png",
+      "bytes": 36475,
+      "sha256": "2df7820e20c26fccb709a37b065832fd68074db3e19fcd8da5ef12eebf499bac",
+      "zip_crc32": "f45b9430",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_skip.png",
+      "bytes": 37459,
+      "sha256": "d6765df3cf56e1e8167b82ab5d37a443f58fb8f64c569fc7d91f14cf8c27a007",
+      "zip_crc32": "14d2cbb9",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_think_pause.png",
+      "bytes": 37686,
+      "sha256": "ebd9859fb52059a74041e525ec24dd63707589beb395b62867b4a4b5343f7eed",
+      "zip_crc32": "4a3259ef",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_draw_two.png",
+      "bytes": 36647,
+      "sha256": "14cb029fe8c3e5d05a34e77cf9e52982da1533c83bdc81894ff63f3bfb8c6560",
+      "zip_crc32": "0da7b089",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/green/green_reverse.png",
+      "bytes": 40949,
+      "sha256": "f49d37121e971b45e1e608926cbff1fca34167232121e9cf011de669426f1b38",
+      "zip_crc32": "28352eda",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_1.png",
+      "bytes": 32487,
+      "sha256": "849b5eef67c048357cc90fe8419d40437d9bc300bf8c539dd0ee6ea3ddffeda3",
+      "zip_crc32": "c6f8178b",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_2.png",
+      "bytes": 33782,
+      "sha256": "b37d727d30b6cb303daceb08522d6a28c5cd1bc0e289be2f7adbf0f9a68b44a1",
+      "zip_crc32": "9488d183",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_3.png",
+      "bytes": 34445,
+      "sha256": "b94d59b70dd5eec3d0c3ed2432c509217d2a2c6ca1bd6b404b50b273f646ea57",
+      "zip_crc32": "9194e4c9",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_0.png",
+      "bytes": 34036,
+      "sha256": "a5985e3598c2af32c8da2e4beda57c7b293b5026c21bddd03a8ccf76a0c9bb5b",
+      "zip_crc32": "c3f2eac7",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_4.png",
+      "bytes": 33285,
+      "sha256": "717697f6746ee9164dce96639019d2d81cf4267933462ba519413e7e31a190e0",
+      "zip_crc32": "69274fbd",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_5.png",
+      "bytes": 34022,
+      "sha256": "afd13a0999c5f38bb60653f16bb678249ac707206a584614c627fbbe986440f5",
+      "zip_crc32": "2fb925ee",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_6.png",
+      "bytes": 34579,
+      "sha256": "61b0da7685ba6c1ff6e75c6c5078f201d50dbaf21815cf2e4bef388ab759607e",
+      "zip_crc32": "f7a08dcb",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_7.png",
+      "bytes": 33216,
+      "sha256": "9304d72531ef2b25d5b0338db73ceefcd3b55fda00a82a6e53c033c3e7df2e7f",
+      "zip_crc32": "f3435205",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_reverse.png",
+      "bytes": 38717,
+      "sha256": "bcdbf592927ee7381762ddd80fab31eec6bcca7d8768a657af85b9ab6177cc5b",
+      "zip_crc32": "7360ffa3",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_8.png",
+      "bytes": 34624,
+      "sha256": "5c90b4a735a2bfce19f5b7b228f3691f18f4e6a8815da4720ac393dafb6ef7af",
+      "zip_crc32": "c9b746fa",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_9.png",
+      "bytes": 34627,
+      "sha256": "9dfccc9b7ad984325afaa3f4f26e7bba2b196fd4d2d72faa9f6ca6d43595c2d6",
+      "zip_crc32": "31938399",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_draw_two.png",
+      "bytes": 33899,
+      "sha256": "0c3bfa18c30a087e9edcd78a1f6b21dc769670cbcfd84b6541c93d1c95ab3a5f",
+      "zip_crc32": "486b16c2",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_skip.png",
+      "bytes": 35357,
+      "sha256": "83ba97cba9e390aec70c4271f27234bcf1827bddf2638c5bca530961d3e5a40e",
+      "zip_crc32": "85e2e41d",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/red/red_think_pause.png",
+      "bytes": 35207,
+      "sha256": "c2a0c288007eb1b3e6afd3e4be2a35b257d7445b244051bfe9e4c5b2980dd58e",
+      "zip_crc32": "4c372be0",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_0.png",
+      "bytes": 37677,
+      "sha256": "4d5b52e25d13cb7b14ea21f01bf403c39de5d1fdecec9acbb9051555e0e279e2",
+      "zip_crc32": "a763a7a4",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_1.png",
+      "bytes": 36146,
+      "sha256": "80afb014b4f6e50f00f54d5e4df4eb1bc3a0ade06b4343f984841e7d4d4df79e",
+      "zip_crc32": "377805e6",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_3.png",
+      "bytes": 38071,
+      "sha256": "b498e6e85d6418fe96c2f7ab7356b773a7f01facff7a994397d4a28b48fd2b8f",
+      "zip_crc32": "5a5013f3",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_5.png",
+      "bytes": 37779,
+      "sha256": "f1e101a0ab4243cb49022b53c80824013d6decf9b772e843a3978c05bd8dbdf1",
+      "zip_crc32": "e2e050d4",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_4.png",
+      "bytes": 36809,
+      "sha256": "38a3c2862d6410eb82080138552b7d154f31c742ee476592bc4726220962a120",
+      "zip_crc32": "301e4223",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_2.png",
+      "bytes": 37438,
+      "sha256": "4c7e2cf8e509e56c15de9b271804365fc5b024f6c5cdad90d6ef4c02168e8096",
+      "zip_crc32": "ae92dbca",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_6.png",
+      "bytes": 38220,
+      "sha256": "88430ef2467dc1f22024b2fb7eaabc9decc6b04cc6d7fc02cb9754370f2053ee",
+      "zip_crc32": "e09cd997",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_7.png",
+      "bytes": 36888,
+      "sha256": "33f0de47c76e9f7db6e25064c2f97a25c60b6de5cfd262f1fed02af87f66c83f",
+      "zip_crc32": "5e3c3e6d",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_8.png",
+      "bytes": 38238,
+      "sha256": "d7cb28bf4bd570437c933eef97a7ced7cdd51cf5b1eee9de34d22b71f92fa3f6",
+      "zip_crc32": "79b83d50",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_9.png",
+      "bytes": 38205,
+      "sha256": "086125d14dca82b508632fdeac41fc8437c88b5a46080034c79a18cc89abbdb2",
+      "zip_crc32": "c31857ce",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_draw_two.png",
+      "bytes": 38290,
+      "sha256": "587e6ce000c2a0442b611c06e9f0493a8467d9f92388717bfc0c6e5f89bf0bab",
+      "zip_crc32": "632be07b",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_reverse.png",
+      "bytes": 42791,
+      "sha256": "32ed7ba2019ffe43c04dd10a9c802fbe7444ac18c06c4b46c78602c3e59efeeb",
+      "zip_crc32": "de1d3223",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_skip.png",
+      "bytes": 39288,
+      "sha256": "e833e8962fe19258c8a5dd0d38f7e9596ee9d164b15e29621252528c5647a9e0",
+      "zip_crc32": "bbe07caf",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "card-face-exports/assets/lumo_cards/cards/yellow/yellow_think_pause.png",
+      "bytes": 39963,
+      "sha256": "532a54bd3dc3bbf1730954bfc7efcb29ecde118eb3972850adf2e741d4cdd405",
+      "zip_crc32": "2ed2ead0",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 528
+    },
+    {
+      "path": "cards-cup/trophy.png",
+      "bytes": 114224,
+      "sha256": "2980ad5282394c84465073427f2f3f99a64e7adb89f8ce648e6e5bd704ad56c4",
+      "zip_crc32": "02e04c61",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "cards-memory/cards_overview_fold.png",
+      "bytes": 757954,
+      "sha256": "9ecf9a51393743c729ce4c9da71ea736efc9eaeffe88ade5a5b507d612fbbbd4",
+      "zip_crc32": "d6d178da",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "cards-memory/cards_overview_landscape.png",
+      "bytes": 545610,
+      "sha256": "ce0f8a8dbc7a229f130d89afff6e7ef1fb86c36c7fc18a7a95c7731246de63d8",
+      "zip_crc32": "fdbf707a",
+      "extracted_original_text": false,
+      "width": 1275,
+      "height": 588
+    },
+    {
+      "path": "cards-memory/cards_overview_phone.png",
+      "bytes": 575162,
+      "sha256": "2a9ccce0fd2ccfd9e7308afa2d7962ffbb0ec1ca9926d5a0d868ef234d8a84e2",
+      "zip_crc32": "8a6d1ec2",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "cards-memory/memory_flipped_phone.png",
+      "bytes": 596968,
+      "sha256": "013e9a8281061dbee3f7e46ff3f2c94eccaa9439beda19377b6c7f6d0e9c16a7",
+      "zip_crc32": "4efa7b3d",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "cards-memory/memory_matched_phone.png",
+      "bytes": 583339,
+      "sha256": "6ef39975aef1e941d54efc45a97efe4a56926d741b16ee896d43e9b509a3ffe0",
+      "zip_crc32": "dffed2b4",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "cards-memory/memory_overview_fold.png",
+      "bytes": 704006,
+      "sha256": "47cd9fe20fdbcc0feaac565db3527583b0cfef7f1e45c8f19ae581a671e7f349",
+      "zip_crc32": "bed5471d",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "cards-memory/memory_overview_leicht.png",
+      "bytes": 571834,
+      "sha256": "4c860d87b761a38e748678ad825701b4c8e6011ff4965184656a825af114662c",
+      "zip_crc32": "8d70254c",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "cards-memory/memory_overview_phone.png",
+      "bytes": 610082,
+      "sha256": "4ee1e9c8b515e25387fb015dfa0ba58127a7ee5edf5265fe47b08767831d1105",
+      "zip_crc32": "ce1a7c3c",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "cards-opponents/cards_board_fold.png",
+      "bytes": 757954,
+      "sha256": "9ecf9a51393743c729ce4c9da71ea736efc9eaeffe88ade5a5b507d612fbbbd4",
+      "zip_crc32": "d6d178da",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "cards-opponents/cards_board_phone.png",
+      "bytes": 575162,
+      "sha256": "2a9ccce0fd2ccfd9e7308afa2d7962ffbb0ec1ca9926d5a0d868ef234d8a84e2",
+      "zip_crc32": "8a6d1ec2",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "cards-opponents/cards_opponent_fold.png",
+      "bytes": 167225,
+      "sha256": "4cf9541cfcb02d372889f3cbd4977e47f7f545b253e9f110a597279704b3c771",
+      "zip_crc32": "f55c4b22",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "cards-opponents/cards_opponent_phone.png",
+      "bytes": 147429,
+      "sha256": "c85e74aad3c0ae5c041146e1285157882b0e289e3d0358e7caeaf3ba6f277775",
+      "zip_crc32": "1728e7ef",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "companion/fold-target-actual-help.png",
+      "bytes": 783996,
+      "sha256": "d4a1c6a5e620c26798aca731d1ea9ca4e4943da16eb6c2d22fad400223fe991b",
+      "zip_crc32": "17a72af2",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "companion/fold-target-alternative-help.png",
+      "bytes": 783417,
+      "sha256": "760fa0caf5ea1799234f257d7f9b0fbbc7174b87a406417738a8311cac887baa",
+      "zip_crc32": "0f5df42f",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "companion/fold-target-task.png",
+      "bytes": 794732,
+      "sha256": "31c52edf26bbdfcc3a5cb3003043248ea8306d0d0f6f9f7b27a20f7abff7dfb6",
+      "zip_crc32": "a41ba23e",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "companion/phone-360x800-actual-help.png",
+      "bytes": 330954,
+      "sha256": "58c29b9a04b496741db8ed9f9bed8751386bc87f2b0d7f301b23353e458082e4",
+      "zip_crc32": "1f8eed47",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "companion/phone-360x800-alternative-help.png",
+      "bytes": 283205,
+      "sha256": "169eb6fcd0d0c56d3b0da554047ddc42b3d2b5fb37867a7698a53c4ade8fabd7",
+      "zip_crc32": "ee3a342d",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "companion/phone-360x800-task.png",
+      "bytes": 332573,
+      "sha256": "de2984c35bee912d88df0ca591f64ad4c44dbcdac619f4157f7ae3d70b7ab115",
+      "zip_crc32": "9fa3abfe",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "flutter-machine.jsonl",
+      "bytes": 1788100,
+      "sha256": "8e118985775e09e12c690b0106d9193c6832c962623a8ea466067bc6e25c1ff4",
+      "zip_crc32": "a7c5df94",
+      "extracted_original_text": true
+    },
+    {
+      "path": "games/cards_jump_fold.png",
+      "bytes": 58188,
+      "sha256": "53d8b222063f726c2f3a20f4fe828c9314d8e7cdc6f87f9e41d96e962196d6eb",
+      "zip_crc32": "e2f7a2d6",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "games/cards_jump_phone.png",
+      "bytes": 56243,
+      "sha256": "efc4cf11fb5e85ee82b91e76ab5c660a1c972e040e8bd4d1adb378a715e96121",
+      "zip_crc32": "68ce1e12",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "games/cards_overview_fold.png",
+      "bytes": 758009,
+      "sha256": "3319a0480a04d5079180e994ed6c92d169dc6010fb1f6e252bf43aa12f78d757",
+      "zip_crc32": "af30d9d4",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "games/cards_overview_phone.png",
+      "bytes": 575305,
+      "sha256": "787064a8a3a6464c1a910382df48066cf65198de643a44b6dac1ebb044a488b9",
+      "zip_crc32": "980ed9a4",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "games/cards_summary_fold.png",
+      "bytes": 273111,
+      "sha256": "44f57b27d817839a2ea3acd980c6992d7d6aecbc716568086ff49e1bafb7c858",
+      "zip_crc32": "3068e122",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "games/cards_summary_phone.png",
+      "bytes": 223771,
+      "sha256": "1c88902becff9dd3e2fe4342fc72c7abf9ee4058fc03f1ceb0269c1ea3cfeefb",
+      "zip_crc32": "47e11cf9",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "games/connect_overview_fold.png",
+      "bytes": 319333,
+      "sha256": "548585b2f6adc11c730ecb113dc4bd5f6dc8832c7ed274d2046c4eb83f435466",
+      "zip_crc32": "01b1e048",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "games/connect_overview_phone.png",
+      "bytes": 550975,
+      "sha256": "1acbe35fa11eefe64a7a98a1436b81526e2552ee2daa490c6b1264f06aff80ba",
+      "zip_crc32": "50e7c107",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "games/connect_winglow_fold.png",
+      "bytes": 319333,
+      "sha256": "548585b2f6adc11c730ecb113dc4bd5f6dc8832c7ed274d2046c4eb83f435466",
+      "zip_crc32": "01b1e048",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "games/connect_winglow_phone.png",
+      "bytes": 275822,
+      "sha256": "57e3f388827b727d2deae33fd0009bbdb25c3ccb89fa5a79f44cc42d984dce05",
+      "zip_crc32": "2ce846f1",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "games/memory_combo_fold.png",
+      "bytes": 762130,
+      "sha256": "8e642be238f3b23e6b67d376a162d01b12641e17159b63fd2071eb76ca25defb",
+      "zip_crc32": "4579850b",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "games/memory_combo_phone.png",
+      "bytes": 565894,
+      "sha256": "a455da7b12242522cda09769d9f5411f42588458b5d1cd5629d70db387d68411",
+      "zip_crc32": "fff4f0f4",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "games/memory_overview_fold.png",
+      "bytes": 704006,
+      "sha256": "47cd9fe20fdbcc0feaac565db3527583b0cfef7f1e45c8f19ae581a671e7f349",
+      "zip_crc32": "bed5471d",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "games/memory_overview_phone.png",
+      "bytes": 610082,
+      "sha256": "4ee1e9c8b515e25387fb015dfa0ba58127a7ee5edf5265fe47b08767831d1105",
+      "zip_crc32": "ce1a7c3c",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "games/quiz_overview_fold.png",
+      "bytes": 913490,
+      "sha256": "56a1238543e98e3cd9caf7bf3c2ce1d26986bd4a6396d0bffd0dd1121041e9c3",
+      "zip_crc32": "554b0287",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "games/quiz_overview_phone.png",
+      "bytes": 715193,
+      "sha256": "09e92ad6b3aa53499ec6759b73f2fd55ed8050a7924d7cee4515f7201d261b32",
+      "zip_crc32": "8d59cb20",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0000.png",
+      "bytes": 680227,
+      "sha256": "3a9a12d3eec25dc6b1ae6c98ecf3af98fc0168eb039063c519c54c93d0bab823",
+      "zip_crc32": "67faae89",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0001.png",
+      "bytes": 681481,
+      "sha256": "b158acf8268dbc9169f22be6c9fbd17f543c7d1a0051e876fc85661fd296eb3e",
+      "zip_crc32": "7eb3a315",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0003.png",
+      "bytes": 682196,
+      "sha256": "a7e9bcc1d2b28efaa2768092938ff0ab99268ee39fbd350099884a441c2a2c24",
+      "zip_crc32": "334352a6",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0002.png",
+      "bytes": 688038,
+      "sha256": "79d7e43e4cd458a7983f487c24d5d83fa824cc003712b2f517d51aa1afdcb178",
+      "zip_crc32": "2c4c0a4e",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0004.png",
+      "bytes": 680790,
+      "sha256": "1e4c31b6e556726860e762d5099c688def2d4709ac2f8183d282b3ff687a4994",
+      "zip_crc32": "17e39544",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0005.png",
+      "bytes": 679546,
+      "sha256": "290e2f39ee91e764a8bb3bec773d968248d0baacbdcf52e8b16f4fbca7f69d1c",
+      "zip_crc32": "27435b46",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0006.png",
+      "bytes": 679657,
+      "sha256": "e745f991bf38c96c034d4a29d4dec28ec2225a3a36b1c63915800103f69abe60",
+      "zip_crc32": "bda6db2a",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0007.png",
+      "bytes": 680010,
+      "sha256": "4162be3e34bc63091760be34ba9784de81cab6dc9e6f4dfec0080c0f9ce0a66e",
+      "zip_crc32": "89ea89f4",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0009.png",
+      "bytes": 679804,
+      "sha256": "65d30367d2917b358cbc0b36c2e3e5c2c1586b4ad447ed2bc6840c7e1fb7652c",
+      "zip_crc32": "c0f6c58c",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0008.png",
+      "bytes": 680108,
+      "sha256": "9e0aa172c715601832762dacd8c2b02bd8b46c55f3b0bdfd4480342bdd4bb12d",
+      "zip_crc32": "1aa8131b",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0010.png",
+      "bytes": 680075,
+      "sha256": "ca2657ce2040d5381ea09af180da54744530c389a0d456a2189d4778a45e9e28",
+      "zip_crc32": "1a8b0c49",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0011.png",
+      "bytes": 680627,
+      "sha256": "fdb876ab820f6bc80a3c4261c2fe4f01192bd55a50d73c90ca595dd2a7ced850",
+      "zip_crc32": "95d2d658",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0012.png",
+      "bytes": 680015,
+      "sha256": "3d296db4bf16aadf58948f7b15b9435163a1a68069d6157fe178161f09bc6ed3",
+      "zip_crc32": "24aa4476",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0013.png",
+      "bytes": 680355,
+      "sha256": "e41bf107b1be35ad5a65eec7434cba1a46b3d77c53fdf19fa40786bf14b04d49",
+      "zip_crc32": "82a39881",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0014.png",
+      "bytes": 680255,
+      "sha256": "77b12be145a9de4ecde77a02a572ad324265ab599cf2944232394d8b534d50d8",
+      "zip_crc32": "98c22632",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0015.png",
+      "bytes": 679705,
+      "sha256": "450fd8c140e14a7a2469dd040bbcdb24c3e6e8b0d68a32aa408ad7211c6ce57c",
+      "zip_crc32": "fd56cee6",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0016.png",
+      "bytes": 680273,
+      "sha256": "9723d0afdb111dbd47b1cac0d9509f6a67f0dd45276e30cc5d9526bc94496705",
+      "zip_crc32": "22f05960",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0017.png",
+      "bytes": 680279,
+      "sha256": "b3dc3637b2098be829b4fd325e0b591e62b6a45d97c23649e2a02384eb58a31f",
+      "zip_crc32": "97cbfc1f",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0018.png",
+      "bytes": 679994,
+      "sha256": "4ede88a75c01b6a69e780ffb338fbd53f99c35329695ab86aa295343e8e22c49",
+      "zip_crc32": "314fa87a",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0019.png",
+      "bytes": 679814,
+      "sha256": "a983ad890fa3aa5c468cf2c98f28c1e1878f9809e2d8aec2233503582fb2b600",
+      "zip_crc32": "507935c0",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0021.png",
+      "bytes": 679648,
+      "sha256": "9d131ec76fb08462edca523839ec7797c266755ff4d5c831392eac4797915caa",
+      "zip_crc32": "26c57225",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0020.png",
+      "bytes": 679884,
+      "sha256": "782ac04bb8919fd74f314b43c15ca1d1f7e3c44be7fcd52e2b193807136ebb3a",
+      "zip_crc32": "ac031aff",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0022.png",
+      "bytes": 679261,
+      "sha256": "bcabf7ba5a825175afb72a3a9ae5d01568000959ca9540c2dd7a3c1f90421ea4",
+      "zip_crc32": "a8b37f58",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0023.png",
+      "bytes": 679761,
+      "sha256": "33cf2ad9531fbf1910f3c644ba238551743b67e87a6827510f553486ab9822e2",
+      "zip_crc32": "7bc51e28",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0024.png",
+      "bytes": 679924,
+      "sha256": "c9ccaeae7227802342a7273b97ac178a57bb6741559fa49356d6118f95f1b3c9",
+      "zip_crc32": "1162702e",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0025.png",
+      "bytes": 679799,
+      "sha256": "ed89211484769ca053aff7feb1e4d045478caf6177231b6c1752dbf414a760ce",
+      "zip_crc32": "368c9bd9",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0026.png",
+      "bytes": 679779,
+      "sha256": "7221012992dd6f5d230da603b4aee4fa5a23411768bdc7743a7062275d6f8c57",
+      "zip_crc32": "01e37b79",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0027.png",
+      "bytes": 679609,
+      "sha256": "a36558ccdde54fbb88a1158f3f8b01c3ab7b8206e42e1e41a7162d483bb0d885",
+      "zip_crc32": "eb8611eb",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0028.png",
+      "bytes": 679416,
+      "sha256": "41a8a9d7341414f3abae015e40145b64bd561d00bce4ee0a50572a8c52478bd6",
+      "zip_crc32": "22a51830",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0029.png",
+      "bytes": 679034,
+      "sha256": "c18a67d79884e31c2f0db89ea1ad2b4a6037240fce185d393d2cbd5018de39eb",
+      "zip_crc32": "84288362",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0030.png",
+      "bytes": 678857,
+      "sha256": "48d1162cd5e9ebd4c6992989c0d0ed6b809b95bb33f2c3b131ebec58c6ea23bf",
+      "zip_crc32": "39d46a25",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0031.png",
+      "bytes": 678970,
+      "sha256": "03969edfed8ab9c93ca417250865c5f63691f68f14c8e3e17594985e6fdac3e8",
+      "zip_crc32": "0134eaac",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0032.png",
+      "bytes": 679181,
+      "sha256": "b0d74e9275ade1400f5297c636524b067744aeb6bec4437356a065118d31f643",
+      "zip_crc32": "a5c4e922",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0033.png",
+      "bytes": 679502,
+      "sha256": "f25d413cb999bb02242a25db7a38634afdddefff26e9af9e4470ed63822940c9",
+      "zip_crc32": "84efa52c",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0034.png",
+      "bytes": 679778,
+      "sha256": "f2f07e0a70eca603f9b8a70a884a917f8c6cf49afb384409bbd230051dea5f5d",
+      "zip_crc32": "d312ac90",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0035.png",
+      "bytes": 679130,
+      "sha256": "55da43f00dadda62cd2f5aae521c1e4447a74d07e44d91e2c24ad57fa90a3813",
+      "zip_crc32": "41c42df2",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0036.png",
+      "bytes": 679512,
+      "sha256": "d4fec82a323106692881e25447ed8412f2b205277188c4d71d43d400afd97299",
+      "zip_crc32": "9472dc6b",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0037.png",
+      "bytes": 679393,
+      "sha256": "577d6375d6ae3fed236d6f6891e8f4b125982363e6ddfb59c90b24754a77b662",
+      "zip_crc32": "b44387d6",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0038.png",
+      "bytes": 679425,
+      "sha256": "f52006a437a921444cf9e3fe508344942437f0b3172e08b80a09ac8b63960998",
+      "zip_crc32": "1c3f1e02",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0039.png",
+      "bytes": 679653,
+      "sha256": "23ebd3780fb3e18df14daa7d7c53922fe7b6ab65022fac97b55d31af8032a02f",
+      "zip_crc32": "6b109ebb",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0040.png",
+      "bytes": 679493,
+      "sha256": "8a5c4948e2c06f8f7d1cd27f5a88eba927616969256b95a09eb476a55894af91",
+      "zip_crc32": "5e4c6a0d",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0042.png",
+      "bytes": 679199,
+      "sha256": "fc62be9216ab3529dac3257bf19b35a2545cfb000a3f4a2e98b384d9be5f8cc4",
+      "zip_crc32": "ec22cce3",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0043.png",
+      "bytes": 679002,
+      "sha256": "1d0dd69e7d1acea57210bba0d27b7455630a893003b103cd87e28acc710da61f",
+      "zip_crc32": "953848cf",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0041.png",
+      "bytes": 679179,
+      "sha256": "f2aad4a4773d0bc421c9abd55adb7150bde975670bd166bddbf79e5345b16254",
+      "zip_crc32": "6d5f3b3d",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0044.png",
+      "bytes": 679468,
+      "sha256": "ff368f05ae14e28445e2effc936a8430f62f349bdd7b0591d5c97004d75b9783",
+      "zip_crc32": "0a078509",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0045.png",
+      "bytes": 679057,
+      "sha256": "bc4df788cb6d132798bb90f076d042d5e200d0780f6dae8ce091f335fe289baa",
+      "zip_crc32": "11c1ba09",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0046.png",
+      "bytes": 679014,
+      "sha256": "aad5914fcb00fbfaf44f20df5daf23166f5e16acbc1228662f77f942eb46c333",
+      "zip_crc32": "d25fd5bc",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0047.png",
+      "bytes": 679502,
+      "sha256": "02e9c4551c7256b7dcfa30209198eb66a32cc1726c563e12f0c47dea4e47243a",
+      "zip_crc32": "a90c8c62",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0048.png",
+      "bytes": 679707,
+      "sha256": "3fc48be68d79d3a5f79bf1d7df207be0211c87a68de63364f0992ad7e646b0e0",
+      "zip_crc32": "036d6f48",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0049.png",
+      "bytes": 679697,
+      "sha256": "f7925b979b50c259494266caa4687c4b231c26a4f971f98174558332efc83ca6",
+      "zip_crc32": "d53b9ddb",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0050.png",
+      "bytes": 679483,
+      "sha256": "f41ad71f8e7be009a327584a703ef573021ab505596b8e919595076324714def",
+      "zip_crc32": "e9193e5f",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0051.png",
+      "bytes": 679679,
+      "sha256": "d6c47dafb2ea531448b432ddf70fa969404381607d8191b90d130241e370fe08",
+      "zip_crc32": "decfafc8",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0052.png",
+      "bytes": 679438,
+      "sha256": "4606e171d5a5b8304c0600800b9de2e8e71542ee34e3b891e5ef197b33d6cca5",
+      "zip_crc32": "eb0e87fc",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0053.png",
+      "bytes": 679339,
+      "sha256": "e61fe11ad64358a8b2a66516ecaeda7ac5f97764234de7c38f22d31e76f34401",
+      "zip_crc32": "4be67ebf",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0054.png",
+      "bytes": 679655,
+      "sha256": "17fb073f347775d056d8d42e5705decac5c273875e004c4fa2c9b5db7ffcc36f",
+      "zip_crc32": "f14c1544",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0055.png",
+      "bytes": 679226,
+      "sha256": "d02bca7797362d16e6cefb0de747999ad40f0099a72147612ef692833d34ff2f",
+      "zip_crc32": "a0e6db39",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0056.png",
+      "bytes": 679146,
+      "sha256": "f9b45f8baa6b648fc5a20741c40b019a85b3760cacf5d4af840b8f86a08a3256",
+      "zip_crc32": "de765c97",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0057.png",
+      "bytes": 679355,
+      "sha256": "92b016caece6aeadad0a85c6eb83ea0a9296acc3d6f5167784e49fd4b86d7f38",
+      "zip_crc32": "91a76464",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0058.png",
+      "bytes": 681330,
+      "sha256": "01d82503007c5061bdfd53fe81932b728c7fcc4d6860270fbe62b384f720c3f8",
+      "zip_crc32": "4e2f17f2",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0059.png",
+      "bytes": 681220,
+      "sha256": "b279f209e1d5a38234055822a4e5ca4f4aae4b0ede3dcdcf8c0d637119715a37",
+      "zip_crc32": "2395003b",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0060.png",
+      "bytes": 681313,
+      "sha256": "1d17339a859d770cb87e996ff3f43c17d0abe8f1b35ee4a762a1a5a1c862cd53",
+      "zip_crc32": "dbab3874",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0061.png",
+      "bytes": 681303,
+      "sha256": "79cb2634dff60cca567d3ffeba269ac3f9ca35ace28574c0fdf11625cb70585e",
+      "zip_crc32": "a335eb4b",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0062.png",
+      "bytes": 681636,
+      "sha256": "edc94bdf59d2f43c858074a858dcda2865752ecec8919d7b356264d869c24b99",
+      "zip_crc32": "152afe8a",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0063.png",
+      "bytes": 681705,
+      "sha256": "880b4d70295de980f60cbe3bd7df0875fcdf7715c40c17f6ca2080ddb2468c82",
+      "zip_crc32": "1f1146da",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0064.png",
+      "bytes": 681455,
+      "sha256": "5a13e915bdfc50557924b72c970c3ddc48c20f292d5879aad1ce4f89af39d1ab",
+      "zip_crc32": "7188283a",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0065.png",
+      "bytes": 682195,
+      "sha256": "1f14fa10067e3a7931e4fb8216516ffdf5b6a1e4c1d030ab43c27c97e8df14b2",
+      "zip_crc32": "788bd4f3",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0066.png",
+      "bytes": 681344,
+      "sha256": "8626f59afba02ebc9eade1bf14983b761b66ef8d4500d544f6183d1c92164501",
+      "zip_crc32": "941106c8",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0067.png",
+      "bytes": 681003,
+      "sha256": "3bbb0a2571aa91d10340353dc3907c91016a3aeb51c96d43d9426798c73dd9d1",
+      "zip_crc32": "7aca4fe7",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0068.png",
+      "bytes": 681536,
+      "sha256": "8bc68c5f01cdcb35c1d28cff5a03dac47922942f3c8e30fc3570d4e362db568c",
+      "zip_crc32": "a961e456",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0069.png",
+      "bytes": 681743,
+      "sha256": "bf1c2889496571a23fe54cf3460496ea3bf9971d8723195f4a57c49801b142ee",
+      "zip_crc32": "12a8113b",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0070.png",
+      "bytes": 681538,
+      "sha256": "1aee8b3443a76f264dd9aeca70371756ee92d36ccf0c879b49919206b950b882",
+      "zip_crc32": "2ed82fbc",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0071.png",
+      "bytes": 681546,
+      "sha256": "84f95b6fffda31dfc5b602cc0756e6a980adb0641642336fdc9bdce1f10b92cd",
+      "zip_crc32": "6843280d",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0072.png",
+      "bytes": 681833,
+      "sha256": "668c7339900a2d2e6c13f88f77c46f972fd9fa708e3de54c30591edb704ddf10",
+      "zip_crc32": "ef35e562",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0073.png",
+      "bytes": 682417,
+      "sha256": "eaa5704420628608ba9544081f062cc52f14d03db2e4fa863464d6ff2438cf2a",
+      "zip_crc32": "163957cd",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0074.png",
+      "bytes": 682256,
+      "sha256": "2df9dce6ac171c69d8543308e91dbe06c85a206dc151e99bfe24a9ac49f5392a",
+      "zip_crc32": "8f1cc35f",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0075.png",
+      "bytes": 682088,
+      "sha256": "def4c2f5588efad0fe2853dd6ede34109a12a5e7dbc8bca16e4bbcc00c73e24b",
+      "zip_crc32": "28eaf500",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0076.png",
+      "bytes": 682199,
+      "sha256": "71cadc514a01e9f2092a96f2681546e02aa41ade4e78ca2c2a12ffd9a15beae5",
+      "zip_crc32": "aab8b3ab",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0077.png",
+      "bytes": 681530,
+      "sha256": "457a2485d49ba76d01240db7f57a30b8d4ffba94175b3140362b715984879aae",
+      "zip_crc32": "0a8f2e09",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0078.png",
+      "bytes": 682064,
+      "sha256": "bcd1973506d95f898757e27b864548599e34c94e4a28d37cc300a9805f9ada5b",
+      "zip_crc32": "d0644eb1",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0079.png",
+      "bytes": 682190,
+      "sha256": "6254299d2ff417a52312555353dfa5ac49aeabd7643ac1891938d2e455767276",
+      "zip_crc32": "5c40cb46",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0080.png",
+      "bytes": 680583,
+      "sha256": "4297aaa71f5e69b4e002f0b8c4548fa2e984b3e8415c9159269b4ac4c8fc4643",
+      "zip_crc32": "0cfa72e2",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0081.png",
+      "bytes": 681156,
+      "sha256": "07e02435fd3eb31ff1f2d0a02f7224342d061b15aeb3bb94f05585964ac27b8b",
+      "zip_crc32": "970f2ca1",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0082.png",
+      "bytes": 681790,
+      "sha256": "b85ea3f72d36bcf34e1c7fa7359211584900a5a520daf5aa018e3b4ad1b2fb50",
+      "zip_crc32": "afd1b333",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0083.png",
+      "bytes": 681567,
+      "sha256": "fe59ce7090ec931e27e4be4a458ecf00e35708043529aca33e26b472e8b8cd5a",
+      "zip_crc32": "a850c369",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0084.png",
+      "bytes": 681141,
+      "sha256": "a3112e5e04e1771677860dcda34711c8163001415ccd9b95c6a8664ab8e3b61b",
+      "zip_crc32": "c216c69c",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0085.png",
+      "bytes": 681367,
+      "sha256": "c5c108bbf307f57b3ed9bca5daa249482f3fc4fc6d664351c4b21827b7432b66",
+      "zip_crc32": "c2333445",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0086.png",
+      "bytes": 681797,
+      "sha256": "2f244a7ef5440f49086fd03798a2250a862929892daccade09c9f12d77ca5eda",
+      "zip_crc32": "bc165872",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0088.png",
+      "bytes": 681114,
+      "sha256": "0b14f90fce721a9c30dd7d54d7e6e3f2a251e11a64a604a4634e43a5b14b008d",
+      "zip_crc32": "12d92aaa",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0089.png",
+      "bytes": 681346,
+      "sha256": "df640ac14e16db19490148da4ae9b73443255d01b9f817abd8d766705511eae1",
+      "zip_crc32": "09a7af50",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0087.png",
+      "bytes": 681210,
+      "sha256": "a571eba95ac9b9ee6d7a249213d96263a548f3bab3a96be3832fbc067bfce95d",
+      "zip_crc32": "2328817c",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0090.png",
+      "bytes": 681301,
+      "sha256": "8bb00f4ddcd78994bf5bdc6b24dfb2c8ea971fec5b0be8b2e2809064b05b365c",
+      "zip_crc32": "0c9a1a57",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0091.png",
+      "bytes": 681502,
+      "sha256": "6ca549b140fb9dfd8b93622dc3e2ad9a19254b0d5fbc968104e1d2ad27e53da1",
+      "zip_crc32": "a5e3e239",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0092.png",
+      "bytes": 681150,
+      "sha256": "02ce45f31adf48b0c1650c9cae33acdf23962029b2d735fd6cd19025917d5386",
+      "zip_crc32": "2ce2c1e5",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0093.png",
+      "bytes": 680989,
+      "sha256": "4ab213c76a247d93bba3713deea9ab7d14f25de92ff7ce970085e0cf0831021b",
+      "zip_crc32": "9be90823",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0094.png",
+      "bytes": 681096,
+      "sha256": "4de38870663071c1ec603721a1fc02d4ee2682c7aa77a2bda19c77cc84dfffd4",
+      "zip_crc32": "9ea58abe",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0095.png",
+      "bytes": 680996,
+      "sha256": "38505bec55875f70cd047b8ab1a038908d5532ee2f2f399a198a2f859bbb986c",
+      "zip_crc32": "f4041068",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0096.png",
+      "bytes": 681828,
+      "sha256": "0c35184d11d3c3a5d5d93cd199e856200728824298a36015bb0215cfc621d9ab",
+      "zip_crc32": "a9dfd378",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0097.png",
+      "bytes": 681975,
+      "sha256": "3d8bb5e6120a2b60d70f95d3dcf24c660599b50c0fb6a9196591645d0fa2b539",
+      "zip_crc32": "10e2f127",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0098.png",
+      "bytes": 681748,
+      "sha256": "2f4d31fea635145529a43a902b00664d2cc9b6e0acc2a521851d7163aa20f610",
+      "zip_crc32": "807faa5d",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0099.png",
+      "bytes": 681846,
+      "sha256": "0ba15c66217f1d9cc87356f2d66cb80b3afed57f66ddc168733e31cb38d2a3b7",
+      "zip_crc32": "dfa753ef",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0100.png",
+      "bytes": 681886,
+      "sha256": "d1a0e16079e9b6fc8ea58c441ff0161efee889d37c5000eedb4e9fabd2602ba5",
+      "zip_crc32": "c4807655",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0101.png",
+      "bytes": 681758,
+      "sha256": "dc3a963ed440475cc76e29653fed5cae20702d96938e4a4d1c82432fafb98e76",
+      "zip_crc32": "7a2c55d5",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0102.png",
+      "bytes": 681680,
+      "sha256": "bac5cde999cc94ed19e02e2bc30df6673737cbefd7b5032b525ba60745ab832f",
+      "zip_crc32": "e94a2ae5",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0103.png",
+      "bytes": 681243,
+      "sha256": "b808628401cf350cbea39b38c47b628698a499aa6c52a7f7b98cb202399b77dc",
+      "zip_crc32": "c6f47f97",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0104.png",
+      "bytes": 681383,
+      "sha256": "e83f79dcf094ba4cb5f7027f99c8e6cb4ddfa0ba2a97c2630b249b169ab48651",
+      "zip_crc32": "6d4c2282",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0105.png",
+      "bytes": 681282,
+      "sha256": "58b563bc95c9605211dfaa009e9bc4bbabbe5b36a3f1235b6b3d7d729c743aa9",
+      "zip_crc32": "5d42c876",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0106.png",
+      "bytes": 681356,
+      "sha256": "0ca7ba8d23d6c619027dc67beb29d2583a88aac5535ed042df53097fa79734b2",
+      "zip_crc32": "2a83ec71",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0107.png",
+      "bytes": 681222,
+      "sha256": "5089cc944ef46f015d27f0f70345598d8c56bf14fa91a449be3b8022eb323dba",
+      "zip_crc32": "ef7ec13a",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0108.png",
+      "bytes": 681162,
+      "sha256": "45d3b73d1cb45be7af07d8f3a656d067f0dc94c138e0b1f91e11eafec1f8ef09",
+      "zip_crc32": "c1368d62",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0109.png",
+      "bytes": 681079,
+      "sha256": "6b94c842178b2d14b3afced7d1bfe5a79001c2a74e00efc18b47fed86a33881a",
+      "zip_crc32": "09e767d7",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0110.png",
+      "bytes": 681556,
+      "sha256": "8a21e5b76b12c4be210676bdbd1deb5d841d763db1f51b365d9c755387ba10e7",
+      "zip_crc32": "7e784700",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0111.png",
+      "bytes": 681443,
+      "sha256": "a60f18d9b50566ee802c1a81a005972bfc4a30a7c95482d71fb5e57c0335f0e2",
+      "zip_crc32": "b6dd5866",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0112.png",
+      "bytes": 681467,
+      "sha256": "393f60064b5bc17df8e605d61eff2a7f24d4420983d4ebd9daf8a0506f0c1d86",
+      "zip_crc32": "f48e8b1f",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0113.png",
+      "bytes": 681127,
+      "sha256": "fa457b105b9e0f97300ab73a868a7a40af4d027a8380b595ea23b4350cde445d",
+      "zip_crc32": "3193b81d",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0114.png",
+      "bytes": 681068,
+      "sha256": "b0a55db67a12d8e7516653383a968efc024999a9c262ffe8a06b906b93c30561",
+      "zip_crc32": "580a0761",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0115.png",
+      "bytes": 680636,
+      "sha256": "f371e2142463acb33b2ca2231905b2971833fca235f26ce1bceafbbdc01cf140",
+      "zip_crc32": "d2a557f4",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0116.png",
+      "bytes": 680976,
+      "sha256": "4abdebcd4c0ac96110a52ec4e7f941b8133b73963523afc1a08bc86fb87f790e",
+      "zip_crc32": "83ec98fd",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0117.png",
+      "bytes": 681487,
+      "sha256": "f129a5b5c324fc834ce55e5ac0214ed5fea1557d374722d683dc1168a2433f88",
+      "zip_crc32": "33dc2da9",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0118.png",
+      "bytes": 681432,
+      "sha256": "67062e9ee8aa459a8ff83b8c3bc1122d64431927fd80b06b39cd1519337c6732",
+      "zip_crc32": "fc602b4b",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0119.png",
+      "bytes": 680549,
+      "sha256": "acb0e7debc7a6b6fe9890f6636e26909e605d219cb420ddcc55ce118d65a82bd",
+      "zip_crc32": "84a79913",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0120.png",
+      "bytes": 681133,
+      "sha256": "4b3a36fc1646dc38f0f69add72c5ea859c6e7017ef9a84e9a76602cdf7854d81",
+      "zip_crc32": "714dc709",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0121.png",
+      "bytes": 681404,
+      "sha256": "b194aa8a10a1d9174fc754d4410654eefa68db4eb2d5545244d3367886254ad2",
+      "zip_crc32": "8dc0ef1f",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0122.png",
+      "bytes": 681077,
+      "sha256": "eea183cf45ca052d83762ca4a4fe8ece7d16eb91560ed837c48a2ef70098a69a",
+      "zip_crc32": "1d00470e",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0123.png",
+      "bytes": 681416,
+      "sha256": "01cee749e7e5ae37b551a9538568da8b4cd134a67caa381e67e436d4504cf30b",
+      "zip_crc32": "91d5c23a",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0124.png",
+      "bytes": 681757,
+      "sha256": "97d91b14dcbfe46338cc11997189a0d2202df363d091822f9cfa1ef5a00d44b9",
+      "zip_crc32": "f0200c83",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0125.png",
+      "bytes": 681833,
+      "sha256": "2b4a3b480286bce7e00fb98961b59638f63a185d1c86796b7100e1cfe22c63d7",
+      "zip_crc32": "84854145",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0126.png",
+      "bytes": 681536,
+      "sha256": "88920cf8041220a7989aa35d5a80db6706bee1988101fc4727ca8f603e90276d",
+      "zip_crc32": "341cd722",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0127.png",
+      "bytes": 681387,
+      "sha256": "ba8cedfa8c2e674bf0ff76c14f9844968eb82b42e01918e81fb15a1df4b634bb",
+      "zip_crc32": "dfb0578f",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0128.png",
+      "bytes": 680807,
+      "sha256": "b2881fd43eedb47ec815ee0e92627a698ebaaa80d02dd5279163ccfcf2bdbe59",
+      "zip_crc32": "80625859",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0129.png",
+      "bytes": 681071,
+      "sha256": "d20d36d2e31117229e97307130375f17078ed13249e6d1bef4e2b648f923952b",
+      "zip_crc32": "0d81b257",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0130.png",
+      "bytes": 681340,
+      "sha256": "50b632cf537e770895ef926b0e1ea764205df95ea130fab99f996ff0f623ee71",
+      "zip_crc32": "29e9ed39",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0131.png",
+      "bytes": 679819,
+      "sha256": "0c97c7b1c0eb908943f7061363d988c73dbe8720199f20340bc4a75424f5420c",
+      "zip_crc32": "c55fe2e7",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0132.png",
+      "bytes": 681129,
+      "sha256": "6beb426069aa5eae609b5b277b692c04d40c1b194293d216063141b36303f65f",
+      "zip_crc32": "c0a85ceb",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0133.png",
+      "bytes": 680880,
+      "sha256": "ab8beaba325e056adb5191586ede176bd572873ad86dafcd5291a23584e175b2",
+      "zip_crc32": "880ff2c8",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0134.png",
+      "bytes": 681392,
+      "sha256": "8f587fe816bdfcd5e94b82750865a6682538dd071bf72a3408bd80459be098c1",
+      "zip_crc32": "601df2da",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0135.png",
+      "bytes": 681710,
+      "sha256": "3ec6af9da71d6e8cba3ba931ba8bb3c41d0ae6c1c6aa646c2f409e7a296a35b4",
+      "zip_crc32": "7a7a5230",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0136.png",
+      "bytes": 681188,
+      "sha256": "37ef61d0e5ecd7db6b3c559ca2782e87b4a4711ff181c52bf12ad0f3ee0b8189",
+      "zip_crc32": "ac1b3aed",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0137.png",
+      "bytes": 681097,
+      "sha256": "260272ac3592a8d91d4d4c79af0d6853353fda1d871fb91d9009adce0c636ab5",
+      "zip_crc32": "d8381fb3",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0138.png",
+      "bytes": 681087,
+      "sha256": "c78ed388c491ca006d055ce670dba0661040740da32e6af63dedadb7af6e4e7c",
+      "zip_crc32": "5befdc14",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0139.png",
+      "bytes": 681638,
+      "sha256": "19427cb9c799ff7afedd51dbd166b42ad24f6dde877b72bd9abf83138c9637b2",
+      "zip_crc32": "a8b16695",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0140.png",
+      "bytes": 681406,
+      "sha256": "27ed4620af8c15fbfce5b08501d56309bf7425538e2431b5ff427526bcde1d56",
+      "zip_crc32": "5d01d8a1",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0142.png",
+      "bytes": 681124,
+      "sha256": "0bca8cd63613ffdc265118dce54e36b39ed3c964e0453b98bcc1cde599b17c0e",
+      "zip_crc32": "af654a01",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0141.png",
+      "bytes": 681056,
+      "sha256": "96d301beff69724aed19027d68a60e3d01863ab0de6f59ea9a0f218889894a99",
+      "zip_crc32": "1a6e8d0f",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0143.png",
+      "bytes": 681227,
+      "sha256": "1befd1141766c5fac3837c7d45e533dab1151fcd79e4779458c57dfa40d8b2b1",
+      "zip_crc32": "fe60763b",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0144.png",
+      "bytes": 681442,
+      "sha256": "b7c678f82a014401bf8a2cb944cbbfa8c22e1326703375cbfedc3309eae454e7",
+      "zip_crc32": "20ab9466",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0145.png",
+      "bytes": 681079,
+      "sha256": "8d877e29bde285eca762778303be5eebad45d6657069353c9ec9f4b1ba048018",
+      "zip_crc32": "f25be618",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0146.png",
+      "bytes": 680802,
+      "sha256": "5e9c583580bfa8b5c4bcf385b9a3a6989dc55e29eae43bf2d5774cf0fe6122db",
+      "zip_crc32": "c54a812d",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0147.png",
+      "bytes": 681264,
+      "sha256": "b207a7ad67f0fc3fd2ff1e4c3a85b7bc776382406ae6d014b214b607e0672799",
+      "zip_crc32": "d537c6d8",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0148.png",
+      "bytes": 681256,
+      "sha256": "6a5b19516ff55b267907e70be87487ec7d994afca5e571c52117e537803f435a",
+      "zip_crc32": "1eb38413",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0149.png",
+      "bytes": 680843,
+      "sha256": "47fbb1eade259e690b8bdd72ce3508ebf5f2b4e656c89ede92f40a77c1c9bf65",
+      "zip_crc32": "d745d4e5",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0150.png",
+      "bytes": 680795,
+      "sha256": "9b8694508783621b52c80d81c4da43f6efb73e2d1f0041bc42c47573de019269",
+      "zip_crc32": "080b67e1",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0151.png",
+      "bytes": 681038,
+      "sha256": "fe35bde242be45472e4915a14c7a5ad25510f5e49d266d4ab3215d798c231003",
+      "zip_crc32": "9fad3e10",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0152.png",
+      "bytes": 680860,
+      "sha256": "eb95a7b0d154ec3b4ecf0c15dbfb39006562cb837c0ef1ba3e9b69723c6fbde9",
+      "zip_crc32": "1a23ad27",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0153.png",
+      "bytes": 681051,
+      "sha256": "27da2fb810035b88def294788a46ea22e6985bc3c86c82e413ce6c2aa3f93a1f",
+      "zip_crc32": "d4749620",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0154.png",
+      "bytes": 681572,
+      "sha256": "9f78e076d7a0be8eb062a35d68d9dd70442f872370ac50ace7cf435317484de4",
+      "zip_crc32": "7c93da97",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0155.png",
+      "bytes": 681159,
+      "sha256": "fb148e3bf90d3378e823dc28c5131f96ef8dc2516ab17541441a7ce30b070f54",
+      "zip_crc32": "5e9d15c7",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0157.png",
+      "bytes": 681672,
+      "sha256": "55dc560091ca5dd7cafa6434b8fdb19bc4857372148340520a89a00903b1c9d4",
+      "zip_crc32": "63dc8035",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0159.png",
+      "bytes": 681413,
+      "sha256": "61c43d5186edda88748b72428bcc5fadbbb701bba7e661c9d3f2db747598adbb",
+      "zip_crc32": "422f882f",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0158.png",
+      "bytes": 681107,
+      "sha256": "a335fe429026d81b462a0ceeed16069c9bf35df3b43d855f6ff76706fe852be2",
+      "zip_crc32": "7c5ac580",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0156.png",
+      "bytes": 681273,
+      "sha256": "57a355f8cb55c5e977366697b67c0df464821750268a7ebc5a743195ee769537",
+      "zip_crc32": "909b8e99",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/bridge-frames/frame-0160.png",
+      "bytes": 679801,
+      "sha256": "aa1fde629f9484d4259a8102b7792f57c02092d5f678db9b91e718cf221c6de2",
+      "zip_crc32": "9648a2c3",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/fold-target-actual-bridge_ten-example.png",
+      "bytes": 707695,
+      "sha256": "d95f26a3c2a12c439bbc1c96d65ec7651d048b88e1668e6ece103f8e86704da8",
+      "zip_crc32": "c001050b",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/fold-target-actual-equal_groups-example.png",
+      "bytes": 678756,
+      "sha256": "e7b6b1a32de3665c76c80b1bda1f43711053dfd62e412665cb2ec0fdeca515fb",
+      "zip_crc32": "c171690a",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/fold-target-actual-subtract_ten-example.png",
+      "bytes": 700909,
+      "sha256": "f951c488770092dab4ace2a1830d92ce123149b027704eb7e19d3a74d88b92c7",
+      "zip_crc32": "207836ab",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-adult-confirmation.png",
+      "bytes": 147016,
+      "sha256": "017d60687dfee16488214ce23a38916fc79694b8b6151421c80e65d413b6c8ba",
+      "zip_crc32": "b4949348",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-bridge_ten-example.png",
+      "bytes": 310283,
+      "sha256": "c475f2f87cd2d09cb1c53ed093968a0017d95bbf5e990fb034d0a229bf80752a",
+      "zip_crc32": "036d7583",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-discovery-hub.png",
+      "bytes": 380691,
+      "sha256": "9edbbe13e149281467a21bdb1e32f8e5d4397abd9415c5bd7c17e29216053536",
+      "zip_crc32": "5e8eb1ec",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-equal_groups-example.png",
+      "bytes": 287602,
+      "sha256": "9630fa5d5b4c13f186fe95cb733c87889c62a8e727070c2768add153e08449f5",
+      "zip_crc32": "2181a098",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-parent-permission.png",
+      "bytes": 287086,
+      "sha256": "19368cc5a379293b1d3a75379352d57c3443a52bc14158d95313cb004ae16f7b",
+      "zip_crc32": "d3e0bbf6",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "guided-learning/phone-360x800-actual-subtract_ten-example.png",
+      "bytes": 309976,
+      "sha256": "d54d74b4f5893947e1910ee8bad2b3e11855a0a3deb89f90767a8f9caa08b84b",
+      "zip_crc32": "b18b0eb5",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "home-nextgen/fold-cover.png",
+      "bytes": 1256626,
+      "sha256": "48463a8575ec5572355437caa3d3b157fa40e71612f470a9ec426191d1d56579",
+      "zip_crc32": "acbe2283",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "home-nextgen/fold-open.png",
+      "bytes": 2984147,
+      "sha256": "5bc8bb8a5b49d4f859798461f2993fa89b6d274a0dda1978dba870bd999cc1e7",
+      "zip_crc32": "5c602b94",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1920
+    },
+    {
+      "path": "home-nextgen/landscape.png",
+      "bytes": 1637570,
+      "sha256": "ced9fe4ac198b3839131e7fe193bf498d13feffd7a5faacb5a0d6dc358544813",
+      "zip_crc32": "e060352a",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "home-nextgen/large-text.png",
+      "bytes": 1540953,
+      "sha256": "ac46b8bdca852dc73ad0807aab83c2ae3fac31dce4064287e0df400daaec0f80",
+      "zip_crc32": "4e7fe12f",
+      "extracted_original_text": false,
+      "width": 786,
+      "height": 1704
+    },
+    {
+      "path": "home-nextgen/phone.png",
+      "bytes": 1773463,
+      "sha256": "77f9b8ca372004aa295bf9c331f0f3a19fe01dae2767339b6e8af340aa7088e1",
+      "zip_crc32": "2cb37709",
+      "extracted_original_text": false,
+      "width": 786,
+      "height": 1704
+    },
+    {
+      "path": "home-nextgen/small-phone.png",
+      "bytes": 1533837,
+      "sha256": "0f600d335728eab1601da051648d099fd5f7531666feaba329eb34682d72586d",
+      "zip_crc32": "1a76473a",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "home-premium/fold-cover-learning-cards.png",
+      "bytes": 684983,
+      "sha256": "daacd2d4a91d121022bf63cd43b3d9778f24ac9522b1f30778581dd412b39bab",
+      "zip_crc32": "a3a1d53d",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "home-premium/fold-cover-start.png",
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0",
+      "zip_crc32": "b7817218",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "home-premium/fold-open-learning-cards.png",
+      "bytes": 1804878,
+      "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8",
+      "zip_crc32": "5bf2994b",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1920
+    },
+    {
+      "path": "home-premium/fold-open-start.png",
+      "bytes": 3568336,
+      "sha256": "a042b714f65154e417641405dee2cd8512b0d4f4bf926e72464a9af6748f9335",
+      "zip_crc32": "30fecf2f",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1920
+    },
+    {
+      "path": "home-premium/large-text-learning-cards.png",
+      "bytes": 2275791,
+      "sha256": "e2c082d2df2bb1a57fe19e77e10d28fca7e871c95987f8f5eeeceacf3f130930",
+      "zip_crc32": "4a0891e5",
+      "extracted_original_text": false,
+      "width": 1800,
+      "height": 2400
+    },
+    {
+      "path": "home-premium/large-text-start.png",
+      "bytes": 4718245,
+      "sha256": "ce8f8023d916627d90452fec77fac0156a2e18ddae04deb700e6b79ab4dc04e0",
+      "zip_crc32": "0a777586",
+      "extracted_original_text": false,
+      "width": 1800,
+      "height": 2400
+    },
+    {
+      "path": "home-premium/phone-learning-cards.png",
+      "bytes": 946745,
+      "sha256": "d942ce36645ad2127b78951fe5148c300898469681e0b8dbf1a4273d3a3bc073",
+      "zip_crc32": "24934edb",
+      "extracted_original_text": false,
+      "width": 786,
+      "height": 1704
+    },
+    {
+      "path": "learning-adventure/artikel-fold-2176x1812-density-225.png",
+      "bytes": 687744,
+      "sha256": "21108c9ff143ba73b1f5e01e1bdf476c4c4bd55a174896b196b8564f10ff692f",
+      "zip_crc32": "c0c0df77",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "home-premium/phone-start.png",
+      "bytes": 1782974,
+      "sha256": "b52431571238dc314c626b800707eb84d6488ec26f644e59f8543ea6971f9c66",
+      "zip_crc32": "bbb6eb2c",
+      "extracted_original_text": false,
+      "width": 786,
+      "height": 1704
+    },
+    {
+      "path": "learning-adventure/artikel-landscape-640x360.png",
+      "bytes": 205722,
+      "sha256": "2224875a97e78eb1b1dc57eae6a16dca9e0bb2299012761a27fc14cf5086cb93",
+      "zip_crc32": "bcdd9f7f",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/artikel-phone-360x800.png",
+      "bytes": 291140,
+      "sha256": "590629d2f7aba38b378cf47825225495f2154c498d87845ad73250b83004f0c3",
+      "zip_crc32": "9d18497d",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/artikel-wide-1280x720.png",
+      "bytes": 768695,
+      "sha256": "0abb8b86f9dbeb29d21c85eec7031ea26893494d3f86ad8c0ffaf50e4e50ede8",
+      "zip_crc32": "eec3e8ed",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/brueche-fold-2176x1812-density-225.png",
+      "bytes": 689112,
+      "sha256": "b4d843ba62741b2fe1b24d4cd5cd58b2127086a1ea31c7518c4065da92ea058a",
+      "zip_crc32": "f8c4cc74",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/brueche-landscape-640x360.png",
+      "bytes": 227034,
+      "sha256": "a37f94c3fe76f6b945cbed4cf982d99275a46ce3df3dc6f4c9e22c6d7b066ae9",
+      "zip_crc32": "e1989eee",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/brueche-phone-360x800.png",
+      "bytes": 310053,
+      "sha256": "9d7a767746382911795de337eb3a77f5ed8541ddeccb3afee1e841ae5200f24b",
+      "zip_crc32": "7ed45fe8",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/brueche-wide-1280x720.png",
+      "bytes": 793063,
+      "sha256": "68a54aa6cdfeb8b8888281f81acec7b4a54c30dfb2fe0704044a3e51b125806c",
+      "zip_crc32": "b92811b1",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/einmaleins-fold-2176x1812-density-225.png",
+      "bytes": 776023,
+      "sha256": "ff2bad550c4514755eb28e1f8f2b46a44fd246470ba7adaeabaa53aa05940833",
+      "zip_crc32": "37b9b38b",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/einmaleins-landscape-640x360.png",
+      "bytes": 242269,
+      "sha256": "bb97837afa1e0e0fb467dabfe27988ed2882129849a03d6ca7474bddf4691315",
+      "zip_crc32": "2cb4011f",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/einmaleins-phone-360x800.png",
+      "bytes": 329176,
+      "sha256": "0a329fb3a502273d88ba718b25cd3a9bad39e2d5c1da111e8326355bc5817e48",
+      "zip_crc32": "161b1adc",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/einmaleins-wide-1280x720.png",
+      "bytes": 755707,
+      "sha256": "9d0f47c246590246e3f45efd1a427560704dfd845cc9e9e1aad86e3d790d3cc8",
+      "zip_crc32": "06d9029e",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/farben-fold-2176x1812-density-225.png",
+      "bytes": 690071,
+      "sha256": "0700be583d287fff305ff87f3fc022b6aa41aa01c5cc048a07b6864d1addc6dd",
+      "zip_crc32": "c12966f6",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/farben-landscape-640x360.png",
+      "bytes": 205874,
+      "sha256": "5041ba385fbfafe1fa913ed18fe8d7d96047d7eed6f776e96d608172e8ff2be3",
+      "zip_crc32": "d7e13026",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/farben-phone-360x800.png",
+      "bytes": 285704,
+      "sha256": "8cccbf424073acb7af711778994beea0caddcfabd16e1dfebe030f36f26a75d4",
+      "zip_crc32": "dfce81e9",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/farben-wide-1280x720.png",
+      "bytes": 777701,
+      "sha256": "64f891ad9b7ba4374f6fa76e46818d845bf409f6541d4fcd6870f9080c3b54b3",
+      "zip_crc32": "38543bc1",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/formen-fold-2176x1812-density-225.png",
+      "bytes": 683027,
+      "sha256": "8015853cee9fec6593cff2e95493485683d4120e3c2a325fead806763b4ce34c",
+      "zip_crc32": "3e508237",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/formen-landscape-640x360.png",
+      "bytes": 245432,
+      "sha256": "18479f2742a63b2a5dd7c2e4c9830b57272dc6a308b4fd496cc6b28ef0651069",
+      "zip_crc32": "e764fa88",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/formen-phone-360x800.png",
+      "bytes": 304290,
+      "sha256": "e8cfcdc8623445c0dd4683557e2077361c35505edae7efce71ec38c1113ace2f",
+      "zip_crc32": "f85aff1a",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/formen-wide-1280x720.png",
+      "bytes": 784585,
+      "sha256": "afe6ca8007b0055175b495322daeee4c625dbb42e31eff13dfad05b7e7aabbc3",
+      "zip_crc32": "0d7f11f7",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/geld-fold-2176x1812-density-225.png",
+      "bytes": 788254,
+      "sha256": "669d22c681b3791762b5846334c3cc7487a87d5794b007d21bab4651f49de510",
+      "zip_crc32": "6ff66e7d",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/geld-landscape-640x360.png",
+      "bytes": 229294,
+      "sha256": "e8379ffc6c07601343fdc132ff5ff956552c41aba82ab98325811a45df0f0148",
+      "zip_crc32": "2880e3d3",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/geld-phone-360x800.png",
+      "bytes": 321537,
+      "sha256": "8e6e90e039e5b8c027cca590a1b64ad8fcb560abef26d5f728443c7fa6877451",
+      "zip_crc32": "da9a2a25",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/geld-wide-1280x720.png",
+      "bytes": 807967,
+      "sha256": "83507d1737ce911267af31048dbcb6cbf24c567344bae52af85509ae8a2208ff",
+      "zip_crc32": "0e32ea87",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-fold-2176x1812-density-225.png",
+      "bytes": 775760,
+      "sha256": "85f9248f049d7f55731644c0cf945d47232c1bda75c1c8df152a3823a56014e1",
+      "zip_crc32": "9220133a",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-landscape-640x360.png",
+      "bytes": 237348,
+      "sha256": "e46e17f7b98515505ab14ace9940cf06b42e1a6096665d654cbd24b73fbb05b9",
+      "zip_crc32": "fe988527",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-phone-360x800.png",
+      "bytes": 330392,
+      "sha256": "60f24ce9da512c19ca21e3034b75dd26887c41189b56ea6a8c323133c7b8e3df",
+      "zip_crc32": "203b5442",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/grosses-einmaleins-wide-1280x720.png",
+      "bytes": 844245,
+      "sha256": "fda35a89a87cc18081f7282e627c8697f6d6de304873d1f982a7e8dd1d3cd2a7",
+      "zip_crc32": "42486e53",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-fold-2176x1812-density-225.png",
+      "bytes": 706437,
+      "sha256": "feaaad9217abceaf8733b7d997e8de9947e083e2531aacf5dd7e671c2173554d",
+      "zip_crc32": "755136c4",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-landscape-640x360.png",
+      "bytes": 232145,
+      "sha256": "e27133f6fe757e463bece39e3fc8d2b2a67f352f6e27893ad988037ad4802dc6",
+      "zip_crc32": "bb0a8dd7",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-phone-360x800.png",
+      "bytes": 321618,
+      "sha256": "9ca189aa8bdedfdff5e81d493dd786b9e26425150e3322e8a1aafc4ad26bad47",
+      "zip_crc32": "4c2ad1f6",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/jahreszeiten-wide-1280x720.png",
+      "bytes": 803544,
+      "sha256": "97a45e9227428da3a30d3b536c0fefde80cd746a648c4f945965a672010afe8d",
+      "zip_crc32": "41f90cce",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/mehrzahl-fold-2176x1812-density-225.png",
+      "bytes": 691353,
+      "sha256": "c083d08eb07145bf22bfc4b93b268d0faa6e96cff075f0cd8cb71fd835bde6f2",
+      "zip_crc32": "d8868965",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/mehrzahl-landscape-640x360.png",
+      "bytes": 212793,
+      "sha256": "f90e281bf5b7614680eb80ccef4235b761690eedd30cb5db25d6eb9e7ead7e16",
+      "zip_crc32": "8417f0e8",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/mehrzahl-phone-360x800.png",
+      "bytes": 302955,
+      "sha256": "b88cce60eea7614f0881f16c7b8ea68ae3d8d00ff8e922b871b04a83af2b3342",
+      "zip_crc32": "414f921c",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/mehrzahl-wide-1280x720.png",
+      "bytes": 781892,
+      "sha256": "f078b09698e269c2d0ca902176cc1c645c48d5393a351ef978103e9030f0f58a",
+      "zip_crc32": "1744edaf",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-landscape-640x360.png",
+      "bytes": 277074,
+      "sha256": "21b7ad10c952a786d6c4788d3fc4abb7367032d82519b3b12de8cea71d7488d9",
+      "zip_crc32": "0589f64b",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-fold-2176x1812-density-225.png",
+      "bytes": 807320,
+      "sha256": "6c30e3f96da378cf6f7022c02f366029d8549d3d6997960b1a7871f98c15256a",
+      "zip_crc32": "0f7a5ebc",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-phone-360x800.png",
+      "bytes": 343326,
+      "sha256": "78fc50a124e2a7af3b7cadaa0bc98be185ebdc203362cb1986c6b3f2ec31e0a0",
+      "zip_crc32": "2f85bb15",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/minus-bis-10-wide-1280x720.png",
+      "bytes": 866831,
+      "sha256": "ef32510d8eaadca3ec1a09e5539538f734119b856b2f67f06efc4662df9d44b6",
+      "zip_crc32": "8ec48738",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-fold-2176x1812-density-225.png",
+      "bytes": 795101,
+      "sha256": "a803f5f7a02a17d7ba29fc7d9d11bd869e2a46a3db23c896eaa2f53cee08bf27",
+      "zip_crc32": "77062214",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-landscape-640x360.png",
+      "bytes": 275768,
+      "sha256": "2abcdd965983f84d9c6cc8a69f7e4fe75418971f9722b8fe19e050531c537197",
+      "zip_crc32": "84906aa2",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-phone-360x800.png",
+      "bytes": 332789,
+      "sha256": "436eda67458becc8bb11b14c70670e45e9fa005934b2c7c5ccbb2bc632b2f8c4",
+      "zip_crc32": "8ae66075",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/tiere-fold-2176x1812-density-225.png",
+      "bytes": 674485,
+      "sha256": "ac08a7543ae6b61563527516e6e23ae8ced52f44bf53cd2c73d3fbec5ca22fa0",
+      "zip_crc32": "f26a839a",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/plus-bis-10-reference-wide-1280x720.png",
+      "bytes": 838972,
+      "sha256": "65efb3cc79362c343ad2ceaad97df2b703db31396d5d4ccddb168c3730541c37",
+      "zip_crc32": "29b19848",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/tiere-landscape-640x360.png",
+      "bytes": 228553,
+      "sha256": "50ec17f3b34d2a2ce3bdeac18134b7bc163b078ac5a8cdd797cc1021a4a91ccc",
+      "zip_crc32": "5e531401",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/tiere-phone-360x800.png",
+      "bytes": 321425,
+      "sha256": "fb4201b8d0eff82cb736ff3dd2222a216ed2eec73023a450941d91bf836d7d43",
+      "zip_crc32": "de484788",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/tiere-wide-1280x720.png",
+      "bytes": 801605,
+      "sha256": "82b14990d92f63a3ab641ffc7fb986ab56c778a086b6fc0e98f943d1fa85e1ee",
+      "zip_crc32": "77dc1379",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/uhr-landscape-640x360.png",
+      "bytes": 248169,
+      "sha256": "bef77b376378299e58acd454379b91db68e614f2370f9d37325f554d4796696b",
+      "zip_crc32": "019daa1f",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/uhr-fold-2176x1812-density-225.png",
+      "bytes": 683513,
+      "sha256": "af4204608345394628184428fe99412559be2e6e90b5e4501204ee9ba96fd242",
+      "zip_crc32": "67b54345",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/uhr-phone-360x800.png",
+      "bytes": 309365,
+      "sha256": "1e8d05fa44d744409e926bc78e21deb11d4ae1c4af8f4c2a8a3576dd33dd3d3b",
+      "zip_crc32": "5e82774d",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/uhr-wide-1280x720.png",
+      "bytes": 789251,
+      "sha256": "699e88bc48a7dfcc7ea6918ac319d444e1eeb79e206723605927bc4c7086c102",
+      "zip_crc32": "03bc83d4",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/verkehr-fold-2176x1812-density-225.png",
+      "bytes": 750804,
+      "sha256": "650a89fc9120f837de4b221fa8bc13e4c0a7ec5984d77fa0779670c192db1873",
+      "zip_crc32": "be782ace",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/verkehr-landscape-640x360.png",
+      "bytes": 228306,
+      "sha256": "ec0b5e1b93ae39d168f7e0e4d3df4fd71f692530408aeb6ebbeac1d950e93de2",
+      "zip_crc32": "2c6c7932",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/verkehr-phone-360x800.png",
+      "bytes": 306693,
+      "sha256": "e433208090afdf707d89a2af14546d66197958fc14d0948e493e146a2e923f70",
+      "zip_crc32": "e17c816f",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/verkehr-wide-1280x720.png",
+      "bytes": 786428,
+      "sha256": "60e110f00a3392fd6915871500d16fd6ec7df566a104417538d8510d6233cff3",
+      "zip_crc32": "723a3c2b",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/wetter-landscape-640x360.png",
+      "bytes": 216340,
+      "sha256": "1c1578c733b6d8b3352a9fa83460b265d2e00db9011566fd78f1900881bc01cd",
+      "zip_crc32": "dfdc6406",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/wetter-fold-2176x1812-density-225.png",
+      "bytes": 710534,
+      "sha256": "189e79ab415fdaaefb24f490c3a471f95bf0f99c63e521f824437825ab3394b8",
+      "zip_crc32": "5a73d5a1",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/wetter-phone-360x800.png",
+      "bytes": 303661,
+      "sha256": "a0733303e7345e6013f67bf6c50a3ebd24f7ec93a9c1864da4c8c6b90afac3ef",
+      "zip_crc32": "cbf9ffde",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/wetter-wide-1280x720.png",
+      "bytes": 788107,
+      "sha256": "58fe4b6a313e83878f360c7bcf264554e39cec7ffceb97695f725d059aea6fd7",
+      "zip_crc32": "e3b1b0ac",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/wort-diktat-fold-2176x1812-density-225.png",
+      "bytes": 611404,
+      "sha256": "2a595b4f9ae0420cfb7d8b45e43e5c22c5468e6675db56c60921fe1401c19801",
+      "zip_crc32": "62ba5fdc",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/wort-diktat-landscape-640x360.png",
+      "bytes": 183965,
+      "sha256": "00f949080de955d3c2d15c23a7d28d4d495dea46626649f71548159c51c9aba0",
+      "zip_crc32": "20e5be19",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/wort-diktat-phone-360x800.png",
+      "bytes": 204317,
+      "sha256": "1caee9b71556105db36281f5f1493b9f15bd3ae1922bb083fcd6eff45edea83b",
+      "zip_crc32": "e32060bb",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/wort-diktat-wide-1280x720.png",
+      "bytes": 713952,
+      "sha256": "b36cfcd4ec5c609c835bfe77991e0060983d96f80e9fc0fa76875cf663a62ba1",
+      "zip_crc32": "ff493029",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/wortarten-fold-2176x1812-density-225.png",
+      "bytes": 760595,
+      "sha256": "822f699358881416590d0e8495c2a77f0adc8d142ac2377e1c8bb05a1bba6f3c",
+      "zip_crc32": "ba73fdb1",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/wortarten-landscape-640x360.png",
+      "bytes": 235398,
+      "sha256": "062565c57645758a95a36bc3e1c60ee547a1ae69921ad7f9eb159cf333502cc6",
+      "zip_crc32": "bb43a04e",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/wortarten-phone-360x800.png",
+      "bytes": 318567,
+      "sha256": "817af4fbe7e2383f26798e58f9ef758e9fc43a585e61a3e8e56aa63bb25cab3c",
+      "zip_crc32": "0b119c5d",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/wortarten-wide-1280x720.png",
+      "bytes": 785705,
+      "sha256": "ae4f94a5a35e05382091e9c0f141850147a32670e0444715fe799f6162141ac9",
+      "zip_crc32": "f6ee9699",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-fold-2176x1812-density-225.png",
+      "bytes": 792447,
+      "sha256": "fd91a8546ab58de65ca2d7e4c3231a864dee754295a5f0eff72be1d74126d65d",
+      "zip_crc32": "eb5384cd",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-landscape-640x360.png",
+      "bytes": 274858,
+      "sha256": "ef4eaa910893492d0fb22dafe62584326522e9058b4d9702a23276477eb736c2",
+      "zip_crc32": "4561f96d",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-phone-360x800.png",
+      "bytes": 334016,
+      "sha256": "7cb1a96d854ad2bee51fd032061a1e07a0a2247f4ecd639759d7942d936a6a58",
+      "zip_crc32": "75a19641",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-10-wide-1280x720.png",
+      "bytes": 865995,
+      "sha256": "1f3f642d290985e2032a97ee8256e4bfbc6949ea4173770232e416b371a74710",
+      "zip_crc32": "e07a2dde",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-fold-2176x1812-density-225.png",
+      "bytes": 860221,
+      "sha256": "e42c1ba3904fb9647deb4f09d19b3795d0c7f9770547e1dbdd8004a7131bf6ae",
+      "zip_crc32": "a0e63a60",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-landscape-640x360.png",
+      "bytes": 270067,
+      "sha256": "e2cb96785a081de9f128124d4e9d8a5112951ed2b467a1a1c4aca49510dd0a62",
+      "zip_crc32": "ce8e6d6b",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-phone-360x800.png",
+      "bytes": 324904,
+      "sha256": "23e88c7dd97d686aaa08b158fb24308e28bce0e9e1e5f31e51ff0138caddb987",
+      "zip_crc32": "66533e5d",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/zahlen-bis-100-wide-1280x720.png",
+      "bytes": 959425,
+      "sha256": "ccfd18bef80fe6654dbc35cdb347f0fae71e6875d92b467d7725872fdffb9176",
+      "zip_crc32": "646d909d",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "learning-adventure/zeitformen-fold-2176x1812-density-225.png",
+      "bytes": 730876,
+      "sha256": "cecb740f59778f5a0b7bb95cd426e8af27cd64ac4544ce8ad79be4b7b3bc0ea3",
+      "zip_crc32": "39991da3",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "learning-adventure/zeitformen-landscape-640x360.png",
+      "bytes": 231336,
+      "sha256": "f167c614882e2d9c9f7cb5b8cd1f10341d378f4626fb27780c603f3050f71e29",
+      "zip_crc32": "67f03df5",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "learning-adventure/zeitformen-phone-360x800.png",
+      "bytes": 312876,
+      "sha256": "e96b0f09512444ea9966776be00b9106e1370c929392ac67f9a73f5d9f452b2d",
+      "zip_crc32": "0a9c6fe8",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "learning-adventure/zeitformen-wide-1280x720.png",
+      "bytes": 790584,
+      "sha256": "b6ec70a7e45a943b26a4d58e59f4b68a1fd7258c7af45e58517d80282c11b1ef",
+      "zip_crc32": "3c62a1fe",
+      "extracted_original_text": false,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "modernization/achievements_fold-cover.png",
+      "bytes": 692042,
+      "sha256": "84c50d3df7c7b057bafa237e673b6a71b07ba34465bb07d18e79f7a9473e2be8",
+      "zip_crc32": "2a17dca0",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/achievements_fold-open.png",
+      "bytes": 986908,
+      "sha256": "f463e2c6720b8a3817d4b415dd882cb72f806ec151c82f4071f5dee171b88d43",
+      "zip_crc32": "a4d40b24",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/achievements_phone.png",
+      "bytes": 822071,
+      "sha256": "b883ab24760c235cad25788ca08dc218f52281266bf2c26854e8605f258d12b1",
+      "zip_crc32": "62e48ee5",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/foto_lektion_fold-cover.png",
+      "bytes": 1229380,
+      "sha256": "e229d4ca74b2e1a6437e19307c561cea1920a04400af19aa5dbfcf186deeccbc",
+      "zip_crc32": "2fa7b220",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/foto_lektion_fold-open.png",
+      "bytes": 2169731,
+      "sha256": "c8081122a5a6c7000f10352df5e1cf56f124781c74ddf41b0bb9ce8e833a3b2a",
+      "zip_crc32": "c82379a6",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/journal_fold-cover.png",
+      "bytes": 1313410,
+      "sha256": "a71c9c0d2e62e2e3d50f225bb6418fa4e1cf351aa7382e2b2718dad1334ba054",
+      "zip_crc32": "e977a693",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/foto_lektion_phone.png",
+      "bytes": 1506221,
+      "sha256": "b176c65640aa90367b68664063b591015e65c83c0fe715bfc088931abdd8d4f6",
+      "zip_crc32": "03601d76",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/journal_fold-open.png",
+      "bytes": 2348916,
+      "sha256": "21f03e9387a686d1d3b9623d74b23ffca9a42b34c4792fb8f4fbd0b9e32979c3",
+      "zip_crc32": "dddf9bdb",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/journal_phone.png",
+      "bytes": 1623870,
+      "sha256": "16a4b8bdfca91fcff5eaf3b7047b1990fca64d1c83f23eaa6cf9704da2616c7d",
+      "zip_crc32": "70296fd5",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/lumo_magic_fold-cover.png",
+      "bytes": 1177259,
+      "sha256": "46222082a6a1ef13780bae53fdd04041a2b44b89de0acf15007488480d04f7ab",
+      "zip_crc32": "ea9fa46c",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/lumo_magic_fold-open.png",
+      "bytes": 2040917,
+      "sha256": "ff08cae3954cbd49b793eeb9a05272a9d97ceec9e22b6bf632085e71847503f9",
+      "zip_crc32": "14fcd622",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/lumo_magic_phone.png",
+      "bytes": 1461731,
+      "sha256": "4dd386b0f520da901050651e1496449e4773e07723282096fbdea3970cf830c3",
+      "zip_crc32": "689d4f69",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/lumo_quest_fold-cover.png",
+      "bytes": 855842,
+      "sha256": "2f6bb64832fcfdd5e81dc8195dc94a59df3aaa9ffcba9685a2604c6a214df986",
+      "zip_crc32": "f31b3b1a",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/lumo_quest_fold-open.png",
+      "bytes": 1538204,
+      "sha256": "c26ab28647581ae98cf68d1e5849162dc0cf03ad038891669f09558c4fe133e1",
+      "zip_crc32": "33f5de1c",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/lumo_quest_phone.png",
+      "bytes": 1181846,
+      "sha256": "9fe6e43d0dd9dd58f981d6add36325eadd110fa9a643ff647b72b4f53916fe26",
+      "zip_crc32": "631d1c86",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/lumo_welt_fold-cover.png",
+      "bytes": 774121,
+      "sha256": "7b0c3e614ebb276a11814d801b2ab548dcb781ed73443ba2cb586793d71f9dc0",
+      "zip_crc32": "f94aae69",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/lumo_welt_fold-open.png",
+      "bytes": 1135928,
+      "sha256": "3230ac08b9d7428611f542c586fbbb94cc78dce59f5c65b1920a1c8fa407a5ca",
+      "zip_crc32": "1650d3a6",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/lumo_welt_phone.png",
+      "bytes": 881813,
+      "sha256": "d68921ae22d8285cd1f847f86252f9ee426f18f27628747313ff1ad238cd3441",
+      "zip_crc32": "6dc3a1d1",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/reading_buddy_fold-cover.png",
+      "bytes": 700926,
+      "sha256": "222c0352db3b2ec3a25037b42f594837181fad4dcb5747d68e6aa18a0b951737",
+      "zip_crc32": "94b2b8a5",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/reading_buddy_fold-open.png",
+      "bytes": 1056781,
+      "sha256": "8c553d8941f75c3896f18941691a504d6be7e81498f8bc221d9e5be5ee90401d",
+      "zip_crc32": "4402e47b",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/reading_buddy_phone.png",
+      "bytes": 824343,
+      "sha256": "0bc9f2901eb7bf26cd0ac79f2752b5e9a52e11c15470a8a83389f4bc1fe30f23",
+      "zip_crc32": "33033850",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/rechentricks_fold-cover.png",
+      "bytes": 957403,
+      "sha256": "756254a8f333eeca54a546fb05b75a9750a35b77d14882746fef9f458bd25b90",
+      "zip_crc32": "afef038d",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/rechentricks_fold-open.png",
+      "bytes": 1533696,
+      "sha256": "79639deca82eab8f9924423e4ce6bf485629644fbc00c997e644e44c2fddadb3",
+      "zip_crc32": "ef4efd94",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/rechentricks_phone.png",
+      "bytes": 1184203,
+      "sha256": "dc9b747301963ffa3e8abe16ddd880c2fcfef06eaec1bd5e650dfd118ce7c66b",
+      "zip_crc32": "101abce7",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/schreibaufgabe_fold-cover.png",
+      "bytes": 331307,
+      "sha256": "d37e9d9d238bb8edca618d71c8b1aaf3c63fa56f31f50651b26a8374a8f05e19",
+      "zip_crc32": "d7038058",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/schreibaufgabe_fold-open.png",
+      "bytes": 495048,
+      "sha256": "7fd42c976ac55b61164474cc1ba1ed54f3c177a90032a7f7a1e143efb461d87a",
+      "zip_crc32": "2a75d109",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/schreibaufgabe_phone.png",
+      "bytes": 372820,
+      "sha256": "160969df1fae5af3bc701b411f5f66d6b7192898be39663fed75735ee28d0a0b",
+      "zip_crc32": "395409a0",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/schreibcoach_fold-cover.png",
+      "bytes": 119662,
+      "sha256": "3b9cb685ed110fbfe4f18e234eca203577c5814170952621b49e624b925ab93f",
+      "zip_crc32": "ea6c54e0",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/schreibcoach_fold-open.png",
+      "bytes": 176913,
+      "sha256": "acab4d0f71b0f5ad98cfe9fcef94890b282f21bd9bd3142c928bf9cd5bf895ea",
+      "zip_crc32": "a3254d7c",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/schreibcoach_phone.png",
+      "bytes": 133033,
+      "sha256": "49130519fa8610bfdb1ba5160137a100340ebf55926dcb1d37686fd47f62c129",
+      "zip_crc32": "c9d5d012",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/trainer_B_fold-cover_leer.png",
+      "bytes": 384350,
+      "sha256": "061d8e9fcbc45579382126fc671eed3e20e64644b02d2a19ea64b94c172e01dd",
+      "zip_crc32": "75f63f59",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/trainer_B_fold-cover_geuebt.png",
+      "bytes": 448685,
+      "sha256": "443107e75ca5dccb62aac20bd1fcf19ae53d2e55e843a053c62ce5b9ab76a6d9",
+      "zip_crc32": "54d54261",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/trainer_B_fold-open_leer.png",
+      "bytes": 643243,
+      "sha256": "9a78b135d805762bf213c71854fa279793b19dbce2ffc31e3fc33b6337a5367f",
+      "zip_crc32": "8c1397b1",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/trainer_B_fold-open_geuebt.png",
+      "bytes": 667884,
+      "sha256": "188a30d90e523428c5fb8f69a754307c442dfb4fe263f4bb05d212c41107418f",
+      "zip_crc32": "644d1beb",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/trainer_B_phone_geuebt.png",
+      "bytes": 558344,
+      "sha256": "b29974e44e52d0055de6d9dd17bacbab02ecefa546ccfcfe13d5c505b4060fc6",
+      "zip_crc32": "026c99f7",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/trainer_B_phone_leer.png",
+      "bytes": 489085,
+      "sha256": "386f180138813ebb38bdbe6167b1e2f3b7573f2aebc7eea12c69018d4c479387",
+      "zip_crc32": "13617975",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-cover_geuebt.png",
+      "bytes": 429285,
+      "sha256": "44dd0054530f0971915838edf4bdf081ed305c8947f5ece34268ea0ed0a96462",
+      "zip_crc32": "c5bee71f",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-cover_leer.png",
+      "bytes": 358743,
+      "sha256": "2f4eb9af583a401782f63011d5c80fa0cacabfacbb964cdc6279889b66273206",
+      "zip_crc32": "c3806654",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-open_geuebt.png",
+      "bytes": 635561,
+      "sha256": "fa4a4fd1878ae502b22b8bd85676ec7007d69b82948c710f3c06f7906d42fccc",
+      "zip_crc32": "a412c19a",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/trainer_klein_a_fold-open_leer.png",
+      "bytes": 599242,
+      "sha256": "4784592e8dcaaad29d60b78e85941651a392eccc8a758140b5313eee0fd304f5",
+      "zip_crc32": "a237cb5e",
+      "extracted_original_text": false,
+      "width": 1380,
+      "height": 1658
+    },
+    {
+      "path": "modernization/trainer_klein_a_phone_geuebt.png",
+      "bytes": 533225,
+      "sha256": "7dbd13e6b812a74f4c86bdb334a68c6703ff15ed8a5eb9aa4c2bd76be031a68f",
+      "zip_crc32": "c1a52ac1",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "modernization/trainer_klein_a_phone_leer.png",
+      "bytes": 457713,
+      "sha256": "79c215c448a5717c48b287fc3c99812d37e91f76f1f75063417ad25bcd36d23d",
+      "zip_crc32": "a76c0a8d",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "native-profiles/native_profiles_adult_confirmation.png",
+      "bytes": 84459,
+      "sha256": "b0ce2a541659ba0e7e163918dabbdbf0bc41427c67f1bc452f802f60de041319",
+      "zip_crc32": "a6e20eb9",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 915
+    },
+    {
+      "path": "native-profiles/native_profiles_fold.png",
+      "bytes": 87637,
+      "sha256": "39501c1f6a594c8c2da4c18c2f308faea947fe80f8fedc5ac08992fe2c420d89",
+      "zip_crc32": "ad60c435",
+      "extracted_original_text": false,
+      "width": 840,
+      "height": 760
+    },
+    {
+      "path": "native-profiles/native_profiles_parent_entry.png",
+      "bytes": 400140,
+      "sha256": "853898e710bb3d76576e5062b4982154c9125a0f25a50d04d597af7959fea81e",
+      "zip_crc32": "f67de82b",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 915
+    },
+    {
+      "path": "native-profiles/native_profiles_phone.png",
+      "bytes": 89923,
+      "sha256": "cbf1ed4054071c9ed40c71e0a0287aee81e9c80e2e32ebc21bd8a77e9e2708e2",
+      "zip_crc32": "d58faed7",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 915
+    },
+    {
+      "path": "navigation/english-task-fold.png",
+      "bytes": 1516919,
+      "sha256": "24a15adbdb6fa740c649b2f3d2df3c378f597de5c7b5bff1ae0eb2884fcc8b05",
+      "zip_crc32": "89003375",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/english-task-phone.png",
+      "bytes": 1188381,
+      "sha256": "ef1d76d1547e6e447f50ac1a3dd9afaeb177faad96b9c36ca0bcf367b36b2b4d",
+      "zip_crc32": "b04023b7",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/english-topics-fold.png",
+      "bytes": 1099050,
+      "sha256": "3c376a91dd00979136cff1d38c62d00faf09763e9dcc59f7c2466973d4355b14",
+      "zip_crc32": "30f6e5f7",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/english-topics-phone.png",
+      "bytes": 870470,
+      "sha256": "5c999f4b0975b9dfdb6066f238b9b023b20f0a763e86bfa1e36e0b6c594dea22",
+      "zip_crc32": "d6820e3e",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/games-phone.png",
+      "bytes": 863606,
+      "sha256": "14e0142c0e02cc4abdc7067525ec0286861288871cec6b78aa3bded98958915e",
+      "zip_crc32": "ae7f3f9e",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/games-fold.png",
+      "bytes": 1187310,
+      "sha256": "4425aa439ab8a3570e33769e55a559a8d01fb43a1b24105ab2eb9e66fb2a13af",
+      "zip_crc32": "b051edf7",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/german-task-fold.png",
+      "bytes": 1521184,
+      "sha256": "764078f7cd9709c8183cd920116a3ec54b4c122f925c968cd5882f7f227475c2",
+      "zip_crc32": "fdb1dc03",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/german-task-phone.png",
+      "bytes": 1188827,
+      "sha256": "1da3a4db012e7d483be38a2bcdfe99a189df069f7283585f8126f21a369247ac",
+      "zip_crc32": "8301e30d",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/german-topics-fold.png",
+      "bytes": 1100443,
+      "sha256": "9727044f401f290e3cf73392bcd82bd93506f86cd225bbb024405ca676cfc05d",
+      "zip_crc32": "0d26d6e2",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/german-topics-phone.png",
+      "bytes": 874057,
+      "sha256": "25c4b6f63b4116d4b17f9f653492880205ca2f79f4df483e77d9ae519572a784",
+      "zip_crc32": "09b7ba41",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/home-fold.png",
+      "bytes": 1637570,
+      "sha256": "ced9fe4ac198b3839131e7fe193bf498d13feffd7a5faacb5a0d6dc358544813",
+      "zip_crc32": "e060352a",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/home-phone.png",
+      "bytes": 1533837,
+      "sha256": "0f600d335728eab1601da051648d099fd5f7531666feaba329eb34682d72586d",
+      "zip_crc32": "1a76473a",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/learning-entry-fold.png",
+      "bytes": 1019130,
+      "sha256": "f3e0413860a9085cd6b634b0de454eeae5f6b18e6051ea168208fde66f1272ba",
+      "zip_crc32": "7dd42b1c",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/learning-entry-phone.png",
+      "bytes": 937007,
+      "sha256": "7c44de49741646c3236baf5976c8dc2260d1a179ee9964abd40e7d2e03b35dd4",
+      "zip_crc32": "1e3813f9",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/math-task-fold.png",
+      "bytes": 1522392,
+      "sha256": "7d5023c0993f1dbafda6b5dde633294bce3407337d62309638a30af594e933b9",
+      "zip_crc32": "346c656f",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/math-task-phone.png",
+      "bytes": 1197657,
+      "sha256": "6e03cc31ae5bdf16602aca6b1dc9dd1820414e807cc0c6cf9f4871a1da5e834f",
+      "zip_crc32": "1e2f70ea",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/math-topics-fold.png",
+      "bytes": 1103503,
+      "sha256": "661bbceef27dbaa622c0f5d4b0d385e1769238a0cd4d404d17c9adcef5ff2848",
+      "zip_crc32": "bbe9a8fd",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/math-topics-phone.png",
+      "bytes": 874073,
+      "sha256": "fa9e4e72d40adcc3c46dac9daf4895ad018c9fc2b5a2aa62630de7ed97bc75e7",
+      "zip_crc32": "3afe8dd4",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/modern-grade-4-fold.png",
+      "bytes": 1017969,
+      "sha256": "8f4fa6d75c12fd021ee3f796f0503a2b825ce79353706b569c5f016e3c9843d2",
+      "zip_crc32": "101ef310",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/modern-grade-4-phone.png",
+      "bytes": 944831,
+      "sha256": "3332c3a86b021b1d3f6a00e0839a24f2c84a14357d9efcf42433a508f8806742",
+      "zip_crc32": "e4ea4cfe",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/modern-tools-fold.png",
+      "bytes": 1176159,
+      "sha256": "25b0527bab56e0ea4bd3b354cdbe51a71ae6313ec6ae1f1351e9cc1c9f4fc5c1",
+      "zip_crc32": "df8f495b",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/modern-tools-phone.png",
+      "bytes": 1049825,
+      "sha256": "51ec8af1395b1b21eb3b975d7cb0b101ed375ed29172492bc5e79fe41a377c99",
+      "zip_crc32": "a4ebda41",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/science-task-fold.png",
+      "bytes": 1521648,
+      "sha256": "e7fdc55e819128383e0afb08b1256c56f60749e71807ffeacec26d461dbbe366",
+      "zip_crc32": "3a89764b",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/science-task-phone.png",
+      "bytes": 1193663,
+      "sha256": "54d4376f08fe99715416e9a443b95a984138b63a1aa738517bebdd9ee99fa932",
+      "zip_crc32": "25417d6f",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "navigation/science-topics-fold.png",
+      "bytes": 1104576,
+      "sha256": "22f30e253b6ff56cf2835e90fa5defd40cc5fa77f639c3b410daf89e8c622a01",
+      "zip_crc32": "c2cd006d",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1120
+    },
+    {
+      "path": "navigation/science-topics-phone.png",
+      "bytes": 872886,
+      "sha256": "f11bfb9a4fb3104c985e6b550a1d0738cb1a78ac93f6e9b25ba0eed53a85ab0e",
+      "zip_crc32": "6f153d87",
+      "extracted_original_text": false,
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "path": "nextgen-reading/cover-large-text-explanation.png",
+      "bytes": 269660,
+      "sha256": "aacfe4ae3b85f145e37bd9b5667616f3c64c3216326ee1ade9d2507355b4f0a9",
+      "zip_crc32": "cce78b1a",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "nextgen-reading/cover-large-text-question.png",
+      "bytes": 316142,
+      "sha256": "e5eb1832f5c35875a0270657091534f4caa3ff68038fb04d03b7394735c7e32f",
+      "zip_crc32": "1b0a4e01",
+      "extracted_original_text": false,
+      "width": 688,
+      "height": 1764
+    },
+    {
+      "path": "nextgen-reading/fold-open-explanation.png",
+      "bytes": 323541,
+      "sha256": "56bf98fbb43032c8512d54da1a7220be21fb3ea183449a14bfd6d68e71bb76aa",
+      "zip_crc32": "82dd527d",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1800
+    },
+    {
+      "path": "nextgen-reading/fold-open-question.png",
+      "bytes": 310020,
+      "sha256": "81bbef022163a4f6a1545707b26893a0c9a95cb20d427518f2c17b8c24edb8d8",
+      "zip_crc32": "fa038bfe",
+      "extracted_original_text": false,
+      "width": 1680,
+      "height": 1800
+    },
+    {
+      "path": "nextgen-reading/phone-explanation.png",
+      "bytes": 250544,
+      "sha256": "7f1bff6dee7c72f264b125dbed7607704683459dc41402ae74b67ed2de1b79e8",
+      "zip_crc32": "c983d87d",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "nextgen-reading/phone-question.png",
+      "bytes": 236105,
+      "sha256": "525116ae1a9b602fc624c9b9ea71e78443f8a3fe2ccde29d1a95cc17b9aa8039",
+      "zip_crc32": "e514548f",
+      "extracted_original_text": false,
+      "width": 824,
+      "height": 1830
+    },
+    {
+      "path": "reading/home-fold-cover.png",
+      "bytes": 953861,
+      "sha256": "16292b9e668f711ab8b3d4249d46eca010d03b8ddd02b54770da494194c1e380",
+      "zip_crc32": "6cec50f8",
+      "extracted_original_text": false,
+      "width": 516,
+      "height": 1323
+    },
+    {
+      "path": "reading/home-fold-open.png",
+      "bytes": 1775771,
+      "sha256": "d774287c54f0e5b0fa55cba66ad74ea5b430e321667e4f7c605e3e0e488e7d41",
+      "zip_crc32": "4269db7b",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "reading/home-phone.png",
+      "bytes": 1134542,
+      "sha256": "6197c7680cbb5affa956abd2870231910a9057ded96656ac912624ed7f106bdb",
+      "zip_crc32": "ca814f79",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "reading/reading-fold-cover.png",
+      "bytes": 895473,
+      "sha256": "57bfd322b76c643c4e52e96721ba31be02872e0329c6672550ad47413385ad64",
+      "zip_crc32": "8de78e13",
+      "extracted_original_text": false,
+      "width": 516,
+      "height": 1323
+    },
+    {
+      "path": "reading/reading-fold-open.png",
+      "bytes": 1483640,
+      "sha256": "2621e447aaba4df9310a364d7d3628541b811d9036f334b78b026add749b27c0",
+      "zip_crc32": "606705ef",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "reading/reading-phone.png",
+      "bytes": 1094115,
+      "sha256": "8106d67ced4499cb135665f261f31800c8859e40213db7360d910686a40af6a0",
+      "zip_crc32": "c10fc9d3",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "reading/retry-fold-cover.png",
+      "bytes": 658882,
+      "sha256": "3d86e91d39ce0a6abdadd3dd013e1cbb68457d1c843846d6d0921e37fd744db0",
+      "zip_crc32": "9bd610b8",
+      "extracted_original_text": false,
+      "width": 516,
+      "height": 1323
+    },
+    {
+      "path": "reading/retry-fold-open.png",
+      "bytes": 1058515,
+      "sha256": "aa933b8fc7166911ced91e7d0e5b4bceaa7b0651984e542d6724acb66a6683db",
+      "zip_crc32": "f6bb46bb",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "reading/retry-phone.png",
+      "bytes": 798473,
+      "sha256": "ccc2187752e55e1e1a48f94f87dddf4e5373c8534b072ed121145788f457c65f",
+      "zip_crc32": "b9e59049",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "reading/subjects-fold-cover.png",
+      "bytes": 949838,
+      "sha256": "80b05b9829b3982552373ca4015b0d141d57f9c719db3fd67e0606f27d987b71",
+      "zip_crc32": "136a3269",
+      "extracted_original_text": false,
+      "width": 516,
+      "height": 1323
+    },
+    {
+      "path": "reading/subjects-phone.png",
+      "bytes": 1128287,
+      "sha256": "713ead2074cdcd351d5cb45f6de14ca7091f5968398f93754c3f809527a82d7d",
+      "zip_crc32": "9b3f175d",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "reading/subjects-fold-open.png",
+      "bytes": 1329063,
+      "sha256": "627fca830c33c024b7c4a4222aa04d21c7f3a2d37bef972253f85aee59a7c942",
+      "zip_crc32": "af2d5096",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "reading-passages/reading-fold.png",
+      "bytes": 570542,
+      "sha256": "97dc448514b84616ec16c2167c27868adb65948d7209709fce7b9a336b3c71ba",
+      "zip_crc32": "909b910b",
+      "extracted_original_text": false,
+      "width": 1451,
+      "height": 1093
+    },
+    {
+      "path": "reading-passages/reading-landscape.png",
+      "bytes": 244975,
+      "sha256": "074e25137bb3746d63ae6713a9cf72a52973ae03076411b43ffaea2d1d4dfda9",
+      "zip_crc32": "c2e8e22b",
+      "extracted_original_text": false,
+      "width": 960,
+      "height": 540
+    },
+    {
+      "path": "reading-passages/reading-phone.png",
+      "bytes": 289963,
+      "sha256": "80d434d326d1439f42522bd48ceda53a3fef3a283711c00bb52072787243a108",
+      "zip_crc32": "d2623617",
+      "extracted_original_text": false,
+      "width": 540,
+      "height": 1200
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/denkprofil-01-oeffnen.png",
+      "bytes": 786548,
+      "sha256": "2f685bc3b67b66a25379fe91044601350887c38b4de3bb5b70522cd386dd95b7",
+      "zip_crc32": "a9715c54",
+      "extracted_original_text": false,
+      "width": 516,
+      "height": 1323
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/denkprofil-02-erste-frage.png",
+      "bytes": 491494,
+      "sha256": "20915c43463a4101b83e46a376cb1ef7c41b4f288ca7169afc5d9a5651d71c73",
+      "zip_crc32": "310d1eec",
+      "extracted_original_text": false,
+      "width": 516,
+      "height": 1323
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-01-start.png",
+      "bytes": 767770,
+      "sha256": "cc3cc25eac4e37599884c467993f86e6211340036c240353abf747e62d771717",
+      "zip_crc32": "8e4b65ae",
+      "extracted_original_text": false,
+      "width": 516,
+      "height": 1323
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-02-bereich.png",
+      "bytes": 705987,
+      "sha256": "7a9eaf9212ce041919597968dfb68e6623d088002451c6aec9e8de73f5d7a74a",
+      "zip_crc32": "2244f564",
+      "extracted_original_text": false,
+      "width": 516,
+      "height": 1323
+    },
+    {
+      "path": "reasoning/fold-cover-344x882/knobel-03-raetsel.png",
+      "bytes": 667616,
+      "sha256": "e9ff94bcfe5000fa384e4a5569e47b7bac880322e1b18f295899a75c4fc684a5",
+      "zip_crc32": "defe0583",
+      "extracted_original_text": false,
+      "width": 516,
+      "height": 1323
+    },
+    {
+      "path": "reasoning/fold-open-690x829/denkprofil-01-oeffnen.png",
+      "bytes": 1387610,
+      "sha256": "b932c31b4439763c0f9958a73b8382d919c3fcbca3084791c3284ffefdfe9574",
+      "zip_crc32": "ed99c68a",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "reasoning/fold-open-690x829/denkprofil-02-erste-frage.png",
+      "bytes": 773429,
+      "sha256": "944976411c67598b275079241c57910fc7631833fcf573999a0042da0f1c416c",
+      "zip_crc32": "3a43d1e3",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-01-start.png",
+      "bytes": 1373671,
+      "sha256": "d9a8911a22c879253b4522f00455aebfbfe426925fd7bac1a473fd2d033107a5",
+      "zip_crc32": "d559d42d",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-02-bereich.png",
+      "bytes": 1217783,
+      "sha256": "3ba3f877b0b6aca052ddbd7465933292f40cbb5c5d8481fe14263742f4a4db20",
+      "zip_crc32": "642ee663",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "reasoning/fold-open-690x829/knobel-03-raetsel.png",
+      "bytes": 1248771,
+      "sha256": "bdb33c50a73c94d0e5a5167f9267feb3ba4c1990fb6e594593730e1222e7b11b",
+      "zip_crc32": "d0d7be67",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "reasoning/phone-412x915/denkprofil-01-oeffnen.png",
+      "bytes": 955653,
+      "sha256": "1089b488b12b5e690006dfd1d5a14d50a015cd7f337ddc703a6ca352c000e91f",
+      "zip_crc32": "434b4050",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "reasoning/phone-412x915/denkprofil-02-erste-frage.png",
+      "bytes": 580784,
+      "sha256": "caedfd0ad25778b45a19becd60c28330840050115d6cf9179301524e165c9e11",
+      "zip_crc32": "fd9f41ee",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-01-start.png",
+      "bytes": 938448,
+      "sha256": "dc7de967b580c3834711db1d68123520798e40378811da26a7e64d8e8a20549b",
+      "zip_crc32": "997b22b1",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-02-bereich.png",
+      "bytes": 843920,
+      "sha256": "73c0c43660a3a3db72fc0fb12fd4bce7087c742e04f9f4d4a4253f271ff0d832",
+      "zip_crc32": "f72dde32",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "reasoning/phone-412x915/knobel-03-raetsel.png",
+      "bytes": 786960,
+      "sha256": "c6d4db4c69870342933726b382aee985b1fe802d858642d6365410e8389733ca",
+      "zip_crc32": "871559fd",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "rig-stress/fox_arms_open-rest.png",
+      "bytes": 163873,
+      "sha256": "ebd76e3939a718b73ae0441b7f47943b9d0433795827dfebdb403c6bb0e79db5",
+      "zip_crc32": "9a5f5023",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_arms_open-stress-a.png",
+      "bytes": 165295,
+      "sha256": "4f5f10747f60a71bb08cf1e7acfe97046885c2d371e20d6e2a187e7556bf165a",
+      "zip_crc32": "1f44b755",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_arms_open-stress-b.png",
+      "bytes": 164402,
+      "sha256": "35c8945d425a07ecaf8bcfa6fb166e2fc50c86664662b9a6d3f0a9395f8d2348",
+      "zip_crc32": "e2ad51a8",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_book_point-rest.png",
+      "bytes": 181287,
+      "sha256": "03c5bd7acf7cb575d33506ee01e5477b6c2f1750ff3483ea3949a347aff50081",
+      "zip_crc32": "087d695f",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_book_point-stress-a.png",
+      "bytes": 183525,
+      "sha256": "51b52c6ff4ab6bbecf12e2821abadebf7423764fd669860db183878493611ac0",
+      "zip_crc32": "a0c6573c",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_book_point-stress-b.png",
+      "bytes": 181586,
+      "sha256": "84abf646f33932d7cce70c198152995927603eb7f82d17cf86e7f6e11bf8097e",
+      "zip_crc32": "0b873b60",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-rest.png",
+      "bytes": 212818,
+      "sha256": "8384ac004268b161cf6818a542a1ad67fc0f6c7e5b78efe0e40a172314425243",
+      "zip_crc32": "f7cb4750",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-stress-a.png",
+      "bytes": 213462,
+      "sha256": "9fc2026c640c65071e59c17b36a0d99449a6ae20929cde0069bb3b716d103c91",
+      "zip_crc32": "86e1fdf8",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_book_welcome-stress-b.png",
+      "bytes": 213902,
+      "sha256": "1963bf23b96fad989aa20264cd92e4258d4db34be07056fe41ca3eea1e39f73c",
+      "zip_crc32": "d54988c8",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_cheer-rest.png",
+      "bytes": 149909,
+      "sha256": "7bb312641318a4bddbb82da1859cbab9b68a36c5748df1e3fb25118b774f3a14",
+      "zip_crc32": "2b27c5c9",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_cheer-stress-a.png",
+      "bytes": 150608,
+      "sha256": "cd2cb386af2af539e0214b31ec82dd50428a331c67d1306a9d143c2b277a0b32",
+      "zip_crc32": "ab4a536b",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_cheer-stress-b.png",
+      "bytes": 150852,
+      "sha256": "65e6c0c6be5077d15df62e97eb3ab8708817022a49bdbd3ae4ea4381a47e9a7e",
+      "zip_crc32": "0a297d71",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_point_side-rest.png",
+      "bytes": 160699,
+      "sha256": "860b1cb1c06396b2e3c472b8423388f9c0ba01b82eca08a8ae38d40387b83727",
+      "zip_crc32": "70aa9c89",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_point_side-stress-a.png",
+      "bytes": 162817,
+      "sha256": "96e0a62e7d0c49efcd96909af3b1c2922a39674746a5e7d3d05f2f5bd0134b90",
+      "zip_crc32": "ec8c8f2d",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_point_side-stress-b.png",
+      "bytes": 160606,
+      "sha256": "0a82a5df500e0b0b58fa60a853ba13c543d6816f69d57573526be84905ec7857",
+      "zip_crc32": "9f2c5f71",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-rest.png",
+      "bytes": 156432,
+      "sha256": "9469500d6e74a3072b16d6daefcec29e42791d105220ce7adbf06f81886fb626",
+      "zip_crc32": "0e81e65e",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-stress-a.png",
+      "bytes": 158778,
+      "sha256": "7478080eb0b4184149a650d3af4c12b86880ec0c712861881c4c03afc9453bf9",
+      "zip_crc32": "b7f6b8a1",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_tablet_thumb-stress-b.png",
+      "bytes": 155706,
+      "sha256": "e3c72c6be690ca56192498aa954fb308f57c52db248ceba12cc4661833554447",
+      "zip_crc32": "66aa6560",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-rest.png",
+      "bytes": 152875,
+      "sha256": "3966d695524aae98d2d8c27b2663905aab2b04a422a632311252a801ac5ddd5d",
+      "zip_crc32": "5796d170",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-stress-a.png",
+      "bytes": 153993,
+      "sha256": "c8d055275d60174e856ff14a915d898c723ba68308d8a572946039c01bc25dfc",
+      "zip_crc32": "3930d94b",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_teacher_stick-stress-b.png",
+      "bytes": 153498,
+      "sha256": "68b154a9cd2c9179dd213fdbea99c19c66ea890b625034fe64eb1d7655b2d353",
+      "zip_crc32": "703b6b95",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-rest.png",
+      "bytes": 157113,
+      "sha256": "629c26b38e20af87aa9d8e942bdef61808d59d746014c3b808fe05a6b91c433b",
+      "zip_crc32": "178a9a64",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-stress-a.png",
+      "bytes": 157377,
+      "sha256": "6e94dbfadf2c3b0e9738d0ff9407da02577f2f6ce0686c520556ec6fd7c5766d",
+      "zip_crc32": "91bffd09",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_thumb_wink-stress-b.png",
+      "bytes": 158763,
+      "sha256": "b5e13e37055dc06e78ec2a3960a7e793692079ad336b2760536d55e27685006e",
+      "zip_crc32": "08dfe9ad",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-rest.png",
+      "bytes": 170727,
+      "sha256": "a41841850317401be100d222cd8fe5f1d46f2c99c225b67013e8f027f7e78b14",
+      "zip_crc32": "80bc3fc8",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-stress-a.png",
+      "bytes": 171788,
+      "sha256": "b44fcc1e71865429f5855036b2748901af5af0b3241d1fdfab810daa57040219",
+      "zip_crc32": "3b46f480",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "rig-stress/fox_trophy_wink-stress-b.png",
+      "bytes": 172277,
+      "sha256": "0ece90d5b9c1c201068e022578ce446af336fa18d17f6f2018c82fa3e59827cf",
+      "zip_crc32": "4cf4fb45",
+      "extracted_original_text": false,
+      "width": 400,
+      "height": 400
+    },
+    {
+      "path": "tour/fold_01_start.png",
+      "bytes": 1417762,
+      "sha256": "4a4c848df41f1de961e616c9f962ef2bdd7d424d409f883684b73e0787ac26d7",
+      "zip_crc32": "f27d7dd3",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_02_anleitung_matrix.png",
+      "bytes": 1217783,
+      "sha256": "3ba3f877b0b6aca052ddbd7465933292f40cbb5c5d8481fe14263742f4a4db20",
+      "zip_crc32": "642ee663",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_02_anleitung_memory.png",
+      "bytes": 1136486,
+      "sha256": "881af1c8c23044297f23d7fe6cd3a4a38107b62523ed5f92e8578085bdbba907",
+      "zip_crc32": "cecc0f6a",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_02_anleitung_numbers.png",
+      "bytes": 1272046,
+      "sha256": "aa9d158508838d84d6ef0d7832951f68268eb760b2dc95b53105f6a43fdea367",
+      "zip_crc32": "855ee734",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_02_anleitung_oddone.png",
+      "bytes": 1261683,
+      "sha256": "662daecd06d5e1cadee6982085749788b9fae4b5c27b3a005cdb8e35d12956db",
+      "zip_crc32": "3242a5c5",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_02_anleitung_rotation.png",
+      "bytes": 1237242,
+      "sha256": "f9452faadd44e5c73f5341002b3932b4af8b0b89fd22f774f491befba2c725c1",
+      "zip_crc32": "1d347cd4",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_02_anleitung_series.png",
+      "bytes": 1252078,
+      "sha256": "3eb226ac818384a6e2e004dc0d574a1ee8316165fe982c9ba45bbca34a083524",
+      "zip_crc32": "a5dd3c1c",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_03_raetsel_matrix.png",
+      "bytes": 1228404,
+      "sha256": "eddbcd7601443c85fa3592adb6c3cda5661dc2acac9d2e1fece13b2f879c7af0",
+      "zip_crc32": "9681903b",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_03_raetsel_memory.png",
+      "bytes": 1231083,
+      "sha256": "4b18cbf442b00606b53bfcb8d715522228ffb51078a07ef9fc9e5c7fac05f04c",
+      "zip_crc32": "715bec98",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_03_raetsel_memory_zeigen.png",
+      "bytes": 1229542,
+      "sha256": "378483418b213df14ed3be4070e6e20a770e204e74159184a1b550702da8d03a",
+      "zip_crc32": "429064fa",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_03_raetsel_oddone.png",
+      "bytes": 1327305,
+      "sha256": "b2aaeff3a04d654197bb178b437a310466361d66e6af74a6c2e0fbc418a871f6",
+      "zip_crc32": "1f1b18bc",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_03_raetsel_rotation.png",
+      "bytes": 1235090,
+      "sha256": "fffff6c89a227941fe80f5d7a0887580ab1537aba860a156de58e3c132530710",
+      "zip_crc32": "cd037697",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_03_raetsel_series.png",
+      "bytes": 1260651,
+      "sha256": "22517f248870a3ea290df3c137f75be9f91b76de24bea3a2a55d004a0c78ce39",
+      "zip_crc32": "ce220feb",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_03_raetsel_numbers.png",
+      "bytes": 1259822,
+      "sha256": "e3abea9e8ce036f6345781bb4f8da1be43f91f4661eae08109a9a79fd362431c",
+      "zip_crc32": "17dbdf93",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_05_rueckblick.png",
+      "bytes": 1095885,
+      "sha256": "001e65c95aed0978045988ecb9448807f188d93035f4764f958544843c45a329",
+      "zip_crc32": "88b0f7e5",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_05_rueckblick_drehen.png",
+      "bytes": 1042440,
+      "sha256": "5af362945da623e3311a07f86087b03a515d934312d50541ba34e36fb753d239",
+      "zip_crc32": "9ea2ae3f",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_04_ergebnis.png",
+      "bytes": 1102222,
+      "sha256": "8f246ca3ab8ae5fe1c1ea1867fd9cb7f5c6d0f48b1bf0c6f16df61df0b43f8fa",
+      "zip_crc32": "c90dcc3d",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_04_ergebnis_komplett.png",
+      "bytes": 1085922,
+      "sha256": "fc562d9d9b258875abb4f636b1d1938091c17adaaf2c28dab4874fec50499681",
+      "zip_crc32": "cc0c3bdb",
+      "extracted_original_text": false,
+      "width": 690,
+      "height": 1744
+    },
+    {
+      "path": "tour/fold_05_rueckblick_loesung.png",
+      "bytes": 1082883,
+      "sha256": "55f026801c2a0a57b2d14e7f769dbc101fef1e881f9fc58e699b22fa717ef7b9",
+      "zip_crc32": "34842e1a",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_06_tests_seite.png",
+      "bytes": 1059453,
+      "sha256": "43980fba0b2e316720cd8bba3e3738c6649519f87558f63df3ca108914c56a40",
+      "zip_crc32": "c26283a0",
+      "extracted_original_text": false,
+      "width": 1035,
+      "height": 1244
+    },
+    {
+      "path": "tour/fold_games.png",
+      "bytes": 552162,
+      "sha256": "a9fa63c44d27b9bb78689edef3672600707268eabf8ff83a38407a2c7a9578a0",
+      "zip_crc32": "7291848a",
+      "extracted_original_text": false,
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "tour/fold_home.png",
+      "bytes": 847147,
+      "sha256": "d91169abca2c64f9af0bce91b301b30149c07cd1ed499752907a3db64686b31c",
+      "zip_crc32": "4de2b51f",
+      "extracted_original_text": false,
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "tour/fold_learn.png",
+      "bytes": 463066,
+      "sha256": "ed9710a0733362139c439acf9b2e2056824143ab8a5a3ab6f632508a93969bb2",
+      "zip_crc32": "ebb157d2",
+      "extracted_original_text": false,
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "tour/fold_profile.png",
+      "bytes": 668928,
+      "sha256": "c73f65878b96973899a74efa121cf16a7eb39b8768a200f05415f85f1223ba34",
+      "zip_crc32": "eb846e65",
+      "extracted_original_text": false,
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "tour/fold_rewards.png",
+      "bytes": 517157,
+      "sha256": "2a865ebfbf147009d172339b735a6e27e7d47ba1af9856e779897722ad46d44e",
+      "zip_crc32": "09e5c893",
+      "extracted_original_text": false,
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "tour/fold_tests.png",
+      "bytes": 633186,
+      "sha256": "35bfa7348611276c827e31eb546749cf1d0e9d60382905b44d21bfd0760e5cac",
+      "zip_crc32": "b5f55097",
+      "extracted_original_text": false,
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "tour/phone_01_start.png",
+      "bytes": 962676,
+      "sha256": "d771197db05e71594b2a1ad049da200d0c0e94ed165934b48cc3f9fb9e9b10f6",
+      "zip_crc32": "a5e03ad9",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_02_anleitung_matrix.png",
+      "bytes": 843920,
+      "sha256": "73c0c43660a3a3db72fc0fb12fd4bce7087c742e04f9f4d4a4253f271ff0d832",
+      "zip_crc32": "f72dde32",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_02_anleitung_memory.png",
+      "bytes": 771065,
+      "sha256": "64c22d65cb879df634d77b11b352e41d54d3a3699b3fcb3783d4c843eda5f7ef",
+      "zip_crc32": "ace95795",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_02_anleitung_numbers.png",
+      "bytes": 870762,
+      "sha256": "1d15694931653173759b69babbd462d44cbce5cf50a977499316fffad9e4c566",
+      "zip_crc32": "34d6c9f0",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_02_anleitung_oddone.png",
+      "bytes": 856534,
+      "sha256": "54cbf30ab50652f193ba0ad104527e9c0e4325517da07f072bbea1109891b286",
+      "zip_crc32": "389a62c7",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_02_anleitung_rotation.png",
+      "bytes": 839306,
+      "sha256": "e8887224395a54e71952183b5b2afcb6878fa45c87810afbd88094b4c2526caa",
+      "zip_crc32": "4fb3c182",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_02_anleitung_series.png",
+      "bytes": 853804,
+      "sha256": "e2b1da18b91e724e087f0b5afe3854fe6e0242aec7f6f4251b107118ae986d62",
+      "zip_crc32": "fa695ff7",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_03_raetsel_matrix.png",
+      "bytes": 776876,
+      "sha256": "6fcb508e184ba82113b904d564c054cfe823d9bb4bb0dc8ccf8e82fc77a027ad",
+      "zip_crc32": "b38e7655",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_03_raetsel_memory.png",
+      "bytes": 805998,
+      "sha256": "debf532c2f715e3890ac31431deeefd4ef468ab51d42adbaadd390831dbf8797",
+      "zip_crc32": "bcf1df52",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_03_raetsel_memory_zeigen.png",
+      "bytes": 801173,
+      "sha256": "8c7a97a9972c765182da04f226a9553c4b5bf3d6c4973ee2117aaf0ef0a01fcb",
+      "zip_crc32": "f42cc91c",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_03_raetsel_numbers.png",
+      "bytes": 842666,
+      "sha256": "5af3a1e1eace4e2aeaf27c82d9a3bbb42cc1a98a25518f90098215f67b458be9",
+      "zip_crc32": "693ccad4",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_03_raetsel_oddone.png",
+      "bytes": 890956,
+      "sha256": "0bf48b2369c231d499ea06de7711ef55d1c7e44cf8b7e253766d9d85d76bf8a5",
+      "zip_crc32": "74df6f3a",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_03_raetsel_rotation.png",
+      "bytes": 862829,
+      "sha256": "5a5bd7348189c4191ff09c01356be0a8ee9c05d6f507084edac9de29cfae9ace",
+      "zip_crc32": "1571b47e",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_03_raetsel_series.png",
+      "bytes": 803309,
+      "sha256": "1f213802a8240c6ef90c1ad28ed665de822b7173f52d303a50fc4a25dd9b1612",
+      "zip_crc32": "a2d4024b",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_04_ergebnis.png",
+      "bytes": 813934,
+      "sha256": "812c9e4e42fb69058eea78a6cf2c82f389e7b1be02f4cc72ca5c77a9263b60b2",
+      "zip_crc32": "e28be97f",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_04_ergebnis_komplett.png",
+      "bytes": 737080,
+      "sha256": "31bcc58800e2ba95988153d7d0b7f1f0c405d89b9aeb55e6018a1d836df60c8f",
+      "zip_crc32": "757b4aaa",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 1834
+    },
+    {
+      "path": "tour/phone_05_rueckblick.png",
+      "bytes": 853307,
+      "sha256": "f961ca813945d3b941185102d48f6dbed3fc0042c1490f4a9b5c39e43920a23b",
+      "zip_crc32": "1bb2c175",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_05_rueckblick_drehen.png",
+      "bytes": 798646,
+      "sha256": "fcf441dc45ed98b5d12dab2d4d58e635eb1127dadd16954d33f0a55dea23ba77",
+      "zip_crc32": "7a82ba37",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_05_rueckblick_loesung.png",
+      "bytes": 821758,
+      "sha256": "1b35b0be4f3f2b8367402749927e948175b532c0800975871433226e0c3fab47",
+      "zip_crc32": "730d45a9",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_06_tests_seite.png",
+      "bytes": 827850,
+      "sha256": "24502b996ee7e18251fbf879c206d40bb4c5bfea2eb7036d2a8e5f3ec1dd7773",
+      "zip_crc32": "c1562ae7",
+      "extracted_original_text": false,
+      "width": 618,
+      "height": 1373
+    },
+    {
+      "path": "tour/phone_games.png",
+      "bytes": 356221,
+      "sha256": "591364b2eb3d14ad1ec5603b8d2d4710e576a75823e3328f18a0c4e64963e20e",
+      "zip_crc32": "8d382671",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 915
+    },
+    {
+      "path": "tour/phone_home.png",
+      "bytes": 566793,
+      "sha256": "12438450b40f5aec9a97bac6d826e93ba078c201fe6e3db99766def6b1e969f2",
+      "zip_crc32": "577b4f8f",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 915
+    },
+    {
+      "path": "tour/phone_learn.png",
+      "bytes": 388358,
+      "sha256": "e2a33abeed005654eed1167c3f3e752d7308e9a1f7b608377b5e4c73d999ab03",
+      "zip_crc32": "a3905d1d",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 915
+    },
+    {
+      "path": "tour/phone_profile.png",
+      "bytes": 488879,
+      "sha256": "7d17c5fef873b87aef94cb896cf17b6d30fa9047ac517561010124365b5d7478",
+      "zip_crc32": "0d48cae3",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 915
+    },
+    {
+      "path": "tour/quer_03_raetsel_matrix.png",
+      "bytes": 687610,
+      "sha256": "23350152e0446f61fe10092245f4e4a2a4877c7d20fbbed23174ba3b8a9ac9b8",
+      "zip_crc32": "c867001e",
+      "extracted_original_text": false,
+      "width": 1373,
+      "height": 618
+    },
+    {
+      "path": "tour/phone_rewards.png",
+      "bytes": 421569,
+      "sha256": "ba37e63d74e6a8f88f12eaeeb05db89c94cacea37ceabe950f843f5a670840fe",
+      "zip_crc32": "e80ccf4d",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 915
+    },
+    {
+      "path": "tour/phone_tests.png",
+      "bytes": 478481,
+      "sha256": "ae97eea3fb13751b25f24d9daf3732b47f239a21271c0767cc5fc902cd03f7e4",
+      "zip_crc32": "4420bdcb",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 915
+    },
+    {
+      "path": "tour/quer_01_start.png",
+      "bytes": 784968,
+      "sha256": "dea7d8c540b4cc4d77216009683f9106641835a0acfa13d5a0693250d52f1be9",
+      "zip_crc32": "a74d9579",
+      "extracted_original_text": false,
+      "width": 1373,
+      "height": 618
+    },
+    {
+      "path": "tour/quer_03_raetsel_rotation.png",
+      "bytes": 668905,
+      "sha256": "fe3ac79c08afc256d046831dd59e5d822cce7247b354022e74297ba72f945fd1",
+      "zip_crc32": "5ca642d8",
+      "extracted_original_text": false,
+      "width": 1373,
+      "height": 618
+    },
+    {
+      "path": "tour/quer_04_ergebnis.png",
+      "bytes": 666482,
+      "sha256": "d528a666ef1b0581673c3c7cf79dffe8cef3315801f6957946cae26de90f37ee",
+      "zip_crc32": "eee1210a",
+      "extracted_original_text": false,
+      "width": 1373,
+      "height": 618
+    },
+    {
+      "path": "tour/reference-phone_games.png",
+      "bytes": 289323,
+      "sha256": "e2afb1a3be9b11045b12efa2d632bb6554e135c34204c81a0e389d3f32bebc8c",
+      "zip_crc32": "6a520aa1",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "tour/reference-phone_learn.png",
+      "bytes": 298656,
+      "sha256": "085d59a2b170b3f3fe3b75c50ebd617a25c29644318b9f8f36aa29183bebab82",
+      "zip_crc32": "671ca9f1",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "tour/reference-phone_profile.png",
+      "bytes": 381162,
+      "sha256": "08a84e25a8c868f111f8c23acad980058edc3949dc82ef3237708812903823d5",
+      "zip_crc32": "193dcf70",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "tour/reference-phone_rewards.png",
+      "bytes": 342499,
+      "sha256": "9d4a170289feb374d62cb80772b5533e3ff055076e4346abf8e9058ba31d4ae3",
+      "zip_crc32": "5acd58df",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "tour/reference-phone_home.png",
+      "bytes": 463005,
+      "sha256": "c0803f0e1b0f1b39e3ded138c8a2b423a539b9d81a4f3629fb1b36f8aa0f19c4",
+      "zip_crc32": "c436694a",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "tour/reference-phone_tests.png",
+      "bytes": 350908,
+      "sha256": "1b1db0b8a50065bbb8b53ad50831208a3aaa8df587728230a8559ce4bd79ece4",
+      "zip_crc32": "52926570",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "tutoring/fold-target-actual-tutoring-card.png",
+      "bytes": 734968,
+      "sha256": "af72d650e8ec993bc2745595de8e96bda1d06d2590aa86d4655cbb362a75651a",
+      "zip_crc32": "00436df3",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "tutoring/fold-target-actual-tutoring-reason.png",
+      "bytes": 771806,
+      "sha256": "aebf3a7b058150ba50a18b079cc427bacb208878053ce2120ed630dbf69c1a89",
+      "zip_crc32": "16e65ff1",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "tutoring/fold-target-actual-opened-course.png",
+      "bytes": 777596,
+      "sha256": "b8636e4a5c29ca099bb554af172dc69e879b92e74414982ab03949cc7f737788",
+      "zip_crc32": "b1012150",
+      "extracted_original_text": false,
+      "width": 968,
+      "height": 806
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-opened-course.png",
+      "bytes": 313838,
+      "sha256": "af8ce17c393333c7240aa21b34423369885f8428affb385f0c43ac6474e29aef",
+      "zip_crc32": "1cf1e8e3",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-tutoring-reason.png",
+      "bytes": 373236,
+      "sha256": "58485bf7ce4529b313f36e6c383b06bc2ff801513d7101c058bae82ee86f0858",
+      "zip_crc32": "ddfab298",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "tutoring/phone-360x800-actual-tutoring-card.png",
+      "bytes": 264129,
+      "sha256": "3e6e13a5103faed74aed3c58e6db1282190a667023d6a91d1c04885d8d199017",
+      "zip_crc32": "dc4a426e",
+      "extracted_original_text": false,
+      "width": 360,
+      "height": 800
+    },
+    {
+      "path": "village/village-fold-cover.png",
+      "bytes": 337946,
+      "sha256": "fa00127e0316de2b083ba8d55578f79e01197203cacc2ad5ff3431d0a47b6361",
+      "zip_crc32": "b8f1ffc6",
+      "extracted_original_text": false,
+      "width": 344,
+      "height": 882
+    },
+    {
+      "path": "village/village-fold-open-large-text.png",
+      "bytes": 600959,
+      "sha256": "a2397df28ac69a41b918a0ea6ffb741bc92b2b7c7cb833874881652bf6ec6d18",
+      "zip_crc32": "1c776c5b",
+      "extracted_original_text": false,
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "village/village-fold-open.png",
+      "bytes": 595416,
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+      "zip_crc32": "5c0e14e1",
+      "extracted_original_text": false,
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "village/village-fold-landscape.png",
+      "bytes": 1102593,
+      "sha256": "213edb9568f70aa0cb1673d06cc5ce242a37385cc29803b69fe5371698ee92ac",
+      "zip_crc32": "c469eb91",
+      "extracted_original_text": false,
+      "width": 1200,
+      "height": 900
+    },
+    {
+      "path": "village/village-fold-wide-min.png",
+      "bytes": 555532,
+      "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9",
+      "zip_crc32": "c6800a03",
+      "extracted_original_text": false,
+      "width": 640,
+      "height": 829
+    },
+    {
+      "path": "village/village-phone.png",
+      "bytes": 401998,
+      "sha256": "12e3d0ca6f514f12b58106ddb1a197bdaa09a773a2703e5d4708db8d6e710dc7",
+      "zip_crc32": "5bc2fdf7",
+      "extracted_original_text": false,
+      "width": 412,
+      "height": 915
+    }
+  ],
+  "scope": "All member hashes and ZIP CRCs checked; PNG dimensions read from original headers. This inventory does not claim visual inspection of every image."
+}

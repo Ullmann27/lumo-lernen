@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T04:46:27.549321+00:00",
+  "status": "READY_FOR_SEPARATE_RUNTIME_DEVICE_DIAGNOSTIC",
+  "qa_branch": "qa/lumo-android-runtime-7b16-followup-20261114",
+  "qa_workflow": ".github/workflows/lumo-android-runtime-7b16-followup.yml",
+  "source_checkpoint": "19919d35ff35ebffc31f8970b6221d1a61d2dc0d",
+  "actual_apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "original_build_run": 43540111465,
+  "original_build_artifact": 14093773196,
+  "local_contracts": {
+    "exit_code": 0,
+    "tests": 163,
+    "elapsed_seconds": 5.551,
+    "skips": 0,
+    "source_files_unchanged": true,
+    "source_commit_unchanged": true,
+    "clean_after": true,
+    "log_sha256": "81f3bb04e702d23265b64e694bbb6ec7a5a1ce549842a3a46f89e7a99c19484b",
+    "source_commit": "204493e8428d0164a417d2e467a56cbc49536d5d",
+    "remote_checkpoint": "19919d35ff35ebffc31f8970b6221d1a61d2dc0d",
+    "scope": "Exact required workflow contracts in a clean committed source, with complete SHA-checked original upstream fixture; no Android/backend acceptance."
+  },
+  "jobs": [
+    "unchanged-apk-followup-api35",
+    "unchanged-apk-followup-api37-host",
+    "unchanged-apk-followup-api37-swiftshader",
+    "unchanged-apk-followup-api37-swangle",
+    "unchanged-apk-followup-update2017"
+  ],
+  "current_device_result": "NOT_STARTED",
+  "historical_pr480": "Original failure retained; no rerun or ref update",
+  "creative_pr481": "Independent active frozen f89b77; new complete Schema2 transport checker archived here for durability",
+  "limits": [
+    "Real device-session survival across adb root is untested until this new run.",
+    "SWANGLE must supply its own actual GLES and functional evidence; a declaration cannot pass.",
+    "Original GMS ANRs and original shader failures remain failures.",
+    "No new APK build, release, physical Fold test or FPS claim."
+  ]
+}

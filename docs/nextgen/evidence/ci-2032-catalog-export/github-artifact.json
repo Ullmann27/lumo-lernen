@@ -1,0 +1,19 @@
+{
+  "id": 14210758550,
+  "name": "lumo-nextgen-catalog-export",
+  "size_in_bytes": 40128,
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14210758550",
+  "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14210758550/zip",
+  "expired": false,
+  "created_at": "2026-11-16T09:05:50Z",
+  "expires_at": "2026-12-16T09:05:49Z",
+  "updated_at": "2026-11-16T09:05:50Z",
+  "digest": "sha256:47f5f8c45e952014878f2ee6e2081d8a44d56293977e4f3e0edded1020c4b453",
+  "workflow_run": {
+    "id": 43836322226,
+    "repository_id": 1222433959,
+    "head_repository_id": 1222433959,
+    "head_branch": "integration/lumo-nextgen-learning-20261115",
+    "head_sha": "a5ea7422b1152576b34cf80519856129ff264ac1"
+  }
+}

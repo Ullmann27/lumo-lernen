@@ -1,0 +1,13 @@
+test_android_tour_keeps_full_original_and_new_surface_gates (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_android_tour_keeps_full_original_and_new_surface_gates) ... ok
+test_historical_release_pins_remain_byte_equivalent_as_2018_is_added (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_historical_release_pins_remain_byte_equivalent_as_2018_is_added) ... ok
+test_historical_unified_workflow_cannot_build_2018_under_another_branch (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_historical_unified_workflow_cannot_build_2018_under_another_branch) ... ok
+test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches) ... ok
+test_nextgen_has_one_automatic_apk_event_and_shared_branch_concurrency (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_nextgen_has_one_automatic_apk_event_and_shared_branch_concurrency) ... ok
+test_nextgen_rejects_an_otherwise_valid_historical_candidate (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_nextgen_rejects_an_otherwise_valid_historical_candidate) ... ok
+test_publication_stays_blocked_until_review_and_keeps_all_actual_dependencies (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_publication_stays_blocked_until_review_and_keeps_all_actual_dependencies) ... ok
+test_update_wrapper_binds_the_real_2017_baseline_and_rejects_old_candidate (scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_update_wrapper_binds_the_real_2017_baseline_and_rejects_old_candidate) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.062s
+
+OK

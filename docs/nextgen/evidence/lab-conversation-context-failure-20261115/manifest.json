@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "workflowRun": 43769283861,
+  "jobId": 132981333152,
+  "artifactId": 14184245907,
+  "artifactBytes": 10566016,
+  "artifactSha256": "98d7b62984915783f476520fbfadc309bf99ed1b070c8412ba48aac240de3342",
+  "qaSource": "c600e1e02745931cc1dd0a17e528a60f8ed4abf3",
+  "apkSource": "72a7914059d10152604b877cfeaf8bd1d2155810",
+  "scope": "Byte-identical selection of original Android failure evidence; no current candidate acceptance.",
+  "files": [
+    {
+      "artifactPath": "artifact-verification.json",
+      "file": "artifact-verification.json",
+      "bytes": 170,
+      "sha256": "8e4790ccc06007df71c3723d04fb935e2cfdf827544d9ba4dbd4f45d17bb2f5e"
+    },
+    {
+      "artifactPath": "original-android/learning-android-result.json",
+      "file": "learning-android-result.json",
+      "bytes": 6191,
+      "sha256": "b2bce4d98e019785f1dab03a1e36dd20a716558c023f802bc9d45e5d5845c8b2"
+    },
+    {
+      "artifactPath": "original-android/0110-current-conversation-input.xml",
+      "file": "0110-current-conversation-input.xml",
+      "bytes": 26143,
+      "sha256": "eec027fc8c9f266105db357bc791c8b24093b6c62fc6639d820fc5fc171c02ba"
+    },
+    {
+      "artifactPath": "original-android/0114-why-first-two-written.xml",
+      "file": "0114-why-first-two-written.xml",
+      "bytes": 97980,
+      "sha256": "a56da66d473be9dc8274df36228489eff2f8f4901840596b1c3762c940166d68"
+    },
+    {
+      "artifactPath": "original-android/0126-grounded-task-dialogue.xml",
+      "file": "0126-grounded-task-dialogue.xml",
+      "bytes": 26553,
+      "sha256": "cebfb02e663212d442a3e991bdc9022913eaa6949f5d0c2b8c8f9c7f4b2623a8"
+    },
+    {
+      "artifactPath": "original-android/0127-grounded-task-dialogue-scroll-search.json",
+      "file": "0127-grounded-task-dialogue-scroll-search.json",
+      "bytes": 2437,
+      "sha256": "7f6322c8203d4d80cd1d7c1db5159e5c7d5fae406274c5b8109c7fd17797a2d2"
+    },
+    {
+      "artifactPath": "original-android/0128-failure-current-screen.png",
+      "file": "0128-failure-current-screen.png",
+      "bytes": 1329198,
+      "sha256": "ec15e079d244424a9072a8f5de2f257a6d5df85831dd01ebd886d95bcd3f1c66"
+    }
+  ]
+}

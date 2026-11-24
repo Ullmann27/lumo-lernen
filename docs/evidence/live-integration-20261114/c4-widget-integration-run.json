@@ -1,0 +1,45 @@
+{
+  "command": [
+    "timeout",
+    "480s",
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter=expanded",
+    "--timeout=60s",
+    "--concurrency=1",
+    "test/games/games_screen_flow_test.dart",
+    "test/design/connect_four_visual_test.dart",
+    "test/games/connect_four_interaction_test.dart",
+    "test/games/connect_four_fold_controls_test.dart",
+    "test/games/connect_four_lumo_level_test.dart",
+    "test/games/connect_four_native_route_test.dart",
+    "test/games/connect_four_native_session_test.dart"
+  ],
+  "starting_head": "4564ad40c4d000b764e67719d19bd2445c04c870",
+  "files_sha256_before": {
+    "test/games/games_screen_flow_test.dart": "f5785f46476b15a8f26c410705f81afb512012e593d15295b38f817ecd36e82d",
+    "test/design/connect_four_visual_test.dart": "6afa21c3bbac7d1b5dd3e193997cef7d85af014ca3f10447722126b4c1e1e099",
+    "test/games/connect_four_interaction_test.dart": "9fe8e5ed4b94e024c6b1d35c968c8ee4434ec921e07334ff8a5c360eaf363305",
+    "test/games/connect_four_fold_controls_test.dart": "1d2196fd362c11f03df9cec6fbc36a557df542ac90277cd7d13f65010938fcdd",
+    "test/games/connect_four_lumo_level_test.dart": "792d6bd0552f890ac50f74d0c4d02e480400cf85ad933a2138b0a403ad6d7098",
+    "test/games/connect_four_native_route_test.dart": "0d6636896a01653e006862cdbcce5f673182f66996b71c44710ca8351b31b9ed",
+    "test/games/connect_four_native_session_test.dart": "0ea59f0986842361b1422cf8e2d2b4cc47efb6d6eb9982ab234cfa676d289576",
+    "lib/features/games/connect_four/lumo_connect_four_game.dart": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075"
+  },
+  "captures": "/tmp/lumo-integration-909ddb52fe7b/qa-evidence/c4-captures",
+  "scope": "Actual local Flutter widget/render tests of integration working tree, with explicit unavailable-native fallback; no Android APK/device claim.",
+  "exit_code": 0,
+  "seconds": 19.071594970999286,
+  "log_sha256": "99b215dcc16e0cbaaaa046f791f454c009bc590228382b3c8c2f280906cbc6c9",
+  "files_sha256_after": {
+    "test/games/games_screen_flow_test.dart": "f5785f46476b15a8f26c410705f81afb512012e593d15295b38f817ecd36e82d",
+    "test/design/connect_four_visual_test.dart": "6afa21c3bbac7d1b5dd3e193997cef7d85af014ca3f10447722126b4c1e1e099",
+    "test/games/connect_four_interaction_test.dart": "9fe8e5ed4b94e024c6b1d35c968c8ee4434ec921e07334ff8a5c360eaf363305",
+    "test/games/connect_four_fold_controls_test.dart": "1d2196fd362c11f03df9cec6fbc36a557df542ac90277cd7d13f65010938fcdd",
+    "test/games/connect_four_lumo_level_test.dart": "792d6bd0552f890ac50f74d0c4d02e480400cf85ad933a2138b0a403ad6d7098",
+    "test/games/connect_four_native_route_test.dart": "0d6636896a01653e006862cdbcce5f673182f66996b71c44710ca8351b31b9ed",
+    "test/games/connect_four_native_session_test.dart": "0ea59f0986842361b1422cf8e2d2b4cc47efb6d6eb9982ab234cfa676d289576",
+    "lib/features/games/connect_four/lumo_connect_four_game.dart": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075"
+  }
+}

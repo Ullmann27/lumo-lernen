@@ -1,0 +1,22 @@
+{
+  "checkedAtUtc": "2026-11-16T01:21:38.134324+00:00",
+  "catalogSourceCommit": "f3178bb418c84ad013cc18eaea89f48f7859119b",
+  "catalogSourceSha256": "194a7b1b4e6ab4dfc49542ce8d4469e445aeddd7a759ff416b756c8ae33be991",
+  "coverageJsonSha256": "cf0dfb0f8acffa05e1e2017bc7cdc08b3b08602ab9c9da4921e587e90bf52ea0",
+  "coverageMarkdownSha256": "4b0adb586d196598f9888e2cbf5d5946bc3d3c601245141f8089d6aacb5188b6",
+  "sourceHashesVerified": 247,
+  "sparseCommittedBlobReads": [
+    {
+      "path": "docs/evidence/lumo-nextgen-game-questions/focused-tests.log",
+      "sha256": "59f9b16e734b79c9e07b01bc5d7d69e8837c7814d48bab981f02269f812f7685",
+      "readFrom": "committed_head_blob"
+    }
+  ],
+  "protectedFilesComparedByteForByte": 18,
+  "protectedBaseline": "6f4a8c4753f4d06d0b392da0789b8162b2faa71b",
+  "catalogExportTestsPassed": 1,
+  "fullModernizationComplete": false,
+  "android2029Passed": false,
+  "releaseCandidate": "0.13.17+2029",
+  "note": "The executable catalog was exported at the published product checkpoint. Only version/release metadata and documentation changed afterwards; no lib/assets/android delta."
+}

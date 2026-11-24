@@ -1,0 +1,162 @@
+{
+  "recorded_at": "2026-11-14T15:22:16.638229+00:00",
+  "source": "036e33603e50774bd328d1dff71ddff1d468db6f",
+  "tree": "9f3d845a2997faa5f4a16dc28fdaac4b65eeb0f1",
+  "native": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "run_id": 43609106020,
+  "run_attempt": 1,
+  "job_id": 132490009264,
+  "artifact_id": 14119721260,
+  "archive_bytes": 12536,
+  "archive_sha256": "66fcb9ca48f6e2d419f3d31dcb624eedc374ef03a2fc28fea1dbcdafdeb240d0",
+  "all_member_crc_sha_verified": true,
+  "members": [
+    {
+      "path": "godot-source.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50",
+      "crc32": "16b385e8"
+    },
+    {
+      "path": "host-compile-evidence/compile.log",
+      "bytes": 34085,
+      "sha256": "ca0666da28931afa001c8e15712fcee73415bde70154b8e2e80498b8c43de585",
+      "crc32": "30bf0177"
+    },
+    {
+      "path": "host-compile-evidence/cards-authority-registry.log",
+      "bytes": 2556,
+      "sha256": "cf74e1480bd043323f51000dd67c1777dee78cd328811d1f4b4f8d8cdbd91632",
+      "crc32": "d14cb419"
+    },
+    {
+      "path": "host-compile-evidence/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "crc32": "ef6cb86f"
+    },
+    {
+      "path": "host-compile-evidence/result.json",
+      "bytes": 2769,
+      "sha256": "58fdc0ed2ba60a206b48f98a92307b68a690729689016d9c97c7789de7a5dc05",
+      "crc32": "bfba21fa"
+    },
+    {
+      "path": "host-compile-evidence/source-sha.txt",
+      "bytes": 41,
+      "sha256": "597ae19b4046ec3d14bbe4332019c33cfa028c831512a0af3b9629ae2dc364a8",
+      "crc32": "4dc03791"
+    },
+    {
+      "path": "host-compile-original.log",
+      "bytes": 41648,
+      "sha256": "2b6bb2644468732e19c06d6cc5f222ae28b81c6c6bc8471390b8fcf402d34457",
+      "crc32": "e17606da"
+    },
+    {
+      "path": "source-after.txt",
+      "bytes": 41,
+      "sha256": "597ae19b4046ec3d14bbe4332019c33cfa028c831512a0af3b9629ae2dc364a8",
+      "crc32": "4dc03791"
+    },
+    {
+      "path": "source-before.txt",
+      "bytes": 41,
+      "sha256": "597ae19b4046ec3d14bbe4332019c33cfa028c831512a0af3b9629ae2dc364a8",
+      "crc32": "4dc03791"
+    },
+    {
+      "path": "tree-after.txt",
+      "bytes": 41,
+      "sha256": "85b8ad2744869e9d6dc69c7a5d07337b8cd54ba2851cc3729baa6ff4e20c7082",
+      "crc32": "f9e8d55a"
+    },
+    {
+      "path": "tree-before.txt",
+      "bytes": 41,
+      "sha256": "85b8ad2744869e9d6dc69c7a5d07337b8cd54ba2851cc3729baa6ff4e20c7082",
+      "crc32": "f9e8d55a"
+    }
+  ],
+  "source_before_after_equal": true,
+  "actual_compilation": {
+    "status": "PASS",
+    "scope": "Actual Android Kotlin/Java compilation only; no APK or runtime claim",
+    "flutter_source_commit": "036e33603e50774bd328d1dff71ddff1d468db6f",
+    "godot_aar": "org.godotengine:godot:4.6.3.stable",
+    "onnxruntime_android": "1.23.1",
+    "classes": {
+      "MainActivity": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/MainActivity.class",
+          "bytes": 26484,
+          "sha256": "173154e55082a121ac78a472c0a0ea41fad2e1b484c69a7a1d87385350d14c46"
+        }
+      ],
+      "LumoGameActivity": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoGameActivity.class",
+          "bytes": 16628,
+          "sha256": "a2eae536e93b6db59ec8e4e6ec200b9ed2c49d58d23f2d0893747a9672c636ca"
+        }
+      ],
+      "LumoHostPlugin": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoHostPlugin.class",
+          "bytes": 4594,
+          "sha256": "014ce0108dcc2072b35d90c73707835655c1451f2ddc074b9c43005c46ed6517"
+        }
+      ],
+      "CardsTableBridge": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsTableBridge.class",
+          "bytes": 20859,
+          "sha256": "434667a7937f5ce3957f6aa3ce5bd9db3ece3c69a10262746fa628e19d3792fa"
+        }
+      ],
+      "CardsAuthorityService": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsAuthorityService.class",
+          "bytes": 2674,
+          "sha256": "f9fbd8919270c109d3e52fbe61d2f6fae00f95392a637ebb7eb1799007c74b1d"
+        }
+      ],
+      "CardsAuthorityRegistry": [
+        {
+          "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/CardsAuthorityRegistry.class",
+          "bytes": 1797,
+          "sha256": "4f6a6545b1fd26f90b563be7c75628f8223b63edb3be646208a43eff39991b35"
+        }
+      ],
+      "LumoLearningSpeech": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.class",
+          "bytes": 17437,
+          "sha256": "85030cba5be690ae9e2e90252f9ba5f79d1499525ea22f1c2c2270d8c62b919e"
+        }
+      ],
+      "LumoOfflineSpeechBridge": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechBridge.class",
+          "bytes": 19017,
+          "sha256": "205454042f42b167261e16b9dffd63f8095d752aad0bf7b49feccd8ae840408b"
+        }
+      ],
+      "LumoOfflineSpeechEngine": [
+        {
+          "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechEngine.class",
+          "bytes": 17178,
+          "sha256": "c9944e14323d807932a1fb3b1cbfa6ac05a2df46f8b88b7ea493755e0a6be5af"
+        }
+      ]
+    }
+  },
+  "actual_contract_terminal": [
+    "Ran 10 tests in 25.913s",
+    "OK"
+  ],
+  "compiler_terminal": [
+    "BUILD SUCCESSFUL in 2m 51s"
+  ],
+  "scope": "Actual combined-source Kotlin/Java compilation and existing source contracts only. No APK, Android device, native scene startup or complete full-suite acceptance is inferred."
+}

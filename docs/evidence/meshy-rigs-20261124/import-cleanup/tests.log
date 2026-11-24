@@ -1,0 +1,261 @@
+test_1977_original_gate_images_are_safe_to_clean (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1977_original_gate_images_are_safe_to_clean) ... ok
+test_1979_cinema_source_only_cleans_hash_checked_gate_images (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1979_cinema_source_only_cleans_hash_checked_gate_images) ... ok
+test_1985_pinned_kart_preserves_gate_and_cleans_only_verified_images (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1985_pinned_kart_preserves_gate_and_cleans_only_verified_images) ... ok
+test_1991_scene_quality_regression_pin_only_cleans_verified_gate_jpegs (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1991_scene_quality_regression_pin_only_cleans_verified_gate_jpegs) ... ok
+test_1993_cinematic_kart_only_cleans_original_digest_verified_gate_images (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1993_cinematic_kart_only_cleans_original_digest_verified_gate_images) ... ok
+test_1994_premium_kart_preserves_meshy_gate_hash_guard (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1994_premium_kart_preserves_meshy_gate_hash_guard) ... ok
+test_1995_sol_kart_keeps_immutable_gate_and_fails_closed (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1995_sol_kart_keeps_immutable_gate_and_fails_closed) ... ok
+test_1997_landing_fit_kart_keeps_immutable_gate (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1997_landing_fit_kart_keeps_immutable_gate) ... ok
+test_1999_visible_hub_fix_cleans_only_original_verified_images (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_1999_visible_hub_fix_cleans_only_original_verified_images) ... ok
+test_exact_1975_imported_jpegs_are_cleaned (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_exact_1975_imported_jpegs_are_cleaned) ... ok
+test_exact_1976_same_trusted_glb_jpegs_are_cleaned (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_exact_1976_same_trusted_glb_jpegs_are_cleaned) ... ok
+test_existing_before_import_is_preserved (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_existing_before_import_is_preserved) ... ok
+test_future_unknown_pin_must_not_remove_images (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_future_unknown_pin_must_not_remove_images) ... ok
+test_modified_glb_is_not_trusted (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_modified_glb_is_not_trusted) ... ok
+test_non_jpeg_generated_output_fails_closed (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_non_jpeg_generated_output_fails_closed) ... ok
+test_old_release_does_not_cleanup (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_old_release_does_not_cleanup) ... ok
+test_symlink_is_not_deleted (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_symlink_is_not_deleted) ... ok
+test_unknown_untracked_file_is_not_deleted (scripts.tests.test_export_embedded_game.GeneratedMeshyGateTexturesTests.test_unknown_untracked_file_is_not_deleted) ... ok
+test_current_2078_pin_cleans_outputs_and_preserves_exact_sources (scripts.tests.test_export_embedded_game.GeneratedProductionMeshyImportsTests.test_current_2078_pin_cleans_outputs_and_preserves_exact_sources) ... ok
+test_current_2078_pin_still_rejects_changed_manifest_glb (scripts.tests.test_export_embedded_game.GeneratedProductionMeshyImportsTests.test_current_2078_pin_still_rejects_changed_manifest_glb) ... ok
+test_exact_2077_meshy_import_outputs_are_cleaned_and_sources_stay_tracked (scripts.tests.test_export_embedded_game.GeneratedProductionMeshyImportsTests.test_exact_2077_meshy_import_outputs_are_cleaned_and_sources_stay_tracked) ... [LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg
+[LumoGateImport] removed verified temporary JPEG: assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_tool_workbench.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_tool_workbench_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_turntable.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_turntable_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/blitz.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/blitz_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/boru_rally.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/boru_rally_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/comet.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/comet_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/gecko_velo.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/gecko_velo_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/glider.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/glider_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/iva_aurora.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/iva_aurora_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/koloss.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/koloss_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/nala_comet.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/nala_comet_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/noa_tide.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/noa_tide_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/phantom.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/phantom_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/stella.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/stella_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/terra.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/terra_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/turbo.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/turbo_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/zuri_volt.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/zuri_volt_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_tool_workbench.glb.importok
+test_glb_alignment_padding_after_png_is_cleaned (scripts.tests.test_export_embedded_game.GeneratedProductionMeshyImportsTests.test_glb_alignment_padding_after_png_is_cleaned) ... ok
+test_manifest_hash_mismatch_fails_closed_without_deleting_outputs (scripts.tests.test_export_embedded_game.GeneratedProductionMeshyImportsTests.test_manifest_hash_mismatch_fails_closed_without_deleting_outputs) ... ok
+test_more_than_three_alignment_bytes_are_rejected (scripts.tests.test_export_embedded_game.GeneratedProductionMeshyImportsTests.test_more_than_three_alignment_bytes_are_rejected) ... ok
+test_preexisting_import_output_is_preserved (scripts.tests.test_export_embedded_game.GeneratedProductionMeshyImportsTests.test_preexisting_import_output_is_preserved) ... 
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_tool_workbench_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_turntable.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_turntable_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/blitz.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/blitz_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/boru_rally.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/boru_rally_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/comet.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/comet_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/gecko_velo.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/gecko_velo_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/glider.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/glider_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/iva_aurora.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/iva_aurora_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/koloss.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/koloss_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/nala_comet.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/nala_comet_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/noa_tide.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/noa_tide_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/phantom.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/phantom_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/stella.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/stella_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/terra.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/terra_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/turbo.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/turbo_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/zuri_volt.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/zuri_volt_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_tool_workbench.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_tool_workbench_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_turntable.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_turntable_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/blitz.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/blitz_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/boru_rally.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/boru_rally_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/comet.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/comet_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/gecko_velo.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/gecko_velo_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/glider.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/glider_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/iva_aurora.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/iva_aurora_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/koloss.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/koloss_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/nala_comet.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/nala_comet_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/noa_tide.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/noa_tide_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/phantom.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/phantom_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/stella.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/stella_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/terra.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/terra_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/turbo.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/turbo_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/zuri_volt.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/zuri_volt_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_tool_workbench.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_tool_workbench_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_turntable.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_turntable_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/blitz_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/boru_rally.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/boru_rally_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/comet.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/comet_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/gecko_velo.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/gecko_velo_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/glider.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/glider_0.png
+[LumoMeshyImport] removed verified temporary import output:ok
+test_unknown_untracked_file_is_preserved (scripts.tests.test_export_embedded_game.GeneratedProductionMeshyImportsTests.test_unknown_untracked_file_is_preserved) ... ok
+test_unreviewed_revision_preserves_every_meshy_import_output (scripts.tests.test_export_embedded_game.GeneratedProductionMeshyImportsTests.test_unreviewed_revision_preserves_every_meshy_import_output) ... ok
+test_new_generated_sidecars_are_removed (scripts.tests.test_export_embedded_game.GeneratedSidecarTests.test_new_generated_sidecars_are_removed) ... ok
+test_preexisting_sidecar_is_preserved (scripts.tests.test_export_embedded_game.GeneratedSidecarTests.test_preexisting_sidecar_is_preserved) ... ok
+test_symlink_is_preserved (scripts.tests.test_export_embedded_game.GeneratedSidecarTests.test_symlink_is_preserved) ... ok
+test_tracked_sidecar_is_preserved (scripts.tests.test_export_embedded_game.GeneratedSidecarTests.test_tracked_sidecar_is_preserved) ... ok
+test_untracked_source_and_non_metadata_are_preserved (scripts.tests.test_export_embedded_game.GeneratedSidecarTests.test_untracked_source_and_non_metadata_are_preserved) ... ok
+test_error_split_across_reads_in_a_long_line_still_fails (scripts.tests.test_export_embedded_game.GuardedGodotProcessTests.test_error_split_across_reads_in_a_long_line_still_fails) ... ok
+test_explicit_exit_139_is_not_mistaken_for_a_native_signal (scripts.tests.test_export_embedded_game.GuardedGodotProcessTests.test_explicit_exit_139_is_not_mistaken_for_a_native_signal) ... ok
+test_export_pack_native_crash_is_not_retried (scripts.tests.test_export_embedded_game.GuardedGodotProcessTests.test_export_pack_native_crash_is_not_retried) ... ok
+test_non_native_failure_is_not_retried (scripts.tests.test_export_embedded_game.GuardedGodotProcessTests.test_non_native_failure_is_not_retried) ... ok
+test_runtime_faults_fail_even_when_the_engine_exits_zero (scripts.tests.test_export_embedded_game.GuardedGodotProcessTests.test_runtime_faults_fail_even_when_the_engine_exits_zero) ... ok
+test_script_fault_followed_by_sigsegv_is_never_retried (scripts.tests.test_export_embedded_game.GuardedGodotProcessTests.test_script_fault_followed_by_sigsegv_is_never_retried) ... ok
+test_three_native_crashes_fail_and_keep_every_attempt_log (scripts.tests.test_export_embedded_game.GuardedGodotProcessTests.test_three_native_crashes_fail_and_keep_every_attempt_log) ... ok
+test_two_native_crashes_then_success_keep_all_logs_and_existing_cache (scripts.tests.test_export_embedded_game.GuardedGodotProcessTests.test_two_native_crashes_then_success_keep_all_logs_and_existing_cache) ... ok
+test_watchdog_timeout_is_not_retried_and_preserves_output (scripts.tests.test_export_embedded_game.GuardedGodotProcessTests.test_watchdog_timeout_is_not_retried_and_preserves_output) ... ok
+test_other_import_failure_is_not_retried_or_silenced (scripts.tests.test_export_embedded_game.ImportCrashRecoveryTests.test_other_import_failure_is_not_retried_or_silenced) ... ok
+test_persistent_segmentation_fault_still_blocks_release (scripts.tests.test_export_embedded_game.ImportCrashRecoveryTests.test_persistent_segmentation_fault_still_blocks_release) ...  assets/kart/production/meshy/iva_aurora.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/iva_aurora_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/koloss.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/koloss_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/nala_comet.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/nala_comet_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/noa_tide.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/noa_tide_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/phantom.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/phantom_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/stella.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/stella_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/terra.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/terra_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/turbo.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/turbo_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/zuri_volt.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/zuri_volt_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_tool_workbench.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_tool_workbench_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_turntable.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/garage/meshy_turntable_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/blitz.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/blitz_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/boru_rally.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/boru_rally_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/comet.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/comet_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/gecko_velo.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/gecko_velo_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/glider.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/glider_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/iva_aurora.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/iva_aurora_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/koloss.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/koloss_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/nala_comet.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/nala_comet_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/noa_tide.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/noa_tide_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/phantom.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/phantom_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/stella.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/stella_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/terra.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/terra_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/turbo.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/turbo_0.png
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/zuri_volt.glb.import
+[LumoMeshyImport] removed verified temporary import output: assets/kart/production/meshy/zuri_volt_0.png
+[LumoGodotImport] Godot 4.6.3 editor SIGSEGV on attempt 1/3; retrying the same pinned source
+[LumoGodotImport] Godot 4.6.3 editor SIGSEGV on attempt 2/3; retrying the same pinned source
+ok
+test_successful_editor_import_needs_no_retry (scripts.tests.test_export_embedded_game.ImportCrashRecoveryTests.test_successful_editor_import_needs_no_retry) ... ok
+test_transient_editor_sigsegv_retries_exact_same_command (scripts.tests.test_export_embedded_game.ImportCrashRecoveryTests.test_transient_editor_sigsegv_retries_exact_same_command) ... [LumoGodotImport] Godot 4.6.3 editor SIGSEGV on attempt 1/3; retrying the same pinned source
+ok
+test_a_mismatching_pack_is_rejected (scripts.tests.test_verify_kart_driver_package.ActualApkPackIdentityTests.test_a_mismatching_pack_is_rejected) ... ok
+test_a_stale_apk_cannot_verify_a_new_source (scripts.tests.test_verify_kart_driver_package.ActualApkPackIdentityTests.test_a_stale_apk_cannot_verify_a_new_source) ... ok
+test_duplicate_source_receipts_are_rejected (scripts.tests.test_verify_kart_driver_package.ActualApkPackIdentityTests.test_duplicate_source_receipts_are_rejected) ... ok
+test_receipt_binds_the_extracted_bytes_to_the_exact_source (scripts.tests.test_verify_kart_driver_package.ActualApkPackIdentityTests.test_receipt_binds_the_extracted_bytes_to_the_exact_source) ... ok
+test_all_twenty_seven_source_bytes_are_bound_to_the_manifest (scripts.tests.test_verify_kart_driver_package.DriverSourceInventoryTests.test_all_twenty_seven_source_bytes_are_bound_to_the_manifest) ... ok
+test_art_only_path_cannot_stand_in_for_the_runtime_asset (scripts.tests.test_verify_kart_driver_package.DriverSourceInventoryTests.test_art_only_path_cannot_stand_in_for_the_runtime_asset) ... ok
+test_changed_source_bytes_are_rejected (scripts.tests.test_verify_kart_driver_package.DriverSourceInventoryTests.test_changed_source_bytes_are_rejected) ... ok
+test_duplicated_driver_never_replaces_a_missing_one (scripts.tests.test_verify_kart_driver_package.DriverSourceInventoryTests.test_duplicated_driver_never_replaces_a_missing_one) ... ok
+test_missing_driver_never_passes_as_a_complete_package (scripts.tests.test_verify_kart_driver_package.DriverSourceInventoryTests.test_missing_driver_never_passes_as_a_complete_package) ... ok
+test_missing_lod_is_rejected (scripts.tests.test_verify_kart_driver_package.DriverSourceInventoryTests.test_missing_lod_is_rejected) ... ok
+test_symlink_cannot_redirect_an_approved_source_file (scripts.tests.test_verify_kart_driver_package.DriverSourceInventoryTests.test_symlink_cannot_redirect_an_approved_source_file) ... ok
+
+----------------------------------------------------------------------
+Ran 56 tests in 2.355s
+
+OK

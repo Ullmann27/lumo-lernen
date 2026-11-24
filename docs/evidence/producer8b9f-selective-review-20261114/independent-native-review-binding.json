@@ -1,0 +1,288 @@
+{
+  "schema": 1,
+  "copied_utc": "2026-11-14T15:05:53.145863+00:00",
+  "original_root": "/workspace/scratch/b3485b7bb989/native-pr182-selective-readonly-review-20261114",
+  "copied_to": "independent-native-review",
+  "review_sha256": "16e33e7b7d8c7af9f1816734a43298de203f005c377c3115b99c4391c20f0566",
+  "original_manifest_sha256": "d930f5ac2f0bd91e2a1d1191e1c19c817cfa5228a946be977235f7d1e57cdca8",
+  "all_complete_original_files": [
+    {
+      "path": "README.md",
+      "bytes": 3463,
+      "sha256": "b7885e55956b4bef4724f438223415f3b18bc38d61152f5fed53880653d1824d",
+      "git_blob": "997be85a682bb2150257a8f376d9297ffde68b0c"
+    },
+    {
+      "path": "SHA256SUMS",
+      "bytes": 5411,
+      "sha256": "b8521b655c4cbf084696103bc307702317901d28ae8580322e8bbff6ffb4e9d5",
+      "git_blob": "7156521579e7dc13446621a27e8884aa8c99206b"
+    },
+    {
+      "path": "additional-source-reads/index.json",
+      "bytes": 1202,
+      "sha256": "898692532769199aea70c808d51ffc05e1514dc0331d68678727763cb79182fc",
+      "git_blob": "ba1efb85afb68d05514fbe430ef3a32c65180ae4"
+    },
+    {
+      "path": "analysis-scan-note.json",
+      "bytes": 477,
+      "sha256": "9a9f35ba1fdf89e94b19cb4cdea6be139b7ec15375e74f874243d560dffb0b88",
+      "git_blob": "32568d605429483238ac59416a449faea74635a7"
+    },
+    {
+      "path": "ci-original-bindings.json",
+      "bytes": 5717,
+      "sha256": "c69fc5b7ee8d7ec4767ace6b71795417b7b5714f25ab95dbe17aa32dd848ece3",
+      "git_blob": "f74b0e178a66280444c6eb4cf1a60a0349bf387f"
+    },
+    {
+      "path": "derived-differences/scripts__app__scene_router.gd.base-to-baf.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "derived-differences/scripts__learning__learning_activity.gd.base-to-baf.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "derived-differences/scripts__learning__learning_world.gd.base-to-baf.diff",
+      "bytes": 2638,
+      "sha256": "a9bc8ee7e923d06470e4b89d5941b1a048e773737d209bacd147727beb6d9066",
+      "git_blob": "431628b48dc9374b56a3498caad36e941990536d"
+    },
+    {
+      "path": "derived-differences/scripts__systems__host_bridge.gd.base-to-baf.diff",
+      "bytes": 1081,
+      "sha256": "9b5cdedb3929cbd17cdfee7319458fca655fa55cddaea26c8f820832b9a0b813",
+      "git_blob": "5e5f48d2a4fa7641672fb06eafc2be39976a1639"
+    },
+    {
+      "path": "function-comparison.json",
+      "bytes": 3835,
+      "sha256": "2408e6a399f0d068e365d14d33220671aaef57313343317a541b1d0a991d86f4",
+      "git_blob": "439028d87e80cc8661bb4ffb472332eca5bbb495"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 1024,
+      "sha256": "65527e6586ed5141e765c25105bc6390553cc6c4730874c12ed8dc84c54d11e1",
+      "git_blob": "42048400fa618e1de095d11666ae327b233fe9b2"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 17153,
+      "sha256": "d930f5ac2f0bd91e2a1d1191e1c19c817cfa5228a946be977235f7d1e57cdca8",
+      "git_blob": "84ec0c28d7e14159ba19ca2a348b0e0cd87d8fa0"
+    },
+    {
+      "path": "materialization.json",
+      "bytes": 11619,
+      "sha256": "ce917887204754f63f09f46135127adcc3559ae1e8974784c39ddb6d12618c67",
+      "git_blob": "edc6ddd982d3531c3302f0d520771df317d49921"
+    },
+    {
+      "path": "original-patches/scripts__app__scene_router.gd.patch",
+      "bytes": 430,
+      "sha256": "ce55d2e82b771bf2f1b4c4b1819d0b9f14d4f11a7a855729b877f55497cb2554",
+      "git_blob": "378bd04e87ca309e092468f7494c5ca64df42895"
+    },
+    {
+      "path": "original-patches/scripts__learning__learning_activity.gd.patch",
+      "bytes": 3493,
+      "sha256": "719556db314747613dece7e80720c67c9b3d78d5300a9d493d2201b0584b5adf",
+      "git_blob": "5fd7f5408f6d892f4a78f7b02f66642eb3bef877"
+    },
+    {
+      "path": "original-patches/scripts__learning__learning_world.gd.patch",
+      "bytes": 23005,
+      "sha256": "8b1563cc365446cc66da5cd23249cd00e36a5189fc2d7d315207a31c1bd24ef6",
+      "git_blob": "6cceb6e55feba558ad2b933ae12cdd9d048ad00d"
+    },
+    {
+      "path": "original-patches/scripts__systems__host_bridge.gd.patch",
+      "bytes": 841,
+      "sha256": "c2bbe4674d578f3c07270c246a7fc68ba1a981ff3972a3c013e0a1d01e381d05",
+      "git_blob": "a2fa08f35d549352fdaf58d80f7e517cd9bc0621"
+    },
+    {
+      "path": "read-only-sources/base/scripts/app/scene_router.gd",
+      "bytes": 4457,
+      "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+      "git_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5"
+    },
+    {
+      "path": "read-only-sources/base/scripts/learning/learning_activity.gd",
+      "bytes": 9286,
+      "sha256": "c8071598b341a9ef8d905effe70aafacf98f325e9289903bb12a370d0d29541a",
+      "git_blob": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe"
+    },
+    {
+      "path": "read-only-sources/base/scripts/learning/learning_world.gd",
+      "bytes": 45446,
+      "sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+      "git_blob": "25e41d3d81e091e7e357400ff8ba76a18d6d2890"
+    },
+    {
+      "path": "read-only-sources/base/scripts/systems/host_bridge.gd",
+      "bytes": 5193,
+      "sha256": "56ecb470319ea047aa5d8c3aad92d55c99355ee07c533a6543fcf167f098abb7",
+      "git_blob": "dab96a1b918dc754568c0eda14cdda05175c89fb"
+    },
+    {
+      "path": "read-only-sources/current-baf/scripts/app/scene_router.gd",
+      "bytes": 4457,
+      "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+      "git_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5"
+    },
+    {
+      "path": "read-only-sources/current-baf/scripts/learning/learning_activity.gd",
+      "bytes": 9286,
+      "sha256": "c8071598b341a9ef8d905effe70aafacf98f325e9289903bb12a370d0d29541a",
+      "git_blob": "c1eed0eefb4017ac4db3cb3d1d4551e2d9c601fe"
+    },
+    {
+      "path": "read-only-sources/current-baf/scripts/learning/learning_world.gd",
+      "bytes": 45953,
+      "sha256": "1aaad2fdbe53e75e44009e443cda1273d2c3bc85b2eda7446349eba466883a6b",
+      "git_blob": "c3b1bc8c73cd764724464d8d2fe0413bdba62a96"
+    },
+    {
+      "path": "read-only-sources/current-baf/scripts/systems/host_bridge.gd",
+      "bytes": 5604,
+      "sha256": "6b86fda5b38f2b966d0da4d26eb9cae24e2185ef9d067b0dfb99aa86bfe644b4",
+      "git_blob": "1845617ed2659dd377f433209799b12ddf310deb"
+    },
+    {
+      "path": "read-only-sources/producer/.github/workflows/lumo-nextgen-authority-check.yml",
+      "bytes": 9280,
+      "sha256": "f2d520bae3160b12d515bb1c4993f5d209d71032b85c6ea35880c0b4e49accae",
+      "git_blob": "7f9f0e525ec6634480fab1eca4719e9792fb2f13"
+    },
+    {
+      "path": "read-only-sources/producer/docs/nextgen-english-quiz-source-20261114.md",
+      "bytes": 4807,
+      "sha256": "4211afc7c231438d9e0d6407c538dfdd5a4c1bbcdb67cac3702c449f47bf0b84",
+      "git_blob": "d5b6d3b4633a3cbfd6ed917a2023489595e8b0b9"
+    },
+    {
+      "path": "read-only-sources/producer/scenes/games/memory_table.tscn",
+      "bytes": 187,
+      "sha256": "e01304d304878fa091303fc047e3a659860309befbce8d8159a12124bc11ec99",
+      "git_blob": "95a6a9f9055b3df6dc31e6c36e7cc38e10fb04c8"
+    },
+    {
+      "path": "read-only-sources/producer/scenes/games/quiz_studio.tscn",
+      "bytes": 193,
+      "sha256": "4b9d269b4410810637e2e8db74ca7ce2725f66d5c20190fdaddf8eca6a68c05f",
+      "git_blob": "7b674ff774f5cd05120472949dffc1b5c37cea8a"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/app/scene_router.gd",
+      "bytes": 4556,
+      "sha256": "30c0f26b0dfb1d7d1b95a9ba2517b691d8eabaf457d1e84d7d5a454f7f5a5487",
+      "git_blob": "09b5b8119729e0a5556a18acf9497f31962cb343"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/games/memory/memory_table.gd",
+      "bytes": 31443,
+      "sha256": "929d4a32e9dd0528e4941208dfaf949ef286e584685924af28bbe8e403be8c33",
+      "git_blob": "9c998e33aee127453a67d25a6e020638472b8387"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/games/quiz/quiz_studio.gd",
+      "bytes": 32033,
+      "sha256": "43d290ceb727640ff764d2cf4b639d4d57bc1031dd436146e1a478af60f90b29",
+      "git_blob": "573af4e6c55dd44b8832f588545300d18309c89d"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/learning/english_object_gallery.gd",
+      "bytes": 9213,
+      "sha256": "7c1eba4dadb6bfea6935da0031e1416536c9e60055721eed893a0e2f593afaf7",
+      "git_blob": "401864874d7dc5fc9a97e057d1a49bdf894b9e0b"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/learning/english_vocabulary.gd",
+      "bytes": 1857,
+      "sha256": "618701afa536b4caaeac108ede440fe2f7bf220e5be5d7c9357709c3ec8c1eb3",
+      "git_blob": "6819e564f2c0b42afa6e9c4b18e36bc3ead884d4"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/learning/learning_activity.gd",
+      "bytes": 10967,
+      "sha256": "b1338716b201457ed71a19963b24c3346d84d1e732e2bd8459503c3273084ede",
+      "git_blob": "245a966e00259c2d0189c932c40374d855a4b0bc"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/learning/learning_world.gd",
+      "bytes": 61965,
+      "sha256": "3078e3aaba4bf5a811ddc5878370cdf945ddf8313c0cba6d4f9089e1c4062c6d",
+      "git_blob": "5b757694cff6e8d7d5ef00cf56f57dab8c22fa72"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/systems/host_bridge.gd",
+      "bytes": 5223,
+      "sha256": "7769a3d49e856e469add09655dc2e570f11828d74731f043c6298ab1fd728fe8",
+      "git_blob": "00a30115ce7669e57e8ceec1251047773f3da1f4"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/tests/learning_english_regression.gd",
+      "bytes": 29246,
+      "sha256": "f9a64251022db5f2e8b8647f17ff0402dac08094e91cceaf0cc301b8193ba4f9",
+      "git_blob": "64dece9ec9619c6bf527c6398feef90b9e1a5298"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/tests/memory_table_regression.gd",
+      "bytes": 14227,
+      "sha256": "60d2145c830c4f93f38153031be35aa42760eb646b4a594a1ab8174ef8a3155d",
+      "git_blob": "b9122337e25e9a529e4e8602a0c5e8e3e680f831"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/tests/memory_table_runtime.gd",
+      "bytes": 14860,
+      "sha256": "d911b1ce4bb19b83aa919827f4484281898c4eb4ee8621d8c7e5869345c2c775",
+      "git_blob": "f4fc0d96b5b67e91969dac610bdc5c550f590640"
+    },
+    {
+      "path": "read-only-sources/producer/scripts/tests/quiz_studio_runtime.gd",
+      "bytes": 33632,
+      "sha256": "8df756dee8e5daee17a88a8899d6189aba8acd8b9148ca3cd0c5e606fdd1d0cd",
+      "git_blob": "59cf4a16d2e53b65a97277574c6866db5a5929fb"
+    },
+    {
+      "path": "read-only-sources/producer/tools/run_memory_native_authority.py",
+      "bytes": 12800,
+      "sha256": "0b5f2234fc8ecfcf25f9d7c134a02538e3978d2d7d7413a48cc2a931ddd0c15c",
+      "git_blob": "54103c9ee0cd4070b808273dca48a169883a1ec5"
+    },
+    {
+      "path": "read-only-sources/producer/tools/run_quiz_native_authority.py",
+      "bytes": 10531,
+      "sha256": "ac5b669d565a9f0158af450a6e86cf05a7acc869af63a858cfc817a7b9a6388b",
+      "git_blob": "5f02cec5a8eb9f2d0addd43fcfa1cd5717ff63b8"
+    },
+    {
+      "path": "read-only-sources/producer/tools/tests/test_memory_native_pair_evidence.py",
+      "bytes": 6544,
+      "sha256": "1d2c7293b24ff119831fb42ecb5d32b0de723d999d71ce61289c602c6934f0ed",
+      "git_blob": "f61c72a6691b186d6682c7407c50394a7b132091"
+    },
+    {
+      "path": "review.json",
+      "bytes": 11695,
+      "sha256": "16e33e7b7d8c7af9f1816734a43298de203f005c377c3115b99c4391c20f0566",
+      "git_blob": "64aba8a7b4811b66f0ed22f1ff5dbb41150b46ca"
+    },
+    {
+      "path": "source-contract-binding.json",
+      "bytes": 57432,
+      "sha256": "7e2a6bd82f6340805a37c29a8da5795cb4a9b17a75e34d70080ebb4a82ce5276",
+      "git_blob": "ce378e69770567d0a05880b1c18fe7a131dca1b9"
+    }
+  ],
+  "sources_unchanged": true,
+  "no_new_tests": true
+}

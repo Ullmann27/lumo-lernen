@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "status": "FROZEN_ADDITIVE_SOURCE_NOT_TESTED",
+  "created_at_utc": "2026-11-14T12:17:58.562312+00:00",
+  "base": {
+    "head": "4f5d66f96c5ad84939e4cd09bc66fb4744ae2a6b",
+    "tree": "0e89490ea5d877c8249c8d461270b8e364d2c986"
+  },
+  "source_files": [
+    {
+      "path": ".github/workflows/lumo-connect-four-2020.yml",
+      "mode": "100644",
+      "before": {
+        "bytes": 48514,
+        "sha256": "b98c9fd932ea56f33f17dcd73fe1c8841901ea1882598682dddb798b58cc26e8",
+        "git_blob": "e33ae242ad70efe73ec923ec2fba87cb8e0af632"
+      },
+      "after": {
+        "bytes": 49102,
+        "sha256": "cb65111034d95d63475de7d556f7d16f6217365119251de6a076a2caf1b78f1c",
+        "git_blob": "152295fba33a15be64185921b00c71f1b7319dd6"
+      }
+    },
+    {
+      "path": "scripts/verify_connect_four_candidate.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 10811,
+        "sha256": "c8a6b714a330c564bde68c619b07a342eb3eedf7e6191f9f3a3deacc98e594e1",
+        "git_blob": "67ae17290e898a995003f065ce3a7c97202509ab"
+      },
+      "after": {
+        "bytes": 11403,
+        "sha256": "d4355d1f4ae56fa294fe6ba8c66b1bd145cb772ca9ceda0cc8ac2f803dea0cea",
+        "git_blob": "bb496435fe24ecd34fd24809e12d51df6c2952be"
+      }
+    },
+    {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 66477,
+        "sha256": "331f1e907f898ee50473e7fb9ca9279669a4005be5eb96605f90e414f8bd4f76",
+        "git_blob": "1fdbf66634b4e932e922b785ad8419f898373d8b"
+      },
+      "after": {
+        "bytes": 67003,
+        "sha256": "229b33a0f1b7de1c09cbfff871edaec5470e783df9068629a2337d3de4ccaa18",
+        "git_blob": "1c788c7d1ea153bcbad90813537f022b6c1d8871"
+      }
+    },
+    {
+      "path": "scripts/tests/test_connect_four_pipeline.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 16787,
+        "sha256": "4e4bcc28bd1ac677178d42c16c240c5f0ee890ad520eb1322c4987814a728647",
+        "git_blob": "aaa033cdf4cc3a453f26382ae2ae94c7eed71cc5"
+      },
+      "after": {
+        "bytes": 21996,
+        "sha256": "5a0f31c2cbfc987639e46e8e2c1103eb94ccee77c065cdb7f5491e21cd7046a3",
+        "git_blob": "f950a85185302b78951908a1a201f61b81c54415"
+      }
+    },
+    {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "mode": "100644",
+      "before": {
+        "bytes": 82309,
+        "sha256": "0a4ae03274aa1a669525780f628af4d794b929414916f6d9a7530d8339f3cce4",
+        "git_blob": "3ac2a960cdad4589ea18067a4f03f4fd5281f313"
+      },
+      "after": {
+        "bytes": 86756,
+        "sha256": "58b7436afff9760d25ff01c0ef7a1fd0f5861da25a5cb31722199d25bcb0d560",
+        "git_blob": "bd568dbc81f73b4c12fe60dd07c189a241ee06be"
+      }
+    }
+  ],
+  "source_count": 5,
+  "integration_patch": {
+    "bytes": 20405,
+    "sha256": "4573190c21ce4f1ccba071fedc3791d4594c15d067a62ee761ffa06968972518",
+    "git_blob": "584f2784de47c784fbc07091992fa30ae6256a2f"
+  },
+  "required_prior_packs": {
+    "village16": {
+      "bytes": 24911,
+      "sha256": "c5df8d36119680d4b634f3c294545d7d43be5b43fc6a1e8e819f956bfc9426c8",
+      "git_blob": "36a0657775ac4991acbf9f0714771e38d36a0dd9"
+    },
+    "villageQA3v2": {
+      "bytes": 6758,
+      "sha256": "f65135ab34e78226e7b3a6a4efdb88378fa85c206063f329667ca72d22d60e37",
+      "git_blob": "b5a3da1a4eac0a04a30afefdf0cd97e8eae05d99"
+    }
+  },
+  "new_test_methods": 8,
+  "old_test_methods_unchanged": 80,
+  "test_and_actionlint_runs": 0,
+  "device_or_package_downloads": 0,
+  "git_worktree_workflow_activation_or_ref_mutations": false,
+  "native_pin_policy_owner": "Root only; no pin source change in this pack"
+}

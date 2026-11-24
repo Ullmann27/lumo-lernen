@@ -1,0 +1,92 @@
+{
+  "source_base": "f4df466ed004879fc56284b024475a0ab0661259",
+  "phase": "green",
+  "runs": [
+    {
+      "name": "original-metadata",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/lumo-c4-branch-binding-evidence-2708/replay_original_metadata.py",
+        "--source-root",
+        "/home/agent/lumo-c4-branch-binding-sparse-2708",
+        "--out",
+        "/home/agent/lumo-c4-branch-binding-evidence-2708/green/original-replay.json"
+      ],
+      "returncode": 0,
+      "seconds": 0.06282155799272005,
+      "log": "original-metadata.log",
+      "log_sha256": "caf84af5898e298f5b207e28eb19f2a1efd008a42cd82e5855755bf138f6338b"
+    },
+    {
+      "name": "contracts",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "test_connect_four_android_evidence.BindingTests",
+        "test_connect_four_delivery.OriginalAcceptanceTests",
+        "-v"
+      ],
+      "returncode": 0,
+      "seconds": 0.1576818580069812,
+      "log": "contracts.log",
+      "log_sha256": "9320189559bf33d4a7a250dd84cb1dda9c8560bf498d693df055e842e82da9fe"
+    }
+  ],
+  "files_before": {
+    "production": {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 36248,
+      "sha256": "41b421013c1f1d1e3e47480b7ecd20b6775dde84647eb4474aa60469fa9087d3",
+      "git_blob": "9f39b85fb1559a6229f0b381afa5d85a081703bd"
+    },
+    "tests": {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 27119,
+      "sha256": "daec2473fccb4e1785bf7e8ef884be5c484bbb1b86163f73f40314b9abc64ad5",
+      "git_blob": "b64071e3c99ebe6529a3fa9237192208e03a16ee"
+    },
+    "delivery": {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "bytes": 49190,
+      "sha256": "2fbc521883de74d417bd3d997d7c28a8458fcf2234ad7ddb45672bdc3fa54fc2",
+      "git_blob": "8c79b9ea748944b2601f59795014af70df0b929f"
+    },
+    "delivery_tests": {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "bytes": 50508,
+      "sha256": "c92b83b3a7c9949648d8db9178805cf547f11d857e3cbb34af7a0ac06262a243",
+      "git_blob": "11bea238317d8436a6babe35262f437039ce74d6"
+    }
+  },
+  "files_after": {
+    "production": {
+      "path": "tools/android_qa/connect_four_android_evidence.py",
+      "bytes": 36248,
+      "sha256": "41b421013c1f1d1e3e47480b7ecd20b6775dde84647eb4474aa60469fa9087d3",
+      "git_blob": "9f39b85fb1559a6229f0b381afa5d85a081703bd"
+    },
+    "tests": {
+      "path": "tools/android_qa/tests/test_connect_four_android_evidence.py",
+      "bytes": 27119,
+      "sha256": "daec2473fccb4e1785bf7e8ef884be5c484bbb1b86163f73f40314b9abc64ad5",
+      "git_blob": "b64071e3c99ebe6529a3fa9237192208e03a16ee"
+    },
+    "delivery": {
+      "path": "scripts/verify_connect_four_delivery.py",
+      "bytes": 49190,
+      "sha256": "2fbc521883de74d417bd3d997d7c28a8458fcf2234ad7ddb45672bdc3fa54fc2",
+      "git_blob": "8c79b9ea748944b2601f59795014af70df0b929f"
+    },
+    "delivery_tests": {
+      "path": "scripts/tests/test_connect_four_delivery.py",
+      "bytes": 50508,
+      "sha256": "c92b83b3a7c9949648d8db9178805cf547f11d857e3cbb34af7a0ac06262a243",
+      "git_blob": "11bea238317d8436a6babe35262f437039ce74d6"
+    }
+  },
+  "files_unchanged_during_run": true,
+  "test_bytes_identical_to_red": true,
+  "delivery_code_and_tests_unchanged": true,
+  "scope": "Actual artifact_binding original-metadata replay plus synthetic metadata contract tests; no Android or engine rerun"
+}

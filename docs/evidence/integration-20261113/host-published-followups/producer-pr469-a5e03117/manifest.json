@@ -1,0 +1,154 @@
+{
+  "producer_commit": "a5e03117158c157ba3154083db25947724e67727",
+  "producer_tree": "395a60012dc0bc6e7294f9837f230ccbc5201f14",
+  "producer_parent": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "archive": "original-evidence.tar.gz",
+  "archive_sha256": "6364d41bfb512c7f7d34e842d52b7c70494766d274ba86781b1b95a8c12f5084",
+  "files": [
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/README.md",
+      "bytes": 5930,
+      "sha256": "ad513244fb8ef7d4ed97d40d9d5b1ce0b072dc11bcff1d8a0a3821d887b0c996",
+      "git_blob": "c2413486b094c013076d2a374ba55071dd1f8d05"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/REPORT.json",
+      "bytes": 14920,
+      "sha256": "d6cef756b014d73129a905a9b7bf485be55514bb7225f1072f6026350e94ad08",
+      "git_blob": "c658f25dea3e318650955a739f9783c35a25fba8"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/SHA256SUMS",
+      "bytes": 2139,
+      "sha256": "0366d6c7dc6289b0fcf1ec7f199762a7186f88e74c1e19e310edcdb8c007ebd1",
+      "git_blob": "fd55d85f64910dce900fcf975d8caf57dce103c2"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/bash-update-and-tour-10-emulator_script.sh",
+      "bytes": 200,
+      "sha256": "95000cc07c02771d5a7c5a409c80421d06eb7110a42bdeedc3b2919df52b87d2",
+      "git_blob": "1b55fea84f90509b299380d961ce699537c1c74e"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/bash-update-and-tour-2-run.sh",
+      "bytes": 694,
+      "sha256": "2b65953649fb731d38e1e270ef2f6915759bd27ebe3638af443aae55d592179f",
+      "git_blob": "01c9559816240463e695863594d682fdc806b7b6"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/bash-update-and-tour-6-run.sh",
+      "bytes": 793,
+      "sha256": "91282161803254d0841cf9c2fbfde430ed19ce1f98e4ffba7322e04408dccf08",
+      "git_blob": "6b7ae6dd917e801e43acdc6341c828fd95dc6f8f"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/bash-update-and-tour-7-run.sh",
+      "bytes": 780,
+      "sha256": "81c5c7d88d5a80c6e946861a8152446cfec5188c7460f988e0ed0efe1d97cee6",
+      "git_blob": "710785fd57d6cc5aa4569b17d53aa7af757eabd2"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/bash-update-and-tour-8-run.sh",
+      "bytes": 241,
+      "sha256": "c206e86f21274c1a8a2d0f24e0cae1903776338623ebfb7609f74b10a842c260",
+      "git_blob": "404be5869620ec5b7509c11956fe6a0b39f6f3e7"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/bash-update-and-tour-9-run.sh",
+      "bytes": 291,
+      "sha256": "e61ebb32cb4d759b6a1e47fa53ae56f0e18495c2828d3d0bf86397fbd1a32573",
+      "git_blob": "5b69a79e2805d9d8c4d9f28c69024d850dc0cd4b"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/contracts-green.log",
+      "bytes": 4517,
+      "sha256": "3badb5d76e5b63bd3220ecff22514c941f68c8a26b915f7220e10cced51bb6b9",
+      "git_blob": "b5b51d8e101c33608b4409b479a80c1bc9129020"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/contracts-red.log",
+      "bytes": 38843,
+      "sha256": "ee2e9e2bdd43ecfef75312ff4730e53bbd3ebda93a775cc9713ae954867f4464",
+      "git_blob": "7e7c9dcd7b0bbad5e8843da6e69f6f9179a5de1a"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/existing-apk-contracts.log",
+      "bytes": 1379,
+      "sha256": "abbf9bb4a5ce8225e658ce5a4742ece7410c414a6afd5d6feffc60a6db06fbf8",
+      "git_blob": "8ac79d027ab9228c8140eb47ebd7f002204bd9d5"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/existing-contract-execution.json",
+      "bytes": 253,
+      "sha256": "3ff5ddc32c1ee7ed6d6900f907596bb53d608d70fb319e8b32f5493f09e2a128",
+      "git_blob": "8480a03c39d953509663797b0063b4e5cdbd646f"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/green-execution.json",
+      "bytes": 293,
+      "sha256": "1540cc4227cb31ba1e8eabc542e667d15459cfa15bbfb8155dcf4ca36ebf605a",
+      "git_blob": "4c87a214206ec3cf4ac8eba86ad93519bae93e36"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/independent-source-review.json",
+      "bytes": 1202,
+      "sha256": "a3dabef2df9a6565bac4ec902bcbc961783fc96a1803c41cb411a41394583641",
+      "git_blob": "762339a67089a978f16a14532389289464d84223"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/legacy-1999-source-bound-verifier.patch",
+      "bytes": 23770,
+      "sha256": "47bc8f0dd249a56ec521a671e30f6927ea5532a35b8b034eeae54b0dcb7a744c",
+      "git_blob": "369cbeec489fb230a37928d6e338f5638e0f0416"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/legacy-1999-workflow-e3d-failure.log",
+      "bytes": 64369,
+      "sha256": "eb2500f4cf73f61b9aa798594f4bb9821bfb581d89443ea9a24f9202be5929e8",
+      "git_blob": "66c40d3c35e46a473c33a437391d9150f3ad3d5e"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/legacy-1999-workflow-e3d-review.json",
+      "bytes": 1364,
+      "sha256": "17af3ff61f95e834e01b681a65b6b912dbd445851fb55604d17a62e00d0de21a",
+      "git_blob": "c7d027975224edaf1571df3631cc080368270f7b"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/lint-execution.json",
+      "bytes": 1050,
+      "sha256": "16baf99f2fe8582e7f96f2667dfdf0ee75df3199333b942694a725053e80b29c",
+      "git_blob": "0aa0d6e1f73911a0dbf142b541078c021be18857"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/patch-application-check.json",
+      "bytes": 192,
+      "sha256": "9e92f778aa990ad14137d9ff2a0cf41a7bb89ac7355daec958a618ffb72c02ed",
+      "git_blob": "641924fe8990ca70843b3930877606518938706c"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/preservation-review.json",
+      "bytes": 2849,
+      "sha256": "d392f847b7b63e4adc6a5ce215e90cff3264bd9e0ec832da2d04e828f194649c",
+      "git_blob": "f845f7eb8eeab31b326baa9edf5618a5c61764e3"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/real-historical-expectations.json",
+      "bytes": 936,
+      "sha256": "60fbddbff1ea36675cb43144f8d0837f5296047dd7e9809ab7cb31803299b891",
+      "git_blob": "7c8ef15e7caec675fd6e73c891528ecc30f66f57"
+    },
+    {
+      "original_path": "docs/evidence/legacy-1999-repair-e3d/red-execution.json",
+      "bytes": 279,
+      "sha256": "75a0ef292827748835555897e29a1ad22d0e8a3eb41a27eeca387a77a4b1fae6",
+      "git_blob": "fa6f115215d95760f18e4196046afd5c7bf3f832"
+    }
+  ],
+  "scope": "Unmodified evidence published by PR469 producer; not evidence of the current combined Host or a new APK."
+}

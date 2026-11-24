@@ -33,6 +33,11 @@ void main() {
       );
     });
 
+    test('malformed query encoding is ignored without an exception', () {
+      expect(DeepLinkRouter.parseInitialSection(
+          'lumolernen://open?section=%E0%A4'), isNull);
+    });
+
     test('section=learn -> LumoSection.learn', () {
       expect(
         DeepLinkRouter.parseInitialSection('lumolernen://open?section=learn'),

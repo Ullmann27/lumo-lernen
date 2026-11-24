@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-11-14T13:05:38.521827+00:00",
+  "failed_run": 43589206933,
+  "failed_head": "3d91bd8355a539c3c2413760959684cd3fee985a",
+  "native": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "archive": {
+    "path": "failed-run-originals.tar.gz",
+    "bytes": 4368132,
+    "sha256": "8aac812164b1d69029293aa0f3de4e45b477c9cf381a8ab5c8c0d33e352032db",
+    "members": 114,
+    "expanded_bytes": 7168025,
+    "original_pngs": 4
+  },
+  "root_complete_readback": "All114 archived files byte-equal to originals, safe relative regular member paths, no secret/signed-URL patterns found. The separate original53,588,701-byte Android artifact is referenced by original metadata/SHA; it is not inside this compact archive.",
+  "actual_build": "SUCCESS: full Flutter2581, Python856, AndroidQA938, Native52/17 andDream5/7/2 on old3d91 source. These are not new-source acceptance.",
+  "actual_android_and_update": "Both failed at original visible kart-list OCR, no Gecko selection/race orC4/end-to-end delivery acceptance.",
+  "repair_checkpoint": "a8a9b84cffd9819d4c8c2dddb55e870f448a9f13",
+  "repair_validation": "Pending separately on exact repair source; no new APK release."
+}

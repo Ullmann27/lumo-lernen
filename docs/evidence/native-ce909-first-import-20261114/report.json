@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "status": "FROZEN_ACTUAL_IMPORT_FAILURE_AND_SEPARATE_6_CONTRACT_PASS",
+  "head": "ce909c4d3bab3a5514b653bf945a0ef46adfa539",
+  "tree": "e2a374b2154f7ecb080f693c4bc90def53a20a00",
+  "checkout": "/workspace/scratch/b3485b7bb989/native-ce909c4-import-validation-20261114/checkout",
+  "source_freeze_sha256": "cbc83726bba47e862adbb9d1adab6d3fda4f487b75900b69b54f5978f112374a",
+  "source_entries": 34,
+  "protected_entries": 35,
+  "full_tracked_entries": 3742,
+  "all_materialized": true,
+  "import": {
+    "attempts": 1,
+    "returncode": -9,
+    "signal": "SIGKILL",
+    "timed_out": false,
+    "duration_seconds": 7.9738343190001615,
+    "last_original_progress": "Creating autoload scripts...",
+    "stdout": {
+      "bytes": 506,
+      "sha256": "237dc8c310433e68d4c881f73fcf7d27d53d994908d1d1e1f5ba465f79eaa489",
+      "git_blob": "6a54b0fce559b5c51235e8feb83e242e398f93f1"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "engine_error_or_leak_markers": [],
+    "cause": "Unresolved; post-failure memory snapshot has no pre-run counter baseline; memory cgroup counters unavailable. No OOM attribution."
+  },
+  "python_contracts": {
+    "attempts": 1,
+    "module": "tools.tests.test_memory_native_pair_evidence",
+    "methods": 6,
+    "returncode": 0,
+    "skips": 0,
+    "raw_stderr": {
+      "bytes": 1340,
+      "sha256": "f6570ad7ed63f80fec207a139172e083b5675fae9013122a8d865e51f01a1a78"
+    },
+    "game_or_pair_executed": false
+  },
+  "invariance": {
+    "import": {
+      "head": true,
+      "tree": true,
+      "index_sha256": true,
+      "tracked": true
+    },
+    "python": {
+      "head": true,
+      "tree": true,
+      "index_sha256": true,
+      "tracked": true
+    },
+    "full_index_and_tracked_bytes_modes_unchanged": true
+  },
+  "generated": {
+    "uid_import_entries_outside_cache": 0,
+    "cache_files": 2,
+    "cache_bytes": 5651,
+    "preserved": true,
+    "cleanup": false
+  },
+  "remaining": [
+    "Successful necessary Godot import",
+    "Exact Host3fac/Nativece909c4 contract review",
+    "Actual Memory/Quiz/English authority pairs after import and environment readiness",
+    "Separate rendered/Android qualification"
+  ],
+  "no_claims": [
+    "No game/renderer/Android/FPS pass",
+    "No old Producer results transferred",
+    "No engine retry",
+    "No remote mutations"
+  ]
+}

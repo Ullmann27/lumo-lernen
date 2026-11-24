@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "host_parent": "a9e03188083db5517d0614b2acfa289342f2de8b",
+  "native_commit": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+  "review": "Root directly read the complete three-line SHA replacement patch, source-preservation contract and original handoff. Only the current 2020 revision changes; all 50 historical pin values and every other source byte remain unchanged.",
+  "native_local_evidence": "One actual Actionlint and MobileSafeArea headless 380 checks passed on published parent 4d2cbb6; activation changes documentation/evidence only.",
+  "native_ci": {
+    "run_id": 43600806315,
+    "attempt": 1,
+    "head_sha": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "last_observed_status": "in_progress",
+    "conclusion": null
+  },
+  "pending": "Exactly one current-source 64-method pin test after this remote checkpoint, then documentary Host activation and mandatory complete C4 CI.",
+  "not_claimed": [
+    "Host pin tests not yet executed",
+    "Native rendered gate not yet completed",
+    "APK or Android acceptance not yet completed"
+  ]
+}

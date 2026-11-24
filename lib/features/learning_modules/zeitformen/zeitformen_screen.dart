@@ -17,6 +17,8 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../learning_module_rounds.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 enum _Zeitform { vergangenheit, gegenwart, zukunft }
@@ -104,7 +106,10 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
     _SatzItem('Papa wird auch da sein.', _Zeitform.zukunft),
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
+  late final LearningModuleRounds _rounds =
+      LearningModuleRounds(progress: _progress, totalTasks: _totalTasks);
 
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
@@ -128,8 +133,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
     super.initState();
     _round = [
       for (var kind = 0; kind < _ZeitformFrageTyp.values.length; kind++)
-        for (final sentence in _saetze)
-          (kind: kind, sentence: sentence),
+        for (final sentence in _saetze) (kind: kind, sentence: sentence),
     ]..shuffle(_rng);
     _progress = LearningModuleProgress(
       appState: widget.appState,
@@ -143,6 +147,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakTask());
   }
@@ -194,6 +199,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey: '${_typ.name}:${_korrektSatz.satz}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,
@@ -219,11 +225,31 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
     _nextTask();
   }
 
-  void _nextTask() {
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null || !mounted || _taskIdx != 0 || _answered) return;
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -296,6 +322,47 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) {
+    final categorize = _typ == _ZeitformFrageTyp.satzKategorisieren;
+    final choices = categorize
+        ? _zeitOptions.map((tense) => tense.label).toList()
+        : _satzOptions.map((sentence) => sentence.satz).toList();
+    final selected = _selectedIdx;
+    return ModuleTaskScope(
+      key: _taskScopeKey,
+      appState: widget.appState,
+      progress: _progress,
+      moduleId: 'd3_zeitformen',
+      taskKey: _taskIdx,
+      prompt: categorize
+          ? 'In welcher Zeit steht der Satz „${_korrektSatz.satz}“?'
+          : 'Welcher Satz steht in der ${_gefragteZeit.label}?',
+      objective:
+          'Du erkennst Vergangenheit, Gegenwart und Zukunft an den Verbformen.',
+      answerChoices: choices,
+      onConfirmChoice: (index) => _onAnswer(
+          index,
+          categorize
+              ? _zeitOptions[index] == _korrektSatz.zeit
+              : _satzOptions[index].zeit == _gefragteZeit),
+      helpSteps: [
+        'Lies den ganzen Satz. Suche die Wörter, die sagen, was jemand tut oder was geschieht.',
+        'Vergleiche: „ich spielte“ oder „ich habe gespielt“ ist Vergangenheit; „ich spiele“ ist Gegenwart; „ich werde spielen“ ist Zukunft.',
+        categorize
+            ? 'Untersuche jetzt nur die Verbform in „${_korrektSatz.satz}“. Vergleiche sie mit den drei Beispielen.'
+            : 'Gesucht ist ${_gefragteZeit.label}: ${_gefragteZeit.hint}. Prüfe dafür die Verbform jedes angebotenen Satzes.',
+      ],
+      answering: !_answered,
+      lastAnswer: selected == null ? null : choices[selected],
+      lastCorrect: selected == null
+          ? null
+          : categorize
+              ? _zeitOptions[selected] == _korrektSatz.zeit
+              : _satzOptions[selected].zeit == _gefragteZeit,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -307,10 +374,12 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
         icon: Icons.history_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
+        inRounds: true,
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -329,7 +398,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
             ] else
               _buildSatzOptions(),
           ]),
-        ),
+        )),
       ),
     );
   }

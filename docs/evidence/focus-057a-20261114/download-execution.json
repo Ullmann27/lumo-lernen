@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/2708c7907f28/inspect_original_artifact.py",
+    "--archive",
+    "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/artifact.zip",
+    "--url-file",
+    "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/download-url.private",
+    "--expected-size",
+    "38345151",
+    "--expected-sha256",
+    "f33ce27cea68774f8cf706412a2b893b9a947bcd6fae46e781781b7d485f6a9f",
+    "--extract-to",
+    "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/original",
+    "--index",
+    "/workspace/scratch/2708c7907f28/focus-057a-originals-14119369270/archive-index.json"
+  ],
+  "exit": 0,
+  "stdout": "{\n  \"archive\": {\n    \"bytes\": 38345151,\n    \"sha256\": \"f33ce27cea68774f8cf706412a2b893b9a947bcd6fae46e781781b7d485f6a9f\",\n    \"git_blob\": \"029570137388c1760e569654ba66f2285380234a\"\n  },\n  \"zip_crc_valid\": true,\n  \"canonical_paths\": true,\n  \"file_count\": 54,\n  \"archive_code_executed\": false\n}\n",
+  "stderr": "",
+  "elapsed_seconds": 2.290075049999359,
+  "archive_code_executed": false
+}

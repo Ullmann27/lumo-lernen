@@ -1,0 +1,15 @@
+{
+  "read_time": "2026-11-14 14:11:24 UTC",
+  "pages": 3,
+  "total": 228,
+  "matches": [],
+  "tag_lookup": {
+    "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}",
+    "error_code": "NOT_FOUND",
+    "error_data": {
+      "message": "Not Found",
+      "documentation_url": "https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name",
+      "status": "404"
+    }
+  }
+}

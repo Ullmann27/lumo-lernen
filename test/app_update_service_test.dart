@@ -76,6 +76,31 @@ void main() {
       expect(found.releaseName, 'Lumo Familie 1944');
     });
 
+    test('Build 2003 offers 2004 only after genuine family prerelease', () {
+      final blocked = AppUpdateService.familyPreviewFromReleases([
+        release(2003),
+        release(2004, draft: true),
+        release(2004, tag: 'lumo-0.12.92-2004'),
+        release(2004, apkName: 'Lumo-Lernen-latest.apk'),
+      ], installedBuild: 2003);
+      expect(blocked.available, isFalse);
+      expect(blocked.latestBuildNumber, 2003);
+      final approved = AppUpdateService.familyPreviewFromReleases([
+        release(2003),
+        release(2004),
+        release(2005, draft: true),
+      ], installedBuild: 2003);
+      expect(approved.available, isTrue);
+      expect(approved.currentBuildNumber, 2003);
+      expect(approved.latestBuildNumber, 2004);
+      expect(approved.apkUrl.path,
+          '/Ullmann27/lumo-lernen/releases/download/coachpreview-build-2004/Lumo-Lernen-Neu.apk');
+      final alreadyInstalled = AppUpdateService.familyPreviewFromReleases([
+        release(2003), release(2004),
+      ], installedBuild: 2004);
+      expect(alreadyInstalled.available, isFalse);
+    });
+
     test('never offer downgrade and never mix original with family identity', () {
       final found = AppUpdateService.familyPreviewFromReleases([
         release(1941),

@@ -1,0 +1,20 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 6.080930017000355,
+  "command": [
+    "/tmp/lumo-2078/runtime/Godot_v4.6.3-stable_linux.x86_64",
+    "--path",
+    "/tmp/lumo-neon-repair",
+    "--display-driver",
+    "x11",
+    "--audio-driver",
+    "Dummy",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/kart_meshy_assets_regression.gd",
+    "--"
+  ],
+  "source_commit": "b0e24b6b3f7a1bfa4e36512281c454c1bdebc3ca",
+  "scope": "Godot 4.6.3 Compatibility desktop software renderer; no physical Android result"
+}

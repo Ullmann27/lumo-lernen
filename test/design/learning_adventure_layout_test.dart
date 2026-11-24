@@ -13,19 +13,26 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/learning_module_registry.dart';
 import 'package:lumo_lernen/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart';
+import 'package:lumo_lernen/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart';
 import 'package:lumo_lernen/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart';
 import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
+import 'package:lumo_lernen/widgets/design/lumo_answer_crystal.dart';
 import 'package:lumo_lernen/widgets/design/lumo_learning_module_frame.dart';
 import 'package:lumo_lernen/widgets/design/lumo_quantity_art.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_character.dart';
+import '../helpers/native_storage_fixture.dart';
 
 class _GatedWallet extends RewardWalletRepository {
   final gate = Completer<void>();
   @override
-  Future<RewardWallet> applyRewardDelta(
-      {int starsDelta = 0, int xpDelta = 0}) async {
+  Future<RewardWallet> applyRewardDelta({
+    int starsDelta = 0,
+    int xpDelta = 0,
+    String? ownerId,
+  }) async {
     await gate.future;
-    return super.applyRewardDelta(starsDelta: starsDelta, xpDelta: xpDelta);
+    return super.applyRewardDelta(
+        starsDelta: starsDelta, xpDelta: xpDelta, ownerId: ownerId);
   }
 }
 
@@ -43,8 +50,10 @@ Future<LumoAppState> _open(
   RewardWalletRepository? wallet,
   int? minusSeed,
   int? numberSeed,
+  int? plusSeed,
 }) async {
-  final app = LumoAppState(walletRepository: wallet);
+  final app = await nativeStorageFixture(
+      tester, () => LumoAppState(walletRepository: wallet));
   addTearDown(app.dispose);
   await tester.runAsync(() async {
     await app.hydrateFromWallet();
@@ -57,12 +66,15 @@ Future<LumoAppState> _open(
           .copyWith(textScaler: TextScaler.linear(textScale)),
       child: child!,
     ),
-    home: topic == 'm1_minus10' && minusSeed != null
-        ? MinusBis10Screen(appState: app, taskRandom: math.Random(minusSeed))
-        : topic == 'm1_zahlen10' && numberSeed != null
-            ? ZahlenBis10Screen(
-                appState: app, taskRandom: math.Random(numberSeed))
-            : LearningModuleRegistry.builderFor(topic, app),
+    home: topic == 'm1_plus10' && plusSeed != null
+        ? PlusBis10Screen(appState: app, taskRandom: math.Random(plusSeed))
+        : topic == 'm1_minus10' && minusSeed != null
+            ? MinusBis10Screen(
+                appState: app, taskRandom: math.Random(minusSeed))
+            : topic == 'm1_zahlen10' && numberSeed != null
+                ? ZahlenBis10Screen(
+                    appState: app, taskRandom: math.Random(numberSeed))
+                : LearningModuleRegistry.builderFor(topic, app),
   ));
   await _frames(tester);
   return app;
@@ -70,8 +82,12 @@ Future<LumoAppState> _open(
 
 Finder _answers(String topic) => find.descendant(
     of: find.byType(GridView),
-    matching: topic == 'm1_plus10'
-        ? find.byType(GestureDetector)
+    // The actual SOL maths route now uses pressable crystal answer widgets.
+    // Preserve the original accessibility, visible-bounds and 48dp assertions
+    // against the REAL answer controls, rather than counting inner gestures
+    // (or the removed legacy wrapper).
+    matching: {'m1_plus10', 'm1_minus10', 'm1_zahlen10'}.contains(topic)
+        ? find.byType(LumoAnswerCrystal)
         : find.byType(LumoLessonAnswerTap));
 
 int _choiceCount(String topic) => topic == 'm1_zahlen10' &&
@@ -106,6 +122,10 @@ int _numberSeedFor(int kind, int first, {int? second}) {
 
 void _expectVisibleAnswers(WidgetTester tester, String topic) {
   final choices = _answers(topic);
+  if ({'m1_plus10', 'm1_minus10', 'm1_zahlen10'}.contains(topic)) {
+    expect(choices, findsWidgets,
+        reason: 'Real arithmetic answers must use interactive Lumo crystals');
+  }
   expect(choices, findsNWidgets(_choiceCount(topic)));
   final navigation = tester.getRect(find.byType(LumoBottomNavigation));
   for (final element in choices.evaluate()) {
@@ -213,16 +233,8 @@ void main() {
         await _open(tester, topic);
         final choices = _answers(topic);
         expect(choices, findsNWidgets(_choiceCount(topic)));
-        final navigation = tester.getRect(find.byType(LumoBottomNavigation));
-        for (final choice in choices.evaluate()) {
-          final rect = tester.getRect(find.byWidget(choice.widget));
-          expect(rect.height, greaterThanOrEqualTo(48));
-          expect(rect.width, greaterThanOrEqualTo(48));
-          expect(rect.top, greaterThan(24));
-          expect(rect.bottom, lessThanOrEqualTo(navigation.top),
-              reason: 'An answer must not be covered by bottom navigation');
-          expect(find.byWidget(choice.widget).hitTestable(), findsOneWidget);
-        }
+        // Complete Lumo below the top bar in the resting layout. Revealing the
+        // 108dp Minus crystals below scrolls the fox under the top bar.
         if (topic != 'm1_plus10' || layout.$2.width >= 760) {
           final fox = tester
               .getRect(find.byKey(const ValueKey('learning-module-lumo')));
@@ -230,6 +242,25 @@ void main() {
               fox.top,
               greaterThanOrEqualTo(
                   tester.getRect(find.byType(LumoTopBar)).bottom));
+        }
+        final navigation = tester.getRect(find.byType(LumoBottomNavigation));
+        for (final choice in choices.evaluate()) {
+          final target = find.byWidget(choice.widget);
+          if (topic == 'm1_minus10') {
+            // The faceted 108dp answers need actual scroll on compact phones.
+            // Do not weaken the visible-area or 48dp safety requirements.
+            await tester.ensureVisible(target);
+            // Lumo's floating/glow ambient motion never settles by design.
+            await _frames(tester, 3);
+          }
+          final rect = tester.getRect(target);
+          expect(rect.height,
+              greaterThanOrEqualTo(topic == 'm1_minus10' ? 100 : 48));
+          expect(rect.width, greaterThanOrEqualTo(48));
+          expect(rect.top, greaterThan(24));
+          expect(rect.bottom, lessThanOrEqualTo(navigation.top),
+              reason: 'An answer must not be covered by bottom navigation');
+          expect(target.hitTestable(), findsOneWidget);
         }
         expect(tester.takeException(), isNull);
         await tester.pumpWidget(const SizedBox());
@@ -252,6 +283,45 @@ void main() {
       await tester.pumpWidget(const SizedBox());
     });
   }
+
+  testWidgets(
+      'Plus with eight or nine apples keeps every answer above the navigation',
+      (tester) async {
+    // Since all sums up to 10 are practised, the first group can hold 8 or 9
+    // apples. On a 360dp phone with system bars the taller apple field used
+    // to push the answers under the bottom navigation (731.6 > 710).
+    final large = <String>{};
+    for (var seed = 0; seed < 60 && large.length < 4; seed++) {
+      await _viewport(tester, const Size(360, 800), systemBars: true);
+      await _open(tester, 'm1_plus10', plusSeed: seed);
+      final task = tester
+          .widgetList<Text>(find.byType(Text))
+          .map((text) => text.data ?? '')
+          .firstWhere((text) => RegExp(r'^\d+ \+ \d+ = \?$').hasMatch(text));
+      final numbers = RegExp(r'\d+')
+          .allMatches(task)
+          .map((match) => int.parse(match[0]!))
+          .toList();
+      if (math.max(numbers[0], numbers[1]) >= 8) {
+        large.add(task);
+        final navigation = tester.getRect(find.byType(LumoBottomNavigation));
+        final choices = _answers('m1_plus10');
+        expect(choices, findsNWidgets(_choiceCount('m1_plus10')));
+        for (final choice in choices.evaluate()) {
+          final rect = tester.getRect(find.byWidget(choice.widget));
+          expect(rect.bottom, lessThanOrEqualTo(navigation.top),
+              reason: '$task: an answer is covered by the navigation');
+        }
+        expect(find.byType(LumoQuantityArt),
+            findsNWidgets(numbers[0] + numbers[1]),
+            reason: '$task: every apple stays visible');
+      }
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    }
+    expect(large.length, greaterThanOrEqualTo(3),
+        reason: 'The seeds must cover several tasks with 8 or 9 apples');
+  });
 
   testWidgets('visible Plus quantities equal the actual sum, without emoji',
       (tester) async {
@@ -289,10 +359,14 @@ void main() {
         final navigation = tester.getRect(find.byType(LumoBottomNavigation));
         for (final element in _answers('m1_minus10').evaluate()) {
           final choice = find.byWidget(element.widget);
+          await tester.ensureVisible(choice);
+          await _frames(tester, 3);
           expect(choice.hitTestable(), findsOneWidget);
-          expect(tester.getSize(choice).height, greaterThanOrEqualTo(48));
-          expect(
-              tester.getRect(choice).bottom, lessThanOrEqualTo(navigation.top));
+          expect(tester.getSize(choice).height, greaterThanOrEqualTo(100));
+          final rect = tester.getRect(choice);
+          expect(rect.top, greaterThanOrEqualTo(24));
+          expect(rect.bottom, lessThanOrEqualTo(navigation.top),
+              reason: 'Scroll-revealed pedestal must clear bottom navigation');
         }
         expect(tester.takeException(), isNull);
         await tester.pumpWidget(const SizedBox());
@@ -358,11 +432,21 @@ void main() {
         .map((match) => int.parse(match[0]!))
         .toList();
     expect(find.byType(LumoQuantityArt), findsNWidgets(amounts[0]));
+    expect(find.byIcon(Icons.close_rounded), findsNothing,
+        reason: 'The child has not removed any objects yet.');
+    for (var i = 0; i < amounts[1]; i++) {
+      final object = find.byKey(ValueKey('minus-quantity-$i'));
+      await tester.ensureVisible(object);
+      await _frames(tester, 3);
+      await tester.tap(object);
+      await _frames(tester, 3);
+    }
+    expect(find.byType(LumoQuantityArt), findsNWidgets(amounts[0]));
     expect(find.byIcon(Icons.close_rounded), findsNWidgets(amounts[1]));
     expect(
         tester
             .widgetList<Opacity>(find.byType(Opacity))
-            .where((widget) => widget.opacity == .28),
+            .where((widget) => widget.opacity == .25),
         hasLength(amounts[1]));
     await tester.pumpWidget(const SizedBox());
   });
@@ -370,7 +454,7 @@ void main() {
   testWidgets('real success reacts only after durable saving completes',
       (tester) async {
     await _viewport(tester, const Size(360, 800));
-    final wallet = _GatedWallet();
+    final wallet = await nativeStorageFixture(tester, _GatedWallet.new);
     final app = await _open(tester, 'm1_minus10', wallet: wallet);
     final fox = tester.widget<LumoCharacter>(
         find.byKey(const ValueKey('learning-module-lumo')));
@@ -387,6 +471,8 @@ void main() {
     final answer = find.descendant(
         of: find.byType(GridView),
         matching: find.text('${numbers[0] - numbers[1]}'));
+    await tester.ensureVisible(answer);
+    await _frames(tester, 3);
     await tester.tap(answer);
     await _frames(tester);
     expect(controller.serial, serial);

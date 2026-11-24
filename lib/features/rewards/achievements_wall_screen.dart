@@ -25,23 +25,38 @@ class AchievementsWallScreen extends StatefulWidget {
 }
 
 class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
-  final AchievementTracker _tracker = AchievementTracker.instance;
+  late final AchievementTracker _tracker = AchievementTracker(widget.appState);
 
   @override
   void initState() {
     super.initState();
-    _tracker.hydrate();
     _tracker.addListener(_onTrackerUpdate);
   }
 
   @override
   void dispose() {
     _tracker.removeListener(_onTrackerUpdate);
+    _tracker.dispose();
     super.dispose();
   }
 
   void _onTrackerUpdate() {
     if (mounted) setState(() {});
+  }
+
+  Future<void> _claim(LumoAchievement achievement) async {
+    final generation = widget.appState.profileGeneration;
+    final paid = await _tracker.claim(achievement.id);
+    if (!mounted ||
+        !paid ||
+        !_tracker.current ||
+        generation != widget.appState.profileGeneration) {
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('${achievement.rewardStars} Sterne sind gespeichert. '
+          '${achievement.title} ist eingesammelt.'),
+    ));
   }
 
   @override
@@ -50,21 +65,24 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
     final unlockedCount = progress.where((p) => p.unlocked).length;
     final total = progress.length;
     final byTier = <AchievementTier, List<LumoAchievementProgress>>{
-      AchievementTier.bronze:
-          progress.where((p) => p.achievement.tier == AchievementTier.bronze).toList(),
-      AchievementTier.silver:
-          progress.where((p) => p.achievement.tier == AchievementTier.silver).toList(),
-      AchievementTier.gold:
-          progress.where((p) => p.achievement.tier == AchievementTier.gold).toList(),
+      AchievementTier.bronze: progress
+          .where((p) => p.achievement.tier == AchievementTier.bronze)
+          .toList(),
+      AchievementTier.silver: progress
+          .where((p) => p.achievement.tier == AchievementTier.silver)
+          .toList(),
+      AchievementTier.gold: progress
+          .where((p) => p.achievement.tier == AchievementTier.gold)
+          .toList(),
     };
     return Scaffold(
       backgroundColor: LumoVisualTokens.night,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: LumoVisualTokens.night,
         elevation: 0,
         leading: const BackButton(color: LumoVisualTokens.white),
         title: const Text(
-          '🏆 Achievements',
+          'Auszeichnungen',
           style: TextStyle(
             fontFamily: 'Nunito',
             fontSize: 22,
@@ -73,20 +91,70 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
           ),
         ),
       ),
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
       body: LumoMagicBackground(
         intensity: 1.0,
         starCount: 24,
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 80, 16, 32),
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
           children: [
             _hero(unlockedCount, total),
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: const Color(0xF0102A50),
+                borderRadius: BorderRadius.circular(LumoRadius.md),
+              ),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                        'Freigeschaltete Sterne holst du einmalig ab. '
+                        'Fortschritte und Belege gehören zu diesem Kinderprofil.',
+                        style: TextStyle(
+                            color: LumoVisualTokens.white, fontSize: 14)),
+                    if (_tracker.loading)
+                      const Padding(
+                          padding: EdgeInsets.all(12),
+                          child: LinearProgressIndicator()),
+                    if (_tracker.error != null) ...[
+                      const SizedBox(height: 10),
+                      Text(_tracker.error!,
+                          style: const TextStyle(color: Colors.amber)),
+                      TextButton(
+                          onPressed: _tracker.busy ? null : _tracker.refresh,
+                          style: TextButton.styleFrom(
+                              minimumSize: const Size(48, 48)),
+                          child: const Text('Erneut laden')),
+                    ],
+                    if (_tracker.legacyUnassigned)
+                      const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Text(
+                              'Frühere geräteweite Abzeichen sind aufbewahrt. '
+                              'Ohne sichere Profilzuordnung zählen sie hier nicht mit.',
+                              style: TextStyle(
+                                  color: LumoVisualTokens.muted,
+                                  fontSize: 13))),
+                    const Padding(
+                        padding: EdgeInsets.only(top: 8),
+                        child: Text(
+                            'Sterne-Ziele zählen bestätigte Einnahmen dieses Profils. '
+                            'Frühere gemeinsame Sterne bleiben in der Sternetasche.',
+                            style: TextStyle(
+                                color: LumoVisualTokens.muted, fontSize: 13))),
+                  ]),
+            ),
             const SizedBox(height: 18),
-            _tierSection('🥉 Bronze', byTier[AchievementTier.bronze]!, const Color(0xFFCD7F32)),
+            _tierSection('🥉 Bronze', byTier[AchievementTier.bronze]!,
+                const Color(0xFFCD7F32)),
             const SizedBox(height: 14),
-            _tierSection('🥈 Silber', byTier[AchievementTier.silver]!, const Color(0xFFA8A8A8)),
+            _tierSection('🥈 Silber', byTier[AchievementTier.silver]!,
+                const Color(0xFFA8A8A8)),
             const SizedBox(height: 14),
-            _tierSection('🥇 Gold', byTier[AchievementTier.gold]!, const Color(0xFFFFD700)),
+            _tierSection('🥇 Gold', byTier[AchievementTier.gold]!,
+                const Color(0xFFFFD700)),
           ],
         ),
       ),
@@ -172,7 +240,8 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
     );
   }
 
-  Widget _tierSection(String title, List<LumoAchievementProgress> items, Color accent) {
+  Widget _tierSection(
+      String title, List<LumoAchievementProgress> items, Color accent) {
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 14, 12, 14),
       decoration: BoxDecoration(
@@ -208,7 +277,12 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
           ),
           const SizedBox(height: 10),
           for (final p in items) ...[
-            _BadgeCard(progress: p, accent: accent),
+            _BadgeCard(
+                progress: p,
+                accent: accent,
+                onClaim: _tracker.ready && p.unlocked && !p.claimed
+                    ? () => _claim(p.achievement)
+                    : null),
             const SizedBox(height: 8),
           ],
         ],
@@ -218,14 +292,17 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
 }
 
 class _BadgeCard extends StatelessWidget {
-  const _BadgeCard({required this.progress, required this.accent});
+  const _BadgeCard(
+      {required this.progress, required this.accent, this.onClaim});
   final LumoAchievementProgress progress;
   final Color accent;
+  final VoidCallback? onClaim;
 
   @override
   Widget build(BuildContext context) {
     final unlocked = progress.unlocked;
     return Container(
+      key: ValueKey('achievement-${progress.achievement.id}'),
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -235,7 +312,9 @@ class _BadgeCard extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(
-          color: unlocked ? accent.withOpacity(0.60) : LumoVisualTokens.cyan.withOpacity(.22),
+          color: unlocked
+              ? accent.withOpacity(0.60)
+              : LumoVisualTokens.cyan.withOpacity(.22),
           width: 1.2,
         ),
       ),
@@ -246,7 +325,8 @@ class _BadgeCard extends StatelessWidget {
             width: 52,
             height: 52,
             decoration: BoxDecoration(
-              color: unlocked ? accent.withOpacity(0.20) : const Color(0x662B466E),
+              color:
+                  unlocked ? accent.withOpacity(0.20) : const Color(0x662B466E),
               shape: BoxShape.circle,
               boxShadow: unlocked
                   ? [
@@ -278,7 +358,9 @@ class _BadgeCard extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 15,
                     fontWeight: FontWeight.w900,
-                    color: unlocked ? LumoVisualTokens.white : const Color(0xFFE6F3FF),
+                    color: unlocked
+                        ? LumoVisualTokens.white
+                        : const Color(0xFFE6F3FF),
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -288,7 +370,9 @@ class _BadgeCard extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
-                    color: unlocked ? LumoVisualTokens.muted : const Color(0xFFCBDFF5),
+                    color: unlocked
+                        ? LumoVisualTokens.muted
+                        : const Color(0xFFCBDFF5),
                     height: 1.3,
                   ),
                 ),
@@ -311,7 +395,9 @@ class _BadgeCard extends StatelessWidget {
                     const SizedBox(width: 8),
                     Text(
                       unlocked
-                          ? '+${progress.achievement.rewardStars}★'
+                          ? (progress.claimed
+                              ? 'Gespeichert ✓'
+                              : '${progress.achievement.rewardStars}★ bereit')
                           : '${progress.current}/${progress.achievement.target}',
                       style: TextStyle(
                         fontFamily: 'Nunito',
@@ -322,6 +408,22 @@ class _BadgeCard extends StatelessWidget {
                     ),
                   ],
                 ),
+                if (unlocked)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: progress.claimed
+                        ? const Text('Schon eingesammelt.',
+                            style: TextStyle(
+                                color: LumoVisualTokens.white, fontSize: 13))
+                        : FilledButton(
+                            key: ValueKey('claim-${progress.achievement.id}'),
+                            onPressed: onClaim,
+                            style: FilledButton.styleFrom(
+                                minimumSize: const Size(48, 48)),
+                            child: Text(
+                                '${progress.achievement.rewardStars} Sterne abholen'),
+                          ),
+                  ),
               ],
             ),
           ),

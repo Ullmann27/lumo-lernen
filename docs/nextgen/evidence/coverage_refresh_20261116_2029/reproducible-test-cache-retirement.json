@@ -1,0 +1,21 @@
+{
+  "reason": "Retire only own untracked reproducible Flutter test caches after completed tests; original test logs and producer source remain committed. No user assets, APK artifacts, original failure evidence, or tracked paths removed.",
+  "retired": [
+    {
+      "path": "/workspace/scratch/4fa97167812c/lumo-lernen/build/test_cache",
+      "bytes": 55702736
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/lumo-lernen/build/unit_test_assets",
+      "bytes": 84635091
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/agent-lab-route-scope/build/test_cache",
+      "bytes": 52634544
+    },
+    {
+      "path": "/workspace/scratch/4fa97167812c/agent-lab-route-scope/build/unit_test_assets",
+      "bytes": 84635091
+    }
+  ]
+}

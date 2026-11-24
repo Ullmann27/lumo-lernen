@@ -1,0 +1,27 @@
+{
+  "run_id": 45064686303,
+  "job_id": 137346316152,
+  "source_commit": "376217b4e39b726657a8fe96e9868f816f681edf",
+  "godot_revision": "29ac19f8984b510e5add531f15e555a98c72bed4",
+  "tested_x86_apk_sha256": "02d4611a05999f72b2e39a23bafe1b77cefeca4441d5338cf7a8c47711a56faa",
+  "source": "Complete TourImage:22_rueckkehr_garage chunks in decoded GitHub job log",
+  "source_kind": "Unchanged CI-generated JPEG preview of actual Android screenshot; not the original PNG",
+  "original_png_sha256_as_reported_by_ci": "326426cf1271bfff0e07cd973b00367aa5c5c3166829ce1e21a3082a88e92fc7",
+  "original_png_size": "2400x1080",
+  "jpeg_size": "960x432",
+  "partial_job_log_sha256": "6abe73633d0e3d9f4c40d9121cadada962891830ea37075c207e3fb128d5ba82",
+  "failure": {
+    "at_utc": "2026-11-22T20:45:49.0425938Z",
+    "step": "showroom-after-race",
+    "ok": false,
+    "error": "RuntimeError: Schaltfläche auf Android fehlt: Teile wechseln"
+  },
+  "local_reproduction_before_fix": "Original _read_garage_footer returned None on these unchanged JPEG bytes with min_y=.02/max_y=.99",
+  "files": [
+    {
+      "file": "garage-log-preview.jpg",
+      "bytes": 57443,
+      "sha256": "e2fa9243a3e471cd977eb9887ee66f86095a71fea2297d8ead43afe143e99f1a"
+    }
+  ]
+}

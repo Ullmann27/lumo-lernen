@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "kind": "original_pr483_fixtures_recovered_after_executor_tmp_loss",
+  "created_at_utc": "2026-11-14T07:55:05.381565+00:00",
+  "run_id": 43566692796,
+  "run_attempt": 1,
+  "job_id": 132362172873,
+  "qa_source": "7e2ab20f6f323c66a1e02de3550d73ef31b2037e",
+  "apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "artifact_id": 14103409762,
+  "artifact_bytes": 109092668,
+  "artifact_sha256": "3467fcdec03a1a8debff70da2320109307417929c23e0fef605ca992eeaf2e1a",
+  "files": {
+    "jump-actual-android.mp4": {
+      "artifact_member": "originals/tour/jump-actual-android.mp4",
+      "bytes": 1707720,
+      "sha256": "0ad7becc5b6572f74968aa99a5b6533219cb5a661b4458e13a984fb2c97236c8",
+      "git_blob": "29074b7e79d12f6b34f954f1c12bdf0bf99998ac"
+    },
+    "jump-recording.json": {
+      "artifact_member": "originals/tour/jump-recording.json",
+      "bytes": 804,
+      "sha256": "b6f78c5315d47dcef2210864f4d705053700557c2160f802c4be710cadca08dd",
+      "git_blob": "5c03b9b97a2cfb1f67d5d76d8c6057ae084e1a70"
+    }
+  },
+  "scope": "Unchanged original variable-frame-rate screenrecord and original dispatched-action metadata; no new Android, motion-quality or device-FPS acceptance.",
+  "prior_source_freeze_sha256": "38a981e618fca48ace8d42d91b7bc440655e406b807549bdfbbf710360e7669e",
+  "recovery": "Film, recording and test are byte-identical to the old known hashes. The production comment/formatting and this provenance file have new honest identities. No lost old local log or review is recreated."
+}

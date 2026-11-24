@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/home/agent/lumo-tools/flutter/bin/flutter",
+    "analyze",
+    "--no-pub",
+    "--no-fatal-infos",
+    "--no-fatal-warnings"
+  ],
+  "exitCode": 0,
+  "seconds": 8.35,
+  "errors": 0,
+  "warnings": 5,
+  "infos": 293,
+  "log": "final-flutter-analysis.log",
+  "sha256": "ebbffcff65c66903fb64516af0b337bd16b00e0969ecd19a6214797e87c91efd"
+}

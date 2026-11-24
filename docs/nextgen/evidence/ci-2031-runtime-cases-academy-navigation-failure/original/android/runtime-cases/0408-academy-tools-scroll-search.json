@@ -1,0 +1,91 @@
+{
+  "status": "FOUND",
+  "strategy": "forward_then_observed_boundary_reverse",
+  "non_scroll_observations": 0,
+  "gestures": [
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "2a8f0e9c4acbc7e89a6b8e6471270b8ec3811ac47121ae55696b1b2c2c5fa8a1",
+      "after": "7ab3c0ca1535f148e8abbcf3ab53f650f752752f2cab7e31cdc6d0bff43794e9",
+      "content_changed": true
+    },
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "7ab3c0ca1535f148e8abbcf3ab53f650f752752f2cab7e31cdc6d0bff43794e9",
+      "after": "236690030894c7645ffcbe0116f472acb2cb95e535beae69487d61a682786c9a",
+      "content_changed": true
+    },
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "236690030894c7645ffcbe0116f472acb2cb95e535beae69487d61a682786c9a",
+      "after": "236690030894c7645ffcbe0116f472acb2cb95e535beae69487d61a682786c9a",
+      "content_changed": false
+    },
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "236690030894c7645ffcbe0116f472acb2cb95e535beae69487d61a682786c9a",
+      "after": "236690030894c7645ffcbe0116f472acb2cb95e535beae69487d61a682786c9a",
+      "content_changed": false
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "236690030894c7645ffcbe0116f472acb2cb95e535beae69487d61a682786c9a",
+      "after": "4336607f2ccfb2175aaed3846cfae4b157d1afcec147f65c3d8e95cd09592ff4",
+      "content_changed": true
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "4336607f2ccfb2175aaed3846cfae4b157d1afcec147f65c3d8e95cd09592ff4",
+      "after": "9630aed98039f7c08df7e49fcc4b54f47558ee298147ca8b046fcbe5e0bafad3",
+      "content_changed": true
+    },
+    {
+      "direction": -1,
+      "observed_bounds": [
+        0,
+        356,
+        1080,
+        1914
+      ],
+      "before": "9630aed98039f7c08df7e49fcc4b54f47558ee298147ca8b046fcbe5e0bafad3",
+      "after": "bb999898ad59d49652927accf51c26ad873ef3999f24fafe9f0712da608833dc",
+      "content_changed": true
+    }
+  ]
+}

@@ -140,7 +140,7 @@ void main() {
         final prefix = '${width.toInt()}px-scale-${textScale.toStringAsFixed(1)}';
         await _capture(tester, '$prefix-initial', viewport, textScale, 'initial');
 
-        final answer = find.textContaining(RegExp(r'^A  '));
+        final answer = find.byKey(const ValueKey('lumo-meister-answer-0'));
         expect(answer, findsOneWidget);
         await tester.ensureVisible(answer);
         await tester.pump();
@@ -151,7 +151,17 @@ void main() {
         await tester.ensureVisible(reveal);
         await tester.pump();
         await tester.tap(reveal);
+        await tester.pump(const Duration(milliseconds: 220));
+        expect(find.text('Lumo prüft deine Antwort …'), findsOneWidget);
+        expect(tester.takeException(), isNull);
+        await _capture(tester, '$prefix-locking', viewport, textScale, 'locking');
+
+        // Reduced-motion accessibility uses the real 750ms delay.
+        // Do not label a screenshot "revealed" while the quiz is still
+        // displaying the suspense bar instead of its actual answer.
+        await tester.pump(const Duration(milliseconds: 650));
         await _frames(tester);
+        expect(find.text('Lumo prüft deine Antwort …'), findsNothing);
         expect(find.byKey(const ValueKey('lumo-meister-fox')), findsOneWidget);
         expect(tester.takeException(), isNull);
         await _capture(tester, '$prefix-revealed', viewport, textScale, 'revealed');

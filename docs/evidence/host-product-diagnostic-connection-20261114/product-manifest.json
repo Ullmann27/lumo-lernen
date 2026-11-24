@@ -1,0 +1,417 @@
+{
+  "schema": 1,
+  "scope": "complete-small-product-integration-pack",
+  "source_freeze_sha256": "037fb4e27d8d16e9adbe88c25735762d354d63ace2b26c520b733cff87dc41a5",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 7917,
+      "sha256": "f128c98b43b3bba3bd2d467fcdcffe0f37af2ffea534ff6058b44f3d07636813"
+    },
+    {
+      "path": "base-binding.json",
+      "bytes": 4814,
+      "sha256": "5bfcf88964739c1a7dd30183716fc7d29f6bff9ef88c2757fe94a5c8015a37cb"
+    },
+    {
+      "path": "base-source/lib/core/school_exercise_generator.dart",
+      "bytes": 83708,
+      "sha256": "8e9bc1c05ca8d5293abb3fd694dcfb2048f3700be21c46fd829b98985ce1d400"
+    },
+    {
+      "path": "base-source/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 42692,
+      "sha256": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075"
+    },
+    {
+      "path": "base-source/lib/features/home/widgets/lumo_home_hero.dart",
+      "bytes": 8104,
+      "sha256": "6fa92a97bf9541a545d05183c2f16a631b2cd2aa20b159bf7ed9f42dc5243689"
+    },
+    {
+      "path": "base-source/lib/features/learning/learning_content.dart",
+      "bytes": 134562,
+      "sha256": "4f485a351e787c2411783c2542c5fa15bf7b875b12ab72257eea26d31057b692"
+    },
+    {
+      "path": "base-source/lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+      "bytes": 20845,
+      "sha256": "4678a4461916cd0bf899e5ce6080ac7d9a1aad18534d7260f2d02d3e1fb82d41"
+    },
+    {
+      "path": "base-source/lib/widgets/design/lumo_adventure_card.dart",
+      "bytes": 5180,
+      "sha256": "e70c6ee7f00f973e79fc9627aacdc6dc0cde40e6d7871961f7d8acd93ca8b16d"
+    },
+    {
+      "path": "base-source/lib/widgets/design/lumo_scene_atmosphere.dart",
+      "bytes": 7146,
+      "sha256": "b687f0ce71e5383cedf85a258a9835e78b8960415ddfa697af8599a1f2cf97cb"
+    },
+    {
+      "path": "base-source/lib/widgets/shell/left_navigation.dart",
+      "bytes": 15227,
+      "sha256": "d2857c7bdcc063a3e75a1b77a5ce2a7ce626b32022f2731ee84f5a48f0f00678"
+    },
+    {
+      "path": "base-source/test/design/connect_four_visual_test.dart",
+      "bytes": 4091,
+      "sha256": "599ba9fc1ed1abdb3ef993d0e0e07b4c71ce2d59508ffd1482c4177bce98a79f"
+    },
+    {
+      "path": "base-source/test/games/games_screen_flow_test.dart",
+      "bytes": 10189,
+      "sha256": "5fb9b1253d79f851516c2bc37b326e29d8ab80bf1414f30203e9a8315a456172"
+    },
+    {
+      "path": "base-source/test/learning/learning_exact_selection_test.dart",
+      "bytes": 2309,
+      "sha256": "59f335779fcaca6c834cc4e1662140bf3453c3e92a72901fb7643b3a50e70441"
+    },
+    {
+      "path": "base-source/test/lumo_scene_atmosphere_test.dart",
+      "bytes": 3699,
+      "sha256": "01984475c0644572fc09803211762e785af10cf4047355629696f23ff85a28d9"
+    },
+    {
+      "path": "ci-original-inputs.json",
+      "bytes": 1986,
+      "sha256": "64b1f29202158ef44e9d43f8707039dbad7d5441afb4b447edb648a110eb1bb2"
+    },
+    {
+      "path": "final-source/lib/core/school_exercise_generator.dart",
+      "bytes": 83871,
+      "sha256": "cf7dfba7e5d587be0eef4cbec853f016211ee0715b460f1c365064142165c778"
+    },
+    {
+      "path": "final-source/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 43189,
+      "sha256": "ecf483b9f5d10b58b87487220a34d6e7333f155aa8f4389acf1264ace9555057"
+    },
+    {
+      "path": "final-source/lib/features/home/widgets/lumo_home_hero.dart",
+      "bytes": 8022,
+      "sha256": "1364bb4d984e6432441205b606243142866adbe532e51b567c21cf3adfe4b49e"
+    },
+    {
+      "path": "final-source/lib/features/learning/learning_content.dart",
+      "bytes": 135381,
+      "sha256": "956fb5791c388d2816ccb2f6ad4936fc192e5af5febb10f42cfd5a3b47d96703"
+    },
+    {
+      "path": "final-source/lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+      "bytes": 20226,
+      "sha256": "ddb82957a8ef36da438b8a8e1c1496039a763903858a3869133eeee4fa568c32"
+    },
+    {
+      "path": "final-source/lib/widgets/design/lumo_adventure_card.dart",
+      "bytes": 5352,
+      "sha256": "ddffa3ec8ca5046a600f8b77679fa00f2767a6cdceb1fa7fff9fb3b30b32a1d7"
+    },
+    {
+      "path": "final-source/lib/widgets/design/lumo_scene_atmosphere.dart",
+      "bytes": 11865,
+      "sha256": "4d619957b93597fbe093f48a3a7a520ad8422c0f2ef900e79b6cce7958f6a315"
+    },
+    {
+      "path": "final-source/lib/widgets/shell/left_navigation.dart",
+      "bytes": 16048,
+      "sha256": "ab1c0adfffa3092fb135bf8466f387608c6be3a24ca86f7b81dd25b9800a7580"
+    },
+    {
+      "path": "final-source/test/design/connect_four_visual_test.dart",
+      "bytes": 4403,
+      "sha256": "13c2a1ad9ce5d83edbcef20055728126b24ac374d7f3fa2d6bfa87bdc6f78b10"
+    },
+    {
+      "path": "final-source/test/games/connect_four_scroll_alignment_test.dart",
+      "bytes": 3776,
+      "sha256": "420c0bfb92c9dfabc828c7188a30608fcb957180f26f5d6b3f1f86f2090646ff"
+    },
+    {
+      "path": "final-source/test/games/games_screen_flow_test.dart",
+      "bytes": 10554,
+      "sha256": "10d83437c6758e2010ee03a34d4f1618154db8d5f9577a070b4818a434b0c0b5"
+    },
+    {
+      "path": "final-source/test/learning/learning_exact_selection_test.dart",
+      "bytes": 2701,
+      "sha256": "c7c29db55aa5121ae6f9d23bde48e5a6f220ed5218efa22fcb1803d0352755e7"
+    },
+    {
+      "path": "final-source/test/learning_selection_integration_test.dart",
+      "bytes": 6637,
+      "sha256": "05059700118b89aa54dc27153432ded327cb25f257d627f97925db9688c47000"
+    },
+    {
+      "path": "final-source/test/lumo_left_navigation_motion_test.dart",
+      "bytes": 4364,
+      "sha256": "9198f99d40d2fdc144e4dda85362cbead4e8b95fee720db841ce55aa63427bd5"
+    },
+    {
+      "path": "final-source/test/lumo_scene_atmosphere_test.dart",
+      "bytes": 6805,
+      "sha256": "3b1f6990446561d3fbe81ce9cc14e4cbbc38940aadcaccd544637a7301323009"
+    },
+    {
+      "path": "final-source/test/shape_trace_input_regression_test.dart",
+      "bytes": 4154,
+      "sha256": "caf2693cd78a800055c2eeed24722202387dfd0abef3d410b9582675fa4da921"
+    },
+    {
+      "path": "final-source/test/shape_trace_input_test.dart",
+      "bytes": 6438,
+      "sha256": "9bf1485c9befe23d11092f342c5f49dc579e939205a8dad004c0784128def28d"
+    },
+    {
+      "path": "handoff.json",
+      "bytes": 2415,
+      "sha256": "6636d90b5dc47455754210a2173be7ac40138db18689e90e67a632eb77f3468d"
+    },
+    {
+      "path": "integration.patch",
+      "bytes": 80879,
+      "sha256": "bea54360c0141a7216443269cbd4f8ff5d7835dab7ebd45ff22ac3990b5b07ac"
+    },
+    {
+      "path": "original-inputs.json",
+      "bytes": 10469,
+      "sha256": "310ac8824a8cd15f29d0ce6ce1f1e788faf90a771490273ca26c8a4453893be2"
+    },
+    {
+      "path": "originals/api/pr491-commit.json.gz",
+      "bytes": 558,
+      "sha256": "cd5ee16709e8b9386965e5e129e1dfbe19734e2cdf027295c98ccbed0d84691c"
+    },
+    {
+      "path": "originals/api/pr491-compare.json.gz",
+      "bytes": 104909,
+      "sha256": "056910e25e5b22b3a0dc53517249e7f826a0a9c3894c50870bbb6489f70c83af"
+    },
+    {
+      "path": "originals/api/pr491-runs.json.gz",
+      "bytes": 56,
+      "sha256": "40c15ebd62c767ef16c84af91ec5b5aec4a1439cbf40eded20e8a49dc1d45912"
+    },
+    {
+      "path": "originals/api/pr492-commit.json.gz",
+      "bytes": 829,
+      "sha256": "aabbc00ff2ba03b64bff10eff2d4524f79f0d01a502ca16ef7db906116eafd23"
+    },
+    {
+      "path": "originals/api/pr492-compare.json.gz",
+      "bytes": 6623,
+      "sha256": "807a57fe6093f298b0eb35f441063d8ea9127029df763d5cef5707ae6b454f96"
+    },
+    {
+      "path": "originals/api/pr492-runs.json.gz",
+      "bytes": 3559,
+      "sha256": "83dbcc0d1104659560b8730c4bed3fa277240666d91643ff0b5f77ec74aec467"
+    },
+    {
+      "path": "originals/api/pr493-commit.json.gz",
+      "bytes": 692,
+      "sha256": "0466bab4af83a6e62474afe929aa404002d94744cd6375c2939385555532b063"
+    },
+    {
+      "path": "originals/api/pr493-compare.json.gz",
+      "bytes": 25421,
+      "sha256": "c40af3bc879de8842cd2c5fc01c7be52a2b2a52d2e3cff3c2450a8ef4bce4034"
+    },
+    {
+      "path": "originals/api/pr493-runs.json.gz",
+      "bytes": 4417,
+      "sha256": "41a37af439e0c8b4b2fdb699e2761db9af3aba7356d5bcc838a0d1c10da35aa8"
+    },
+    {
+      "path": "originals/ci/job-132384049345.log.gz",
+      "bytes": 89133,
+      "sha256": "fc32c455407d0db828e3b71ca94fcb81bc07fd829583bcb47ce2db31a7cc39fb"
+    },
+    {
+      "path": "originals/ci/job-132384049622.log.gz",
+      "bytes": 13305,
+      "sha256": "3bb6f5ccb2716678c780cbf730ba5def393af09af9b14ca0ecfd7ce97d917b44"
+    },
+    {
+      "path": "originals/ci/job-132385364099.log.gz",
+      "bytes": 8510,
+      "sha256": "0dd6e09e8caeea75ce9b36c9e256c5914dca99d3593bc8f8b397e5d63f05e07c"
+    },
+    {
+      "path": "originals/ci/p492_learning_jobs.json.gz",
+      "bytes": 863,
+      "sha256": "6e2f3bbf6d32066f466e6f62270cdd0ece409605da3f53cb568ed9d1249b4cca"
+    },
+    {
+      "path": "originals/ci/p492_unified_jobs.json.gz",
+      "bytes": 2114,
+      "sha256": "6083490d2a327d5fa4a00ae420f075fd10f74e3004bf59dc78e663e765caaf66"
+    },
+    {
+      "path": "originals/ci/p493_audit_jobs.json.gz",
+      "bytes": 866,
+      "sha256": "021489e1b887669fd73e3c6d93ffbde526dd597fe6e1f0f89240126e34d245b1"
+    },
+    {
+      "path": "originals/ci/pr492-actual-checkout-commit.json.gz",
+      "bytes": 1245,
+      "sha256": "15318fbc6f5d2f82bd8e87135e4eace0a3d8958bba7329fc68d8e29332747f72"
+    },
+    {
+      "path": "originals/source/pr491/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 43189,
+      "sha256": "ecf483b9f5d10b58b87487220a34d6e7333f155aa8f4389acf1264ace9555057"
+    },
+    {
+      "path": "originals/source/pr491/lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+      "bytes": 20079,
+      "sha256": "9be076ab596ed252dc7bf7e7831f36a0de3c6afd357cf808b3e63b96ce96b231"
+    },
+    {
+      "path": "originals/source/pr491/lib/widgets/shell/left_navigation.dart",
+      "bytes": 16048,
+      "sha256": "ab1c0adfffa3092fb135bf8466f387608c6be3a24ca86f7b81dd25b9800a7580"
+    },
+    {
+      "path": "originals/source/pr491/test/design/connect_four_visual_test.dart",
+      "bytes": 4403,
+      "sha256": "13c2a1ad9ce5d83edbcef20055728126b24ac374d7f3fa2d6bfa87bdc6f78b10"
+    },
+    {
+      "path": "originals/source/pr491/test/games/connect_four_scroll_alignment_test.dart",
+      "bytes": 3776,
+      "sha256": "420c0bfb92c9dfabc828c7188a30608fcb957180f26f5d6b3f1f86f2090646ff"
+    },
+    {
+      "path": "originals/source/pr491/test/games/games_screen_flow_test.dart",
+      "bytes": 10554,
+      "sha256": "10d83437c6758e2010ee03a34d4f1618154db8d5f9577a070b4818a434b0c0b5"
+    },
+    {
+      "path": "originals/source/pr491/test/learning/learning_exact_selection_test.dart",
+      "bytes": 2701,
+      "sha256": "c7c29db55aa5121ae6f9d23bde48e5a6f220ed5218efa22fcb1803d0352755e7"
+    },
+    {
+      "path": "originals/source/pr491/test/lumo_left_navigation_motion_test.dart",
+      "bytes": 4364,
+      "sha256": "9198f99d40d2fdc144e4dda85362cbead4e8b95fee720db841ce55aa63427bd5"
+    },
+    {
+      "path": "originals/source/pr491/test/shape_trace_input_regression_test.dart",
+      "bytes": 4154,
+      "sha256": "caf2693cd78a800055c2eeed24722202387dfd0abef3d410b9582675fa4da921"
+    },
+    {
+      "path": "originals/source/pr492/lib/features/home/widgets/lumo_home_hero.dart",
+      "bytes": 8022,
+      "sha256": "1364bb4d984e6432441205b606243142866adbe532e51b567c21cf3adfe4b49e"
+    },
+    {
+      "path": "originals/source/pr492/lib/widgets/design/lumo_adventure_card.dart",
+      "bytes": 5352,
+      "sha256": "ddffa3ec8ca5046a600f8b77679fa00f2767a6cdceb1fa7fff9fb3b30b32a1d7"
+    },
+    {
+      "path": "originals/source/pr492/lib/widgets/design/lumo_scene_atmosphere.dart",
+      "bytes": 11865,
+      "sha256": "4d619957b93597fbe093f48a3a7a520ad8422c0f2ef900e79b6cce7958f6a315"
+    },
+    {
+      "path": "originals/source/pr492/test/lumo_scene_atmosphere_test.dart",
+      "bytes": 6805,
+      "sha256": "3b1f6990446561d3fbe81ce9cc14e4cbbc38940aadcaccd544637a7301323009"
+    },
+    {
+      "path": "originals/source/pr493/lib/core/school_exercise_generator.dart",
+      "bytes": 83871,
+      "sha256": "cf7dfba7e5d587be0eef4cbec853f016211ee0715b460f1c365064142165c778"
+    },
+    {
+      "path": "originals/source/pr493/lib/features/learning/learning_content.dart",
+      "bytes": 135381,
+      "sha256": "956fb5791c388d2816ccb2f6ad4936fc192e5af5febb10f42cfd5a3b47d96703"
+    },
+    {
+      "path": "originals/source/pr493/lib/features/learning/widgets/lumo_shape_trace_canvas.dart",
+      "bytes": 20226,
+      "sha256": "ddb82957a8ef36da438b8a8e1c1496039a763903858a3869133eeee4fa568c32"
+    },
+    {
+      "path": "originals/source/pr493/test/learning/learning_exact_selection_test.dart",
+      "bytes": 2309,
+      "sha256": "59f335779fcaca6c834cc4e1662140bf3453c3e92a72901fb7643b3a50e70441"
+    },
+    {
+      "path": "originals/source/pr493/test/learning_selection_integration_test.dart",
+      "bytes": 6637,
+      "sha256": "05059700118b89aa54dc27153432ded327cb25f257d627f97925db9688c47000"
+    },
+    {
+      "path": "originals/source/pr493/test/shape_trace_input_test.dart",
+      "bytes": 6438,
+      "sha256": "9bf1485c9befe23d11092f342c5f49dc579e939205a8dad004c0784128def28d"
+    },
+    {
+      "path": "patch-readback.json",
+      "bytes": 5319,
+      "sha256": "9c9cf71ffd93352f21235e7a089c0b5c6890c2978d41618b07785a6ace132b3e"
+    },
+    {
+      "path": "pr492-predecessor-binding.json",
+      "bytes": 908,
+      "sha256": "9eed9078d947397dc420e1a86776c29d93a237094fb0f22f148df25b95e5cdf1"
+    },
+    {
+      "path": "producer-ci-review.json",
+      "bytes": 12242,
+      "sha256": "6680de20bcf05ea9a8a5c2557f70f2c5e9a02cfefe62bf37763a5b967abf7d3e"
+    },
+    {
+      "path": "producer-path-dispositions.json",
+      "bytes": 40178,
+      "sha256": "d45de5e0768933f65fbc8ba5f61ce0cf939f467667611363b6fcbe7ab5f9ae10"
+    },
+    {
+      "path": "protected-dependencies.json",
+      "bytes": 6760,
+      "sha256": "d3f88d89b21cce2dee44902fc4bce5fcd3d577ecc4ec74c1416e1e8dfdfc08ba"
+    },
+    {
+      "path": "publication-scope-check.json",
+      "bytes": 161,
+      "sha256": "b450e53a06e2d311833f990903741b02b1fbb6b7e1cae5f7d36b651dec6b1cdd"
+    },
+    {
+      "path": "repository-preservation.json",
+      "bytes": 540,
+      "sha256": "0254fd1b8ea0f7409c4275eed9fedb7f8c4cc4bd790e6a669ac77e657d335cab"
+    },
+    {
+      "path": "reviews/pr492-independent-review.json",
+      "bytes": 4853,
+      "sha256": "c5a06c395117ef2cf940a44748d0932be35a8e3e5cc0dfb95af9828b808598ab"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 14200,
+      "sha256": "037fb4e27d8d16e9adbe88c25735762d354d63ace2b26c520b733cff87dc41a5"
+    },
+    {
+      "path": "source-overlap-proofs.json",
+      "bytes": 488,
+      "sha256": "0ed825bb4eebc1cd83b170ebe5dc4da46d7f45aa8b9bc89152bab0c39ee4079e"
+    },
+    {
+      "path": "source-review.json",
+      "bytes": 3165,
+      "sha256": "179e8058f5d2bb7e372a5fcc459888de28c12819435e352e7fe523fab659f03e"
+    },
+    {
+      "path": "validation-plan.json",
+      "bytes": 3239,
+      "sha256": "a57d798826ed4d01a5be25dfb639d6844ed725b956f03131e3aaa370775bafa3"
+    }
+  ]
+}

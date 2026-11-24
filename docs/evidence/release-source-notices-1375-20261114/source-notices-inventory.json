@@ -1,0 +1,842 @@
+{
+  "schema": 1,
+  "kind": "completed_readonly_release_source_notices_inventory",
+  "date_utc": "2026-11-14",
+  "provenance": {
+    "prepared_by": "learning_ux_lead from its completed document review and the existing touch_worker source review",
+    "checkpoint_method": "Only previously read fixed-source originals and completed notes; no additional research or execution for this checkpoint",
+    "host": {
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "tree": "ebaf259b92a4c7923782e195c3a932112ce81027"
+    },
+    "native": {
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e"
+    }
+  },
+  "evidence_boundary": {
+    "license_names_are_repository_statements": true,
+    "external_rights_chain_verified": false,
+    "legal_opinion_performed": false,
+    "actual_new_apk_inspected": false,
+    "actual_embedded_pck_members_inspected": false,
+    "source_and_build_intent_not_relabelled_as_packaged_content": true,
+    "no_asset_model_downloads": true,
+    "no_tests_or_renderers": true,
+    "no_product_or_ref_changes": true,
+    "known_operator_or_play_key_gaps_not_researched": true
+  },
+  "sources": [
+    {
+      "id": "host_pubspec",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "pubspec.yaml",
+      "git_blob": "7f504396071cf3af57164187a29ea74b74c62413",
+      "line_ranges": [
+        [
+          30,
+          82
+        ],
+        [
+          83,
+          92
+        ]
+      ],
+      "observed": "Declares concrete Flutter asset directories, both voice directories, and four Nunito TTF files; no explicit assets/fonts/OFL.txt asset entry.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/pubspec.yaml"
+    },
+    {
+      "id": "host_build",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "scripts/build_unified_apk.sh",
+      "git_blob": "44f6957c904d074e5a0ce2c604b50ad546c1ecf0",
+      "line_ranges": [
+        [
+          38,
+          47
+        ]
+      ],
+      "observed": "Calls Android/embedded preparation, offline voice preparation and native export in the direct family build path.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/scripts/build_unified_apk.sh"
+    },
+    {
+      "id": "host_export",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "scripts/export_embedded_game.py",
+      "git_blob": "00915781968bb61f5d1ce1923529fb14a35cce19",
+      "line_ranges": [
+        [
+          134,
+          169
+        ],
+        [
+          153,
+          156
+        ]
+      ],
+      "observed": "Exports the pinned native Android preset to android/app/src/main/assets/lumo_game.pck; checks remaining source differences.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/scripts/export_embedded_game.py"
+    },
+    {
+      "id": "native_export",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "export_presets.cfg",
+      "git_blob": "9bea54cf996ac3fecb4c8027d5eb8e98e40b69bc",
+      "line_ranges": [
+        [
+          63,
+          70
+        ]
+      ],
+      "observed": "Android: all_resources; empty include_filter; exclusions exports/*,tools/*,scripts/tests/*,docs/*,assets/characters/rivals/reference/*.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/export_presets.cfg"
+    },
+    {
+      "id": "native_asset_loader",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "scripts/systems/asset_loader.gd",
+      "git_blob": "5436978a86ea21c70ee3affed30eec1219d6a571",
+      "line_ranges": [
+        [
+          20,
+          20
+        ],
+        [
+          42,
+          43
+        ],
+        [
+          157,
+          172
+        ]
+      ],
+      "observed": "Loads assets/manifests/assets.json as an asset path mapping, not a complete rights register.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/scripts/systems/asset_loader.gd"
+    },
+    {
+      "id": "host_nunito_readme",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "assets/fonts/README.md",
+      "git_blob": "f030c163d4071cdfd57e835380a2797b99b3d71c",
+      "line_ranges": [
+        [
+          3,
+          12
+        ]
+      ],
+      "observed": "Records Google Fonts/fontsource provenance and Nunito under SIL OFL 1.1.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/assets/fonts/README.md"
+    },
+    {
+      "id": "host_nunito_ofl",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "assets/fonts/OFL.txt",
+      "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+      "line_ranges": [
+        [
+          1,
+          9
+        ]
+      ],
+      "observed": "Contains the Nunito copyright/OFL identification; full license file is pinned by this blob.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/assets/fonts/OFL.txt"
+    },
+    {
+      "id": "native_nunito_ofl",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "assets/fonts/Nunito-LICENSE.txt",
+      "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+      "line_ranges": [
+        [
+          1,
+          9
+        ]
+      ],
+      "observed": "Same complete license blob as the Host OFL file.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/assets/fonts/Nunito-LICENSE.txt"
+    },
+    {
+      "id": "native_nunito_use",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "scripts/games/kart_ui_theme.gd",
+      "git_blob": "e3e95240df1a2e4df7a87b6085f98cdd40433285",
+      "line_ranges": [
+        [
+          3,
+          5
+        ],
+        [
+          15,
+          17
+        ]
+      ],
+      "observed": "Actually loads Nunito Bold/Black; corresponding font files match the Host blobs.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/scripts/games/kart_ui_theme.gd"
+    },
+    {
+      "id": "free_voice_catalog",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "assets/audio/voice/lumo_free/catalog.json",
+      "git_blob": "a0fe8fe81d3b661ae70ff9d4828502b7f8c3a315",
+      "line_ranges": [
+        [
+          1,
+          12
+        ]
+      ],
+      "observed": "Records Supertonic 3/F2, machine generation and clip hashes. Completed child inventory counted 155 clips and no aliases in the clips mapping.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/assets/audio/voice/lumo_free/catalog.json"
+    },
+    {
+      "id": "free_voice_code_license",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "assets/audio/voice/lumo_free/LICENSE-CODE.txt",
+      "git_blob": "943171bd72aa0cb70e4e43c4d62ebeb336a2353c",
+      "line_ranges": [
+        [
+          1,
+          13
+        ]
+      ],
+      "observed": "MIT code notice attributed in the source to Supertone.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/assets/audio/voice/lumo_free/LICENSE-CODE.txt"
+    },
+    {
+      "id": "free_voice_model_license",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "assets/audio/voice/lumo_free/LICENSE-MODEL.txt",
+      "git_blob": "1e2cbe6cef94c8cdf3ed1fcebc0f5317ca7ad5a1",
+      "line_ranges": [
+        [
+          1,
+          14
+        ]
+      ],
+      "observed": "BigScience Open RAIL-M model license; not represented as MIT.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/assets/audio/voice/lumo_free/LICENSE-MODEL.txt"
+    },
+    {
+      "id": "old_host_voice_catalog",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "assets/audio/voice/lumo/catalog.json",
+      "git_blob": "17d3787418a6db2bff453d8606d31a9c1aee89f1",
+      "line_ranges": [
+        [
+          5,
+          7
+        ]
+      ],
+      "observed": "Records Gemini TTS / Sulafat and the limited text: AI-generated project audio. Provider terms apply.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/assets/audio/voice/lumo/catalog.json"
+    },
+    {
+      "id": "offline_model_pin",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "config/lumo-offline-voice.json",
+      "git_blob": "200b67029cd4e19f27118f77b52e683c49461a6b",
+      "line_ranges": [
+        [
+          2,
+          29
+        ]
+      ],
+      "observed": "Pins model source, download archive/hash, seven model files and the model-license hash.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/config/lumo-offline-voice.json"
+    },
+    {
+      "id": "offline_model_prepare",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "scripts/prepare_offline_voice.py",
+      "git_blob": "e9d91a8d41ea520cade4f73a2dd078e4e54865f0",
+      "line_ranges": [
+        [
+          28,
+          65
+        ]
+      ],
+      "observed": "Downloads/verifies pinned model input and copies both license texts to Android assets/lumo_offline_voice.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/scripts/prepare_offline_voice.py"
+    },
+    {
+      "id": "apk_voice_verifier",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "scripts/verify_unified_apk.py",
+      "git_blob": "455a69423b887843efc4477568d5f2cd094d6088",
+      "line_ranges": [
+        [
+          51,
+          92
+        ]
+      ],
+      "observed": "Requires exact packaged model/catalog/clip identities. At lines55–72 both model and Flutter prefixes require MODEL and CODE; MODEL matches the config SHA256, CODE requires unique presence.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/scripts/verify_unified_apk.py"
+    },
+    {
+      "id": "native_legacy_voice_gate",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "scripts/systems/audio_manager.gd",
+      "git_blob": "36462f609a2a27d02a91fc12177f1c441054911a",
+      "line_ranges": [
+        [
+          68,
+          95
+        ]
+      ],
+      "observed": "Describes the old bank as eSpeak legacy and blocks this playback path without the reviewed Sulafat manifest.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/scripts/systems/audio_manager.gd"
+    },
+    {
+      "id": "native_sulafat_generator",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "tools/generate_sulafat_voices.py",
+      "git_blob": "9a1b83d9f263c47fa17e05e63eca581363c4aeaf",
+      "line_ranges": [
+        [
+          133,
+          158
+        ]
+      ],
+      "observed": "A separate generator writes VOICE / sulafat_manifest.json only in the explicit --publish branch; it was not executed.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/tools/generate_sulafat_voices.py"
+    },
+    {
+      "id": "native_lumo_animated_notice",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+      "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+      "line_ranges": [
+        [
+          3,
+          16
+        ]
+      ],
+      "observed": "Records Meshy, the original reference, CC BY4.0 as the recorded model license, source/derivative hashes and changes.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/assets/characters/lumo_animated/ATTRIBUTION.md"
+    },
+    {
+      "id": "native_lumo_facial_notice",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+      "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+      "line_ranges": [
+        [
+          3,
+          20
+        ]
+      ],
+      "observed": "Records corresponding model provenance, attribution, hashes and changes.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/assets/characters/lumo_facial/ATTRIBUTION.md"
+    },
+    {
+      "id": "native_shader_notice",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "THIRD_PARTY_NOTICES.md",
+      "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c",
+      "line_ranges": [
+        [
+          3,
+          21
+        ]
+      ],
+      "observed": "Records GDQuest provenance and MIT notice for the directional-color shader technique in kart_stylized_vertex_tint.gdshader.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/THIRD_PARTY_NOTICES.md"
+    },
+    {
+      "id": "host_music_credits",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "assets/audio/music/CREDITS.txt",
+      "git_blob": "ac3105966c358dd03fcd165b3a1f5983b948385d",
+      "line_ranges": [
+        [
+          3,
+          10
+        ]
+      ],
+      "observed": "Describes three tracks as procedurally generated originals and refers to account-applicable OpenAI/ChatGPT terms without recording a particular contract version.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/assets/audio/music/CREDITS.txt"
+    },
+    {
+      "id": "host_sfx_credits",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "assets/audio/sfx/CREDITS.txt",
+      "git_blob": "bd1dd286ab51bf19024777e78cb2f6b8d6999342",
+      "line_ranges": [
+        [
+          3,
+          15
+        ]
+      ],
+      "observed": "Describes eight effects as procedurally generated originals and refers to account-applicable OpenAI/ChatGPT terms without recording a particular contract version.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/assets/audio/sfx/CREDITS.txt"
+    },
+    {
+      "id": "native_kart_audio_readme",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "assets/audio/kart/README.md",
+      "git_blob": "f022b5a645a2dba551b8a3622c8c3b56cc6354d8",
+      "line_ranges": [
+        [
+          5,
+          12
+        ],
+        [
+          24,
+          31
+        ],
+        [
+          57,
+          59
+        ]
+      ],
+      "observed": "Records generators, original synthesis without external samples, metadata and hashes.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/assets/audio/kart/README.md"
+    },
+    {
+      "id": "native_kart_audio_manifest",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "assets/audio/kart/manifest.json",
+      "git_blob": "944e58456eccd800e58a9dd5f20b0b4ed45e432a",
+      "line_ranges": null,
+      "observed": "Companion audio metadata/hash manifest; no precise line interval retained in the completed notes.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/assets/audio/kart/manifest.json"
+    },
+    {
+      "id": "host_design_assets",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "docs/DESIGN_ASSETS_2026-10-04.md",
+      "git_blob": "c773c10dc268054e80b65b0636f6f05dd193895f",
+      "line_ranges": [
+        [
+          1,
+          9
+        ]
+      ],
+      "observed": "Contains recorded Heinz/ChatGPT origin information; not a complete individual-file rights chain for all asset directories.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/docs/DESIGN_ASSETS_2026-10-04.md"
+    },
+    {
+      "id": "host_board_originals",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "docs/design/2026-10-12-board-games/ORIGINAL-ASSET-PROVENANCE.json",
+      "git_blob": "1c48776411916fb8fe8dbf44426d4619006c7a0a",
+      "line_ranges": [
+        [
+          1,
+          17
+        ]
+      ],
+      "observed": "Records original cutouts and source-commit/hash provenance; detailed entries continue in the pinned file.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/docs/design/2026-10-12-board-games/ORIGINAL-ASSET-PROVENANCE.json"
+    },
+    {
+      "id": "native_generated_assets",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "assets/generated/lumo3d_assets/asset_manifest.json",
+      "git_blob": "b9aefd3c9677beadd2f873f86b8406fd3f5e424a",
+      "line_ranges": [
+        [
+          2,
+          4
+        ]
+      ],
+      "observed": "Describes purpose-created original assets without external source images.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/assets/generated/lumo3d_assets/asset_manifest.json"
+    },
+    {
+      "id": "native_village_provenance",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "assets/creative/village/ATTRIBUTION.md",
+      "git_blob": "1a1e49c632e243038a46c5d66c54ee2349e1eef0",
+      "line_ranges": [
+        [
+          3,
+          11
+        ]
+      ],
+      "observed": "Records local Blender geometry and authoring source.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/assets/creative/village/ATTRIBUTION.md"
+    },
+    {
+      "id": "native_garden_provenance",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "assets/dream_garden/provenance.json",
+      "git_blob": "3f8030d6a113752e771ca2c110478f26efe98d52",
+      "line_ranges": [
+        [
+          3,
+          24
+        ]
+      ],
+      "observed": "Records local generator, original materials and GLB/Blend hashes.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/assets/dream_garden/provenance.json"
+    },
+    {
+      "id": "native_harbor_provenance",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "assets/kart/harbor_pavilion/PROVENANCE.json",
+      "git_blob": "6db829409587f29978bab3a0a9d94c3d8f11dfbd",
+      "line_ranges": [
+        [
+          2,
+          11
+        ]
+      ],
+      "observed": "Records original geometry, reference and first-LOD hash.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/assets/kart/harbor_pavilion/PROVENANCE.json"
+    },
+    {
+      "id": "native_learning_provenance",
+      "repository": "Ullmann27/lumo-godot",
+      "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "path": "assets/learning/studio/provenance.json",
+      "git_blob": "15fd66663d323a630dba152e5955b7aef512c0b5",
+      "line_ranges": [
+        [
+          3,
+          12
+        ]
+      ],
+      "observed": "Records script-authored original geometry and asset/Blend hashes.",
+      "url": "https://github.com/Ullmann27/lumo-godot/blob/e2d15dbc5f3709306decb139eeb70a1cf30c0b73/assets/learning/studio/provenance.json"
+    },
+    {
+      "id": "play_aab_document",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "docs/release/PLAY_AAB_LOCAL_BUILD_2026-11-14.md",
+      "git_blob": "c54b86523e5994eacca2cee9c841cf0ec9e6e3a7",
+      "line_ranges": [
+        [
+          5,
+          13
+        ],
+        [
+          76,
+          111
+        ],
+        [
+          113,
+          155
+        ]
+      ],
+      "observed": "Documents the separate local AAB path and historical focused evidence; genuine AAB/Play/16KiB runtime acceptance remains separate.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/docs/release/PLAY_AAB_LOCAL_BUILD_2026-11-14.md"
+    },
+    {
+      "id": "play_distribution_document",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "docs/release/PLAY_DISTRIBUTION_2026-11-14.md",
+      "git_blob": "a6d1febf62c7f0204bbafa500682194a56871050",
+      "line_ranges": [
+        [
+          14,
+          38
+        ]
+      ],
+      "observed": "Documents explicit Play distribution preparation and its boundary from family APK distribution.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/docs/release/PLAY_DISTRIBUTION_2026-11-14.md"
+    },
+    {
+      "id": "play_listing_document",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "docs/release/PLAY_STORE_LISTING_DE_2026-11-14.md",
+      "git_blob": "4b13aee3f26bbcd51c7190d1ab2ea04d8c4f9fd1",
+      "line_ranges": [
+        [
+          3,
+          9
+        ],
+        [
+          60,
+          66
+        ],
+        [
+          79,
+          79
+        ]
+      ],
+      "observed": "Unpublished German draft explicitly reviewed on dfc3e0a1ea20f1491e4844ecfa913c598e1c6c5f; requires eventual text/artifact consistency, no unsupported quality or data guarantees.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/docs/release/PLAY_STORE_LISTING_DE_2026-11-14.md"
+    },
+    {
+      "id": "scanner_scope_document",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "docs/release/SCANNER_COPY_EVIDENCE_2026-11-14.md",
+      "git_blob": "7871de534c92f61ed15dc54d63bcbe6285e9e0b1",
+      "line_ranges": [
+        [
+          5,
+          13
+        ],
+        [
+          25,
+          36
+        ],
+        [
+          48,
+          57
+        ]
+      ],
+      "observed": "Documents the narrower on-device recognition statement and explicitly avoids inferring app-wide traffic/Families acceptance.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/docs/release/SCANNER_COPY_EVIDENCE_2026-11-14.md"
+    },
+    {
+      "id": "historical_play_gate",
+      "repository": "Ullmann27/lumo-lernen",
+      "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "docs/release/LUMO_PLAY_STORE_GATE_2026-10-19.md",
+      "git_blob": "2dc92de88ea5c22fa144c642d10f440b8f9758c4",
+      "line_ranges": [
+        [
+          1,
+          7
+        ],
+        [
+          24,
+          38
+        ]
+      ],
+      "observed": "Historical1986/1987 source audit. Its former missing-AAB-path statement must not be treated as the current1375 source state.",
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/1375da193af0152af64f91d86577aa9768cd50db/docs/release/LUMO_PLAY_STORE_GATE_2026-10-19.md"
+    }
+  ],
+  "catalogs": {
+    "free_voice": {
+      "path": "assets/audio/voice/lumo_free/catalog.json",
+      "git_blob": "a0fe8fe81d3b661ae70ff9d4828502b7f8c3a315",
+      "clips": 155,
+      "aliases": 0,
+      "recorded_generator": "Supertonic 3",
+      "recorded_speaker": "F2",
+      "machine_generated": true,
+      "clip_hashes_recorded": true,
+      "license_sources": [
+        "free_voice_code_license",
+        "free_voice_model_license"
+      ]
+    },
+    "older_host_voice": {
+      "path": "assets/audio/voice/lumo/catalog.json",
+      "git_blob": "17d3787418a6db2bff453d8606d31a9c1aee89f1",
+      "recorded_generation": "Gemini TTS / Sulafat",
+      "recorded_license_text": "AI-generated project audio. Provider terms apply.",
+      "clips": [
+        {
+          "path": "assets/audio/voice/lumo/06e26a73d0b4.m4a",
+          "git_blob": "857a7acf985911f100aadcced53aee5c66a062e7"
+        },
+        {
+          "path": "assets/audio/voice/lumo/19495758a130.m4a",
+          "git_blob": "40c442fdd394f5583581b1bc80c49f24f9433a80"
+        },
+        {
+          "path": "assets/audio/voice/lumo/341f8117fda1.m4a",
+          "git_blob": "428758db705f5cc6b735a6bdd39f54f0426a50cf"
+        },
+        {
+          "path": "assets/audio/voice/lumo/a3e9510a5f01.m4a",
+          "git_blob": "e5a062ab9f6809fcc4af2a6a17d8ae371407146d"
+        },
+        {
+          "path": "assets/audio/voice/lumo/b79005f3d3d8.m4a",
+          "git_blob": "54bd75b4dd6faab61aa0a5c88996e5b9bcd66338"
+        },
+        {
+          "path": "assets/audio/voice/lumo/c3034465f7dd.m4a",
+          "git_blob": "2ebba4e4af0ba2038416cf82dc145e57c343553f"
+        }
+      ],
+      "limitation": "No specific provider-contract version or additional individual clearance is documented in this catalog. This is not a finding that rights are absent."
+    },
+    "native_kart_audio": {
+      "path": "assets/audio/kart/manifest.json",
+      "git_blob": "944e58456eccd800e58a9dd5f20b0b4ed45e432a"
+    },
+    "asset_loader_mapping": {
+      "path": "assets/manifests/assets.json",
+      "role": "Runtime asset-path mapping, not a complete license register",
+      "source": "native_asset_loader"
+    }
+  },
+  "package_paths_and_filters": {
+    "free_voice": {
+      "preparation_directory": "android/app/src/main/assets/lumo_offline_voice",
+      "apk_required_members": [
+        "assets/lumo_offline_voice/LICENSE-MODEL.txt",
+        "assets/lumo_offline_voice/LICENSE-CODE.txt",
+        "assets/flutter_assets/assets/audio/voice/lumo_free/LICENSE-MODEL.txt",
+        "assets/flutter_assets/assets/audio/voice/lumo_free/LICENSE-CODE.txt"
+      ],
+      "sources": [
+        "host_pubspec",
+        "offline_model_prepare",
+        "apk_voice_verifier"
+      ],
+      "source_lines": {
+        "flutter_voice_directory": 79,
+        "prepare_target": [
+          30,
+          34
+        ],
+        "prepare_license_copy": [
+          57,
+          65
+        ],
+        "apk_license_requirements": [
+          55,
+          72
+        ]
+      },
+      "model_license_check": "Each copy must match config.model_license_sha256",
+      "code_license_check": "Unique file presence is required; do not claim an added content hash check",
+      "actual_package_observation": "not performed"
+    },
+    "nunito": {
+      "host_source_license": "assets/fonts/OFL.txt",
+      "native_source_license": "assets/fonts/Nunito-LICENSE.txt",
+      "shared_license_git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+      "host_declared_ttf": [
+        "assets/fonts/Nunito-Regular.ttf",
+        "assets/fonts/Nunito-Bold.ttf",
+        "assets/fonts/Nunito-ExtraBold.ttf",
+        "assets/fonts/Nunito-Black.ttf"
+      ],
+      "explicit_ofl_asset_entry_in_reviewed_pubspec": false,
+      "confirmed_finished_apk_notice_path": null,
+      "package_delivery": "not established by this source review"
+    },
+    "native_notices": {
+      "prepared_pck_path": "android/app/src/main/assets/lumo_game.pck",
+      "intended_outer_apk_member": "assets/lumo_game.pck",
+      "project_notice_paths": [
+        "res://assets/fonts/Nunito-LICENSE.txt",
+        "res://assets/characters/lumo_animated/ATTRIBUTION.md",
+        "res://assets/characters/lumo_facial/ATTRIBUTION.md",
+        "res://THIRD_PARTY_NOTICES.md"
+      ],
+      "android_export_filter": "all_resources",
+      "android_include_filter": "",
+      "android_exclude_filter": "exports/*,tools/*,scripts/tests/*,docs/*,assets/characters/rivals/reference/*",
+      "sources": [
+        "host_export",
+        "native_export"
+      ],
+      "explicit_additional_md_txt_inclusion_rule_in_this_preset": false,
+      "actual_pck_notice_members": "not inspected; absence is not inferred solely from the empty include_filter"
+    }
+  },
+  "native_legacy_voice": {
+    "tracked_wav_count": 52,
+    "tracked_directories": [
+      "assets/audio/voice/letters/",
+      "assets/audio/voice/words/"
+    ],
+    "missing_basename_in_complete_untruncated_e2_tree": "sulafat_manifest.json",
+    "playback_guard_source": "native_legacy_voice_gate",
+    "separate_generator_source": "native_sulafat_generator",
+    "manifest_writer": "VOICE / sulafat_manifest.json, explicit --publish branch only",
+    "direct_host_build_generation_or_copy_binding_found": false,
+    "direct_paths_reviewed": [
+      ".github/workflows/lumo-connect-four-2020.yml",
+      "scripts/build_unified_apk.sh",
+      "scripts/prepare_android.py",
+      "scripts/prepare_embedded_games.py",
+      "scripts/prepare_offline_voice.py",
+      "scripts/export_embedded_game.py"
+    ],
+    "scope": "The completed review found no named generator/manifest binding in those direct paths. This is a tracked-source/direct-build-path observation; no conclusion about finished APK contents or all external preparation is claimed.",
+    "generator_executed": false,
+    "direct_path_blobs": [
+      {
+        "path": ".github/workflows/lumo-connect-four-2020.yml",
+        "git_blob": "581e072ac61b9073aa49eff75e7abed5bb2c334b"
+      },
+      {
+        "path": "scripts/build_unified_apk.sh",
+        "git_blob": "44f6957c904d074e5a0ce2c604b50ad546c1ecf0"
+      },
+      {
+        "path": "scripts/prepare_android.py",
+        "git_blob": "054324b3f9ba8b7dc269e42a20b9c91a8717b27a"
+      },
+      {
+        "path": "scripts/prepare_embedded_games.py",
+        "git_blob": "a1615455b5ea6251926d5037900e025d46971c18"
+      },
+      {
+        "path": "scripts/prepare_offline_voice.py",
+        "git_blob": "e9d91a8d41ea520cade4f73a2dd078e4e54865f0"
+      },
+      {
+        "path": "scripts/export_embedded_game.py",
+        "git_blob": "00915781968bb61f5d1ce1923529fb14a35cce19"
+      }
+    ]
+  },
+  "open_acceptance_items": [
+    {
+      "id": "package_notice_delivery",
+      "fact": "Actual new APK/PCK members were not inspected.",
+      "next_artifact_check": "Verify the four explicit voice-license members and establish delivery of Nunito OFL, Lumo model attributions and Native third-party notices in the actual package."
+    },
+    {
+      "id": "bounded_provider_records",
+      "fact": "Older Host Sulafat catalog and Host music/SFX credits refer to provider/account terms without recording a particular contract version.",
+      "rights_conclusion": "not assessed; no finding of missing permission or infringement"
+    },
+    {
+      "id": "coverage",
+      "fact": "The listed sources document particular asset groups and original provenance. They are not a complete individual-file rights chain for every declared asset directory."
+    },
+    {
+      "id": "store_text_artifact_match",
+      "fact": "The current German listing document remains an unpublished dfc3-bound draft; consistency with the final delivered artifact remains separate."
+    },
+    {
+      "id": "historical_checklist",
+      "fact": "The October19 checklist refers to1986/1987; its former missing-AAB-path statement is superseded as a current-source description by the November14 AAB path documentation."
+    }
+  ],
+  "serialization_identity_review": {
+    "method": "Compared all37 recorded source path/blob pairs and six old Host clip path/blob pairs with already-read immutable Git tree metadata; no new repository query or test.",
+    "source_path_blob_pairs": 37,
+    "clip_path_blob_pairs": 6,
+    "all_match": true
+  }
+}

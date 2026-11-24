@@ -1,0 +1,37 @@
+{
+  "source_checkpoint": "69cadb6cad90c653cc044e8d073b06e5906ee97d",
+  "source_note": "The surrounding integration host also contained root/QA changes; this does not claim the entire host equals that branch",
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter=expanded",
+    "--timeout=60s",
+    "--concurrency=1",
+    "test/design/home_1989_premium_cards_capture_test.dart"
+  ],
+  "environment_overrides": {
+    "TMPDIR": "/dev/shm",
+    "PUB_CACHE": "/home/agent/.pub-cache",
+    "LUMO_NEXTGEN_CAPTURES": "/dev/shm/lumo-live-flutter-review-evidence/home-learning-after-layout-split/home-nextgen",
+    "LUMO_1989_CARD_CAPTURES": "/dev/shm/lumo-live-flutter-review-evidence/home-learning-after-layout-split/home-cards",
+    "LUMO_LEARNING_CAPTURE_DIR": "/dev/shm/lumo-live-flutter-review-evidence/home-learning-after-layout-split/learning"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 10.663,
+  "passed": 5,
+  "failed": 0,
+  "png_count": 8,
+  "sources_unchanged": true,
+  "log_sha256": "996cfa8106953bd83d0aed53250260ccb1ffcfcbcb3c11571b37e9e1408643bb",
+  "log_recovery": "Complete log recovered from displayed execution output; its SHA256 matches the original independently recorded before the outage",
+  "full_source_manifest": "The pre-run complete Dart source fingerprint was written locally but could not be recovered after the execution environment failed",
+  "prior_combined_attempt": {
+    "exit_code": 130,
+    "passed_before_stall": 13,
+    "png_count": 0,
+    "aggregate_pass": false,
+    "reason": "Interrupted after no new output for more than100seconds while loading the Home card capture file"
+  },
+  "required_ci": "Full six-file Home/learning matrix with all three capture variables enabled; no186-pass or94-image claim is made here"
+}

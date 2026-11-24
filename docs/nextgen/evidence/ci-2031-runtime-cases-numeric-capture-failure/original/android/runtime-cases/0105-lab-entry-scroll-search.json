@@ -1,0 +1,31 @@
+{
+  "status": "FOUND",
+  "strategy": "forward_then_observed_boundary_reverse",
+  "non_scroll_observations": 0,
+  "gestures": [
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        286,
+        1080,
+        1914
+      ],
+      "before": "fa5db71d416793c5dc0f011bba86986409347af6b8703b697b11a3c98cf2f736",
+      "after": "72ca9c083053c12535453108fca4a04b2d34761bfab50e071054cc78f975bd22",
+      "content_changed": true
+    },
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        286,
+        1080,
+        1914
+      ],
+      "before": "72ca9c083053c12535453108fca4a04b2d34761bfab50e071054cc78f975bd22",
+      "after": "e7b4426af0e4f3e79038fe99152f40aa52eba8a51e89071a96d6b9710b462958",
+      "content_changed": true
+    }
+  ]
+}

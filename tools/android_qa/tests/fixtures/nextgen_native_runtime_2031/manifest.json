@@ -1,0 +1,37 @@
+{
+  "source_run": 43790709991,
+  "source_job": 133048238970,
+  "source_artifact": 14193300868,
+  "source_apk": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "native_source": "678cb38fea3a83a7f5841e71fba9bb2f3bfa2eef",
+  "archive_bytes": 35233050,
+  "archive_sha256": "c81b97b2bc7c9f4874a698664f44dd7610df1aa56ce428608467aef8fe2a65a3",
+  "selected_originals_only": true,
+  "new_runtime_success": false,
+  "files": {
+    "0143-native-speech.txt": {
+      "original_path": "diagnostic-android/0143-native-speech.txt",
+      "bytes": 4720,
+      "sha256": "cbb8ab796e55fad03e1d6f433b8d2860e47c851a9fdcba4d1a779512ef63487b",
+      "original_member_crc32": "e0623c4c"
+    },
+    "0148-native-speech.txt": {
+      "original_path": "diagnostic-android/0148-native-speech.txt",
+      "bytes": 5589,
+      "sha256": "13c749b98bb192f94f4b6e765e09b05f16cbbe59c5665fc168922f86ac90bd9e",
+      "original_member_crc32": "1dcc53d7"
+    },
+    "0116-native-title-3-ocr.json": {
+      "original_path": "diagnostic-android/0116-native-title-3-ocr.json",
+      "bytes": 3253,
+      "sha256": "1af80685cbe7f76ef748bbfe4a975bfda1910056036fc62b367ebe2d900653d9",
+      "original_member_crc32": "6559f39a"
+    },
+    "0149-native-move-one-0-ocr.json": {
+      "original_path": "diagnostic-android/0149-native-move-one-0-ocr.json",
+      "bytes": 2855,
+      "sha256": "09798f695d1822d8edd016ccd4c4d5611225773d1030bba756df4a2af3d79a71",
+      "original_member_crc32": "e2f90d77"
+    }
+  }
+}

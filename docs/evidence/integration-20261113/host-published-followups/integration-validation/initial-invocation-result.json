@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_historical_apk_expectations.HistoricalApkExpectationsTest.test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier",
+    "tools.android_qa.tests.test_update_2020_preservation.Reviewed2020MigrationTests.test_2020_is_explicit_and_existing_version_pairs_are_preserved",
+    "-v"
+  ],
+  "exit_code": 1,
+  "seconds": 0.144,
+  "log_sha256": "b9981afb68987b9349dd68039d6eadc836b0e839fd69acad12174a31fc2fb1c4"
+}

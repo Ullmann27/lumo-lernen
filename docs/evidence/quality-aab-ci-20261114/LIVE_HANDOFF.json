@@ -1,0 +1,1690 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14 15:28:30 UTC",
+  "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
+  "agent_tree": [
+    "/root",
+    "/root/lumo_release_lead",
+    "/root/lumo_release_lead/learning_ux_lead",
+    "/root/lumo_release_lead/learning_ux_lead/touch_worker"
+  ],
+  "maximum_concurrent_agents": 4,
+  "candidate": {
+    "repository": "Ullmann27/lumo-lernen",
+    "branch": "work/lumo-play-quality-20261114",
+    "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "native_tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+    "version": "0.13.8+2020",
+    "pull_request": 491,
+    "frozen": true,
+    "main_not_modified_by_team": true,
+    "parents": [
+      "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+      "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62"
+    ],
+    "activated_at_utc": "2026-11-14 14:52:47 UTC",
+    "change_scope": "Real two-parent merge of current0b7 integration and7793 quality source; five automatic source/test merges, three coordinated Native pin bindings and two history-preserving status resolutions. Notice/contrast improvements preserved."
+  },
+  "main_run": {
+    "id": 43607156921,
+    "attempt": 1,
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43607156921",
+    "status_at_last_read": "in_progress",
+    "conclusion": null,
+    "head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "created_at": "2026-11-14T14:52:50Z",
+    "trigger": "pull_request",
+    "job_budget_minutes": 150,
+    "android_tour_budget_minutes": 80,
+    "last_read_utc": "2026-11-14 15:22:00 UTC",
+    "main_job_id": 132485496250,
+    "main_job_started_at": "2026-11-14T14:58:03Z",
+    "main_job_deadline_utc": "2026-11-14T17:28:03Z",
+    "active_steps": [
+      {
+        "number": 31,
+        "name": "Require actual gameplay gates on the exact pinned native source",
+        "started_at": "2026-11-14T15:17:24Z",
+        "status": "in_progress"
+      }
+    ],
+    "jobs_snapshot": [
+      {
+        "id": 132484413080,
+        "name": "connect-four-runtime",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-14T14:53:51Z",
+        "completed_at": "2026-11-14T14:56:13Z"
+      },
+      {
+        "id": 132484413382,
+        "name": "android-host-compile",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-14T14:53:52Z",
+        "completed_at": "2026-11-14T14:58:01Z"
+      },
+      {
+        "id": 132485496250,
+        "name": "verify-and-build",
+        "status": "in_progress",
+        "conclusion": null,
+        "started_at": "2026-11-14T14:58:03Z",
+        "completed_at": null
+      }
+    ],
+    "latest_status_source": "ReleaseLead actual original API read; no uncompleted Native result inferred"
+  },
+  "completed_original_evidence": {
+    "android_host_compile": {
+      "job_id": 132484413382,
+      "conclusion": "success",
+      "completed_at": "2026-11-14T14:58:01Z",
+      "original_log_blob": "45d79512b79f12038f7e2a0e131ce624eccd3778",
+      "scope": "Actual Kotlin/Java boundary compilation; not a signed APK or Android tour."
+    },
+    "c4_runtime": {
+      "job_id": 132484413080,
+      "conclusion": "success",
+      "artifact": 14119216097,
+      "archive_bytes": 22155436,
+      "archive_sha256": "6bd4d84880566265dcd392cd41bdcfe4b34a2a760b5634f6623e18fb5c63d604",
+      "checks": 170,
+      "return_checks": 21,
+      "wisp_checks": 14,
+      "actual_readonly_reader_exit_code": 0,
+      "original_files": 399,
+      "host_bound_files": 447,
+      "native_bound_files": 1268,
+      "root_opened_images": 2,
+      "child_opened_images": 4,
+      "handoff_blob": "75e36ebf630f69580fa9c74563c7f6d0d0cc7cdf",
+      "scope": "Actual desktop/file transport/test preferences. Current images do not prove Android won-dialog lower-action input."
+    },
+    "learning_audit": {
+      "artifact": 14119441036,
+      "archive_bytes": 212134,
+      "archive_sha256": "644fcf9a52c441ea2b781c5c15ac36ff9493d97f530c257c68991192f3d8f8ab",
+      "whole_original_zip_blob": "c27aa4d234e1c49408dc37473c0aa48fb2dd44c1",
+      "actual_root_reader_exit_code": 0,
+      "reader_blob": "214e21a6300b361985615c0a90b79d48a43ca2fd",
+      "families": 236,
+      "samples": 7552,
+      "structural_issues": 0,
+      "all_seven_originals_unchanged": true,
+      "semantic_or_official_curriculum_approval": false
+    },
+    "full_flutter": {
+      "artifact": 14119611994,
+      "archive_bytes": 336114687,
+      "archive_sha256": "5ec602547df2553ba1c8ac496d850560f2cf32b9ad69e3742583de343627d0a8",
+      "completed_at": "2026-11-14T15:08:48Z",
+      "passed": 2612,
+      "failed": 0,
+      "skipped": 0,
+      "actual_root_parser_exit_code": 0,
+      "parser_blob": "9999632174044af584c87147c5347c167b830918",
+      "original_files": 554,
+      "original_pngs": 552,
+      "original_machine_done_time_ms": 548409,
+      "exact_topic_test_id": 608,
+      "original_reports_zip_blob": "b209f91a7e9a1ac1ab88343a9caa87bdd58b8b4f",
+      "root_visual_review": "Three original current Schreibcoach/Journal/Reading pictures actually opened; Child opened exactly six new Village tile pictures and one profile capture. Scope limits retained.",
+      "preservation_scope": "Complete original machine/summary reports,554-member hash index, actual readonly execution and all10 selected original PNGs checkpointed. Full336MB ZIP remains local and in original Actions, not wholly in Git.",
+      "root_opened_images": 3,
+      "independent_opened_images": 7,
+      "total_selected_distinct_images": 10,
+      "root_visual_review_blob": "8dcdb7a0366c2811b979b91bb67cfbbbc0c7b4a1",
+      "independent_visual_review_blob": "740b255ead03a3f06d3852c0bc10beb54f3d80b5"
+    },
+    "build_contracts": {
+      "artifact": 14119418657,
+      "archive_bytes": 29035,
+      "archive_sha256": "b5c387703c46c27dc7627b68dae16029758fd49b133a72127a2fe95276d68893",
+      "whole_original_zip_blob": "1d0c72ddcfdebd13a018156e08676995f41bc977",
+      "original_log_blob": "d8df1f42c4bdc71ab42719826927ee0eb724bce0",
+      "actual_root_reader_exit_code": 0,
+      "tests": 947,
+      "skips": 0,
+      "original_seconds": 306.843,
+      "pcm_assertions": 70,
+      "committed_pcm_source_files": 17,
+      "scope": "Original current947-test CI log; pure readonly reader.70 PCM assertions use a synthetic JVM boundary, not audible Android acceptance."
+    },
+    "focused_flutter_captures": {
+      "artifact": 14119369270,
+      "archive_bytes": 38345151,
+      "archive_sha256": "f33ce27cea68774f8cf706412a2b893b9a947bcd6fae46e781781b7d485f6a9f",
+      "original_pngs": 54,
+      "byte_identical_to_full_archive": 30,
+      "different_from_full_by_sha256": 24,
+      "root_opened_images": 3,
+      "root_review_blob": "bc57a5bc4dd745dc6c0d29a64786613240b5f040",
+      "remaining_assigned_images": 0,
+      "scope": "All14 specifically selected lesson/C4/atelier original PNGs actually viewed across Root and Child and preserved individually with full54-member index. Two bounded cosmetic edge cuts are recorded. No Android/modal/drag/audio/FPS acceptance; full38MB archive not in Git.",
+      "independent_opened_images": 11,
+      "total_distinct_selected_originals": 14,
+      "independent_review_blob": "436d3b0e8eb4caca09332b9c9b2c8672356ff75a"
+    }
+  },
+  "remaining": [
+    "Complete current057a/a69 native/Dream/Discovery gates and signed APK build; full Flutter and947 build contracts now verified",
+    "Verify six packaged-notice members and exact original bytes in the actual new APK",
+    "Complete actual current Android main/Village/C4 tours and2017-to2020 update preservation",
+    "Resolve the bounded current Android won-dialog lower-action evidence gap without repeating unchanged desktop cases",
+    "Complete current final candidate and delivery gates",
+    "Provide the actual accepted current APK and complete real public immutable single-APK publication",
+    "Complete real Play upload signing/AAB/Console and verified operator/privacy/backend facts; physical Android performance remains unmeasured"
+  ],
+  "publication": {
+    "verified_public_apk_url": null,
+    "github_release_write_tool": false,
+    "local_gh_authenticated": false,
+    "confirmed_github_browser_session": false,
+    "do_not_reuse_historical_publishers": true,
+    "new_browser_observation": {
+      "observed": true,
+      "browser": "cdp",
+      "tab": "2",
+      "verified_url": "https://github.com/Ullmann27/lumo-lernen/releases",
+      "signed_in": false,
+      "signal": "GitHub visible Sign in and Sign up links; no authenticated repository release editor",
+      "auth_requested": false,
+      "created_or_uploaded_release": false,
+      "continuation": "browserAuth documentation read; secure user-assisted sign-in remains needed if no other authorized release capability becomes available. Complete actual candidate build/evidence before requesting user action."
+    },
+    "gh_auth_status": {
+      "exit_code": 1,
+      "authenticated_hosts": 0
+    }
+  },
+  "evidence": {
+    "branch": "checkpoint/lumo-aab-ci-20261114-2708",
+    "checkpoint_before_this_record": "0088dc93387df78cb882f87ee92013ece856c25f",
+    "merge_prefix": "docs/evidence/host-7793-0b7-merge-20261114/",
+    "native_merge_prefix": "docs/evidence/native-baf-e2-merge-20261114/",
+    "current_main": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43607156921",
+    "scope": "Current runtime/prebuild/learning/Flutter originals and read-only readers, current Play source review, complete old1375 terminal scope and actual local recovery preserved."
+  },
+  "resume": "ReleaseLead monitors current main/native and prepares pure original-reader bindings. LearningLead prepares isolated same-APK Android result-action QA; Child now independently reviews that QA proposal after completing the11 focused originals. Root owns APK/Android/update/delivery, refs and public-release preparation. Four-agent hierarchy unchanged.",
+  "local_execution": {
+    "actual_existing_git_checkout": "/workspace/scratch/2708c7907f28/lumo-host-current",
+    "last_verified_git_head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "last_verified_git_status": "clean",
+    "current_materialized_test_source": "/workspace/scratch/2708c7907f28/lumo-host-merge-7793-0b7/checkout",
+    "materialized_tree_bound_to": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "materialized_directory_is_git_repository": false,
+    "local_git_successor_recovery_pending": false,
+    "last_verified_git_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+    "verified_materialized_files": 1655,
+    "verified_materialized_bytes": 64047744,
+    "actual_recovery_report": "docs/evidence/host-7793-0b7-merge-20261114/actual-local-recovery.json",
+    "original_recovery_archive": "docs/evidence/host-7793-0b7-merge-20261114/git-recovery-originals.zip",
+    "original_merge_exit_code": 128,
+    "following_independent_verification_passed": true,
+    "recovery_note": "The ff-only command advanced HEAD/index/worktree, then failed reading an excluded missing blob. Actual subsequent complete sparse blob/mode, ancestor and clean-state checks passed. No reset, force or second merge.",
+    "autosave_check_and_once_passed": true,
+    "watch_120_seconds_actually_started": true,
+    "watch_is_best_effort": true
+  },
+  "next_repair": "No current product defect inferred from passed desktop evidence. Await exact new APK/Android results; investigate only a concrete failed gate or the separately bounded won-dialog Android input gap.",
+  "previous_candidates": [
+    {
+      "candidate": {
+        "repository": "Ullmann27/lumo-lernen",
+        "branch": "work/lumo-play-quality-20261114",
+        "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+        "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+        "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+        "version": "0.13.8+2020",
+        "pull_request": 491,
+        "frozen": true,
+        "main_not_modified_by_team": true
+      },
+      "main_run": {
+        "id": 43590864772,
+        "attempt": 1,
+        "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772",
+        "status_at_last_read": "completed",
+        "last_read_utc": "2026-11-14T13:12:00Z",
+        "job": 132436033818,
+        "job_started_utc": "2026-11-14T11:40:59Z",
+        "current_step_at_last_read": null,
+        "step_started_utc": null,
+        "old_comparable_step_seconds": 2639,
+        "old_timing_is_not_current_success_or_eta": true,
+        "last_observed_at_utc": "2026-11-14T13:12:00Z",
+        "jobs_snapshot": [
+          {
+            "id": 132435073772,
+            "name": "connect-four-runtime",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-11-14T11:36:53Z",
+            "completed_at": "2026-11-14T11:39:19Z",
+            "active_steps": []
+          },
+          {
+            "id": 132435074028,
+            "name": "android-host-compile",
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-11-14T11:36:53Z",
+            "completed_at": "2026-11-14T11:40:58Z",
+            "active_steps": []
+          },
+          {
+            "id": 132436033818,
+            "name": "verify-and-build",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "started_at": "2026-11-14T11:40:59Z",
+            "completed_at": "2026-11-14T13:11:15Z",
+            "active_steps": []
+          },
+          {
+            "id": 132457986535,
+            "name": "update-2020-from-2017",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-11-14T13:11:15Z",
+            "completed_at": "2026-11-14T13:11:15Z",
+            "active_steps": []
+          },
+          {
+            "id": 132457986998,
+            "name": "verify-c4-candidate",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-11-14T13:11:15Z",
+            "completed_at": "2026-11-14T13:11:15Z",
+            "active_steps": []
+          },
+          {
+            "id": 132457987163,
+            "name": "android-c4",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-11-14T13:11:15Z",
+            "completed_at": "2026-11-14T13:11:15Z",
+            "active_steps": []
+          },
+          {
+            "id": 132457987742,
+            "name": "prepare-c4-delivery",
+            "status": "completed",
+            "conclusion": "skipped",
+            "started_at": "2026-11-14T13:11:16Z",
+            "completed_at": "2026-11-14T13:11:15Z",
+            "active_steps": []
+          }
+        ],
+        "active_log_read": {
+          "time": "2026-11-14T12:57:29Z",
+          "result": "404 BlobNotFound from official job-log endpoint; not a job failure conclusion"
+        },
+        "step31_success": {
+          "completed_at": "2026-11-14T13:07:12Z",
+          "conclusion": "success",
+          "originals_not_yet_reviewed": true
+        },
+        "step32_success": {
+          "completed_at": "2026-11-14T13:07:12Z",
+          "conclusion": "success",
+          "originals_not_yet_reviewed": true
+        },
+        "conclusion": "cancelled",
+        "completed_at": "2026-11-14T13:11:15Z",
+        "explicit_timeout_observation": {
+          "schema": 1,
+          "recorded_at_utc": "2026-11-14 13:13:26 UTC",
+          "source": "GitHub public job annotation expanded in actual CUA browser; no authentication or mutation",
+          "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43590864772/job/132436033818",
+          "run_id": 43590864772,
+          "job_id": 132436033818,
+          "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+          "job_annotation_exact": "The job has exceeded the maximum execution time of 1h30m0s",
+          "step_annotation_exact": "The operation was canceled.",
+          "step": "Build unified real Android APK",
+          "observed_ui_duration": "1h 30m 16s",
+          "joblog_blob": "1798b7ad1bfff2c01da0c6a800029c84b6b2ee66",
+          "interpretation": "The displayed service annotation explicitly identifies the job-wide 90-minute limit. Native and Dream steps completed success. APK build was interrupted; dependent Android/update/final/delivery jobs were skipped. No new APK success is claimed.",
+          "changes_allowed_for_next_attempt": "Only increase the verify-and-build job budget after exact-byte, existing-contract and independent review; retain all tests, source pins, signatures, downstream checks and permissions."
+        },
+        "original_job_log_blob": "1798b7ad1bfff2c01da0c6a800029c84b6b2ee66",
+        "native_steps": [
+          {
+            "name": "Require actual gameplay gates on the exact pinned native source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 31,
+            "started_at": "2026-11-14T12:03:05Z",
+            "completed_at": "2026-11-14T13:07:12Z"
+          },
+          {
+            "name": "Require acknowledged Connect Four return retry",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 32,
+            "started_at": "2026-11-14T13:07:12Z",
+            "completed_at": "2026-11-14T13:07:12Z"
+          },
+          {
+            "name": "Require actual Dream gates on the exact pinned native source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 33,
+            "started_at": "2026-11-14T13:07:12Z",
+            "completed_at": "2026-11-14T13:08:29Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 34,
+            "started_at": "2026-11-14T13:08:29Z",
+            "completed_at": "2026-11-14T13:08:45Z"
+          },
+          {
+            "name": "Build unified real Android APK",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "number": 35,
+            "started_at": "2026-11-14T13:08:45Z",
+            "completed_at": "2026-11-14T13:11:12Z"
+          }
+        ]
+      },
+      "completed_original_evidence": {
+        "desktop_runtime": {
+          "artifact": 14112302039,
+          "checks": 170,
+          "errors": 0,
+          "return_checks": 21,
+          "wisp_checks": 14,
+          "source_bound_to_candidate": true,
+          "backend": "production Dart with test SharedPreferences and file transport; not Android Binder"
+        },
+        "android_host_compile": {
+          "job": 132435074028,
+          "status": "success",
+          "actual_jvm_bytecode_bound": true
+        },
+        "flutter": {
+          "artifact": 14112921501,
+          "passed": 2586,
+          "failed": 0,
+          "skipped": 0,
+          "pngs": 546,
+          "actually_visually_reviewed": 4,
+          "new_math_exact_topic_test": 603,
+          "original_machine_parser_replayed": true
+        },
+        "learning_audit": {
+          "artifact": 14112501631,
+          "families": 236,
+          "samples": 7552,
+          "structural_issues": 0,
+          "exact_current_verifier_replayed": true,
+          "semantic_curriculum_approval": false
+        },
+        "build_contracts": {
+          "artifact": 14112728895,
+          "tests": 911,
+          "seconds": 358.962,
+          "skips": 0,
+          "original_current_verifier_replayed": true,
+          "synthetic_pcm_boundary_assertions": 70,
+          "android_audio_claim": false
+        },
+        "extra_flutter": {
+          "artifact": 14113540275,
+          "archive_bytes": 38297988,
+          "archive_sha256": "c8842754cd3fe54f2f6fe04a913d98e8646c9cbca9d4902bf6d5fca9b6027c99",
+          "members_checked": 54,
+          "pngs_visually_reviewed": 6,
+          "full_archive_recommitted": false,
+          "android_claim": false
+        },
+        "native_archive": {
+          "schema": 1,
+          "kind": "actual_native_original_archive_and_runner_records",
+          "recorded_utc": "2026-11-14T13:21:41.014Z",
+          "artifact_id": 14114314120,
+          "run_id": 43590864772,
+          "run_attempt": 1,
+          "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+          "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+          "original_archive": {
+            "bytes": 192077445,
+            "sha256": "d57188fcd09673444f3670c41378b444d6295e9934a4d9a1b760c5945027510c",
+            "official_download_count": 1,
+            "actual_local_size_and_sha256_match": true,
+            "complete_member_reads_crc_and_canonical_path_checks_passed": true,
+            "regular_members": 5035,
+            "uncompressed_bytes": 511840479
+          },
+          "index": {
+            "compressed_path": "archive-index.json.gz",
+            "compressed_bytes": 325844,
+            "compressed_sha256": "dac930c00c64accb565ed1b504a09f970ca297d5cf39334c772e0b0262fc8d71",
+            "original_json_bytes": 1180861,
+            "original_json_sha256": "78c4d485ea92b5ed0b2c274af2d78c6fc8fc3e46a8f93bdcf6fc0e0c88d33d5a",
+            "scope": "Lossless generated inventory of all5035 actual unmodified archive members, each with size and SHA256; not a new renderer report."
+          },
+          "actual_original_results": {
+            "core_rows_excluding_header": 52,
+            "all_core_result_rows_pass": true,
+            "dream_rows_excluding_header": 5,
+            "all_dream_result_rows_pass": true,
+            "return_marker": [
+              "CONNECT_FOUR_RETURN_PASS checks=21"
+            ],
+            "native_source_stamp": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+          },
+          "original_file_identities": {
+            "nextgen-runner.log": {
+              "bytes": 122431,
+              "sha256": "9b07374dc3d51f951d6c7e4540b5368daaf47cb0db81d4c50e514fa92209623f",
+              "git_blob": "0ff7099e25259c7e01ec0c59cfab652225bee791"
+            },
+            "dream-runner.log": {
+              "bytes": 5511,
+              "sha256": "7361129b935aa0bac5fd5dcfdaa9502cd3d56d54047fdfdc45d4a90ea34e9a30",
+              "git_blob": "a07b0c16f8b0c4b86f83ec28d7170dc3909f49b7"
+            },
+            "connect-four-return.log": {
+              "bytes": 504,
+              "sha256": "f52a215077309359c79031c719d5df69b526bcb0d45bd2bb161de28153dc5ae2",
+              "git_blob": "186e8fa528a9138ea17a0a1395010f440192a280"
+            },
+            "source-sha.txt": {
+              "bytes": 41,
+              "sha256": "f689dbf8f03a0e1f79b127e96dfa3261abe28f8c50918feecfad5aad5d6da38a",
+              "git_blob": "f5010efa40eff1e722991b5118da28b62623e51b"
+            },
+            "nextgen/results.tsv": {
+              "bytes": 2259,
+              "sha256": "e055b2d3ac43199e50b37b824bbcc84c75dc9aa683389478e898637f7c0b16d4",
+              "git_blob": "db0de72ce9ada78bbe039dc96745928e0b5fd30a"
+            },
+            "dream/results.tsv": {
+              "bytes": 244,
+              "sha256": "e13332961fe89a044b7b25aff2408199425dbf9935be79ffca222f214442a169",
+              "git_blob": "03d9d027d45a2fc1610e35db1c1186bd8f39c943"
+            }
+          },
+          "independent_visual_and_reader_review": "Performed separately by the existing LearningLead/TouchWorker on this shared copy; their handoff contains their actual outcomes. This archive/runner record does not claim a new visual review by ReleaseLead.",
+          "preservation_boundary": "Complete original ZIP is available locally and in original GitHub Actions artifact14114314120. It is not embedded in this Git handoff. This handoff permanently preserves the complete member hash inventory and the listed unmodified original logs/result tables/source stamp.",
+          "current_candidate_boundary": "The parent main job was subsequently cancelled by its90-minute total time limit during APK build. Native success does not imply a produced APK, Android/update acceptance or publication.",
+          "local_root": "/workspace/scratch/2708c7907f28/aab-native-evidence-14114314120",
+          "mutations": {
+            "product": 0,
+            "source_refs": 0,
+            "engine_or_renderer_runs": 0,
+            "original_members": 0
+          },
+          "technical_reader_review_pending": false
+        },
+        "native_original_reader": {
+          "actual_execution": {
+            "performed": true,
+            "exit_code": 0,
+            "command": [
+              "python3",
+              "-B",
+              "/workspace/scratch/2708c7907f28/aab-native-evidence-14114314120/reader-replay.py"
+            ],
+            "python": "3.12.14",
+            "pillow": "13.0.0",
+            "reader_elapsed_seconds": 1.529860435000046,
+            "process_wall_time_seconds": 1.795562895,
+            "approved_calls": [
+              "checked_native_results(nextgen, exact_committed_validate_nextgen_text)",
+              "checked_native_runner_log(original_nextgen_runner_log)",
+              "verify_studio_2020_rasters.verify(nextgen, write=False)",
+              "verify_dream_rasters.verify(dream, write=False)"
+            ],
+            "core_modes": 52,
+            "studio": {
+              "images": 17,
+              "reports": 3,
+              "movies": 1,
+              "fresh_result_equals_original": true
+            },
+            "dream": {
+              "probes": 5,
+              "images": 7,
+              "reports": 2,
+              "fresh_result_equals_original": true
+            },
+            "remote_tracked_tree_entries": 3649,
+            "source_inventory_files_byte_equal": true,
+            "tracked_inventory_and_index_unchanged": true,
+            "original_records_checked_unchanged": 116,
+            "helpers_unchanged": true
+          },
+          "independent_visual_review": {
+            "blob": "40696ba26847152a7957f6f470a2b932b7aa59f6",
+            "selected_images": 7,
+            "total_selected_original_bytes": 6986261,
+            "all_selected_pngs_saved_unchanged": true,
+            "visible_functional_blocker_found": false,
+            "observations": [
+              "Kart ramp original 1280×720: minimap fully visible and separated from SPEED in this frame.",
+              "Treasure portrait title visibly ellipsized; selected landscape shows full title.",
+              "Dream garden narrow view: decorative right board edge clipped while described task content and controls remain visible."
+            ],
+            "not_inferred": [
+              "All viewport configurations",
+              "Touch, scrolling, ACK or dynamic operation",
+              "Measured device FPS",
+              "Android/APK/Play readiness",
+              "Whole main workflow success"
+            ]
+          },
+          "reader_result_blob": "c56587c4fe693c2e8021fd3c727a047fd5163b47",
+          "handoff_blob": "873e4b69f1d85fbd2421db9910606e0912a8d2ed",
+          "root_read_replay_source_and_actual_result": true
+        }
+      },
+      "additional_qa": {
+        "purpose": "Actually scroll and activate restart and mode(false) after two 640x360 winning rounds",
+        "qa1": {
+          "head": "dc2e1b50ebeadb895aa691d809f2c457e0142633",
+          "run": 43594135818,
+          "attempt": 1,
+          "job": 132444932236,
+          "status": "completed",
+          "conclusion": "failure",
+          "preflight": "success",
+          "import": "success",
+          "failure": "Runner rejects 334 generated sidecars (329 .gd.uid, 5 .gdshader.uid) before either test process starts",
+          "dart_exit": null,
+          "godot_exit": null,
+          "artifact": 14113587571,
+          "artifact_sha256": "38bdeb870ce8c681d7663038decbfb4f29ca35986659ed248fde487e32014481",
+          "runtime_result_sha256": "3f68fdeb6494d53cb62af6bd296505e001dbe8b8eef5fcf3e0438d860413a447",
+          "product_bug_claim": false
+        },
+        "qa2": {
+          "head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+          "tree": "767d74b03ea977547c83aa412bb0a96da9253b4f",
+          "branch": "qa/lumo-c4-small-result-actions-20261114-2708-r2",
+          "run": 43595002861,
+          "attempt": 1,
+          "job": 132447521284,
+          "status": "completed",
+          "conclusion": "failure",
+          "last_read_utc": "2026-11-14 12:31:59 UTC",
+          "changes": "Only workflow branch and strict generated Godot UID sidecar guard; Dart/native QA assertions byte-identical",
+          "runtime_result_not_yet_independently_read": true
+        },
+        "r2_terminal": {
+          "schema": 1,
+          "source": {
+            "qa_head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+            "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+            "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+          },
+          "ci": {
+            "run_id": 43595002861,
+            "attempt": 1,
+            "job_id": 132447521284,
+            "event": "push",
+            "conclusion": "failure",
+            "original_log_message": "RuntimeError: C4 process failed: Dart=1, Godot=1",
+            "source_after_error": null
+          },
+          "artifact": {
+            "id": 14113299183,
+            "bytes_from_api": 1507887,
+            "sha256_from_api": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
+            "download_performed": false,
+            "independent_hash_or_archive_member_review_performed": false
+          },
+          "findings": {
+            "source_preflight": "success",
+            "dependency_preparation": "success",
+            "native_import": "success",
+            "both_runtime_processes_started": true,
+            "actual_runtime_process_exits": {
+              "dart": 1,
+              "godot": 1
+            },
+            "handshake_inference": "The bound runner starts Godot only after wait_for_session has observed and validated the fresh Dart session file. Thus the observed pair failure implies the compiled Dart harness reached that initialization boundary, not that its test passed.",
+            "root_failure": "Unknown until original-godot.log and original-dart.log inside the artifact can be read",
+            "images_reviewed": false
+          },
+          "limitations": [
+            "Local environment is explicitly unavailable; no local paths are claimed to remain present.",
+            "The completed full job log and final API metadata are durably preserved as Git blobs.",
+            "No further product/QA-source mutation, rerun or ref update has been performed."
+          ],
+          "evidence_entries": [
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/original-complete-job.log",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "bf4f0e6571ab0d4e5a6f01e263f0cb81bf691fde",
+              "characters": 296862
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-run.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "e86d0bb00c6d609743afc8944fcc11df0d346307",
+              "characters": 13792
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-jobs.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "0dd4719ca45c6757e8f240a67374bbad3daa129b",
+              "characters": 3074
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-artifacts.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "56577b1e2b799b9b531003bbb384bf9e862137e2",
+              "characters": 885
+            }
+          ],
+          "tree_entries": [
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/original-complete-job.log",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "bf4f0e6571ab0d4e5a6f01e263f0cb81bf691fde"
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-run.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "e86d0bb00c6d609743afc8944fcc11df0d346307"
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-jobs.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "0dd4719ca45c6757e8f240a67374bbad3daa129b"
+            },
+            {
+              "path": "docs/evidence/c4-small-result-actions-r2-ci-20261114/api-artifacts.json",
+              "mode": "100644",
+              "type": "blob",
+              "sha": "56577b1e2b799b9b531003bbb384bf9e862137e2"
+            }
+          ]
+        },
+        "r2_original_read": {
+          "local_path": "/workspace/scratch/2708c7907f28/r2-original-43595002861/original-artifact.zip",
+          "bytes": 1507887,
+          "sha256": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
+          "archive_members": 95,
+          "pngs": 0,
+          "native_checks": 123,
+          "target_actions": 0,
+          "actual_error": "small_result_restart_before waits for the matching fresh settled layout",
+          "last_ack": 10,
+          "last_revision": 18,
+          "product_failure_proven": false,
+          "root_read_original_logs": true,
+          "root_read_original_native_and_dart_results": true,
+          "r3_preparation": "Only three expected geometry arrays become FLOAT literals plus branch identity strings; exact miniature engine reproduction and independent review pending."
+        },
+        "r2_original_review": {
+          "schema": "lumo.c4.small-result-actions.r2-original-review.v1",
+          "run": {
+            "id": 43595002861,
+            "attempt": 1,
+            "job_id": 132447521284,
+            "qa_head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+            "qa_tree": "767d74b03ea977547c83aa412bb0a96da9253b4f",
+            "conclusion": "failure"
+          },
+          "product": {
+            "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+            "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+            "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+            "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e"
+          },
+          "artifact": {
+            "id": 14113299183,
+            "name": "lumo-c4-small-result-actions-aab092",
+            "bytes": 1507887,
+            "sha256": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
+            "git_blob": "5ffcca7542bfd0c990e82630a6688a9764fc877c",
+            "official_download_count": 1,
+            "zip_crc_valid": true,
+            "canonical_unique_regular_paths": true,
+            "files": 95,
+            "png_files": 0,
+            "archive_code_executed": false
+          },
+          "runtime": {
+            "dart_exit_code": 1,
+            "godot_exit_code": 1,
+            "native_checks": 123,
+            "completed_target_actions": 0,
+            "native_error": "small_result_restart_before waits for the matching fresh settled layout",
+            "dart_failure": "test/games/connect_four_small_result_actions_qa.dart:90:7 expected native['passed'] true, received false",
+            "last_state": {
+              "revision": 18,
+              "ack": 10,
+              "phase": "won",
+              "paused": true,
+              "twoPlayers": true,
+              "rewarded": true
+            },
+            "observed_requests": 10,
+            "first_round_stars": 5,
+            "first_round_xp": 40,
+            "restart_requested": false,
+            "target_solo_mode_requested": false
+          },
+          "cause": {
+            "classification": "QA-only impossible geometry comparisons",
+            "qa_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+            "function": "_layout_matches",
+            "lines": [
+              128,
+              129,
+              131
+            ],
+            "reason": "Godot 4.6.3 JSON arrays contain FLOAT elements; the three expected literal arrays contain INT elements. Array equality uses type-sensitive Variant::hash_compare. Thus these predicates reject even numerically correct JSON geometry.",
+            "independent_review_blob": "653f6be25398506e27565bbaa32dfafaea6878af"
+          },
+          "source_review": {
+            "before_after_byte_identical": true,
+            "source_snapshot_blob": "6d2c38683631976dfa41a057da9059c50853b3cf",
+            "source_snapshot_sha256": "798649037b014221bc168aea241b0e77dccae9716cb4aefcc558cd37657313ae",
+            "host_entries_matched": 447,
+            "native_entries_matched": 1256,
+            "qa_entries_matched": 4,
+            "generated_uid_entries": 334,
+            "uid_source_blobs_and_reconstructed_uid_hashes_verified": true
+          },
+          "limitations": [
+            "No completed target result-dialog action, no PNG and no passed gameplay gate.",
+            "The original transient layout observation is absent: production _exit_tree deletes it. Exact observed geometry cannot be reconstructed from this archive.",
+            "Other _layout_matches predicates have not all been shown true; fixing the demonstrated impossible comparisons does not imply a successful future runtime.",
+            "This review executes no archive code, production tests, engine, rendering, Android tour or APK build. The separate later minimal QA reproduction must not be conflated with the failed R2 gameplay run."
+          ],
+          "supersedes_availability_only": "The earlier cb336ebb4fa867f21692d22dd6a95f3e526763c1 checkpoint correctly recorded unavailable local artifact access at its creation; original ZIP access and the failure diagnosis are now completed."
+        },
+        "r3_reproduction": {
+          "manifest_blob": "fff0b599f31e82141b091429024682381457d766",
+          "root_independent_review": {
+            "source_predicate_exact": true,
+            "full_reproduction_only_three_literal_changes": true,
+            "actual_inputs_and_expectations_identical": true,
+            "red": {
+              "checks": 15,
+              "failures": 1,
+              "failed_cases": [
+                "exact_geometry"
+              ]
+            },
+            "green": {
+              "checks": 15,
+              "failures": 0
+            },
+            "negative_cases": [
+              {
+                "name": "window_width_wrong",
+                "accepted": false
+              },
+              {
+                "name": "window_height_wrong",
+                "accepted": false
+              },
+              {
+                "name": "viewport_width_wrong",
+                "accepted": false
+              },
+              {
+                "name": "viewport_height_wrong",
+                "accepted": false
+              },
+              {
+                "name": "safe_left_wrong",
+                "accepted": false
+              },
+              {
+                "name": "safe_top_wrong",
+                "accepted": false
+              },
+              {
+                "name": "safe_width_wrong",
+                "accepted": false
+              },
+              {
+                "name": "safe_height_wrong",
+                "accepted": false
+              },
+              {
+                "name": "fractional_window",
+                "accepted": false
+              },
+              {
+                "name": "fractional_viewport",
+                "accepted": false
+              },
+              {
+                "name": "fractional_safe_rect",
+                "accepted": false
+              },
+              {
+                "name": "window_extra_element",
+                "accepted": false
+              },
+              {
+                "name": "safe_string_element",
+                "accepted": false
+              },
+              {
+                "name": "viewport_missing",
+                "accepted": false
+              }
+            ],
+            "gameplay_success_not_inferred": true
+          },
+          "runtime_status": "R3 completed success; original artifacts read and all four pictures visually reviewed"
+        },
+        "r3": {
+          "branch": "qa/lumo-c4-small-result-actions-20261114-2708-r3",
+          "head": "51d05896aec9bced8c789504161f2255441cd07f",
+          "tree": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4",
+          "run_id": 43596764202,
+          "attempt": 1,
+          "status": "completed",
+          "event": "push",
+          "first_api_total_runs": 1,
+          "root_decision": {
+            "schema": 1,
+            "decision": "Proceed with one isolated real R3 two-action QA run after exact source/negative-case review",
+            "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
+            "qa_tree": "1c95ba11ba980ed01bd3e76c91a66fdfcb23b8a4",
+            "parent": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+            "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+            "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+            "files": {
+              ".github/workflows/lumo-c4-small-result-actions-qa.yml": "5c02a9274bf91b428e1080ff58884af9e89d46a8",
+              "scripts/run_connect_four_small_result_actions_qa.py": "3ad5492989e2dcdee4303699e0fbbd2f04f3bbe3",
+              "test/games/connect_four_small_result_actions_qa.dart": "0585ee1b83725a588ea2ed6f6d4ec87ffc525d7e",
+              "tools/qa/connect_four_small_result_actions_qa.gd": "1b474002b3b93db9cae53a19c90fe75cb80c0604"
+            },
+            "root_exact_comparison": {
+              "workflow": "only two r2 to r3 branch strings",
+              "native": "only three numerically identical FLOAT array expectations",
+              "runner": "byte-identical",
+              "dart": "byte-identical"
+            },
+            "root_original_reproduction_review": {
+              "source_predicate_exact": true,
+              "full_reproduction_only_three_literal_changes": true,
+              "actual_inputs_and_expectations_identical": true,
+              "red": {
+                "checks": 15,
+                "failures": 1,
+                "failed_cases": [
+                  "exact_geometry"
+                ]
+              },
+              "green": {
+                "checks": 15,
+                "failures": 0
+              },
+              "negative_cases": [
+                {
+                  "name": "window_width_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "window_height_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "viewport_width_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "viewport_height_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "safe_left_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "safe_top_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "safe_width_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "safe_height_wrong",
+                  "accepted": false
+                },
+                {
+                  "name": "fractional_window",
+                  "accepted": false
+                },
+                {
+                  "name": "fractional_viewport",
+                  "accepted": false
+                },
+                {
+                  "name": "fractional_safe_rect",
+                  "accepted": false
+                },
+                {
+                  "name": "window_extra_element",
+                  "accepted": false
+                },
+                {
+                  "name": "safe_string_element",
+                  "accepted": false
+                },
+                {
+                  "name": "viewport_missing",
+                  "accepted": false
+                }
+              ],
+              "gameplay_success_not_inferred": true
+            },
+            "independent_source_review_blob": "b165df108db085a5c2ff00fce2e0b2b2f2fc0199",
+            "original_failure_preserved_in": "7526c6d189989ddd88817905a0034183f654c70b",
+            "actual_gameplay_result": "pending; synthetic predicate acceptance is not gameplay acceptance",
+            "permissions": "existing read-only contents permission; no release or APK build"
+          },
+          "conclusion": "success",
+          "artifact": {
+            "id": 14114498334,
+            "bytes": 1619461,
+            "sha256": "415ce3b5f51d510983c0184d37e479dc00844fa50f9dcd70c4f0493454228f64",
+            "git_blob": "5c6f90d0fb881f881d70faea5b84d2cfb974b977",
+            "path": "/workspace/scratch/2708c7907f28/r3-original-43596764202/original-artifact.zip",
+            "members": 103
+          },
+          "root_original_review": {
+            "schema": 1,
+            "run_id": 43596764202,
+            "attempt": 1,
+            "qa_head": "51d05896aec9bced8c789504161f2255441cd07f",
+            "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+            "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+            "root_read_only_original_replay": {
+              "native_checks": 283,
+              "errors": [],
+              "both_processes_exit_zero": true,
+              "native_dart_all_requests_equal": 21,
+              "actions_matched_to_original_dart_events_and_layouts": [
+                {
+                  "action": "restart",
+                  "ack": [
+                    10,
+                    11
+                  ],
+                  "revision": [
+                    18,
+                    19
+                  ],
+                  "new_round": "d14950fcfa6dea8004ed186de8036654",
+                  "two_players_after": true,
+                  "target_dp": [
+                    588,
+                    52
+                  ],
+                  "drag_events": 8
+                },
+                {
+                  "action": "mode",
+                  "ack": [
+                    19,
+                    20
+                  ],
+                  "revision": [
+                    33,
+                    34
+                  ],
+                  "new_round": "9729b63cc7402806d9c46124770f4f5c",
+                  "two_players_after": false,
+                  "target_dp": [
+                    588,
+                    52
+                  ],
+                  "drag_events": 16
+                }
+              ],
+              "awards": {
+                "unique": 2,
+                "stars": 10,
+                "xp": 80
+              },
+              "same_process_reopen": true,
+              "source_snapshots_byte_identical": true,
+              "source_snapshot_sha256": "009c0dd5b9cfde08e3a977249a4db64a0db935a48fde71f819271e5ca9a0490d"
+            },
+            "images": [
+              {
+                "path": "small_result_mode_after.png",
+                "bytes": 29157,
+                "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+                "dimensions": [
+                  640,
+                  360
+                ]
+              },
+              {
+                "path": "small_result_mode_before.png",
+                "bytes": 22337,
+                "sha256": "b76ce45ea178deaaa994821fccd6341793d08c64e859489a0d868220b38dbc6d",
+                "dimensions": [
+                  640,
+                  360
+                ]
+              },
+              {
+                "path": "small_result_restart_after.png",
+                "bytes": 29157,
+                "sha256": "d950d7eb72be82cef8afdbfbf622221f37cf8d93ec75dfcddef3742d6ebf0560",
+                "dimensions": [
+                  640,
+                  360
+                ]
+              },
+              {
+                "path": "small_result_restart_before.png",
+                "bytes": 21030,
+                "sha256": "1172ea356ab844f357ed0c3eb678a4e07b2c79dcb757077f0a43b6880dbe2352",
+                "dimensions": [
+                  640,
+                  360
+                ]
+              }
+            ],
+            "root_visual_review": {
+              "four_original_pngs_opened": true,
+              "restart_target": "Neue Runde fully visible in its own scrolled viewport; target not clipped",
+              "mode_target": "Gegen Lumo spielen fully visible in its own scrolled viewport; target not clipped",
+              "after_images": "Both show the same empty board and available drop buttons. Byte-identical after-images do not visually distinguish the mode; mode is proved by matching original Dart and layout states.",
+              "adjacent_control": "The preceding control is partly clipped by the scroll viewport; the targeted control is fully visible."
+            },
+            "limitations": [
+              "Actual desktop rendering and two-process local file transport only.",
+              "SharedPreferences test backend with same-process reopen; no Android Binder or disk durability claim.",
+              "No measured FPS or physical Android acceptance.",
+              "No game, renderer, or production tests rerun for this original-file review."
+            ]
+          },
+          "parent_full_remote_source_hash_handoff": "11feb336cdfbfdf26939a1d06f58aa80ab7a2e94",
+          "originals_and_review_complete": true,
+          "proof_scope": "Two actual desktop 640x360 scrolled result actions; Android/physical FPS outside scope"
+        },
+        "current_attempt": "r3"
+      }
+    },
+    {
+      "candidate": {
+        "repository": "Ullmann27/lumo-lernen",
+        "branch": "work/lumo-play-quality-20261114",
+        "host": "1375da193af0152af64f91d86577aa9768cd50db",
+        "host_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+        "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+        "version": "0.13.8+2020",
+        "pull_request": 491,
+        "frozen": true,
+        "main_not_modified_by_team": true,
+        "previous_host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+        "change_scope": "Only outer verify-and-build budget90-to150 and the same existing contract expectation; all app/native code and all other test/workflow bytes unchanged"
+      },
+      "main_run": {
+        "id": 43599456596,
+        "attempt": 1,
+        "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43599456596",
+        "status_at_last_read": "completed",
+        "head": "1375da193af0152af64f91d86577aa9768cd50db",
+        "created_at": "2026-11-14T13:22:40Z",
+        "trigger": "pull_request from reviewed quality-branch fast-forward",
+        "job_budget_minutes": 150,
+        "last_read_utc": "2026-11-14 14:06:27 UTC",
+        "main_job_id": 132461940239,
+        "main_job_started_at": "2026-11-14T13:26:58Z",
+        "main_job_deadline_utc": "2026-11-14T15:56:58Z",
+        "active_steps": [],
+        "conclusion": "cancelled",
+        "completed_at": "2026-11-14T14:53:49Z"
+      },
+      "completed_original_evidence": {
+        "android_host_compile": {
+          "job_id": 132460873849,
+          "conclusion": "success",
+          "completed_at": "2026-11-14T13:26:57Z",
+          "original_log_blob": "b5e2fb120f666e17a368f33f9691df476806563b"
+        },
+        "c4_runtime": {
+          "job_id": 132460874104,
+          "conclusion": "success",
+          "completed_at": "2026-11-14T13:25:21Z",
+          "artifact": 14115597521,
+          "archive_sha256": "dec176c035f5183ce2fbd33f78e95cdb55d7b9b58f16841e3ac34bfee80be836",
+          "checks": 170,
+          "return_checks": 21,
+          "wisp_checks": 14,
+          "reader_exit_code": 0,
+          "original_files": 399,
+          "host_bound_files": 447,
+          "native_bound_files": 1256,
+          "root_viewed_pngs": 4,
+          "independent_viewed_pngs": 4,
+          "handoff_blob": "4fe36051ede3f97f84ee3278f651bfd4ff4f3c57",
+          "scope": "Desktop/file transport/test SharedPreferences; no Android or measured FPS acceptance."
+        },
+        "learning_audit": {
+          "artifact": 14115902201,
+          "archive_bytes": 212134,
+          "archive_sha256": "7489e6509517754b5fcf0ef17d15779f9aa0b0782a80e760ea438f2044722e78",
+          "whole_zip_blob": "0448f1ec5beddf65fc60e2691587816e1ef44085",
+          "actual_root_reader_exit_code": 0,
+          "families": 236,
+          "samples": 7552,
+          "structural_issues": 0,
+          "semantic_approval": false
+        },
+        "full_flutter": {
+          "artifact": 14116675111,
+          "archive_bytes": 332341284,
+          "archive_sha256": "5f5796a883a80423668fe6c9b13a09f08cf70a39d79430213f8c71090eca3bbd",
+          "completed_at": "2026-11-14T13:39:59Z",
+          "passed": 2586,
+          "failed": 0,
+          "skipped": 0,
+          "actual_root_parser_exit_code": 0,
+          "parser_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+          "original_files": 548,
+          "original_pngs": 546,
+          "root_opened_images": 3,
+          "original_machine_done_time_ms": 689181,
+          "exact_topic_test_id": 603,
+          "exact_topic_test_passed": true,
+          "preserved_reports_zip_blob": "ff27767a8e8e857e5e2a24e7730e2945bf4d65c4",
+          "preservation_scope": "Complete original machine/summary reports, full 548-file member index and six selected original PNGs are checkpointed; entire 332 MB Actions ZIP is locally retained and at the original Actions artifact, not in Git.",
+          "independent_opened_images": 3,
+          "total_distinct_selected_images": 6,
+          "independent_visual_review_blob": "26b02f75379e2670865a90efefa51c6a337d5372"
+        },
+        "build_contracts": {
+          "artifact": 14116845475,
+          "archive_bytes": 28103,
+          "archive_sha256": "4c413db8e808135a5e228640abda43ae6d658adcdd78271f5add029cfe8a37d9",
+          "complete_original_zip_blob": "f373e345171c16d4a0744fe3f6677c2eabd4e5ae",
+          "original_log_blob": "75c403157cb0ae7a0e9876008a7029cc2be6d721",
+          "completed_at": "2026-11-14T13:47:24Z",
+          "actual_original_tests": 911,
+          "original_seconds": 371.251,
+          "skips": 0,
+          "root_reader_exit_code": 0,
+          "pcm_assertions": 70,
+          "committed_pcm_source_files": 17,
+          "scope": "Original current CI contracts; readonly replay, synthetic JVM PCM boundary, no new tests or audible Android acceptance."
+        }
+      },
+      "scope": "All original1375 results remain bound to1375/e2. Superseded by7793 then057a; they are not current057a acceptance.",
+      "transition_observation": {
+        "recorded_at_utc": "2026-11-14 15:14:57 UTC",
+        "native_step31": "cancelled at2026-11-14T14:53:03Z",
+        "main_completed_at": "2026-11-14T14:53:49Z",
+        "original_cancellation_line": "2026-11-14T14:53:03.2837786Z ##[error]The operation was canceled.",
+        "handoff_blob": "104f1d1b9922fa450a9d9feff3d284eabb3e21f3",
+        "full_original_log_blob": "e47fc9478140dc9f8899650abae13c48d5d9a8f4",
+        "partial_native_pass_rows": 51,
+        "full_native_acceptance": false,
+        "apk_produced": false,
+        "reason_scope": "Actual cancellation coincides with activation of057a in the unchanged cancel-in-progress concurrency group; not a150-minute timeout or evidence of a failed built APK."
+      }
+    },
+    {
+      "candidate": {
+        "host": "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+        "host_tree": "8ee5c9335d7f9484f3bce5c4cb2b52c60e88137f",
+        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+      },
+      "activated_at_utc": "2026-11-14 14:30:58 UTC",
+      "new_pipeline_observed": false,
+      "blocked_by": "Actual PR merge conflict with incoming0b7; resolved through the subsequent two-parent057a merge",
+      "evidence": "docs/evidence/quality-7793-activation-20261114/ACTUAL_ACTIVATION_AND_CONFLICT.json"
+    }
+  ],
+  "prior_proof_scope": "All earlier Flutter/native/C4 and contrast QA artifacts retain their actual source identities. The current completed_original_evidence map is empty until fresh057a originals are inspected. The scoped248 local contracts and static merge/source checks are separately reported, not substituted for current full acceptance.",
+  "source_notices_inventory": {
+    "blob": "450ee85f4323cd1b41c9abdcc211d2715c06db99",
+    "source_entries": 37,
+    "root_read_complete_report": true,
+    "actual_apk_pck_inspected": false,
+    "external_rights_review": false,
+    "historical_apk_pck_inspected": true,
+    "historical_host": "803a4e960ffb804a46b6d09417731c031f00f680",
+    "current_apk_pck_inspected": false
+  },
+  "pending_quality_findings": [
+    {
+      "id": "white_prompt_card_label_contrast",
+      "source": "lib/widgets/lumo/lumo_prompt_card.dart",
+      "source_blob": "033fb56a1033b7659d6ca7e7386e7ae9cd1074fd",
+      "actual_capture": "modernization/schreibcoach_phone.png",
+      "capture_blob": "0d4cbe429c4c96fa928fa815bffaef54f294fb42",
+      "observed": "Small hint is visibly pale on white; source color #C8DDF0 on #FFFFFF gives calculated sRGB luminance ratio 1.3947273062300911.",
+      "status": "Exact accepted one-line blob643c3bd6 is integrated unchanged into7793 and057a. Isolated36-case42-PNG proof remains scoped to21e0368; fresh full057a/Android appearance still pending.",
+      "prepared_product_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb",
+      "source_review_blob": "9eb1fb29bf40cd5715914c12a540398ea7b362ca",
+      "proposed_color": "#28486D",
+      "proposed_srgb_ratio": 9.383400982456404,
+      "final_qa_handoff_blob": "42998c8743b5476ce70409a19892728881e92270"
+    },
+    {
+      "id": "writing_capture_emoji_glyph",
+      "observed": "Outline replacement glyph visible in current Linux capture; capture does not call separate emoji font loader.",
+      "status": "Actual Android appearance not verified; no Android defect inferred."
+    },
+    {
+      "id": "packaged_third_party_notices",
+      "status": "Exact accepted10-file patch is integrated unchanged into7793 and057a. Current actual APK positive membership/byte proof remains pending.",
+      "historical_root_review_blob": "d430b2fec927ce57b990e966409b7c9a99c91b68",
+      "implementation_state": "Integrated and locally exercised; no new APK or legal approval claim.",
+      "actual_historical_apk_negative": {
+        "reader_blob": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
+        "result_blob": "1d20d751b25dc9416a03b5c05d56907e6fe00a83",
+        "exit_code": 0,
+        "result": "EXPECTED_REJECTION",
+        "current_positive_apk_check": false
+      },
+      "final_handoff_blob": "c631fe30184c6cd5445e43011de3edc74657ee1f",
+      "independent_review_blob": "3be3ea0dabd4aaa2eb7eb4de60f82b646e54ea4f"
+    },
+    {
+      "id": "reading_capture_answer_glyphs",
+      "observed_by": "touch_worker",
+      "actual_capture": "reading-passages/reading-phone.png",
+      "capture_blob": "e73bea5318499c85c6c1258507e46973403185dd",
+      "status": "Root source follow-up found capture loads Nunito only while answer renderer uses MaterialIcons; font setup is a supported explanation, not controlled causal or Android proof. Three original wrong/correct interaction cases actually passed.",
+      "source_followup_blob": "3b2cd307147e741fb4dae3435c7f828ed1c4f98c"
+    }
+  ],
+  "additional_prompt_qa": {
+    "schema": 1,
+    "kind": "actual_separate_prompt_contrast_qa_activation",
+    "recorded_at_utc": "2026-11-14 14:06:27 UTC",
+    "candidate": {
+      "head": "21e0368603e38d1dfd063485f5307ec201f0d872",
+      "tree": "0a5042254cd27c70597952842fdc8d71b089b417",
+      "branch": "qa/lumo-prompt-label-contrast-20261114-2708",
+      "parent": "1375da193af0152af64f91d86577aa9768cd50db",
+      "workflow_blob": "bfd93a088d3181444248e57e0ea5b7599921c242",
+      "product_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb",
+      "activated": true,
+      "activation_read_time": "2026-11-14 14:05:52 UTC"
+    },
+    "remote_compare": {
+      "total_commits": 1,
+      "files": [
+        {
+          "path": ".github/workflows/lumo-prompt-label-contrast-qa.yml",
+          "status": "added",
+          "additions": 313,
+          "deletions": 0,
+          "blob": "bfd93a088d3181444248e57e0ea5b7599921c242"
+        },
+        {
+          "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+          "status": "modified",
+          "additions": 1,
+          "deletions": 1,
+          "blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+        }
+      ]
+    },
+    "ref_creation": {
+      "new_branch_absent_before": true,
+      "first_update_ref_attempt": {
+        "outcome": "Rejected422 Reference does not exist; no ref mutation",
+        "recorded": true
+      },
+      "create_branch": {
+        "outcome": "success, exact created ref subsequently read",
+        "ref": "qa/lumo-prompt-label-contrast-20261114-2708",
+        "head": "21e0368603e38d1dfd063485f5307ec201f0d872"
+      }
+    },
+    "quality_branch_unchanged": "1375da193af0152af64f91d86577aa9768cd50db",
+    "actual_run": {
+      "id": 43603068259,
+      "name": "Lumo prompt label contrast QA",
+      "event": "push",
+      "head": "21e0368603e38d1dfd063485f5307ec201f0d872",
+      "branch": "qa/lumo-prompt-label-contrast-20261114-2708",
+      "attempt": 1,
+      "created_at": "2026-11-14T14:05:54Z",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43603068259",
+      "api_push_run_count": 1
+    },
+    "scope": "One isolated existing renderer focus for the one-line PromptCard label color change. No production quality branch update, APK build or publication; result remains pending at this snapshot.",
+    "terminal": {
+      "branch": "qa/lumo-prompt-label-contrast-20261114-2708",
+      "head": "21e0368603e38d1dfd063485f5307ec201f0d872",
+      "tree": "0a5042254cd27c70597952842fdc8d71b089b417",
+      "sole_parent": "1375da193af0152af64f91d86577aa9768cd50db",
+      "remote_compare": {
+        "commits": 1,
+        "files": 2,
+        "workflow_blob": "bfd93a088d3181444248e57e0ea5b7599921c242",
+        "prompt_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+      },
+      "run_id": 43603068259,
+      "attempt": 1,
+      "event": "push",
+      "job_id": 132471773636,
+      "started_at": "2026-11-14T14:05:56Z",
+      "completed_at": "2026-11-14T14:07:03Z",
+      "terminal_status": "completed",
+      "terminal_conclusion": "success",
+      "actual_runs_for_head": 1,
+      "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43603068259"
+    },
+    "original_artifact": {
+      "id": 14116624494,
+      "name": "lumo-prompt-label-contrast-originals",
+      "bytes": 37588911,
+      "sha256": "a56100f13efd22974046aa94ec1d2d67549d92a025701b47e47d37e3ff0e6bc7",
+      "files": 60,
+      "zip_crc_valid": true,
+      "canonical_paths_valid": true,
+      "downloaded_once_by": "/root/lumo_release_lead/learning_ux_lead",
+      "local_archive": "/workspace/scratch/2708c7907f28/prompt-label-original-43603068259/artifact.zip",
+      "local_originals": "/workspace/scratch/2708c7907f28/prompt-label-original-43603068259/original",
+      "complete_archive_checkpoint": {
+        "format": "13 consecutive raw ZIP byte segments, all uploaded SHA-verified",
+        "manifest_path": "docs/evidence/prompt-label-after-qa-20261114/review/archive-segment-manifest.json",
+        "manifest_blob": "d0dbbbb711dd6c6233774a360d782e187f762840",
+        "segment_paths_relative_to": "docs/evidence/prompt-label-after-qa-20261114/",
+        "reconstruction": "Concatenate segments in numeric order without separators; verify the original byte count and SHA256 before reading the ZIP. The complete60-file original is preserved, including all42 original PNGs.",
+        "whole_zip_git_blob_calculated_for_reconstruction_only": "ee7bf86a7d27c8eec528ee4b59505eac7c63849b",
+        "single_large_blob_checkpoint_not_confirmed": true,
+        "segment_blobs_verified": true
+      }
+    },
+    "technical_result": {
+      "test": "test/design/lumo_modernization_capture_test.dart",
+      "runner_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+      "unchanged_test_blob": "2b3f8adcd1dbf9b968b9bc640ef212257f845586",
+      "unchanged_capture_helper_blob": "439c2a8862effae26907ef655304e0c57f76a56c",
+      "flutter_version": "3.44.9",
+      "passed_non_hidden": 36,
+      "failed": 0,
+      "skipped": 0,
+      "flutter_exit_code": 0,
+      "runner_exit_code": 0,
+      "original_pngs": 42,
+      "original_summary_blob": "e5fb1a7fc49e5f97356b07eb947975c1bb203895",
+      "original_machine_blob": "c442a31cb06d143228c4ea5fbda0bd4ae3193fde",
+      "original_source_before_blob": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a",
+      "original_source_after_blob": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a",
+      "source_snapshot_sha256": "31df30aa55c397e6a45cb82fd4669ebf94963a57fc3b5b4cc961f3f708d826ce",
+      "source_snapshots_byte_identical": true
+    },
+    "independent_reader": {
+      "executed": true,
+      "exit_code": 0,
+      "report_blob": "20077408a1b73542bb6331543c572a6a0c252dcd",
+      "reader_blob": "81c630d1f3781d3e63326c5228a6171633877974",
+      "execution_blob": "098cb0368d8ea2fcc3cce872ad2792d263ef4146",
+      "archive_files": 60,
+      "ci_index_entries": 59,
+      "tracked_source_entries": 4524,
+      "specific_source_bindings": 16,
+      "actual_original_png_names_hashes_dimensions": 42,
+      "immutable_original_summarize_function_replayed": true,
+      "new_flutter_tests_or_renderer_executed": false,
+      "all_original_bytes_unchanged_during_review": true
+    },
+    "visual_review": {
+      "report_blob": "2910e4dbb4b800cc68a27fb869d1025c349716a5",
+      "new_original_images_opened": 3,
+      "matching_baseline_originals_opened": 3,
+      "viewports": [
+        "phone",
+        "fold-cover",
+        "fold-open"
+      ],
+      "verdict": "The complete one-line hint is visibly dark blue and readable on white in all three selected after images, with no new visible label clipping, overlap or layout shift",
+      "unchanged_observations": [
+        "Existing replacement-glyph outlines",
+        "Existing horizontal category clipping in Phone and Fold-Cover"
+      ],
+      "root_separate_phone_review_blob": "a1532ab16fd1be50ca4fb9f84f8e3e6ac267d319",
+      "root_actual_rgb_pixel_comparison": {
+        "different_pixels": 2631,
+        "bounding_box": [
+          182,
+          219,
+          505,
+          241
+        ],
+        "dimensions": [
+          824,
+          1830
+        ],
+        "method": "Read-only comparison of the original pair; no edited evidence image"
+      }
+    },
+    "final_handoff_blob": "42998c8743b5476ce70409a19892728881e92270",
+    "product_integrated": false
+  },
+  "store_copy_current_source_binding": {
+    "blob": "82486503971c2419aa5dc0e72193e74aa8a29a7e",
+    "source_files": 15,
+    "all_byte_identical": true,
+    "claims": 11,
+    "actual_execution_exit": 0,
+    "current_apk_match": false
+  },
+  "prepared_combined_candidate": {
+    "schema": 1,
+    "kind": "root_acceptance_of_scoped_notice_and_contrast_integration",
+    "recorded_at_utc": "2026-11-14 14:30:25 UTC",
+    "candidate": {
+      "head": "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+      "tree": "8ee5c9335d7f9484f3bce5c4cb2b52c60e88137f",
+      "parent": "1375da193af0152af64f91d86577aa9768cd50db",
+      "branch": "work/lumo-play-quality-20261114",
+      "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "version": "0.13.8+2020",
+      "entries": [
+        {
+          "path": "config/lumo-notices.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6bfb5f7bec41c91af963f47fc80d66977135ab74"
+        },
+        {
+          "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+        },
+        {
+          "path": "scripts/export_embedded_game.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ee6777c91d0d4898ccc7efa0a7dc403812b405ba"
+        },
+        {
+          "path": "scripts/package_notices.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e706edf1d87c4222f17498ff8ef67ade30443dfc"
+        },
+        {
+          "path": "scripts/tests/notice_fixtures.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fc99b36bce1f647ca6134acd37cc2fc6247e527c"
+        },
+        {
+          "path": "scripts/tests/test_export_embedded_game.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "2fdd9c93b58f59d7e030956fa1cce7c1e9ee8876"
+        },
+        {
+          "path": "scripts/tests/test_historical_apk_expectations.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2"
+        },
+        {
+          "path": "scripts/tests/test_packaged_notices.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f6dba61589a15220cea4fe3eb7800d6c58b5f776"
+        },
+        {
+          "path": "scripts/tests/test_verify_play_bundle.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "96cfdd41fe2400836a94f1e443e6eadd9d95f850"
+        },
+        {
+          "path": "scripts/verify_play_bundle.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1a7aac51f55132aac2d607867e3bdee8bf5787ab"
+        },
+        {
+          "path": "scripts/verify_unified_apk.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40"
+        }
+      ],
+      "activated": false
+    },
+    "notice_handoff_blob": "c631fe30184c6cd5445e43011de3edc74657ee1f",
+    "notice_independent_final_review": "3be3ea0dabd4aaa2eb7eb4de60f82b646e54ea4f",
+    "root_notice_delta_review": {
+      "schema": 1,
+      "base": "1375da193af0152af64f91d86577aa9768cd50db",
+      "path": "scripts/verify_unified_apk.py",
+      "first_blob": "611e4f37a2be163365ef949ca097895a79f95090",
+      "final_blob": "7a7d8ef42c3c38e7106e2a3f6ba01ca1eda24f40",
+      "root_exact_full_byte_delta": "Exactly one --full-tree argument added to the new historical ls-tree read; all other bytes equal to the fully read first snapshot.",
+      "reason": "A repository subdirectory must not hide an existing root policy. Independent reviewers reproduced the Git behavior; the implementation owner ran the same concrete regression red then green.",
+      "historical_test_blob": "0762e6174d2ff8d8170aff16fdc0bf5781d817b2",
+      "pure_archive_helper_unchanged": "e706edf1d87c4222f17498ff8ef67ade30443dfc",
+      "root_repeated_tests": false,
+      "root_read_final_test_deltas": true,
+      "final_independent_child_static_blockers": 0
+    },
+    "root_reviewed_actual_originals": {
+      "final_71_test_log": "76c850895f50c6ab982c8c7baaf54362040538ff",
+      "execution_and_unchanged_10_sources": "82f006d816ae7dba9bfdf4e1098233f715d446ab",
+      "actual_original_preparation": "1177838d3daa9347b0df94a12464bb362ce19246",
+      "all_ten_local_final_sources_independently_rehashed": true,
+      "actual_root_source_check_exit_code": 0
+    },
+    "actual_historical_apk_negative": "1d20d751b25dc9416a03b5c05d56907e6fe00a83",
+    "contrast_qa_handoff": "42998c8743b5476ce70409a19892728881e92270",
+    "remote_compare": {
+      "direct_parent": "1375da193af0152af64f91d86577aa9768cd50db",
+      "total_commits": 1,
+      "changed_paths": 11,
+      "exact_blob_set": true,
+      "prompt_additions": 1,
+      "prompt_deletions": 1
+    },
+    "decision": "Proceed with the exact reviewed11-file fast-forward after expected quality-ref/PR checks. Existing workflow cancellation semantics supersede the old1375 run; fresh full results must bind to77936fae.",
+    "scope": "Source/integration acceptance only. Current new APK/AAB, Android/update, signing and delivery outcomes remain pending; no legal or Play approval.",
+    "actual_followup": {
+      "activated": true,
+      "source": "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+      "activated_at_utc": "2026-11-14 14:30:58 UTC",
+      "superseded_by": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+      "reason": "Actual incoming base conflict resolved preserving both histories."
+    }
+  },
+  "current_pull_state": {
+    "head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+    "base": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+    "mergeable": true,
+    "mergeable_state": "unstable",
+    "scope": "Actual initial API observation; current checks pending."
+  },
+  "local_integration_validation": {
+    "distinct_actual_passing_cases": 248,
+    "invocations": [
+      {
+        "loader_cases": 203,
+        "passed": 200,
+        "import_errors": 3
+      },
+      {
+        "cases": 48,
+        "passed": 47,
+        "missing_original_catalog_errors": 1
+      },
+      {
+        "cases": 1,
+        "passed": 1
+      }
+    ],
+    "product_and_test_source_edits_between_invocations": false,
+    "original_failures_preserved": true,
+    "final_materialized_file_bindings_to_actual_candidate": 1642,
+    "all_initial1641_files_unchanged": true,
+    "yaml_parsed": true,
+    "bash_syntax_checks": 48,
+    "full_new_app_acceptance": false,
+    "evidence_commit": "bdebaf09c7b16e51f5aa72e2bc9d067416095b9b",
+    "prefix": "docs/evidence/host-7793-0b7-merge-20261114/",
+    "archive_blob": "ff982a492e772c334ceda29ff98895d3a00d15bd"
+  },
+  "current_source_reviews": {
+    "play": {
+      "host": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+      "native": "a69f53518b2510873d88f00ff2783d616ab53702",
+      "handoff_blob": "9ba0aae8207f819118cc2e42dd9f3b94f86aa746",
+      "parent_review_blob": "c0ca0e9e29be8f83391446c2f71206d32698c916",
+      "child_ai_review_blob": "e27680ebc4b97440e6ccdbc544280cef3fe04874",
+      "scope": "Current source review only; no actual Play signing/AAB, deployed backend audit, operator publication or Play approval."
+    },
+    "android_result_actions": {
+      "parent_review_blob": "e0826a95126f4dde51e936c63d9e98736123efab",
+      "child_equivalence_blob": "e6fec685c0364e99c7bcc724878fa9ea88da8048",
+      "current_android_existing_tour_covers_both_won_actions": false,
+      "old_r3_scope": "Real historical Godot ScreenTouch/ScreenDrag over file transport and production Dart ACK/state effects. Relevant C4 code identical, existing Native shared bridge change only adds Settlement. Historical result remains bound to aab/e2.",
+      "next": "Prepare isolated real Android OS swipe/tap proof using only the exact new already-built057 APK; no product/current workflow changes, APK rebuild,52-mode rerun or activation yet."
+    },
+    "render_access": {
+      "state": "No active workspace selected",
+      "read_operations_completed": [
+        "get_selected_workspace",
+        "list_workspaces"
+      ],
+      "scoped_service_inspection_performed": false,
+      "reason": "Render-MCP skill reference and actual connector require user identification of the intended workspace first. Other authorized app delivery work continues.",
+      "no_configuration_changes": true,
+      "no_secret_values_requested": true
+    }
+  }
+}

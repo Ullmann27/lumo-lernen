@@ -1,0 +1,25 @@
+{
+  "source_sha": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "run_id": 43616038272,
+  "run_attempt": 1,
+  "artifact_id": 14122179663,
+  "archives": [
+    {
+      "path": "home-premium-original-selection.tar.gz",
+      "bytes": 7030253,
+      "sha256": "c9139093f39be558479e2e3adb3063acbe7ff1c8b715e5d088f54129cd952804",
+      "git_blob": "1a8fdb1ebc351d324e4197be876cdc2799979a73",
+      "original_pngs": 5,
+      "member_hash_roundtrip": "PASS"
+    },
+    {
+      "path": "village-original-selection.tar.gz",
+      "bytes": 3596541,
+      "sha256": "24272350d9945d36c7cb6a51dbf27324abf4cd4fb12e654520423df56da43123",
+      "git_blob": "2b269cec567c8f430a647e9cf7b435e6249893c1",
+      "original_pngs": 6,
+      "member_hash_roundtrip": "PASS"
+    }
+  ],
+  "scope": "New archive containers hold only unchanged original PNG bytes and a source/hash manifest."
+}

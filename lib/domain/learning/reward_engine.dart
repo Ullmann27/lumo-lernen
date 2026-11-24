@@ -4,7 +4,6 @@ enum RewardReason {
   correctAnswer,
   completedTask,
   usedHelpAndFinished,
-  improvedMastery,
   completedWriting,
   completedTest,
   tutoringSessionFinished,
@@ -25,19 +24,11 @@ class RewardDelta {
     required this.stars,
     required this.xp,
     this.reasons = const <RewardReason>[],
-    this.deductionAmount = 0,
-    this.deductionMessage,
   });
 
   final int stars;
   final int xp;
   final List<RewardReason> reasons;
-
-  /// Wie viele Sterne wurden abgezogen (positiver Wert).
-  final int deductionAmount;
-
-  /// Optionale motivierende Nachricht bei Abzug.
-  final String? deductionMessage;
 
   bool get isEmpty => stars == 0 && xp == 0 && reasons.isEmpty;
 }
@@ -131,31 +122,27 @@ class VoucherVisibilityResult {
 class RewardEngine {
   const RewardEngine();
 
-  /// Belohnung einer abgegebenen Antwort unter Berücksichtigung der Sitzung.
-  /// Fehlversuche mit Wiederholungsmöglichkeit bleiben ohne Punkteänderung.
-  /// Eine endgültige falsche Antwort nutzt den bestehenden Abzugspfad und
-  /// darf keine Abschluss-, Schreib- oder Prüfungsboni erhalten.
+  /// Stars for a task the child solved alone: first try, no help.
+  static const int independentStars = 6;
+
+  /// Stars for a task that was solved together with Lumo (after a mistake
+  /// or with a hint). Staying with a hard task is still worth something,
+  /// but clearly less than thinking it through alone.
+  static const int assistedStars = 2;
+
+  /// Belohnung einer abgegebenen Antwort.
+  ///
+  /// Eine falsche Antwort kostet nie etwas, weder beim Üben noch in Tests
+  /// oder Schularbeiten: Sterne spiegeln, was gelungen ist. Eine allein
+  /// gelöste Aufgabe ist dabei deutlich mehr wert als eine gemeinsam gelöste.
   RewardDelta calculateAnswerReward({
     required TaskResult result,
-    required SkillState before,
-    required SkillState after,
-    required bool allowRetry,
-    required bool firstAttempt,
     LearningMode mode = LearningMode.practice,
     bool completedSession = false,
   }) {
-    if (!result.correct) {
-      if (allowRetry) return const RewardDelta(stars: 0, xp: 0);
-      return calculateWrongAnswerDeduction(
-        firstAttempt: firstAttempt,
-        afterHint: result.helpUsed,
-        mode: mode,
-      );
-    }
+    if (!result.correct) return const RewardDelta(stars: 0, xp: 0);
     return calculateTaskReward(
       result: result,
-      before: before,
-      after: after,
       mode: mode,
       completedSession: completedSession,
     );
@@ -163,8 +150,6 @@ class RewardEngine {
 
   RewardDelta calculateTaskReward({
     required TaskResult result,
-    required SkillState before,
-    required SkillState after,
     LearningMode mode = LearningMode.practice,
     bool completedSession = false,
   }) {
@@ -172,27 +157,19 @@ class RewardEngine {
     var xp = 0;
     final reasons = <RewardReason>[];
 
-    // Completion is rewarded to avoid pure correctness pressure.
+    // Finishing a task is rewarded, to avoid pure correctness pressure.
     stars += 1;
     xp += 5;
     reasons.add(RewardReason.completedTask);
 
-    if (result.correct) {
-      stars += 3;
+    if (result.correct && !result.helpUsed) {
+      stars += independentStars - 1;
       xp += 20;
       reasons.add(RewardReason.correctAnswer);
-    }
-
-    if (result.helpUsed) {
-      stars += 1;
-      xp += 8;
+    } else if (result.correct) {
+      stars += assistedStars - 1;
+      xp += 5;
       reasons.add(RewardReason.usedHelpAndFinished);
-    }
-
-    if (after.masteryScore > before.masteryScore + 0.02) {
-      stars += 2;
-      xp += 12;
-      reasons.add(RewardReason.improvedMastery);
     }
 
     if (result.handwritingScore != null) {
@@ -290,36 +267,6 @@ class RewardEngine {
       level: rewardState.level,
       badges: rewardState.badges,
       lastRewardAt: rewardState.lastRewardAt,
-    );
-  }
-
-  /// Sanfter Stern-Abzug bei falscher Antwort.
-  /// Nach Hinweis: kein Abzug.
-  /// Im Test-Modus: 2 Sterne Abzug.
-  /// Im Uebungs-Modus: 1 Stern beim ersten Versuch, sonst 0.
-  RewardDelta calculateWrongAnswerDeduction({
-    required bool firstAttempt,
-    required bool afterHint,
-    LearningMode mode = LearningMode.practice,
-  }) {
-    if (afterHint) return const RewardDelta(stars: 0, xp: 0);
-
-    final deduction = switch (mode) {
-      LearningMode.exam ||
-      LearningMode.subjectTest ||
-      LearningMode.blitzTest ||
-      LearningMode.weaknessTest =>
-        2,
-      _ => firstAttempt ? 1 : 0,
-    };
-
-    return RewardDelta(
-      stars: -deduction,
-      xp: 0,
-      deductionAmount: deduction,
-      deductionMessage: deduction > 0
-          ? 'Fast! Du verlierst nur $deduction ${deduction == 1 ? "Punkt" : "Punkte"}. Versuch\'s nochmal, du schaffst das! 💪'
-          : null,
     );
   }
 }

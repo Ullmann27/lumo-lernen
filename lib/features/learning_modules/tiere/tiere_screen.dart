@@ -13,9 +13,9 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_task_object_art.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
-
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,6 +23,8 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../learning_module_rounds.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 enum _TierFrageTyp { bildZeigen, lautRaten, lebensraum }
@@ -33,10 +35,16 @@ class _Tier {
     required this.laut,
     required this.lebensraum,
     required this.emoji,
+    this.auchZuSehen = const <String>[],
   });
   final String name;
   final String laut;
   final String lebensraum;
+
+  /// Orte, an denen man das Tier ebenfalls oft sieht. Sie werden bei der
+  /// Ortsfrage nicht angeboten, damit nur eine Antwort richtig ist
+  /// (Enten, Hunde und Katzen leben auch am Bauernhof).
+  final List<String> auchZuSehen;
 
   /// Sichtbares Emoji als Fallback wenn Pollinations-Bild nicht laedt.
   /// Heinz' Wunsch: keine generischen Pfoten mehr, sondern echte Tier-Emojis.
@@ -62,13 +70,28 @@ class _TiereScreenState extends State<TiereScreen>
   // 12 Tiere fuer Quiz - alle in der Allowlist - mit echten Tier-Emojis
   static const List<_Tier> _tiere = [
     _Tier(name: 'Kuh', laut: 'Muh', lebensraum: 'Bauernhof', emoji: '🐄'),
-    _Tier(name: 'Hund', laut: 'Wau Wau', lebensraum: 'Zuhause', emoji: '🐶'),
-    _Tier(name: 'Katze', laut: 'Miau', lebensraum: 'Zuhause', emoji: '🐱'),
+    _Tier(
+        name: 'Hund',
+        laut: 'Wau Wau',
+        lebensraum: 'Zuhause',
+        emoji: '🐶',
+        auchZuSehen: ['Bauernhof']),
+    _Tier(
+        name: 'Katze',
+        laut: 'Miau',
+        lebensraum: 'Zuhause',
+        emoji: '🐱',
+        auchZuSehen: ['Bauernhof']),
     _Tier(name: 'Schaf', laut: 'Mäh', lebensraum: 'Bauernhof', emoji: '🐑'),
     _Tier(name: 'Pferd', laut: 'Wieher', lebensraum: 'Bauernhof', emoji: '🐴'),
     _Tier(
         name: 'Huhn', laut: 'Gack Gack', lebensraum: 'Bauernhof', emoji: '🐔'),
-    _Tier(name: 'Ente', laut: 'Quak', lebensraum: 'See', emoji: '🦆'),
+    _Tier(
+        name: 'Ente',
+        laut: 'Quak',
+        lebensraum: 'See',
+        emoji: '🦆',
+        auchZuSehen: ['Bauernhof']),
     _Tier(name: 'Frosch', laut: 'Quak Quak', lebensraum: 'See', emoji: '🐸'),
     _Tier(name: 'Löwe', laut: 'Brüll', lebensraum: 'Zoo', emoji: '🦁'),
     _Tier(name: 'Elefant', laut: 'Tröt', lebensraum: 'Zoo', emoji: '🐘'),
@@ -76,7 +99,10 @@ class _TiereScreenState extends State<TiereScreen>
     _Tier(name: 'Affe', laut: 'Uh Uh', lebensraum: 'Zoo', emoji: '🐵'),
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
+  late final LearningModuleRounds _rounds =
+      LearningModuleRounds(progress: _progress, totalTasks: _totalTasks);
 
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
@@ -117,6 +143,7 @@ class _TiereScreenState extends State<TiereScreen>
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakTask());
   }
@@ -156,7 +183,8 @@ class _TiereScreenState extends State<TiereScreen>
         text = 'Welches Tier macht "${_correctTier.laut}"?';
         break;
       case _TierFrageTyp.lebensraum:
-        text = 'Wo kann man das Tier ${_correctTier.name} bei uns häufig sehen?';
+        text =
+            'Wo kann man das Tier ${_correctTier.name} bei uns häufig sehen?';
         break;
     }
     try {
@@ -176,6 +204,7 @@ class _TiereScreenState extends State<TiereScreen>
         : _correctTier.name;
     final isCorrect = answer == correctAnswer;
     final saved = await _progress.saveAnswer(
+      problemKey: '${_round[_taskIdx].kind}:${_round[_taskIdx].animal}',
       cosmosSubjectId: 's1_tiere',
       cosmosIsMath: false,
       correct: isCorrect,
@@ -203,11 +232,31 @@ class _TiereScreenState extends State<TiereScreen>
     _nextTask();
   }
 
-  void _nextTask() {
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null || !mounted || _taskIdx != 0 || _answered) return;
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -280,6 +329,59 @@ class _TiereScreenState extends State<TiereScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) {
+    final places = _typ == _TierFrageTyp.lebensraum;
+    final choices = places
+        ? _buildLebensraumOptions()
+        : _answerOptions.map((animal) => animal.name).toList();
+    return ModuleTaskScope(
+      key: _taskScopeKey,
+      appState: widget.appState,
+      progress: _progress,
+      moduleId: 's1_tiere',
+      taskKey: _taskIdx,
+      prompt: switch (_typ) {
+        _TierFrageTyp.bildZeigen => 'Welches Tier zeigt das Bild?',
+        _TierFrageTyp.lautRaten => 'Welches Tier macht „${_correctTier.laut}“?',
+        _TierFrageTyp.lebensraum =>
+          'Wo kann man das Tier ${_correctTier.name} bei uns häufig sehen?',
+      },
+      objective: switch (_typ) {
+        _TierFrageTyp.bildZeigen =>
+          'Du verbindest ein Tierbild mit dem passenden Tiernamen.',
+        _TierFrageTyp.lautRaten =>
+          'Du verbindest einen dargestellten Tierlaut mit einem Tier.',
+        _TierFrageTyp.lebensraum =>
+          'Du ordnest Tiere typischen Begegnungsorten bei uns zu.',
+      },
+      answerChoices: choices,
+      onConfirmChoice: (index) => _onAnswer(choices[index]),
+      helpSteps: [
+        switch (_typ) {
+          _TierFrageTyp.bildZeigen =>
+            'Betrachte Kopf, Beine, Fell oder Federn. Welche Merkmale erkennst du am Tierbild?',
+          _TierFrageTyp.lautRaten =>
+            'Sprich den dargestellten Laut „${_correctTier.laut}“ langsam nach. An welches Tier erinnert er dich?',
+          _TierFrageTyp.lebensraum =>
+            'Denke an das Tier ${_correctTier.name}. Wo begegnet man diesem Tier bei uns häufig?',
+        },
+        places
+            ? 'Vergleiche Bauernhof, Zoo, See und Zuhause. Gesucht ist ein typischer Begegnungsort bei uns; Tiere können auch an anderen Orten leben.'
+            : 'Lies jeden angebotenen Tiernamen. Passt er zu den Merkmalen im Bild oder zum dargestellten Laut?',
+        places
+            ? 'Hier wird ${_correctTier.name} dem Begegnungsort ${_correctTier.lebensraum} zugeordnet. Das sagt nicht, dass es ausschließlich dort lebt.'
+            : 'Gemeint ist ${_correctTier.name}. Verbinde den Tiernamen noch einmal mit dem Bild oder dem Laut und wähle selbst.',
+      ],
+      answering: !_answered,
+      lastAnswer: _selectedAnswer,
+      lastCorrect: _answered
+          ? _selectedAnswer ==
+              (places ? _correctTier.lebensraum : _correctTier.name)
+          : null,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -291,10 +393,12 @@ class _TiereScreenState extends State<TiereScreen>
         icon: Icons.pets_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
+        inRounds: true,
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -310,7 +414,7 @@ class _TiereScreenState extends State<TiereScreen>
             const SizedBox(height: 20),
             _buildAnswerOptions(),
           ]),
-        ),
+        )),
       ),
     );
   }
@@ -325,7 +429,8 @@ class _TiereScreenState extends State<TiereScreen>
         text = 'Welches Tier macht "${_correctTier.laut}"?';
         break;
       case _TierFrageTyp.lebensraum:
-        text = 'Wo lebt ein ${_correctTier.name}?';
+        text =
+            'Wo kann man das Tier ${_correctTier.name} bei uns häufig sehen?';
         break;
     }
     return AnimatedBuilder(
@@ -387,14 +492,24 @@ class _TiereScreenState extends State<TiereScreen>
           boxShadow: [
             BoxShadow(
               color: colors[1].withOpacity(.45),
-              blurRadius: 24,
-              offset: const Offset(0, 10),
+              blurRadius: 26,
+              offset: const Offset(0, 12),
               spreadRadius: -2,
+            ),
+            BoxShadow(
+              color: Colors.white.withOpacity(.28),
+              blurRadius: 8,
+              offset: const Offset(0, -2),
             ),
           ],
         ),
-        child: Text(hideAnswer ? '🔊' : _correctTier.emoji,
-            style: const TextStyle(fontSize: 140, height: 1.0)),
+        child: hideAnswer
+            ? const Text('🔊', style: TextStyle(fontSize: 140, height: 1.0))
+            : LumoTaskObjectArt(
+                name: _correctTier.name,
+                emoji: _correctTier.emoji,
+                size: 168,
+              ),
       ),
     );
   }
@@ -431,8 +546,10 @@ class _TiereScreenState extends State<TiereScreen>
   }
 
   List<String> _buildLebensraumOptions() {
-    final all = ['Bauernhof', 'Zoo', 'See', 'Zuhause'];
-    return all;
+    const all = ['Bauernhof', 'Zoo', 'See', 'Zuhause'];
+    return all
+        .where((place) => !_correctTier.auchZuSehen.contains(place))
+        .toList();
   }
 
   Widget _buildAnswerButton(String text) {

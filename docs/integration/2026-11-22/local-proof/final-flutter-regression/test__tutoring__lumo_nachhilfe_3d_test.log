@@ -1,0 +1,6 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/tutoring/lumo_nachhilfe_3d_test.dart
+00:00 +0: Startweg der 3D-Nachhilfe: echter launchLumo3D-Payload übersteht Codec und JSON (Fixture für Godot)
+00:00 +1: Rückgabe der 3D-Nachhilfe: nur Hilfestufe und Zwilling, nie das Original
+00:00 +2: Nachhilfe: „In 3D mit Lumo“ startet die Szene mit dem App-Payload, kehrt zur selben Aufgabe zurück und bucht keine Sterne/XP
+00:01 +3: 3D-Start scheitert: die 2D-Nachhilfe bleibt offen
+00:02 +4: All tests passed!

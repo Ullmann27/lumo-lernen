@@ -1,0 +1,1451 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[LearningWorld] move kind=bridge_ten token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_ten token=1 target=9 placed=2 complete=false
+[LearningWorld] move kind=bridge_ten token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_ten token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_ten token=4 target=12 placed=5 complete=true
+[LearningWorld] move kind=syllables token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=syllables token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=syllables token=2 target=2 placed=3 complete=true
+[LearningWorld] move kind=addition token=0 target=4 placed=1 complete=false
+[LearningWorld] move kind=addition token=1 target=5 placed=2 complete=false
+[LearningWorld] move kind=addition token=2 target=6 placed=3 complete=true
+[LearningWorld] move kind=subtract_ten token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=subtract_ten token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=subtract_ten token=2 target=2 placed=3 complete=false
+[LearningWorld] move kind=subtract_ten token=3 target=3 placed=4 complete=false
+[LearningWorld] move kind=subtract_ten token=4 target=4 placed=5 complete=true
+[LearningWorld] move kind=equal_groups token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=equal_groups token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=equal_groups token=2 target=2 placed=3 complete=false
+[LearningWorld] move kind=equal_groups token=3 target=3 placed=4 complete=false
+[LearningWorld] move kind=equal_groups token=4 target=4 placed=5 complete=false
+[LearningWorld] move kind=equal_groups token=5 target=5 placed=6 complete=false
+[LearningWorld] move kind=equal_groups token=6 target=6 placed=7 complete=false
+[LearningWorld] move kind=equal_groups token=7 target=7 placed=8 complete=false
+[LearningWorld] move kind=equal_groups token=8 target=8 placed=9 complete=false
+[LearningWorld] move kind=equal_groups token=9 target=9 placed=10 complete=false
+[LearningWorld] move kind=equal_groups token=10 target=10 placed=11 complete=false
+[LearningWorld] move kind=equal_groups token=11 target=11 placed=12 complete=true
+[LearningWorld] move kind=bridge_hundred token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=9 placed=2 complete=false
+[LearningWorld] move kind=bridge_hundred token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_hundred token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_hundred token=4 target=12 placed=5 complete=true
+[LearningWorld] move kind=fraction_parts token=0 target=1 placed=1 complete=false
+[LearningWorld] move kind=fraction_parts token=1 target=2 placed=2 complete=true
+[LearningWorld] move kind=addition token=0 target=10 placed=1 complete=false
+[LearningWorld] move kind=addition token=1 target=11 placed=2 complete=false
+[LearningWorld] move kind=addition token=2 target=12 placed=3 complete=false
+[LearningWorld] move kind=addition token=3 target=13 placed=4 complete=false
+[LearningWorld] move kind=addition token=4 target=14 placed=5 complete=false
+[LearningWorld] move kind=addition token=5 target=15 placed=6 complete=false
+[LearningWorld] move kind=addition token=6 target=16 placed=7 complete=false
+[LearningWorld] move kind=addition token=7 target=17 placed=8 complete=false
+[LearningWorld] move kind=addition token=8 target=18 placed=9 complete=false
+[LearningWorld] move kind=addition token=9 target=19 placed=10 complete=true
+[LearningWorld] move kind=subtract_ten token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=subtract_ten token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=subtract_ten token=2 target=2 placed=3 complete=false
+[LearningWorld] move kind=subtract_ten token=3 target=3 placed=4 complete=false
+[LearningWorld] move kind=subtract_ten token=4 target=4 placed=5 complete=false
+[LearningWorld] move kind=subtract_ten token=5 target=5 placed=6 complete=false
+[LearningWorld] move kind=subtract_ten token=6 target=6 placed=7 complete=false
+[LearningWorld] move kind=subtract_ten token=7 target=7 placed=8 complete=false
+[LearningWorld] move kind=subtract_ten token=8 target=8 placed=9 complete=false
+[LearningWorld] move kind=subtract_ten token=9 target=9 placed=10 complete=false
+[LearningWorld] move kind=subtract_ten token=10 target=10 placed=11 complete=false
+[LearningWorld] move kind=subtract_ten token=11 target=11 placed=12 complete=false
+[LearningWorld] move kind=subtract_ten token=12 target=12 placed=13 complete=false
+[LearningWorld] move kind=subtract_ten token=13 target=13 placed=14 complete=false
+[LearningWorld] move kind=subtract_ten token=14 target=14 placed=15 complete=false
+[LearningWorld] move kind=subtract_ten token=15 target=15 placed=16 complete=false
+[LearningWorld] move kind=subtract_ten token=16 target=16 placed=17 complete=false
+[LearningWorld] move kind=subtract_ten token=17 target=17 placed=18 complete=false
+[LearningWorld] move kind=subtract_ten token=18 target=18 placed=19 complete=false
+[LearningWorld] move kind=subtract_ten token=19 target=19 placed=20 complete=true
+[LearningWorld] move kind=equal_groups token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=equal_groups token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=equal_groups token=2 target=2 placed=3 complete=false
+[LearningWorld] move kind=equal_groups token=3 target=3 placed=4 complete=false
+[LearningWorld] move kind=equal_groups token=4 target=4 placed=5 complete=false
+[LearningWorld] move kind=equal_groups token=5 target=5 placed=6 complete=false
+[LearningWorld] move kind=equal_groups token=6 target=6 placed=7 complete=false
+[LearningWorld] move kind=equal_groups token=7 target=7 placed=8 complete=false
+[LearningWorld] move kind=equal_groups token=8 target=8 placed=9 complete=false
+[LearningWorld] move kind=equal_groups token=9 target=9 placed=10 complete=false
+[LearningWorld] move kind=equal_groups token=10 target=10 placed=11 complete=false
+[LearningWorld] move kind=equal_groups token=11 target=11 placed=12 complete=false
+[LearningWorld] move kind=equal_groups token=12 target=12 placed=13 complete=false
+[LearningWorld] move kind=equal_groups token=13 target=13 placed=14 complete=false
+[LearningWorld] move kind=equal_groups token=14 target=14 placed=15 complete=false
+[LearningWorld] move kind=equal_groups token=15 target=15 placed=16 complete=false
+[LearningWorld] move kind=equal_groups token=16 target=16 placed=17 complete=false
+[LearningWorld] move kind=equal_groups token=17 target=17 placed=18 complete=false
+[LearningWorld] move kind=equal_groups token=18 target=18 placed=19 complete=false
+[LearningWorld] move kind=equal_groups token=19 target=19 placed=20 complete=false
+[LearningWorld] move kind=equal_groups token=20 target=20 placed=21 complete=false
+[LearningWorld] move kind=equal_groups token=21 target=21 placed=22 complete=false
+[LearningWorld] move kind=equal_groups token=22 target=22 placed=23 complete=false
+[LearningWorld] move kind=equal_groups token=23 target=23 placed=24 complete=false
+[LearningWorld] move kind=equal_groups token=24 target=24 placed=25 complete=false
+[LearningWorld] move kind=equal_groups token=25 target=25 placed=26 complete=false
+[LearningWorld] move kind=equal_groups token=26 target=26 placed=27 complete=false
+[LearningWorld] move kind=equal_groups token=27 target=27 placed=28 complete=false
+[LearningWorld] move kind=equal_groups token=28 target=28 placed=29 complete=false
+[LearningWorld] move kind=equal_groups token=29 target=29 placed=30 complete=false
+[LearningWorld] move kind=equal_groups token=30 target=30 placed=31 complete=false
+[LearningWorld] move kind=equal_groups token=31 target=31 placed=32 complete=false
+[LearningWorld] move kind=equal_groups token=32 target=32 placed=33 complete=false
+[LearningWorld] move kind=equal_groups token=33 target=33 placed=34 complete=false
+[LearningWorld] move kind=equal_groups token=34 target=34 placed=35 complete=false
+[LearningWorld] move kind=equal_groups token=35 target=35 placed=36 complete=true
+[LearningWorld] move kind=bridge_hundred token=0 target=9 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=10 placed=2 complete=false
+[LearningWorld] move kind=bridge_hundred token=2 target=11 placed=3 complete=false
+[LearningWorld] move kind=bridge_hundred token=3 target=12 placed=4 complete=false
+[LearningWorld] move kind=bridge_hundred token=4 target=13 placed=5 complete=false
+[LearningWorld] move kind=bridge_hundred token=5 target=14 placed=6 complete=false
+[LearningWorld] move kind=bridge_hundred token=6 target=15 placed=7 complete=false
+[LearningWorld] move kind=bridge_hundred token=7 target=16 placed=8 complete=false
+[LearningWorld] move kind=bridge_hundred token=8 target=17 placed=9 complete=true
+[LearningWorld] move kind=fraction_parts token=0 target=1 placed=1 complete=false
+[LearningWorld] move kind=fraction_parts token=1 target=2 placed=2 complete=false
+[LearningWorld] move kind=fraction_parts token=2 target=3 placed=3 complete=false
+[LearningWorld] move kind=fraction_parts token=3 target=4 placed=4 complete=false
+[LearningWorld] move kind=fraction_parts token=4 target=5 placed=5 complete=false
+[LearningWorld] move kind=fraction_parts token=5 target=6 placed=6 complete=false
+[LearningWorld] move kind=fraction_parts token=6 target=7 placed=7 complete=false
+[LearningWorld] move kind=fraction_parts token=7 target=8 placed=8 complete=false
+[LearningWorld] move kind=fraction_parts token=8 target=9 placed=9 complete=false
+[LearningWorld] move kind=fraction_parts token=9 target=10 placed=10 complete=true
+[LearningWorld] move kind=syllables token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=syllables token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=syllables token=2 target=2 placed=3 complete=false
+[LearningWorld] move kind=syllables token=3 target=3 placed=4 complete=false
+[LearningWorld] move kind=syllables token=4 target=4 placed=5 complete=true
+[LearningWorld] PASS checks=5340
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[LearningWorld] move kind=equal_sharing token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=equal_sharing token=1 target=4 placed=2 complete=false
+[LearningWorld] move kind=equal_sharing token=2 target=8 placed=3 complete=false
+[LearningWorld] move kind=equal_sharing token=3 target=1 placed=4 complete=false
+[LearningWorld] move kind=equal_sharing token=4 target=5 placed=5 complete=false
+[LearningWorld] move kind=equal_sharing token=5 target=9 placed=6 complete=false
+[LearningWorld] move kind=equal_sharing token=6 target=2 placed=7 complete=false
+[LearningWorld] move kind=equal_sharing token=7 target=6 placed=8 complete=false
+[LearningWorld] move kind=equal_sharing token=8 target=10 placed=9 complete=false
+[LearningWorld] move kind=equal_sharing token=9 target=3 placed=10 complete=false
+[LearningWorld] move kind=equal_sharing token=10 target=7 placed=11 complete=false
+[LearningWorld] move kind=equal_sharing token=11 target=11 placed=12 complete=true
+[LearningSharing] PASS checks=1811
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[LearningWorld] move kind=bridge_hundred token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=9 placed=2 complete=false
+[LearningStudio] EQUAL step 2 in (1280, 720) gap_px=3.7830810546875
+[LearningStudio] EQUAL step 2 in (412, 915) gap_px=2.24810791015625
+[LearningStudio] EQUAL step 2 in (2400, 1080) gap_px=3.71499633789062
+[LearningWorld] move kind=bridge_hundred token=2 target=10 placed=3 complete=false
+[LearningStudio] EQUAL step 3 in (1280, 720) gap_px=3.7830810546875
+[LearningStudio] EQUAL step 3 in (412, 915) gap_px=2.24810791015625
+[LearningStudio] EQUAL step 3 in (2400, 1080) gap_px=3.71499633789062
+[LearningWorld] move kind=bridge_hundred token=3 target=11 placed=4 complete=false
+[LearningStudio] EQUAL step 4 in (1280, 720) gap_px=3.7830810546875
+[LearningStudio] EQUAL step 4 in (412, 915) gap_px=2.24810791015625
+[LearningStudio] EQUAL step 4 in (2400, 1080) gap_px=3.71499633789062
+[LearningWorld] move kind=bridge_hundred token=4 target=12 placed=5 complete=true
+[LearningStudio] EQUAL step 5 in (1280, 720) gap_px=3.7830810546875
+[LearningStudio] EQUAL step 5 in (412, 915) gap_px=2.260009765625
+[LearningStudio] EQUAL step 5 in (2400, 1080) gap_px=3.71499633789062
+[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[LearningHostPayload] PASS cases=5 checks=135 host=a8e09123805b2bf30706c8dd1914b928ae6b24ca
+[Perf] quality_profile:medium
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[PuzzleMenuLifecycle] tap count frame=11
+[PuzzleMenuLifecycle] tap count frame=16
+[PuzzleMenuLifecycle] tap count frame=21
+[PuzzleMenuLifecycle] tap count frame=26
+[PuzzleMenuLifecycle] tap Modus: frame=31
+[PuzzleMenuLifecycle] tap Modus: frame=34
+[PuzzleMenuLifecycle] tap Modus: frame=37
+[PuzzleMenuLifecycle] tap Modus: frame=40
+[PuzzleMenuLifecycle] tap Modus: frame=43
+[PuzzleMenuLifecycle] tap Modus: frame=46
+[PuzzleMenuLifecycle] tap Bild: frame=49
+[PuzzleMenuLifecycle] tap Bild: frame=52
+[PuzzleMenuLifecycle] tap Bild: frame=55
+[PuzzleMenuLifecycle] tap Bild: frame=58
+[PuzzleMenuLifecycle] tap Bild: frame=61
+[PuzzleMenuLifecycle] tap count frame=64
+[PuzzleMenuLifecycle] tap count frame=67
+[PuzzleMenuLifecycle] tap count frame=70
+[PuzzleMenuLifecycle] tap count frame=73
+[PuzzleMenuLifecycle] tap count frame=76
+[PuzzleMenuLifecycle] tap Modus: frame=79
+[PuzzleMenuLifecycle] tap Neues Puzzle beginnen frame=82
+[PuzzleMenuLifecycle] tap ↻ Drehen frame=93
+[PuzzleMenuLifecycle] tap Ⅱ frame=96
+[PuzzleMenuLifecycle] tap Anderes Puzzle frame=99
+[PuzzleMenuLifecycle] tap Modus: frame=102
+[PuzzleMenuLifecycle] tap Neues Puzzle beginnen frame=105
+[PuzzleMenuLifecycle] tap Ⅱ frame=126
+[PuzzleMenuLifecycle] tap Weiterpuzzeln frame=129
+[PuzzleMenuLifecycle] tap count frame=148
+[PuzzleMenuLifecycle] tap count frame=153
+[PuzzleMenuLifecycle] tap count frame=158
+[PuzzleMenuLifecycle] tap count frame=163
+[PuzzleMenuLifecycle] tap Modus: frame=168
+[PuzzleMenuLifecycle] tap Modus: frame=171
+[PuzzleMenuLifecycle] tap Modus: frame=174
+[PuzzleMenuLifecycle] tap Modus: frame=177
+[PuzzleMenuLifecycle] tap Modus: frame=180
+[PuzzleMenuLifecycle] tap Modus: frame=183
+[PuzzleMenuLifecycle] tap Bild: frame=186
+[PuzzleMenuLifecycle] tap Bild: frame=189
+[PuzzleMenuLifecycle] tap Bild: frame=192
+[PuzzleMenuLifecycle] tap Bild: frame=195
+[PuzzleMenuLifecycle] tap Bild: frame=198
+[PuzzleMenuLifecycle] tap count frame=201
+[PuzzleMenuLifecycle] tap count frame=204
+[PuzzleMenuLifecycle] tap count frame=207
+[PuzzleMenuLifecycle] tap count frame=210
+[PuzzleMenuLifecycle] tap count frame=213
+[PuzzleMenuLifecycle] tap Modus: frame=216
+[PuzzleMenuLifecycle] tap Neues Puzzle beginnen frame=219
+[PuzzleMenuLifecycle] tap ↻ Drehen frame=230
+[PuzzleMenuLifecycle] tap Ⅱ frame=233
+[PuzzleMenuLifecycle] tap Anderes Puzzle frame=236
+[PuzzleMenuLifecycle] tap Modus: frame=239
+[PuzzleMenuLifecycle] tap Neues Puzzle beginnen frame=242
+[PuzzleMenuLifecycle] tap Ⅱ frame=263
+[PuzzleMenuLifecycle] tap Weiterpuzzeln frame=266
+[PuzzleMenuLifecycle] PASS 720 behavioral checks; strict native log gate still required
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+[Perf] quality_profile:medium
+behavior:idle_bounce
+[JumpNextgen] measured jump heights: {"held":{"height":2.07875111699104,"knee_angle":1.63079345226288},"tap":{"height":1.09041860699654,"knee_angle":1.62433660030365}}
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Deutsch
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Router] goto:jump (res://scenes/games/jump_islands.tscn)
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[JumpNextgen] PASS 84 checks: actual variable jumps, coyote, buffer, original rig, pause, dp layouts and isolated saves
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+[Perf] quality_profile:medium
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+[Jump] finished: stars=21 questions=3
+behavior:idle
+[JumpExpeditions] route 0: frames=1012 falls=0 crystals=10 goals=1
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+[Jump] finished: stars=21 questions=3
+behavior:idle
+[JumpExpeditions] route 1: frames=1036 falls=0 crystals=10 goals=1
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+[Jump] finished: stars=19 questions=3
+behavior:idle
+[JumpExpeditions] route 2: frames=1008 falls=0 crystals=10 goals=0
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+[Router] goto:jump (res://scenes/games/jump_islands.tscn)
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+[Router] goto:jump (res://scenes/games/jump_islands.tscn)
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+[JumpExpeditions] PASS 29 checks: three physical courses, four stages, real menu selection and preserved progress
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[LumoTeacherPose] PASS 34 checks: original gestures, bounded split gaze, owner exclusivity, pause and honest voice seam
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[LumoStudioMotion] PASS checks=1047 Blender/Godot endpoint_error_m=0.000000733 segment_error_m=0.000000179; no physical Android claim
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[LumoGait] PASS: real 65-bone alternating thigh/foot/toe/arm movement, pause, calm mode, neutral reset
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+[Perf] quality_profile:medium
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+[JumpOriginalLumo] PASS: original 65-bone GLB visible, grounded, moving, paused and resumed
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[BauweltIdentity2013] PASS workshop, observatory, branched tree, L emblem, place/undo/save, templates, expanded grid
+[Perf] quality_profile:medium
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_frontier_regression_no_user_data_1.json
+[Perf] quality_profile:medium
+[BuildFrontier] PASS checks=14 failures=[]
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[BuildTransform] PASS checks=38: identity, rotation, support graph, atomic history and v1 saves
+[Perf] quality_profile:medium
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_nextgen_build_play_regression_1.json
+[Perf] quality_profile:medium
+[BuildNextgen] PASS checks=71: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[Settlement] PASS 194 checks; mirrored complete AI campaign 22 days
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_3.json
+[Perf] quality_profile:medium
+[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)
+[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_3_rival.json
+[Router] goto:build (res://scenes/creative/build_world.tscn)
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_3.json
+[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)
+[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_3_rival.json
+[Router] goto:build (res://scenes/creative/build_world.tscn)
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_3.json
+[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)
+[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_3_rival.json
+[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)
+[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_4_rival.json
+[Router] goto:build (res://scenes/creative/build_world.tscn)
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_4.json
+[SettlementPlay] PASS checks=127: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[VillageEconomy] mirrored new AI victory turns=17
+[VillageEconomy] legal campaign turns=55 plots=1089 residents=98 chapter=12
+[VillageEconomy] PASS 337 checks
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[VillageArt] 2259 checks / 0 failures
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[SettlementWorld] ready mode=settlement save=user://lumo_settlement_158b1309a8ac6594be8e275d8620f29a8c3368f495cf56f456b5b79a7f147b23_6_village.json
+[Perf] quality_profile:medium
+[SettlementWorld] ready mode=settlement save=user://lumo_settlement_158b1309a8ac6594be8e275d8620f29a8c3368f495cf56f456b5b79a7f147b23_6_village.json
+[VillageScene] PASS checks=223 : production village, chapter, economy and resume
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[CreativeNextgenEnvironment] PASS checks=35: original textures, bounded cloud batch, preserved quality and no added lights
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Perf] quality_profile:medium
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[NextGenGarage] PASS 93 checks; captures=0
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Perf] quality_profile:medium
+[Kart] race_world_ready: sonnenhafen mode=race
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Kart] completed: mode=race track=sonnenhafen stars=3 place=1
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Kart] completed: mode=race track=sonnenhafen stars=3 place=1
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Kart] completed: mode=race track=sonnenhafen stars=3 place=1
+[Kart] race_world_ready: zauberwald mode=race
+[KartTrackPass] PASS 104 checks
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+CARDS_ROOM_BATCHES sources=146 batches=13
+[Perf] quality_profile:medium
+[LumoHost] return: games
+CARDS_TABLE_RUNTIME_PASS checks=295 failures=0
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+CARDS_ANDROID_INSETS_PASS checks=20 failures=0 scope=public_api_boundary_not_device
+[Perf] quality_profile:medium
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+CARDS_SAFE_AREA_PASS checks=682 failures=0 profiles=5 images=0
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 63.0), S: (0.0, 136.0)], "insets": [P: (0.0, 63.0), S: (0.0, 136.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_safe-area-contract-build-14777_1.json
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[SettlementWorld] ready mode=settlement save=user://lumo_settlement_4b13593f866974759045d98514c97caf3855f13ae8e25a362b19aa13d75b0032_1_settlement.json
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] runtime ready screen:(2400, 1080) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+MOBILE_SAFE_AREA_PASS checks=112 failures=0 controls=15 images=0 scope=platform_boundary_fixture
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[RhythmTour] PASS checks=2118: distinct fair charts, three difficulties, non-perfect campaign and additive saves
+[Perf] quality_profile:medium
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[RhythmTourPlay] PASS checks=87: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[LearningCapture] SCREENSHOT math-start-1280x720 lit=49938 orange=34375 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=bridge_ten token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_ten token=1 target=9 placed=2 complete=false
+[LearningCapture] SCREENSHOT math-ten-1280x720 lit=50377 orange=34707 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=bridge_ten token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_ten token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_ten token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT math-complete-1280x720 lit=51426 orange=36104 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT math-start-412x915 lit=18911 orange=10575 fox_head_orange=969 clipped_ratio=0.0005812376487
+[LearningWorld] move kind=bridge_ten token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_ten token=1 target=9 placed=2 complete=false
+[LearningCapture] SCREENSHOT math-ten-412x915 lit=19182 orange=10798 fox_head_orange=969 clipped_ratio=0.0005812376487
+[LearningWorld] move kind=bridge_ten token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_ten token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_ten token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT math-complete-412x915 lit=18426 orange=10694 fox_head_orange=870 clipped_ratio=0.00073087542634
+[LearningCapture] SCREENSHOT math-start-2400x1080 lit=96433 orange=34791 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[LearningWorld] move kind=bridge_ten token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_ten token=1 target=9 placed=2 complete=false
+[LearningCapture] SCREENSHOT math-ten-2400x1080 lit=96764 orange=35026 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[LearningWorld] move kind=bridge_ten token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_ten token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_ten token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT math-complete-2400x1080 lit=97696 orange=36297 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[LearningCapture] SCREENSHOT syllables-start lit=54902 orange=26477 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=syllables token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=syllables token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=syllables token=2 target=2 placed=3 complete=true
+[LearningCapture] SCREENSHOT syllables-complete lit=55821 orange=26388 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT plant_parts-start lit=55469 orange=32380 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT plant_parts-complete lit=54784 orange=31852 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT subtract_ten-start lit=47822 orange=29063 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=subtract_ten token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=subtract_ten token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=subtract_ten token=2 target=2 placed=3 complete=false
+[LearningWorld] move kind=subtract_ten token=3 target=3 placed=4 complete=false
+[LearningWorld] move kind=subtract_ten token=4 target=4 placed=5 complete=true
+[LearningCapture] SCREENSHOT subtract_ten-complete lit=48209 orange=29361 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT equal_groups-start lit=56494 orange=26927 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=equal_groups token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=equal_groups token=1 target=1 placed=2 complete=false
+[LearningWorld] move kind=equal_groups token=2 target=2 placed=3 complete=false
+[LearningWorld] move kind=equal_groups token=3 target=3 placed=4 complete=false
+[LearningWorld] move kind=equal_groups token=4 target=4 placed=5 complete=false
+[LearningWorld] move kind=equal_groups token=5 target=5 placed=6 complete=false
+[LearningWorld] move kind=equal_groups token=6 target=6 placed=7 complete=false
+[LearningWorld] move kind=equal_groups token=7 target=7 placed=8 complete=false
+[LearningWorld] move kind=equal_groups token=8 target=8 placed=9 complete=false
+[LearningWorld] move kind=equal_groups token=9 target=9 placed=10 complete=false
+[LearningWorld] move kind=equal_groups token=10 target=10 placed=11 complete=false
+[LearningWorld] move kind=equal_groups token=11 target=11 placed=12 complete=true
+[LearningCapture] SCREENSHOT equal_groups-complete lit=56735 orange=27056 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT bridge_hundred-start lit=49302 orange=31487 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=bridge_hundred token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=9 placed=2 complete=false
+[LearningWorld] move kind=bridge_hundred token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_hundred token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_hundred token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT bridge_hundred-complete lit=50804 orange=33220 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT fraction_parts-start lit=53701 orange=24193 fox_head_orange=1904 clipped_ratio=0.00077895355673
+[LearningWorld] move kind=fraction_parts token=0 target=1 placed=1 complete=false
+[LearningWorld] move kind=fraction_parts token=1 target=2 placed=2 complete=true
+[LearningCapture] SCREENSHOT fraction_parts-complete lit=54092 orange=24115 fox_head_orange=1904 clipped_ratio=0.00077895355673
+[LearningCapture] SCREENSHOT bridge_hundred-start-412x915 lit=18650 orange=9387 fox_head_orange=969 clipped_ratio=0.0005812376487
+[LearningWorld] move kind=bridge_hundred token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=9 placed=2 complete=false
+[LearningWorld] move kind=bridge_hundred token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_hundred token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_hundred token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT bridge_hundred-complete-412x915 lit=18196 orange=9599 fox_head_orange=870 clipped_ratio=0.00073087542634
+[LearningCapture] SCREENSHOT bridge_hundred-start-2400x1080 lit=95645 orange=31808 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[LearningWorld] move kind=bridge_hundred token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=9 placed=2 complete=false
+[LearningWorld] move kind=bridge_hundred token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_hundred token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_hundred token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT bridge_hundred-complete-2400x1080 lit=96926 orange=33316 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[LearningCapture] PASS captures=25
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[LearningSharingCapture] SCREENSHOT sharing-start-1280x720.png
+[LearningWorld] move kind=equal_sharing token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=equal_sharing token=1 target=4 placed=2 complete=false
+[LearningWorld] move kind=equal_sharing token=2 target=8 placed=3 complete=false
+[LearningSharingCapture] SCREENSHOT sharing-first-round-1280x720.png
+[LearningWorld] move kind=equal_sharing token=3 target=1 placed=4 complete=false
+[LearningWorld] move kind=equal_sharing token=4 target=5 placed=5 complete=false
+[LearningWorld] move kind=equal_sharing token=5 target=9 placed=6 complete=false
+[LearningWorld] move kind=equal_sharing token=6 target=2 placed=7 complete=false
+[LearningWorld] move kind=equal_sharing token=7 target=6 placed=8 complete=false
+[LearningWorld] move kind=equal_sharing token=8 target=10 placed=9 complete=false
+[LearningWorld] move kind=equal_sharing token=9 target=3 placed=10 complete=false
+[LearningWorld] move kind=equal_sharing token=10 target=7 placed=11 complete=false
+[LearningWorld] move kind=equal_sharing token=11 target=11 placed=12 complete=true
+[LearningSharingCapture] SCREENSHOT sharing-complete-1280x720.png
+[LearningSharingCapture] SCREENSHOT sharing-start-412x915.png
+[LearningWorld] move kind=equal_sharing token=0 target=0 placed=1 complete=false
+[LearningWorld] move kind=equal_sharing token=1 target=4 placed=2 complete=false
+[LearningWorld] move kind=equal_sharing token=2 target=8 placed=3 complete=false
+[LearningSharingCapture] SCREENSHOT sharing-first-round-412x915.png
+[LearningWorld] move kind=equal_sharing token=3 target=1 placed=4 complete=false
+[LearningWorld] move kind=equal_sharing token=4 target=5 placed=5 complete=false
+[LearningWorld] move kind=equal_sharing token=5 target=9 placed=6 complete=false
+[LearningWorld] move kind=equal_sharing token=6 target=2 placed=7 complete=false
+[LearningWorld] move kind=equal_sharing token=7 target=6 placed=8 complete=false
+[LearningWorld] move kind=equal_sharing token=8 target=10 placed=9 complete=false
+[LearningWorld] move kind=equal_sharing token=9 target=3 placed=10 complete=false
+[LearningWorld] move kind=equal_sharing token=10 target=7 placed=11 complete=false
+[LearningWorld] move kind=equal_sharing token=11 target=11 placed=12 complete=true
+[LearningSharingCapture] SCREENSHOT sharing-complete-412x915.png
+[LearningSharingCapture] PASS captures=6
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[LumoStudioCapture] PASS 8 real renderer frames; frozen baseline and current IK clips
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[PuzzleMenuLifecycle] tap count frame=14
+[PuzzleMenuLifecycle] tap count frame=19
+[PuzzleMenuLifecycle] tap count frame=24
+[PuzzleMenuLifecycle] tap count frame=29
+[PuzzleMenuLifecycle] tap Modus: frame=34
+[PuzzleMenuLifecycle] tap Modus: frame=37
+[PuzzleMenuLifecycle] tap Modus: frame=40
+[PuzzleMenuLifecycle] tap Modus: frame=43
+[PuzzleMenuLifecycle] tap Modus: frame=46
+[PuzzleMenuLifecycle] tap Modus: frame=49
+[PuzzleMenuLifecycle] tap Bild: frame=52
+[PuzzleMenuLifecycle] tap Bild: frame=55
+[PuzzleMenuLifecycle] tap Bild: frame=58
+[PuzzleMenuLifecycle] tap Bild: frame=61
+[PuzzleMenuLifecycle] tap Bild: frame=64
+[PuzzleMenuLifecycle] tap count frame=67
+[PuzzleMenuLifecycle] tap count frame=70
+[PuzzleMenuLifecycle] tap count frame=73
+[PuzzleMenuLifecycle] tap count frame=76
+[PuzzleMenuLifecycle] tap count frame=79
+[PuzzleMenuLifecycle] tap Modus: frame=82
+[PuzzleMenuLifecycle] tap Neues Puzzle beginnen frame=86
+[PuzzleMenuLifecycle] tap ↻ Drehen frame=97
+[PuzzleMenuLifecycle] tap Ⅱ frame=101
+[PuzzleMenuLifecycle] tap Anderes Puzzle frame=104
+[PuzzleMenuLifecycle] tap Modus: frame=107
+[PuzzleMenuLifecycle] tap Neues Puzzle beginnen frame=110
+[PuzzleMenuLifecycle] tap Ⅱ frame=132
+[PuzzleMenuLifecycle] tap Weiterpuzzeln frame=135
+[PuzzleMenuLifecycle] tap count frame=157
+[PuzzleMenuLifecycle] tap count frame=162
+[PuzzleMenuLifecycle] tap count frame=167
+[PuzzleMenuLifecycle] tap count frame=172
+[PuzzleMenuLifecycle] tap Modus: frame=177
+[PuzzleMenuLifecycle] tap Modus: frame=180
+[PuzzleMenuLifecycle] tap Modus: frame=183
+[PuzzleMenuLifecycle] tap Modus: frame=186
+[PuzzleMenuLifecycle] tap Modus: frame=189
+[PuzzleMenuLifecycle] tap Modus: frame=192
+[PuzzleMenuLifecycle] tap Bild: frame=195
+[PuzzleMenuLifecycle] tap Bild: frame=198
+[PuzzleMenuLifecycle] tap Bild: frame=201
+[PuzzleMenuLifecycle] tap Bild: frame=204
+[PuzzleMenuLifecycle] tap Bild: frame=207
+[PuzzleMenuLifecycle] tap count frame=210
+[PuzzleMenuLifecycle] tap count frame=213
+[PuzzleMenuLifecycle] tap count frame=216
+[PuzzleMenuLifecycle] tap count frame=219
+[PuzzleMenuLifecycle] tap count frame=222
+[PuzzleMenuLifecycle] tap Modus: frame=225
+[PuzzleMenuLifecycle] tap Neues Puzzle beginnen frame=229
+[PuzzleMenuLifecycle] tap ↻ Drehen frame=240
+[PuzzleMenuLifecycle] tap Ⅱ frame=244
+[PuzzleMenuLifecycle] tap Anderes Puzzle frame=247
+[PuzzleMenuLifecycle] tap Modus: frame=250
+[PuzzleMenuLifecycle] tap Neues Puzzle beginnen frame=253
+[PuzzleMenuLifecycle] tap Ⅱ frame=275
+[PuzzleMenuLifecycle] tap Weiterpuzzeln frame=278
+[PuzzleMenuLifecycle] PASS 732 behavioral checks; strict native log gate still required
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[TreasureExploration] PASS 90 checks: branching, actual location questions, movement, legacy saves and original rewards
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+[Perf] quality_profile:medium
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=2, subject=Mathematik
+behavior:idle_bounce
+behavior:idle
+behavior:idle_bounce
+[JumpNextgenCapture] PASS 80 checks, 16 actual renderer frames and native two-finger jumps
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_nextgen_build_play_regression_1.json
+[Perf] quality_profile:medium
+[BuildNextgen] PASS checks=79: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_3.json
+[Perf] quality_profile:medium
+[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)
+[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_3_rival.json
+[Router] goto:build (res://scenes/creative/build_world.tscn)
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_3.json
+[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)
+[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_3_rival.json
+[Router] goto:build (res://scenes/creative/build_world.tscn)
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_3.json
+[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)
+[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_3_rival.json
+[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)
+[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_4_rival.json
+[Router] goto:build (res://scenes/creative/build_world.tscn)
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_4.json
+[SettlementPlay] PASS checks=139: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[SettlementWorld] ready mode=settlement save=user://lumo_settlement_158b1309a8ac6594be8e275d8620f29a8c3368f495cf56f456b5b79a7f147b23_6_village.json
+[Perf] quality_profile:medium
+[SettlementWorld] ready mode=settlement save=user://lumo_settlement_158b1309a8ac6594be8e275d8620f29a8c3368f495cf56f456b5b79a7f147b23_6_village.json
+[VillageScene] PASS checks=231 : production village, chapter, economy and resume
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[CreativeNextgenEnvironment] PASS checks=53: original textures, bounded cloud batch, preserved quality and no added lights
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Perf] quality_profile:medium
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[NextGenGarage] PASS 118 checks; captures=12
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+CARDS_TABLE_RENDER_PASS renderer=X11 images=4
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+CARDS_SAFE_AREA_PASS checks=691 failures=0 profiles=5 images=3
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 63.0), S: (0.0, 136.0)], "insets": [P: (0.0, 63.0), S: (0.0, 136.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Lumo] character_ready
+[Jump] ready: true 3D, grade=1, subject=Mathematik
+behavior:idle_bounce
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_safe-area-contract-build-15870_1.json
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[SettlementWorld] ready mode=settlement save=user://lumo_settlement_4b13593f866974759045d98514c97caf3855f13ae8e25a362b19aa13d75b0032_1_settlement.json
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "insets": [P: (0.0, 63.0), S: (136.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] runtime ready screen:(2400, 1080) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+MOBILE_SAFE_AREA_PASS checks=124 failures=0 controls=15 images=4 scope=platform_boundary_fixture
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[RhythmTourPlay] PASS checks=93: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Perf] quality_profile:medium
+[Kart] race_world_ready: sonnenhafen mode=race
+[PlayerFullRoute] controls {"auto_gas":false,"enabled":true,"gas":true,"gas_rect":"[P: (1105.0, 546.0), S: (156.0, 156.0)]","root":"(1280, 720)","stick":1,"stick_rect":"[P: (18.0, 502.0), S: (200.0, 200.0)]","viewport":"[P: (0.0, 0.0), S: (1280.0, 720.0)]","visible":true}
+[PlayerFullRoute] TRACE {"airborne":false,"brake":0.0,"checkpoints":0,"distance":0.00302889314480126,"jumps":0,"landings":0,"lane":-0.00125343666877598,"lasso_catches":0,"lasso_clock_seconds":0.0333333333333333,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":0,"precision_results":{},"resets":0,"road_distance":0.00302889314480126,"seconds":0.0333333333333333,"speed":0.666666666666667,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":1.0,"checkpoints":1,"distance":232.05117666279,"event":"checkpoint","jumps":0,"landings":0,"lane":0.169806092977524,"lasso_catches":0,"lasso_clock_seconds":6.21666666666665,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":0,"precision_results":{},"resets":0,"road_distance":232.05117666279,"seconds":6.21666666666665,"speed":41.0,"steering":-0.163315922021866}
+[PlayerFullRoute] TRACE {"airborne":false,"brake":0.0,"checkpoints":1,"distance":386.307349774288,"jumps":0,"landings":0,"lane":0.28186696767807,"lasso_catches":0,"lasso_clock_seconds":10.0333333333334,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":0,"precision_results":{},"resets":0,"road_distance":386.307349774288,"seconds":10.0333333333334,"speed":41.0,"steering":-0.0918057337403297}
+[PlayerFullRoute] EVENT {"airborne":true,"brake":0.0,"checkpoints":1,"distance":419.806119996356,"event":"takeoff","jumps":1,"landings":0,"lane":0.305355131626129,"lasso_catches":0,"lasso_clock_seconds":10.8500000000001,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":0,"precision_results":{},"resets":0,"road_distance":419.806119996356,"seconds":10.8500000000001,"speed":41.0,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":1,"distance":442.207608941244,"event":"landing","jumps":1,"landings":1,"lane":2.14104580879211,"lasso_catches":0,"lasso_clock_seconds":11.4000000000001,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":0,"precision_results":{},"resets":0,"road_distance":442.207608941244,"seconds":11.4000000000001,"speed":41.0,"steering":-0.136312425136566}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":2,"distance":463.462892699288,"event":"checkpoint","jumps":1,"landings":1,"lane":3.27930474281311,"lasso_catches":0,"lasso_clock_seconds":11.9166666666668,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":0,"precision_results":{},"resets":0,"road_distance":463.462892699288,"seconds":11.9166666666668,"speed":42.3333333333333,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":3,"distance":694.717973123537,"event":"checkpoint","jumps":1,"landings":1,"lane":0.246934771537781,"lasso_catches":1,"lasso_clock_seconds":17.8333333333336,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":0,"precision_results":{},"resets":0,"road_distance":694.717973123537,"seconds":17.8333333333336,"speed":41.0,"steering":0.0}
+[PlayerFullRoute] TRACE {"airborne":false,"brake":1.0,"checkpoints":3,"distance":784.980429719435,"jumps":1,"landings":1,"lane":0.284584492444992,"lasso_catches":1,"lasso_clock_seconds":20.0333333333335,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":0,"precision_results":{},"resets":0,"road_distance":784.980429719435,"seconds":20.0333333333335,"speed":41.0,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":4,"distance":926.368268843042,"event":"checkpoint","jumps":1,"landings":1,"lane":0.179625257849693,"lasso_catches":1,"lasso_clock_seconds":23.4666666666666,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":0,"precision_results":{},"resets":0,"road_distance":926.368268843042,"seconds":23.4666666666666,"speed":41.0,"steering":-0.0827414020895958}
+[PlayerFullRoute] EVENT {"airborne":true,"brake":0.0,"checkpoints":4,"distance":1030.45824488555,"event":"takeoff","jumps":2,"landings":1,"lane":3.00311994552612,"lasso_catches":1,"lasso_clock_seconds":26.4999999999998,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":0,"precision_results":{},"resets":0,"road_distance":1030.45824488555,"seconds":26.4999999999998,"speed":30.3333333333334,"steering":-0.0831656903028488}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":4,"distance":1075.87344619189,"event":"landing","jumps":2,"landings":2,"lane":3.23862051963806,"lasso_catches":1,"lasso_clock_seconds":28.0166666666664,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":0,"precision_results":{},"resets":0,"road_distance":1075.87344619189,"seconds":28.0166666666664,"speed":30.3333333333334,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":4,"distance":1098.16867336188,"event":"loop-entry","jumps":2,"landings":2,"lane":3.12131550703198,"lasso_catches":1,"lasso_clock_seconds":28.5999999999997,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":true,"loops":0,"precision_results":{},"resets":0,"road_distance":1097.80643921324,"seconds":28.5999999999997,"speed":41.0051965312661,"steering":-0.0840175971388817}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":4,"distance":1104.66222729206,"event":"loop-exit","jumps":2,"landings":2,"lane":3.12131550703198,"lasso_catches":1,"lasso_clock_seconds":29.8333333333329,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{},"resets":0,"road_distance":1104.66117431641,"seconds":29.8333333333329,"speed":42.0455544646831,"steering":0.0}
+[PlayerFullRoute] TRACE {"airborne":false,"brake":0.0,"checkpoints":4,"distance":1112.79504658699,"jumps":2,"landings":2,"lane":3.13036036491394,"lasso_catches":1,"lasso_clock_seconds":30.0333333333329,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{},"resets":0,"road_distance":1112.79399361134,"seconds":30.0333333333329,"speed":42.0455544646831,"steering":-0.108548440039158}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":5,"distance":1157.40559162617,"event":"checkpoint","jumps":2,"landings":2,"lane":-0.050962720066309,"lasso_catches":1,"lasso_clock_seconds":31.3166666666662,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{},"resets":0,"road_distance":1157.40453865051,"seconds":31.3166666666662,"speed":22.0455544646831,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":true,"brake":0.0,"checkpoints":5,"distance":1197.80241929412,"event":"takeoff","jumps":3,"landings":2,"lane":0.00739280134439468,"lasso_catches":1,"lasso_clock_seconds":33.1999999999994,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{},"resets":0,"road_distance":1197.80136631846,"seconds":33.1999999999994,"speed":21.3788877980166,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":5,"distance":1220.12572610795,"event":"landing","jumps":3,"landings":3,"lane":0.356104701757431,"lasso_catches":1,"lasso_clock_seconds":34.2499999999993,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":1220.1246731323,"seconds":34.2499999999993,"speed":21.3788877980166,"steering":-0.150745019316673}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":6,"distance":1389.14047556788,"event":"checkpoint","jumps":3,"landings":3,"lane":0.201186716556549,"lasso_catches":1,"lasso_clock_seconds":38.4333333333324,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":1389.13942259222,"seconds":38.4333333333324,"speed":42.3333333333333,"steering":-0.0813030153512955}
+[PlayerFullRoute] TRACE {"airborne":false,"brake":0.0,"checkpoints":6,"distance":1455.11819037467,"jumps":3,"landings":3,"lane":0.272776365280151,"lasso_catches":1,"lasso_clock_seconds":40.0333333333323,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":1455.11713739902,"seconds":40.0333333333323,"speed":41.0,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":true,"brake":0.0,"checkpoints":6,"distance":1556.81955057055,"event":"takeoff","jumps":4,"landings":3,"lane":0.232114300131798,"lasso_catches":1,"lasso_clock_seconds":42.5166666666655,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":1556.81849759489,"seconds":42.5166666666655,"speed":41.0,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":6,"distance":1582.77279953331,"event":"landing","jumps":4,"landings":4,"lane":0.65522837638855,"lasso_catches":1,"lasso_clock_seconds":43.1499999999988,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":1582.77174655765,"seconds":43.1499999999988,"speed":41.0,"steering":-0.320290952920914}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":7,"distance":1620.70686019629,"event":"checkpoint","jumps":4,"landings":4,"lane":0.237949639558792,"lasso_catches":1,"lasso_clock_seconds":44.0666666666654,"lasso_dodges":0,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":1620.70580722064,"seconds":44.0666666666654,"speed":42.3333333333333,"steering":-0.0818405151367188}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":8,"distance":1852.03362567395,"event":"checkpoint","jumps":4,"landings":4,"lane":-0.764834761619568,"lasso_catches":1,"lasso_clock_seconds":49.7166666666651,"lasso_dodges":1,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":0.349711370170098,"seconds":49.7166666666651,"speed":41.0,"steering":0.12658666074276}
+[PlayerFullRoute] TRACE {"airborne":false,"brake":0.0,"checkpoints":8,"distance":1864.94243673652,"jumps":4,"landings":4,"lane":-0.18273913860321,"lasso_catches":1,"lasso_clock_seconds":50.0333333333318,"lasso_dodges":1,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":13.2585224327445,"seconds":50.0333333333318,"speed":41.0,"steering":0.12052696198225}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":1.0,"checkpoints":9,"distance":2083.71704946131,"event":"checkpoint","jumps":4,"landings":4,"lane":0.169363245368004,"lasso_catches":1,"lasso_clock_seconds":55.3666666666648,"lasso_dodges":1,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":232.033135157526,"seconds":55.3666666666648,"speed":41.0,"steering":-0.162827774882317}
+[PlayerFullRoute] EVENT {"airborne":true,"brake":0.0,"checkpoints":9,"distance":2271.12552983731,"event":"takeoff","jumps":5,"landings":4,"lane":0.329417765140533,"lasso_catches":1,"lasso_clock_seconds":59.9333333333312,"lasso_dodges":1,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":419.441615533531,"seconds":59.9333333333312,"speed":41.0,"steering":0.0}
+[PlayerFullRoute] TRACE {"airborne":true,"brake":0.0,"checkpoints":9,"distance":2275.23119073778,"jumps":5,"landings":4,"lane":0.313512176275253,"lasso_catches":1,"lasso_clock_seconds":60.0333333333312,"lasso_dodges":1,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":423.547276434004,"seconds":60.0333333333312,"speed":41.0,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":9,"distance":2293.65205593079,"event":"landing","jumps":5,"landings":5,"lane":0.284209370613098,"lasso_catches":1,"lasso_clock_seconds":60.4833333333312,"lasso_dodges":1,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":441.968141627014,"seconds":60.4833333333312,"speed":41.0,"steering":-0.0815032199025154}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":10,"distance":2315.1435698387,"event":"checkpoint","jumps":5,"landings":5,"lane":0.234515309333801,"lasso_catches":1,"lasso_clock_seconds":60.9999999999978,"lasso_dodges":1,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":463.459655534923,"seconds":60.9999999999978,"speed":42.3333333333333,"steering":-0.0824496373534203}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":11,"distance":2546.44482744902,"event":"checkpoint","jumps":5,"landings":5,"lane":0.246457293629646,"lasso_catches":1,"lasso_clock_seconds":66.6333333333308,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":694.760913145244,"seconds":66.6333333333308,"speed":41.0,"steering":0.0}
+[PlayerFullRoute] TRACE {"airborne":false,"brake":0.0,"checkpoints":11,"distance":2686.5107277301,"jumps":5,"landings":5,"lane":0.232243910431862,"lasso_catches":1,"lasso_clock_seconds":70.0333333333306,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":834.826813426316,"seconds":70.0333333333306,"speed":41.0,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":12,"distance":2778.09524629682,"event":"checkpoint","jumps":5,"landings":5,"lane":0.178635567426682,"lasso_catches":1,"lasso_clock_seconds":72.2666666666639,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":926.411331993043,"seconds":72.2666666666639,"speed":41.0,"steering":-0.0831935033202171}
+[PlayerFullRoute] EVENT {"airborne":true,"brake":0.0,"checkpoints":12,"distance":2882.1862812084,"event":"takeoff","jumps":6,"landings":5,"lane":3.00361657142639,"lasso_catches":1,"lasso_clock_seconds":75.299999999997,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":1030.50236690462,"seconds":75.299999999997,"speed":30.3333333333334,"steering":-0.0850675031542778}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":12,"distance":2927.60117310703,"event":"landing","jumps":6,"landings":6,"lane":3.23617935180664,"lasso_catches":1,"lasso_clock_seconds":76.8166666666636,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":1075.91725880325,"seconds":76.8166666666636,"speed":30.3333333333334,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":12,"distance":2949.89593118846,"event":"loop-entry","jumps":6,"landings":6,"lane":3.12014682516456,"lasso_catches":1,"lasso_clock_seconds":77.3999999999969,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":true,"loops":1,"precision_results":{"ziel":1},"resets":0,"road_distance":1097.8117618099,"seconds":77.3999999999969,"speed":41.0047730439903,"steering":-0.0833481848239899}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":12,"distance":2956.34591092587,"event":"loop-exit","jumps":6,"landings":6,"lane":3.12014682516456,"lasso_catches":1,"lasso_clock_seconds":78.6333333333302,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":1},"resets":0,"road_distance":1104.66117431641,"seconds":78.6333333333302,"speed":42.04486147929,"steering":0.0}
+[PlayerFullRoute] TRACE {"airborne":false,"brake":1.0,"checkpoints":12,"distance":3007.30439077735,"jumps":6,"landings":6,"lane":0.0340733751654625,"lasso_catches":1,"lasso_clock_seconds":80.0333333333301,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":1},"resets":0,"road_distance":1155.61965416789,"seconds":80.0333333333301,"speed":20.7115281459567,"steering":0.0935245603322983}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":13,"distance":3009.08828853488,"event":"checkpoint","jumps":6,"landings":6,"lane":-0.0509309358894825,"lasso_catches":1,"lasso_clock_seconds":80.1166666666634,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":1},"resets":0,"road_distance":1157.40355192542,"seconds":80.1166666666634,"speed":22.04486147929,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":true,"brake":0.0,"checkpoints":13,"distance":3049.48353298426,"event":"takeoff","jumps":7,"landings":6,"lane":0.00724887102842331,"lasso_catches":1,"lasso_clock_seconds":81.9999999999966,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":1},"resets":0,"road_distance":1197.7987963748,"seconds":81.9999999999966,"speed":21.3781948126235,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":13,"distance":3071.80592181206,"event":"landing","jumps":7,"landings":7,"lane":0.356136351823807,"lasso_catches":1,"lasso_clock_seconds":83.0499999999966,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":2},"resets":0,"road_distance":1220.1211852026,"seconds":83.0499999999966,"speed":21.3781948126235,"steering":-0.150754123926163}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":14,"distance":3240.81989230633,"event":"checkpoint","jumps":7,"landings":7,"lane":0.201156884431839,"lasso_catches":1,"lasso_clock_seconds":87.2333333333297,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":2},"resets":0,"road_distance":1389.13515569687,"seconds":87.2333333333297,"speed":42.3333333333333,"steering":-0.081286646425724}
+[PlayerFullRoute] TRACE {"airborne":false,"brake":0.0,"checkpoints":14,"distance":3355.96717395306,"jumps":7,"landings":7,"lane":0.168936014175415,"lasso_catches":1,"lasso_clock_seconds":90.0333333333295,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":2},"resets":0,"road_distance":1504.2824373436,"seconds":90.0333333333295,"speed":41.0,"steering":-0.104285702109337}
+[PlayerFullRoute] EVENT {"airborne":true,"brake":0.0,"checkpoints":14,"distance":3408.49911703587,"event":"takeoff","jumps":8,"landings":7,"lane":0.232116743922234,"lasso_catches":1,"lasso_clock_seconds":91.3166666666628,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":2},"resets":0,"road_distance":1556.81438042641,"seconds":91.3166666666628,"speed":41.0,"steering":0.0}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":14,"distance":3434.45252211809,"event":"landing","jumps":8,"landings":8,"lane":0.655048966407776,"lasso_catches":1,"lasso_clock_seconds":91.9499999999961,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":2},"resets":0,"road_distance":1582.76778550863,"seconds":91.9499999999961,"speed":41.0,"steering":-0.320219606161118}
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":15,"distance":3472.38666168272,"event":"checkpoint","jumps":8,"landings":8,"lane":0.238056242465973,"lasso_catches":1,"lasso_clock_seconds":92.8666666666627,"lasso_dodges":2,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":2},"resets":0,"road_distance":1620.70192507327,"seconds":92.8666666666627,"speed":42.3333333333333,"steering":-0.0818776786327362}
+[Kart] completed: mode=race track=sonnenhafen stars=3 place=6
+[PlayerFullRoute] EVENT {"airborne":false,"brake":0.0,"checkpoints":16,"distance":3703.71405977428,"event":"checkpoint","jumps":8,"landings":8,"lane":-0.765062272548676,"lasso_catches":1,"lasso_clock_seconds":98.5166666666624,"lasso_dodges":3,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":2},"resets":0,"road_distance":0.346461836695653,"seconds":98.5166666666624,"speed":41.0,"steering":0.0}
+[PlayerFullRoute] teardown tracked=2 scene_released=true audio_released=true elapsed_ms=71
+[PlayerFullRoute] PASS {"airborne":false,"brake":0.0,"checkpoints":16,"distance":3703.71405977428,"jumps":8,"landings":8,"lane":-0.765062272548676,"lasso_catches":1,"lasso_clock_seconds":98.5166666666624,"lasso_dodges":3,"lasso_factor":1.0,"loop_active":false,"loops":2,"precision_results":{"ziel":2},"resets":0,"road_distance":0.346461836695653,"seconds":98.5166666666624,"speed":41.0,"steering":0.0} max_step=0.71434593200684
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[LumoFacial] jaw_mesh_delta_m=0.00862262025476 blend_mode=0
+[Perf] quality_profile:medium
+LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+Movie Maker mode enabled, recording movie in 640×640 @ 24 FPS...
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(640, 640) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+LUMO_FACIAL_CAPTURE_PASS frames=144 original_word=true recording_fps=24 not_device_fps=true
+--------------------------------------------------------------------------------
+Done recording movie at path: /home/runner/work/lumo-lernen/lumo-lernen/acceptance-native/nextgen/captures/lumo_facial_capture/facial-runtime.avi
+148 frames at 24 FPS (movie length: 00:00:06:04), recorded in 00:00:21 (28% of real-time speed).
+CPU render time: 18.33 seconds (average: 123.88 ms/frame)
+GPU render time: 17.91 seconds (average: 120.99 ms/frame)
+Encoding time: 0.59 seconds (average: 3.97 ms/frame)
+--------------------------------------------------------------------------------
+[Studio2020Movie] PASS: actual AVI encoded, fully decoded and ffprobed
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+CONNECT_FOUR_VISUAL_PASS checks=303 captures=4 fixture=true
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 20.1.2, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Mobile] actual Android View insets { "view_size": (1920.0, 1080.0), "decor_size": (1920.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (1920.0, 1080.0)], "system_insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "window_size": (1920, 1080) }
+[Perf] quality_profile:medium
+[Mobile] actual Android View insets { "view_size": (1920.0, 1080.0), "decor_size": (1920.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (1920.0, 1080.0)], "system_insets": [P: (112.0, 36.0), S: (0.0, 24.0)], "insets": [P: (112.0, 36.0), S: (0.0, 24.0)], "window_size": (1920, 1080) }
+[Mobile] actual Android View insets { "view_size": (640.0, 320.0), "decor_size": (640.0, 320.0), "render_rect": [P: (0.0, 0.0), S: (640.0, 320.0)], "system_insets": [P: (112.0, 36.0), S: (0.0, 24.0)], "insets": [P: (112.0, 36.0), S: (0.0, 24.0)], "window_size": (640, 320) }
+[Mobile] actual Android View insets { "view_size": (640.0, 320.0), "decor_size": (640.0, 320.0), "render_rect": [P: (0.0, 0.0), S: (640.0, 320.0)], "system_insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "window_size": (640, 320) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "insets": [P: (0.0, 0.0), S: (0.0, 0.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (1080.0, 2400.0), "decor_size": (1080.0, 2400.0), "render_rect": [P: (0.0, 0.0), S: (1080.0, 2400.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (1080, 2400) }
+[Mobile] actual Android View insets { "view_size": (2176.0, 1812.0), "decor_size": (2176.0, 1812.0), "render_rect": [P: (0.0, 0.0), S: (2176.0, 1812.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (2176, 1812) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "insets": [P: (0.0, 136.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[Mobile] actual Android View insets { "view_size": (2400.0, 1080.0), "decor_size": (2400.0, 1080.0), "render_rect": [P: (0.0, 0.0), S: (2400.0, 1080.0)], "system_insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "insets": [P: (136.0, 63.0), S: (0.0, 63.0)], "window_size": (2400, 1080) }
+[TreasureTitleContrast] PASS checks=3351 failures=0
+[StudioRasterRoster] PASS 24 actual PNG files
+[VillageRasterRoster] PASS 4 actual PNG files
+[PuzzleMenuRasterRoster] PASS 6 actual PNG files
+[SafeAreaRasterRoster] PASS 7 actual PNG files and 3 settled layout sidecars
+[Studio2020RasterRoster] PASS 17 actual PNG files, 3 original sidecars and 1 verified facial movie
+[LumoNextgen52] PASS: all 48 previous modes plus four Studio2020 modes and 17 bound rasters/movie/sidecars
+[LumoNextgen] PASS: new production learning, platforming, building, cards, rhythm and garage checks; logs /home/runner/work/lumo-lernen/lumo-lernen/acceptance-native/nextgen

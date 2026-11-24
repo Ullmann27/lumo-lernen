@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "status": "45_ACTUAL_CONTRACTS_PASS_ORIGINAL_HARNESS_PARSE_FAILURE_PRESERVED",
+  "head": "36274db2941963c59b1f819ad7bc2358470d3a76",
+  "tree": "39ee9cdf1567271599922d6b991399927affccae",
+  "actual_test_count": 45,
+  "exit_code": 0,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "unittest_seconds": 46.699,
+  "wall_seconds": 47.01255016000141,
+  "original_harness_exit_code": 1,
+  "original_harness_report": "result.json",
+  "accepted_analysis": "corrected-log-analysis.json",
+  "cause_of_harness_mismatch": "Exact observed Pillow warning interrupts first successful method's output line.",
+  "sources_and_index_unchanged": true,
+  "actual_test_invocations": 1,
+  "additional_tests_or_replay": 0,
+  "source_checkpoint": "36274db2941963c59b1f819ad7bc2358470d3a76",
+  "source_freeze": "ba77676bce3f2fecd97aa62e6c8514462635dc0255843b544b98ac23e47e45f1",
+  "scope": "Local synthetic-boundary observer contracts only; old 51ec actual Android FAIL retained and active 5ad candidate unchanged."
+}

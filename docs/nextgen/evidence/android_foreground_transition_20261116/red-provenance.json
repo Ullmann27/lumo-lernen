@@ -1,0 +1,18 @@
+{
+  "execution_head": "9886f6637589c23cbae23ccca311090c35cdea8e",
+  "production_unchanged_from_base": true,
+  "command": "python3 -B -m unittest -v tools.android_qa.tests.test_nextgen_learning_android_probe.ForegroundTransitionTest",
+  "exit_code": 1,
+  "files": {
+    ".github/probes/lumo_nextgen_learning_android_probe.py": {
+      "bytes": 82520,
+      "sha256": "f4f4b1426cc99a69aab5850f388f4b40b3c95464eaccc8f112eb00c13bf09157"
+    },
+    "tools/android_qa/tests/test_nextgen_learning_android_probe.py": {
+      "bytes": 76017,
+      "sha256": "f7bc63cc98ce1cd08df90f030ad96e65984db564eaa48f99996d3d8b6065a854"
+    }
+  },
+  "red_log_sha256": "7178567f3a7e0239792647bb0ab8765cf6d14ac699a2bb0c3750b8b342af33ee",
+  "runtime_claim": false
+}

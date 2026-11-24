@@ -21,25 +21,83 @@ require_text() {
   echo "ok connection: $path -> $pattern"
 }
 
-# Dart constructor arguments may span lines and include keys before appState.
-require_state_constructor() {
-  local path="$1" constructor="$2"
-  python3 - "$path" "$constructor" <<'PY_CHECK' || fail "Missing state connection: $path -> $constructor"
+# Dart constructor arguments may span lines and include other named arguments.
+require_constructor_argument() {
+  local path="$1" constructor="$2" argument="$3" value="$4"
+  python3 - "$path" "$constructor" "$argument" "$value" <<'PY_CHECK' || fail "Missing constructor connection: $path -> $constructor($argument: $value)"
 import re, sys
 from pathlib import Path
-source = Path(sys.argv[1]).read_text()
-for call in re.finditer(re.escape(sys.argv[2]) + r'\s*\(', source):
-    depth = 1
-    end = call.end()
-    while depth and end < len(source):
-        depth += (source[end] == '(') - (source[end] == ')')
-        end += 1
-    arguments = source[call.end():end - 1]
-    if re.search(r'\bappState\s*:\s*_appState\b', arguments):
+
+
+def code_only(source):
+    # Ignore quoted text and comments so they cannot claim a live connection.
+    masked = list(source)
+    index = 0
+    while index < len(source):
+        start = index
+        if source.startswith('//', index):
+            end = source.find('\n', index)
+            index = len(source) if end < 0 else end
+        elif source.startswith('/*', index):
+            depth = 1
+            index += 2
+            while depth and index < len(source):
+                if source.startswith('/*', index):
+                    depth += 1
+                    index += 2
+                elif source.startswith('*/', index):
+                    depth -= 1
+                    index += 2
+                else:
+                    index += 1
+            if depth:
+                raise SystemExit('Unclosed Dart comment')
+        else:
+            raw = source[index] == 'r' and source[index + 1:index + 2] in ('"', "'")
+            quote_at = index + int(raw)
+            if source[quote_at:quote_at + 1] not in ('"', "'"):
+                index += 1
+                continue
+            quote = source[quote_at]
+            delimiter = quote * 3 if source.startswith(quote * 3, quote_at) else quote
+            index = quote_at + len(delimiter)
+            while index < len(source) and not source.startswith(delimiter, index):
+                index += 2 if not raw and source[index] == '\\' else 1
+            if index >= len(source):
+                raise SystemExit('Unclosed Dart string')
+            index += len(delimiter)
+        masked[start:index] = ['\n' if char == '\n' else ' ' for char in source[start:index]]
+    return ''.join(masked)
+
+
+source = code_only(Path(sys.argv[1]).read_text())
+argument = r'\s*' + re.escape(sys.argv[3]) + r'\s*:\s*' + re.escape(sys.argv[4]) + r'\s*'
+for call in re.finditer(r'\b' + re.escape(sys.argv[2]) + r'\s*\(', source):
+    stack = ['(']
+    start = call.end()
+    arguments = []
+    for end in range(start, len(source)):
+        char = source[end]
+        if char in '([{':
+            stack.append(char)
+        elif char in ')]}':
+            if not stack or stack.pop() != {')': '(', ']': '[', '}': '{'}[char]:
+                raise SystemExit('Unbalanced Dart constructor')
+            if not stack:
+                arguments.append(source[start:end])
+                break
+        elif char == ',' and len(stack) == 1:
+            arguments.append(source[start:end])
+            start = end + 1
+    if not stack and any(re.fullmatch(argument, item) for item in arguments):
         raise SystemExit(0)
 raise SystemExit(1)
 PY_CHECK
-  echo "ok state connection: $path -> $constructor"
+  echo "ok constructor connection: $path -> $constructor($argument: $value)"
+}
+
+require_state_constructor() {
+  require_constructor_argument "$1" "$2" appState _appState
 }
 
 require_absent() {
@@ -87,7 +145,7 @@ require_text lib/main.dart "WidgetsFlutterBinding.ensureInitialized()"
 require_text lib/main.dart "runApp(const LumoApp())"
 require_text lib/main.dart "try {"
 require_text lib/main.dart "profile = null"
-require_text lib/main.dart "AppShell(profile: _profile"
+require_constructor_argument lib/main.dart AppShell profile _profile
 
 require_state_constructor lib/app/app_shell.dart HomeContent
 require_state_constructor lib/app/app_shell.dart LumoAkademieScreen

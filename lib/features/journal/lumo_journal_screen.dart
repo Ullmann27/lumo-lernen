@@ -16,7 +16,6 @@ import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import 'journal_repository.dart';
 
@@ -137,19 +136,13 @@ class _EditorState extends State<_Editor> {
     HapticFeedback.mediumImpact();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _EditorHeader(),
-          const SizedBox(height: 12),
-          Container(
+  /// Readable daylight paper, independent of the app's dark-night tokens.
+  Widget _writingPaper() {
+    return Container(
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(18),
+              color: const Color(0xFFF7FAFF),
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: const Color(0xFF74C7ED), width: 1.5),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.15),
@@ -169,14 +162,14 @@ class _EditorState extends State<_Editor> {
                     fontFamily: 'Nunito',
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
-                    color: LumoColors.ink900,
+                    color: Color(0xFF102943),
                   ),
                   decoration: const InputDecoration(
                     hintText: 'Titel deiner Geschichte ...',
                     hintStyle: TextStyle(
                       fontFamily: 'Nunito',
                       fontWeight: FontWeight.w800,
-                      color: LumoColors.ink300,
+                      color: Color(0xFF697F96),
                     ),
                     border: InputBorder.none,
                   ),
@@ -192,7 +185,7 @@ class _EditorState extends State<_Editor> {
                     fontFamily: 'Nunito',
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
-                    color: LumoColors.ink700,
+                    color: Color(0xFF27415F),
                     height: 1.5,
                   ),
                   decoration: const InputDecoration(
@@ -202,7 +195,7 @@ class _EditorState extends State<_Editor> {
                       fontFamily: 'Nunito',
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
-                      color: LumoColors.ink300,
+                      color: Color(0xFF697F96),
                       height: 1.4,
                     ),
                     border: InputBorder.none,
@@ -212,6 +205,43 @@ class _EditorState extends State<_Editor> {
                 ),
               ],
             ),
+          );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1024),
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          LayoutBuilder(
+            builder: (context, constraints) {
+              // A Fold/tablet receives a reading desk with a proper
+              // editorial sidebar. A phone keeps the familiar vertical flow.
+              final isWide = constraints.maxWidth >= 720;
+              return Flex(
+                direction: isWide ? Axis.horizontal : Axis.vertical,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: isWide ? 230 : constraints.maxWidth,
+                    child: _EditorHeader(),
+                  ),
+                  SizedBox(width: isWide ? 16 : 0, height: isWide ? 0 : 12),
+                  if (isWide)
+                    Expanded(child: _writingPaper())
+                  else
+                    SizedBox(
+                      width: constraints.maxWidth,
+                      child: _writingPaper(),
+                    ),
+                ],
+              );
+            },
           ),
           const SizedBox(height: 16),
           if (_showPraise && _praise != null) ...[
@@ -273,13 +303,16 @@ class _EditorState extends State<_Editor> {
                         Icon(Icons.auto_awesome_rounded,
                             color: Colors.white, size: 16),
                         SizedBox(width: 6),
-                        Text(
-                          'Lumo liest',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white,
+                        Flexible(
+                          child: Text(
+                            'Lumo liest',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
@@ -334,6 +367,8 @@ class _EditorState extends State<_Editor> {
             ),
           ],
         ],
+          ),
+        ),
       ),
     );
   }
@@ -699,13 +734,16 @@ class _Empty extends StatelessWidget {
                       Icon(Icons.edit_rounded,
                           color: Colors.white, size: 20),
                       SizedBox(width: 8),
-                      Text(
-                        'Jetzt schreiben',
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 15,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
+                      Flexible(
+                        child: Text(
+                          'Jetzt schreiben',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
@@ -768,7 +806,7 @@ class _EntryCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(99),
                 ),
                 child: Text(
-                  '${entry.wordCount} Woerter',
+                  '${entry.wordCount} Wörter',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 11,
@@ -857,7 +895,7 @@ class _LumoCritic {
       return const _PraiseResult(
         title: 'Schreib noch ein bisschen mehr',
         message:
-            'Das ist erst der Anfang. Schreib mindestens 5 Woerter dann lese ich richtig durch.',
+            'Das ist erst der Anfang. Schreib mindestens 5 Wörter, dann lese ich alles genau durch.',
         tips: [],
         canSave: false,
         cheer: false,
@@ -873,14 +911,14 @@ class _LumoCritic {
     final tips = <String>[];
     if (!hasCapital) {
       tips.add(
-          'Tipp: Namenswoerter (Tisch, Mama, Hund) schreibst du gross.');
+          'Tipp: Namenwörter (Tisch, Mama, Hund) schreibst du groß.');
     }
     if (!hasPunctuation) {
       tips.add('Tipp: Setze einen Punkt am Ende von jedem Satz.');
     }
     if (sentenceCount < 2 && wordCount > 30) {
       tips.add(
-          'Tipp: Lange Texte in mehrere Saetze teilen, das liest sich leichter.');
+          'Tipp: Teile lange Texte in mehrere Sätze. Das liest sich leichter.');
     }
 
     String title;
@@ -889,27 +927,27 @@ class _LumoCritic {
     if (wordCount >= 100) {
       title = '🌟 Spitzen-Geschichte!';
       message =
-          'Wow $wordCount Woerter! Das war richtig viel zu lesen. Du hast einen tollen Schreib-Fluss!';
+          'Wow, $wordCount Wörter! Das war richtig viel zu lesen. Du schreibst schon sehr flüssig!';
       cheer = true;
     } else if (wordCount >= 50) {
       title = '🦊 Schön gemacht!';
       message =
-          'Ich habe deine $wordCount Woerter gelesen. Eine richtig schoene Geschichte!';
+          'Ich habe deine $wordCount Wörter gelesen. Eine richtig schöne Geschichte!';
       cheer = true;
     } else if (wordCount >= 20) {
       title = '✨ Gut!';
       message =
-          'Du hast $wordCount Woerter geschrieben. Probier beim naechsten Mal noch ein paar Saetze dazu - dann wird die Geschichte noch reicher.';
+          'Du hast $wordCount Wörter geschrieben. Schreib beim nächsten Mal noch ein paar Sätze dazu – dann wird die Geschichte noch reicher.';
       cheer = false;
     } else {
       title = 'Toller Anfang!';
       message =
-          'Du hast $wordCount Woerter geschrieben. Schreib doch weiter, was als naechstes passiert?';
+          'Du hast $wordCount Wörter geschrieben. Schreib doch weiter: Was passiert als Nächstes?';
       cheer = false;
     }
 
     if (goodWords >= 3) {
-      message = '$message Du verwendest auch tolle Woerter wie '
+      message = '$message Du verwendest auch tolle Wörter wie '
           'gut beschreibende Adjektive!';
     }
 

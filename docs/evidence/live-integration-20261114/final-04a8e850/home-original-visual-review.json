@@ -1,0 +1,76 @@
+{
+  "source_sha": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "source_tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+  "run_id": 43628840534,
+  "attempt": 1,
+  "job_id": 132551912578,
+  "artifact_id": 14127492329,
+  "archive_sha256": "a7f4184021a42782bef47380ecc0514ade032dfa44d455acf9dcfa27716a2868",
+  "scope": "Independent visual review and byte/dimension verification of five current source-bound original Home PNGs. No additional archive download, image edit or render/test execution.",
+  "archive_owner": "flutter_integration; original archive SHA/CRC inventory retained separately",
+  "images": [
+    {
+      "path": "home-premium/fold-cover-start.png",
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0",
+      "git_blob": "9519df4252e74e6e1391a56dd823d8ba666bc5a0",
+      "width": 640,
+      "height": 1480,
+      "actually_viewed": true,
+      "same_original_pixel_bytes_as_6b": true,
+      "finding": "Belohnungen title and Loslernen button readable and fully visible. Compact Kart promotion retains explicit ellipses; the Spielen subtitle visibly ends at Memory und. No claim that all compact supporting copy is shown in full."
+    },
+    {
+      "path": "home-premium/fold-cover-learning-cards.png",
+      "bytes": 684983,
+      "sha256": "daacd2d4a91d121022bf63cd43b3d9778f24ac9522b1f30778581dd412b39bab",
+      "git_blob": "47aaba500deb38822027d019430dabab5a0c7f59",
+      "width": 640,
+      "height": 1480,
+      "actually_viewed": true,
+      "same_original_pixel_bytes_as_6b": true,
+      "finding": "Full Mathe and Deutsch cards, titles, progress bars and zero-completed labels visible. The following Lesen card continues below the viewport; the section heading is partly above the scrolled viewport."
+    },
+    {
+      "path": "home-premium/phone-learning-cards.png",
+      "bytes": 946745,
+      "sha256": "d942ce36645ad2127b78951fe5148c300898469681e0b8dbf1a4273d3a3bc073",
+      "git_blob": "1568527a699870f48c8598cf646dc59f5b335566",
+      "width": 786,
+      "height": 1704,
+      "actually_viewed": true,
+      "same_original_pixel_bytes_as_6b": true,
+      "finding": "Mathe, Deutsch and Lesen cards fully visible and readable; Schreiben begins and continues beyond the bottom viewport."
+    },
+    {
+      "path": "home-premium/fold-open-learning-cards.png",
+      "bytes": 1804878,
+      "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8",
+      "git_blob": "efdb7159ba2c4a6707129cfa3a5b330ea96d1515",
+      "width": 1680,
+      "height": 1920,
+      "actually_viewed": true,
+      "same_original_pixel_bytes_as_6b": true,
+      "finding": "All eleven subject cards and the Logik row visible in a three-column layout. No clipped subject title or overlap blocking the title observed."
+    },
+    {
+      "path": "home-premium/large-text-learning-cards.png",
+      "bytes": 2275791,
+      "sha256": "e2c082d2df2bb1a57fe19e77e10d28fca7e871c95987f8f5eeeceacf3f130930",
+      "git_blob": "827490346fdc3e8033345952fa74706070cd889d",
+      "width": 1800,
+      "height": 2400,
+      "actually_viewed": true,
+      "same_original_pixel_bytes_as_6b": true,
+      "finding": "First four subject cards fully visible and readable in one column with large text. Later cards continue below the viewport and were not independently inspected here."
+    }
+  ],
+  "limitations": [
+    "This is Flutter/widget capture evidence, not Android APK or Village/C4 return acceptance.",
+    "No readability or complete text claim is made for content outside the captured viewport.",
+    "Compact supporting copy and promotional ellipses remain as explicitly described."
+  ],
+  "conclusion": "No new 04 Home/learning-card visual regression observed in this five-image scope.",
+  "new_tests_executed": false,
+  "new_archive_downloaded": false
+}

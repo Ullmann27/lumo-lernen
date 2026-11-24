@@ -9,31 +9,51 @@ class LumoGameEntryArt {
   const LumoGameEntryArt._();
 
   static String titleFor(String scene) => switch (scene) {
+        'world' => 'Lumo World',
         'kart' => 'Lumo Kart',
         'build' => 'Lumo Bauwelt',
+        'settlement' => 'Dorfwirtschaft',
         'puzzle' => 'Lumo Puzzle-Atelier',
         'rhythm' => 'Lumo Rhythm Party',
         'treasure' => 'Lumo Schatzsuche',
         'jump' => 'Lumo Abenteuer',
+        'learning' => 'Lumo Lernwerkstatt',
+        'cards' => 'Lumo Karten',
+        'run' => 'Lumo Lauf',
+        'chess' => 'Lumo Schach',
+        'skypost' => 'Lumos Sternenpost',
         _ => 'Lumo Spielewelt',
       };
 
   static String imageFor(String scene) => switch (scene) {
+        'world' => 'assets/lumo_design/spielwelt/cover_world.webp',
         'kart' => 'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp',
         'build' => 'assets/lumo_design/gameplay/build.png',
+        'settlement' => 'assets/lumo_design/spielwelt/portal_bauwelt.png',
+        'chess' => 'assets/lumo_design/spielwelt/cover_chess.jpg',
+        'skypost' => 'assets/lumo_design/spielwelt/cover_skypost.jpg',
         'puzzle' => 'assets/lumo_design/gameplay/puzzle.png',
         'rhythm' => 'assets/lumo_design/gameplay/rhythm.png',
         'treasure' => 'assets/lumo_design/gameplay/treasure.png',
         'jump' => 'assets/lumo_design/bg/bg_games.png',
+        'learning' => 'assets/lumo_design/bg/bg_learn.png',
         _ => 'assets/lumo_design/bg/bg_games.png',
       };
 
   static String categoryFor(String scene) => switch (scene) {
+        'world' => 'DEINE WELT VOLLER ABENTEUER',
         'kart' => '3D-RENNSPIEL',
         'build' => 'BAUABENTEUER',
+        'settlement' => 'DEIN LEBENDIGES DORF',
         'puzzle' => 'PUZZLE-WELT',
         'rhythm' => 'MUSIKSPIEL',
         'treasure' => 'ENTDECKUNGSREISE',
+        'learning' => 'MIT LUMO AUSPROBIEREN',
+        'cards' => 'GEMEINSAM AM SPIELTISCH',
+        'run' => '3D-LAUFABENTEUER',
+        'chess' => 'SCHACH LERNEN UND SPIELEN',
+        'skypost' => '3D-FLUGABENTEUER',
+        'jump' => 'WOLKENINSELN',
         _ => 'SPIELWELT',
       };
 }
@@ -56,8 +76,12 @@ class LumoGameEntryOverlay extends StatelessWidget {
 
   String get _status => switch (phase) {
         LumoGameEntryPhase.saving => 'Deine Sterne werden gespeichert',
-        LumoGameEntryPhase.preparing => 'Dein Spiel wird vorbereitet',
-        LumoGameEntryPhase.opening => 'Die Spielwelt wird geöffnet',
+        LumoGameEntryPhase.preparing => scene == 'learning'
+            ? 'Deine Lernwelt wird vorbereitet'
+            : 'Dein Spiel wird vorbereitet',
+        LumoGameEntryPhase.opening => scene == 'learning'
+            ? 'Die Lernwerkstatt wird geöffnet'
+            : 'Die Spielwelt wird geöffnet',
       };
 
   @override

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/2708c7907f28/learning-057a-originals-14119441036/replay.py"
+  ],
+  "exit": 0,
+  "stdout": "{\n  \"passed\": true,\n  \"source\": \"057a4e8d067872c4f3514b126aa04c3706d2e5b5\",\n  \"run\": 43607156921,\n  \"family_count\": 236,\n  \"samples\": 7552,\n  \"structural_issues\": 0,\n  \"seconds\": 1.3160620339986053,\n  \"original_files_unchanged\": 7\n}\n",
+  "stderr": "",
+  "elapsed_seconds": 2.4212412199995015,
+  "new_application_tests_executed": false
+}

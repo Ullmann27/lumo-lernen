@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'lumo_sulafat_client.dart';
@@ -28,6 +29,7 @@ class LumoVoice {
   String _serverUrl = 'https://lumo-ai-proxy.onrender.com';
   LumoParentSpeechAuthorization? _parentSpeechAuthorization;
   double _playbackRate = 1.0;
+  double _speechSpeedFactor = 1.0;
   String? lastStartedAudioIdentity;
   int _startedPlaybackCount = 0;
   int _completedPlaybackCount = 0;
@@ -39,9 +41,12 @@ class LumoVoice {
   StreamSubscription<void>? _doneSubscription;
   StreamSubscription<Duration>? _positionSubscription;
   Duration _mediaPosition = Duration.zero;
+  Duration _mediaDuration = Duration.zero;
+  bool _audibilityPending = false;
   LumoSpeechCancellation? _pendingRequest;
   Completer<void>? _playbackFinished;
   Future<void> _startup = Future<void>.value();
+  final Set<Future<void>> _nativeStops = {};
   int? _playingGeneration;
   Timer? _mouthTicker;
   Stopwatch? _playbackWatch;
@@ -53,6 +58,7 @@ class LumoVoice {
   final ValueNotifier<int> spokenWordRevision = ValueNotifier<int>(0);
   final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
   final ValueNotifier<double?> clipMouth = ValueNotifier<double?>(null);
+  final ValueNotifier<bool> mediaAudibility = ValueNotifier<bool>(false);
 
   /// Tests koennen Clip-Audio isoliert deaktivieren, niemals eine
   /// unpassende Stimme als Ersatz aktivieren.
@@ -60,12 +66,23 @@ class LumoVoice {
 
   bool get isEnabled => _enabled;
   bool get cloudVoiceEnabled => _cloudVoiceEnabled;
+  Duration get mediaPosition => _mediaPosition;
+  Duration get mediaDuration => _mediaDuration;
+  bool get mouthEnvelopeAvailable => _mouthEnvelope != null;
+  bool get mediaAudible => mediaAudibility.value;
+  double get _activeRate =>
+      (_playbackRate * _speechSpeedFactor).clamp(0.70, 1.60).toDouble();
 
   /// Counts confirmed native starts, not requests or historical source labels.
   int get startedPlaybackCount => _startedPlaybackCount;
 
   /// Only a native completion event increments this, never stop or a timeout.
   int get completedPlaybackCount => _completedPlaybackCount;
+
+  /// Synchronous transport ownership: capture immediately after speak, and
+  /// stop only while this value still matches. Another request (even one still
+  /// preparing) or stop retires the old page's right to cancel shared audio.
+  int get requestRevision => _requestRevision;
   String get selectedVoiceName =>
       _identity == LumoVoiceIdentity.freeOffline ? 'Lumo Frei' : 'Sulafat';
   bool get localVoiceLicenseAccepted => _localVoiceLicenseAccepted;
@@ -106,7 +123,7 @@ class LumoVoice {
       // The device-specific TTS voice (and its pitch controls) is removed.
       _playbackRate = (rate / 0.35).clamp(0.70, 1.60).toDouble();
       try {
-        await _player?.setPlaybackRate(_playbackRate);
+        await _player?.setPlaybackRate(_activeRate);
       } catch (_) {}
     }
     // Pitch is retained as a call parameter for older callers/settings.
@@ -187,6 +204,7 @@ class LumoVoice {
     VoiceStyle style = VoiceStyle.warm,
     bool waitForCompletion = false,
     bool freshLocalAudio = false,
+    double speedFactor = 1,
   }) async {
     if (!_enabled || text.trim().isEmpty) return;
     // Preflight is independent of the playing generation. Missing offline
@@ -266,6 +284,8 @@ class LumoVoice {
       generation = ++_speechGeneration;
       await _stopPlayback();
       if (!_enabled || generation != _speechGeneration) return;
+      _speechSpeedFactor =
+          speedFactor.isFinite ? speedFactor.clamp(0.70, 1.60).toDouble() : 1;
       _playingStyle = effectiveStyle;
       lastError.value = null;
       status.value = VoiceStatus.preparing;
@@ -411,8 +431,9 @@ class LumoVoice {
   }
 
   Future<void> speakAndWait(String text,
-          {VoiceStyle style = VoiceStyle.warm}) =>
-      speak(text, style: style, waitForCompletion: true);
+          {VoiceStyle style = VoiceStyle.warm, double speedFactor = 1}) =>
+      speak(text,
+          style: style, waitForCompletion: true, speedFactor: speedFactor);
 
   Future<void> _play(
     Source source,
@@ -471,10 +492,21 @@ class LumoVoice {
       completeCancelled();
       return;
     }
+    // A late stop reply resets AudioPlayer's state and position updater.
+    // Let every outstanding native stop finish before selecting a new source.
+    if (_nativeStops.isNotEmpty) {
+      await Future.wait<void>(_nativeStops.toList());
+      if (!_enabled || generation != _speechGeneration) {
+        completeCancelled();
+        return;
+      }
+    }
     final player = _ensurePlayer();
     _playbackFinished = onFinished;
     _playingGeneration = generation;
     _mediaPosition = Duration.zero;
+    _mediaDuration = duration;
+    mediaAudibility.value = false;
     await player.setReleaseMode(ReleaseMode.stop);
     await player.setVolume(1);
     if (!_enabled || generation != _speechGeneration) {
@@ -490,7 +522,7 @@ class LumoVoice {
       return;
     }
     try {
-      await player.setPlaybackRate(_playbackRate);
+      await player.setPlaybackRate(_activeRate);
     } catch (_) {}
     if (!_enabled || generation != _speechGeneration) {
       await player.stop();
@@ -512,6 +544,7 @@ class LumoVoice {
       milliseconds: (duration.inMilliseconds / 0.70).ceil() + 400,
     );
     _startMouthTicker(player, generation);
+    unawaited(_refreshAudibility(generation));
   }
 
   void _startMouthTicker(AudioPlayer player, int generation) {
@@ -537,7 +570,27 @@ class LumoVoice {
       // The timer only samples the native media position. Silence in the
       // waveform closes the mouth; no sine-wave animation or fake word events.
       clipMouth.value = _mouthEnvelope?.call(_mediaPosition) ?? 0;
+      if (t.tick % 10 == 0) unawaited(_refreshAudibility(generation));
     });
+  }
+
+  Future<void> _refreshAudibility(int generation) async {
+    if (_audibilityPending || generation != _speechGeneration) return;
+    _audibilityPending = true;
+    var audible = false;
+    try {
+      audible = await const MethodChannel('lumo_lernen/diagnostics')
+              .invokeMethod<bool>('mediaAudible')
+              .timeout(const Duration(seconds: 1)) ==
+          true;
+    } catch (_) {
+      // Missing platform evidence is not a confirmed audible playback.
+    } finally {
+      _audibilityPending = false;
+    }
+    if (generation == _speechGeneration) {
+      mediaAudibility.value = audible && status.value == VoiceStatus.speaking;
+    }
   }
 
   /// Pauses the same native source without seeking, regenerating or uploading.
@@ -565,6 +618,7 @@ class LumoVoice {
         _mouthTicker?.cancel();
         _mouthTicker = null;
         clipMouth.value = 0;
+        mediaAudibility.value = false;
         status.value = VoiceStatus.paused;
       } catch (_) {
         if (generation == _speechGeneration) {
@@ -598,6 +652,7 @@ class LumoVoice {
         clipMouth.value = 0;
         status.value = VoiceStatus.speaking;
         _startMouthTicker(player, generation);
+        unawaited(_refreshAudibility(generation));
       } catch (_) {
         if (generation == _speechGeneration) {
           lastError.value =
@@ -617,6 +672,7 @@ class LumoVoice {
     _playbackWatch?.stop();
     _playbackWatch = null;
     _mouthEnvelope = null;
+    mediaAudibility.value = false;
     clipMouth.value = null;
     if (_playbackFinished != null && !_playbackFinished!.isCompleted) {
       _playbackFinished!.complete();
@@ -630,6 +686,7 @@ class LumoVoice {
   }
 
   Future<void> _stopPlayback() async {
+    final generation = _speechGeneration;
     _pendingRequest?.cancel();
     _pendingRequest = null;
     final cancelLocal = _localInferenceGeneration != null;
@@ -637,18 +694,24 @@ class LumoVoice {
     final localCancellation =
         cancelLocal ? _offline.cancel() : Future<void>.value();
     _finishAudio();
-    try {
-      await _player?.stop();
-    } catch (_) {}
-    if (status.value != VoiceStatus.error) status.value = VoiceStatus.idle;
+    final nativeStop =
+        (_player?.stop() ?? Future<void>.value()).catchError((Object _) {});
+    // Stop remains immediate, even during native preparation. Retain only
+    // outstanding stops, so no completed queue chain survives into playback.
+    _nativeStops.add(nativeStop);
+    await nativeStop;
+    _nativeStops.remove(nativeStop);
+    if (generation == _speechGeneration && status.value != VoiceStatus.error) {
+      status.value = VoiceStatus.idle;
+    }
     await localCancellation;
   }
 
   Future<void> stop() async {
     ++_requestRevision;
-    ++_speechGeneration;
+    final generation = ++_speechGeneration;
     await _stopPlayback();
-    status.value = VoiceStatus.idle;
+    if (generation == _speechGeneration) status.value = VoiceStatus.idle;
   }
 
   /// The active identity supplies this sample; old original binaries stay intact.

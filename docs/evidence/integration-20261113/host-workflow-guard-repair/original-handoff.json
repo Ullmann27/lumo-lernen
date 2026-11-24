@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "base_commit": "f80fe6b3d6a3c58c89f8507853dcbfc15a84525e",
+  "base_tree": "bc925bfebb77fa58ae4b82b93204906ae9265172",
+  "changed_paths": [
+    "scripts/tests/test_nextgen_workflow_contract.py"
+  ],
+  "staged_paths": [],
+  "files": {
+    "scripts/tests/test_nextgen_workflow_contract.py": {
+      "git_blob": "8c26f54565af203f1a041e0bda7175a54f7f6a76",
+      "sha256": "1da6ab1457c372e7c3fad21ada69bf48337a7322b72c152fd4282a0b553373af",
+      "equal_to_original_f80": false
+    },
+    "config/godot-source.json": {
+      "git_blob": "554db9f8d7837c8c60b6dd09deb99aa3ab5ba071",
+      "sha256": "9eea3f7d7f1fdd9a555e98d2227f79cf1a3dd7a2b89ee345a7fd82c4d0e853f2",
+      "equal_to_original_f80": true
+    },
+    "scripts/verify_legacy_release_pin.py": {
+      "git_blob": "cb5b14104e261553790178eceb5b0ce1ffe22bc7",
+      "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6",
+      "equal_to_original_f80": true
+    },
+    "scripts/tests/test_candidate_2011_pin.py": {
+      "git_blob": "2ddd27fe6239129aee2551f3ad7a941bfcf87b5a",
+      "sha256": "e174edb0331ae53e9a57cb2e3ea9d2a8cba2662af1b132c97bbd6bf9242598ac",
+      "equal_to_original_f80": true
+    },
+    "pubspec.yaml": {
+      "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "equal_to_original_f80": true
+    },
+    "scripts/verify_studio_delivery.py": {
+      "git_blob": "55f600365a5158e3deca8514a88f952a7608547d",
+      "sha256": "074fa561e078b56476f539827db516e27a815104d51b74ea898644a1cb0bba8a",
+      "equal_to_original_f80": true
+    }
+  },
+  "full_gate": {
+    "tests": 409,
+    "skipped": 0,
+    "seconds": 97.705,
+    "manifest": "workflow-guard-repair/manifest.json",
+    "log": "workflow-guard-repair/build-contracts-green.log"
+  },
+  "flutter_reuse": {
+    "passed": 55,
+    "skipped": 0,
+    "rerun": false,
+    "proof": "flutter-source-reuse.json"
+  },
+  "original_failure": "build-contracts.log",
+  "full_source_hash_count": 1184,
+  "evidence_root": "/workspace/scratch/b3485b7bb989/host-build-release-f80fe6b-evidence",
+  "proofs": {
+    "manifest.json": "3d49d8fccb77c76b3ea28c0c11e92d65aebbe7e41d4646bc39fd4ca9e7bf4915",
+    "flutter-source-reuse.json": "4e8d5feb6b21358082959164c2a5c1e4a62d164615f12990eb96fe156afda804",
+    "workflow-guard-repair/manifest.json": "3242ed454de294f7d526b5cb1ea4acfebf38f2b3b20be2c1317e20b6b09db020",
+    "workflow-guard-repair/workflow-guard.patch": "692144ffd5de2b5ba9bdfaabc0e522b0966bdf8ac11d297aa9980e732fc46c40"
+  }
+}

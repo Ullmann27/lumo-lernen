@@ -1,0 +1,43 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart
+00:00 +0: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Old flat wallet JSON keeps balances, levels, streak and earned stars
+00:00 +1: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: A combined lesson reward (_Outcome.falseResult) is all-or-nothing and safely retried
+00:00 +2: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: A combined lesson reward (_Outcome.exception) is all-or-nothing and safely retried
+00:00 +3: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Combined lessons and a game share the queue without partial reward snapshots
+00:00 +4: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Combined deductions clamp balances and do not increase earned-star totals
+00:00 +5: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed game write (_Outcome.falseResult) preserves concurrent learning and allows replay
+00:00 +6: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed game write (_Outcome.exception) preserves concurrent learning and allows replay
+00:00 +7: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Successful game write commits balance and identity together before queued changes
+00:00 +8: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Concurrent duplicate awards and a fresh-process replay grant one reward
+00:00 +9: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Reset waits for an in-flight award and does not restore its old snapshot
+00:00 +10: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: A failed reset reports failure and preserves the existing balance
+00:00 +11: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: A failed lesson mutation does not poison later XP or its explicit retry
+00:00 +12: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed legacy migration keeps saved rewards for the next transaction
+00:00 +13: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: AppState exposes failed save and flush retries the complete lesson once
+00:00 +14: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: AppState keeps younger rewards queued after the oldest storage error
+00:00 +15: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Flush includes a reward queued while saved state notifies its listeners
+00:00 +16: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Cards win sequence, Stars and XP survive new AppState and settings hydration
+00:00 +17: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Failed Cards persistence cannot advance its series or grant half a reward
+00:00 +18: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Native import cannot acknowledge an event after a failed lesson flush
+Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: Bad state: Belohnung konnte nicht gespeichert werden
+00:00 +19: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_transaction_test.dart: Invalid native rewards cannot write balances or poison the queue
+00:00 +20: loading /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart
+00:00 +20: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: game: known result waits for a positive duplicate commit
+00:00 +21: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: game: falseAfterMemory stays unconfirmed in a new wallet
+00:00 +22: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: game: throwAfterMemory stays unconfirmed in a new wallet
+00:00 +23: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: game: throwAfterCommit stays unconfirmed in a new wallet
+00:00 +24: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: quiz: known result waits for a positive duplicate commit
+00:00 +25: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: quiz: falseAfterMemory stays unconfirmed in a new wallet
+00:00 +26: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: quiz: throwAfterMemory stays unconfirmed in a new wallet
+00:00 +27: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: quiz: throwAfterCommit stays unconfirmed in a new wallet
+00:00 +28: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: cards: known result waits for a positive duplicate commit
+00:00 +29: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: cards: falseAfterMemory stays unconfirmed in a new wallet
+00:00 +30: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: cards: throwAfterMemory stays unconfirmed in a new wallet
+00:00 +31: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: cards: throwAfterCommit stays unconfirmed in a new wallet
+00:00 +32: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: AppState falseAfterMemory: fresh wallet cannot clear an unsaved result
+00:00 +33: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_dedup_confirmation_test.dart: AppState throwAfterMemory: fresh wallet cannot clear an unsaved result
+00:00 +34: loading /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_queue_zone_test.dart
+00:01 +34: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_queue_zone_test.dart: An unused wallet constructed in another zone starts in its caller zone
+00:01 +35: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_queue_zone_test.dart: A fully committed wallet tail releases its completed originating zone
+00:01 +36: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_queue_zone_test.dart: A failed durable write releases its zone and the exact reward can retry
+00:01 +37: /tmp/lumo-integration-20261122/lumo-lernen/test/reward_wallet_queue_zone_test.dart: An older completion cannot release a younger pending durable write
+00:01 +38: All tests passed!

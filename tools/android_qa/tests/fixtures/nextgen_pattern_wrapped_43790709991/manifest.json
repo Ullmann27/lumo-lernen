@@ -1,0 +1,30 @@
+{
+  "schema": "lumo.nextgen.pattern-wrapped.original-fixture",
+  "version": 1,
+  "workflowRun": 43790709991,
+  "qaCommit": "e04e29437e2c28f40e492191f430cd49ddc456fa",
+  "apkSource": "684f54a6d11cfb5eccaec30f39fe34d6c17c82cc",
+  "artifactId": 14191988638,
+  "archiveBytes": 30677462,
+  "archiveSha256": "2114c52f122e21fc6cc907e6a4c2bea0b4ffae0fba85ff5938a6b43435a76724",
+  "originalStatus": "DIAGNOSTIC_ONLY",
+  "originalDiagnosticOutcome": "FAILED",
+  "originalError": "Current native screenshot lacks Was kommt als Nächstes",
+  "sourceFrames": 1,
+  "synthetic": false,
+  "files": [
+    {
+      "file": "0114-pattern-native-question-9.png",
+      "originalMember": "diagnostic-android/0114-pattern-native-question-9.png",
+      "bytes": 660918,
+      "sha256": "4e2486f2c838f7391f56c14b62b60b610b27d87b43ff4184875cb5a013e5fbf8"
+    },
+    {
+      "file": "0114-pattern-native-question-9-ocr.json",
+      "originalMember": "diagnostic-android/0114-pattern-native-question-9-ocr.json",
+      "bytes": 19373,
+      "sha256": "45dbbdc4dec317ce4bcc5e3b72d9767a7390302f54bb7186b12ada2dfee32c2e"
+    }
+  ],
+  "limits": "Byte-identical original PNG and OCR JSON only. Fixture replay is no Android/audio acceptance; the original diagnostic FAIL is unchanged."
+}

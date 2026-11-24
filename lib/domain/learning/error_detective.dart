@@ -21,6 +21,8 @@ library;
 
 import 'package:flutter/foundation.dart';
 
+import 'whole_arithmetic.dart';
+
 enum ErrorPattern {
   countingError,
   plusMinusSwap,
@@ -90,6 +92,11 @@ class ErrorDetection {
 
   /// Bei numerischen Fehlern: Differenz zur richtigen Antwort.
   final int? delta;
+
+  /// Only a recognised pattern may be explained to the child as the cause
+  /// of a mistake. Everything else gets a neutral sentence instead.
+  bool get isRecognised =>
+      pattern != ErrorPattern.unknown && confidence >= 0.65;
 }
 
 class ErrorDetective {
@@ -112,7 +119,7 @@ class ErrorDetective {
     }
     return ErrorDetection(
       pattern: ErrorPattern.unknown,
-      childFriendlyMessage: 'Schau die Aufgabe noch einmal in Ruhe an, du schaffst das!',
+      childFriendlyMessage: 'Schau die Aufgabe noch einmal in Ruhe an.',
       confidence: 0.2,
     );
   }
@@ -120,52 +127,67 @@ class ErrorDetective {
   // ─────────────────────────── MATHE ───────────────────────────
 
   ErrorDetection _analyzeMath(String prompt, String correctAnswer, String givenAnswer) {
-    final correct = _tryParseInt(correctAnswer);
-    final given = _tryParseInt(givenAnswer);
+    final calculation = WholeArithmetic.parse(prompt, expected: correctAnswer);
+    final given = WholeArithmetic.integerAnswer(givenAnswer);
 
-    // Beide Werte numerisch?
-    if (correct != null && given != null) {
+    // Do not diagnose a cause from truncated decimals or story fragments.
+    if (calculation != null && given != null && given != calculation.result) {
+      final correct = calculation.result;
       final delta = (correct - given).abs();
-      final p = _detectMathOperator(prompt);
+      final p = calculation.operation;
+
+      if (calculation.matchesMissingCarry(given)) {
+        return ErrorDetection(
+          pattern: ErrorPattern.placeValueError,
+          childFriendlyMessage: 'Vielleicht fehlt beim Zusammenzählen ein Zehner. '
+              'Lege die Einer zusammen. Wenn es mindestens zehn sind, tausche '
+              'zehn Einer gegen eine Zehnerstange. Zähle danach die Zehner und Einer.',
+          confidence: 0.8,
+          delta: delta,
+        );
+      }
+      if (calculation.matchesMissingBorrow(given) ||
+          calculation.matchesReversedOnes(given)) {
+        return ErrorDetection(
+          pattern: ErrorPattern.placeValueError,
+          childFriendlyMessage: 'Schau auf die Einer: Reichen sie zum Wegnehmen? '
+              'Wenn nicht, tausche einen Zehner gegen zehn Einer. '
+              'Denk daran, dass danach ein Zehner weniger da ist.',
+          confidence: 0.8,
+          delta: delta,
+        );
+      }
 
       // 1) Off-by-one (klassischer Zaehlfehler).
-      if (delta == 1) {
+      if (delta == 1 && calculation.isAddOrSubtract) {
         return ErrorDetection(
           pattern: ErrorPattern.offByOne,
-          childFriendlyMessage: 'Du warst nur um 1 daneben. Zaehle nochmal nach!',
+          childFriendlyMessage: correct <= 20
+              ? 'Du warst nur um 1 daneben. Zähl noch einmal genau nach.'
+              : 'Du warst nur um 1 daneben. Rechne den letzten Schritt noch einmal nach.',
           confidence: 0.85,
           delta: delta,
         );
       }
 
-      // 2) Plus/Minus-Swap erkennen.
-      if (p != null) {
-        final operands = _extractOperands(prompt);
-        if (operands != null && operands.length == 2) {
-          final a = operands[0];
-          final b = operands[1];
-          if (p == _Op.plus) {
-            final wrongIfMinus = a - b;
-            if (given == wrongIfMinus) {
-              return ErrorDetection(
-                pattern: ErrorPattern.plusMinusSwap,
-                childFriendlyMessage: 'Ich glaube, du hast Plus und Minus verwechselt. Plus heisst dazu!',
-                confidence: 0.95,
-                delta: delta,
-              );
-            }
-          } else if (p == _Op.minus) {
-            final wrongIfPlus = a + b;
-            if (given == wrongIfPlus) {
-              return ErrorDetection(
-                pattern: ErrorPattern.plusMinusSwap,
-                childFriendlyMessage: 'Ich glaube, du hast Plus und Minus verwechselt. Minus heisst weg!',
-                confidence: 0.95,
-                delta: delta,
-              );
-            }
-          }
-        }
+      // A matching alternative operation suggests, but does not prove, a cause.
+      final a = calculation.left;
+      final b = calculation.right;
+      if (p == WholeOperation.addition && given == a - b) {
+        return ErrorDetection(
+          pattern: ErrorPattern.plusMinusSwap,
+          childFriendlyMessage: 'Ich glaube, du hast Plus und Minus verwechselt. Plus heißt: Es kommt etwas dazu.',
+          confidence: 0.95,
+          delta: delta,
+        );
+      }
+      if (p == WholeOperation.subtraction && given == a + b) {
+        return ErrorDetection(
+          pattern: ErrorPattern.plusMinusSwap,
+          childFriendlyMessage: 'Ich glaube, du hast Plus und Minus verwechselt. Minus heißt: Es kommt etwas weg.',
+          confidence: 0.95,
+          delta: delta,
+        );
       }
 
       // 3) Stellenwert-Fehler bei zweistelligen Zahlen.
@@ -178,7 +200,7 @@ class ErrorDetective {
             correctStr[1] == givenStr[0]) {
           return ErrorDetection(
             pattern: ErrorPattern.digitInversion,
-            childFriendlyMessage: 'Du hast die Zahlen vertauscht. Schau dir die Reihenfolge an!',
+            childFriendlyMessage: 'Vielleicht sind die zwei Ziffern vertauscht. Schau genau: Welche steht vorne?',
             confidence: 0.92,
             delta: delta,
           );
@@ -186,20 +208,23 @@ class ErrorDetective {
       }
 
       // 4) Stellenwert bei Zehner/Einer.
-      if (correct >= 10 && (delta == 10 || delta == 20 || delta == 30)) {
+      if (calculation.isAddOrSubtract && calculation.inPrimaryHundred &&
+          correct >= 10 && (delta == 10 || delta == 20 || delta == 30)) {
         return ErrorDetection(
           pattern: ErrorPattern.placeValueError,
-          childFriendlyMessage: 'Achte auf die Zehner. Manchmal hilft es, mit Zehnerstaeben zu rechnen.',
+          childFriendlyMessage: 'Achte auf die Zehner. Zähl die Zehner und die Einer getrennt.',
           confidence: 0.75,
           delta: delta,
         );
       }
 
-      // 5) Allgemeiner Zaehlfehler (kleines Delta).
-      if (delta <= 3) {
+      // 5) Allgemeiner Zaehlfehler (kleines Delta). Nur im Zählraum bis 20:
+      // bei 7 × 8 oder 340 + 25 ist ein kleiner Abstand kein Zählfehler.
+      if (calculation.isAddOrSubtract && delta <= 3 &&
+          correct >= 0 && correct <= 20 && given >= 0 && given <= 20) {
         return ErrorDetection(
           pattern: ErrorPattern.countingError,
-          childFriendlyMessage: 'Zaehle nochmal genau mit den Fingern oder mit Punkten.',
+          childFriendlyMessage: 'Zähl noch einmal langsam nach – mit den Fingern oder mit Punkten.',
           confidence: 0.65,
           delta: delta,
         );
@@ -208,7 +233,7 @@ class ErrorDetective {
       // 6) Grosses Delta - unklar.
       return ErrorDetection(
         pattern: ErrorPattern.unknown,
-        childFriendlyMessage: 'Schau dir die Aufgabe nochmal an. Welche Rechenart ist es?',
+        childFriendlyMessage: 'Schau dir die Aufgabe noch einmal an. Welches Rechenzeichen steht da?',
         confidence: 0.4,
         delta: delta,
       );
@@ -217,7 +242,7 @@ class ErrorDetective {
     // Nicht-numerische Antwort bei Mathe-Aufgabe -> unklar.
     return const ErrorDetection(
       pattern: ErrorPattern.unknown,
-      childFriendlyMessage: 'Probier es nochmal - du schaffst das!',
+      childFriendlyMessage: 'Schau dir die Aufgabe noch einmal in Ruhe an.',
       confidence: 0.3,
     );
   }
@@ -234,7 +259,7 @@ class ErrorDetective {
     if (articles.contains(correctLower) && articles.contains(givenLower)) {
       return const ErrorDetection(
         pattern: ErrorPattern.articleError,
-        childFriendlyMessage: 'Achte auf den richtigen Artikel - der, die oder das?',
+        childFriendlyMessage: 'Achte auf den Artikel: der, die oder das? Sprich Artikel und Wort zusammen.',
         confidence: 0.95,
       );
     }
@@ -243,7 +268,7 @@ class ErrorDetective {
     if (promptLower.contains('reim') || promptLower.contains('endung')) {
       return const ErrorDetection(
         pattern: ErrorPattern.rhymeError,
-        childFriendlyMessage: 'Hoer auf das Wortende. Was klingt gleich am Schluss?',
+        childFriendlyMessage: 'Hör auf das Wortende. Welche Wörter klingen am Schluss gleich?',
         confidence: 0.8,
       );
     }
@@ -252,7 +277,7 @@ class ErrorDetective {
     if (promptLower.contains('silbe') || promptLower.contains('klatsch')) {
       return const ErrorDetection(
         pattern: ErrorPattern.syllableError,
-        childFriendlyMessage: 'Klatsche das Wort langsam mit. Jede Silbe ist ein Klatscher.',
+        childFriendlyMessage: 'Klatsch das Wort langsam mit. Jeder Klatscher ist eine Silbe.',
         confidence: 0.8,
       );
     }
@@ -264,16 +289,23 @@ class ErrorDetective {
         wordTypes.contains(correctLower)) {
       return const ErrorDetection(
         pattern: ErrorPattern.wordTypeError,
-        childFriendlyMessage: 'Frage dich: Ist es ein Ding (Nomen), eine Taetigkeit (Verb) oder eine Eigenschaft (Adjektiv)?',
+        childFriendlyMessage: 'Frag dich: Ist es ein Ding (Nomen), eine Tätigkeit (Verb) oder eine Eigenschaft (Adjektiv)?',
         confidence: 0.85,
       );
     }
 
-    // 5) Satzbau / Wortfolge?
-    if (correctAnswer.split(' ').length >= 3) {
+    // 5) Satzbau / Wortfolge: dieselben Wörter, aber anders gereiht. Eine
+    // lange richtige Antwort allein ist noch kein Satzbaufehler.
+    final correctWords = _words(correctLower);
+    final givenWords = _words(givenLower);
+    if (correctWords.length >= 3 &&
+        correctWords.length == givenWords.length &&
+        correctWords.join(' ') != givenWords.join(' ') &&
+        ([...correctWords]..sort()).join(' ') ==
+            ([...givenWords]..sort()).join(' ')) {
       return const ErrorDetection(
         pattern: ErrorPattern.sentenceStructureError,
-        childFriendlyMessage: 'Schau dir die Reihenfolge der Woerter an. Wer macht was?',
+        childFriendlyMessage: 'Die Wörter stimmen, aber die Reihenfolge noch nicht. Wer macht was?',
         confidence: 0.7,
       );
     }
@@ -284,7 +316,7 @@ class ErrorDetective {
       if (diff == 1) {
         return const ErrorDetection(
           pattern: ErrorPattern.syllableError,
-          childFriendlyMessage: 'Lies langsam Buchstabe fuer Buchstabe. Du warst nah dran!',
+          childFriendlyMessage: 'Lies langsam Buchstabe für Buchstabe. Ein Buchstabe ist noch anders.',
           confidence: 0.65,
         );
       }
@@ -292,32 +324,17 @@ class ErrorDetective {
 
     return const ErrorDetection(
       pattern: ErrorPattern.unknown,
-      childFriendlyMessage: 'Lies die Aufgabe nochmal in Ruhe vor.',
+      childFriendlyMessage: 'Lies die Aufgabe noch einmal in Ruhe.',
       confidence: 0.35,
     );
   }
 
   // ─── Helper ───
 
-  int? _tryParseInt(String s) {
-    final cleaned = s.replaceAll(RegExp(r'[^0-9-]'), '');
-    return int.tryParse(cleaned);
-  }
-
-  _Op? _detectMathOperator(String prompt) {
-    if (prompt.contains('+') || prompt.toLowerCase().contains('plus')) return _Op.plus;
-    if (prompt.contains('-') || prompt.contains('−') || prompt.toLowerCase().contains('minus')) return _Op.minus;
-    return null;
-  }
-
-  List<int>? _extractOperands(String prompt) {
-    final matches = RegExp(r'\d+').allMatches(prompt).toList();
-    if (matches.length < 2) return null;
-    final a = int.tryParse(matches[0].group(0)!);
-    final b = int.tryParse(matches[1].group(0)!);
-    if (a == null || b == null) return null;
-    return <int>[a, b];
-  }
+  List<String> _words(String text) => text
+      .split(RegExp(r'[^a-zäöüß0-9]+'))
+      .where((word) => word.isNotEmpty)
+      .toList(growable: false);
 
   int _charDiff(String a, String b) {
     var c = 0;
@@ -328,4 +345,3 @@ class ErrorDetective {
   }
 }
 
-enum _Op { plus, minus }

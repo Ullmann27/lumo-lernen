@@ -1,0 +1,20 @@
+test_named_course_never_taps_the_static_heading_or_other_course (test_nextgen_learning_route.NextgenLearningRouteTests.test_named_course_never_taps_the_static_heading_or_other_course) ... ok
+test_real_route_opens_tools_then_the_named_course_action (test_nextgen_learning_route.NextgenLearningRouteTests.test_real_route_opens_tools_then_the_named_course_action) ... ERROR
+test_recorded_closed_academy_requires_the_visible_tools_toggle (test_nextgen_learning_route.NextgenLearningRouteTests.test_recorded_closed_academy_requires_the_visible_tools_toggle) ... ok
+
+======================================================================
+ERROR: test_real_route_opens_tools_then_the_named_course_action (test_nextgen_learning_route.NextgenLearningRouteTests.test_real_route_opens_tools_then_the_named_course_action)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/e0abce7d2838/lumo-lernen/tools/android_qa/tests/test_nextgen_learning_route.py", line 89, in test_real_route_opens_tools_then_the_named_course_action
+    scope['learning_roundtrip'](Path(folder))
+  File "/workspace/scratch/e0abce7d2838/lumo-lernen/.github/probes/lumo_nextgen_surfaces_android_probe.py", line 143, in learning_roundtrip
+    tap_flutter(out, ['Lumo erklärt es mir'], 'guided-hub')
+  File "/workspace/scratch/e0abce7d2838/lumo-lernen/tools/android_qa/tests/test_nextgen_learning_route.py", line 63, in tap
+    raise RuntimeError('Recorded academy tools are closed')
+RuntimeError: Recorded academy tools are closed
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.018s
+
+FAILED (errors=1)

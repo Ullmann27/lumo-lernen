@@ -17,6 +17,10 @@ class LumoVisualTokens {
   static const tests = Color(0xFF167A84);
   static const rewards = Color(0xFFB52E73);
   static const gold = Color(0xFFFFC94A);
+  static const goldLight = Color(0xFFFFE69A);
+  static const goldDeep = Color(0xFFE9A92D);
+  static const glassHighlight = Color(0xFF174C70);
+  static const glassDeep = Color(0xFF08213F);
   static const white = Color(0xFFF7FBFF);
   static const muted = Color(0xFFB8C8DF);
 }

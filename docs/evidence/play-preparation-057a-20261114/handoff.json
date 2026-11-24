@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "kind": "bounded-read-only-play-preparation-and-ai-review-handoff",
+  "status": "source_review_complete_no_release_approval",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_commit": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+  "host_tree": "a2ae17af283a76fb3b99f1a0899a0898e7157230",
+  "host_parents": [
+    "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+    "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62"
+  ],
+  "native_commit": "a69f53518b2510873d88f00ff2783d616ab53702",
+  "native_tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+  "tree_entries": [
+    {
+      "path": "docs/evidence/play-preparation-057a-20261114/play-preparation-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0ca0e9e29be8f83391446c2f71206d32698c916"
+    },
+    {
+      "path": "docs/evidence/play-preparation-057a-20261114/ai-result-feedback-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e27680ebc4b97440e6ccdbc544280cef3fe04874"
+    }
+  ],
+  "independently_verified_bindings": {
+    "immutable_host_commit_and_full_untruncated_tree": true,
+    "main_source_catalog_entries": 27,
+    "main_materialized_files_hash_matched": 17,
+    "main_documents_or_server_sources_rebound_by_unchanged_immutable_blob": 10,
+    "child_source_blobs_rebound_by_this_reviewer": 21,
+    "child_report_read_in_full_by_this_reviewer": true,
+    "child_materialized_lib_files_hash_matched": 442,
+    "child_changed_lib_diffs_read": 9
+  },
+  "findings": [
+    "Dedicated Play build and verification, external signing requirements, permission/update restrictions and notice packaging are present in the reviewed source; no current signed Play artifact or deployment acceptance was observed.",
+    "The final source deltas do not introduce new locked SDK versions: the image-picker interface is reclassified as a direct development dependency, while Android bridge changes concern Village launch and local voice options.",
+    "Optional proxy text and Teacher image requests are distinct from the inspected local storybook and disabled online visual-aid call paths.",
+    "Inspected Agent, Teacher and Parent result views have no bound content-complaint recipient or endpoint. Diagnostic copying and local deletion are not provider reporting or provider deletion.",
+    "Approved operator/support/privacy details, deployed service data-handling facts, build-specific Console declarations, authorized signing and actual Play artifact/device evidence remain open."
+  ],
+  "related_completed_native_trigger_review": {
+    "path": "docs/evidence/native-baf-e2-merge-20261114/checkpoint-trigger-review.json",
+    "git_blob": "a7ecb08e197eb18bb928c7741c459eb27c5f0dec",
+    "scope": "All 67 immutable Native workflows were read. At the recorded API observation, matching-refs returned an empty list for checkpoint/lumo-native-merge-20261114-2708. None of the 55 push definitions matched this branch; no create event was subscribed. Ref absence is point-in-time only.",
+    "created_ref_or_trigger": false
+  },
+  "scope_limits": {
+    "source_review_only": true,
+    "new_tests": false,
+    "builds_or_renderer_runs": false,
+    "product_network_requests": false,
+    "console_or_account_access": false,
+    "product_or_ref_changes": false,
+    "current_ci_success_claimed": false,
+    "prior_runtime_results_transferred": false,
+    "legal_or_store_approval": false,
+    "operator_or_recipient_invented": false,
+    "persistence": "Only inert evidence Git blobs; a later evidence commit or ref remains the integration owner's action."
+  }
+}

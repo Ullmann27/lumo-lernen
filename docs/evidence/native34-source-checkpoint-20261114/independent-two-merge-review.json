@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "status": "NO_CONCRETE_BLOCKER_IN_TWO_MERGES_READ_ONLY",
+  "reviewer": "flutter_integration",
+  "reviewed_at": "2026-11-14T16:26:20.885608+00:00",
+  "scope": "Exactly the two actual Native hunk merges, before/common-base/published-producer/final bytes, source-level preservation and immediate Host pairing. No review approval is asserted for all34 files or unexecuted renderer/device behavior.",
+  "base_native": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+  "base_tree": "d7e0128afbda641cb92e29c41a8839d901ef5b43",
+  "producer_native": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+  "producer_tree": "5ddbea2b1d5e76ed592a27c36079632d7f26cada",
+  "source_freeze": {
+    "bytes": 37643,
+    "sha256": "cbc83726bba47e862adbb9d1adab6d3fda4f487b75900b69b54f5978f112374a",
+    "git_blob": "3ebb86a3ce78e11ef2eefd7ddeec187c4b6a6a15"
+  },
+  "files": [
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "bytes": 62984,
+      "sha256": "c9238933216622c255b73ceb52d251491cd154c04e64db6d55b23c4e5ac1ad2f",
+      "git_blob": "8d2c67ac7e630610093f02a5093d6f06e204d88a"
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "bytes": 5634,
+      "sha256": "7155c6bef2655499f72c4f32ce72a0feb0617ebad1b5e239bb5592a228c7cb8c",
+      "git_blob": "a9876cec58d075b7fc88d326eb6588d44aeaf4db"
+    }
+  ],
+  "findings": [
+    {
+      "area": "HostBridge",
+      "finding": "Only memory/quiz ordinary scene and Englisch subject allowlists are added. Removing those two additions reproduces the entire current2281 file byte-for-byte. The full settlement/livingVillage/settlementMode rejection-to-games branch remains. Eleven other function blocks, including strict durable_ack and reward/return preservation, remain unchanged."
+    },
+    {
+      "area": "Learning stage",
+      "finding": "The merged file equals the complete published English implementation plus exactly the507 unchanged current Wisp bytes. OriginalLearningLumo, current atelier setup, celebration_only, reduced motion and pause/resume Wisp handling remain. Wisp construction precedes the English-specific gallery placement."
+    },
+    {
+      "area": "PCM and return",
+      "finding": "The six current narration/speech/status/return functions are byte-identical. Speech still requires current utterance ID; playing plus audible controls speech state and envelopeAvailable additionally gates PCM amplitude. Stop/reset, suspend and actual acknowledged return are retained. The English compact-caption/observation hook does not replace the speech driver."
+    },
+    {
+      "area": "Observed layout",
+      "finding": "The new English observer functions are exact Producer bytes. They bind current PID, sequence, monotonic time and safe-area/current layout; close/delete observation on actual returned signal and exit. The source-level merge does not itself demonstrate rendered geometry, live ACKs or Android behavior."
+    },
+    {
+      "area": "Host pairing",
+      "finding": "The separately frozen Host66/Adapter5 proposal adds matching memory/quiz scene and table-token paths plus English kind/subject. Its MainActivity merge preserves the current learning/build/settlement voice branch. Native integration needs that actual future committed Host pair and current-source authority/device qualification."
+    }
+  ],
+  "static_counts": {
+    "learning_old_functions": 52,
+    "learning_current_byte_equal_function_blocks": 41,
+    "learning_new_exact_producer_functions": 15,
+    "bridge_functions": 12,
+    "bridge_current_byte_equal_function_blocks": 11
+  },
+  "limits": [
+    "No Engine/GDScript compiler, imports, tests, device commands, network queries or source edits performed by this reviewer.",
+    "Old Producer47ca/29080 authority successes still bind Host50503, not the merged Host/Native pair.",
+    "Memory/Quiz transport and all34 Native paths require their own source/contract qualification; this report covers the two merges only."
+  ],
+  "blocked_issues": [],
+  "audit_file": "independent-function-and-byte-audit.json"
+}

@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-11-14 18:27:07 UTC",
+  "source": {
+    "source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "native_tree": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+    "main_run": 43616038272,
+    "feature_run": 43616035099,
+    "native_run": 43613299144,
+    "attempt": 1
+  },
+  "run": {
+    "id": 43616038272,
+    "attempt": 1,
+    "head_sha": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "status": "completed",
+    "conclusion": "failure"
+  },
+  "jobs": [
+    {
+      "id": 132511327954,
+      "name": "android-host-compile",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-14T16:36:37Z"
+    },
+    {
+      "id": 132511328206,
+      "name": "connect-four-runtime",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-14T16:34:32Z"
+    },
+    {
+      "id": 132512734271,
+      "name": "verify-and-build",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-14T18:02:21Z"
+    },
+    {
+      "id": 132536740578,
+      "name": "update-2020-from-2017",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-14T18:20:54Z"
+    },
+    {
+      "id": 132536740615,
+      "name": "android-c4",
+      "status": "completed",
+      "conclusion": "failure",
+      "completed_at": "2026-11-14T18:21:51Z"
+    },
+    {
+      "id": 132542370911,
+      "name": "verify-c4-candidate",
+      "status": "completed",
+      "conclusion": "skipped",
+      "completed_at": "2026-11-14T18:21:51Z"
+    },
+    {
+      "id": 132542371494,
+      "name": "prepare-c4-delivery",
+      "status": "completed",
+      "conclusion": "skipped",
+      "completed_at": "2026-11-14T18:21:51Z"
+    }
+  ],
+  "first_reported_original_error": {
+    "job": 132536740615,
+    "timestamp": "2026-11-14T18:21:43.0528144Z",
+    "line": 3742,
+    "marker": "[VillageAndroid]",
+    "message": "ValueError: Actual original TSV/PNG does not establish caption: Spielen",
+    "source": "android_qa original job-log reading; Root awaits immutable raw blob and actual original PNG/TSV"
+  },
+  "current_root_source_finding": {
+    "producer": ".github/probes/lumo_village_android_probe.py",
+    "phase": "visible_return",
+    "foreground_and_absent_native_process_check_precedes_capture": true,
+    "flutter_capture_uses_entropy_only": true,
+    "exact_spielen_ocr_required": true,
+    "live_xml_read_occurs_after_caption_and_was_not_reached": true,
+    "cause_not_yet_determined": true
+  },
+  "publication_activated": false,
+  "complete_reader_activated": false,
+  "blocked_publisher_commit": "361f409f4bded479858e392aff8494863c4c0b1a",
+  "blocked_reader_tested_commit": "98a8919ffe3544702bc509978b8d16b8f47ff7ab",
+  "actual_update_job_succeeded": true,
+  "update_original_detail_review_pending": true,
+  "next_action": "Inspect unchanged original returned Flutter PNG/TSV before selecting and testing a concrete fix."
+}

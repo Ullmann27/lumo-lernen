@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "kind": "readonly_reading_capture_glyph_source_followup",
+  "host": "1375da193af0152af64f91d86577aa9768cd50db",
+  "artifact_id": 14116675111,
+  "child_image_review": "26b02f75379e2670865a90efefa51c6a337d5372",
+  "original_machine_sha256": "64879cdd51ce7aaa5745446bbe66fadea6ba95b483ac82c73ea096248de13bc3",
+  "original_three_interaction_results": [
+    {
+      "id": 1619,
+      "name": "actual fourth-grade reading, wrong attempt and retry on phone",
+      "done": {
+        "testID": 1619,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 318797
+      }
+    },
+    {
+      "id": 1621,
+      "name": "actual fourth-grade reading, wrong attempt and retry on fold",
+      "done": {
+        "testID": 1621,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 319226
+      }
+    },
+    {
+      "id": 1622,
+      "name": "actual fourth-grade reading, wrong attempt and retry on landscape",
+      "done": {
+        "testID": 1622,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 319479
+      }
+    }
+  ],
+  "sources": {
+    "test/design/reading_passage_runtime_test.dart": "6ea8e53324772c636de9b06da531da0e5109af48",
+    "lib/features/learning/renderers/adaptive_task_renderer.dart": "b319c40f9647975668beb4c04b9bcdaf05333c52",
+    "test/helpers/lumo_capture.dart": "439c2a8862effae26907ef655304e0c57f76a56c",
+    "pubspec.yaml": "7f504396071cf3af57164187a29ea74b74c62413"
+  },
+  "observed_source_facts": [
+    "The unchanged reading capture test explicitly loads only Nunito Regular/Bold in setUpAll.",
+    "The actual answer renderer uses Icons.check_circle_rounded for correct and Icons.cancel_rounded for the wrong selection.",
+    "The separately available shared capture-font helper explicitly loads MaterialIcons as well as Nunito.",
+    "pubspec.yaml declares uses-material-design: true.",
+    "The existing test calls ensureVisible and taps a wrong and correct answer, asserting [false, true], before capturing."
+  ],
+  "inference": "The missing MaterialIcons setup is a source-supported explanation for the two square-shaped glyphs in the Linux test image; no controlled font-only rerender was executed to establish causation.",
+  "limits": [
+    "All three original existing interaction tests passed; this follow-up did not execute any new tests.",
+    "Root read the source and original event results but did not personally open this child-reviewed image.",
+    "No actual Android glyph rendering, complete passage visibility or APK package membership is established here."
+  ]
+}

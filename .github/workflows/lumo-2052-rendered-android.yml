@@ -1,0 +1,185 @@
+name: Lumo – signierten ARM64-Kandidaten auf Android-Kursen prüfen (Mesa)
+# Prüft genau die signierte ARM64-APK eines fertigen Baus (lumo-test-apk.yml) mit einem
+# zweiten Renderer (Mesa/llvmpipe): installieren, die drei Lumo-Lauf-Welten über echte
+# Berührungen starten, Bewegung im Bild nachweisen. Welcher Bau geprüft wird, steht in
+# config/arm64-course-check.json – nur eine Änderung dort (oder an dieser Datei) startet
+# den Lauf. Bis 19.11.2026 war der Bau 2052 fest eingetragen; dadurch schlug der Lauf
+# nach jedem Wechsel des Spielstands fehl, bevor überhaupt ein Emulator startete.
+on:
+  push:
+    branches: [repair/lumo-quiz-run-kart-20261119, integration/lumo-complete-20261122]
+    paths: [.github/workflows/lumo-2052-rendered-android.yml, config/arm64-course-check.json]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  arm64-courses:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      DISPLAY: ':99'
+      LIBGL_ALWAYS_SOFTWARE: 'true'
+      GALLIUM_DRIVER: llvmpipe
+      LP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Zu prüfenden Bau aus config/arm64-course-check.json lesen
+        id: candidate
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, re
+          from pathlib import Path
+          check = json.loads(Path('config/arm64-course-check.json').read_text())
+          run, source, code = str(check['build_run']), check['flutter_source_commit'], int(check['version_code'])
+          assert re.fullmatch(r'[0-9]{6,20}', run), run
+          assert re.fullmatch(r'[0-9a-f]{40}', source), source
+          assert 2000 < code < 100000, code
+          print(f'build_run={run}')
+          print(f'build_source={source}')
+          print(f'version_code={code}')
+          PY
+      - name: Auf das signierte ARM64-Artefakt des exakten Builds warten
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD_RUN: ${{ steps.candidate.outputs.build_run }}
+          BUILD_SOURCE: ${{ steps.candidate.outputs.build_source }}
+        run: |
+          set -euo pipefail
+          api="repos/$GITHUB_REPOSITORY/actions/runs/$BUILD_RUN"
+          test "$(gh api "$api" --jq .head_sha)" = "$BUILD_SOURCE"
+          for attempt in $(seq 1 90); do
+            if gh api "$api/artifacts" --jq '.artifacts[] | select(.expired == false) | .name' | grep -Fxq "LUMO-TEST-APK-$BUILD_RUN"; then
+              exit 0
+            fi
+            case "$(gh api "$api" --jq .conclusion)" in
+              failure|cancelled) exit 1 ;;
+            esac
+            sleep 15
+          done
+          exit 1
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ steps.candidate.outputs.build_run }}
+          name: LUMO-TEST-APK-${{ steps.candidate.outputs.build_run }}
+          path: candidate
+          github-token: ${{ github.token }}
+      - name: APK-Bytes, Renderer und Prüftools vorbereiten
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD_SOURCE: ${{ steps.candidate.outputs.build_source }}
+          VERSION_CODE: ${{ steps.candidate.outputs.version_code }}
+        run: |
+          set -euo pipefail
+          (cd candidate/release && sha256sum -c SHA256SUMS.txt)
+          # Der Spielstand muss der sein, den der geprüfte App-Stand selbst festlegt.
+          gh api "repos/$GITHUB_REPOSITORY/contents/config/godot-source.json?ref=$BUILD_SOURCE" \
+            -H 'Accept: application/vnd.github.raw' > candidate/godot-source-at-build.json
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          proof = json.loads(Path('candidate/release/BUILD-PROVENANCE.json').read_text())
+          source = json.loads(Path('candidate/godot-source-at-build.json').read_text())
+          assert proof['flutter_source_commit'] == os.environ['BUILD_SOURCE']
+          assert proof['godot']['revision'] == source['revision']
+          assert proof['abis'] == ['arm64-v8a'] and proof['versionCode'] == int(os.environ['VERSION_CODE'])
+          apks = sorted(Path('candidate/release').glob('*.apk'))
+          assert len(apks) == 1, apks
+          Path('candidate/APK-PATH.txt').write_text(str(apks[0]))
+          PY
+          mkdir -p course-evidence
+          sudo chmod a+rw /dev/kvm
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > course-evidence/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > course-evidence/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -Fi 'llvmpipe' course-evidence/mesa-renderer.txt
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 4096M
+          disable-animations: true
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python tools/android_qa/run_course_android_probe.py "$(cat candidate/APK-PATH.txt)" --movement
+      - name: ARM64-Kursbelege an den geprüften APK-Kandidaten binden
+        env:
+          BUILD_RUN: ${{ steps.candidate.outputs.build_run }}
+          BUILD_SOURCE: ${{ steps.candidate.outputs.build_source }}
+          VERSION_CODE: ${{ steps.candidate.outputs.version_code }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import zipfile
+
+          proof = json.loads(Path('candidate/release/BUILD-PROVENANCE.json').read_text())
+          apk = Path(Path('candidate/APK-PATH.txt').read_text().strip())
+          expected = Path('candidate/release/SHA256SUMS.txt').read_text().split()[0]
+          actual = hashlib.file_digest(apk.open('rb'), 'sha256').hexdigest()
+          if actual != expected or proof['flutter_source_commit'] != os.environ['BUILD_SOURCE']:
+              raise RuntimeError('The checked ARM64 candidate identity changed')
+          if proof['abis'] != ['arm64-v8a'] or proof['versionCode'] != int(os.environ['VERSION_CODE']):
+              raise RuntimeError('Wrong ARM64 candidate version or ABI')
+          courses = ['dschungelherz', 'zauberwald', 'sonnenhafen']
+          observed = json.loads(Path('course-evidence/COURSE-PROBE.json').read_text())
+          if observed.get('status') != 'PASS' or observed.get('movement_log_required') is not True:
+              raise RuntimeError('The actual course probe did not pass with required movement logs')
+          observed_courses = observed.get('courses', [])
+          if [item.get('course') for item in observed_courses] != courses:
+              raise RuntimeError('The actual course observations are incomplete or out of order')
+          for item in observed_courses:
+              if (item.get('status') != 'PASS' or item.get('gameplay_status') != 'PASS'
+                      or item.get('primary_failure') is not None or item.get('evidence_failures')):
+                  raise RuntimeError('A retained gameplay or evidence failure prevents delivery')
+              if any(item.get('evidence', {}).get(kind, {}).get('status') != 'PASS'
+                     for kind in ['logcat', 'exit-info']):
+                  raise RuntimeError('A required diagnostic collection did not pass')
+          for course in courses:
+              for suffix in ['selection.png', 'play-1.png', 'play-2.png', 'logcat.txt', 'exit-info.txt']:
+                  path = Path('course-evidence') / f'{course}-{suffix}'
+                  if not path.is_file() or not path.stat().st_size:
+                      raise RuntimeError(f'Missing successful course evidence: {path}')
+          result = {
+              'status': 'PASS', 'apk_sha256': actual,
+              'build_run': os.environ['BUILD_RUN'], 'flutter_source_commit': os.environ['BUILD_SOURCE'],
+              'godot_source_commit': proof['godot']['revision'], 'versionCode': proof['versionCode'],
+              'qa_commit': os.environ['GITHUB_SHA'],
+              'qa_probe_sha256': hashlib.sha256(Path('tools/android_qa/run_course_android_probe.py').read_bytes()).hexdigest(),
+              'course_probe_sha256': hashlib.sha256(Path('course-evidence/COURSE-PROBE.json').read_bytes()).hexdigest(),
+              'tested_courses': courses,
+              'method': 'Installed signed ARM64 APK on disposable Android API35 emulator with native bridge; Mesa llvmpipe, real course-card touches and changing rendered frames.',
+              'limits': 'Not a physical ARM64 device, no Fold7 performance, audio or 60 FPS certification.',
+              'check_run': f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}",
+          }
+          Path('course-evidence/ARM64-COURSES.json').write_text(json.dumps(result, indent=2) + '\n')
+          Path('course-evidence/BUILD-PROVENANCE.json').write_bytes(Path('candidate/release/BUILD-PROVENANCE.json').read_bytes())
+          with zipfile.ZipFile('LUMO-ARM64-KURSPRUEFUNG.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in sorted(Path('course-evidence').rglob('*')):
+                  if path.is_file():
+                      archive.write(path, str(path))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-arm64-candidate-android-courses
+          path: |
+            course-evidence/
+            LUMO-ARM64-KURSPRUEFUNG.zip

@@ -1,0 +1,12 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/local_backup_format_test.dart
+00:00 +0: portable roundtrip preserves journal, IDs, parents, wallet and native bytes
+00:00 +1: export removes secrets and device grants while retaining identity salt
+00:00 +2: old HTML format and a future version are rejected without conversion
+00:00 +3: outer checksum, individual file checksum and byte count are enforced
+00:00 +4: paths, duplicate files, transient tokens and forbidden preferences fail closed
+00:00 +5: wrong types, reserved plugin encodings and malformed learning JSON are rejected
+00:00 +6: native profile mapping must remain complete and unique
+00:00 +7: oversize and excessive nesting reject before processing
+00:00 +8: duplicate JSON object keys cannot be hidden behind a valid checksum
+00:00 +9: all current native persistent families are accepted
+00:00 +10: All tests passed!

@@ -1,0 +1,41 @@
+{
+  "component": "bounded Android Home foreground observation and primary capture error preservation",
+  "producerCommit": "b542db502b43c3efe384527450fdf0bb9c0dcd6a",
+  "publishedCommit": "7fc39247a3e1e3eaed0df375c2c78364fae3cc05",
+  "publishedTree": "77c31c76dfecd9557e607b4591f8321bc214432b",
+  "integrationCommit": "f0f3d29ce66265f90c5e0b0205144e46addb58cb",
+  "integrationTree": "172073aed38ee861c6b0f7fa8b0d64cae512232d",
+  "allOwnerFilesByteEqual": [
+    ".github/probes/lumo_nextgen_learning_android_probe.py",
+    "docs/nextgen/evidence/android_foreground_transition_20261116/README.md",
+    "docs/nextgen/evidence/android_foreground_transition_20261116/final-green.log",
+    "docs/nextgen/evidence/android_foreground_transition_20261116/green-initial-fixture-key-error.log",
+    "docs/nextgen/evidence/android_foreground_transition_20261116/green.log",
+    "docs/nextgen/evidence/android_foreground_transition_20261116/red-provenance.json",
+    "docs/nextgen/evidence/android_foreground_transition_20261116/red-test.py.txt",
+    "docs/nextgen/evidence/android_foreground_transition_20261116/red.log",
+    "docs/nextgen/evidence/android_foreground_transition_20261116/source.json",
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/0163-bridge-paused-activity.txt",
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/0270-words-pause-return-ffprobe.json",
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/0270-words-pause-return.mp4",
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/README.md",
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/learning-android-result.json",
+    "tools/android_qa/tests/fixtures/nextgen_foreground_43800892196/manifest.json",
+    "tools/android_qa/tests/test_nextgen_learning_android_probe.py"
+  ],
+  "ownerHandoffSha256": "5badfcf6bb4f7bed6ceffde69fa29f1ef433cec0649caf0997d2bcb4e530a001",
+  "rootSourceReview": [
+    "One Home command unchanged; full raw dumps saved before judgment; remaining timeout passed to adb; empty, ambiguous, application and late observations rejected.",
+    "Recorder retains actual primary exception and records secondary error; successful-body positive video duration and one-stream gate unchanged.",
+    "Original 2031 failure remains unchanged; new host transitions are controlled schedules, not new Android observations."
+  ],
+  "independentReview": "Learning read-only review bound to producer b542db502b43c3efe384527450fdf0bb9c0dcd6a and verified all16 Handoff files; no independent test execution claimed.",
+  "fullAffectedHostProbeModule": {
+    "passed": 81,
+    "failed": 0,
+    "log": "integrated-original-probe-tests.log",
+    "source": "f0f3d29ce66265f90c5e0b0205144e46addb58cb"
+  },
+  "apkSourceUnchanged": "e05a96a52aaf57e466e79831f15aaffd144284ee",
+  "newAndroidPass": false
+}

@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "passed": 30,
+  "failed": [],
+  "skipped": [],
+  "capture_error_files": [],
+  "flutter_exit_code": 0,
+  "runner_completed_successfully": true,
+  "source_sha": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+  "scope": [
+    "test/wort_diktat_gesture_regression_test.dart",
+    "test/feature_permission_regression_test.dart",
+    "test/profile_screen_test.dart"
+  ],
+  "expected_cases": 30,
+  "event_errors": [],
+  "non_event_stdout_lines": [
+    7,
+    8,
+    14,
+    15,
+    60,
+    61
+  ],
+  "raw_stdout": "flutter.stdout.jsonl",
+  "raw_stderr": "flutter.stderr.log"
+}

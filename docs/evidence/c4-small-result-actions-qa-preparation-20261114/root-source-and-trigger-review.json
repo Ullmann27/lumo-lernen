@@ -1,0 +1,19 @@
+{
+  "scope": "Separate read-only source-bound two-action desktop QA; no release write or APK rebuild",
+  "approved_to_execute": true,
+  "qa_commit": "dc2e1b50ebeadb895aa691d809f2c457e0142633",
+  "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+  "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "files": 4,
+  "parent_diff_verified": true,
+  "python_syntax": 0,
+  "actionlint": 0,
+  "bash_real_steps": 5,
+  "dart_parser": 0,
+  "dart_analyzer": "Blocked/exit3 by missing packages, not claimed pass",
+  "godot_parser_v1": 1,
+  "godot_parser_v2": 0,
+  "only_parser_fix": "Explicit bool annotation; no assertion changed",
+  "product_heads_unchanged": true,
+  "trigger_timestamp": "2026-11-14 12:18:09 UTC"
+}

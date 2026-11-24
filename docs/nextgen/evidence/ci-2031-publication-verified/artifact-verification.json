@@ -1,0 +1,165 @@
+{
+  "artifactId": 14205437855,
+  "workflowRun": 43823660756,
+  "identityMetadataSource": "caller-provided Actions metadata; exact archive bytes verified",
+  "archiveBytes": 23659,
+  "archiveSha256": "0574bd5bb9f70e2f5d32840425c7dfc4363249c49f5add30fa5840ab66a32f4f",
+  "wholeArchiveVerified": true,
+  "allMemberSizesVerified": true,
+  "allMemberCRCsVerified": true,
+  "allMemberSha256Computed": true,
+  "archiveRetainedLocally": false,
+  "allOriginalsRetainedLocally": false,
+  "selectedOriginalsOnly": true,
+  "memberCount": 15,
+  "uncompressedBytes": 126814,
+  "selectedPaths": [
+    "publication-proof/PUBLIC-DOWNLOAD-VERIFIED.json",
+    "publication-proof/PUBLIC-DOWNLOAD.json",
+    "publication-proof/PUBLIC-TAG.json",
+    "publication-proof/PUBLIC-ABSENCE.json",
+    "publication-proof/qa-publisher-source-binding.json",
+    "release/DELIVERY.json",
+    "release-notes.md"
+  ],
+  "selectedFileCount": 7,
+  "selectedBytes": 82209,
+  "diskReserveBytes": 10485760,
+  "members": [
+    {
+      "path": "publication-proof/133080632526-job.json",
+      "directory": false,
+      "compressedBytes": 1012,
+      "selected": false,
+      "bytes": 5726,
+      "sha256": "d5f557e1c706ec9505aaa7e6e45624ad6b27bb0692b51ecaed3ad3a740d729a7",
+      "crc32": "36b4b9cc"
+    },
+    {
+      "path": "publication-proof/133085378884-job.json",
+      "directory": false,
+      "compressedBytes": 863,
+      "selected": false,
+      "bytes": 4514,
+      "sha256": "1905f9a78cb2085451bcd7e5e26a4b018459942e811aaba9360021e8a2e2773e",
+      "crc32": "8c7be575"
+    },
+    {
+      "path": "publication-proof/133088843594-job.json",
+      "directory": false,
+      "compressedBytes": 882,
+      "selected": false,
+      "bytes": 4294,
+      "sha256": "6987aecd7b7721f2192b04c216f9a6e45901940e796bad5158fa231471a225ed",
+      "crc32": "bd36105b"
+    },
+    {
+      "path": "publication-proof/14197576182-metadata.json",
+      "directory": false,
+      "compressedBytes": 435,
+      "selected": false,
+      "bytes": 812,
+      "sha256": "1454c4e7eef4dd3ca8a3710bc55d7b1f648edd158f0b28c56d5bdba5b2307fac",
+      "crc32": "354cac45"
+    },
+    {
+      "path": "publication-proof/14197925395-metadata.json",
+      "directory": false,
+      "compressedBytes": 439,
+      "selected": false,
+      "bytes": 822,
+      "sha256": "315161d43f51848b705fafa39636fd62286ec70e440881de14df7dbac4d2ddea",
+      "crc32": "bb6a7dad"
+    },
+    {
+      "path": "publication-proof/14204544628-metadata.json",
+      "directory": false,
+      "compressedBytes": 439,
+      "selected": false,
+      "bytes": 822,
+      "sha256": "9cdfed5d9e529f88548dc0a1ef4a0212d5123478718c95248ae2c9b9f087fd7d",
+      "crc32": "e862d495"
+    },
+    {
+      "path": "publication-proof/PUBLIC-ABSENCE.json",
+      "directory": false,
+      "compressedBytes": 1276,
+      "selected": true,
+      "bytes": 3845,
+      "sha256": "0f05dce8176aa256380b83258649de5a9c203516cfef92fe764c4a0c998afbff",
+      "crc32": "5182689c"
+    },
+    {
+      "path": "publication-proof/PUBLIC-DOWNLOAD-VERIFIED.json",
+      "directory": false,
+      "compressedBytes": 275,
+      "selected": true,
+      "bytes": 384,
+      "sha256": "a06eaaec9500650b82e5180c8b35009aa46888d0ab80b3856d0e279ec7425585",
+      "crc32": "cb897469"
+    },
+    {
+      "path": "publication-proof/PUBLIC-DOWNLOAD.json",
+      "directory": false,
+      "compressedBytes": 2542,
+      "selected": true,
+      "bytes": 16165,
+      "sha256": "10c7db1a37e50f2256b7a8cb2e3000017742651409be8f4661c879daf61ded69",
+      "crc32": "a616005f"
+    },
+    {
+      "path": "publication-proof/PUBLIC-TAG.json",
+      "directory": false,
+      "compressedBytes": 272,
+      "selected": true,
+      "bytes": 478,
+      "sha256": "0d539329343cfb43dda90830f517a7ebaa37e0320d523c0ed68b3194078ff109",
+      "crc32": "d0d714d3"
+    },
+    {
+      "path": "publication-proof/qa-publisher-source-binding.json",
+      "directory": false,
+      "compressedBytes": 1712,
+      "selected": true,
+      "bytes": 5946,
+      "sha256": "4f43b0bf4fa1712b1e057fd57b2da541dbfe8012fa91b46455eb4a5ae1622f9d",
+      "crc32": "26efb081"
+    },
+    {
+      "path": "publication-proof/replay-run.json",
+      "directory": false,
+      "compressedBytes": 1679,
+      "selected": false,
+      "bytes": 13813,
+      "sha256": "b8fa6b993fa49092b350a3958c0269614e00477b0663673f02272f85e5d66792",
+      "crc32": "ccf2ca63"
+    },
+    {
+      "path": "publication-proof/source-run.json",
+      "directory": false,
+      "compressedBytes": 1673,
+      "selected": false,
+      "bytes": 13802,
+      "sha256": "0148a252c8f7833dbec7fbcbb12c170fc9b4bba14c122ff0df1bfc37e2269d46",
+      "crc32": "e2fb0442"
+    },
+    {
+      "path": "release/DELIVERY.json",
+      "directory": false,
+      "compressedBytes": 6516,
+      "selected": true,
+      "bytes": 53511,
+      "sha256": "7ad1231c5014e9cf0f3215a6948f95d136d82f7b6a857054acd3be75d6fd4c79",
+      "crc32": "320c41ca"
+    },
+    {
+      "path": "release-notes.md",
+      "directory": false,
+      "compressedBytes": 1134,
+      "selected": true,
+      "bytes": 1880,
+      "sha256": "9ab29d54d8a14f2484cbdf94850cd72021e4aa6443d48bb4466e1ff54e619c85",
+      "crc32": "528ad32b"
+    }
+  ]
+}

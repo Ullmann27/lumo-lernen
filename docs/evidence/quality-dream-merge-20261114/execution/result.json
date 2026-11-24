@@ -1,0 +1,125 @@
+{
+  "recorded_at_utc": "2026-11-14T11:35:47.746835+00:00",
+  "scope": "Actual focused Python contracts with the Android test sibling directory on the module path, matching discovery availability; actual merged workflow syntax. No new full Flutter, native, APK, Android or device acceptance.",
+  "before": {
+    "head": "dc966e8e4e4f69c5cb19e53822625025bb0fe766",
+    "tree": "883461f7827d92eb4175b191bb66202a98251f60",
+    "tracked_status": "",
+    "index_sha256": "9ef9b689dfd85e8c2137b3befd42f3db5dea1c283ca24af64de264423f5bb7bc"
+  },
+  "after": {
+    "head": "dc966e8e4e4f69c5cb19e53822625025bb0fe766",
+    "tree": "883461f7827d92eb4175b191bb66202a98251f60",
+    "tracked_status": "",
+    "index_sha256": "9ef9b689dfd85e8c2137b3befd42f3db5dea1c283ca24af64de264423f5bb7bc"
+  },
+  "source_and_index_unchanged": true,
+  "results": [
+    {
+      "label": "combined-contracts",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "scripts.tests.test_legacy_release_pin",
+        "scripts.tests.test_candidate_2011_pin",
+        "scripts.tests.test_connect_four_pipeline",
+        "scripts.tests.test_connect_four_delivery",
+        "scripts.tests.test_verify_unchanged_apk_diagnostic",
+        "scripts.tests.test_connect_four_return_gate",
+        "tools.android_qa.tests.test_connect_four_android_evidence",
+        "tools.android_qa.tests.test_kart_continue_caption",
+        "tools.android_qa.tests.test_kart_garage_evidence",
+        "tools.android_qa.tests.test_update_2019_preservation",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 27.05317676399136,
+      "log_bytes": 49160,
+      "log_sha256": "f2e2f2f530e0b2eae293c2fdaea9ba8432c21a1dea11d516814defd1364f2ec4",
+      "reported_test_totals": [
+        [
+          "237",
+          "26.816"
+        ]
+      ]
+    },
+    {
+      "label": "actionlint",
+      "argv": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        ".github/workflows/lumo-connect-four-2020.yml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.01623539200227242,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-0-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-dream-merge-2708/execution/actual-step-0.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0038676330004818738,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-1-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-dream-merge-2708/execution/actual-step-1.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0036422120028873906,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-2-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-dream-merge-2708/execution/actual-step-2.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0016130570002133027,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-3-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-dream-merge-2708/execution/actual-step-3.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.0014692529948661104,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    },
+    {
+      "label": "step-4-bash-n",
+      "argv": [
+        "bash",
+        "-n",
+        "/home/agent/lumo-host-dream-merge-2708/execution/actual-step-4.sh"
+      ],
+      "exit_code": 0,
+      "seconds": 0.003610254992963746,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_test_totals": []
+    }
+  ]
+}

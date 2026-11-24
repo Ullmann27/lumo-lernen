@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "source_root": "/tmp/host-pr485-0b7bacad-pipeline-evidence-20261114",
+  "host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "run_id": 43604903064,
+  "run_attempt": 1,
+  "files": [
+    {
+      "path": "artifacts-20261114T1442Z/artifacts.original.json",
+      "bytes": 3775,
+      "sha256": "dc08248f9324f9454cf6ed5f82740dd6baeb826dc9317182f677b70c1e4eebd9"
+    },
+    {
+      "path": "artifacts-20261114T1442Z/raw-manifest.json",
+      "bytes": 255,
+      "sha256": "3a16ef37b80cdb4a743250b0604a6aabbd2126baf7878fe372bede869e417848"
+    },
+    {
+      "path": "flutter-source-binding/binding.json",
+      "bytes": 386,
+      "sha256": "f1025e887a317d5fb0e6e8d3a0952055483fe1f6a820d29c5a6e3b6f5ba2bbde"
+    },
+    {
+      "path": "flutter-source-binding/raw-manifest.json",
+      "bytes": 470,
+      "sha256": "2f467a52df638bfaffa8b48b54c0452a95339c7d338032439dedf5724292d2fb"
+    },
+    {
+      "path": "flutter-source-binding/run_full_flutter_acceptance.py",
+      "bytes": 6523,
+      "sha256": "d51614e941cc3c8cec83da860aa9e6b47a0cc47fd5ec8df25c441b8a023c547d"
+    },
+    {
+      "path": "full-flutter-analysis/analysis-output.original.json",
+      "bytes": 336,
+      "sha256": "37c004e1677670ac1ff6efee3709c5a27275c945ba5481b4a4bdb3ff64051117"
+    },
+    {
+      "path": "full-flutter-analysis/analyze-originals.py",
+      "bytes": 5740,
+      "sha256": "4b7285e30a6b9e0590b447aaa0e1c98c7d44d885e894a9c5d0f8e46458a707dc"
+    },
+    {
+      "path": "full-flutter-analysis/raw-manifest.json",
+      "bytes": 477,
+      "sha256": "40fc73749e13d056fa3d6b213f8cf4216e01aae5b3392e688189710bf9657fb1"
+    },
+    {
+      "path": "full-flutter-artifact-14118412926/14118412926-original.zip",
+      "bytes": 336105163,
+      "sha256": "3f13c849b45fdc47d1c7597c1f4afb58867a64e8c8a78a3365a4dd2f20a15939"
+    },
+    {
+      "path": "full-flutter-artifact-14118412926/archive-index.json",
+      "bytes": 133800,
+      "sha256": "5f69791c0e2eff80eb9ea7add4a3f82e68adbdf30af9c8dedc5586b9895fd82b"
+    },
+    {
+      "path": "full-flutter-artifact-14118412926/originals/acceptance-summary.json",
+      "bytes": 2202,
+      "sha256": "75e49b929a6dd161647ecd4394e3a918f13cf699d9c713189676e476527dde06"
+    },
+    {
+      "path": "full-flutter-artifact-14118412926/originals/flutter-machine.jsonl",
+      "bytes": 1759702,
+      "sha256": "22d8ff13865fd9192386f4643a284c8c5c424a892146c182172f83307b5ed28b"
+    },
+    {
+      "path": "full-flutter-original-review.json",
+      "bytes": 3019,
+      "sha256": "7ba50c42e7f1861e4109fa66002e26b40568db7872252358327ff07931c469c2"
+    },
+    {
+      "path": "initial-20261114T142727Z/binding.json",
+      "bytes": 1553,
+      "sha256": "978de8dded151ce1c8ab6c38de08064654e2989ef0fd7accbdcbdfffbf5a162f"
+    },
+    {
+      "path": "initial-20261114T142727Z/diktat-test.original.dart",
+      "bytes": 21107,
+      "sha256": "e0eced5d27a8e2606816a4cc83d39edc2047f906b035f2d3e9e50c8c8fd45849"
+    },
+    {
+      "path": "initial-20261114T142727Z/godot-source.original.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50"
+    },
+    {
+      "path": "initial-20261114T142727Z/host-commit.original.json",
+      "bytes": 1229,
+      "sha256": "429a5068b306a4885b1b9d8d3900fcde285550a860fb6126a93eb9e79abf315c"
+    },
+    {
+      "path": "initial-20261114T142727Z/pr485.original.json",
+      "bytes": 17888,
+      "sha256": "b0461a440a17b3c7bb5e345fe84022460e5c18d27c0f92512a18e2a9f93f92e7"
+    },
+    {
+      "path": "initial-20261114T142727Z/run.original.json",
+      "bytes": 13000,
+      "sha256": "32471f2b9956ee9d5cb7a30bc5deade0b2591fc3c67db5b700ee68a1a23bfbe8"
+    },
+    {
+      "path": "initial-20261114T142727Z/workflow.original.yml",
+      "bytes": 49103,
+      "sha256": "0f0d3d14c499cc93489be8f03ae102ea75a1ac8e9e5b47fdaf5e5cb04db73226"
+    },
+    {
+      "path": "snapshots/20261114T144210Z/jobs.original.json",
+      "bytes": 14590,
+      "sha256": "10f910f67d58b69698b5c08bafcb443b39cadce56680e682cfbdae735f338d72"
+    },
+    {
+      "path": "snapshots/20261114T144210Z/observation.json",
+      "bytes": 188,
+      "sha256": "c478403065ae700c5e81d0ac7e4cb8e1b822627c7def3402ae291176548e9d6b"
+    },
+    {
+      "path": "snapshots/20261114T144210Z/raw-manifest.json",
+      "bytes": 463,
+      "sha256": "44001bf58e36db5743906fa332d24795d041e08ef7c301ca3a39754dbba1f30b"
+    },
+    {
+      "path": "snapshots/20261114T1443Z/jobs.original.json",
+      "bytes": 14848,
+      "sha256": "1a7b313e63a600bab6ccc87430225eb878d6f72683107b9b32ce8acb480e1096"
+    },
+    {
+      "path": "snapshots/20261114T1443Z/observation.json",
+      "bytes": 126,
+      "sha256": "c806ae89b49c27528c83ced90aaa248e2d37294d70c104b96037a25959e5687b"
+    },
+    {
+      "path": "snapshots/20261114T1443Z/raw-manifest.json",
+      "bytes": 463,
+      "sha256": "70c97df7d81711fecf4bb924bcd9450947917ac3fbb52d3dc1738c30fb84f8d0"
+    }
+  ],
+  "selected_paths": [
+    "artifacts-20261114T1442Z/artifacts.original.json",
+    "artifacts-20261114T1442Z/raw-manifest.json",
+    "flutter-source-binding/binding.json",
+    "flutter-source-binding/raw-manifest.json",
+    "flutter-source-binding/run_full_flutter_acceptance.py",
+    "full-flutter-analysis/analysis-output.original.json",
+    "full-flutter-analysis/analyze-originals.py",
+    "full-flutter-analysis/raw-manifest.json",
+    "full-flutter-artifact-14118412926/archive-index.json",
+    "full-flutter-artifact-14118412926/originals/acceptance-summary.json",
+    "full-flutter-artifact-14118412926/originals/flutter-machine.jsonl",
+    "full-flutter-original-review.json",
+    "initial-20261114T142727Z/binding.json",
+    "initial-20261114T142727Z/diktat-test.original.dart",
+    "initial-20261114T142727Z/godot-source.original.json",
+    "initial-20261114T142727Z/host-commit.original.json",
+    "initial-20261114T142727Z/pr485.original.json",
+    "initial-20261114T142727Z/run.original.json",
+    "initial-20261114T142727Z/workflow.original.yml",
+    "snapshots/20261114T144210Z/jobs.original.json",
+    "snapshots/20261114T144210Z/observation.json",
+    "snapshots/20261114T144210Z/raw-manifest.json",
+    "snapshots/20261114T1443Z/jobs.original.json",
+    "snapshots/20261114T1443Z/observation.json",
+    "snapshots/20261114T1443Z/raw-manifest.json"
+  ],
+  "explicit_exclusions": [
+    {
+      "path": "full-flutter-artifact-14118412926/14118412926-original.zip",
+      "bytes": 336105163,
+      "sha256": "3f13c849b45fdc47d1c7597c1f4afb58867a64e8c8a78a3365a4dd2f20a15939",
+      "absolute_path": "/tmp/host-pr485-0b7bacad-pipeline-evidence-20261114/full-flutter-artifact-14118412926/14118412926-original.zip",
+      "reason": "Complete original ZIP retained intact here and in Actions; compact transport contains its full CRC/SHA index and exactly selected originals."
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+name: Lumo 1968 – native audio channel widget capture regression
+on:
+  push:
+    branches:
+      - chatgpt/lumo-1968-audio-event-channel-capture-2026-10-17
+    paths:
+      - test/design/app_tour_capture_test.dart
+      - .github/workflows/lumo-1968-audio-capture-qa.yml
+  pull_request:
+    paths:
+      - test/design/app_tour_capture_test.dart
+      - .github/workflows/lumo-1968-audio-capture-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capture-with-native-audio-transport:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve exact lockfile and analyze updated screenshot test
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          dart analyze test/design/app_tour_capture_test.dart
+      - name: Verify native global audio init + EventChannel listen/cancel
+        run: |
+          flutter test --no-pub --reporter=expanded \
+            test/design/app_tour_capture_test.dart \
+            --plain-name 'Capture audio transport accepts native global init and event lifecycle'
+      - name: Capture all real AppShell screens with audio plugin absent
+        env:
+          LUMO_TOUR_DIR: ${{ github.workspace }}/proof/tour
+          LUMO_TOUR_CAPTURE_SCALE: '1'
+        run: |
+          set -euo pipefail
+          mkdir -p "$LUMO_TOUR_DIR"
+          flutter test --no-pub --reporter=expanded --timeout=90s \
+            test/design/app_tour_capture_test.dart
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          directory = Path(os.environ['LUMO_TOUR_DIR'])
+          expected = {f'{form}_{section}.png' for form in
+                      ('phone', 'fold', 'reference-phone') for section in
+                      ('home', 'learn', 'games', 'tests', 'rewards', 'profile')}
+          actual = {file.name for file in directory.glob('*.png')}
+          assert expected == actual, {'missing': sorted(expected - actual),
+                                      'extra': sorted(actual - expected)}
+          assert all((directory / file).stat().st_size > 5000 for file in expected)
+          print(f'PASS: {len(actual)} real AppShell screenshots from independent profiles')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1968-widget-screenproof
+          path: proof/tour/
+          if-no-files-found: warn

@@ -1,3 +1,4 @@
+import '../../../widgets/design/lumo_answer_crystal.dart';
 // ════════════════════════════════════════════════════════════════════════
 // ZAHLEN BIS 10 — Klasse 1 Mathematik (visuelles Zaehlen)
 // ════════════════════════════════════════════════════════════════════════
@@ -19,6 +20,7 @@ import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../lumo_phrases.dart';
 import '../learning_module_progress.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 
 enum _ZahlAufgabenTyp { zaehlen, nachfolger, groesser }
 
@@ -47,6 +49,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
   late final _rng = widget.taskRandom ?? math.Random();
 
@@ -153,6 +156,8 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
     });
     final isCorrect = answer == _correctAnswer;
     final saved = await _progress.saveAnswer(
+      problemKey:
+          '${_typ.name}:$_zahl1:${_typ == _ZahlAufgabenTyp.groesser ? _zahl2 : 0}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 5 : 0,
@@ -253,6 +258,49 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
     );
   }
 
+  Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
+        appState: widget.appState,
+        progress: _progress,
+        moduleId: 'm1_zahlen10',
+        taskKey: _taskIdx,
+        prompt: switch (_typ) {
+          _ZahlAufgabenTyp.zaehlen => 'Wie viele Punkte siehst du?',
+          _ZahlAufgabenTyp.nachfolger => 'Welche Zahl kommt nach $_zahl1?',
+          _ZahlAufgabenTyp.groesser =>
+            'Welche Zahl ist größer: $_zahl1 oder $_zahl2?',
+        },
+        objective: switch (_typ) {
+          _ZahlAufgabenTyp.zaehlen => 'Du zählst jeden Punkt genau einmal.',
+          _ZahlAufgabenTyp.nachfolger =>
+            'Du findest den nächsten Schritt in der Zahlenreihe.',
+          _ZahlAufgabenTyp.groesser => 'Du vergleichst zwei Zahlen bis zehn.',
+        },
+        answerChoices: _answers.map((number) => '$number').toList(),
+        onConfirmChoice: (index) => _onAnswer(_answers[index]),
+        helpSteps: switch (_typ) {
+          _ZahlAufgabenTyp.zaehlen => [
+              'Beginne bei einem Punkt. Berühre beim Zählen jeden Punkt genau einmal.',
+              'Gehe in einer festen Reihenfolge, zum Beispiel von links nach rechts. So vergisst du keinen Punkt.',
+              'Die zuletzt gesprochene Zahl sagt, wie viele Punkte es insgesamt sind. Suche diese Zahl bei den Antworten.',
+            ],
+          _ZahlAufgabenTyp.nachfolger => [
+              'Starte bei $_zahl1 und zähle genau einen Schritt weiter.',
+              'Der Nachfolger ist eins mehr. Stell dir vor, zu $_zahl1 kommt noch ein Gegenstand dazu.',
+              'Prüfe die Antwort, indem du von ihr einen Schritt zurückzählst. Dann musst du wieder bei $_zahl1 sein.',
+            ],
+          _ZahlAufgabenTyp.groesser => [
+              'Vergleiche nur die beiden gezeigten Zahlen $_zahl1 und $_zahl2.',
+              'Sprich die Zahlenreihe. Welche der beiden Zahlen kommt später?',
+              'Stell dir zu jeder Zahl eine Reihe gleich großer Punkte vor. Die längere Reihe gehört zur größeren Zahl.',
+            ],
+        },
+        answering: !_answered,
+        lastAnswer: _selectedAnswer?.toString(),
+        lastCorrect: _answered ? _selectedAnswer == _correctAnswer : null,
+        child: child,
+      );
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -274,7 +322,8 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
         progressLabel: 'Aufgabe',
         hasMistake: _answered && _selectedAnswer != _correctAnswer,
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -291,7 +340,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
             ]),
             answers: _buildAnswerGrid(),
           ),
-        ),
+        )),
       ),
     );
   }
@@ -433,48 +482,24 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
   Widget _buildAnswerButton(int value) {
     final isSelected = _selectedAnswer == value;
     final isCorrect = value == _correctAnswer;
-    Color bgColor = LumoVisualTokens.lessonAnswer;
-    Color textColor = LumoVisualTokens.white;
-    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
-    if (_answered && isSelected) {
-      if (isCorrect) {
-        bgColor = const Color(0xFFD1FAE5);
-        textColor = const Color(0xFF065F46);
-        borderColor = const Color(0xFF10B981);
-      } else {
-        bgColor = const Color(0xFFFEE2E2);
-        textColor = const Color(0xFF991B1B);
-        borderColor = const Color(0xFFEF4444);
-      }
-    }
     return AnimatedBuilder(
       animation: _bounceCtrl,
-      builder: (_, child) {
-        final s = isSelected &&
+      builder: (_, child) => Transform.scale(
+        scale: isSelected &&
                 isCorrect &&
                 !LumoLessonStyle.reducedMotion(context, widget.appState)
-            ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.1
-            : 1.0;
-        return Transform.scale(scale: s, child: child);
-      },
-      child: LumoLessonAnswerTap(
-        correct: _answered && isSelected ? isCorrect : null,
-        onTap: _answered ? null : () => _onAnswer(value),
-        child: AnimatedContainer(
-          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
-              ? Duration.zero
-              : const Duration(milliseconds: 200),
-          decoration:
-              LumoLessonStyle.answer(background: bgColor, border: borderColor),
-          child: Center(
-            child: Text('$value',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 36,
-                    fontWeight: FontWeight.w900,
-                    color: textColor)),
-          ),
-        ),
+            ? 1 + math.sin(_bounceCtrl.value * math.pi) * .1
+            : 1,
+        child: child,
+      ),
+      child: LumoAnswerCrystal(
+        label: '$value',
+        onPressed: _answered ? null : () => _onAnswer(value),
+        state: _answered && isCorrect && (isSelected || false)
+            ? LumoCrystalState.correct
+            : _answered && isSelected
+                ? LumoCrystalState.retry
+                : LumoCrystalState.neutral,
       ),
     );
   }

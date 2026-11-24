@@ -18,6 +18,8 @@ import 'package:lumo_lernen/domain/writing/writing_progress.dart';
 import 'package:lumo_lernen/features/writing/lumo_writing_word_coach_screen.dart';
 import 'package:lumo_lernen/features/writing/writing_engine.dart';
 
+import 'helpers/native_storage_fixture.dart';
+
 class _BlockedWallet extends RewardWalletRepository {
   bool reject = false;
   Completer<void>? gate;
@@ -27,11 +29,13 @@ class _BlockedWallet extends RewardWalletRepository {
   Future<RewardWallet> applyRewardDelta({
     int starsDelta = 0,
     int xpDelta = 0,
+    String? ownerId,
   }) async {
     attempts++;
     if (reject) throw StateError('Test disk unavailable');
     await gate?.future;
-    return super.applyRewardDelta(starsDelta: starsDelta, xpDelta: xpDelta);
+    return super.applyRewardDelta(
+        starsDelta: starsDelta, xpDelta: xpDelta, ownerId: ownerId);
   }
 }
 
@@ -79,8 +83,8 @@ Future<LumoAppState> _app({
     learningProfile: LearningProfileEngine(repository: profile),
   );
   app.updateSettings(const AppSettings(voiceEnabled: false));
-  await app.hydrateFromWallet();
-  await app.loadLearningProfile();
+  await app.hydrateFromWallet().timeout(const Duration(seconds: 15));
+  await app.loadLearningProfile().timeout(const Duration(seconds: 15));
   return app;
 }
 
@@ -121,8 +125,7 @@ Future<void> _open(
   await _frames(tester, 25);
 }
 
-Finder _canvas() =>
-    find.byKey(const ValueKey('lumo-word-ink-surface'));
+Finder _canvas() => find.byKey(const ValueKey('lumo-word-ink-surface'));
 
 Future<void> _draw(
   WidgetTester tester,
@@ -272,8 +275,8 @@ void main() {
     final app = await tester.runAsync(_app);
     await _open(tester, app!, [WritingWordBank.byId('w1_mama')!]);
     for (var index = 0; index < 4; index++) {
-      expect(
-          find.text('Schreibe Buchstabe ${index + 1} von 4 nach Gehör.'), findsOneWidget);
+      expect(find.text('Schreibe Buchstabe ${index + 1} von 4 nach Gehör.'),
+          findsOneWidget);
       await _letter(tester, 'MAMA'[index]);
       await _submit(tester, doubleTap: true);
       if (index < 3) {
@@ -330,7 +333,7 @@ void main() {
   testWidgets(
       'failed letter wallet write blocks touch and back, Retry saves original XP once',
       (tester) async {
-    final wallet = _BlockedWallet();
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
     final app = await tester.runAsync(() => _app(wallet: wallet));
     await _open(tester, app!, [_hi]);
     wallet.reject = true;
@@ -363,7 +366,7 @@ void main() {
   testWidgets(
       'word profile failure waits for Retry before finish without double Daily or wallet',
       (tester) async {
-    final profile = _BlockedProfile();
+    final profile = await nativeStorageFixture(tester, _BlockedProfile.new);
     final app = await tester.runAsync(() => _app(profile: profile));
     await _open(tester, app!, [_hi]);
     await _letter(tester, 'H');
@@ -390,7 +393,7 @@ void main() {
   testWidgets(
       'unmount during final reward completes accepted word storage without session bonus',
       (tester) async {
-    final wallet = _BlockedWallet();
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
     final app = await tester.runAsync(() => _app(wallet: wallet));
     await _open(tester, app!, [_hi]);
     await _letter(tester, 'H');

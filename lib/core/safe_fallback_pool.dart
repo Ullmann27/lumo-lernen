@@ -8,7 +8,8 @@ import 'school_exercise_generator.dart';
 /// - Keine doppelten Antwortkarten.
 /// - Rechtschreibung nutzt echte Schreibvarianten, keine fremden korrekten Wörter.
 /// - Englisch und Sachunterricht fallen nicht mehr pauschal auf Deutsch zurück.
-/// - Wenn ein alter Adapter nur Deutsch weitergibt, wird das Fach aus der Unit rekonstruiert.
+/// - Das ausdrücklich gewählte Fach bleibt erhalten. Ein Themenname allein
+///   darf keine Deutsch-Aufgabe in Englisch oder Sachunterricht umdeuten.
 class SafeFallbackPool {
   const SafeFallbackPool();
 
@@ -21,7 +22,9 @@ class SafeFallbackPool {
     String? missionTag,
   }) {
     final normalizedSubject = _normalizeSubject(subject, unit: unit);
-    final pool = _poolFor(normalizedSubject, grade);
+    final pool = normalizedSubject == 'Logik'
+        ? _logic[unit] ?? _logic['Muster']!
+        : _poolFor(normalizedSubject, grade);
     final entry = pool[counter % pool.length];
     return LumoTask(
       id: 'fallback_${normalizedSubject}_${grade}_${counter % pool.length}',
@@ -43,35 +46,10 @@ class SafeFallbackPool {
       'Mathematik' => 'Mathematik',
       'Englisch' => 'Englisch',
       'Sachunterricht' => 'Sachunterricht',
-      // LegacyLumoTaskAdapter used to pass Deutsch for every non-math fallback.
-      // Keep the app safe by restoring obvious English/Sachunterricht units here.
-      'Deutsch' || 'Lesen' || 'Schreiben' || 'Rechtschreibung' => _subjectFromUnitOrDefault(subject, unit),
-      _ => _subjectFromUnitOrDefault('Deutsch', unit),
+      'Logik' => 'Logik',
+      'Deutsch' || 'Lesen' || 'Schreiben' || 'Rechtschreibung' => subject,
+      _ => throw ArgumentError.value(subject, 'subject', 'Unknown learning subject'),
     };
-  }
-
-  String _subjectFromUnitOrDefault(String fallbackSubject, String unit) {
-    final normalizedUnit = unit.trim().toLowerCase();
-
-    const englishUnits = <String>{
-      'farben',
-      'zahlen',
-      'schulsachen',
-      'begruessung',
-      'begrüßung',
-    };
-    const scienceUnits = <String>{
-      'pflanzen',
-      'jahreszeiten',
-      'verkehr',
-      'wetter',
-      'zeit und kalender',
-      'familie und gemeinschaft',
-    };
-
-    if (englishUnits.contains(normalizedUnit)) return 'Englisch';
-    if (scienceUnits.contains(normalizedUnit)) return 'Sachunterricht';
-    return fallbackSubject;
   }
 
   List<_Fb> _poolFor(String subject, int grade) {
@@ -81,6 +59,45 @@ class SafeFallbackPool {
     if (subject == 'Sachunterricht') return _science[boundedGrade] ?? _science[1]!;
     return _deutsch[boundedGrade] ?? _deutsch[1]!;
   }
+
+  static const Map<String, List<_Fb>> _logic = {
+    'Muster': [
+      _Fb(
+        'Das Muster wiederholt sich immer gleich: Kreis – Dreieck – Kreis – Dreieck – Kreis – ? Welche Form folgt?',
+        'Dreieck', ['Dreieck', 'Kreis', 'Quadrat'],
+        'Die Gruppe Kreis – Dreieck wiederholt sich. Nach Kreis folgt Dreieck.',
+        'pattern', unit: 'Muster',
+      ),
+      _Fb(
+        'Das Muster wiederholt sich immer gleich: Quadrat – Stern – Quadrat – Stern – ? Welche Form folgt?',
+        'Quadrat', ['Stern', 'Quadrat', 'Kreis'],
+        'Die Gruppe Quadrat – Stern wiederholt sich. Nach Stern folgt Quadrat.',
+        'pattern', unit: 'Muster',
+      ),
+    ],
+    'Zahlenmuster': [
+      _Fb(
+        'Gehe jedes Mal gleich viele Schritte weiter: 2 – 4 – 6 – 8 – ? Welche Zahl folgt?',
+        '10', ['10', '9', '12'], 'Jeder Abstand ist 2. Auf 8 folgt 10.',
+        'auto', unit: 'Zahlenmuster',
+      ),
+    ],
+    'Reihenfolge': [
+      _Fb('Von links nach rechts stehen Lumo, Mia und Ben. Wer steht in der Mitte?',
+        'Mia', ['Lumo', 'Mia', 'Ben'], 'Die mittlere Figur ist Mia.',
+        'auto', unit: 'Reihenfolge'),
+    ],
+    'Schlussfolgern': [
+      _Fb('Drei Figuren stehen nebeneinander. Lumo steht links von Mia. Mia steht links von Ben. Wer steht ganz rechts?',
+        'Ben', ['Lumo', 'Mia', 'Ben'], 'Von links nach rechts: Lumo – Mia – Ben. Ben steht ganz rechts.',
+        'auto', unit: 'Schlussfolgern'),
+    ],
+    'Regeln kombinieren': [
+      _Fb('Welche Zahl erfüllt alle drei Regeln: größer als 10, kleiner als 18 und gerade?',
+        '14', ['14', '10', '13', '18'], 'Nur die Antwort 14 erfüllt alle drei Regeln.',
+        'auto', unit: 'Regeln kombinieren'),
+    ],
+  };
 
   static const Map<int, List<_Fb>> _math = {
     1: [
@@ -123,39 +140,39 @@ class SafeFallbackPool {
       _Fb('Welche Schreibweise ist richtig?', 'kommen', ['kommen', 'komen', 'komenn'], 'Kommen schreibt man mit mm.', 'auto', unit: 'Rechtschreibung'),
     ],
     3: [
-      _Fb('Welche Schreibweise ist richtig?', 'Sonne', ['Sonne', 'Sone', 'Sohne'], 'Sonne schreibt man mit nn.', 'auto', unit: 'Rechtschreibung'),
-      _Fb('Welches Wort beschreibt, wie etwas ist?', 'rot', ['rot', 'Hund', 'lesen'], 'Ein Wiewort beschreibt eine Eigenschaft.', 'auto'),
-      _Fb('Welches Zeichen kommt am Ende von: Lumo liest', '.', ['.', '!', '?'], 'Ein Aussagesatz endet mit Punkt.', 'auto'),
-      _Fb('Welcher Artikel passt zu Sonne?', 'die', ['die', 'der', 'das'], 'Es heißt die Sonne.', 'auto'),
+      _Fb('Welche Schreibweise ist richtig?', 'Geschichte', ['Geschichte', 'Geschihte', 'Geschichhte'], 'Geschichte schreibt man mit ch.', 'auto', unit: 'Rechtschreibung'),
+      _Fb('Welches Wort ist ein Wiewort?', 'mutig', ['mutig', 'Mut', 'mögen'], 'Ein Wiewort sagt, wie jemand oder etwas ist: mutig.', 'auto'),
+      _Fb('Wie heißt „laufen“ in der Mitvergangenheit? Er …', 'lief', ['lief', 'läuft', 'laufte'], 'laufen – er lief.', 'auto'),
+      _Fb('Welcher Satz ist ein Fragesatz?', 'Kommst du morgen mit?', ['Kommst du morgen mit?', 'Ich komme morgen mit.', 'Komm morgen mit!'], 'Ein Fragesatz endet mit einem Fragezeichen.', 'auto'),
     ],
     4: [
-      _Fb('Welcher Satz ist richtig geschrieben?', 'Wir spielen heute.', ['Wir spielen heute.', 'wir spielen heute', 'Wir Spielen heute.'], 'Satzanfang groß, sonstige Wörter klein.', 'auto'),
-      _Fb('Welches Wort ist ein Hauptwort?', 'Schule', ['Schule', 'rot', 'lesen'], 'Hauptwörter schreibt man groß.', 'auto'),
-      _Fb('Welche Schreibweise ist richtig?', 'Freund', ['Freund', 'Froind', 'Freunt'], 'Freund schreibt man mit eu und d.', 'auto', unit: 'Rechtschreibung'),
-      _Fb('Was reimt sich auf Sonne?', 'Tonne', ['Tonne', 'Mond', 'Stern'], 'Sonne und Tonne klingen am Ende gleich.', 'auto'),
+      _Fb('Welcher Satz ist richtig geschrieben?', 'Wir spielen heute im Garten.', ['Wir spielen heute im Garten.', 'wir spielen heute im Garten.', 'Wir Spielen heute im garten.'], 'Den Satzanfang und Namenwörter schreibt man groß, Tunwörter klein.', 'auto'),
+      _Fb('Welches Wort ist ein Namenwort (Nomen)?', 'Freundschaft', ['Freundschaft', 'freundlich', 'befreunden'], 'Wörter auf -schaft sind Namenwörter. Du schreibst sie groß.', 'auto'),
+      _Fb('Welche Schreibweise ist richtig?', 'Bibliothek', ['Bibliothek', 'Bibliotek', 'Biblijothek'], 'Bibliothek schreibt man mit th.', 'auto', unit: 'Rechtschreibung'),
+      _Fb('Welches Wort passt? „Ich weiß, ___ du recht hast.“', 'dass', ['dass', 'das', 'des'], 'Hier passt weder „dieses“ noch „welches“. „Dass“ verbindet zwei Sätze.', 'auto'),
     ],
   };
 
   static const Map<int, List<_Fb>> _english = {
     1: [
-      _Fb('Was heißt red auf Deutsch?', 'Rot', ['Rot', 'Blau', 'Grün'], 'Red heißt Rot.', 'auto', unit: 'Farben'),
-      _Fb('Was heißt cat auf Deutsch?', 'Katze', ['Katze', 'Hund', 'Vogel'], 'Cat heißt Katze.', 'auto', unit: 'Tiere'),
-      _Fb('Was heißt one auf Deutsch?', 'eins', ['eins', 'zwei', 'drei'], 'One heißt eins.', 'auto', unit: 'Zahlen'),
+      _Fb('Was heißt red auf Deutsch?', 'rot', ['rot', 'blau', 'grün'], 'red heißt rot.', 'auto', unit: 'Farben'),
+      _Fb('Was heißt cat auf Deutsch?', 'Katze', ['Katze', 'Hund', 'Vogel'], 'cat heißt Katze.', 'auto', unit: 'Tiere'),
+      _Fb('Was heißt one auf Deutsch?', 'eins', ['eins', 'zwei', 'drei'], 'one heißt eins.', 'auto', unit: 'Zahlen'),
     ],
     2: [
-      _Fb('Was heißt blue auf Deutsch?', 'Blau', ['Blau', 'Rot', 'Gelb'], 'Blue heißt Blau.', 'auto', unit: 'Farben'),
-      _Fb('Was heißt dog auf Deutsch?', 'Hund', ['Hund', 'Katze', 'Fisch'], 'Dog heißt Hund.', 'auto', unit: 'Tiere'),
-      _Fb('Was heißt book auf Deutsch?', 'Buch', ['Buch', 'Stift', 'Tasche'], 'Book heißt Buch.', 'auto', unit: 'Schulsachen'),
+      _Fb('Was heißt blue auf Deutsch?', 'blau', ['blau', 'rot', 'gelb'], 'blue heißt blau.', 'auto', unit: 'Farben'),
+      _Fb('Was heißt dog auf Deutsch?', 'Hund', ['Hund', 'Katze', 'Fisch'], 'dog heißt Hund.', 'auto', unit: 'Tiere'),
+      _Fb('Was heißt book auf Deutsch?', 'Buch', ['Buch', 'Stift', 'Tasche'], 'book heißt Buch.', 'auto', unit: 'Schulsachen'),
     ],
     3: [
-      _Fb('Was heißt green auf Deutsch?', 'Grün', ['Grün', 'Blau', 'Rot'], 'Green heißt Grün.', 'auto', unit: 'Farben'),
-      _Fb('Was heißt mother auf Deutsch?', 'Mutter', ['Mutter', 'Vater', 'Kind'], 'Mother heißt Mutter.', 'auto', unit: 'Familie'),
-      _Fb('Was heißt hand auf Deutsch?', 'Hand', ['Hand', 'Fuß', 'Kopf'], 'Hand heißt Hand.', 'auto', unit: 'Körper'),
+      _Fb('Was heißt ruler auf Deutsch?', 'Lineal', ['Lineal', 'Radiergummi', 'Heft'], 'ruler heißt Lineal.', 'auto', unit: 'Schulsachen'),
+      _Fb('Was heißt weather auf Deutsch?', 'Wetter', ['Wetter', 'Wasser', 'Winter'], 'weather heißt Wetter.', 'auto', unit: 'Wetter'),
+      _Fb('Was heißt breakfast auf Deutsch?', 'Frühstück', ['Frühstück', 'Mittagessen', 'Abendessen'], 'breakfast heißt Frühstück.', 'auto', unit: 'Essen'),
     ],
     4: [
-      _Fb('Was heißt yellow auf Deutsch?', 'Gelb', ['Gelb', 'Grün', 'Blau'], 'Yellow heißt Gelb.', 'auto', unit: 'Farben'),
-      _Fb('Was heißt schoolbag auf Deutsch?', 'Schultasche', ['Schultasche', 'Bleistift', 'Buch'], 'Schoolbag heißt Schultasche.', 'auto', unit: 'Schulsachen'),
-      _Fb('Was heißt goodbye auf Deutsch?', 'Auf Wiedersehen', ['Auf Wiedersehen', 'Hallo', 'Danke'], 'Goodbye heißt Auf Wiedersehen.', 'auto', unit: 'Begrüßung'),
+      _Fb('Was heißt Wednesday auf Deutsch?', 'Mittwoch', ['Mittwoch', 'Montag', 'Donnerstag'], 'Wednesday heißt Mittwoch.', 'auto', unit: 'Wochentage'),
+      _Fb('Was heißt swim auf Deutsch?', 'schwimmen', ['schwimmen', 'springen', 'singen'], 'swim heißt schwimmen.', 'auto', unit: 'Verben'),
+      _Fb('Was heißt Austria auf Deutsch?', 'Österreich', ['Österreich', 'Australien', 'Deutschland'], 'Austria heißt Österreich.', 'auto', unit: 'Länder'),
     ],
   };
 
@@ -171,14 +188,14 @@ class SafeFallbackPool {
       _Fb('Was fällt aus Wolken?', 'Regen', ['Regen', 'Sand', 'Blätter'], 'Regen fällt aus Wolken.', 'auto', unit: 'Wetter'),
     ],
     3: [
-      _Fb('Welches Tier lebt oft im Wasser?', 'Fisch', ['Fisch', 'Hund', 'Biene'], 'Fische leben im Wasser.', 'auto', unit: 'Tiere'),
-      _Fb('Welcher Teil der Pflanze ist meist grün?', 'Blatt', ['Blatt', 'Wurzel', 'Stein'], 'Blätter sind meist grün.', 'auto', unit: 'Pflanzen'),
-      _Fb('Wie viele Tage hat eine Woche?', '7', ['7', '5', '12'], 'Eine Woche hat sieben Tage.', 'auto', unit: 'Zeit und Kalender'),
+      _Fb('Was passiert mit Wasser, wenn die Sonne es stark erwärmt?', 'Es verdunstet.', ['Es verdunstet.', 'Es gefriert.', 'Es wird mehr.'], 'Warmes Wasser verdunstet und steigt als Wasserdampf auf.', 'auto', unit: 'Wasserkreislauf'),
+      _Fb('Was ist die Landeshauptstadt von Tirol?', 'Innsbruck', ['Innsbruck', 'Salzburg', 'Bregenz'], 'Innsbruck ist die Landeshauptstadt von Tirol.', 'auto', unit: 'Bundesländer Österreichs'),
+      _Fb('Wie viele Tage hat ein Schaltjahr?', '366', ['366', '365', '360'], 'Ein Schaltjahr hat einen Tag mehr: den 29. Februar.', 'auto', unit: 'Zeit und Kalender'),
     ],
     4: [
-      _Fb('Wozu dient ein Fahrradhelm?', 'Schützen', ['Schützen', 'Kochen', 'Lesen'], 'Ein Helm schützt den Kopf.', 'auto', unit: 'Verkehr'),
-      _Fb('Was zeigt ein Thermometer?', 'Temperatur', ['Temperatur', 'Uhrzeit', 'Länge'], 'Ein Thermometer zeigt die Temperatur.', 'auto', unit: 'Wetter'),
-      _Fb('Was kommt nach dem Frühling?', 'Sommer', ['Sommer', 'Winter', 'Herbst'], 'Nach dem Frühling kommt der Sommer.', 'auto', unit: 'Jahreszeiten'),
+      _Fb('Was braucht ein einfacher Stromkreis?', 'Batterie, Kabel und Lampe', ['Batterie, Kabel und Lampe', 'nur ein Kabel', 'nur eine Lampe'], 'Der Strom fließt von der Batterie durch Kabel und Lampe zurück.', 'auto', unit: 'Stromkreise'),
+      _Fb('Welcher Fluss fließt durch Wien?', 'Donau', ['Donau', 'Inn', 'Mur'], 'Die Donau fließt durch Wien.', 'auto', unit: 'Geografie Österreich'),
+      _Fb('Was steht am Anfang einer Nahrungskette?', 'eine Pflanze', ['eine Pflanze', 'ein Fuchs', 'ein Adler'], 'Pflanzen stehen am Anfang: Gras – Hase – Fuchs.', 'auto', unit: 'Ökosysteme'),
     ],
   };
 }

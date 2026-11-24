@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "status": "FROZEN_SOURCE_ONLY_NOT_TESTED",
+  "pack": "/tmp/host-dream-delivery-integration-32e7-20261114",
+  "source_freeze": "source-freeze.json",
+  "source_freeze_sha256": "a10a751ac21164f0ef19979b75032f59b8af344651341bf7cffa12b827241a88",
+  "source_paths": [
+    ".github/workflows/lumo-connect-four-2020.yml",
+    "scripts/verify_connect_four_delivery.py",
+    "scripts/tests/test_connect_four_delivery.py"
+  ],
+  "base_source": "32e7efbff427fef64e90b3a1fcecd3b52f00af42",
+  "base_tree": "10234debe8d5f2f9577ac28aa05ae99322d9190f",
+  "next_validation_after_root_checkpoint": [
+    "python3 -m unittest scripts.tests.test_connect_four_delivery -v (56 source-defined methods)",
+    "actionlint .github/workflows/lumo-connect-four-2020.yml"
+  ],
+  "tests_executed": 0,
+  "independent_reviewer": "pipeline_repair (pending)",
+  "root_owned_followups": [
+    "Native pin/policy/candidate constants",
+    "Commit/publication",
+    "CI activation"
+  ],
+  "unchanged_runner_contracts": [
+    "52 Native modes",
+    "17 Studio2020 images",
+    "Return21",
+    "Wisp14"
+  ]
+}

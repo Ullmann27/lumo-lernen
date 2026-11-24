@@ -1,0 +1,64 @@
+{
+  "capturedAtUtc": "2026-11-22T19:48:11.461585+00:00",
+  "sourceKind": "shared integration worktree; hashes bind tested source before final coordinator commit",
+  "baseCommit": "5cf738e20634aaf3c135dee160a91e2cad278866",
+  "repositoryTests": {
+    "passed": 12,
+    "exitCode": 0,
+    "log": "achievement-repository-final.log"
+  },
+  "flowTests": {
+    "passed": 16,
+    "exitCode": 0,
+    "log": "achievement-flow-final.log"
+  },
+  "widgetViewport": {
+    "width": 390,
+    "height": 844,
+    "devicePixelRatio": 1
+  },
+  "androidDeviceEvidence": false,
+  "sourceSha256": {
+    "lib/core/achievements/achievement_claim.dart": "7d01ad776db229f569a612c5c19f36e520bfe4cdb1f156363cc5c63f94a3a0f5",
+    "lib/core/achievements/achievement_events.dart": "897558c5a30b6869730e7ed03374829e68b3b9dd20e89a3244c96bf440761de8",
+    "lib/core/achievements/achievement_repository.dart": "a2338adbad69586ef61f826b99df8696a783b108846eafe9710ba01253cd01d5",
+    "lib/core/achievements/achievement_tracker.dart": "3eb1d887290aa646aa7297712deb12819f7f7321b7caf9f9d5ac318b335bad73",
+    "lib/core/achievements/lumo_achievement.dart": "7a98f1186db61731a7424fa165285f77c99889477ad72490f9ab3c5caead8d06",
+    "lib/features/rewards/achievements_wall_screen.dart": "da7493f92228ddf8ae46f05c55e9c02f2dc546a807641a2d618b0b7adbc573ae",
+    "lib/app/app_shell.dart": "1a703875ee8e16cb15560d894555be6d5667958a54716d58f724a8de236acd19",
+    "lib/features/live/lumo_live_pro_screen.dart": "02b0e75582403f0f7401e73572a8dfc47234a84b450450f5c1d4030cc6b8920f",
+    "lib/features/story/lumo_story_reader_screen.dart": "e56c08ea0eb3d494436f9c2464ff94723583b95e133201e989983a148ee19b46",
+    "lib/app/app_state.dart": "8797c93d11e0930bf352f7789fc3d5da32977d1008391b0b35a8a94a7d884f8b",
+    "lib/core/reward_wallet_repository.dart": "934254d154c8d96ba352e4f008a3b53648d4e73712c1cadfdc42372390f6f466",
+    "test/achievement_repository_test.dart": "8d1e5cffde90574eecab4d3442072dd3e239224ab5391b16b02a7c6c853ef8ab",
+    "test/achievement_flow_test.dart": "e409325af5f1452abad0788184fdd47130961e299decf5c8a881d5734068b4f3"
+  },
+  "evidenceSha256": {
+    "achievements-claimed.png": "0500a17787821bd006e47ac9b0084d20ac2ca79021247508a4c7b245fa75d3e0",
+    "achievements-ready.png": "ff0f77eedc472d755dcd358642131287cf1d090ef192d9f1802eceee08d60972",
+    "achievement-repository-final.log": "321049bfb25f2039a4e9ac388fdc67bc87fd39b3418c817752cb85d2f9af209f",
+    "achievement-flow-final.log": "7b0767d3793eb201324e333b7ac6348af2e85d208798fca97684a9009d14d891"
+  },
+  "postIntegrationRouteRegression": {
+    "capturedAtUtc": "2026-11-22T19:59:24.061585+00:00",
+    "coreRouteTests": {
+      "passed": 11,
+      "exitCode": 0,
+      "log": "achievement-core-route-final.log"
+    },
+    "achievementFlowTests": {
+      "passed": 16,
+      "exitCode": 0,
+      "log": "achievement-flow-after-route-fix.log"
+    },
+    "scope": "Nonmodal notice retains active lesson/conversation ownership; durable achievement and claim behavior retained",
+    "sourceSha256": {
+      "lib/app/app_shell.dart": "03ba081a5636142ffa90b709fd2c0cdfaa053c8c859e401db0bff654bb144e20",
+      "test/learning/core_conversation_route_test.dart": "81013a28aecaa50a01b83878f4305d38b88930b42f2ba0143334d5a5181ec77a"
+    },
+    "evidenceSha256": {
+      "achievement-core-route-final.log": "ef193a77c21a1804d1f1111fda006f9ce5ae0f63483e1c22fe97593a9170b8a0",
+      "achievement-flow-after-route-fix.log": "ceaee745fdbb3d77f2fe7f3482fefff0c91d8a668badaeaca38d13315bfb5124"
+    }
+  }
+}

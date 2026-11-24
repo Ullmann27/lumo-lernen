@@ -121,11 +121,22 @@ void main() {
         await tester.pump(const Duration(milliseconds: 400));
       }
 
+      Future<void> storageFrames() async {
+        // Finish now includes the wallet barrier and completed-read write.
+        // Flush real platform futures between frames without resolving the
+        // deliberately held store.write gate used by this regression.
+        for (var i = 0; i < 5; i++) {
+          await tester.pump();
+          await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+        }
+        await tester.pump();
+      }
+
       Future<void> finish() async {
         await tester.runAsync(
           () => tester.tap(find.text('Erzähl mir die Geschichte!')),
         );
-        await tester.pump();
+        await storageFrames();
       }
 
       await open('Neues Heft');
@@ -140,10 +151,7 @@ void main() {
       await tester.pump();
       expect(find.byType(LumoStoryReaderScreen), findsOneWidget);
       store.write!.complete(true);
-      await tester.runAsync(
-        () async => await Future<void>.delayed(Duration.zero),
-      );
-      await tester.pump();
+      await storageFrames();
       await tester.pump(const Duration(milliseconds: 300));
       expect(
         find.text('Heft in deine Bibliothek gespeichert!'),
@@ -160,6 +168,12 @@ void main() {
         library.all.where((s) => s.id == oldStory.id).single.toJson(),
         oldJson,
       );
+      expect(
+          library.all
+              .where((s) => s.story.title == 'Neues Heft')
+              .single
+              .timesRead,
+          1);
       await tester.tap(find.text('Fertig'));
       await tester.pump();
       // Flutter 3.44.9's Android predictive-back transition lasts 450ms.

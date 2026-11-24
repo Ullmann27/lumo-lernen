@@ -1,0 +1,661 @@
+{
+  "schema": "lumo-prompt-label-after-qa-original-handoff-v1",
+  "result": "Exact focused QA completed successfully; original bytes/source binding independently verified; three selected before/after pairs independently viewed",
+  "frozen_candidate": {
+    "host": "1375da193af0152af64f91d86577aa9768cd50db",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "quality_ref_changed_by_this_work": false,
+    "pr_491_changed_by_this_work": false,
+    "prompt_patch_promoted_to_frozen_candidate": false
+  },
+  "separate_qa": {
+    "branch": "qa/lumo-prompt-label-contrast-20261114-2708",
+    "head": "21e0368603e38d1dfd063485f5307ec201f0d872",
+    "tree": "0a5042254cd27c70597952842fdc8d71b089b417",
+    "sole_parent": "1375da193af0152af64f91d86577aa9768cd50db",
+    "remote_compare": {
+      "commits": 1,
+      "files": 2,
+      "workflow_blob": "bfd93a088d3181444248e57e0ea5b7599921c242",
+      "prompt_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+    },
+    "run_id": 43603068259,
+    "attempt": 1,
+    "event": "push",
+    "job_id": 132471773636,
+    "started_at": "2026-11-14T14:05:56Z",
+    "completed_at": "2026-11-14T14:07:03Z",
+    "terminal_status": "completed",
+    "terminal_conclusion": "success",
+    "actual_runs_for_head": 1,
+    "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43603068259"
+  },
+  "original_artifact": {
+    "id": 14116624494,
+    "name": "lumo-prompt-label-contrast-originals",
+    "bytes": 37588911,
+    "sha256": "a56100f13efd22974046aa94ec1d2d67549d92a025701b47e47d37e3ff0e6bc7",
+    "files": 60,
+    "zip_crc_valid": true,
+    "canonical_paths_valid": true,
+    "downloaded_once_by": "/root/lumo_release_lead/learning_ux_lead",
+    "local_archive": "/workspace/scratch/2708c7907f28/prompt-label-original-43603068259/artifact.zip",
+    "local_originals": "/workspace/scratch/2708c7907f28/prompt-label-original-43603068259/original",
+    "complete_archive_checkpoint": {
+      "format": "13 consecutive raw ZIP byte segments, all uploaded SHA-verified",
+      "manifest_path": "docs/evidence/prompt-label-after-qa-20261114/review/archive-segment-manifest.json",
+      "manifest_blob": "d0dbbbb711dd6c6233774a360d782e187f762840",
+      "segment_paths_relative_to": "docs/evidence/prompt-label-after-qa-20261114/",
+      "reconstruction": "Concatenate segments in numeric order without separators; verify the original byte count and SHA256 before reading the ZIP. The complete60-file original is preserved, including all42 original PNGs.",
+      "whole_zip_git_blob_calculated_for_reconstruction_only": "ee7bf86a7d27c8eec528ee4b59505eac7c63849b",
+      "single_large_blob_checkpoint_not_confirmed": true,
+      "segment_blobs_verified": true
+    }
+  },
+  "actual_focused_execution": {
+    "test": "test/design/lumo_modernization_capture_test.dart",
+    "runner_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+    "unchanged_test_blob": "2b3f8adcd1dbf9b968b9bc640ef212257f845586",
+    "unchanged_capture_helper_blob": "439c2a8862effae26907ef655304e0c57f76a56c",
+    "flutter_version": "3.44.9",
+    "passed_non_hidden": 36,
+    "failed": 0,
+    "skipped": 0,
+    "flutter_exit_code": 0,
+    "runner_exit_code": 0,
+    "original_pngs": 42,
+    "original_summary_blob": "e5fb1a7fc49e5f97356b07eb947975c1bb203895",
+    "original_machine_blob": "c442a31cb06d143228c4ea5fbda0bd4ae3193fde",
+    "original_source_before_blob": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a",
+    "original_source_after_blob": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a",
+    "source_snapshot_sha256": "31df30aa55c397e6a45cb82fd4669ebf94963a57fc3b5b4cc961f3f708d826ce",
+    "source_snapshots_byte_identical": true
+  },
+  "independent_read_only_verification": {
+    "executed": true,
+    "exit_code": 0,
+    "report_blob": "20077408a1b73542bb6331543c572a6a0c252dcd",
+    "reader_blob": "81c630d1f3781d3e63326c5228a6171633877974",
+    "execution_blob": "098cb0368d8ea2fcc3cce872ad2792d263ef4146",
+    "archive_files": 60,
+    "ci_index_entries": 59,
+    "tracked_source_entries": 4524,
+    "specific_source_bindings": 16,
+    "actual_original_png_names_hashes_dimensions": 42,
+    "immutable_original_summarize_function_replayed": true,
+    "new_flutter_tests_or_renderer_executed": false,
+    "all_original_bytes_unchanged_during_review": true
+  },
+  "independent_visual_review": {
+    "report_blob": "2910e4dbb4b800cc68a27fb869d1025c349716a5",
+    "new_original_images_opened": 3,
+    "matching_baseline_originals_opened": 3,
+    "viewports": [
+      "phone",
+      "fold-cover",
+      "fold-open"
+    ],
+    "verdict": "The complete one-line hint is visibly dark blue and readable on white in all three selected after images, with no new visible label clipping, overlap or layout shift",
+    "unchanged_observations": [
+      "Existing replacement-glyph outlines",
+      "Existing horizontal category clipping in Phone and Fold-Cover"
+    ],
+    "root_separate_phone_review_blob": "a1532ab16fd1be50ca4fb9f84f8e3e6ac267d319",
+    "root_actual_rgb_pixel_comparison": {
+      "different_pixels": 2631,
+      "bounding_box": [
+        182,
+        219,
+        505,
+        241
+      ],
+      "dimensions": [
+        824,
+        1830
+      ],
+      "method": "Read-only comparison of the original pair; no edited evidence image"
+    }
+  },
+  "limitations": [
+    "No visual review of all42 images is claimed; three after images and matching baselines were opened by the independent child",
+    "The unchanged focus does not render LumoWritingWordCoachScreen",
+    "No Android, physical-display, touch, scroll-reachability, handwriting behavior, audio or FPS acceptance follows from these desktop captures",
+    "The existing emoji/glyph observation remains unchanged",
+    "Calculated source-color contrast is separate from screenshot review and is not an accessibility certification",
+    "This separate QA does not replace the ongoing full main1375/e2 validation or Play readiness requirements",
+    "Only inert evidence blobs were written by this agent; Root controls any subsequent evidence commit or product integration"
+  ],
+  "evidence_root": "docs/evidence/prompt-label-after-qa-20261114/",
+  "tree_entries": [
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/capture-verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30db4bf84f3fd92b319334844b2e5156fcd5e33d"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/command.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f0f5e937e88c9155f52db5b2ab91c5d5867592a"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/flutter-version.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce1df4d3a2b71ecf9dc9b5680b1b7d750474b1e1"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/focused/acceptance-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5fb1a7fc49e5f97356b07eb947975c1bb203895"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/focused/flutter-machine.jsonl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c442a31cb06d143228c4ea5fbda0bd4ae3193fde"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/focused/modernization/schreibcoach_fold-cover.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39e0ac476f1a7d26c16d1f2a86e465cbeaa479e4"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/focused/modernization/schreibcoach_fold-open.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "933ddc4806a659bfbe1e80512f634bffe3bfa873"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/focused/modernization/schreibcoach_phone.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f301f386e5dc257a7a7fb77d38cc2b6a7a3d279"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/git-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eeec1d5a23b1d1fbff5fc0b5e16d084870c8ad1c"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/linux-emoji-font.sha256",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12831a3f07a821ae7a00103fb984ba09bc91ef08"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/original-index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da708cd1e4bb680b2767f7c53808d7d6aa1ce109"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/prompt-card-after.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/prompt-card-before.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "033fb56a1033b7659d6ca7e7386e7ae9cd1074fd"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/pub-get.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a75eb667bf44806dc0d83d3710a3e8c61e96292"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/python-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e0cbc8df831391cb93cba378c5b05925a2a6898"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/runner-exit-code.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/runner-stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10747ddcb574593d95e06fc571852f6ddeceb2fa"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/source-after.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/source-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/source-verification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0369c7b80ed14e6caf12fd94543fedbe4172d767"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original/tracked-source-tree.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f601d29ce0706c5280c92d11e2ef36afabd861f5"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/baseline/modernization/schreibcoach_fold-cover.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33046b0126ab93adbbf1335bb6c3073b9e683eb2"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/baseline/modernization/schreibcoach_fold-open.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1fc0e578b0198b4903a061d4acf0c36b8257bba"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/baseline/modernization/schreibcoach_phone.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d4cbe429c4c96fa928fa815bffaef54f294fb42"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/review/archive-index.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a68c4dff96e19276c8c36249ed98ee7fee704b82"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/review/archive-segment-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0dbbbb711dd6c6233774a360d782e187f762840"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/review/review-original.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81c630d1f3781d3e63326c5228a6171633877974"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/review/read-only-original-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20077408a1b73542bb6331543c572a6a0c252dcd"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/review/read-only-execution.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "098cb0368d8ea2fcc3cce872ad2792d263ef4146"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/review/expected-source-bindings.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ec58595d6d8a06b28747582e730e28361f761aa"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/review/baseline-tracked-source-tree.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4290da40da54d8e8f5d31b50965b80b16df400ab"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/review/original-acceptance-reader.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d17cf8175ce13ef1d756526fa13c306c846ac72"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/review/ROOT_PHONE_VISUAL_REVIEW.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1532ab16fd1be50ca4fb9f84f8e3e6ac267d319"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/review/independent-three-pair-visual-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2910e4dbb4b800cc68a27fb869d1025c349716a5"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part00",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "008bc0fce1eda2dd0a9e533521c6d0715b02ff67"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part01",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78e90b1a375e91afe6401403e390ef778bbfa5f5"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part02",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed84751efcb15694f20bf53b8ad1fe052b929a0d"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part03",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41403d9f6ac5854b0460a74b905f96471b3076d2"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part04",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9749310d449d9c998e64e8ecb9fd21ff04d8cc6"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part05",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80b8548043b64c48afb38fde3fb7157f8d40ac06"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part06",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e811b5d7df852d4d13e999d2a05ccca560b0f284"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part07",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "873858fb2be2af40433236ee8b3d123bd401ff87"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part08",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff0f43ad52b3bd8cb50cbfeb47a0dafb4590c913"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part09",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adf8785cbede21e463a71427d46bef25097e2efc"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part10",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b916e2be00d483176427d7c3ae48e90e9ac982d"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part11",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ec0deb0be20a279d34a314ffdae2430ac531803"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/archive/artifact.zip.part12",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "583367c1edab90ddebfdc0cb25750ffb8aeec669"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/api/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "150beeab1c9511a619c866e7a8644d4c739ddd01"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/api/jobs-attempt-1.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1c4354e909004f11dc11aa786e9d3df76a553b2"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/api/artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93503e4c68ffb2a0c77737057db8b634a13ddc30"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/api/source-commit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5558c7be18bf01f6dbd33f1b194c46c6b4ff313d"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/api/source-compare.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6928df144679e583cabba1da0be975dca1b82a0c"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/api/head-runs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a07d6a58819dfe3e6df9ed989abc118e3ce71d23"
+    },
+    {
+      "path": "docs/evidence/prompt-label-after-qa-20261114/original-job-132471773636.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fdc128817a3e856e1f6e97a3c01d41ccfd75400"
+    }
+  ],
+  "file_identities": [
+    {
+      "path": "original/capture-verification.json",
+      "bytes": 9528,
+      "sha256": "ed221d173104993580818d7f67b15e2cf94b8b96e7e802d23138bf345f6f857e",
+      "git_blob": "30db4bf84f3fd92b319334844b2e5156fcd5e33d"
+    },
+    {
+      "path": "original/command.txt",
+      "bytes": 241,
+      "sha256": "4b28574d056b29d3123dfe699b0b74144bb6fd9caad9f1f417b68e3737087562",
+      "git_blob": "9f0f5e937e88c9155f52db5b2ab91c5d5867592a"
+    },
+    {
+      "path": "original/flutter-version.json",
+      "bytes": 635,
+      "sha256": "fa870a17f35a877ccff979e8e27a1922732ecc7b53bef245c5f82b2b49286a08",
+      "git_blob": "ce1df4d3a2b71ecf9dc9b5680b1b7d750474b1e1"
+    },
+    {
+      "path": "original/focused/acceptance-summary.json",
+      "bytes": 2100,
+      "sha256": "33fdae628d4de7a18a075bafc090b73683a7f77849a785fe1cd05b0a5d425097",
+      "git_blob": "e5fb1a7fc49e5f97356b07eb947975c1bb203895"
+    },
+    {
+      "path": "original/focused/flutter-machine.jsonl",
+      "bytes": 18481,
+      "sha256": "fa72ce61966da7cb9f519e5ad1569e9ff3b18783ba9b5c41b4cad8fa545429a9",
+      "git_blob": "c442a31cb06d143228c4ea5fbda0bd4ae3193fde"
+    },
+    {
+      "path": "original/focused/modernization/schreibcoach_fold-cover.png",
+      "bytes": 119662,
+      "sha256": "3b9cb685ed110fbfe4f18e234eca203577c5814170952621b49e624b925ab93f",
+      "git_blob": "39e0ac476f1a7d26c16d1f2a86e465cbeaa479e4"
+    },
+    {
+      "path": "original/focused/modernization/schreibcoach_fold-open.png",
+      "bytes": 176913,
+      "sha256": "acab4d0f71b0f5ad98cfe9fcef94890b282f21bd9bd3142c928bf9cd5bf895ea",
+      "git_blob": "933ddc4806a659bfbe1e80512f634bffe3bfa873"
+    },
+    {
+      "path": "original/focused/modernization/schreibcoach_phone.png",
+      "bytes": 133033,
+      "sha256": "49130519fa8610bfdb1ba5160137a100340ebf55926dcb1d37686fd47f62c129",
+      "git_blob": "1f301f386e5dc257a7a7fb77d38cc2b6a7a3d279"
+    },
+    {
+      "path": "original/git-version.txt",
+      "bytes": 19,
+      "sha256": "0eff67955296e123526d7f9b9146fff8d8dc8d6dbf4f49ba5f838923d2b4af71",
+      "git_blob": "eeec1d5a23b1d1fbff5fc0b5e16d084870c8ad1c"
+    },
+    {
+      "path": "original/linux-emoji-font.sha256",
+      "bytes": 116,
+      "sha256": "69c4dc6e65ed177255ecbf2f0089af38109114a6de1b1cd4693058d94f3d030f",
+      "git_blob": "12831a3f07a821ae7a00103fb984ba09bc91ef08"
+    },
+    {
+      "path": "original/original-index.json",
+      "bytes": 10590,
+      "sha256": "f1c1a014e5469d6dff016a01966e6d84e74658d8b7cb1e2f878f083b1a017876",
+      "git_blob": "da708cd1e4bb680b2767f7c53808d7d6aa1ce109"
+    },
+    {
+      "path": "original/prompt-card-after.dart",
+      "bytes": 4255,
+      "sha256": "8c6280819104d4b32a78b4cda0d0f6ab484920f4c38f0a6e1408fa12d98b5c70",
+      "git_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+    },
+    {
+      "path": "original/prompt-card-before.dart",
+      "bytes": 4255,
+      "sha256": "7b0b85783355a772c1abec5886577b30d2770db04d5d40e8368f811d1e4d014a",
+      "git_blob": "033fb56a1033b7659d6ca7e7386e7ae9cd1074fd"
+    },
+    {
+      "path": "original/pub-get.log",
+      "bytes": 1389,
+      "sha256": "577560d210a6640a33866c46a576544ac86fda242d27422b74e36e2c0cdb1cec",
+      "git_blob": "6a75eb667bf44806dc0d83d3710a3e8c61e96292"
+    },
+    {
+      "path": "original/python-version.txt",
+      "bytes": 14,
+      "sha256": "5b3e43dc38ca01e3f5a7854ba50d4330864b0c1e0f646650b2c78cf072acc366",
+      "git_blob": "4e0cbc8df831391cb93cba378c5b05925a2a6898"
+    },
+    {
+      "path": "original/runner-exit-code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "git_blob": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56"
+    },
+    {
+      "path": "original/runner-stdout.log",
+      "bytes": 1640,
+      "sha256": "56cfd69624378f3aabf20d881e2601f0ce8271df3f35ae6d1ccbd030b7e869a7",
+      "git_blob": "10747ddcb574593d95e06fc571852f6ddeceb2fa"
+    },
+    {
+      "path": "original/source-after.json",
+      "bytes": 4081,
+      "sha256": "31df30aa55c397e6a45cb82fd4669ebf94963a57fc3b5b4cc961f3f708d826ce",
+      "git_blob": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a"
+    },
+    {
+      "path": "original/source-before.json",
+      "bytes": 4081,
+      "sha256": "31df30aa55c397e6a45cb82fd4669ebf94963a57fc3b5b4cc961f3f708d826ce",
+      "git_blob": "f8ee4145c411a73b6ae02f05efb7ee5d4566139a"
+    },
+    {
+      "path": "original/source-verification.json",
+      "bytes": 184,
+      "sha256": "1758b915e01059c1cc54a5286afbaf066b6cf043ae04419b880fc80f2f5e15ab",
+      "git_blob": "0369c7b80ed14e6caf12fd94543fedbe4172d767"
+    },
+    {
+      "path": "original/tracked-source-tree.txt",
+      "bytes": 522142,
+      "sha256": "96ecb4d3f91d7f5c84dc97653b7a79d6b34234df842840047d60528e308d2072",
+      "git_blob": "f601d29ce0706c5280c92d11e2ef36afabd861f5"
+    },
+    {
+      "path": "baseline/modernization/schreibcoach_fold-cover.png",
+      "bytes": 118039,
+      "sha256": "d2b56a09428c4d199d5979418858583b6907b4ff1bfada793bdc3c35bc5bbbdb",
+      "git_blob": "33046b0126ab93adbbf1335bb6c3073b9e683eb2"
+    },
+    {
+      "path": "baseline/modernization/schreibcoach_fold-open.png",
+      "bytes": 175408,
+      "sha256": "5bd9fe0f9d7374a700f7a8b1b1da45d0bd9d93104c85e9e83a3fd1d8fc20b7eb",
+      "git_blob": "e1fc0e578b0198b4903a061d4acf0c36b8257bba"
+    },
+    {
+      "path": "baseline/modernization/schreibcoach_phone.png",
+      "bytes": 131666,
+      "sha256": "0f0797c8bff2b652dfe5bef6fc4a53e30921cb0fc6dc9287c8e44321e9e5693d",
+      "git_blob": "0d4cbe429c4c96fa928fa815bffaef54f294fb42"
+    },
+    {
+      "path": "review/archive-index.json",
+      "bytes": 14609,
+      "sha256": "128c2762a64e7f501d6ffee4401e6877fbced5ae5417189680fbbf08218d0d7a",
+      "git_blob": "a68c4dff96e19276c8c36249ed98ee7fee704b82"
+    },
+    {
+      "path": "review/archive-segment-manifest.json",
+      "bytes": 4432,
+      "sha256": "14bce6be539a1ae5dee481d2b3cb9b184a07e96e51a2904438932274850a57a3",
+      "git_blob": "d0dbbbb711dd6c6233774a360d782e187f762840"
+    },
+    {
+      "path": "review/review-original.py",
+      "bytes": 11762,
+      "sha256": "2b253e0736810cb1a5869df4d23d78cb8d36a92590fd9d670b374e3d99a4b744",
+      "git_blob": "81c630d1f3781d3e63326c5228a6171633877974"
+    },
+    {
+      "path": "review/read-only-original-review.json",
+      "bytes": 2157,
+      "sha256": "182c5d91cf3851a762374d1142ca5ff6fb1b781d27f38e741274d079b862c93b",
+      "git_blob": "20077408a1b73542bb6331543c572a6a0c252dcd"
+    },
+    {
+      "path": "review/read-only-execution.json",
+      "bytes": 490,
+      "sha256": "f191c37767bc9b142aa5c9b53c7f1fe1eecdc805a1834102f8274a56cc527df5",
+      "git_blob": "098cb0368d8ea2fcc3cce872ad2792d263ef4146"
+    },
+    {
+      "path": "review/expected-source-bindings.json",
+      "bytes": 3319,
+      "sha256": "e79c08417a0fbeb870c6bd31b1973d2b5b517376e52d84b5fc0a84af0729b354",
+      "git_blob": "9ec58595d6d8a06b28747582e730e28361f761aa"
+    },
+    {
+      "path": "review/baseline-tracked-source-tree.txt",
+      "bytes": 522037,
+      "sha256": "25c8206ea67cdddf396ad32869275d4913629f318aa339945ea17ab0606f5120",
+      "git_blob": "4290da40da54d8e8f5d31b50965b80b16df400ab"
+    },
+    {
+      "path": "review/original-acceptance-reader.py",
+      "bytes": 6483,
+      "sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "git_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72"
+    },
+    {
+      "path": "review/ROOT_PHONE_VISUAL_REVIEW.json",
+      "bytes": 1941,
+      "sha256": "a1ca4b7fa216e3e491da82153ae646dedd01a550c35f77aaa2d02a38079f44e1",
+      "git_blob": "a1532ab16fd1be50ca4fb9f84f8e3e6ac267d319"
+    },
+    {
+      "path": "review/independent-three-pair-visual-review.json",
+      "bytes": 3602,
+      "sha256": "2912f0615f7d841e919aa75a3ad2b1e0083df53a0e6bafb8ff0b21be26d71e46",
+      "git_blob": "2910e4dbb4b800cc68a27fb869d1025c349716a5"
+    }
+  ]
+}

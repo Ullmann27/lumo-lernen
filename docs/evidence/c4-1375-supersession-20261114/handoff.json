@@ -1,0 +1,106 @@
+{
+  "schema": "lumo-1375-terminal-originals-handoff-v1",
+  "repository": "Ullmann27/lumo-lernen",
+  "host": "1375da193af0152af64f91d86577aa9768cd50db",
+  "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+  "run_id": 43599456596,
+  "run_attempt": 1,
+  "conclusion": "cancelled",
+  "review_git_blob": "87e13d56dcee606c223c6ba774ac6907530073e0",
+  "tree_entries": [
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/final-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e965f85e9e97a62f434d018ec3941fa6ce7c55d"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/final-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adbb187e8c3ca90956a8223d08a3272a8be2c113"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/final-artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "107949c66d265698e1fa35cb13e9ac5d0b7ae48a"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/replacement-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e2cfc08824eafbabad0334cf450fe20b364c727"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/replacement-pull.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8e684e4ce49234839a6b85a3b65fd5628f6fadb"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/verify-and-build-original.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e47fc9478140dc9f8899650abae13c48d5d9a8f4"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/partial-native/archive-review.json.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61b985b007d390cf888c89bd118b0fcaa3859ef8"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/partial-native/nextgen-runner.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9ccf0d7e8632a4dcd50c23a80738d2b2ca6ac5f"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/partial-native/results.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9df18e217f980120a0ac425d01b681c9ae6ac13b"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/partial-native/engine.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/partial-native/source-sha.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5010efa40eff1e722991b5118da28b62623e51b"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/pre-transition-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "291d1901d9abfc67e5f2e4771051f0f90c980bd6"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/pre-transition-jobs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5b4141db8f461bd1fb0948bb4ac75eb403c9ef8"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/pre-transition-artifacts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0891765f8d53ac6cfc9fd0edbcd40e3e12b9f0a"
+    },
+    {
+      "path": "docs/evidence/c4-1375-supersession-20261114/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87e13d56dcee606c223c6ba774ac6907530073e0"
+    }
+  ],
+  "entries_excluding_handoff": 15,
+  "whole_partial_native_zip_in_git": false,
+  "product_or_ref_mutations": false,
+  "scope": "Original cancelled-run evidence; no approval of current057a"
+}

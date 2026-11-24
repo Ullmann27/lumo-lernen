@@ -6,8 +6,13 @@ class AppSettings {
   /// vorausgefuellt, damit Heinz sie nicht jedes Mal eintragen muss.
   static const String defaultAiProxyUrl = 'https://lumo-ai-proxy.onrender.com';
 
+  /// Set only after a real relay has been deployed and verified.
+  static const String defaultKartOnlineUrl = '';
+
   const AppSettings({
     this.dailyGoal = 3,
+    this.requireDailyMissionForGames = false,
+    this.missionTasksPerStation = 4,
     this.soundEnabled = true,
     this.voiceEnabled = true,
     this.autoReadEnabled = true,
@@ -24,8 +29,14 @@ class AppSettings {
     this.learningMode = LearningMode.normal,
     this.voiceRate = 0.35,
     this.voicePitch = 1.0,
+    this.lanPlayEnabled = false,
+    this.ghostDuelEnabled = false,
+    this.kartOnlineEnabled = false,
+    this.kartOnlineUrl = defaultKartOnlineUrl,
   });
   final int dailyGoal;
+  final bool requireDailyMissionForGames;
+  final int missionTasksPerStation;
   final bool soundEnabled;
   final bool voiceEnabled;
   final bool autoReadEnabled;
@@ -48,8 +59,23 @@ class AppSettings {
   final double voiceRate;
   final double voicePitch;
 
+  /// Elternfreigabe: Lumo Kart darf im selben WLAN mit einem zweiten Gerät fahren
+  /// (Raumcode, kein Internet, kein Chat). Vorgabe aus.
+  final bool lanPlayEnabled;
+
+  /// Elternfreigabe: Geister-Duell in Lumo Kart. Erst damit darf das Kind eine eigene
+  /// Bestfahrt (Vorname, Kart, Fahrlinie) über das Teilen-Menü verschicken und Geister
+  /// von Freunden öffnen. Vorgabe aus.
+  final bool ghostDuelEnabled;
+
+  /// Separate adult consent for encrypted Internet races with accepted friends.
+  final bool kartOnlineEnabled;
+  final String kartOnlineUrl;
+
   AppSettings copyWith({
     int? dailyGoal,
+    bool? requireDailyMissionForGames,
+    int? missionTasksPerStation,
     bool? soundEnabled,
     bool? voiceEnabled,
     bool? autoReadEnabled,
@@ -66,9 +92,17 @@ class AppSettings {
     LearningMode? learningMode,
     double? voiceRate,
     double? voicePitch,
+    bool? lanPlayEnabled,
+    bool? ghostDuelEnabled,
+    bool? kartOnlineEnabled,
+    String? kartOnlineUrl,
   }) {
     return AppSettings(
       dailyGoal: dailyGoal ?? this.dailyGoal,
+      requireDailyMissionForGames:
+          requireDailyMissionForGames ?? this.requireDailyMissionForGames,
+      missionTasksPerStation:
+          missionTasksPerStation ?? this.missionTasksPerStation,
       soundEnabled: soundEnabled ?? this.soundEnabled,
       voiceEnabled: voiceEnabled ?? this.voiceEnabled,
       autoReadEnabled: autoReadEnabled ?? this.autoReadEnabled,
@@ -86,11 +120,17 @@ class AppSettings {
       learningMode: learningMode ?? this.learningMode,
       voiceRate: voiceRate ?? this.voiceRate,
       voicePitch: voicePitch ?? this.voicePitch,
+      lanPlayEnabled: lanPlayEnabled ?? this.lanPlayEnabled,
+      ghostDuelEnabled: ghostDuelEnabled ?? this.ghostDuelEnabled,
+      kartOnlineEnabled: kartOnlineEnabled ?? this.kartOnlineEnabled,
+      kartOnlineUrl: sanitizeKartOnlineUrl(kartOnlineUrl ?? this.kartOnlineUrl),
     );
   }
 
   Map<String, dynamic> toJson() => {
         'dailyGoal': dailyGoal,
+        'requireDailyMissionForGames': requireDailyMissionForGames,
+        'missionTasksPerStation': missionTasksPerStation,
         'soundEnabled': soundEnabled,
         'voiceEnabled': voiceEnabled,
         'autoReadEnabled': autoReadEnabled,
@@ -107,6 +147,10 @@ class AppSettings {
         'learningMode': learningMode.name,
         'voiceRate': voiceRate,
         'voicePitch': voicePitch,
+        'lanPlayEnabled': lanPlayEnabled,
+        'ghostDuelEnabled': ghostDuelEnabled,
+        'kartOnlineEnabled': kartOnlineEnabled,
+        'kartOnlineUrl': sanitizeKartOnlineUrl(kartOnlineUrl),
       };
 
   factory AppSettings.fromJson(Map<String, dynamic> json) {
@@ -116,6 +160,10 @@ class AppSettings {
         fallback: 3,
         allowed: const [3, 5, 10, 15],
       ),
+      requireDailyMissionForGames:
+          _bool(json['requireDailyMissionForGames'], fallback: false),
+      missionTasksPerStation: _intIn(json['missionTasksPerStation'],
+          fallback: 4, allowed: const [2, 4, 6]),
       soundEnabled: _bool(json['soundEnabled'], fallback: true),
       voiceEnabled: _bool(json['voiceEnabled'], fallback: true),
       autoReadEnabled: _bool(json['autoReadEnabled'], fallback: true),
@@ -149,7 +197,33 @@ class AppSettings {
         min: 0.85,
         max: 1.18,
       ),
+      lanPlayEnabled: _bool(json['lanPlayEnabled'], fallback: false),
+      ghostDuelEnabled: _bool(json['ghostDuelEnabled'], fallback: false),
+      kartOnlineEnabled: _bool(json['kartOnlineEnabled'], fallback: false),
+      kartOnlineUrl: sanitizeKartOnlineUrl(
+        json['kartOnlineUrl'] is String
+            ? json['kartOnlineUrl'] as String
+            : defaultKartOnlineUrl,
+      ),
     );
+  }
+
+  /// Internet identities are sent only to an explicitly configured TLS relay.
+  /// Credentials, query strings and fragments are never accepted in its URL.
+  static String sanitizeKartOnlineUrl(String? raw) {
+    final value = raw?.trim() ?? '';
+    if (value.isEmpty || value.length > 2048) return '';
+    final securePrefix = RegExp(r'^wss://', caseSensitive: false);
+    if (!securePrefix.hasMatch(value)) return '';
+    // Dart normalizes an explicit :0 away for unknown URI schemes. Parse the
+    // authority as HTTPS first so an invalid port cannot turn into a default.
+    final uri = Uri.tryParse(value.replaceFirst(securePrefix, 'https://'));
+    if (uri == null || uri.scheme != 'https' || uri.host.isEmpty ||
+        uri.userInfo.isNotEmpty || uri.hasQuery || uri.hasFragment ||
+        (uri.hasPort && (uri.port < 1 || uri.port > 65535))) {
+      return '';
+    }
+    return uri.replace(scheme: 'wss', path: uri.path.isEmpty ? '/ws' : uri.path).toString();
   }
 
   static bool _bool(dynamic value, {required bool fallback}) =>

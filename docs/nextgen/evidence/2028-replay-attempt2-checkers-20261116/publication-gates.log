@@ -1,0 +1,12 @@
+test_artifact_requires_exact_downloadable_metadata (test_prepare_2028_learning_replay_release.ImmutablePublicationTest.test_artifact_requires_exact_downloadable_metadata) ... ok
+test_gates_cannot_change_between_replay_and_publication (test_prepare_2028_learning_replay_release.ImmutablePublicationTest.test_gates_cannot_change_between_replay_and_publication) ... ok
+test_only_an_observed_404_allows_a_new_release_and_tag (test_prepare_2028_learning_replay_release.ImmutablePublicationTest.test_only_an_observed_404_allows_a_new_release_and_tag) ... ok
+test_only_the_exact_successful_replay_can_publish (test_prepare_2028_learning_replay_release.ImmutablePublicationTest.test_only_the_exact_successful_replay_can_publish) ... ok
+test_original_arm64_hash_source_certificate_version_and_pack_are_required (test_prepare_2028_learning_replay_release.ImmutablePublicationTest.test_original_arm64_hash_source_certificate_version_and_pack_are_required) ... ok
+test_original_failed_run_is_preserved_and_build_jobs_must_have_passed (test_prepare_2028_learning_replay_release.ImmutablePublicationTest.test_original_failed_run_is_preserved_and_build_jobs_must_have_passed) ... ok
+test_qa_identity_cannot_be_substituted_for_apk_source_or_build_run (test_prepare_2028_learning_replay_release.ImmutablePublicationTest.test_qa_identity_cannot_be_substituted_for_apk_source_or_build_run) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.003s
+
+OK

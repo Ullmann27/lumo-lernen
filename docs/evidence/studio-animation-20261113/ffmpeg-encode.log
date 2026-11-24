@@ -1,0 +1,41 @@
+Input #0, concat, from '/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-animation-20261113/studio-timeline.ffconcat':
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown), 512x512 [SAR 2834:2834 DAR 1:1], 25 fps, 25 tbr, 25 tbn
+Stream mapping:
+  Stream #0:0 -> #0:0 (png (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[libx264 @ 0x555892665c80] using SAR=1/1
+[libx264 @ 0x555892665c80] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2 AVX512
+[libx264 @ 0x555892665c80] profile High, level 3.0, 4:2:0, 8-bit
+[libx264 @ 0x555892665c80] 264 - core 164 r3108 31e19f9 - H.264/MPEG-4 AVC codec - Copyleft 2003-2023 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=13 lookahead_threads=2 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=17.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-animation-20261113/Lumo-Original-Studio-Walk-Sprint.mp4':
+  Metadata:
+    title           : Lumo Original: authored walk and sprint Actions
+    comment         : Offline Blender Cycles CPU studio render; 40 genuine rendered PNGs, explicit repeated loops; not gameplay or device FPS evidence.
+    encoder         : Lavf61.7.103
+  Stream #0:0: Video: h264 (avc1 / 0x31637661), yuv420p(tv, progressive), 512x512 [SAR 1:1 DAR 1:1], q=2-31, 25 fps, 12800 tbn
+      Metadata:
+        encoder         : Lavc61.19.101 libx264
+      Side data:
+        cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A    [mp4 @ 0x55589266a900] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 0x5558926669c0] video:485KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.450599%
+frame=   95 fps=0.0 q=-1.0 Lsize=     487KiB time=00:00:03.72 bitrate=1073.4kbits/s speed=4.86x    
+[libx264 @ 0x555892665c80] frame I:1     Avg QP:12.09  size: 40140
+[libx264 @ 0x555892665c80] frame P:29    Avg QP:15.75  size:  9071
+[libx264 @ 0x555892665c80] frame B:65    Avg QP:21.35  size:  2969
+[libx264 @ 0x555892665c80] consecutive B-frames:  5.3% 10.5%  0.0% 84.2%
+[libx264 @ 0x555892665c80] mb I  I16..4: 14.6% 68.8% 16.6%
+[libx264 @ 0x555892665c80] mb P  I16..4:  0.2%  1.9%  2.1%  P16..4: 13.4%  9.6%  8.0%  0.0%  0.0%    skip:64.8%
+[libx264 @ 0x555892665c80] mb B  I16..4:  0.0%  0.2%  0.1%  B16..8: 14.3%  6.8%  3.0%  direct: 2.1%  skip:73.5%  L0:38.3% L1:36.5% BI:25.3%
+[libx264 @ 0x555892665c80] 8x8 transform intra:55.7% inter:39.2%
+[libx264 @ 0x555892665c80] coded y,uvDC,uvAC intra: 94.6% 60.8% 48.8% inter: 12.0% 6.3% 3.1%
+[libx264 @ 0x555892665c80] i16 v,h,dc,p:  1% 16% 11% 72%
+[libx264 @ 0x555892665c80] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  4% 45% 25%  2%  3%  4%  5%  2%  8%
+[libx264 @ 0x555892665c80] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 18% 14% 12%  8%  9% 11%  8% 10%  9%
+[libx264 @ 0x555892665c80] i8c dc,h,v,p: 55% 25% 14%  6%
+[libx264 @ 0x555892665c80] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0x555892665c80] ref P L0: 53.8% 16.3% 13.6% 16.3%
+[libx264 @ 0x555892665c80] ref B L0: 86.1%  7.5%  6.4%
+[libx264 @ 0x555892665c80] ref B L1: 94.5%  5.5%
+[libx264 @ 0x555892665c80] kb/s:1044.64

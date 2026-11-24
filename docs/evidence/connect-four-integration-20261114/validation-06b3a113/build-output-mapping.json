@@ -1,0 +1,19 @@
+{
+  "build_directory": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/build",
+  "generated_only_links": [
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/build/test_cache",
+      "target": "/tmp/lumo-connect-four-06b3a113-build/test_cache"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/build/unit_test_assets",
+      "target": "/tmp/lumo-connect-four-06b3a113-build/unit_test_assets"
+    },
+    {
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-connect-four-integration/build/native_assets",
+      "target": "/tmp/lumo-connect-four-06b3a113-build/native_assets"
+    }
+  ],
+  "temp_root": "/tmp/lumo-connect-four-06b3a113-tmp",
+  "scope": "Root-authorized ignored outputs only; no tracked source changes. Top-level build remains an ordinary ignored directory."
+}

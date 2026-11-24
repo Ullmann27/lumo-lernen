@@ -18,6 +18,8 @@ import 'package:flutter/services.dart';
 import '../../../app/app_state.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
+import '../learning_module_rounds.dart';
+import '../../learning/nextgen/module_task_scope.dart';
 import '../lumo_phrases.dart';
 
 class _VerkehrFrage {
@@ -65,10 +67,10 @@ class _VerkehrScreenState extends State<VerkehrScreen>
       kontext: 'Bei Grün: nochmal nach links und rechts schauen!',
     ),
     _VerkehrFrage(
-      frage: 'Wo darf man die Straße überqueren?',
+      frage: 'Wo überquerst du die Straße am sichersten?',
       richtig: 'Am Zebrastreifen',
-      falsch: ['Hinter parkenden Autos', 'Auf der Kurve', 'Bei Nacht überall'],
-      kontext: 'Der Zebrastreifen ist der sichere Weg!',
+      falsch: ['Hinter parkenden Autos', 'In der Kurve', 'Bei Nacht überall'],
+      kontext: 'Der Zebrastreifen heißt auch Schutzweg. Er ist der sichere Weg!',
     ),
     _VerkehrFrage(
       frage: 'Was bedeutet der Zebrastreifen?',
@@ -76,7 +78,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
       falsch: ['Parkplatz', 'Spielplatz', 'Tankstelle'],
     ),
     _VerkehrFrage(
-      frage: 'Wann schaut man vor dem Überqueren?',
+      frage: 'Wohin schaust du, bevor du die Straße überquerst?',
       richtig: 'Links, rechts, links',
       falsch: ['Nur links', 'Nur geradeaus', 'Gar nicht'],
       kontext: 'Erst links, dann rechts, dann nochmal links!',
@@ -89,7 +91,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     ),
     _VerkehrFrage(
       frage: 'Wo gehst du als Fußgänger?',
-      richtig: 'Am Gehweg',
+      richtig: 'Am Gehsteig',
       falsch: ['Mitten auf der Straße', 'Auf der Radspur', 'Auf den Schienen'],
     ),
     _VerkehrFrage(
@@ -105,7 +107,8 @@ class _VerkehrScreenState extends State<VerkehrScreen>
       frage: 'Wie fährst du als Kind sicher im Auto mit?',
       richtig: 'Passend gesichert und angeschnallt',
       falsch: ['Vorne ohne Gurt', 'Am Lenkrad', 'Im Kofferraum'],
-      kontext: 'Im Auto brauchst du immer den Gurt und, wenn erforderlich, einen passenden Kindersitz.',
+      kontext:
+          'Im Auto brauchst du immer den Gurt und, wenn erforderlich, einen passenden Kindersitz.',
     ),
     _VerkehrFrage(
       frage: 'Wann ist es im Verkehr besonders gefährlich?',
@@ -121,29 +124,169 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     _VerkehrFrage(
       frage: 'Was machst du vor dem Losfahren mit einem Tretroller?',
       richtig: 'Bremsen und den Weg kontrollieren',
-      falsch: ['Mit geschlossenen Augen fahren', 'Sofort auf die Fahrbahn rasen', 'Andere wegschubsen'],
+      falsch: [
+        'Mit geschlossenen Augen fahren',
+        'Sofort auf die Fahrbahn rasen',
+        'Andere wegschubsen'
+      ],
     ),
-    _VerkehrFrage(frage: 'Warum gehst du nicht zwischen parkenden Autos auf die Straße?', richtig: 'Dort können andere dich schlecht sehen', falsch: ['Autos haben keine Fenster', 'Dort ist es immer wärmer', 'Der Gehsteig verschwindet'], kontext: 'Suche eine übersichtliche Stelle zum Überqueren.'),
-    _VerkehrFrage(frage: 'Der Schranken am Bahnübergang ist geschlossen. Was tust du?', richtig: 'Hinter dem Schranken warten', falsch: ['Darunter durchlaufen', 'Über die Schienen klettern', 'Dem Zug entgegenlaufen'], kontext: 'Warte, bis der Bahnübergang wieder sicher freigegeben ist.'),
-    _VerkehrFrage(frage: 'Was hilft dir, bei Dunkelheit besser gesehen zu werden?', richtig: 'Reflektierende Kleidung tragen', falsch: ['Alle Reflektoren entfernen', 'Nur dunkle Kleidung anziehen', 'Die Augen schließen']),
-    _VerkehrFrage(frage: 'Ein Bus ist noch in Bewegung. Wann steigst du aus?', richtig: 'Erst nach dem vollständigen Anhalten', falsch: ['Während der Fahrt', 'Durch ein Fenster', 'Noch vor dem Öffnen der Tür']),
-    _VerkehrFrage(frage: 'Warum solltest du nicht direkt vor einem großen Lastwagen stehen?', richtig: 'Die Fahrerin oder der Fahrer sieht dich womöglich nicht', falsch: ['Lastwagen schweben', 'Dort ist die Luft immer zu heiß', 'Alle Lastwagen stehen für immer'], kontext: 'Halte Abstand zum toten Winkel.'),
-    _VerkehrFrage(frage: 'Ein Ball rollt auf die Fahrbahn. Was ist sicher?', richtig: 'Anhalten und Erwachsene um Hilfe bitten', falsch: ['Sofort hinterherrennen', 'Ohne Schauen überqueren', 'Zwischen die Autos springen']),
-    _VerkehrFrage(frage: 'Was solltest du tun, bevor du eine Straße überquerst?', richtig: 'Verkehr beobachten und sicheren Weg wählen', falsch: ['Musik lauter drehen', 'Nur auf das Handy schauen', 'Einfach losrennen']),
-    _VerkehrFrage(frage: 'Warum sollten Fahrradbremsen vor der Fahrt geprüft werden?', richtig: 'Damit du sicher anhalten kannst', falsch: ['Damit Reifen größer werden', 'Damit die Klingel heller klingt', 'Damit du nicht lenken musst']),
-    _VerkehrFrage(frage: 'Was tust du, wenn ein Verkehrsschild dir unbekannt ist?', richtig: 'Vorsichtig bleiben und die Bedeutung klären', falsch: ['Es absichtlich ignorieren', 'Schneller laufen', 'Einfach das Schild umdrehen']),
-    _VerkehrFrage(frage: 'Wie verhältst du dich, wenn die Sicht durch starken Regen schlecht ist?', richtig: 'Langsam und besonders aufmerksam bewegen', falsch: ['Blind über die Straße laufen', 'Kopfhörer lauter drehen', 'Andere schubsen']),
-    _VerkehrFrage(frage: 'Was bedeutet das rote Licht einer Fußgängerampel?', richtig: 'Warten und nicht losgehen', falsch: ['Schneller loslaufen', 'Die Straße ist ein Spielplatz', 'Nicht mehr auf Autos achten']),
-    _VerkehrFrage(frage: 'Was tust du, wenn ein Auto am Zebrastreifen anhält?', richtig: 'Weiter aufmerksam schauen, dann sicher gehen', falsch: ['Nicht mehr in beide Richtungen schauen', 'Rückwärts blind laufen', 'Vor dem Auto spielen']),
-    _VerkehrFrage(frage: 'Was solltest du auf einem Fahrrad niemals während der Fahrt tun?', richtig: 'Die Augen zumachen', falsch: ['Auf den Weg achten', 'Beide Hände zum Bremsen bereit halten', 'Hindernisse rechtzeitig erkennen']),
-    _VerkehrFrage(frage: 'Was ist an einer Straßenkreuzung besonders wichtig?', richtig: 'Auf Fahrzeuge aus mehreren Richtungen achten', falsch: ['Nur den Himmel betrachten', 'Ohne Blick geradeaus laufen', 'Die Ohren verschließen']),
-    _VerkehrFrage(frage: 'Was hilft dir, wenn du den Weg nach Hause nicht kennst?', richtig: 'Eine vertrauenswürdige erwachsene Person fragen', falsch: ['Auf unbekannte Fahrzeuge aufspringen', 'Ohne Plan auf die Straße laufen', 'Verkehrszeichen abdecken']),
-    _VerkehrFrage(frage: 'Wie verhältst du dich neben einer Baustelle an der Straße?', richtig: 'Absperrungen beachten und Abstand halten', falsch: ['Unter Baugeräten spielen', 'Absperrbänder zerreißen', 'Auf die Fahrbahn springen']),
-    _VerkehrFrage(frage: 'Wozu dient eine Fahrradklingel?', richtig: 'Andere rechtzeitig auf dich aufmerksam machen', falsch: ['Die Bremsen ersetzen', 'Die Straße absperren', 'Den Reifen aufpumpen']),
-    _VerkehrFrage(frage: 'Warum ist es gefährlich, beim Gehen auf die Straße am Handy zu spielen?', richtig: 'Man übersieht leicht den Verkehr', falsch: ['Autos können nur stillstehen', 'Handys verändern die Ampel', 'Zebrastreifen werden unsichtbar']),
+    _VerkehrFrage(
+        frage: 'Warum gehst du nicht zwischen parkenden Autos auf die Straße?',
+        richtig: 'Dort können andere dich schlecht sehen',
+        falsch: [
+          'Autos haben keine Fenster',
+          'Dort ist es immer wärmer',
+          'Der Gehsteig verschwindet'
+        ],
+        kontext: 'Suche eine übersichtliche Stelle zum Überqueren.'),
+    _VerkehrFrage(
+        frage: 'Der Schranken am Bahnübergang ist geschlossen. Was tust du?',
+        richtig: 'Hinter dem Schranken warten',
+        falsch: [
+          'Darunter durchlaufen',
+          'Über die Schienen klettern',
+          'Dem Zug entgegenlaufen'
+        ],
+        kontext: 'Warte, bis der Bahnübergang wieder sicher freigegeben ist.'),
+    _VerkehrFrage(
+        frage: 'Was hilft dir, bei Dunkelheit besser gesehen zu werden?',
+        richtig: 'Reflektierende Kleidung tragen',
+        falsch: [
+          'Alle Reflektoren entfernen',
+          'Nur dunkle Kleidung anziehen',
+          'Die Augen schließen'
+        ]),
+    _VerkehrFrage(
+        frage: 'Ein Bus ist noch in Bewegung. Wann steigst du aus?',
+        richtig: 'Erst nach dem vollständigen Anhalten',
+        falsch: [
+          'Während der Fahrt',
+          'Durch ein Fenster',
+          'Noch vor dem Öffnen der Tür'
+        ]),
+    _VerkehrFrage(
+        frage:
+            'Warum solltest du nicht direkt vor einem großen Lastwagen stehen?',
+        richtig: 'Die Fahrerin oder der Fahrer sieht dich womöglich nicht',
+        falsch: [
+          'Lastwagen schweben',
+          'Dort ist die Luft immer zu heiß',
+          'Alle Lastwagen stehen für immer'
+        ],
+        kontext: 'Halte Abstand zum toten Winkel.'),
+    _VerkehrFrage(
+        frage: 'Ein Ball rollt auf die Fahrbahn. Was ist sicher?',
+        richtig: 'Anhalten und Erwachsene um Hilfe bitten',
+        falsch: [
+          'Sofort hinterherrennen',
+          'Ohne Schauen überqueren',
+          'Zwischen die Autos springen'
+        ]),
+    _VerkehrFrage(
+        frage: 'Was solltest du tun, bevor du eine Straße überquerst?',
+        richtig: 'Verkehr beobachten und sicheren Weg wählen',
+        falsch: [
+          'Musik lauter drehen',
+          'Nur auf das Handy schauen',
+          'Einfach losrennen'
+        ]),
+    _VerkehrFrage(
+        frage: 'Warum sollten Fahrradbremsen vor der Fahrt geprüft werden?',
+        richtig: 'Damit du sicher anhalten kannst',
+        falsch: [
+          'Damit Reifen größer werden',
+          'Damit die Klingel heller klingt',
+          'Damit du nicht lenken musst'
+        ]),
+    _VerkehrFrage(
+        frage: 'Was tust du, wenn ein Verkehrsschild dir unbekannt ist?',
+        richtig: 'Vorsichtig bleiben und die Bedeutung klären',
+        falsch: [
+          'Es absichtlich ignorieren',
+          'Schneller laufen',
+          'Einfach das Schild umdrehen'
+        ]),
+    _VerkehrFrage(
+        frage:
+            'Wie verhältst du dich, wenn die Sicht durch starken Regen schlecht ist?',
+        richtig: 'Langsam und besonders aufmerksam bewegen',
+        falsch: [
+          'Blind über die Straße laufen',
+          'Kopfhörer lauter drehen',
+          'Andere schubsen'
+        ]),
+    _VerkehrFrage(
+        frage: 'Was bedeutet das rote Licht einer Fußgängerampel?',
+        richtig: 'Warten und nicht losgehen',
+        falsch: [
+          'Schneller loslaufen',
+          'Die Straße ist ein Spielplatz',
+          'Nicht mehr auf Autos achten'
+        ]),
+    _VerkehrFrage(
+        frage: 'Was tust du, wenn ein Auto am Zebrastreifen anhält?',
+        richtig: 'Weiter aufmerksam schauen, dann sicher gehen',
+        falsch: [
+          'Nicht mehr in beide Richtungen schauen',
+          'Rückwärts blind laufen',
+          'Vor dem Auto spielen'
+        ]),
+    _VerkehrFrage(
+        frage:
+            'Was solltest du auf einem Fahrrad niemals während der Fahrt tun?',
+        richtig: 'Die Augen zumachen',
+        falsch: [
+          'Auf den Weg achten',
+          'Beide Hände zum Bremsen bereit halten',
+          'Hindernisse rechtzeitig erkennen'
+        ]),
+    _VerkehrFrage(
+        frage: 'Was ist an einer Straßenkreuzung besonders wichtig?',
+        richtig: 'Auf Fahrzeuge aus mehreren Richtungen achten',
+        falsch: [
+          'Nur den Himmel betrachten',
+          'Ohne Blick geradeaus laufen',
+          'Die Ohren verschließen'
+        ]),
+    _VerkehrFrage(
+        frage: 'Was hilft dir, wenn du den Weg nach Hause nicht kennst?',
+        richtig: 'Eine vertrauenswürdige erwachsene Person fragen',
+        falsch: [
+          'Auf unbekannte Fahrzeuge aufspringen',
+          'Ohne Plan auf die Straße laufen',
+          'Verkehrszeichen abdecken'
+        ]),
+    _VerkehrFrage(
+        frage: 'Wie verhältst du dich neben einer Baustelle an der Straße?',
+        richtig: 'Absperrungen beachten und Abstand halten',
+        falsch: [
+          'Unter Baugeräten spielen',
+          'Absperrbänder zerreißen',
+          'Auf die Fahrbahn springen'
+        ]),
+    _VerkehrFrage(
+        frage: 'Wozu dient eine Fahrradklingel?',
+        richtig: 'Andere rechtzeitig auf dich aufmerksam machen',
+        falsch: [
+          'Die Bremsen ersetzen',
+          'Die Straße absperren',
+          'Den Reifen aufpumpen'
+        ]),
+    _VerkehrFrage(
+        frage:
+            'Warum ist es gefährlich, beim Gehen auf die Straße am Handy zu spielen?',
+        richtig: 'Man übersieht leicht den Verkehr',
+        falsch: [
+          'Autos können nur stillstehen',
+          'Handys verändern die Ampel',
+          'Zebrastreifen werden unsichtbar'
+        ]),
   ];
 
+  final _taskScopeKey = GlobalKey();
   late final LearningModuleProgress _progress;
+  late final LearningModuleRounds _rounds =
+      LearningModuleRounds(progress: _progress, totalTasks: _totalTasks);
 
   late final AnimationController _bounceCtrl;
   late final AnimationController _shakeCtrl;
@@ -174,6 +317,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     _entryCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _generateTask();
+    _restoreRound();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakTask());
   }
@@ -220,6 +364,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     });
     final isCorrect = idx == _correctIdx;
     final saved = await _progress.saveAnswer(
+      problemKey: _aktuelle.frage,
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 8 : 0,
@@ -245,11 +390,31 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     _nextTask();
   }
 
-  void _nextTask() {
+  /// Continues at the round where the child stopped last time.
+  Future<void> _restoreRound() async {
+    final position = await _rounds.restore();
+    if (position == null || !mounted || _taskIdx != 0 || _answered) return;
+    setState(() {
+      _taskIdx = position.completedTasks;
+      _correctCount = position.correct;
+      _generateTask();
+    });
+    _speakTask();
+  }
+
+  Future<void> _nextTask() async {
     if (_taskIdx + 1 >= _totalTasks) {
+      _rounds.finished();
       _showFinish();
       return;
     }
+    // After every tenth task: a real place to stop, with the place saved.
+    if (!await _rounds.continueAfter(context,
+        completedTasks: _taskIdx + 1, correct: _correctCount)) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _taskIdx++;
       _generateTask();
@@ -322,6 +487,31 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     );
   }
 
+  Widget _withTaskContext(Widget child) => ModuleTaskScope(
+        key: _taskScopeKey,
+        appState: widget.appState,
+        progress: _progress,
+        moduleId: 's2_verkehr',
+        taskKey: _taskIdx,
+        prompt: _aktuelle.frage,
+        objective:
+            'Du erkennst Gefahren und überlegst, welches Verhalten dazu passt.',
+        answerChoices: _options,
+        onConfirmChoice: (index) => _onAnswer(index),
+        helpSteps: [
+          'Lies die Frage genau: „${_aktuelle.frage}“. Gesucht ist manchmal sicheres Verhalten, manchmal eine Gefahr.',
+          _aktuelle.frage.contains('niemals')
+              ? 'Das Wort „niemals“ ist entscheidend. Gesucht ist das gefährliche Verhalten, das du vermeiden sollst.'
+              : 'Stell dir die beschriebene Situation vor. Wer muss sehen, warten, schützen oder aufmerksam bleiben?',
+          _aktuelle.kontext ??
+              'Die passende Antwort lautet: ${_aktuelle.richtig}. Vergleiche sie mit der Frage und begründe für dich, warum sie passt.',
+        ],
+        answering: !_answered,
+        lastAnswer: _selectedIdx == null ? null : _options[_selectedIdx!],
+        lastCorrect: _answered ? _selectedIdx == _correctIdx : null,
+        child: child,
+      );
+
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
@@ -333,10 +523,12 @@ class _VerkehrScreenState extends State<VerkehrScreen>
         icon: Icons.traffic_rounded,
         taskIndex: _taskIdx,
         totalTasks: _totalTasks,
+        inRounds: true,
         correctAnswers: _correctCount,
         progressLabel: 'Aufgabe',
         canLeave: () => !_progress.hasPending,
-        child: AnimatedBuilder(
+        companionUnit: _progress.unit,
+        child: _withTaskContext(AnimatedBuilder(
           animation: _entryCtrl,
           builder: (_, child) {
             return Opacity(
@@ -354,7 +546,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
             const SizedBox(height: 20),
             _buildOptions(),
           ]),
-        ),
+        )),
       ),
     );
   }

@@ -1,0 +1,19 @@
+{
+  "status": "FOUND",
+  "strategy": "forward_then_observed_boundary_reverse",
+  "non_scroll_observations": 0,
+  "gestures": [
+    {
+      "direction": 1,
+      "observed_bounds": [
+        0,
+        220,
+        1080,
+        2274
+      ],
+      "before": "d204280e35e4e9023279e42e56e44c82aeb4aabcd57af4cb6dac3d27f06e0dad",
+      "after": "22ba17c9f775fc77ed142c755e185d215ada4d80e0a52663f1707879818aa483",
+      "content_changed": true
+    }
+  ]
+}

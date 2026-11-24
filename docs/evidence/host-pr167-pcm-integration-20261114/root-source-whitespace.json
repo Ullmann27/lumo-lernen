@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "source_paths": [
+    "scripts/prepare_android.py",
+    "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechBuildContract.kt",
+    "scripts/tests/fixtures/speech_envelope_contract/LearningSpeechLifecycleContract.kt",
+    "scripts/tests/fixtures/speech_envelope_contract/SpeechEnvelopeContract.kt",
+    "scripts/tests/fixtures/speech_envelope_contract/apfel.wav",
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Bridge.kt",
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Channel.kt",
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Context.kt",
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Handler.kt",
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Json.kt",
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Log.kt",
+    "scripts/tests/fixtures/speech_envelope_contract/platform/Media.kt",
+    "scripts/tests/fixtures/speech_envelope_contract/provenance.json",
+    "scripts/tests/test_prepare_android.py",
+    "scripts/tests/test_speech_envelope_contract.py",
+    "tools/auto_install/LumoLearningSpeech.kt",
+    "tools/auto_install/LumoSpeechEnvelope.kt",
+    ".github/probes/lumo_connect_four_android_probe.py",
+    ".github/workflows/lumo-connect-four-2020.yml",
+    ".github/workflows/lumo-unified-integration-2026.yml",
+    "scripts/tests/test_connect_four_pipeline.py",
+    "scripts/verify_connect_four_candidate.py",
+    "tools/android_qa/connect_four_android_evidence.py",
+    "tools/android_qa/tests/test_connect_four_android_evidence.py"
+  ],
+  "source_diff_check_returncode": 0,
+  "all_files_diff_check_returncode": 2,
+  "all_files_original_output": "docs/evidence/host-pr167-pcm-integration-20261114/integration.patch:540: trailing whitespace.\n+ \ndocs/evidence/host-pr167-pcm-integration-20261114/integration.patch:554: trailing whitespace.\n+ \ndocs/evidence/host-pr167-pcm-integration-20261114/integration.patch:575: trailing whitespace.\n+ \ndocs/evidence/host-pr167-pcm-integration-20261114/integration.patch:586: trailing whitespace.\n+ \ndocs/evidence/host-pr167-pcm-integration-20261114/integration.patch:637: trailing whitespace.\n+ \ndocs/evidence/host-pr167-pcm-integration-20261114/integration.patch:676: trailing whitespace.\n+ \ndocs/evidence/host-pr167-pcm-integration-20261114/integration.patch:679: trailing whitespace.\n+ \ndocs/evidence/host-pr167-pcm-integration-20261114/integration.patch:689: trailing whitespace.\n+ \ndocs/evidence/host-pr167-pcm-integration-20261114/integration.patch:707: trailing whitespace.\n+ \n",
+  "only_findings": {
+    "path": "docs/evidence/host-pr167-pcm-integration-20261114/integration.patch",
+    "lines": [
+      540,
+      554,
+      575,
+      586,
+      637,
+      676,
+      679,
+      689,
+      707
+    ],
+    "actual_bytes_at_each_line": "single ASCII space, followed by newline",
+    "meaning": "Unchanged blank context lines in the byte-original unified patch, not trailing whitespace in implementation source."
+  },
+  "original_patch_sha256": "29004f463d362cdc760c3d642d7684d7d1515d0d585dd0384d8992c23c78a75f",
+  "source_changed_for_check": false
+}

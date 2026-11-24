@@ -1,9 +1,12 @@
+import '../onboarding/lumo_intro_tour.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/design/lumo_section_heading.dart';
 import '../../widgets/design/lumo_night_scope.dart';
 import '../../widgets/lumo_speech_controls.dart';
 import '../../core/ai_task_cache.dart';
@@ -19,11 +22,17 @@ import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import '../teacher/teacher_dashboard_screen.dart';
 import 'legacy_learning_data_card.dart';
+import 'native_game_saves_card.dart';
 import 'parent_report_card.dart';
 import 'writing_report_card.dart';
 import 'lumo_voice_diagnostics_card.dart';
 import 'local_voice_license_dialog.dart';
 import 'discovery_settings_card.dart';
+import '../kart_friends/kart_friends_inbox.dart';
+import 'kart_online_settings_card.dart';
+import '../backup/local_backup_card.dart';
+import '../parent_tasks/parent_tasks_editor_card.dart';
+import '../rewards/custom_rewards_card.dart';
 
 /// All settings, sheets and dialogs share the same night surface.
 /// The State must live below the scope so showDialog captures this Theme.
@@ -125,6 +134,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
   }
 
   Future<void> _save(AppSettings next) async {
+    if (_saving) return;
     setState(() {
       _settings = next;
       _saving = true;
@@ -141,6 +151,30 @@ class _SettingsContentState extends State<_SettingsContentBody> {
     );
     await SettingsRepository.save(next);
     if (mounted) setState(() => _saving = false);
+  }
+
+  Future<void> _saveMissionSettings(AppSettings next) async {
+    if (_saving) return;
+    setState(() => _saving = true);
+    try {
+      await SettingsRepository.save(next);
+      widget.appState.updateSettings(next);
+      if (mounted) setState(() => _settings = next);
+    } catch (_) {
+      // A rejected platform write may still have changed the plugin cache.
+      // Keep the previous effective parent choice until durable saving works.
+      try {
+        await (await SharedPreferences.getInstance()).reload();
+      } catch (_) {}
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Die Einstellung konnte nicht gespeichert werden. '
+              'Bitte versuche es erneut.'),
+        ));
+      }
+    } finally {
+      if (mounted) setState(() => _saving = false);
+    }
   }
 
   Future<void> _resetSettings() async {
@@ -318,6 +352,16 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         _updateInfo = info;
         _updateError = info.error;
       });
+      if (info.managedByPlay) {
+        final opened = await service.openUpdate(info);
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(opened
+              ? 'Du kannst Lumo jetzt über Google Play aktualisieren.'
+              : 'Öffne Google Play und suche dort nach Lumo Lernen.')),
+        );
+        return;
+      }
       // Direkt weiter zum Auto-Install wenn ein Update verfuegbar ist.
       // 2026-06-06 Heinz: 'einfach Update-Button druecken, alles automatisch'.
       // Statt Browser-Launch jetzt: APK direkt in den App-Cache laden, dann
@@ -428,7 +472,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       scene: LumoScene.profile,
       dimmed: true,
       showPlaceholderLabel: false,
-      child: SingleChildScrollView(
+      child: AbsorbPointer(absorbing: _saving, child: SingleChildScrollView(
       padding: EdgeInsets.all(MediaQuery.sizeOf(context).width < 600 ? 14 : 24),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         _Header(
@@ -437,7 +481,25 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           emoji: '⚙️',
           accent: LumoVisualTokens.white,
         ),
-        const SizedBox(height: 18),
+        const SizedBox(height: 12),
+        OutlinedButton.icon(
+          key: const ValueKey('settings-intro-replay'),
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size(48, 52),
+            foregroundColor: LumoVisualTokens.white,
+          ),
+          onPressed: () => LumoIntroTour.show(context),
+          icon: const Icon(Icons.play_circle_outline_rounded),
+          label: const Text('Hilfe: Lumo-Intro erneut ansehen'),
+        ),
+        const SizedBox(height: 22),
+        const LumoSectionHeading(
+          title: 'Gerät und Sicherheit',
+          subtitle: 'Updates und Einstellungen für einen sicheren Betrieb',
+          icon: Icons.verified_user_rounded,
+          accent: LumoVisualTokens.cyanBright,
+        ),
+        const SizedBox(height: 12),
         _AppUpdateCard(
           info: _updateInfo,
           checking: _checkingUpdate,
@@ -446,6 +508,15 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           onUpdate: _checkAndUpdate,
         ),
         const SizedBox(height: 18),
+        LocalBackupCard(app: widget.appState),
+        const SizedBox(height: 22),
+        const LumoSectionHeading(
+          title: 'Schule und Lernwege',
+          subtitle: 'Klassenstufe, Lehreraufgaben und lokale Lerndaten',
+          icon: Icons.school_rounded,
+          accent: LumoVisualTokens.gold,
+        ),
+        const SizedBox(height: 12),
         _ParentSchoolGradeCard(
           grade: state.grade,
           childName: state.childName,
@@ -465,14 +536,29 @@ class _SettingsContentState extends State<_SettingsContentBody> {
             if (mounted) setState(() => _legacyDataRevision++);
           },
         ),
+        const SizedBox(height: 18),
+        ParentTasksEditorCard(appState: widget.appState),
+        const SizedBox(height: 18),
+        CustomRewardsCard(appState: widget.appState),
         LegacyLearningDataCard(
+          appState: widget.appState,
+          refreshRevision: _legacyDataRevision,
+        ),
+        NativeGameSavesCard(
           appState: widget.appState,
           refreshRevision: _legacyDataRevision,
         ),
         const SizedBox(height: 18),
         _ProfileResetCard(
           onReset: () => _confirmResetProfile(context)),
-        const SizedBox(height: 18),
+        const SizedBox(height: 22),
+        const LumoSectionHeading(
+          title: 'Lernfortschritt verstehen',
+          subtitle: 'Berichte und Hinweise auf einen Blick',
+          icon: Icons.insights_rounded,
+          accent: LumoVisualTokens.cyanBright,
+        ),
+        const SizedBox(height: 12),
         ParentReportCard(appState: widget.appState),
         const SizedBox(height: 18),
         // Phase 6b: Schreibcoach-Uebungsstand (geuebte/schwache Buchstaben,
@@ -531,6 +617,29 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         ),
         const SizedBox(height: 18),
         _SettingsCard(title: 'Lernen', children: [
+          _SwitchRow(
+            title: 'Tagesmission vor dem Spielen',
+            subtitle: 'Optional: Erst die drei Lernstationen abschließen. '
+                'Auch richtig gelöste Aufgaben mit Hilfe zählen.',
+            value: _settings.requireDailyMissionForGames,
+            onChanged: (value) => _saveMissionSettings(
+                _settings.copyWith(requireDailyMissionForGames: value)),
+          ),
+          const SizedBox(height: 10),
+          const Text('Aufgaben je Station (ab der nächsten Tagesmission)'),
+          Wrap(
+            spacing: 8,
+            children: [
+              for (final count in const [2, 4, 6])
+                ChoiceChip(
+                  label: Text('$count'),
+                  selected: _settings.missionTasksPerStation == count,
+                  onSelected: _saving ? null : (_) => _saveMissionSettings(
+                      _settings.copyWith(missionTasksPerStation: count)),
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
           _DailyGoalSelector(value: _settings.dailyGoal, onChanged: (v) => _save(_settings.copyWith(dailyGoal: v)),
                 ),
           const SizedBox(height: 12),
@@ -550,7 +659,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         _SettingsCard(title: 'Ton und Stimme', children: [
           _SwitchRow(title: 'Lumo-Stimme', subtitle: 'Lumo darf Antworten laut sprechen.', value: _settings.voiceEnabled, onChanged: (v) => _save(_settings.copyWith(voiceEnabled: v)),
                 ),
-          _SwitchRow(title: 'Automatisch vorlesen', subtitle: 'Lumo spricht beim Wechseln von Bereichen.', value: _settings.autoReadEnabled, onChanged: (v) => _save(_settings.copyWith(autoReadEnabled: v)),
+          _SwitchRow(title: 'Automatisch vorlesen', subtitle: 'Lumo spricht beim Wechseln von Bereichen und liest in Klasse 1 und 2 neue Aufgaben vor.', value: _settings.autoReadEnabled, onChanged: (v) => _save(_settings.copyWith(autoReadEnabled: v)),
                 ),
           const SizedBox(height: 10),
           _SliderRow(title: 'Sprechtempo', value: _settings.voiceRate, min: 0.25, max: 0.55, onChanged: (v) => _save(_settings.copyWith(voiceRate: v)),
@@ -600,7 +709,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
                 _SwitchRow(
                   title: 'Mikrofon erlauben',
                   subtitle:
-                      'Spracheingabe erst nach Antippen. Ohne Freigabe bleiben Text und lokale Lernhilfe nutzbar.',
+                      'Spracheingabe erst nach Antippen. Mit Freigabe kann dein Kind in den Aufgaben „Frag Lumo“ antippen und um Hilfe, Wiederholen oder Langsamer bitten. Ohne Freigabe bleiben Text, Knöpfe und lokale Lernhilfe nutzbar.',
                   value: _settings.microphoneEnabled,
                   onChanged: (v) =>
                       _save(_settings.copyWith(microphoneEnabled: v)),
@@ -623,6 +732,54 @@ class _SettingsContentState extends State<_SettingsContentBody> {
               ],
             ),
             const SizedBox(height: 14),
+            _SettingsCard(
+              key: const ValueKey('settingsFriendsCard'),
+              title: 'WLAN und Geister-Duell',
+              children: [
+                const Text(
+                    'Ohne Konto, ohne Chat, ohne Internet-Server. Beides ist aus, bis ihr es hier '
+                    'erlaubt. Geteilt werden dann nur der Vorname, das gewählte Kart und die '
+                    'Fahrlinie einer Kart-Strecke – sonst nichts.'),
+                const SizedBox(height: 12),
+                _SwitchRow(
+                  title: 'Gemeinsam spielen im WLAN erlauben',
+                  subtitle:
+                      'Zwei Geräte im selben WLAN fahren in Lumo Kart zusammen ein Rennen. '
+                      'Ein Gerät zeigt einen vierstelligen Raumcode, das andere gibt ihn ein. '
+                      'Nur im eigenen Netz, keine Verbindung zu Fremden.',
+                  value: _settings.lanPlayEnabled,
+                  onChanged: (v) =>
+                      _save(_settings.copyWith(lanPlayEnabled: v)),
+                ),
+                _SwitchRow(
+                  title: 'Geister-Duell erlauben',
+                  subtitle:
+                      'Nach einem Zeitfahren kann dein Kind seine beste Fahrt als kleine Datei '
+                      '„Lumo-Geist“ (wenige KB) über das Teilen-Menü verschicken – ihr wählt '
+                      'selbst, an wen – und Geister von Freunden öffnen.',
+                  value: _settings.ghostDuelEnabled,
+                  onChanged: (v) =>
+                      _save(_settings.copyWith(ghostDuelEnabled: v)),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                    'Kommt ein Geist bei euch an, öffnet ihn mit Lumo Lernen oder hier:',
+                    style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted)),
+                const SizedBox(height: 8),
+                OutlinedButton.icon(
+                  key: const ValueKey('openFriendGhostFile'),
+                  onPressed: !_settings.ghostDuelEnabled
+                      ? null
+                      : () =>
+                          KartFriendsInbox.pickFile(context, widget.appState),
+                  icon: const Icon(Icons.folder_open_rounded),
+                  label: const Text('Geist-Datei öffnen'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 14),
+        KartOnlineSettingsCard(settings: _settings, onSave: _save),
+        const SizedBox(height: 14),
         _SettingsCard(title: 'Lumo-KI Testserver', children: [
           _SwitchRow(
             title: 'Lumo-KI-Server erlauben',
@@ -726,7 +883,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         const _ErrorLogCard(),
       ],
         ),
-      ), // close SingleChildScrollView
+      )), // close SingleChildScrollView and pending-save input lock
     ); // close night scene
   }
 }
@@ -841,7 +998,7 @@ class _Header extends StatelessWidget {
 }
 
 class _SettingsCard extends StatelessWidget {
-  const _SettingsCard({required this.title, required this.children});
+  const _SettingsCard({super.key, required this.title, required this.children});
   final String title;
   final List<Widget> children;
 
@@ -852,24 +1009,29 @@ class _SettingsCard extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xDD123D72), Color(0xEE0A2852)],
+          colors: [Color(0xF01B4A80), Color(0xF00A2852)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.40)),
+        border: Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .52), width: 1.25),
         boxShadow: [
           BoxShadow(
-            color: LumoVisualTokens.cyan.withOpacity(.12),
-            blurRadius: 18,
+            color: LumoVisualTokens.cyan.withValues(alpha: .15),
+            blurRadius: 22,
             offset: const Offset(0, 8),
+            spreadRadius: -5,
           ),
         ],
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
-          style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white),
+          style: LumoTextStyles.heading3.copyWith(
+            color: LumoVisualTokens.white,
+            fontSize: 18,
+            height: 1.2,
+          ),
         ),
         const SizedBox(height: 12),
         ...children,
@@ -1567,6 +1729,7 @@ class _AppUpdateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasUpdate = info?.available == true;
+    final playManaged = info?.managedByPlay == true;
     const familyPreview = AppUpdateService.isFamilyPreview;
     // Wenn Update verfuegbar: gruener Akzent. Sonst: orange wie der Rest.
     final accent = hasUpdate ? const Color(0xFF22C55E) : LumoColors.orange;
@@ -1625,7 +1788,9 @@ class _AppUpdateCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      hasUpdate
+                      playManaged
+                          ? 'Aktualisierungen über Google Play'
+                          : hasUpdate
                           ? 'Neue Version verfügbar'
                           : familyPreview ? 'Lumo Familien-Testversion' : 'App-Version',
                       style: const TextStyle(
@@ -1639,7 +1804,11 @@ class _AppUpdateCard extends StatelessWidget {
                     Text(
                       info == null
                           ? 'Aktuell: Build ${AppUpdateService.currentBuildNumber} (${AppUpdateService.currentVersionName})'
-                          : hasUpdate
+                          : playManaged
+                              ? 'Google Play prüft, ob ein Update verfügbar ist.'
+                              : info!.error != null
+                                  ? 'Die Updateprüfung wurde nicht abgeschlossen.'
+                                  : hasUpdate
                               ? 'Build ${info!.latestBuildNumber} ist neuer als deine Build ${info!.currentBuildNumber}.'
                               : familyPreview
                                   ? 'Kein neuer freigegebener Familien-Build. Installiert: ${info!.currentBuildNumber}.'
@@ -1715,7 +1884,9 @@ class _AppUpdateCard extends StatelessWidget {
               label: Text(
                 checking
                     ? progress != null ? 'Lade Update…' : 'Prüfe…'
-                    : hasUpdate
+                    : playManaged
+                        ? 'Google Play öffnen'
+                        : hasUpdate
                         ? 'Jetzt aktualisieren'
                         : 'Auf Update prüfen',
                 style: const TextStyle(

@@ -27,12 +27,36 @@ Future<LumoFlameJumpGame> _menuAndCollect(
       MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
   await tester.pump();
   await tester.pump();
-  final card = find.text('Lumos Jump Adventure · 2D');
-  // Die Spielewelt baut Karten unterhalb der Spielkarten erst beim Scrollen.
-  await tester.scrollUntilVisible(card, 300,
+  // The main game hub now opens directly into the illustrated Spielwelt.
+  // The original Flame adventure still exists under extra game modes.
+  final extras = find.text('Zusätzliche Spielmodi');
+  await tester.scrollUntilVisible(extras, 250,
       scrollable: find.byType(Scrollable).first);
-  await tester.ensureVisible(card);
+  await tester.ensureVisible(extras);
   await tester.pump();
+  // The SliverToBoxAdapter initially positions the expansion header at the
+  // bottom edge (y≈910 on a 900px test surface). Scroll it fully into
+  // the actual hit-testable viewport before tapping; do not change the game
+  // or skip the joystick/collision/persistence assertions.
+  await tester.drag(find.byType(CustomScrollView),
+      const Offset(0, -220));
+  await tester.pump();
+  expect(extras.hitTestable(), findsOneWidget);
+  await tester.tap(extras);
+  // Start ExpansionTile's ticker before advancing its animation. The first
+  // frame after the tap establishes the ticker epoch; a long first pump alone
+  // still leaves its children clipped at the collapsed height.
+  await tester.pump();
+  await tester.pump(const Duration(milliseconds: 450));
+  // The real 2D adventure is now first in the expanded extra modes.
+  // Do not use scrollUntilVisible here: with an animated ExpansionTile
+  // inside a SliverToBoxAdapter, that search can dispose the target sliver
+  // while scrolling. Keep the route genuinely tappable in the viewport.
+  final card = find.text('Lumos Jump Adventure · 2D');
+  expect(card, findsOneWidget);
+  await tester.drag(find.byType(CustomScrollView), const Offset(0, -110));
+  await tester.pump();
+  expect(card.hitTestable(), findsOneWidget);
   await tester.tap(card);
   await _frames(tester);
   expect(find.byType(LumoJumpFlameScreen), findsOneWidget);
@@ -108,22 +132,34 @@ void main() {
         final a = int.parse(math[1]!), b = int.parse(math[3]!);
         return '${math[2] == '+' ? a + b : a - b}';
       }
-      final line = RegExp(r'^Welche Zahl fehlt\? (\d+), (\d+), _, (\d+)$')
-          .firstMatch(prompt);
-      if (line != null) return '${int.parse(line[2]!) + 1}';
-      if (prompt.endsWith('– wo ist mehr?')) {
+      // Seit der Fachprüfung Mathematik (M14) wechseln Schritt und Lücke:
+      // „Welche Zahl fehlt? 5, _, 15, 20“. Der Schritt folgt aus zwei
+      // sichtbaren Nachbarn.
+      if (prompt.startsWith('Welche Zahl fehlt? ')) {
+        final items = prompt.substring('Welche Zahl fehlt? '.length).split(', ');
+        final gap = items.indexOf('_');
+        final known = [for (var i = 0; i < items.length; i++) if (i != gap) i];
+        final step = (int.parse(items[known[1]]) - int.parse(items[known[0]])) ~/
+            (known[1] - known[0]);
+        return '${int.parse(items[known[0]]) + step * (gap - known[0])}';
+      }
+      // Wortlaut seit der Fachprüfung Mathematik (L17): „wo sind mehr
+      // Äpfel?“ mit der Karte „gleich viele“.
+      if (prompt.endsWith('– wo sind mehr Äpfel?')) {
         final parts = prompt.split(' oder ');
         final left = '🍎'.allMatches(parts[0]).length,
             right = '🍎'.allMatches(parts[1]).length;
         return left == right
-            ? 'gleich'
+            ? 'gleich viele'
             : left > right
                 ? 'links'
                 : 'rechts';
       }
       final first =
           RegExp(r'^Mit welchem Laut beginnt (.+)\?$').firstMatch(prompt);
-      final sound = RegExp(r'^Welche Buchstaben passen zum Laut „([^“]+)“\?$')
+      // Einzelne Buchstaben werden in der Einzahl gefragt (Fachprüfung D-L1).
+      final sound = RegExp(
+              r'^Welche(?:r Buchstabe passt| Buchstaben passen) zum Laut „([^“]+)“\?$')
           .firstMatch(prompt);
       if (sound != null) {
         final value = sound[1]!;
@@ -251,7 +287,7 @@ void main() {
             .map((t) => t.data ?? '')
             .toList();
         final prompt = texts.firstWhere(
-            (text) => text.contains('?') || text.endsWith('wo ist mehr?'));
+            (text) => text.contains('?') || text.endsWith('wo sind mehr Äpfel?'));
         final answer = answerFromPrompt(prompt);
         debugPrint('VISIBLE QUESTION $prompt -> $answer (choices: $texts)');
         final choice = find.descendant(of: panel, matching: find.text(answer));

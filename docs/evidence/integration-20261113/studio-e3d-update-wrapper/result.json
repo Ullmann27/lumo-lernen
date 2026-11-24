@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_update*preservation.py",
+    "-v"
+  ],
+  "started_at": "2026-11-13T16:34:08.279607+00:00",
+  "finished_at": "2026-11-13T16:34:08.551607+00:00",
+  "exit_code": 0,
+  "seconds": 0.272,
+  "source_files": 168,
+  "changed_during_run": [],
+  "log_sha256": "a5d9fdc020a1bf3cbedbe060c260bb19c7618819df74c2ff32ab9904e1d36c69",
+  "scope": "Existing 2018 and 2019 migration invariants plus the published real wrapper/identity path with Android I/O mocked; no real Android run or APK approval."
+}

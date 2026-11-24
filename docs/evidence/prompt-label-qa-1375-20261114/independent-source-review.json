@@ -1,0 +1,65 @@
+{
+  "schema": "lumo-prompt-label-independent-qa-source-review-v1",
+  "reviewer": "/root/lumo_release_lead/learning_ux_lead/touch_worker",
+  "repository": "Ullmann27/lumo-lernen",
+  "base_commit": "1375da193af0152af64f91d86577aa9768cd50db",
+  "base_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+  "workflow": {
+    "path": ".github/workflows/lumo-prompt-label-contrast-qa.yml",
+    "git_blob": "bfd93a088d3181444248e57e0ea5b7599921c242",
+    "bytes": 15102,
+    "sha256": "b78694efe0f737c5bd3002e02bdcf420836ff56a08b042cfed88e1d6beefb03a"
+  },
+  "verdict": "No static blocker found in the fully read workflow",
+  "reviewed_contracts": [
+    "Sole direct parent and baseline tree bound to exact 1375",
+    "Exactly two changed commit paths; reviewed prompt blob 643c3bd6868da34550bbc9fa7761818c7b1e6afb and exact single color-line replacement",
+    "Unchanged acceptance runner, modernization test, capture helper, palette, both coach call sites, pubspec/lock, native source config, and four Nunito files bound to baseline",
+    "Actual positional focus CLI and fresh focused output directory",
+    "Flutter 3.44.9; enforce-lockfile; contents:read; checkout persist-credentials:false",
+    "20-minute total job; 12-minute focused runner step",
+    "Original machine/runner logs, exit code, source-before/after, PNG hash index, always final checks/upload"
+  ],
+  "existing_baseline_read_only_comparison": {
+    "root": "/workspace/scratch/2708c7907f28/1375-full-flutter-originals/original",
+    "machine_file": "flutter-machine.jsonl",
+    "focus": "test/design/lumo_modernization_capture_test.dart",
+    "successful_non_hidden_cases": 36,
+    "skipped_cases": 0,
+    "expected_pngs": 42,
+    "actual_pngs": 42,
+    "missing_paths": 0,
+    "unexpected_paths": 0,
+    "dimension_mismatches": 0,
+    "png_sizes": {
+      "fold-cover": [
+        688,
+        1764
+      ],
+      "phone": [
+        824,
+        1830
+      ],
+      "fold-open": [
+        1380,
+        1658
+      ]
+    },
+    "scope": "Read-only comparison of already existing exact 1375 originals, not a new test or render"
+  },
+  "execution_by_reviewer": {
+    "tests": false,
+    "renderer": false,
+    "downloads": false,
+    "file_changes": false,
+    "uploads": false
+  },
+  "limitations": [
+    "Static source review, not an executed QA result",
+    "The unchanged focus renders the letter-writing coach; no new visual acceptance for LumoWritingWordCoachScreen",
+    "The word coach remains covered only by the existing shared-component/call-site source review",
+    "The focus loads the unchanged Nunito and MaterialIcons helper, not the separate emoji helper",
+    "No QA commit, ref activation, or actual run claimed at review time",
+    "One extra local read encountered intentionally sparse helper paths; this does not apply to the proposed full actions/checkout"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "kind": "Actual original-raster regression before crop repair",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-m",
+    "unittest",
+    "-v",
+    "test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_first_update_original_recovers_all_three_hud_features",
+    "test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_last_update_original_recovers_all_three_hud_features",
+    "test_focused_race_hud_current.CurrentFocusedRaceHudTests.test_api37_first_attempt_original_recovers_all_three_hud_features"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-creative-followup-7b16",
+  "started_at": "2026-11-14T03:59:20.391147+00:00",
+  "duration_seconds": 1.0440650160016958,
+  "exit_code": 1,
+  "log_bytes": 3652,
+  "log_sha256": "d96f5e22d5b2eaaac449c4b40437fca0f21352719a99c4cfc071df64e9e0f455",
+  "sources_before": {
+    "tools/android_qa/kart_android_race.py": "a46adfb61eac227eff359cd6aceeeaef2eb1da4ce172cd2625c3281327a39e26",
+    "tools/android_qa/tests/test_focused_race_hud_current.py": "735ac3864f9f5203c02273ab1251c60a2bf6bd20a3e36ce9f35ec6ed8bdc7e73",
+    ".github/probes/modernization_android_tour.py": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba"
+  },
+  "sources_after": {
+    "tools/android_qa/kart_android_race.py": "a46adfb61eac227eff359cd6aceeeaef2eb1da4ce172cd2625c3281327a39e26",
+    "tools/android_qa/tests/test_focused_race_hud_current.py": "735ac3864f9f5203c02273ab1251c60a2bf6bd20a3e36ce9f35ec6ed8bdc7e73",
+    ".github/probes/modernization_android_tour.py": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba"
+  },
+  "source_unchanged": true,
+  "tesseract_version": "tesseract 5.5.0"
+}

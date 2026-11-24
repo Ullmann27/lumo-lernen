@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/usr/local/lib/android/sdk/platform-tools/adb",
+    "-s",
+    "emulator-5554",
+    "root"
+  ],
+  "started_at": "2026-11-14T04:53:44.564928+00:00",
+  "finished_at": "2026-11-14T04:53:45.946344+00:00",
+  "returncode": 0,
+  "timed_out": false,
+  "stdout_file": "commands/0008-root-request.stdout",
+  "stderr_file": "commands/0008-root-request.stderr"
+}

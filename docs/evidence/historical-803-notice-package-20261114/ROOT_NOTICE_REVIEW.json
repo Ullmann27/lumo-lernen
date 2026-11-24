@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "kind": "historical_apk_explicit_notice_packaging_observation",
+  "historical_only": true,
+  "host": "803a4e960ffb804a46b6d09417731c031f00f680",
+  "native": "0e26153f0e58cc05739e72923b4c563a4cf380b8",
+  "run": 43578509499,
+  "artifact": 14109995147,
+  "archive": {
+    "bytes": 330999378,
+    "sha256": "4042322c815dac4d1829ff80b2f1889db4104d557e38b408fcd71a40b7706ccc",
+    "git_blob": "d4bd4386988a501dfa322be78de5323a85ffa066"
+  },
+  "apk": {
+    "path": "Lumo-Lernen-Neu.apk",
+    "bytes": 330988965,
+    "sha256": "6c380ea99a0ee9119b3179b36df714336936247654216cec1f2188f34a96f164",
+    "git_blob": "397c447d3908a0585c966c576ac5f392fb0e9edf"
+  },
+  "artifact_integrity": {
+    "api_digest_size_match": true,
+    "original_download_zip_crc_paths_and_six_member_hashes": "PASS per preserved original index; no archive code executed"
+  },
+  "outer_apk_notice_observations": {
+    "nunito_explicit_license_filename_found": false,
+    "decompressed_flutter_notices_bytes": 1356537,
+    "decompressed_flutter_notices_sha256": "eb47ddfbdd6d93cae020b4dd6344ed90c2e9e10339d33eb48bdf29bc7da022c6",
+    "literal_searches_absent": [
+      "Nunito",
+      "SIL OPEN FONT LICENSE",
+      "GDQuest",
+      "Meshy"
+    ],
+    "four_voice_license_members_present": true,
+    "scope": "Explicit filenames and listed literal searches, not font-internal metadata or a complete legal rights review."
+  },
+  "actual_pck_resource_read": {
+    "control_project_binary_present": true,
+    "members": {
+      "res://THIRD_PARTY_NOTICES.md": {
+        "present": false
+      },
+      "res://assets/characters/lumo_animated/ATTRIBUTION.md": {
+        "present": false
+      },
+      "res://assets/characters/lumo_facial/ATTRIBUTION.md": {
+        "present": false
+      },
+      "res://assets/fonts/Nunito-LICENSE.txt": {
+        "present": false
+      },
+      "res://project.binary": {
+        "bytes": 1783,
+        "present": true,
+        "sha256": "fadb8f8254dca6df9ac91472b9ed82583894fc5b0d495721458b3488e617982d"
+      }
+    },
+    "mounted": true,
+    "scope": "Mounted only as a resource filesystem in a separate blank project. No scene, application script, renderer capture or game is launched by this inspection script.",
+    "process_exit_code": 0,
+    "pck_sha256": "a135c86522c2b11f4a891f97752551d8c854f11db6d7222936b67861208b7420",
+    "pck_unchanged": true
+  },
+  "reader_identity": {
+    "engine": "Godot4.6.3.stable.official.7d41c59c4",
+    "separate_blank_project_sha256": "2d282cfc3fccefd5f406e49c7a89f83178eb38860cbb3792a6ea3219849cbce4",
+    "script_sha256": "33e87d4153a194e79acb3e52edab8cf0a11d2883ebe5a0ead8a4b253740ddf42",
+    "separate_blank_project_and_original_script_preserved": true,
+    "driver_behavior": "Mount this local resource pack with replace_files=false, inspect five fixed paths with FileAccess, print JSON and exit. No original app scene/script is run."
+  },
+  "source_comparison": {
+    "current_host": "1375da193af0152af64f91d86577aa9768cd50db",
+    "current_native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "host_packaging_files_byte_identical": 5,
+    "native_export_and_notice_files_byte_identical": 5,
+    "detailed_reports": [
+      "HOST_PACKAGING_SOURCE_COMPARISON.json",
+      "NATIVE_PACKAGING_SOURCE_COMPARISON.json"
+    ]
+  },
+  "interpretation": "The historical803 APK does not expose the four existing Native notice files at the specified resource paths; no explicit Nunito notice appears in the inspected outer APK filenames or consolidated notice literals. Current packaging inputs match, motivating an explicit packaging repair and actual new package check. This is not a test result for a1375 APK.",
+  "not_claimed": [
+    "No legal finding about rights or infringement",
+    "No new cryptographic APK verification; preserved verifier/provenance is original historical CI output",
+    "No current1375 APK identity or acceptance",
+    "No renderer/gameplay/Android/FPS test",
+    "No release/publication or Play approval"
+  ],
+  "preservation": "Small original metadata, complete member index, actual resource-reader source/stdout/stderr, packaging comparisons and exact historical source texts are checkpointed in Git. The330MB original artifact/APK and75MB PCK remain local/original Actions artifact; they are not copied into this evidence commit."
+}

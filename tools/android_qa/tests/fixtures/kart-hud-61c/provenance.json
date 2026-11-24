@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "scope": "Byte-exact PNG and original focused OCR records from failed Android jobs; offline OCR replays do not constitute Android gameplay acceptance.",
+  "qa_source": "61c94cfb78bda8dfbe191331eca0fd0382deb151",
+  "run_id": 43551424080,
+  "run_attempt": 1,
+  "apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "apk_sha256": "cf60f0cc3fac67408b84b75722c3a656a6bb0e09d2299894227ae5ba969efe20",
+  "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "cases": [
+    {
+      "case": "update-0",
+      "job_id": 132314688494,
+      "artifact": {
+        "id": 14096859041,
+        "bytes": 113750679,
+        "sha256": "3b4f1c2a6ada5018f6d2383efd7720cd4c84e19cc1111e917247e7f41dd0eb38"
+      },
+      "files": [
+        {
+          "fixture": "update-0.png",
+          "original_member": "21_race_hud_0.png",
+          "bytes": 2005004,
+          "sha256": "1ae6632355a726470852d5babb0a43ce0967fb8c4bc56fb5b73a810ca1fec8e0",
+          "git_blob": "93492aa88aaf0a442e1916262acaccd3e0c1986d"
+        },
+        {
+          "fixture": "update-0-focused-hud.json",
+          "original_member": "21_race_hud_0-focused-hud.json",
+          "bytes": 128,
+          "sha256": "c0101fb221d2f2dafaf652aa615666ea9df61f35c06c4e193eeea1ffd6744dc7",
+          "git_blob": "328304bda7f403ff475cf1cf970731cb203cc641"
+        }
+      ]
+    },
+    {
+      "case": "update-17",
+      "job_id": 132314688494,
+      "artifact": {
+        "id": 14096859041,
+        "bytes": 113750679,
+        "sha256": "3b4f1c2a6ada5018f6d2383efd7720cd4c84e19cc1111e917247e7f41dd0eb38"
+      },
+      "files": [
+        {
+          "fixture": "update-17.png",
+          "original_member": "21_race_hud_17.png",
+          "bytes": 1965296,
+          "sha256": "c10e6636686baef6511402d5fbd34046307d06f8d2c7a5b01e96fc2c25ba9d07",
+          "git_blob": "a9767327f1b53442a3057814bd1c0d8d7e646be4"
+        },
+        {
+          "fixture": "update-17-focused-hud.json",
+          "original_member": "21_race_hud_17-focused-hud.json",
+          "bytes": 128,
+          "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860",
+          "git_blob": "a91742f753c053092617dac25f431e49b6dd0e62"
+        }
+      ]
+    },
+    {
+      "case": "api37-host-20",
+      "job_id": 132314688505,
+      "artifact": {
+        "id": 14096004123,
+        "bytes": 134785226,
+        "sha256": "29eae3364927c91522d3771b63b56ce97c6d3400566deb6b037c1a86059f60a2"
+      },
+      "files": [
+        {
+          "fixture": "api37-host-20.png",
+          "original_member": "21_race_hud_20.png",
+          "bytes": 1967096,
+          "sha256": "7fb26f79a258c50f00de1db7fcd786bc6775ebf3d399840fea3f5defd24672e1",
+          "git_blob": "0f937f9f21c7128a1fb0b2181178319e283a78af"
+        },
+        {
+          "fixture": "api37-host-20-focused-hud.json",
+          "original_member": "21_race_hud_20-focused-hud.json",
+          "bytes": 128,
+          "sha256": "102cd37cdf9076d344ec9beae97e5a1b9c79c399bdef86ab2e5e498560697860",
+          "git_blob": "a91742f753c053092617dac25f431e49b6dd0e62"
+        }
+      ]
+    }
+  ],
+  "api37_series_note": "Only frame20 is used: it survived from the first race-HUD attempt; original names0..18 were overwritten by a later pause-HUD attempt. The independent API37 GMS ANR is neither repaired nor explained by this crop change.",
+  "raster_contract": {
+    "original_size": [
+      2400,
+      1080
+    ],
+    "old_crop": [
+      600,
+      38,
+      1800,
+      162
+    ],
+    "new_crop": [
+      600,
+      38,
+      1800,
+      216
+    ],
+    "observed_current_letters_y": [
+      144,
+      187
+    ]
+  },
+  "original_zip_storage": "Full original ZIPs remain only in the original Actions artifacts; all members were CRC/SHA checked in RAM, selected originals copied byte-for-byte."
+}

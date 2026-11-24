@@ -1,0 +1,7 @@
+{
+  "chunk_id": "f906ec",
+  "wall_time_seconds": 1.313538557,
+  "exit_code": 0,
+  "original_token_count": 288,
+  "output": "{\"schema\": 1, \"kind\": \"actual_historical_apk_negative_notice_guard_execution\", \"execution_exit_code\": 0, \"result\": \"EXPECTED_REJECTION\", \"apk_host\": \"803a4e960ffb804a46b6d09417731c031f00f680\", \"apk_native\": \"0e26153f0e58cc05739e72923b4c563a4cf380b8\", \"apk_artifact\": 14109995147, \"apk_sha256\": \"6c380ea99a0ee9119b3179b36df714336936247654216cec1f2188f34a96f164\", \"apk_bytes\": 330988965, \"reader_blob\": \"e706edf1d87c4222f17498ff8ef67ade30443dfc\", \"policy_blob\": \"6bfb5f7bec41c91af963f47fc80d66977135ab74\", \"expected_policy_native\": {\"repository\": \"https://github.com/Ullmann27/lumo-godot.git\", \"revision\": \"e2d15dbc5f3709306decb139eeb70a1cf30c0b73\", \"engine\": \"4.6.3\"}, \"function\": \"validate_packaged_notices(archive, policy, native_source)\", \"observed_error\": \"Packaged-notice asset inventory differs from source policy\", \"reader_elapsed_seconds\": 0.004892180000751978, \"apk_and_reader_sources_unchanged\": true, \"scope\": \"Actual old APK opened read-only by the reviewed pure notice-archive function. It correctly rejects the real missing-notice inventory. No signed-current-APK, AAB, crypto, native engine, game or legal rights acceptance is claimed.\"}\n"
+}

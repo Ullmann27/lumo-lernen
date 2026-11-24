@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "frame": [
+    384,
+    384
+  ],
+  "anchor": [
+    192.0,
+    357.0
+  ],
+  "facing": "right",
+  "shadow": {
+    "file": "shadow.webp"
+  },
+  "clips": {
+    "idle": {
+      "file": "clip_idle.webp",
+      "frames": 24,
+      "columns": 8,
+      "fps": 12,
+      "loop": true
+    },
+    "run": {
+      "file": "clip_run.webp",
+      "frames": 16,
+      "columns": 8,
+      "fps": 20,
+      "loop": true,
+      "stride_px": 237.7
+    },
+    "point": {
+      "file": "clip_point.webp",
+      "frames": 8,
+      "columns": 8,
+      "fps": 12,
+      "loop": false
+    }
+  }
+}

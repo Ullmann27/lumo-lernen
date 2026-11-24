@@ -1,0 +1,297 @@
+{
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/compare/9deaa3f24561bc65caba898585c0c00f1c77162b...198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "html_url": "https://github.com/Ullmann27/lumo-lernen/compare/9deaa3f24561bc65caba898585c0c00f1c77162b...198dd3d1a5862797a37f0d1d638ea929009b8848",
+  "permalink_url": "https://github.com/Ullmann27/lumo-lernen/compare/Ullmann27:9deaa3f...Ullmann27:198dd3d",
+  "diff_url": "https://github.com/Ullmann27/lumo-lernen/compare/9deaa3f24561bc65caba898585c0c00f1c77162b...198dd3d1a5862797a37f0d1d638ea929009b8848.diff",
+  "patch_url": "https://github.com/Ullmann27/lumo-lernen/compare/9deaa3f24561bc65caba898585c0c00f1c77162b...198dd3d1a5862797a37f0d1d638ea929009b8848.patch",
+  "base_commit": {
+    "sha": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "node_id": "C_kwDOSNzcp9oAKDlkZWFhM2YyNDU2MWJjNjVjYWJhODk4NTg1YzBjMDBmMWM3NzE2MmI",
+    "commit": {
+      "author": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T17:39:13Z"
+      },
+      "committer": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T17:39:13Z"
+      },
+      "message": "Observe native exit, Flutter activity and C4 mailbox closure within the existing return deadline",
+      "tree": {
+        "sha": "c0a9e29c831113ea8e49e632bc7959a15079bc94",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/c0a9e29c831113ea8e49e632bc7959a15079bc94"
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/9deaa3f24561bc65caba898585c0c00f1c77162b",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/9deaa3f24561bc65caba898585c0c00f1c77162b/comments",
+    "author": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/7c5bef2bc39024fc2c1018523cabc651820cf76b",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/7c5bef2bc39024fc2c1018523cabc651820cf76b"
+      }
+    ]
+  },
+  "merge_base_commit": {
+    "sha": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "node_id": "C_kwDOSNzcp9oAKDlkZWFhM2YyNDU2MWJjNjVjYWJhODk4NTg1YzBjMDBmMWM3NzE2MmI",
+    "commit": {
+      "author": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T17:39:13Z"
+      },
+      "committer": {
+        "name": "Ullmann27",
+        "email": "64243701+Ullmann27@users.noreply.github.com",
+        "date": "2026-11-14T17:39:13Z"
+      },
+      "message": "Observe native exit, Flutter activity and C4 mailbox closure within the existing return deadline",
+      "tree": {
+        "sha": "c0a9e29c831113ea8e49e632bc7959a15079bc94",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/c0a9e29c831113ea8e49e632bc7959a15079bc94"
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/9deaa3f24561bc65caba898585c0c00f1c77162b",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/9deaa3f24561bc65caba898585c0c00f1c77162b",
+    "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/9deaa3f24561bc65caba898585c0c00f1c77162b/comments",
+    "author": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "Ullmann27",
+      "id": 64243701,
+      "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/Ullmann27",
+      "html_url": "https://github.com/Ullmann27",
+      "followers_url": "https://api.github.com/users/Ullmann27/followers",
+      "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+      "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+      "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+      "repos_url": "https://api.github.com/users/Ullmann27/repos",
+      "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/7c5bef2bc39024fc2c1018523cabc651820cf76b",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/7c5bef2bc39024fc2c1018523cabc651820cf76b"
+      }
+    ]
+  },
+  "status": "ahead",
+  "ahead_by": 1,
+  "behind_by": 0,
+  "total_commits": 1,
+  "commits": [
+    {
+      "sha": "198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "node_id": "C_kwDOSNzcp9oAKDE5OGRkM2QxYTU4NjI3OTdhMzdmMGQxZDYzOGVhOTI5MDA5Yjg4NDg",
+      "commit": {
+        "author": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T19:06:14Z"
+        },
+        "committer": {
+          "name": "Ullmann27",
+          "email": "64243701+Ullmann27@users.noreply.github.com",
+          "date": "2026-11-14T19:06:14Z"
+        },
+        "message": "fix(android-qa): avoid duplicate kart observations within strict deadline\n\nReuse the current frame's complete list analysis after verifying its image hash. Settle after real inputs and rejected surfaces while retaining fresh observations, full OCR, exact-caption and ambiguity checks, stable bounds, gesture limits and the original 150-second deadline.\n\nVerified by the actual failing 9de baseline and 54 successful regression tests in run 43628848768. Current 9de Android C4 passed; its independent update tour exhausted the Gecko Velo observation budget. Full acceptance must run afresh on this commit.",
+        "tree": {
+          "sha": "e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/e17540fd0c9d047d72a67fa05c0ca5d2edfe70a6"
+        },
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/198dd3d1a5862797a37f0d1d638ea929009b8848",
+        "comment_count": 0,
+        "verification": {
+          "verified": false,
+          "reason": "unsigned",
+          "signature": null,
+          "payload": null,
+          "verified_at": null
+        }
+      },
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/198dd3d1a5862797a37f0d1d638ea929009b8848/comments",
+      "author": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "Ullmann27",
+        "id": 64243701,
+        "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Ullmann27",
+        "html_url": "https://github.com/Ullmann27",
+        "followers_url": "https://api.github.com/users/Ullmann27/followers",
+        "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+        "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+        "repos_url": "https://api.github.com/users/Ullmann27/repos",
+        "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "9deaa3f24561bc65caba898585c0c00f1c77162b",
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/9deaa3f24561bc65caba898585c0c00f1c77162b",
+          "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/9deaa3f24561bc65caba898585c0c00f1c77162b"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "f8c266c672632aa086b11e695fb1883a063e2123",
+      "filename": ".github/probes/modernization_android_tour.py",
+      "status": "modified",
+      "additions": 10,
+      "deletions": 7,
+      "changes": 17,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/198dd3d1a5862797a37f0d1d638ea929009b8848/.github%2Fprobes%2Fmodernization_android_tour.py",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/198dd3d1a5862797a37f0d1d638ea929009b8848/.github%2Fprobes%2Fmodernization_android_tour.py",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/.github%2Fprobes%2Fmodernization_android_tour.py?ref=198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "patch": "@@ -374,13 +374,14 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:\n     return None\n \n \n-def _stage_kart_scroll_recovery(kart: str = 'gecko_velo'):\n-    \"\"\"Scroll only within a twice observed current list, including clipped gaps.\"\"\"\n+def _stage_kart_scroll_recovery():\n+    \"\"\"Use the caller's current validated list; rehash both frames before input.\"\"\"\n     previous, swipes = None, 0\n \n-    def recovery(frame, lines, source, *, deadline, previous_missing_frame):\n+    def recovery(frame, current, source, *, deadline, previous_missing_frame):\n         nonlocal previous, swipes\n-        current = garage_evidence.stage_garage_scroll_observation(frame, lines, source=source, kart=kart)\n+        garage_evidence.demand(current['source_sha256'] == frame['source_sha256'],\n+                               'Observed vehicle-list proof belongs to a different current screenshot')\n         stable = (previous is not None and previous_missing_frame is not None and\n                   previous_missing_frame.get('pixels') == frame['pixels'] and\n                   previous_missing_frame.get('source') != frame.get('source') and\n@@ -423,7 +424,7 @@ def _select_stage_kart(out: Path, kart: str, timeout: float = 150) -> dict:\n              'scope': 'Current complete card touch; actual new race selection is checked separately',\n              'frames': []}\n     previous, previous_viewport, previous_missing_frame = None, None, None\n-    recovery = _stage_kart_scroll_recovery(kart)\n+    recovery = _stage_kart_scroll_recovery()\n     try:\n         while time.monotonic() < deadline:\n             name = f'{tag}-{len(touch[\"frames\"])}'\n@@ -434,6 +435,7 @@ def _select_stage_kart(out: Path, kart: str, timeout: float = 150) -> dict:\n             touch['frames'].append(frame)\n             if not frame['acceptable_for_target_sampling']:\n                 previous, previous_viewport, previous_missing_frame = None, None, None\n+                time.sleep(min(1.5, max(0, deadline - time.monotonic())))\n             else:\n                 remaining = deadline - time.monotonic()\n                 if remaining <= 0:\n@@ -448,10 +450,12 @@ def _select_stage_kart(out: Path, kart: str, timeout: float = 150) -> dict:\n                     frame['reasons'].append('complete requested caption not observed inside the current card clip')\n                     if time.monotonic() >= deadline:\n                         break\n-                    report = recovery(frame, lines, source, deadline=deadline,\n+                    report = recovery(frame, current, source, deadline=deadline,\n                                       previous_missing_frame=previous_missing_frame)\n                     frame['missing_caption_recovery'] = report\n                     previous_missing_frame = None if report['status'] == 'SWIPE_SENT' else frame\n+                    if report['status'] == 'SWIPE_SENT':\n+                        time.sleep(min(1.5, max(0, deadline - time.monotonic())))\n                 else:\n                     previous_missing_frame = None\n                     if (previous_viewport is None or\n@@ -477,7 +481,6 @@ def _select_stage_kart(out: Path, kart: str, timeout: float = 150) -> dict:\n                         time.sleep(min(1.5, max(0, deadline - time.monotonic())))\n                         return {'kart': kart, 'caption': label, 'touch': touch['touch'],\n                                 'readiness': journal.name, 'scope': touch['scope']}\n-            time.sleep(min(1.5, max(0, deadline - time.monotonic())))\n         raise TimeoutError('Current complete kart caption was not observed twice inside the list: ' + label)\n     except Exception as error:\n         touch.update(status='FAIL', error=str(error))"
+    },
+    {
+      "sha": "20f856522493f5fdfc41d147de70bb096a2938fa",
+      "filename": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 2,
+      "changes": 5,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/198dd3d1a5862797a37f0d1d638ea929009b8848/tools%2Fandroid_qa%2Ftests%2Ftest_kart_garage_evidence.py",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/198dd3d1a5862797a37f0d1d638ea929009b8848/tools%2Fandroid_qa%2Ftests%2Ftest_kart_garage_evidence.py",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/tools%2Fandroid_qa%2Ftests%2Ftest_kart_garage_evidence.py?ref=198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "patch": "@@ -116,7 +116,8 @@ def test_missing_current_context_and_incomplete_frames_are_rejected(self):\n \n     def test_actual_scroll_needs_two_stable_frames_and_unchanged_screenshot(self):\n         from test_kart_garage_scroll_recovery import (\n-            VISIBLE_LIST, gesture_is_inside, original_observation)\n+            VISIBLE_LIST, gesture_is_inside, original_observation,\n+            scroll_recovery_from_validated_observations)\n         frame, lines, original_source = original_observation('main', 0)\n         with tempfile.TemporaryDirectory() as folder:\n             def observation(index):\n@@ -127,7 +128,7 @@ def observation(index):\n             second_frame, second_source = observation(1)\n             third_frame, third_source = observation(2)\n             fourth_frame, fourth_source = observation(3)\n-            callback = tour._stage_kart_scroll_recovery()\n+            callback = scroll_recovery_from_validated_observations()\n             with patch.object(tour.base, 'adb') as adb, patch.object(tour.time, 'monotonic', return_value=0):\n                 first = callback(first_frame, lines, first_source, deadline=10, previous_missing_frame=None)\n                 self.assertEqual(first['status'], 'WAITING_FOR_SECOND_LIST_FRAME')"
+    },
+    {
+      "sha": "3da90d30a2c602e800fda9b6165e335eb039afb7",
+      "filename": "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+      "status": "modified",
+      "additions": 139,
+      "deletions": 5,
+      "changes": 144,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/198dd3d1a5862797a37f0d1d638ea929009b8848/tools%2Fandroid_qa%2Ftests%2Ftest_kart_garage_scroll_recovery.py",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/198dd3d1a5862797a37f0d1d638ea929009b8848/tools%2Fandroid_qa%2Ftests%2Ftest_kart_garage_scroll_recovery.py",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/tools%2Fandroid_qa%2Ftests%2Ftest_kart_garage_scroll_recovery.py?ref=198dd3d1a5862797a37f0d1d638ea929009b8848",
+      "patch": "@@ -158,6 +158,19 @@ def test_correct_dimensions_and_file_hash_do_not_make_a_jpeg_a_capture_png(self)\n                 evidence.stage_garage_scroll_observation(frame, lines, source=source)\n \n \n+def scroll_recovery_from_validated_observations():\n+    \"\"\"Retain the real current-frame analysis before the private decision step.\"\"\"\n+    decide = tour._stage_kart_scroll_recovery()\n+\n+    def observe_then_decide(frame, lines, source, *, deadline, previous_missing_frame):\n+        current = tour.garage_evidence.stage_garage_scroll_observation(\n+            frame, lines, source=source)\n+        return decide(frame, current, source, deadline=deadline,\n+                      previous_missing_frame=previous_missing_frame)\n+\n+    return observe_then_decide\n+\n+\n class ObservedGarageScrollBoundaryTests(unittest.TestCase):\n     def setUp(self):\n         directory = tempfile.TemporaryDirectory()\n@@ -175,7 +188,7 @@ def test_a_new_horizontal_layout_requires_its_own_second_current_observation(sel\n         main, main_lines, main_source = self.observation('main', 2, 'old-layout')\n         updated, updated_lines, updated_source = self.observation('update', 2, 'new-layout-first')\n         current, current_lines, current_source = self.observation('update', 2, 'new-layout-second')\n-        callback = tour._stage_kart_scroll_recovery()\n+        callback = scroll_recovery_from_validated_observations()\n         with patch.object(tour.base, 'adb') as adb, \\\n                 patch.object(tour.time, 'monotonic', return_value=0):\n             first = callback(main, main_lines, main_source, deadline=10,\n@@ -196,7 +209,7 @@ def test_a_missing_intervening_frame_cannot_reuse_the_prior_scroll_observation(s\n         frame, lines, source = self.observation('main', 2, 'before-gap')\n         after, after_lines, after_source = self.observation('main', 2, 'after-gap')\n         last, last_lines, last_source = self.observation('main', 2, 'current-pair')\n-        callback = tour._stage_kart_scroll_recovery()\n+        callback = scroll_recovery_from_validated_observations()\n         with patch.object(tour.base, 'adb') as adb, \\\n                 patch.object(tour.time, 'monotonic', return_value=0):\n             callback(frame, lines, source, deadline=10, previous_missing_frame=None)\n@@ -215,7 +228,7 @@ def test_replaced_previous_png_invalidates_the_pair_even_when_current_png_is_unc\n             previous.write_bytes(original.read_bytes())\n             current.write_bytes(original.read_bytes())\n             current_frame = dict(frame, source=current.name)\n-            callback = tour._stage_kart_scroll_recovery()\n+            callback = scroll_recovery_from_validated_observations()\n             with patch.object(tour.base, 'adb') as adb, \\\n                     patch.object(tour.time, 'monotonic', return_value=0):\n                 callback(frame, lines, previous, deadline=10, previous_missing_frame=None)\n@@ -227,7 +240,7 @@ def test_replaced_previous_png_invalidates_the_pair_even_when_current_png_is_unc\n     def test_expired_deadline_refuses_an_otherwise_stable_real_scroll(self):\n         frame, lines, source = self.observation('main', 2, 'first')\n         current, current_lines, current_source = self.observation('main', 2, 'second')\n-        callback = tour._stage_kart_scroll_recovery()\n+        callback = scroll_recovery_from_validated_observations()\n         with patch.object(tour.base, 'adb') as adb, \\\n                 patch.object(tour.time, 'monotonic', return_value=0):\n             callback(frame, lines, source, deadline=10, previous_missing_frame=None)\n@@ -238,7 +251,7 @@ def test_expired_deadline_refuses_an_otherwise_stable_real_scroll(self):\n     def test_deadline_expiring_during_real_pixel_analysis_prevents_input(self):\n         frame, lines, source = self.observation('main', 2, 'first')\n         current, current_lines, current_source = self.observation('main', 2, 'second')\n-        callback = tour._stage_kart_scroll_recovery()\n+        callback = scroll_recovery_from_validated_observations()\n         clock = [0.0]\n         original = tour.garage_evidence.stage_garage_scroll_observation\n \n@@ -256,6 +269,19 @@ def analyze_then_expire(*args, **kwargs):\n         adb.assert_not_called()\n \n \n+    def test_a_validated_list_from_another_current_png_cannot_authorize_recovery(self):\n+        main, lines, source = self.observation('main', 2, 'first-layout')\n+        changed, _, changed_source = self.observation('update', 2, 'different-layout')\n+        proof = tour.garage_evidence.stage_garage_scroll_observation(\n+            main, lines, source=source)\n+        decide = tour._stage_kart_scroll_recovery()\n+        with patch.object(tour.base, 'adb') as adb, \\\n+                self.assertRaisesRegex(RuntimeError, 'different current screenshot'):\n+            decide(changed, proof, changed_source, deadline=10,\n+                   previous_missing_frame=None)\n+        adb.assert_not_called()\n+\n+\n class GarageExactTargetTests(unittest.TestCase):\n     def current(self, layout='main', index=0):\n         _, lines, source = original_observation(layout, index)\n@@ -424,6 +450,114 @@ def test_anchorless_view_can_scroll_but_only_two_new_complete_frames_allow_the_t\n                 self.assertEqual([frame['target']['stable_observed_target']\n                                   for frame in journal['frames'] if 'target' in frame], [False, True])\n \n+    def test_only_real_inputs_settle_and_each_fresh_frame_has_one_full_list_analysis(self):\n+        # Controlled producer/clock replay, not measured Android throughput.\n+        # Both the normal budget and a deliberately tight budget must still\n+        # require four fresh frames: two list observations, then two targets.\n+        for timeout, final_pause in ((150, 1.5), (5, .5)):\n+            with self.subTest(timeout=timeout):\n+                replay = GarageObservationReplay(self.out, [('main', 2), ('main', 2),\n+                                                            ('main', 0), ('main', 0)])\n+                pauses = []\n+\n+                def settle(seconds):\n+                    pauses.append((replay.capture_count, len(replay.inputs), seconds))\n+                    replay.sleep(seconds)\n+\n+                analyze = tour.garage_evidence.stage_garage_scroll_observation\n+                with replay.installed(), \\\n+                        patch.object(tour.garage_evidence, 'stage_garage_scroll_observation',\n+                                     wraps=analyze) as analyses, \\\n+                        patch.object(tour.time, 'sleep', side_effect=settle):\n+                    result = tour._select_stage_kart(self.out, 'comet', timeout=timeout)\n+                self.assertEqual(replay.capture_count, 4)\n+                self.assertEqual(replay.ocr_count, 4)\n+                self.assertEqual(analyses.call_count, 4)\n+                sources = [call.kwargs['source'].name for call in analyses.call_args_list]\n+                self.assertEqual(len(set(sources)), 4)\n+                self.assertEqual([event['after_capture'] for event in replay.inputs], [2, 4])\n+                self.assertEqual([event['args'][7] for event in replay.inputs], ['650', '120'])\n+                self.assertEqual(pauses, [(2, 1, 1.5), (4, 2, final_pause)])\n+                self.assertTrue(all(call['kwargs'].get('all_caption_regions') is True\n+                                    and call['kwargs'].get('exact') is True\n+                                    for call in replay.ocr_calls))\n+                journal = json.loads((self.out / result['readiness']).read_text())\n+                self.assertEqual(journal['status'], 'TOUCH_SENT')\n+                self.assertEqual(journal['frames'][0]['missing_caption_recovery']['status'],\n+                                 'WAITING_FOR_SECOND_LIST_FRAME')\n+                self.assertEqual(journal['frames'][1]['missing_caption_recovery']['status'],\n+                                 'SWIPE_SENT')\n+                self.assertEqual([frame['target']['stable_observed_target']\n+                                  for frame in journal['frames'] if 'target' in frame], [False, True])\n+\n+    def test_incomplete_surfaces_keep_the_bounded_pause_without_ocr_or_input(self):\n+        for pixels, color in (((2400, 1080), (0, 0, 0)),\n+                              ((1080, 2400), (30, 50, 70))):\n+            with self.subTest(pixels=pixels):\n+                replay = GarageObservationReplay(self.out, [('main', 0)] * 3)\n+                capture = replay.capture\n+                pauses = []\n+\n+                def incomplete_first(*args, **kwargs):\n+                    snapshot = capture(*args, **kwargs)\n+                    if replay.capture_count == 1:\n+                        # Deliberate negative input in the temporary replay,\n+                        # never a replacement for an archived original PNG.\n+                        with Image.new('RGB', pixels, color) as incomplete:\n+                            incomplete.save(self.out / snapshot['file'])\n+                    return snapshot\n+\n+                def settle(seconds):\n+                    pauses.append((replay.capture_count, len(replay.inputs), seconds))\n+                    replay.sleep(seconds)\n+\n+                replay.capture = incomplete_first\n+                with replay.installed(), patch.object(tour.time, 'sleep', side_effect=settle):\n+                    result = tour._select_stage_kart(self.out, 'comet')\n+                self.assertEqual(replay.capture_count, 3)\n+                self.assertEqual(replay.ocr_count, 2)\n+                self.assertEqual([event['after_capture'] for event in replay.inputs], [3])\n+                self.assertEqual(pauses, [(1, 0, 1.5), (3, 1, 1.5)])\n+                journal = json.loads((self.out / result['readiness']).read_text())\n+                self.assertFalse(journal['frames'][0]['acceptable_for_target_sampling'])\n+                self.assertNotIn('kart_list', journal['frames'][0])\n+                self.assertEqual([frame['target']['stable_observed_target']\n+                                  for frame in journal['frames'] if 'target' in frame], [False, True])\n+\n+    def test_png_change_after_list_analysis_still_prevents_the_real_scroll(self):\n+        replay = GarageObservationReplay(self.out, [('main', 2), ('main', 2)])\n+        _, _, replacement = original_observation('update', 2)\n+        analyze = tour.garage_evidence.stage_garage_scroll_observation\n+\n+        def analyze_then_replace(*args, **kwargs):\n+            result = analyze(*args, **kwargs)\n+            if replay.capture_count == 2:\n+                shutil.copyfile(replacement, kwargs['source'])\n+            return result\n+\n+        with replay.installed(), \\\n+                patch.object(tour.garage_evidence, 'stage_garage_scroll_observation',\n+                             side_effect=analyze_then_replace), \\\n+                self.assertRaisesRegex(RuntimeError, 'changed before gesture'):\n+            tour._select_stage_kart(self.out, 'gecko_velo')\n+        self.assertFalse(replay.inputs)\n+        journal = json.loads((self.out / '21_stage_select_gecko_velo-surface-readiness.json').read_text())\n+        self.assertEqual(journal['status'], 'FAIL')\n+\n+    def test_faster_observation_does_not_allow_a_sixth_list_gesture_or_a_guessed_tap(self):\n+        replay = GarageObservationReplay(self.out, [('main', 2)])\n+        with replay.installed(), \\\n+                self.assertRaisesRegex(RuntimeError, 'after five observed list gestures'):\n+            tour._select_stage_kart(self.out, 'gecko_velo')\n+        self.assertEqual(replay.capture_count, 12)\n+        self.assertEqual(len(replay.inputs), 5)\n+        self.assertTrue(all(event['args'][7] == '650' for event in replay.inputs))\n+        self.assertTrue(all(event['args'][3:5] != event['args'][5:7]\n+                            for event in replay.inputs))\n+        journal = json.loads((self.out / '21_stage_select_gecko_velo-surface-readiness.json').read_text())\n+        self.assertEqual(journal['status'], 'FAIL')\n+        self.assertNotIn('touch', journal)\n+\n     def test_one_old_complete_frame_and_one_new_frame_do_not_form_a_stable_target_pair(self):\n         replay = GarageObservationReplay(self.out, [('main', 0), ('main', 2),\n                                                     ('main', 0), ('main', 0)])"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "artifactId": 14203175225,
+  "workflowRun": 43814971553,
+  "archiveSha256": "3575c784355901d6d0f35cbce3de05bfd93186222047d2c1a62d29afcc565f76",
+  "byteExactOriginals": [
+    {
+      "path": "checkers/current-gates.log",
+      "bytes": 2382,
+      "sha256": "377d202bbbe0db507484a88a9cf3de39591c220aaad12f64d3ce85896c85582f"
+    },
+    {
+      "path": "checkers/original-gates.log",
+      "bytes": 17041,
+      "sha256": "756fdb02feb84c2f74fa6f1db8a9feeaa9615d68e63ff18e91b14951c80b491b"
+    },
+    {
+      "path": "checkers/public-download-gates.log",
+      "bytes": 2755,
+      "sha256": "20e40bc4f5b4adac818ac337ef0e343bf7d23d6a608c8b36efede809f53878cf"
+    },
+    {
+      "path": "checkers/publication-gates.log",
+      "bytes": 1902,
+      "sha256": "cd657953501dbf37189977141ffce9b4d3c6dbbfea1e78cad46f55427d7cd2f9"
+    },
+    {
+      "path": "checkers/reference-gates.log",
+      "bytes": 5274,
+      "sha256": "592467968db3665e1e48977da2ec4f7267b4f2f43fe81342214ffa22b55ec03c"
+    },
+    {
+      "path": "checkers/replay-gates.log",
+      "bytes": 8306,
+      "sha256": "2525b9cc6e9acffa3f5bdb4a46869ef39e50427f86ff1cd234bfe5c244c000c6"
+    },
+    {
+      "path": "checkers/wrapped-reader.log",
+      "bytes": 2824,
+      "sha256": "92b75cfd8c458c07e2ad03c270050af57ce8c762a8407f63e8bf96e3900ede85"
+    },
+    {
+      "path": "download/original-build-job.json",
+      "bytes": 4514,
+      "sha256": "1905f9a78cb2085451bcd7e5e26a4b018459942e811aaba9360021e8a2e2773e"
+    },
+    {
+      "path": "download/original-run.json",
+      "bytes": 13802,
+      "sha256": "0148a252c8f7833dbec7fbcbb12c170fc9b4bba14c122ff0df1bfc37e2269d46"
+    },
+    {
+      "path": "download/original-validate-job.json",
+      "bytes": 5726,
+      "sha256": "d5f557e1c706ec9505aaa7e6e45624ad6b27bb0692b51ecaed3ad3a740d729a7"
+    },
+    {
+      "path": "download/original-x86-artifact.json",
+      "bytes": 810,
+      "sha256": "3e898baecfa54d1d0e9ce0001e408ab7188bfd2a9f28089188f02d6a50d86959"
+    },
+    {
+      "path": "download/verified-download.json",
+      "bytes": 22934,
+      "sha256": "e084360b37eabacc1e578c4a0f29463d9699690c5355bf12cd84b9cd3c611aca"
+    },
+    {
+      "path": "emulator/mesa-renderer.txt",
+      "bytes": 1774,
+      "sha256": "a128430eb80d0bbbf388af9fbaf5442a645e9bb880b2d1ab82b14d52a3bb3d17"
+    },
+    {
+      "path": "emulator/xvfb.log",
+      "bytes": 4696,
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+    },
+    {
+      "path": "source/qa-source-binding.json",
+      "bytes": 20624,
+      "sha256": "d3f934ccc65cbaf8ccc92a1a1b3e7fe46b3e7bc86937a2ab65d1807f3bdc9d2f"
+    }
+  ]
+}

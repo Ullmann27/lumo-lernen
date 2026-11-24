@@ -1,0 +1,57 @@
+{
+  "scope": "read-only textual/source binding; no tests run",
+  "production_delta": "only pressedScale: 1; removing this single line exactly reproduces the entire 491 baseline",
+  "pressed_target_analysis": {
+    "minimum_dp": 48,
+    "old_default_scale": 0.955,
+    "old_full_press_dp": 45.84,
+    "new_scale": 1,
+    "new_minimum_dp": 48,
+    "type": "source-derived arithmetic, not runtime measurement"
+  },
+  "test_call_counts": [
+    {
+      "path": "test/design/connect_four_visual_test.dart",
+      "expect_calls_before": 4,
+      "expect_calls_after": 11,
+      "ensureVisible_before": 1,
+      "ensureVisible_after": 1
+    },
+    {
+      "path": "test/games/connect_four_fold_controls_test.dart",
+      "expect_calls_before": 6,
+      "expect_calls_after": 17,
+      "ensureVisible_before": 1,
+      "ensureVisible_after": 1
+    },
+    {
+      "path": "test/games/games_screen_flow_test.dart",
+      "expect_calls_before": 29,
+      "expect_calls_after": 38,
+      "ensureVisible_before": 2,
+      "ensureVisible_after": 2
+    }
+  ],
+  "unchanged_dependencies": [
+    {
+      "path": "lib/widgets/design/lumo_motion.dart",
+      "bytes": 8177,
+      "sha256": "d4c3a71824966f8b3d7e1be0aa9157b36b0497a0f55dfa44ecf730d511c4ef93",
+      "git_blob": "2f92e6319cda41d73abbc677545e02f2d509eb53"
+    },
+    {
+      "path": "test/games/connect_four_scroll_alignment_test.dart",
+      "bytes": 3776,
+      "sha256": "420c0bfb92c9dfabc828c7188a30608fcb957180f26f5d6b3f1f86f2090646ff",
+      "git_blob": "29cd071778aae6d5b643e48df7c6a67a4d993db6"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_engine.dart",
+      "bytes": 9755,
+      "sha256": "d08eb72cdc131ab764510b346d509a0c5d24592f3e3bbeafb7db47fdfe49f334",
+      "git_blob": "0ad49aeaab65ea34ceb387e73788cdb886a210db"
+    }
+  ],
+  "producer_layout_excluded": "fixed 12dp phone padding and full play-area reformat not adopted",
+  "existing_assertions": "Original semantic result/save/restart/column-size/alignment checks remain; stronger real six-move, pressed-rect, viewport and delayed-refusal checks added. Reason messages and bounded state observation changed only as shown in integration.patch."
+}

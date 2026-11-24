@@ -1,0 +1,31 @@
+name: Lumo 1954 tour identity contract
+on:
+  push:
+    branches:
+      - chatgpt/lumo-stability-1954-provenance-cli-2026-10-17
+    paths:
+      - .github/workflows/lumo-1954-followup-android.yml
+      - .github/workflows/lumo-1954-tour-cli-contract.yml
+      - scripts/tests/test_android_tour_provenance_args.py
+      - .github/probes/modernization_android_tour.py
+  pull_request:
+    paths:
+      - .github/workflows/lumo-1954-followup-android.yml
+      - .github/workflows/lumo-1954-tour-cli-contract.yml
+      - scripts/tests/test_android_tour_provenance_args.py
+      - .github/probes/modernization_android_tour.py
+permissions:
+  contents: read
+jobs:
+  verify-provenance-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify both production Android tours always pass exact APK provenance
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s scripts/tests -p 'test_android_tour_provenance_args.py' -v
+          python3 -m py_compile .github/probes/modernization_android_tour.py

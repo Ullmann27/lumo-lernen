@@ -1,0 +1,12 @@
+00:00 +0: loading /tmp/lumo-integration-20261122/lumo-lernen/test/learning_modules/learning_module_progress_test.dart
+00:00 +0: method help remains assisted through retries and resets for a new task
+00:00 +1: method help preserves existing evidence identity and pending retry
+00:00 +2: wallet write failure retries its existing reward and records one accepted answer
+00:00 +3: profile write failure flushes a counted answer without double Daily or hint
+00:00 +4: false answers persist exactly once on retry and never increment Daily
+00:00 +5: failed profile load cannot replace saved history with an empty profile
+00:00 +6: unmount while the wallet is delayed still completes wallet AND learning storage
+00:00 +7: intermediate rewards and once-per-session bonus never invent learning answers
+00:00 +8: feedback cannot advance in background and cancels cleanly on unmount
+00:00 +9: accepted answer lands once in the attempt log with prompt and time
+00:00 +10: All tests passed!

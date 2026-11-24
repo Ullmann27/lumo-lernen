@@ -1,0 +1,1222 @@
+{
+  "schema": 1,
+  "status": "DERIVED_BASELINE_FROM_RETAINED_ORIGINALS",
+  "sources": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "query_scope": "First 100 open pull requests ordered by updated descending, observed at the preserved 17:07 radar; not full history",
+      "original_response_bytes": 1799987,
+      "original_response_sha256": "2137d215ce12d04e754e975be396f041a70bdb18bfa3390075731c8526246c56",
+      "pull_requests": [
+        {
+          "number": 494,
+          "head": "b7210db3f53361987fd33592de438fd7984d991a",
+          "updated_at": "2026-11-14T17:06:45Z",
+          "title": "LUMO 0.13.8+2020: reviewed 3D worlds, Lumo animation and Android integration"
+        },
+        {
+          "number": 477,
+          "head": "90fd18d98520a610f7a650e1ea4dfe3142495d47",
+          "updated_at": "2026-11-14T17:05:53Z",
+          "title": "Belege für Studio 4ab: 2.514 Flutter-Tests und Android-Hostkompilierung"
+        },
+        {
+          "number": 493,
+          "head": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+          "updated_at": "2026-11-14T17:00:58Z",
+          "title": "LUMO: Zeichenbedienung, exakte Lernaufgaben und zuverlässige Spielrückkehr"
+        },
+        {
+          "number": 491,
+          "head": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+          "updated_at": "2026-11-14T16:51:37Z",
+          "title": "LUMO: Eingabe und Vier gewinnt reparieren, lokalen Play-AAB-Bauweg ergänzen"
+        },
+        {
+          "number": 497,
+          "head": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+          "updated_at": "2026-11-14T16:43:59Z",
+          "title": "Connect original Lumo, direct Village return and complete Android delivery proof"
+        },
+        {
+          "number": 502,
+          "head": "92bb6ebf1e3892eba1695646e489fdd524d1736f",
+          "updated_at": "2026-11-14T16:29:50Z",
+          "title": "Complete the single APK with verified input, camera and village repairs"
+        },
+        {
+          "number": 485,
+          "head": "5ad005bd080ac8c17f88eefcd3d2833c49be6d48",
+          "updated_at": "2026-11-14T16:18:17Z",
+          "title": "Integrate C4 2020 with original Lumo PCM/facial fixes and full acceptance gates"
+        },
+        {
+          "number": 505,
+          "head": "90401bf148b5ea34fd6010f89f743629233ef40c",
+          "updated_at": "2026-11-14T14:42:27Z",
+          "title": "fix(c4): Vier Gewinnt sofort spielbar öffnen, nativen 3D-Start gezielt auslösen"
+        },
+        {
+          "number": 504,
+          "head": "5259bfe08ff637a907a50411670fc4ee223dea00",
+          "updated_at": "2026-11-14T14:29:46Z",
+          "title": "LUMO: vorhandene magische 3D-Spielewelt endlich aus Flutter starten können"
+        },
+        {
+          "number": 486,
+          "head": "0ac948f633c0310e3a220c9ac5d81891e724bb67",
+          "updated_at": "2026-11-14T10:54:36Z",
+          "title": "Repair original console frame parsing and capture bounded API37 launch diagnostics"
+        },
+        {
+          "number": 501,
+          "head": "b5b7f6d9c2c33fd43234fc28fefd1f84f933dcea",
+          "updated_at": "2026-11-14T10:30:21Z",
+          "title": "QA: prove opened Home cards and restore Village platform before invariants"
+        },
+        {
+          "number": 500,
+          "head": "64b0b9f93802902978c140cdae9b0fc9d50e0938",
+          "updated_at": "2026-11-14T10:19:30Z",
+          "title": "LUMO 2020: falsche Lernfachwechsel und wiederholte Lesekarten reparieren"
+        },
+        {
+          "number": 499,
+          "head": "f86509f0bc1f3b5ca9269edf950b7e9d857fc2b5",
+          "updated_at": "2026-11-14T09:39:30Z",
+          "title": "LUMO 2020 APK: Dorfwirtschaft und alle vorhandenen 3D-Abenteuer-Startwege verbinden"
+        },
+        {
+          "number": 498,
+          "head": "c06200cc05757ece620fa50833ee63d0a360fdfc",
+          "updated_at": "2026-11-14T09:34:41Z",
+          "title": "LUMO 2020: echte APK-Blocker beheben und aktuelle 3D-/C4-Funktionen anschließen"
+        },
+        {
+          "number": 495,
+          "head": "34e079a2d85e417b83e96b4fa77f72f71f394115",
+          "updated_at": "2026-11-14T09:00:34Z",
+          "title": "LUMO 2020: integrierte magische 3D-Welten als signierter Android-Testkandidat"
+        },
+        {
+          "number": 496,
+          "head": "99f04bff80f82a3ee4963aaf29f970a7f79ba0cc",
+          "updated_at": "2026-11-14T08:57:48Z",
+          "title": "LUMO Spielewelt: Dorfwirtschaft als echtes 11. Abenteuer bis Android/Godot angeschlossen"
+        },
+        {
+          "number": 492,
+          "head": "de3b74c56052794196b9f14fc65a13412209651f",
+          "updated_at": "2026-11-14T08:49:44Z",
+          "title": "LUMO: originale Lernlandschaften mit räumlicher Bewegung und lebendiger Atmosphäre"
+        },
+        {
+          "number": 487,
+          "head": "330951be26aa1e76c438a235dbf79a727a01e5c3",
+          "updated_at": "2026-11-14T07:45:43Z",
+          "title": "LUMO Play-Readiness: 3 Hauptagenten, 30 begrenzte Unterauftraege, harte Qualitaetsgates"
+        },
+        {
+          "number": 465,
+          "head": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+          "updated_at": "2026-11-14T07:41:44Z",
+          "title": "LUMO: Native-Nachweise, historische APKs und Android-Anschlüsse integrieren"
+        },
+        {
+          "number": 484,
+          "head": "f536ecf86bfece11786a9a76ac0d3fdb16123093",
+          "updated_at": "2026-11-14T07:41:39Z",
+          "title": "LUMO Lernen: exakte Fach-/Klassenwahl und systematisches Aufgaben-Audit 1–4"
+        },
+        {
+          "number": 483,
+          "head": "7e2ab20f6f323c66a1e02de3550d73ef31b2037e",
+          "updated_at": "2026-11-14T07:20:26Z",
+          "title": "test(android): retry 7b16 console continuity and portrait joystick with exact evidence"
+        },
+        {
+          "number": 481,
+          "head": "f89b77bbc9caacfb677a8f0b7922f27fcbbd546f",
+          "updated_at": "2026-11-14T05:15:21Z",
+          "title": "Test unchanged 7b16 Creative APK with repaired, independently bound observations"
+        },
+        {
+          "number": 466,
+          "head": "86445f53af5d573549fc8cf03405261611f3cb7e",
+          "updated_at": "2026-11-14T04:59:28Z",
+          "title": "LUMO Studio 2019: echte Lernaufgaben, stabile Kinderspielstände und geprüfte 3D-Integration"
+        },
+        {
+          "number": 482,
+          "head": "e6a9407c5f089cf1776daf364ff7ca6760025a2e",
+          "updated_at": "2026-11-14T04:59:21Z",
+          "title": "Verify unchanged 7b16 runtime with continuous device logs and isolated SWANGLE comparison"
+        },
+        {
+          "number": 478,
+          "head": "7d7b703f18100b82ce59591ce48fe2d90852ec5e",
+          "updated_at": "2026-11-14T04:57:42Z",
+          "title": "Recheck exact 4ab APK with original-image OCR and bounded Cards readiness"
+        },
+        {
+          "number": 480,
+          "head": "61c94cfb78bda8dfbe191331eca0fd0382deb151",
+          "updated_at": "2026-11-14T03:50:26Z",
+          "title": "[QA] Unveränderte 7b16-APK: Fahrerauswahl und Android17-Renderer"
+        },
+        {
+          "number": 479,
+          "head": "995e5eebf789f667920a5027919db27ea1d2dcfc",
+          "updated_at": "2026-11-14T03:06:24Z",
+          "title": "Preserve original failed Studio Creative evidence with verified public byte copy"
+        },
+        {
+          "number": 474,
+          "head": "d2c4589a074ee9d56e9fda4c1c6fd20897d09bed",
+          "updated_at": "2026-11-13T23:05:10Z",
+          "title": "QA: repair observed creative portals on exact 51e APK"
+        },
+        {
+          "number": 473,
+          "head": "2fdd038d00ed7706971786400e3e1a42f5290c88",
+          "updated_at": "2026-11-13T21:35:39Z",
+          "title": "QA: real Android inputs for Studio Jump, Build, Puzzle and Treasure"
+        },
+        {
+          "number": 472,
+          "head": "02376fb60bc1c56733cd9356968a7b9576713afd",
+          "updated_at": "2026-11-13T20:59:08Z",
+          "title": "Diagnose Android 17 startup with verified CLI22 and the real generated AVD"
+        },
+        {
+          "number": 470,
+          "head": "036307614cc0a0f0c1b48f16ff9799afc1112bcd",
+          "updated_at": "2026-11-13T19:29:55Z",
+          "title": "Diagnose: Android 17 framework readiness before original emulator unlock"
+        },
+        {
+          "number": 468,
+          "head": "1f47a96116e22a4c0c1fab655d0db165c461736e",
+          "updated_at": "2026-11-13T17:38:39Z",
+          "title": "LUMO 0.13.8+2020: Studio, Spiele-, Grafik- und Dorf-Integration mit kompletter APK-Abnahme"
+        },
+        {
+          "number": 467,
+          "head": "d5bf60e7f21f184d001b44a137be08b1b00a0149",
+          "updated_at": "2026-11-13T17:30:07Z",
+          "title": "LUMO 2019: gemeinsamer Android-Kandidat mit repariertem Dorfmodus"
+        },
+        {
+          "number": 461,
+          "head": "8eab228433f124c1e2332e3d3c2ecf462ec8b136",
+          "updated_at": "2026-11-13T13:56:10Z",
+          "title": "LUMO Next Generation: echte 3D-Erklärungen, Cards-Spielraum und geprüfte Lernbewertung"
+        },
+        {
+          "number": 459,
+          "head": "47889f74a651b073965def70743417cf320b1eb9",
+          "updated_at": "2026-11-12T14:12:00Z",
+          "title": "Lumo 2017: klare Spielewelt und integriertes Kart mit mehr Tempo und Action"
+        },
+        {
+          "number": 460,
+          "head": "1166e9ae5aa59204ea5570bb95cdb262638f7841",
+          "updated_at": "2026-11-12T14:10:40Z",
+          "title": "Lumo 2017: geprüfte APK mit korrigiertem SDK-Setup veröffentlichen"
+        },
+        {
+          "number": 458,
+          "head": "fe3f75d3abf159e9cc20aab12f240459c80e9b3d",
+          "updated_at": "2026-11-11T17:00:05Z",
+          "title": "LUMO 2016: separater signierter APK-Baukandidat ohne Änderung an Produktcode"
+        },
+        {
+          "number": 457,
+          "head": "43f1d7c2b847be757123a59133967e85a58407dd",
+          "updated_at": "2026-11-11T16:51:01Z",
+          "title": "LUMO 0.13.4+2016: Kart-Effekte integrieren, Build und 2015→2016-Update prüfen"
+        },
+        {
+          "number": 456,
+          "head": "a1d581f0b0b392e0bc4ad7d90fd38d14f8d74095",
+          "updated_at": "2026-11-11T14:19:56Z",
+          "title": "QA: prove native Garage selections and race continuation in the existing 2015 APK"
+        },
+        {
+          "number": 455,
+          "head": "6fbb1e2ec3eb828ff27897e46745b74f327896ca",
+          "updated_at": "2026-11-11T14:17:42Z",
+          "title": "LUMO 0.13.3+2015: Sonnenhafen, Garage und Original-Lumo – geprüfte Integration"
+        },
+        {
+          "number": 451,
+          "head": "696db258693465acfc27d051c9c0874710ac9046",
+          "updated_at": "2026-11-10T22:05:14Z",
+          "title": "LUMO 2014: Spiele und Lernbegleitung integrieren, vollständige Abnahme und signiertes Update"
+        },
+        {
+          "number": 452,
+          "head": "98698f4fc2df0e8e081bc8521cf40f6148cc5577",
+          "updated_at": "2026-11-10T20:39:13Z",
+          "title": "LUMO 2014: steuerbarer Zehnerübergang, ehrliche Lernbelege und Eltern-Reset"
+        },
+        {
+          "number": 454,
+          "head": "d555a44d3a5d7a7bc6ae90ed6bb851a433ceb41a",
+          "updated_at": "2026-11-10T20:15:30Z",
+          "title": "Cards: isolierte Runden speichern, nach Neustart fortsetzen und Belohnungen deduplizieren"
+        },
+        {
+          "number": 453,
+          "head": "9d2971009bf296e42cf65be03b6caddfa5ed79db",
+          "updated_at": "2026-11-10T19:45:38Z",
+          "title": "LUMO Cards 2014: faire Spielstufen, Spielweisen und geprüfte Phone/Fold-Bedienung"
+        },
+        {
+          "number": 450,
+          "head": "76aa559cb03d968f492b59129c1b7cee057e76e9",
+          "updated_at": "2026-11-10T16:44:31Z",
+          "title": "[APK 2013] LUMO 0.13.1 – verified hub + repaired Godot collector"
+        },
+        {
+          "number": 443,
+          "head": "0853d3c3d7735e7352003a04c9bd99cb1445ed67",
+          "updated_at": "2026-11-10T14:53:41Z",
+          "title": "LUMO 2013 integration collector (Flutter)"
+        },
+        {
+          "number": 449,
+          "head": "84f610522db4bc49625773ef6bbf0578da999074",
+          "updated_at": "2026-11-10T16:44:36Z",
+          "title": "[DRAFT] LUMO 2013 integration check: remaining gameplay delta into collector"
+        },
+        {
+          "number": 447,
+          "head": "84f610522db4bc49625773ef6bbf0578da999074",
+          "updated_at": "2026-11-10T13:38:15Z",
+          "title": "[DRAFT] LUMO 2013: Memory-Packs, 4 Gewinnt KI, Cards-Sprung und Quiz-Kategorien"
+        },
+        {
+          "number": 445,
+          "head": "550b3fc6a662e10d1658bda54f7ef55ba985c38b",
+          "updated_at": "2026-11-10T13:33:13Z",
+          "title": "fix(spielewelt): hub routing, titles, and Fold/tablet reference layout"
+        },
+        {
+          "number": 446,
+          "head": "d723ea880eec09d896470ed70ef508af38b4839e",
+          "updated_at": "2026-11-10T13:31:24Z",
+          "title": "WIP: modernize grade-1 task images with local 3D LUMO object art"
+        },
+        {
+          "number": 444,
+          "head": "cc951ffc085390a20c1149e2798ee9b29a816091",
+          "updated_at": "2026-11-10T13:16:14Z",
+          "title": "feat(spiele): eigene Bühnen für Memory, Cards, 4 Gewinnt und Quizshow"
+        },
+        {
+          "number": 442,
+          "head": "0de7afc2d45d5b7eb4ce90c5afa1b92cd4546652",
+          "updated_at": "2026-11-10T12:37:41Z",
+          "title": "guard-ci: align Cards/Bauwelt tests with 2013 routes"
+        },
+        {
+          "number": 441,
+          "head": "3e4d8c235fe0834079d9d539fe4883bf9a91b27a",
+          "updated_at": "2026-11-10T12:21:29Z",
+          "title": "[DRAFT] LUMO 2013: Spielewelt-Identität, Cards-Route und Referenz-Hub"
+        },
+        {
+          "number": 438,
+          "head": "85afcb0e7fafa7fc85a65aee6a959dd2bf1ec952",
+          "updated_at": "2026-11-10T11:48:49Z",
+          "title": "LUMO next APK 0.13.0+2012 – Integrationszweig (Draft, nicht mergen)"
+        },
+        {
+          "number": 437,
+          "head": "9f5b47b3973d6c4f3ff180f269624603c1698ecd",
+          "updated_at": "2026-11-06T08:32:14Z",
+          "title": "[DRAFT] LUMO 2006: Godot-Quellpin kontrolliert mit Flutter verbinden (APK weiterhin gesperrt)"
+        },
+        {
+          "number": 434,
+          "head": "2e04b42493f5b664e50d652e13dddd9934d321c8",
+          "updated_at": "2026-11-05T13:41:15Z",
+          "title": "[DRAFT] Lumo P0: Fuchsbilder auf Android ursachengenau diagnostizieren – Design & 2010 Integration geschützt"
+        },
+        {
+          "number": 432,
+          "head": "0ef9c2731071af66884dde55b408ecb43ff95fff",
+          "updated_at": "2026-11-05T12:27:00Z",
+          "title": "Lumo 2005 Android-Kandidat: 3D Jump, Sternenpfad, Sonnenhafen-Kristallschlucht und Original-Lumo"
+        },
+        {
+          "number": 429,
+          "head": "02addd79120e828e3112f4865794ab087a00c072",
+          "updated_at": "2026-11-04T18:05:03Z",
+          "title": "Lumo UX: alle 14 Bereiche ohne Ausklapppfeil direkt in durchgehender Scroll-Leiste"
+        },
+        {
+          "number": 431,
+          "head": "c6784bb73ebf0a07adbcb9beee564aee5bf93f6b",
+          "updated_at": "2026-11-03T14:55:19Z",
+          "title": "Lumo Spiele: echtes 3D-Jump-Portal + neues kooperatives Kartenspiel Sternenpfad"
+        },
+        {
+          "number": 428,
+          "head": "0aaba1af9f8471b623cb747e93fbfc25e4c31539",
+          "updated_at": "2026-11-02T16:57:46Z",
+          "title": "Release Lumo Lernen + Lumo Kart 2004: geprüfter Familien-Updatekanal"
+        },
+        {
+          "number": 426,
+          "head": "4510246340d8f993927b027ec5c1eedcb274c8f2",
+          "updated_at": "2026-10-31T20:04:07Z",
+          "title": "Lumo 2004: echter Update-Nachweis 2003→2004 für Familien-App, Lernstände und Kart"
+        },
+        {
+          "number": 427,
+          "head": "744ee8eab8b7e3ba115891428b55418ac729d8da",
+          "updated_at": "2026-10-31T20:09:31Z",
+          "title": "Lumo 2004 visuelle Vollprüfung: alle 14 Register und 1.–4. Klasse auf Phone und Fold"
+        },
+        {
+          "number": 425,
+          "head": "1f99665c6b2b44f0e88a94264621652c0a9c34e8",
+          "updated_at": "2026-10-31T19:59:49Z",
+          "title": "Lumo Lernen 2004: gesamter Volksschul-Tutor und Sonnenhafen-Stunts als Haupt-App-Kandidat"
+        },
+        {
+          "number": 424,
+          "head": "11b9a08ff15db38c64c50ab30d702ab45feec56a",
+          "updated_at": "2026-10-30T16:27:53Z",
+          "title": "Lumo Volksschule 1–4: Fächerzugang, ehrlicher Nachhilfeplan und Vollprüfung aller Aufgabengeneratoren"
+        },
+        {
+          "number": 414,
+          "head": "5d6d7dcd0ebbff48b7c7850b0e392a9086ea1ecc",
+          "updated_at": "2026-10-30T02:16:34Z",
+          "title": "Lumo Lerngehirn: lokale Alternativszenen und nachprüfbarer selbstständiger Transfer"
+        },
+        {
+          "number": 415,
+          "head": "ff791642a0d28d10f89d98025fd8f5fb2c19c403",
+          "updated_at": "2026-10-30T02:15:58Z",
+          "title": "Android 2002 veröffentlicht: geprüftes Haupt-App-Update mit lokalem Lerngehirn"
+        },
+        {
+          "number": 423,
+          "head": "4f4ba1877b1906f76c86126350ce79ff1cfe4995",
+          "updated_at": "2026-10-29T18:53:09Z",
+          "title": "Lumo Memory 2027: interaktives 2.5D-Premium-Spielbrett auf Build 2003"
+        },
+        {
+          "number": 422,
+          "head": "6fa94e6b47ec69f0bc2c15099f05a7fbc7dd2526",
+          "updated_at": "2026-10-29T12:13:58Z",
+          "title": "Lumo 2002: bereits geprüfte APK direkt über vorhandenen App-Update-Button"
+        },
+        {
+          "number": 421,
+          "head": "5457b2ee1615c693009cf17e7b3dc2d1e5e88ac0",
+          "updated_at": "2026-10-29T12:13:49Z",
+          "title": "Lumo 2003: geprüfte Haupt-App ohne manuelle APK über bestehenden Update-Button"
+        },
+        {
+          "number": 419,
+          "head": "18ced63187c7a264c3bd2b8271ec58647f679d70",
+          "updated_at": "2026-10-29T11:53:30Z",
+          "title": "Lumo Lernen + Lumo Kart 2003: Sols Lernintelligenz, Opus Living Fox und geprüfte Haupt-App-APK"
+        },
+        {
+          "number": 417,
+          "head": "31f3b0596ca23dce895bd49c12f125da6c1903f1",
+          "updated_at": "2026-10-29T10:27:30Z",
+          "title": "Living World: Werkstatt-Layout für Fold, 4+4 Zehner und flackerfreie Würfelanimation"
+        },
+        {
+          "number": 418,
+          "head": "680b64d55f6100a55cac1a3d91e29df15d0345bc",
+          "updated_at": "2026-10-29T10:11:51Z",
+          "title": "Living Intelligence + animierter Original-Lumo: sichere 2002→nächste App-Integration"
+        },
+        {
+          "number": 416,
+          "head": "f249fd78677d93300043f129d67f994744a88e6b",
+          "updated_at": "2026-10-29T09:59:19Z",
+          "title": "Opus Living World: animierter Original-Lumo mit 11 Zuständen und interaktiver Zehner-Szene"
+        },
+        {
+          "number": 331,
+          "head": "c116408a70bda73b73292ed6ff6e8f1db8b81945",
+          "updated_at": "2026-10-29T09:36:55Z",
+          "title": "Lumo M0: Opus Maven-Reparatur und beweisbarer Flutter→Kart→Rennen Android-Test"
+        },
+        {
+          "number": 413,
+          "head": "a79ff08ccc20c92943969e0f1ebf2226e78a4bca",
+          "updated_at": "2026-10-28T17:22:16Z",
+          "title": "Lumo Lernprofil: echter persönlicher Tagesplan aus geprüften Schwächen und Stärken"
+        },
+        {
+          "number": 411,
+          "head": "a6558161bb35bfc1ab2ecb855e0095cbca061d99",
+          "updated_at": "2026-10-28T17:14:17Z",
+          "title": "Lumo 2000 Haupt-App: echter Sonnenhafen-Flug, Wasser/Lava-Höhle und 3-Stufen-Nachhilfe"
+        },
+        {
+          "number": 412,
+          "head": "e689ada03796dd1d3d79c91a332b16c48f70afcc",
+          "updated_at": "2026-10-28T17:13:42Z",
+          "title": "Lumo Lernbegleiter: selbstständiges, freiwilliges Hilfsangebot nach wiederholten Fehlern"
+        },
+        {
+          "number": 410,
+          "head": "8693ff805a49d097c1bddd13f73e8ca7dd296122",
+          "updated_at": "2026-10-28T16:00:39Z",
+          "title": "Nachhilfelehrer: drei echte Offline-Erklärwege für Zehner und Einer"
+        },
+        {
+          "number": 409,
+          "head": "c6cfbaa409705187ba63a7f1f92c095cc8f34f38",
+          "updated_at": "2026-10-26T15:43:21Z",
+          "title": "fix(lumo1999): 1997 Lernhub im echten Update-Emulatortest bedienen"
+        },
+        {
+          "number": 408,
+          "head": "26fced8f7f63462db30f94c9c612c7e44d3bb2e5",
+          "updated_at": "2026-10-25T14:27:55Z",
+          "title": "Lumo 1999: echten Kart-Portaltext in Android-Emulatortour prüfen"
+        },
+        {
+          "number": 404,
+          "head": "5d269c3608771f9a61434b4eb8b03ab4521fdf7a",
+          "updated_at": "2026-10-25T05:21:46Z",
+          "title": "Lumo Spielwelt: Lumo Kart + Wer wird Lumo-Meister als gleichwertige Glas-Spielkacheln"
+        },
+        {
+          "number": 407,
+          "head": "aa1c61e6c82398f94650a540df6cec8fb10c2be1",
+          "updated_at": "2026-10-24T11:43:39Z",
+          "title": "Lumo NextGen 1999: Sol-Integration, sichere Quiz-Navigation und Android-Release-Gates"
+        },
+        {
+          "number": 405,
+          "head": "df5be7ebfe8c7befeac26ea12699bc8a8dc372d6",
+          "updated_at": "2026-10-23T23:08:14Z",
+          "title": "Lumo Next Gen: gerettete Sol/Codex-Navigation und profilgetrennte Tagesmissionen prüfen"
+        },
+        {
+          "number": 406,
+          "head": "445ea17c942352a32f10b8fda27435b5a79d3f4e",
+          "updated_at": "2026-10-23T20:37:00Z",
+          "title": "Lumo NextGen: vier echte Adventure-Tests wieder mit sichtbarer Spielkachel ausführen"
+        },
+        {
+          "number": 403,
+          "head": "f510378ecd20467e76c359623b25ca82c9cdeb1f",
+          "updated_at": "2026-10-22T09:58:16Z",
+          "title": "Lumo QA: historischen Spielebildvergleich auf Builds 1989/1990 begrenzen"
+        },
+        {
+          "number": 402,
+          "head": "ed0491c8ae9690d0b546a608c027e4dc2a83807b",
+          "updated_at": "2026-10-22T03:12:48Z",
+          "title": "Lumo: Linux/Render-first Flutter and Godot Android candidate build"
+        },
+        {
+          "number": 401,
+          "head": "9fae296a72211fc3843697932414d5119cfd51be",
+          "updated_at": "2026-10-21T19:33:15Z",
+          "title": "Lumo: SOL-Kristalle mit sichtbarer 3D-Tiefe in tatsächliche Mathe-App übernehmen"
+        },
+        {
+          "number": 400,
+          "head": "64ff88e706718c84148b9cc070f0410045bb295f",
+          "updated_at": "2026-10-21T18:02:46Z",
+          "title": "Lumo Build 1995: SOL-Kristalle + vollständig geprüfte responsive Kart-Menüs als Android-APK"
+        },
+        {
+          "number": 399,
+          "head": "1d5633c1c160a0b1a3cc7d259fea86de93b1b243",
+          "updated_at": "2026-10-21T10:14:15Z",
+          "title": "Lumo Next Gen Gesamt-APK: Premium-Glaskarten, Kristallgrafik und Fold-CI-Fix"
+        },
+        {
+          "number": 398,
+          "head": "7646d5a062758bc777b8c91de3a7f8924da408c8",
+          "updated_at": "2026-10-21T07:53:28Z",
+          "title": "Lumo Next Gen: Astras Mathe-Stand sichern und echten Fuchs-/Kristall-Render prüfen"
+        },
+        {
+          "number": 397,
+          "head": "4e032aef55412f081d0de4fc2d3bab7f4d9465d8",
+          "updated_at": "2026-10-21T03:06:11Z",
+          "title": "Lumo Rechentricks: echte kindgerechte Trick-Werkstatt statt Textwüste"
+        },
+        {
+          "number": 396,
+          "head": "d859380f623d69be5be867a128279cfc86cf4fea",
+          "updated_at": "2026-10-21T02:31:20Z",
+          "title": "Astra-Rettung: 280dp-Home-Fold korrigieren, Original-Kartgrafik zuverlässig prüfen"
+        },
+        {
+          "number": 395,
+          "head": "d53c71bf0b0b172bc512cdf85737a581d10855c6",
+          "updated_at": "2026-10-21T02:00:44Z",
+          "title": "Rettung: ursprünglichen Lumo-Cloud-Stand und 120s-Sicherung erhalten"
+        },
+        {
+          "number": 394,
+          "head": "b63e0e8415404454705e8b33d619237836b99532",
+          "updated_at": "2026-10-20T19:50:08Z",
+          "title": "Lumo: Astra/Codex-Cloud-Arbeit automatisch sichern – AGENTS + GitHub-Checkpoints"
+        },
+        {
+          "number": 393,
+          "head": "7e1bd535b1eb8f73e28082fb543b017d3045c0d0",
+          "updated_at": "2026-10-20T19:04:03Z",
+          "title": "Lumo Next Gen: kompakte Glaskacheln reparieren und APK-Regression freigeben"
+        },
+        {
+          "number": 392,
+          "head": "be656daed5f1638775e76c3aadcacde4e5e0503b",
+          "updated_at": "2026-10-20T14:01:24Z",
+          "title": "Lumo Lernen Next Gen: echte dunkelblaue Premium-Lernkacheln"
+        },
+        {
+          "number": 391,
+          "head": "c597105a6f92822edc48c58fb547ae5fb91c208c",
+          "updated_at": "2026-10-20T13:18:03Z",
+          "title": "Lumo Next Gen: visueller Codex-Masterauftrag und Designreferenzen"
+        },
+        {
+          "number": 390,
+          "head": "cdb58c7128c2ec1bb15789f938449b2afb5628b8",
+          "updated_at": "2026-10-20T12:27:50Z",
+          "title": "Lumo 1992: geführter zweiter Lernversuch"
+        },
+        {
+          "number": 389,
+          "head": "d2a01779a14a113b9d36b69393de1116fa39f205",
+          "updated_at": "2026-10-20T09:59:07Z",
+          "title": "Lumo 1992: klare Lernnavigation, Premium-Überarbeitung von Home, LIVE, Mirror, Cosmos und Quest"
+        },
+        {
+          "number": 388,
+          "head": "b1720b77aed4216060ea2a685f56dfd5bf700d5c",
+          "updated_at": "2026-10-20T05:23:58Z",
+          "title": "QA 1991: echtes Sonnenhafen-Zweirundenrennen, Ergebnis, Offline-Belohnung und Replay-Deduplizierung"
+        }
+      ]
+    },
+    {
+      "repository": "Ullmann27/lumo-godot",
+      "query_scope": "First 100 open pull requests ordered by updated descending, observed at the preserved 17:07 radar; not full history",
+      "original_response_bytes": 1762127,
+      "original_response_sha256": "157ce704f1b59ab2663fec5070bf697c90f070147f4472bdd9f614d4d3f03073",
+      "pull_requests": [
+        {
+          "number": 182,
+          "head": "29080ef8cd1a5b385eeeec97976fbefd31280427",
+          "updated_at": "2026-11-14T16:57:22Z",
+          "title": "Nextgen: connected English, Memory and Quiz 3D scenes with real Dart authority"
+        },
+        {
+          "number": 173,
+          "head": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+          "updated_at": "2026-11-14T16:15:40Z",
+          "title": "Integrate Lumo native work and reconcile the complete current C4 base"
+        },
+        {
+          "number": 181,
+          "head": "3213d2aca377476cf4959f380701d87177cec959",
+          "updated_at": "2026-11-14T14:08:31Z",
+          "title": "Repair legacy village saves and bound full-region building detail"
+        },
+        {
+          "number": 167,
+          "head": "34421df83566dd4773420cc2a225887956459435",
+          "updated_at": "2026-11-14T12:35:54Z",
+          "title": "Studio 2020: 3D-Vier-Gewinnt, Original-Lumo-Gesicht und lesbarer Treasure-Titel"
+        },
+        {
+          "number": 180,
+          "head": "ec1fb3c3236bde8db1faac2cb3531a7d5e772fe0",
+          "updated_at": "2026-11-14T09:24:41Z",
+          "title": "LUMO 2020 APK: vorhandene 3D-Abenteuerportale und Dorfwirtschaft vollständig anschließen"
+        },
+        {
+          "number": 171,
+          "head": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+          "updated_at": "2026-11-14T09:24:18Z",
+          "title": "Fix C4 return after a temporarily rejected Android handoff"
+        },
+        {
+          "number": 179,
+          "head": "905b83a87d56ee12da7e2eec28551d2df9643f54",
+          "updated_at": "2026-11-14T09:12:26Z",
+          "title": "LUMO 2020: getestetes Lernfeedback in aktuellen C4-/Garten-Stand einbauen"
+        },
+        {
+          "number": 178,
+          "head": "dbf181e40895505c9a82bbe99bbae69438f3e827",
+          "updated_at": "2026-11-14T09:05:04Z",
+          "title": "LUMO Lernen: reaktiver 3D-Blütengarten, Themenfarben und geprüfte Kinderansicht"
+        },
+        {
+          "number": 177,
+          "head": "c6bb8921964ff3dc50c31f0b2b9f7273383681fc",
+          "updated_at": "2026-11-14T08:44:57Z",
+          "title": "LUMO 2020 Native: magische Schatzinsel und 3D-Lernatelier auf Integrationsbasis"
+        },
+        {
+          "number": 176,
+          "head": "5d6078605041cb65710f3ee73930af71b6759940",
+          "updated_at": "2026-11-14T08:38:39Z",
+          "title": "LUMO Dorfwirtschaft: echten Flutter/Android-Aufruf im Godot-Boot zulassen"
+        },
+        {
+          "number": 175,
+          "head": "db635442a5a282056e5b09b8b3f885d0e2c08c0a",
+          "updated_at": "2026-11-14T08:26:42Z",
+          "title": "LUMO 3D-Spielewelt: acht sichtbare Abenteuer, Dorfwirtschaft direkt, magische Fuchsbühne"
+        },
+        {
+          "number": 174,
+          "head": "f2edd325142b92a534b06518f66eadad3551412b",
+          "updated_at": "2026-11-14T08:20:00Z",
+          "title": "LUMO Lernatelier: verzaubertes 3D-Feedback für echtes Entdecken"
+        },
+        {
+          "number": 172,
+          "head": "1b01b08abd4ff2580125d787a6150e10b2fe47b8",
+          "updated_at": "2026-11-14T08:16:32Z",
+          "title": "LUMO Schatzinsel: magische 3D-Sternenpfade mit echten Godot-Tests"
+        },
+        {
+          "number": 168,
+          "head": "3ea8ca80c4a956663dcab7ed6cd992764fa4a112",
+          "updated_at": "2026-11-14T07:45:11Z",
+          "title": "LUMO 3D-Leitagent: originale Lernwelten, Kart- und Bauwelt-Qualitaetsabnahme"
+        },
+        {
+          "number": 166,
+          "head": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+          "updated_at": "2026-11-14T00:06:53Z",
+          "title": "Connect shared Android safe areas on the reviewed Native base"
+        },
+        {
+          "number": 158,
+          "head": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+          "updated_at": "2026-11-14T00:01:19Z",
+          "title": "LUMO Studio: Blender-Lernatelier, echte Bewegungsclips und räumliche Spielmechanik"
+        },
+        {
+          "number": 160,
+          "head": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+          "updated_at": "2026-11-13T20:06:09Z",
+          "title": "LUMO: veröffentlichte Dorf-, Loop- und Puzzle-Arbeit vollständig verbinden"
+        },
+        {
+          "number": 164,
+          "head": "dc478230e0819a05f42de2fd59b93abebfb08406",
+          "updated_at": "2026-11-13T17:09:57Z",
+          "title": "LUMO NextGen Collector: Studio + Kart-Welten + Dorfwirtschaft + Looping-FX"
+        },
+        {
+          "number": 163,
+          "head": "027c2535d2d69fc56fc19d8d96490f7de5be9c37",
+          "updated_at": "2026-11-13T17:04:19Z",
+          "title": "Integration: lebendige Bauwelt-Wirtschaft auf aktuellem Studio/Kart-Native-Stand"
+        },
+        {
+          "number": 162,
+          "head": "027c2535d2d69fc56fc19d8d96490f7de5be9c37",
+          "updated_at": "2026-11-13T16:00:20Z",
+          "title": "Bauwelt: Marktplatz-Softlock beheben und spielbaren Dorfmodus anschließen"
+        },
+        {
+          "number": 159,
+          "head": "25e3a1187234860414fa69822e7b301e75880c82",
+          "updated_at": "2026-11-13T14:46:26Z",
+          "title": "Kart: Sonnenhafen-Home, Streckenlandschaften und verknüpftes Fahrfeedback"
+        },
+        {
+          "number": 157,
+          "head": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+          "updated_at": "2026-11-13T13:00:13Z",
+          "title": "LUMO Next Generation: integrierte 3D-Lernwelten, Bewegung und kreative Spiele"
+        },
+        {
+          "number": 156,
+          "head": "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57",
+          "updated_at": "2026-11-12T14:02:45Z",
+          "title": "LUMO Kart: doppeltes Tempo, Extrem-Rivalen, Lasso-Action und native 3D-Menüs"
+        },
+        {
+          "number": 155,
+          "head": "b4ccf593d7833e8c259ff0f963494b00d245d03d",
+          "updated_at": "2026-11-11T16:34:48Z",
+          "title": "LUMO 2016: geprüfte Kart-Basis um Lufttricks und Driftfunken erweitern"
+        },
+        {
+          "number": 152,
+          "head": "e885b145c500da3db979c33b437c0432891be3ad",
+          "updated_at": "2026-11-11T14:17:20Z",
+          "title": "LUMO Technical Art: Sonnenhafen, Garage und Original-Lumo"
+        },
+        {
+          "number": 150,
+          "head": "207bfbc5377c0f3e8be800854c83ddf2110ac3f6",
+          "updated_at": "2026-11-10T22:02:54Z",
+          "title": "LUMO 2014: befahrbare Attraktionen, stärkere Gegner und geprüfte Spiele-Integration"
+        },
+        {
+          "number": 151,
+          "head": "a632ee9d415cfff8d3c5d6d76c0aa9cf6b09fb3d",
+          "updated_at": "2026-11-10T19:50:19Z",
+          "title": "LUMO 2014: physical loops and speed-dependent rival ramp flights"
+        },
+        {
+          "number": 141,
+          "head": "74fa4d1631a2903f61bb112e5ba6a6399be64612",
+          "updated_at": "2026-11-10T18:55:44Z",
+          "title": "feat(creative): Schatzsuche-Inseloptik und Rhythm-Party-Bühne (2013)"
+        },
+        {
+          "number": 144,
+          "head": "b5da336b2a0e24c5e0af102f32b9d566591a5c83",
+          "updated_at": "2026-11-10T18:55:14Z",
+          "title": "[DRAFT] LUMO 2013 Bauwelt-Sandbox: Checkpoint nach Stopp (M1 nicht fertig)"
+        },
+        {
+          "number": 148,
+          "head": "7de43014f7a8983ac79aa1d9ba85a152fec4b79b",
+          "updated_at": "2026-11-10T16:45:36Z",
+          "title": "[DRAFT] LUMO 2013: Rhythm/Schatzsuche Nachrunde – Rune-Dichte, Cheer-Reset, Lint und echte Captures"
+        },
+        {
+          "number": 139,
+          "head": "47bef06db45d61d50ecd06d0b0cd0a69b9a25917",
+          "updated_at": "2026-11-10T13:56:05Z",
+          "title": "LUMO 2013 integration collector (Godot)"
+        },
+        {
+          "number": 145,
+          "head": "284925e979c070fc495bd6529f2635e4d5ac2d4c",
+          "updated_at": "2026-11-10T13:29:42Z",
+          "title": "WIP: LUMO 2013 Puzzle atelier, picture worlds and living complete picture"
+        },
+        {
+          "number": 146,
+          "head": "9b150498503c2628d025674a2329557450793f1a",
+          "updated_at": "2026-11-10T13:29:38Z",
+          "title": "WIP: LUMO 2013 Kart-Menü 3D-Garage und Tiefe"
+        },
+        {
+          "number": 143,
+          "head": "74f358d639f66f8419f45edad2da667a5d54cc84",
+          "updated_at": "2026-11-10T13:29:38Z",
+          "title": "WIP: LUMO 2013 Jump & Run / Wolkeninseln visual and play extras"
+        },
+        {
+          "number": 140,
+          "head": "fe493ea1d9e44e20ca87fbd3ffbae3bb1f658878",
+          "updated_at": "2026-11-10T13:18:10Z",
+          "title": "[DRAFT] LUMO 2013 Bauwelt: Werkstatt, Sternwarte, Schlucht, Tages-HUD"
+        },
+        {
+          "number": 142,
+          "head": "3968a1cf42def7666ea469b06f62523ab758bdd1",
+          "updated_at": "2026-11-10T13:11:37Z",
+          "title": "guard-flakes: deterministic Kart save/resume identity"
+        },
+        {
+          "number": 138,
+          "head": "0f74baed12fdc520b507ff60d426f5c20b3e3790",
+          "updated_at": "2026-11-10T12:31:07Z",
+          "title": "guard-ci: install scene covers and stop wiping .godot on reimport"
+        },
+        {
+          "number": 137,
+          "head": "568b0df09dff233df3fc2de837590d2fdf452fca",
+          "updated_at": "2026-11-10T12:14:08Z",
+          "title": "[DRAFT] LUMO 2013: echte spielbezogene Startbilder statt Puzzle-Motiv-Reuse"
+        },
+        {
+          "number": 135,
+          "head": "9947346ecc526512904adecec1815312020beb62",
+          "updated_at": "2026-11-10T10:13:54Z",
+          "title": "[DRAFT] Next APK: Godot-Integration 2026-11-10 (Kart #134 + Design-Welten #133)"
+        },
+        {
+          "number": 133,
+          "head": "bff06fbe02705458c4999ec6ef5f94646c33c9bd",
+          "updated_at": "2026-11-10T08:29:38Z",
+          "title": "feat(creative): Bauwelt, Puzzle, Rhythm Party und Schatzsuche gegen die Referenz"
+        },
+        {
+          "number": 134,
+          "head": "8c1bf1ddcdc9a2c311c87ad49326bbf4c1af0aa5",
+          "updated_at": "2026-11-10T08:14:14Z",
+          "title": "[DRAFT] Next APK: Kart-Integration (#131, Stunt) und Sonnenhafen-Generationssprung"
+        },
+        {
+          "number": 129,
+          "head": "a81ddf12d594cc252caef7503162e89c6b26e1c7",
+          "updated_at": "2026-11-05T12:27:03Z",
+          "title": "Lumo 2006: Originalfuchs in Jump und echte Bauwelt-/Ressourcenprüfung"
+        },
+        {
+          "number": 131,
+          "head": "25cf93ca35b89835abdd7d2e57b61f887dbbbd89",
+          "updated_at": "2026-11-04T18:43:18Z",
+          "title": "Lumo Kart: Fahrer-Takt, Grafikprofile, Steuerung und Assetprüfung"
+        },
+        {
+          "number": 130,
+          "head": "c2e5161d099a2107f8cd4964dc8a873f5284c05c",
+          "updated_at": "2026-11-04T08:17:28Z",
+          "title": "Lumo Bauplan: Ausgangslage (WIP, wartet auf PDF)"
+        },
+        {
+          "number": 128,
+          "head": "bc1f61338fb1e1be3311bf4c229a8fc09487e904",
+          "updated_at": "2026-11-03T17:14:57Z",
+          "title": "Original-Lumo als 65-Knochen-3D-Spielerfigur in Wolkeninseln (statt 3D-Platzhalter)"
+        },
+        {
+          "number": 127,
+          "head": "91b8cdba48d539ba48836bfac5f6b62c0d6cfa41",
+          "updated_at": "2026-11-03T14:38:07Z",
+          "title": "Lumo Spiele 2004+: Präzisionssprung + 3D Jump-Animation + gemeinsame Renderstufen + Original-65-Bone-Lumo"
+        },
+        {
+          "number": 125,
+          "head": "1300b0097beff18188109f195b7d743853085306",
+          "updated_at": "2026-11-03T13:40:16Z",
+          "title": "Sonnenhafen: echte Sprungphysik, Tempoanzeige, Neon-Stuntrampe (Zyklus 1)"
+        },
+        {
+          "number": 124,
+          "head": "372937e6a48fd87358378df396f4000f236954eb",
+          "updated_at": "2026-11-03T13:37:54Z",
+          "title": "Lumo-Gangart: Gehen/Laufen statt Gleiten im 3D-Jump (Zyklus 2)"
+        },
+        {
+          "number": 126,
+          "head": "3af44ad2f708faa304cb9795b740e27e0c1c648b",
+          "updated_at": "2026-11-03T13:36:27Z",
+          "title": "LumoRenderKit Slice 1: gemeinsame Qualitätsstufen und Umgebung (Zyklus 3)"
+        },
+        {
+          "number": 121,
+          "head": "820742f4d2652ecd08f0addc1710381e8975214b",
+          "updated_at": "2026-11-03T08:08:46Z",
+          "title": "Sonnenhafen: sinnvoller Hauptstrecken-Loop, hochwertige Aero-Schanze und echter Geschwindigkeits-Sprung"
+        },
+        {
+          "number": 122,
+          "head": "8e742ad49ca35aea70cbe810efb58d9f98b70e6d",
+          "updated_at": "2026-11-03T07:56:38Z",
+          "title": "Lumo 65-Knochen-Originalfigur: erster echter Gehzyklus mit Beinen, Fußkontakt und Gegenarmbewegung"
+        },
+        {
+          "number": 120,
+          "head": "3689307a6392fd5756bc87ba0e36f3bef9df71e3",
+          "updated_at": "2026-10-30T16:14:17Z",
+          "title": "Sonnenhafen Stunt: echten Resonanz-Regressionfehler diagnostizieren und beheben"
+        },
+        {
+          "number": 119,
+          "head": "890fac6c478abec4e3062912a511ec9fa3a81a99",
+          "updated_at": "2026-10-30T02:28:28Z",
+          "title": "Sonnenhafen 2027: Opus-Looping, Stunt-Schanze und Tunnelportal integrieren"
+        },
+        {
+          "number": 118,
+          "head": "54ed3158c05b69a9e921ddb0e8dda40ca34b5705",
+          "updated_at": "2026-10-29T11:38:31Z",
+          "title": "Sonnenhafen aus Vogelperspektive: echte 3D-Streckenübersicht, Flug und Landung im Godot-Test"
+        },
+        {
+          "number": 117,
+          "head": "adcce3093caa42bf3da47262f70bdf03cdefa347",
+          "updated_at": "2026-10-28T16:04:30Z",
+          "title": "Integration: Sonnenhafen-Panoramaflug + Wasser/Lava-Kristallhöhle für nächsten Haupt-App-Build"
+        },
+        {
+          "number": 115,
+          "head": "6b4f8a2a6c274007c87f7ff80290778721e86f93",
+          "updated_at": "2026-10-28T15:59:11Z",
+          "title": "Sonnenhafen: echter Panorama-Flug über neuer Rampe mit getrenntem Physikprofil"
+        },
+        {
+          "number": 116,
+          "head": "db305c1e60d65ca9f59d24088fcc7352d625bc4c",
+          "updated_at": "2026-10-28T15:51:43Z",
+          "title": "Sonnenhafen-Kristallhöhle: echtes Wasser und Fantasy-Lava mit mobilem Shader"
+        },
+        {
+          "number": 114,
+          "head": "700baf49828eda693ecce15b415847818b1b56d3",
+          "updated_at": "2026-10-21T14:25:49Z",
+          "title": "SOL-Fortsetzung: echtes Kart-Menü auf Smartphone, Fold und Querformat reparieren"
+        },
+        {
+          "number": 113,
+          "head": "928fed3c7f0b39357e0f06463ce13c8d5677d6e1",
+          "updated_at": "2026-10-21T10:02:34Z",
+          "title": "Integrate Astra cinematic Lumo Kart menu into latest verified 3D gameplay"
+        },
+        {
+          "number": 112,
+          "head": "e87bda80bfd9be9dc08ab3cc72ea378829a15ddd",
+          "updated_at": "2026-10-20T19:40:13Z",
+          "title": "Lumo Kart: Astra/Codex-Wiederaufnahme durch sichere automatische GitHub-Checkpoints"
+        },
+        {
+          "number": 111,
+          "head": "8d9798eff10923ea677c0e2dbcc591d13f041ce9",
+          "updated_at": "2026-10-20T18:12:11Z",
+          "title": "Lumo Kart Next Gen: echte Premium-Spieleauswahl, 3D-Fuchs und Garagen-Politur"
+        },
+        {
+          "number": 110,
+          "head": "322a176a0f1c182363dc6dd8d5fab5df6e26b5f4",
+          "updated_at": "2026-10-20T13:09:10Z",
+          "title": "Designvorgabe: Lumo Kart – neues spielbares 3D-Hauptmenü"
+        },
+        {
+          "number": 108,
+          "head": "63cecf09fa89dd504cc468ebd121b4ec71a0f36c",
+          "updated_at": "2026-10-19T03:38:01Z",
+          "title": "Kart: realen Szenenwechsel und Grafikprofil im Godot-Lauf prüfen"
+        },
+        {
+          "number": 107,
+          "head": "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+          "updated_at": "2026-10-19T03:30:45Z",
+          "title": "Kart: räumliche Startampel mit wiederverwendeten Materialien"
+        },
+        {
+          "number": 106,
+          "head": "85f392bfbc9f9a5e9267a935788340cb62ca0b29",
+          "updated_at": "2026-10-18T21:16:50Z",
+          "title": "Lumo Kart: gespeicherte Grafikprofile und Qualitätsprofile nach Szenenwechsel wiederherstellen"
+        },
+        {
+          "number": 105,
+          "head": "20652880eda687c67cfa72301dad5a173b1fe6c5",
+          "updated_at": "2026-10-18T09:50:16Z",
+          "title": "Lumo Kart: Cinema-Höhle, originale 3D-Mineralien und Hafenveredelung prüfen"
+        },
+        {
+          "number": 104,
+          "head": "5b25223163cbb0dee5af3fe503e5e75bd11a9673",
+          "updated_at": "2026-10-18T07:21:08Z",
+          "title": "Sonnenhafen Cinema-Rock: eigenständiges warm-kühles Toon-Material, echter Godot-Render und Low-End-Schutz"
+        },
+        {
+          "number": 103,
+          "head": "e3e0bd94813ef7276c5488a10af6c9acc6a0a3eb",
+          "updated_at": "2026-10-18T07:13:03Z",
+          "title": "Lumo Kart: keine Zufalls-Itemwürfel – echte Resonanzringe für Fahrkönnen und Taktik"
+        },
+        {
+          "number": 102,
+          "head": "1c70db1ca937f19744ce50246484c142955552b3",
+          "updated_at": "2026-10-18T03:00:34Z",
+          "title": "Lumo 1977: reales Zweirundenrennen mit strikter Save/Resume-Toleranz und GPU-Nachweis"
+        },
+        {
+          "number": 101,
+          "head": "efa1f69b4128a047e6196ee85762447e412db266",
+          "updated_at": "2026-10-18T02:21:50Z",
+          "title": "Lumo 1977: echte Kristallhöhle, mobile 3D-Produktion und kontrollierte Lichtanimation"
+        },
+        {
+          "number": 100,
+          "head": "6518a13fb8eb30c81c8a2115d14791cbe7ddd24a",
+          "updated_at": "2026-10-18T01:47:11Z",
+          "title": "Lumo Kart: laufende Dunkelfahrt-Effekte bei ruhiger Bewegung und Tunnelverlassen sicher beenden"
+        },
+        {
+          "number": 99,
+          "head": "25f5453ffc3b6ba03360345c4b0f561cb57c40e4",
+          "updated_at": "2026-10-17T20:29:55Z",
+          "title": "Mineral cave art pass"
+        },
+        {
+          "number": 98,
+          "head": "aff8dd367f271b654d24db28a2a686b9e5acb626",
+          "updated_at": "2026-10-17T19:24:26Z",
+          "title": "Lumo Kart: kinderfreundlicher Kristall-Schockwellen-Effekt zur Dunkelfahrt"
+        },
+        {
+          "number": 97,
+          "head": "b70c623d7dfed57e0ff3fbeb7b5812f8f228292d",
+          "updated_at": "2026-10-17T19:18:06Z",
+          "title": "Lumo Kart: rundenabhängiger Neon-Energieschub mit echten GPU-Vorher/Nachher-Bildern"
+        },
+        {
+          "number": 96,
+          "head": "59b1154e4c9ffa30c4b6c2938e963ddbdd201320",
+          "updated_at": "2026-10-17T19:09:28Z",
+          "title": "Lumo Kart: eigenständige 3D-Asset-Fabrik mit strengem JSON-Vertrag, GLB-Export und Vision-Renderbeweisen"
+        },
+        {
+          "number": 95,
+          "head": "605f5b5a784f0af41ab80d6a37997475d0c5acac",
+          "updated_at": "2026-10-17T19:04:24Z",
+          "title": "Lumo Kart: erste befahrbare Sonnenhafen-Dunkelfahrt mit Neon-Kristalltunnel und echtem Render-QA"
+        },
+        {
+          "number": 94,
+          "head": "a17b06c4719cc94c94bdf97afb3b6862cd049323",
+          "updated_at": "2026-10-17T17:45:06Z",
+          "title": "Lumo Kart: Einfahrtstor bündig im Gelände verankern und Materialschärfe verbessern"
+        },
+        {
+          "number": 93,
+          "head": "e1b570e098104376f69775fe4ded056bc2f43b3e",
+          "updated_at": "2026-10-17T17:32:20Z",
+          "title": "Lumo Kart: Farbkorrektur & überprüfbarer GLB-Gate-Import"
+        },
+        {
+          "number": 91,
+          "head": "38b3e4890cc0a4b5f70dfdb7a5d523274aa5d647",
+          "updated_at": "2026-10-17T14:28:26Z",
+          "title": "B5: Küstenschaum an reale 1,85-km-Sonnenhafen-Inselgrenzen binden"
+        },
+        {
+          "number": 90,
+          "head": "93801042a1e140e8cec0525354bc144a28964709",
+          "updated_at": "2026-10-17T14:28:23Z",
+          "title": "B4: exact k-d spatial index accelerates 1.85-km terrain and scenery queries"
+        },
+        {
+          "number": 92,
+          "head": "42b011dc23abffc24a5df2e13171fa5ada22d6eb",
+          "updated_at": "2026-10-17T14:28:10Z",
+          "title": "B6: remove giant mountains and legacy rocks intruding into 1.85-km Sonnenhafen road"
+        },
+        {
+          "number": 89,
+          "head": "7bdb7ca91691396399abf3b16f09a54259538df7",
+          "updated_at": "2026-10-17T13:22:46Z",
+          "title": "B3: 5 originale Sonnenhafen-3D-Hero-Landmarken mit echten Godot-Renderbeweisen"
+        },
+        {
+          "number": 88,
+          "head": "5c657c2780d3497f412f22a54e9559b332c2cbba",
+          "updated_at": "2026-10-17T13:08:12Z",
+          "title": "B2 Experiment: Sonnenhafen 1,85 km – neue 23-Punkte-Strecke mit Godot-Geometriebeweis"
+        },
+        {
+          "number": 86,
+          "head": "a8f35b33c3b8a8f7bc09bb876b8751244119bfeb",
+          "updated_at": "2026-10-17T12:20:49Z",
+          "title": "Meilenstein B1: Sonnenhafen-Küstenviadukte mit echter 3D-Geometrie und Renderbeweis"
+        },
+        {
+          "number": 82,
+          "head": "10fb679924ab2657cbcdf0084fae2802aac36c5c",
+          "updated_at": "2026-10-17T11:54:45Z",
+          "title": "QA: verify Argon 4 coordinates against real Lumo 1971 track source"
+        },
+        {
+          "number": 84,
+          "head": "b8f464d946f73d9b88458bf223f1b83db3975a1a",
+          "updated_at": "2026-10-17T11:40:50Z",
+          "title": "Milestone A: vertical-frame stability plus real AI, collision and respawn tests"
+        },
+        {
+          "number": 83,
+          "head": "1b632253ac6e3120a24e621f1438d28a624b1655",
+          "updated_at": "2026-10-17T11:24:57Z",
+          "title": "Experimental: make road projection height-aware for genuine 3D crossings"
+        },
+        {
+          "number": 81,
+          "head": "386f6e2a884351aa70ecf7d86a839e126ff939bb",
+          "updated_at": "2026-10-17T10:05:43Z",
+          "title": "Bauwelt QA: originale Premiumobjekte in echter Spielszene mit Save/Reload rendern"
+        },
+        {
+          "number": 78,
+          "head": "3453a43a8bbdcb0495718e1eced2a40837d6e3ab",
+          "updated_at": "2026-10-17T08:34:14Z",
+          "title": "Sonnenhafen: Containerterminal mit Ship-to-Shore-Portalkran (echte 3D-Geometrie, Vorher/Nachher-Render)"
+        },
+        {
+          "number": 77,
+          "head": "2cac61bf195d04cf6f08da243c7a150407915891",
+          "updated_at": "2026-10-16T12:26:22Z",
+          "title": "Lumo Kart 1957: Android muss eine echte gestartete Rennwelt nachweisen"
+        },
+        {
+          "number": 76,
+          "head": "41aa76a28565faa21ea93d3d31d74836c38005a9",
+          "updated_at": "2026-10-16T10:16:03Z",
+          "title": "Sonnenhafen: drei neue echte 3D-Aussichtstürme mit Cyan-Licht, GPU-Batching und Low-End-LOD"
+        },
+        {
+          "number": 74,
+          "head": "268c9b327a8f81ba08c55e1b4bccd3664ce12f88",
+          "updated_at": "2026-10-16T03:17:17Z",
+          "title": "Lumo Kart: physically richer asphalt with mobile LOD and six real before/after renders"
+        },
+        {
+          "number": 73,
+          "head": "b9ef3350db3687eabc7f5f59f5cd3d7dade37ae1",
+          "updated_at": "2026-10-16T03:08:41Z",
+          "title": "Godot 4.6.3: retry transient Android logcat timeouts without masking crashes"
+        },
+        {
+          "number": 72,
+          "head": "9d80dfff67782318009222682ac8dc52ee910217",
+          "updated_at": "2026-10-15T20:38:35Z",
+          "title": "Lumo Kart: Sonnenhafen water shader polish + real visual QA"
+        },
+        {
+          "number": 71,
+          "head": "c850e8d6ed3c971f0a303c0f87cd421111fd7769",
+          "updated_at": "2026-10-15T16:18:41Z",
+          "title": "Lumo Kart: cinematic environment, adaptive terrain foundation and cruising exhaust"
+        },
+        {
+          "number": 70,
+          "head": "ad6bd8856a9d7d07b965dec46eeadf41d4ed676c",
+          "updated_at": "2026-10-15T15:27:17Z",
+          "title": "Enlarge real 3D Kart track previews on Fold screens"
+        },
+        {
+          "number": 69,
+          "head": "94c95e1d3a7de530744e998a505ce7792eb07fc5",
+          "updated_at": "2026-10-15T13:54:02Z",
+          "title": "feat(integration): premium Kart rails + 12 Bauwelt 3D objects on verified pin"
+        },
+        {
+          "number": 68,
+          "head": "ba9390429da941af37475aac71bd5d0ee901103f",
+          "updated_at": "2026-10-15T12:23:14Z",
+          "title": "feat(bauwelt): twelve real modular 3D build objects with native QA"
+        },
+        {
+          "number": 67,
+          "head": "f8466d25cdbf4d60a06f229e5c2af0413d922590",
+          "updated_at": "2026-10-15T09:57:31Z",
+          "title": "feat(kart): premium curved PBR guardrails on the exact Lumo APK source pin"
+        },
+        {
+          "number": 66,
+          "head": "d8d004141cdd606357aa1348691a39854e3af3c7",
+          "updated_at": "2026-10-14T00:51:19Z",
+          "title": "Sonnenhafen: echte Wellenpavillons mit Blender-Quelle, PBR und mobilen LODs"
+        }
+      ]
+    }
+  ]
+}

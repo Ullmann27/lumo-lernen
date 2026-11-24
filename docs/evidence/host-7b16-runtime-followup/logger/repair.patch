@@ -1,0 +1,1624 @@
+--- a/scripts/android_framework_ready.py
++++ b/scripts/android_framework_ready.py
+@@ -1,10 +1,12 @@
+ #!/usr/bin/env python3
+ """Observe the real API37 framework and unlocked foreground before app setup.
+ 
+-This program never installs an APK, sets a property, supplies adb responses, or
+-suppresses an upstream failure. One observed nonsecure keyguard may receive a
++The framework guard never installs an APK, supplies adb responses, or suppresses
++an upstream failure. One observed nonsecure keyguard may receive a
+ bounded dismissal request; only subsequent stable window observations can pass.
+ The separate monitor records unfiltered startup logcat, including the crash buffer.
++The explicitly requested runtime handoff also starts a detached device logger
++before the observed root transition; it neither clears nor rotates either log.
+ """
+ 
+ from __future__ import annotations
+@@ -16,6 +18,8 @@
+ import os
+ from pathlib import Path
+ import re
++import secrets
++import shlex
+ import signal
+ import subprocess
+ import sys
+@@ -155,9 +159,12 @@
+         (out / "commands").mkdir(parents=True, exist_ok=True)
+ 
+     def run(self, name: str, arguments: list[str], timeout: float) -> dict:
++        return self.run_adb(name, ["shell", *arguments], timeout)
++
++    def run_adb(self, name: str, arguments: list[str], timeout: float) -> dict:
+         self.counter += 1
+         base = f"commands/{self.counter:04d}-{name}"
+-        command = [self.adb, "-s", self.serial, "shell", *arguments]
++        command = [self.adb, "-s", self.serial, *arguments]
+         started = utc()
+         timed_out = False
+         process = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True)
+@@ -172,6 +179,305 @@
+         record = {"command": command, "started_at": started, "finished_at": utc(), "returncode": process.returncode, "timed_out": timed_out, "stdout_file": base + ".stdout", "stderr_file": base + ".stderr"}
+         write_json(self.out / (base + ".json"), record)
+         return {**record, "stdout": stdout.decode("utf-8", errors="replace"), "stderr": stderr.decode("utf-8", errors="replace")}
++
++
++DEVICE_LOG_TAG = "LumoRuntimeRecorder"
++DEVICE_LOG_PATH = re.compile(r"/data/local/tmp/lumo-runtime-[0-9a-f]{32}")
++DEVICE_LOG_FILES = ("logcat.stdout", "logcat.stderr", "session.stdout", "session.stderr", "wait.stderr", "run.sh")
++ROOT_RESTART_CLOSED = "adb: unable to connect for root: closed"
++
++
++def expected_root_disconnect(result: dict) -> bool:
++    return (result["returncode"] == 1 and not result["timed_out"] and
++            ((not result["stdout"] and result["stderr"].strip() == ROOT_RESTART_CLOSED) or
++             (not result["stderr"] and result["stdout"].strip() == ROOT_RESTART_CLOSED)))
++
++
++def device_logger_script(remote: str) -> str:
++    if not DEVICE_LOG_PATH.fullmatch(remote):
++        raise ValueError("Invalid private device logger directory")
++    # nohup and setsid are checked on the real emulator. The shell waits for
++    # its actual logcat child and preserves that child's exit status.
++    return ("#!/system/bin/sh\nset -u\numask 077\nunset ANDROID_LOG_TAGS\ncd " + remote + " || exit 91\n"
++            "printf '%s\\n' \"$$\" > session.pid\n: > wait.stderr\n"
++            "/system/bin/logcat -b all -v threadtime > logcat.stdout 2> logcat.stderr &\n"
++            "logger=$!\nprintf '%s\\n' \"$logger\" > logger.pid\n"
++            "attempt=0\nwhile [ ! -s logcat.stdout ] && [ \"$attempt\" -lt 50 ]; do\n"
++            "  sleep 0.1\n  attempt=$((attempt + 1))\ndone\n"
++            "if [ -s logcat.stdout ]; then printf 'ready\\n' > ready; fi\n"
++            "wait \"$logger\" 2> wait.stderr\n"
++            "result=$?\nprintf '%s\\n' \"$result\" > logger.exit\nexit \"$result\"\n")
++
++
++def device_logger_launch(remote: str) -> str:
++    script = device_logger_script(remote)
++    return ("set -eu\numask 077\n"
++            "test -x /system/bin/toybox && test -x /system/bin/logcat\n"
++            "mkdir " + remote + "\ncat > " + remote + "/run.sh <<'LUMO_LOGGER_SOURCE'\n" + script +
++            "LUMO_LOGGER_SOURCE\n"
++            "/system/bin/toybox nohup /system/bin/toybox setsid /system/bin/sh " + remote +
++            "/run.sh > " + remote + "/session.stdout 2> " + remote + "/session.stderr < /dev/null &\n"
++            "attempt=0\nwhile [ ! -s " + remote + "/ready ] && [ \"$attempt\" -lt 100 ]; do\n"
++            "  sleep 0.1\n  attempt=$((attempt + 1))\ndone\ntest -s " + remote + "/ready\n")
++
++
++def device_snapshot_script(remote: str, *, live: bool = True) -> str:
++    device_logger_script(remote)  # Validate before any shell interpolation.
++    script = "set -eu\ntest ! -L " + remote + "\ncd " + remote + "\n"
++    if live:
++        for role in ("session", "logger"):
++            script += ("pid=$(cat " + role + ".pid)\ncase \"$pid\" in ''|*[!0-9]*) exit 92;; esac\n"
++                       "printf '__" + role + "_stat__\\n'\ncat /proc/$pid/stat\n"
++                       "printf '__" + role + "_argv__\\n'\nod -An -v -tx1 /proc/$pid/cmdline\n")
++    for name in DEVICE_LOG_FILES:
++        script += ("test -f " + name + " && test ! -L " + name + "\n"
++                   "printf '__file_" + name + "__\\n'\nstat -c '%d:%i:%s:%f' " + name + "\n")
++    script += "printf '__script_hash__\\n'\nsha256sum run.sh\n"
++    return script
++
++
++def parse_device_snapshot(raw: str, remote: str, *, live: bool = True) -> dict:
++    expected = {"file_" + name for name in DEVICE_LOG_FILES} | {"script_hash"}
++    if live:
++        expected |= {role + suffix for role in ("session", "logger") for suffix in ("_stat", "_argv")}
++    sections, current = {}, None
++    for line in raw.splitlines():
++        match = re.fullmatch(r"__([a-z_.]+)__", line)
++        if match:
++            current = match[1]
++            if current in sections or current not in expected:
++                raise ValueError("Unknown or duplicate device snapshot section")
++            sections[current] = []
++        elif current is None:
++            raise ValueError("Unframed device snapshot output")
++        else:
++            sections[current].append(line)
++    if set(sections) != expected:
++        raise ValueError("Incomplete device snapshot")
++    result = {"files": {}}
++    for name in DEVICE_LOG_FILES:
++        match = re.fullmatch(r"([0-9]+):([0-9]+):([0-9]+):([0-9a-fA-F]+)", "".join(sections["file_" + name]))
++        if not match or int(match[4], 16) & 0xF000 != 0x8000:
++            raise ValueError("Device evidence must be a regular file")
++        result["files"][name] = {"device": int(match[1]), "inode": int(match[2]),
++                                  "bytes": int(match[3]), "mode": int(match[4], 16)}
++    expected_hash = hashlib.sha256(device_logger_script(remote).encode()).hexdigest()
++    if sections["script_hash"] != [expected_hash + "  run.sh"]:
++        raise ValueError("Device logger script differs from the literal source")
++    result["script_sha256"] = expected_hash
++    if live:
++        for role in ("session", "logger"):
++            stat = " ".join(sections[role + "_stat"])
++            match = re.fullmatch(r"([0-9]+) \(.*\) (.*)", stat)
++            fields = match[2].split() if match else []
++            if len(fields) < 20 or fields[0] in ("Z", "X", "x"):
++                raise ValueError("Device logger process is absent or dead")
++            argv = bytes.fromhex("".join(sections[role + "_argv"]).replace(" ", "")).decode().rstrip("\0").split("\0")
++            wanted = (["/system/bin/sh", remote + "/run.sh"] if role == "session" else
++                      ["/system/bin/logcat", "-b", "all", "-v", "threadtime"])
++            if argv != wanted:
++                raise ValueError("Device logger process command changed")
++            result[role] = {"pid": int(match[1]), "ppid": int(fields[1]), "pgrp": int(fields[2]),
++                            "session": int(fields[3]), "start_ticks": fields[19], "argv": argv}
++        session, logger = result["session"], result["logger"]
++        if (session["pid"] != session["session"] or session["pgrp"] != session["session"]
++                or logger["session"] != session["session"] or logger["pgrp"] != session["session"]
++                or logger["ppid"] != session["pid"]):
++            raise ValueError("Device logger does not belong to its independent session")
++    return result
++
++
++def same_device_session(before: dict, after: dict) -> None:
++    # The detached shell may be reparented to init after the launch shell exits;
++    # its PID, birth time, session and literal command must remain identical.
++    for role in ("session", "logger"):
++        for key in ("pid", "pgrp", "session", "start_ticks", "argv"):
++            if before[role][key] != after[role][key]:
++                raise ValueError("Device logger process identity changed: " + role + ":" + key)
++    for name in DEVICE_LOG_FILES:
++        for key in ("device", "inode", "mode"):
++            if before["files"][name][key] != after["files"][name][key]:
++                raise ValueError("Device logger file identity changed: " + name)
++        if after["files"][name]["bytes"] < before["files"][name]["bytes"]:
++            raise ValueError("Device logger file was truncated: " + name)
++    if before["script_sha256"] != after["script_sha256"]:
++        raise ValueError("Device logger source changed")
++
++
++def device_marker_line(raw: bytes, marker: str) -> bytes | None:
++    pattern = re.compile(rb"^(?:[0-9]{4}-)?[0-9]{2}-[0-9]{2} [0-9:.]+\s+[0-9]+\s+[0-9]+\s+I\s+"
++                         + DEVICE_LOG_TAG.encode() + rb"\s*:\s?" + re.escape(marker.encode()) + rb"$")
++    matches = [line for line in raw.splitlines() if pattern.fullmatch(line)]
++    if len(matches) > 1:
++        raise ValueError("Device continuity marker is not unique")
++    return matches[0] if matches else None
++
++
++class DeviceLogSession:
++    """A real detached logcat, with raw command receipts and no reconnect path."""
++
++    def __init__(self, out: Path, adb: str, serial: str, remote: str, timeout: float = 30):
++        if not DEVICE_LOG_PATH.fullmatch(remote) or not re.fullmatch(r"emulator-[0-9]+", serial):
++            raise ValueError("Expected one private logger on an exact emulator")
++        if out.exists():
++            raise ValueError("Refusing to overwrite a device logger observation phase")
++        self.out, self.remote = out, remote
++        self.recorder = Recorder(out, adb, serial)
++        self.deadline = time.monotonic() + timeout
++        self.records = []
++
++    def run(self, name: str, arguments: list[str], *, direct: bool = False,
++            accept: tuple[int, ...] = (0,)) -> dict:
++        remaining = self.deadline - time.monotonic()
++        if remaining <= 0:
++            raise TimeoutError("Device logger observation deadline expired")
++        method = self.recorder.run_adb if direct else self.recorder.run
++        result = method(name, arguments, min(15, remaining))
++        self.records.append({key: value for key, value in result.items() if key not in ("stdout", "stderr")})
++        closed = (name == "root-request" and direct and arguments == ["root"] and expected_root_disconnect(result))
++        if result["timed_out"] or result["returncode"] not in accept or (result["stderr"] and not closed):
++            raise RuntimeError("Device logger command failed: " + name)
++        return result
++
++    def shell(self, name: str, script: str) -> dict:
++        return self.run(name, ["sh", "-c", shlex.quote(script)])
++
++    def snapshot(self, name: str, *, live: bool = True) -> tuple[dict, dict]:
++        record = self.shell(name, device_snapshot_script(self.remote, live=live))
++        return parse_device_snapshot(record["stdout"], self.remote, live=live), record
++
++    def marker(self, name: str, marker: str, host_log: Path | None = None) -> dict:
++        if not re.fullmatch(r"lumo-[0-9a-f]{32}-(start|end)", marker):
++            raise ValueError("Invalid continuity marker")
++        sent = self.run(name + "-write", ["log", "-p", "i", "-t", DEVICE_LOG_TAG, marker])
++        while time.monotonic() < self.deadline:
++            result = self.run(name + "-read", ["grep", "-F", marker, self.remote + "/logcat.stdout"], accept=(0, 1))
++            device = device_marker_line((self.out / result["stdout_file"]).read_bytes(), marker)
++            host = device_marker_line(host_log.read_bytes(), marker) if host_log is not None else device
++            if device is not None and device == host:
++                return {"value": marker, "line_hex": device.hex(), "sent": sent["started_at"],
++                        "observed_at": result["finished_at"], "record": result["stdout_file"],
++                        "host_overlap_observed": host_log is not None}
++            time.sleep(min(.1, max(0, self.deadline - time.monotonic())))
++        raise TimeoutError("Actual device and host continuity marker was not observed")
++
++    def originals(self) -> dict:
++        return {str(file.relative_to(self.out)): {"bytes": file.stat().st_size,
++                "sha256": hashlib.sha256(file.read_bytes()).hexdigest()}
++                for file in sorted((self.out / "commands").glob("*")) if file.is_file()}
++
++
++def start_device_log(out: Path, framework_out: Path, serial: str) -> dict:
++    if out.exists():
++        raise ValueError("Refusing to replace device logger evidence")
++    token = secrets.token_hex(16)
++    remote = "/data/local/tmp/lumo-runtime-" + token
++    session = DeviceLogSession(out / "start", adb_path(), serial, remote, timeout=45)
++    value = {"schema": 1, "started_at": utc(), "remote": remote, "serial": serial,
++             "adb": adb_path(), "token": token, "status": "FAIL", "errors": []}
++    try:
++        session.shell("launch", device_logger_launch(remote))
++        first, _ = session.snapshot("initial")
++        value["initial"] = first
++        value["marker"] = session.marker("start-marker", "lumo-" + token + "-start",
++                                          framework_out / "logcat-all.stdout")
++        prefix = session.run("prefix", ["cat", remote + "/logcat.stdout"])
++        value["prefix"] = prefix["stdout_file"]
++        second, _ = session.snapshot("before-root")
++        same_device_session(first, second)
++        value["before_root"] = second
++        root = {"started_at": utc(), "requested": False}
++        value["root"] = root
++        uid = session.run("root-before-uid", ["id", "-u"])["stdout"].strip()
++        if uid not in ("0", "2000"):
++            raise ValueError("Unrecognized real emulator shell UID")
++        root["uid_before"] = uid
++        if uid != "0":
++            root["requested"] = True
++            command = session.run("root-request", ["root"], direct=True, accept=(0, 1))
++            if (command["returncode"] == 1 and not expected_root_disconnect(command)) or "cannot run as root" in command["stdout"]:
++                raise RuntimeError("The emulator did not accept the explicit root request")
++            root["command"] = {key: item for key, item in command.items() if key not in ("stdout", "stderr")}
++        session.run("root-wait", ["wait-for-device"], direct=True)
++        root["uid_after"] = session.run("root-after-uid", ["id", "-u"])["stdout"].strip()
++        root["boot_completed"] = session.run("root-boot", ["getprop", "sys.boot_completed"])["stdout"].strip()
++        if root["uid_after"] != "0" or root["boot_completed"] != "1":
++            raise ValueError("Root preparation lacks an actual UID0 and boot1")
++        after, _ = session.snapshot("after-root")
++        same_device_session(first, after)
++        value["after_root"] = after
++        root["finished_at"] = utc()
++        value["status"] = "PASS"
++    except (OSError, ValueError, RuntimeError, TimeoutError) as error:
++        value["errors"].append(type(error).__name__ + ": " + str(error))
++        raise
++    finally:
++        value.update(finished_at=utc(), records=session.records, files=session.originals())
++        write_json(out / "start.json", value)
++    return value
++
++
++def observe_device_log(out: Path, label: str) -> dict:
++    start = json.loads((out / "start.json").read_text())
++    session = DeviceLogSession(out / label, start["adb"], start["serial"], start["remote"], timeout=10)
++    value = {"started_at": utc(), "status": "FAIL"}
++    try:
++        snapshot, _ = session.snapshot("identity")
++        same_device_session(start["initial"], snapshot)
++        value.update(status="PASS", snapshot=snapshot)
++        return value
++    finally:
++        value.update(finished_at=utc(), records=session.records, files=session.originals())
++        write_json(out / (label + ".json"), value)
++
++
++def finish_device_log(out: Path) -> dict:
++    start = json.loads((out / "start.json").read_text())
++    session = DeviceLogSession(out / "finish", start["adb"], start["serial"], start["remote"], timeout=45)
++    value = {"schema": 1, "status": "FAIL", "started_at": utc(), "errors": []}
++    try:
++        before, _ = session.snapshot("before-stop")
++        same_device_session(start["initial"], before)
++        value["before_stop"] = before
++        value["marker"] = session.marker("end-marker", "lumo-" + start["token"] + "-end")
++        current, _ = session.snapshot("checked-stop-target")
++        same_device_session(before, current)
++        value["stop_target"] = current
++        value["stop_requested_at"] = utc()
++        session.run("stop", ["kill", "-TERM", str(current["logger"]["pid"])])
++        while time.monotonic() < session.deadline:
++            result = session.shell("exit", "if [ -s " + start["remote"] + "/logger.exit ]; then cat " + start["remote"] + "/logger.exit; fi")
++            if result["stdout"].strip():
++                if result["stdout"].strip() != "143":
++                    raise ValueError("The original device logger did not stop by the requested TERM")
++                value["exit_code"] = 143
++                break
++            time.sleep(min(.1, max(0, session.deadline - time.monotonic())))
++        if "exit_code" not in value:
++            raise TimeoutError("Device logger exit was not observed")
++        stopped, _ = session.snapshot("stopped-files", live=False)
++        value["stopped"] = stopped
++        for name in DEVICE_LOG_FILES:
++            if any(stopped["files"][name][key] != current["files"][name][key] for key in ("device", "inode", "mode")):
++                raise ValueError("Stopped device log file changed identity")
++            if stopped["files"][name]["bytes"] > 512 * 1024 * 1024:
++                raise ValueError("Original device log exceeds the explicit 512MiB read bound; not truncated")
++            result = session.run("original-" + name.replace(".", "-"), ["cat", start["remote"] + "/" + name])
++            path = session.out / result["stdout_file"]
++            if path.stat().st_size != stopped["files"][name]["bytes"]:
++                raise ValueError("The complete original device file was not retrieved")
++            value[name] = result["stdout_file"]
++        final, _ = session.snapshot("files-after-read", live=False)
++        if final != stopped:
++            raise ValueError("Device originals changed during complete retrieval")
++        value["status"] = "PASS"
++    except (OSError, ValueError, RuntimeError, TimeoutError) as error:
++        value["errors"].append(type(error).__name__ + ": " + str(error))
++        raise
++    finally:
++        value.update(finished_at=utc(), records=session.records, files=session.originals())
++        write_json(out / "finish.json", value)
++    return value
+ 
+ 
+ def input_dispatch_state(input_dump: str) -> dict:
+--- a/scripts/verify_android_runtime_anr.py
++++ b/scripts/verify_android_runtime_anr.py
+@@ -1,10 +1,12 @@
+ #!/usr/bin/env python3
+ """Keep pre-boot ANR evidence authoritative through an isolated Android tour.
+ 
+-begin marks the interval before installation. finish records read-only endpoint
+-dumps, then stops the existing monitor and verifies its complete original output.
+-verify only reads retained files. No mode installs an APK, clears logs, dismisses
+-a dialog, restarts a monitor, or changes a previous readiness result.
++begin marks the interval before installation. The explicit root-continuity mode
++proves overlap with a detached device logcat before preparing actual UID0.
++finish records read-only endpoint dumps, stops the same logger, preserves its
++complete original file and verifies both recordings. verify only reads retained
++files. No mode installs an APK, clears logs, dismisses a dialog, reconnects a
++logger, or changes a previous readiness result.
+ """
+ 
+ from __future__ import annotations
+@@ -16,6 +18,7 @@
+ import json
+ from pathlib import Path, PurePosixPath
+ import re
++import shlex
+ import sys
+ import time
+ 
+@@ -100,7 +103,7 @@
+     return result
+ 
+ 
+-def begin(framework_out: Path, out: Path, serial: str) -> dict:
++def begin(framework_out: Path, out: Path, serial: str, *, preserve_through_adb_root: bool = False) -> dict:
+     if (out / "runtime-start.json").exists() or (out / "runtime-end.json").exists():
+         raise ValueError("Refusing to replace an existing runtime interval")
+     identity = read_json(framework_out / "monitor-process.json")
+@@ -112,11 +115,18 @@
+     if (ready.get("status") != "PASS" or ready.get("monitor_alive_at_finish") is not True
+             or ready.get("serial") != serial or ready.get("adb") != identity["adb"]):
+         raise ValueError("A recorded positive guard is required before installation")
++    device = None
++    if preserve_through_adb_root:
++        device = FRAMEWORK.start_device_log(out / "device-logger", framework_out, serial)
+     value = {"schema": 1, "began_at": FRAMEWORK.utc(), "serial": serial,
+              "monitor_identity": identity,
+              "monitor_process": file_identity(framework_out / "monitor-process.json"),
+              "framework_readiness": file_identity(framework_out / "framework-readiness.json"),
+              "scope": "Workflow boundary before the first APK installation and tour commands."}
++    if device is not None:
++        value.update(recording_protocol="independent-device-session-v1",
++                     device_start=file_identity(out / "device-logger/start.json"),
++                     root_prepared_before_installation=True)
+     write_new(out / "runtime-start.json", value)
+     return value
+ 
+@@ -130,6 +140,10 @@
+              "tour_exit_code": tour_exit_code, "commands": {}, "files": {}, "errors": []}
+     try:
+         value["monitor_alive_before"] = FRAMEWORK.monitor_alive(framework_out)
++        start = read_json(out / "runtime-start.json")
++        durable = start.get("recording_protocol") == "independent-device-session-v1"
++        if durable:
++            FRAMEWORK.observe_device_log(out / "device-logger", "before-endpoint")
+         adb = FRAMEWORK.adb_path()
+         identity = read_json(framework_out / "monitor-process.json")
+         if identity.get("serial") != serial or identity.get("adb") != adb:
+@@ -147,6 +161,8 @@
+                              record["stdout_file"].removesuffix(".stdout") + ".json"):
+                 value["files"][relative] = file_identity(original(out, relative))
+         value["monitor_alive_after"] = FRAMEWORK.monitor_alive(framework_out)
++        if durable:
++            FRAMEWORK.observe_device_log(out / "device-logger", "after-endpoint")
+     except (OSError, ValueError, KeyError, RuntimeError, TimeoutError) as error:
+         value["errors"].append(f"{type(error).__name__}: {error}")
+     value["finished_at"] = FRAMEWORK.utc()
+@@ -154,6 +170,191 @@
+         value["runtime_start"] = file_identity(out / "runtime-start.json")
+     write_new(out / "runtime-end.json", value)
+     return value
++
++
++def verify_device_recording(framework_out: Path, out: Path, start: dict, end: dict,
++                            monitor: dict, ready: dict) -> dict:
++    """Verify raw independent-session observations, never infer a restart gap."""
++    base = out / "device-logger"
++    initial = read_json(original(base, "start.json"))
++    final = read_json(original(base, "finish.json"))
++    before = read_json(original(base, "before-endpoint.json"))
++    after = read_json(original(base, "after-endpoint.json"))
++    if (initial.get("status") != "PASS" or initial.get("errors") or final.get("status") != "PASS"
++            or final.get("errors") or before.get("status") != "PASS" or after.get("status") != "PASS"
++            or (base / "stop-error.json").exists()):
++        raise ValueError("Independent device logger did not complete all observations")
++    remote, adb, serial = initial["remote"], initial["adb"], initial["serial"]
++    token = initial["token"]
++    if (remote != "/data/local/tmp/lumo-runtime-" + token or not re.fullmatch(r"[0-9a-f]{32}", token)
++            or adb != monitor["adb"] or serial != start["serial"]
++            or start.get("device_start") != file_identity(original(base, "start.json"))
++            or start.get("root_prepared_before_installation") is not True):
++        raise ValueError("Independent device logger source/device binding changed")
++    prefix = [adb, "-s", serial]
++    snapshot_live = ["shell", "sh", "-c", shlex.quote(FRAMEWORK.device_snapshot_script(remote))]
++    snapshot_stopped = ["shell", "sh", "-c", shlex.quote(FRAMEWORK.device_snapshot_script(remote, live=False))]
++    commands = {
++        "launch": ["shell", "sh", "-c", shlex.quote(FRAMEWORK.device_logger_launch(remote))],
++        **{name: snapshot_live for name in ("initial", "before-root", "after-root", "identity", "before-stop", "checked-stop-target")},
++        **{name: snapshot_stopped for name in ("stopped-files", "files-after-read")},
++        "prefix": ["shell", "cat", remote + "/logcat.stdout"],
++        "root-before-uid": ["shell", "id", "-u"], "root-after-uid": ["shell", "id", "-u"],
++        "root-request": ["root"], "root-wait": ["wait-for-device"],
++        "root-boot": ["shell", "getprop", "sys.boot_completed"],
++        "stop": ["shell", "kill", "-TERM", str(initial["initial"]["logger"]["pid"])],
++        "exit": ["shell", "sh", "-c", shlex.quote("if [ -s " + remote + "/logger.exit ]; then cat " + remote + "/logger.exit; fi")],
++    }
++    for point in ("start", "end"):
++        marker = "lumo-" + token + "-" + point
++        commands[point + "-marker-write"] = ["shell", "log", "-p", "i", "-t", FRAMEWORK.DEVICE_LOG_TAG, marker]
++        commands[point + "-marker-read"] = ["shell", "grep", "-F", marker, remote + "/logcat.stdout"]
++    for name in FRAMEWORK.DEVICE_LOG_FILES:
++        commands["original-" + name.replace(".", "-")] = ["shell", "cat", remote + "/" + name]
++    loaded = {}
++    for phase, report in (("start", initial), ("before-endpoint", before), ("after-endpoint", after), ("finish", final)):
++        root = base / phase
++        expected_files, labels = set(), []
++        loaded[phase] = {}
++        previous = timestamp(report["started_at"])
++        for index, record in enumerate(report["records"], 1):
++            relative = record["stdout_file"]
++            match = re.fullmatch(r"commands/([0-9]{4})-([a-z0-9-]+)\.stdout", relative)
++            if not match or int(match[1]) != index:
++                raise ValueError("Device command records are missing or reordered")
++            label = match[2]
++            labels.append(label)
++            if record["command"] != prefix + commands[label]:
++                raise ValueError("Device command differs from the unfiltered fixed protocol")
++            if (not previous <= timestamp(record["started_at"]) <= timestamp(record["finished_at"])
++                    <= timestamp(report["finished_at"]) or record["timed_out"] is not False):
++                raise ValueError("Device command chronology or deadline is invalid")
++            previous = timestamp(record["finished_at"])
++            if type(record["returncode"]) is not int or record["returncode"] not in ((0, 1) if label.endswith("-read") or label == "root-request" else (0,)):
++                raise ValueError("Device observation command failed")
++            meta_name = relative.removesuffix(".stdout") + ".json"
++            if read_json(original(root, meta_name)) != record:
++                raise ValueError("Device command receipt changed")
++            for name in (relative, record["stderr_file"], meta_name):
++                expected_files.add(name)
++                if report["files"].get(name) != file_identity(original(root, name)):
++                    raise ValueError("Original device command bytes changed")
++            stderr = original(root, record["stderr_file"]).read_bytes()
++            stdout = original(root, relative).read_bytes()
++            closed = (label == "root-request" and FRAMEWORK.expected_root_disconnect(
++                {**record, "stdout": stdout.decode(), "stderr": stderr.decode()}))
++            if stderr and not closed:
++                raise ValueError("Device observation emitted stderr")
++            loaded[phase].setdefault(label, []).append(original(root, relative).read_bytes())
++        if set(report["files"]) != expected_files:
++            raise ValueError("Device command file inventory differs")
++        sequence = ",".join(labels)
++        pattern = (r"launch,initial,start-marker-write,(?:start-marker-read,)+prefix,before-root,root-before-uid,(?:root-request,)?root-wait,root-after-uid,root-boot,after-root"
++                   if phase == "start" else r"identity" if phase != "finish" else
++                   r"before-stop,end-marker-write,(?:end-marker-read,)+checked-stop-target,stop,(?:exit,)+stopped-files,original-logcat-stdout,original-logcat-stderr,original-session-stdout,original-session-stderr,original-wait-stderr,original-run-sh,files-after-read")
++        if not re.fullmatch(pattern, sequence):
++            raise ValueError("Independent logger protocol is incomplete or contains extra actions")
++    def snapshot(phase: str, label: str, *, live: bool = True) -> dict:
++        return FRAMEWORK.parse_device_snapshot(loaded[phase][label][0].decode(), remote, live=live)
++    anchor = snapshot("start", "initial")
++    if initial["initial"] != anchor:
++        raise ValueError("Reported initial process differs from its raw observation")
++    for phase, label, report, key in (("start", "before-root", initial, "before_root"),
++                                    ("start", "after-root", initial, "after_root"),
++                                    ("before-endpoint", "identity", before, "snapshot"),
++                                    ("after-endpoint", "identity", after, "snapshot"),
++                                    ("finish", "before-stop", final, "before_stop"),
++                                    ("finish", "checked-stop-target", final, "stop_target")):
++        actual = snapshot(phase, label)
++        if report[key] != actual:
++            raise ValueError("Reported process/file identity differs from original")
++        FRAMEWORK.same_device_session(anchor, actual)
++    root = initial["root"]
++    uid_before = loaded["start"]["root-before-uid"][0].strip().decode()
++    if (uid_before not in ("0", "2000") or root["uid_before"] != uid_before
++            or root["requested"] is not (uid_before == "2000")
++            or loaded["start"]["root-after-uid"] != [b"0\n"]
++            or loaded["start"]["root-boot"] != [b"1\n"]
++            or root["uid_after"] != "0" or root["boot_completed"] != "1"):
++        raise ValueError("Root preparation is not positively observed")
++    root_records = [record for record in initial["records"] if record["command"] == prefix + ["root"]]
++    if root["requested"]:
++        if len(root_records) != 1 or root.get("command") != root_records[0]:
++            raise ValueError("Expected exactly one original root request")
++        output = loaded["start"]["root-request"][0].strip()
++        record = root_records[0]
++        stderr = original(base / "start", record["stderr_file"]).read_bytes()
++        if (record["returncode"] == 1 and not FRAMEWORK.expected_root_disconnect(
++                {**record, "stdout": output.decode(), "stderr": stderr.decode()})) or b"cannot run as root" in output:
++            raise ValueError("Original root request was refused")
++    elif root_records:
++        raise ValueError("Unexpected root request when the emulator was already root")
++    if final["exit_code"] != 143 or loaded["finish"]["exit"][-1] != b"143\n":
++        raise ValueError("Device logger did not acknowledge its requested stop")
++    stopped = snapshot("finish", "stopped-files", live=False)
++    if stopped != final["stopped"] or snapshot("finish", "files-after-read", live=False) != stopped:
++        raise ValueError("Device files changed while their complete originals were read")
++    for name in FRAMEWORK.DEVICE_LOG_FILES:
++        initial_file, final_file = anchor["files"][name], stopped["files"][name]
++        if any(initial_file[key] != final_file[key] for key in ("device", "inode", "mode")) or final_file["bytes"] < initial_file["bytes"]:
++            raise ValueError("Device log file was replaced or truncated")
++        data = loaded["finish"]["original-" + name.replace(".", "-")][0]
++        if len(data) != final_file["bytes"] or data != original(base / "finish", final[name]).read_bytes():
++            raise ValueError("Complete device file was not preserved")
++    for name in ("logcat.stderr", "session.stdout", "session.stderr"):
++        if loaded["finish"]["original-" + name.replace(".", "-")] != [b""]:
++            raise ValueError("Device logger emitted unexpected output/errors")
++    # Some POSIX shells print this exact notification from the wait builtin
++    # after its positively recorded child is deliberately sent TERM. Keep the
++    # raw bytes in their own file; no logger/session stderr is ignored.
++    if loaded["finish"]["original-wait-stderr"][0] not in (b"", b"Terminated\n"):
++        raise ValueError("Unrecognized wait notification from the device logger shell")
++    if loaded["finish"]["original-run-sh"] != [FRAMEWORK.device_logger_script(remote).encode()]:
++        raise ValueError("Retrieved device script differs from the fixed source")
++    log = original(base / "finish", final["logcat.stdout"])
++    original_bytes = log.read_bytes()
++    old_prefix = original(base / "start", initial["prefix"]).read_bytes()
++    if old_prefix != loaded["start"]["prefix"][0]:
++        raise ValueError("Pre-root prefix does not identify the original full-file read")
++    if not old_prefix or not original_bytes.startswith(old_prefix):
++        raise ValueError("Device log is not an exact extension of its pre-root original")
++    for point, report, phase in (("start", initial, "start"), ("end", final, "finish")):
++        marker = "lumo-" + token + "-" + point
++        line = FRAMEWORK.device_marker_line(original_bytes, marker)
++        receipt = report["marker"]
++        marker_write = next(record for record in report["records"]
++                            if record["command"] == prefix + commands[point + "-marker-write"])
++        marker_reads = [record for record in report["records"]
++                        if record["command"] == prefix + commands[point + "-marker-read"]]
++        if (receipt["sent"] != marker_write["started_at"] or receipt["record"] != marker_reads[-1]["stdout_file"]
++                or receipt["observed_at"] != marker_reads[-1]["finished_at"]):
++            raise ValueError("Continuity marker time/path differs from its actual command receipt")
++        if (receipt["value"] != marker or line is None or line.hex() != receipt["line_hex"]
++                or FRAMEWORK.device_marker_line(loaded[phase][point + "-marker-read"][-1], marker) != line):
++            raise ValueError("Actual device marker is missing, duplicated or changed")
++        if point == "start" and (receipt["host_overlap_observed"] is not True
++                or FRAMEWORK.device_marker_line(original(framework_out, "logcat-all.stdout").read_bytes(), marker) != line
++                or FRAMEWORK.device_marker_line(old_prefix, marker) != line):
++            raise ValueError("The initial host and device recordings do not demonstrably overlap")
++    times = [ready["finished_at"], initial["started_at"], initial["marker"]["observed_at"],
++             root["started_at"], root["finished_at"], initial["finished_at"], start["began_at"],
++             end["started_at"], before["started_at"], before["finished_at"],
++             end["commands"]["properties"]["started_at"], end["commands"]["events-anr"]["finished_at"],
++             after["started_at"], after["finished_at"], end["finished_at"], final["started_at"],
++             final["marker"]["observed_at"], final["stop_requested_at"], final["finished_at"]]
++    parsed = [timestamp(value) for value in times]
++    if not all(left <= right for left, right in zip(parsed, parsed[1:])):
++        raise ValueError("Device logger does not cover root and all endpoint observations")
++    scan = scan_anrs(log)
++    errors = []
++    if scan["anr_record_count"]:
++        errors.append("recorded_android_anr_in_device_session")
++    if not scan["threadtime_records"] or not scan["ends_with_newline"]:
++        errors.append("empty_or_truncated_device_logcat")
++    return {"status": "FAIL" if errors else "PASS", "errors": errors, "root": root,
++            "start_marker": initial["marker"], "end_marker": final["marker"],
++            "logcat": scan, "start_identity": anchor, "finished_at": final["finished_at"],
++            "scope": "Unfiltered device session with original boot-stream overlap, positive root preparation and endpoint continuity."}
+ 
+ 
+ def scan_anrs(path: Path) -> dict:
+@@ -210,7 +411,7 @@
+              "monitor-stop.json", "framework-readiness.json")
+     monitor, finished, commands, stopped, ready = [load(framework_out, name) for name in names]
+     start, end = [load(out, name) for name in ("runtime-start.json", "runtime-end.json")]
+-    endpoint, adb_start = None, None
++    endpoint, adb_start, device_recording = None, None, None
+     if all(value is not None for value in (monitor, finished, commands, stopped, ready, start, end)):
+         try:
+             require(all(type(value.get("schema")) is int and value["schema"] == 1
+@@ -222,14 +423,21 @@
+             require(end["runtime_start"] == inputs["runtime/runtime-start.json"], "runtime_start_changed")
+             require(ready.get("status") == "PASS" and ready.get("monitor_alive_at_finish") is True,
+                     "original_framework_guard_not_positive")
+-            require(end.get("monitor_alive_before") is True and end.get("monitor_alive_after") is True,
+-                    "monitor_not_alive_through_endpoint")
++            protocol = start.get("recording_protocol")
++            require(protocol in (None, "independent-device-session-v1"), "unknown_recording_protocol")
++            if protocol == "independent-device-session-v1":
++                try:
++                    device_recording = verify_device_recording(framework_out, out, start, end, monitor, ready)
++                    errors.extend(device_recording["errors"])
++                except (OSError, ValueError, TypeError, KeyError, IndexError, UnicodeError) as error:
++                    errors.append("device_continuity_unverified:" + str(error))
++            else:
++                require(end.get("monitor_alive_before") is True and end.get("monitor_alive_after") is True,
++                        "monitor_not_alive_through_endpoint")
+             require(not end.get("errors"), "endpoint_capture_failed")
+             require(type(end.get("tour_exit_code")) is int and end["tour_exit_code"] == 0, "tour_command_failed_or_missing")
+             require(type(monitor.get("budget_seconds")) is int and 1 <= monitor["budget_seconds"] <= FRAMEWORK.MAX_MONITOR_SECONDS,
+                     "unknown_monitor_budget")
+-            require(finished.get("stop_requested") is True and finished.get("budget_exhausted") is False,
+-                    "monitor_ended_without_requested_stop_or_budget_exhausted")
+             records = finished["commands"]
+             require(records == commands["commands"] and len(records) == 2, "missing_or_restarted_logcat_session")
+             wait, log = records
+@@ -241,11 +449,27 @@
+                     "logcat_command_filtered_or_changed")
+             require(log["stdout"] == "logcat-all.stdout" and log["stderr"] == "logcat-all.stderr",
+                     "logcat_output_identity_changed")
+-            require(log["stop_requested"] is True and type(log["returncode"]) is int
+-                    and log["returncode"] in (0, -15), "logcat_terminated_early_or_abnormally")
+-            times = [monitor["started_at"], wait["started_at"], wait["finished_at"], log["started_at"],
+-                     ready["finished_at"], start["began_at"], end["started_at"], end["finished_at"],
+-                     log["finished_at"], finished["finished_at"], stopped["stopped_at"]]
++            root_disconnect = bool(device_recording and device_recording["status"] == "PASS"
++                                   and device_recording["root"]["requested"]
++                                   and log.get("returncode") == 255 and log.get("ended_by_observer") is False
++                                   and log.get("stop_requested") is False and finished.get("stop_requested") is False)
++            require(finished.get("budget_exhausted") is False and
++                    (finished.get("stop_requested") is True or root_disconnect),
++                    "monitor_ended_without_requested_stop_or_budget_exhausted")
++            require((log["stop_requested"] is True and type(log["returncode"]) is int
++                     and log["returncode"] in (0, -15)) or root_disconnect, "logcat_terminated_early_or_abnormally")
++            times = [monitor["started_at"], wait["started_at"], wait["finished_at"], log["started_at"], ready["finished_at"]]
++            if root_disconnect:
++                # Only the precisely recorded, explicitly requested root phase
++                # may end this transport; the independently verified device
++                # logger has already overlapped it and remains uninterrupted.
++                root = device_recording["root"]
++                times += [device_recording["start_marker"]["observed_at"], root["command"]["started_at"],
++                          log["finished_at"], finished["finished_at"], root["finished_at"], start["began_at"],
++                          end["started_at"], end["finished_at"], device_recording["finished_at"], stopped["stopped_at"]]
++            else:
++                times += [start["began_at"], end["started_at"], end["finished_at"],
++                          log["finished_at"], finished["finished_at"], stopped["stopped_at"]]
+             parsed = [timestamp(value) for value in times]
+             require(all(left <= right for left, right in zip(parsed, parsed[1:])), "recording_does_not_cover_full_interval")
+             require(not (out / "stop-error.json").exists(), "monitor_stop_failed")
+@@ -298,7 +522,8 @@
+             errors.append("invalid_or_missing_observation:" + type(error).__name__ + ":" + str(error))
+     return {"schema": 1, "status": "FAIL" if errors else "PASS",
+             "result": "ANDROID_RUNTIME_ANR_REJECTED" if errors else "ANDROID_RUNTIME_ANR_OBSERVATION_COMPLETE",
+-            "serial": serial, "errors": errors, "logcat": scan, "endpoint": endpoint, "adb_start": adb_start,
++            "serial": serial, "errors": errors, "logcat": scan, "device_recording": device_recording,
++            "endpoint": endpoint, "adb_start": adb_start,
+             "inputs": inputs, "observer_sources": {name: file_identity(Path(__file__).with_name(name))
+                                                     for name in ("verify_android_runtime_anr.py", "android_framework_ready.py")},
+             "scope": SCOPE, "verified_at": FRAMEWORK.utc()}
+@@ -312,17 +537,21 @@
+     parser.add_argument("--serial", default="emulator-5554")
+     parser.add_argument("--tour-exit-code", type=int)
+     parser.add_argument("--report", type=Path)
++    parser.add_argument("--preserve-through-adb-root", action="store_true",
++                        help="Before installation, overlap an independent device logger and positively prepare root.")
+     args = parser.parse_args()
+     if not re.fullmatch(r"emulator-[0-9]+", args.serial):
+         parser.error("Expected an exact emulator serial")
+     if (args.mode == "finish") != (args.tour_exit_code is not None):
+         parser.error("Only finish requires --tour-exit-code")
++    if args.preserve_through_adb_root and args.mode != "begin":
++        parser.error("Only begin establishes the independent device logger")
+     framework_out, out = args.framework_out.resolve(), args.out.resolve()
+     if framework_out == out:
+         parser.error("Keep endpoint observations separate from the original monitor directory")
+     try:
+         if args.mode == "begin":
+-            begin(framework_out, out, args.serial)
++            begin(framework_out, out, args.serial, preserve_through_adb_root=args.preserve_through_adb_root)
+             print(json.dumps({"result": "ANDROID_RUNTIME_INTERVAL_BEGUN", "serial": args.serial}))
+             return 0
+         report = args.report or out / "runtime-anr-verification.json"
+@@ -330,6 +559,11 @@
+             raise ValueError("Refusing to replace an existing verification report")
+         if args.mode == "finish":
+             capture_end(framework_out, out, args.serial, args.tour_exit_code)
++            if read_json(out / "runtime-start.json").get("recording_protocol") == "independent-device-session-v1":
++                try:
++                    FRAMEWORK.finish_device_log(out / "device-logger")
++                except (OSError, ValueError, KeyError, RuntimeError) as error:
++                    write_new(out / "device-logger/stop-error.json", {"error": f"{type(error).__name__}: {error}", "observed_at": FRAMEWORK.utc()})
+             try:
+                 FRAMEWORK.stop_monitor(framework_out)
+             except (OSError, ValueError, KeyError, RuntimeError) as error:
+--- a/scripts/run_unchanged_apk_diagnostic.sh
++++ b/scripts/run_unchanged_apk_diagnostic.sh
+@@ -35,11 +35,13 @@
+ }
+ 
+ if [[ "$diagnostic_case" == api37-* ]]; then
+-  # The already running startup monitor remains the same process across the
+-  # guard, APK installation, both tours and the final original system dumps.
++  # Keep the full startup stream. Before root can restart its ADB transport,
++  # prove overlap with an independent device logger that covers root, both
++  # tours and the final system dumps without reconnecting or clearing its file.
+   "$diagnostic_python" "$diagnostic_root/scripts/verify_android_runtime_anr.py" begin \
+     --framework-out "$diagnostic_out/framework-start" \
+-    --out "$diagnostic_out/runtime-anr" --serial emulator-5554
++    --out "$diagnostic_out/runtime-anr" --serial emulator-5554 --preserve-through-adb-root
++  export LUMO_RUNTIME_ANR_START="$diagnostic_out/runtime-anr/runtime-start.json"
+   trap finish_android17 EXIT
+   trap 'exit 143' TERM
+   trap 'exit 130' INT
+--- a/.github/probes/modernization_android_tour.py
++++ b/.github/probes/modernization_android_tour.py
+@@ -65,6 +65,44 @@
+     '23_zurueck_in_flutter', '24_lernen_nach_kart', '25_start_nach_kart', '26_neustart',
+     '99_fehler',
+ )
++
++
++def diagnostic_logcat_context(out: Path) -> dict | None:
++    """Preserve logd only for this tour's positively bound API37 recorder."""
++    import hashlib
++
++    requested = os.environ.get('LUMO_RUNTIME_ANR_START')
++    if requested is None:
++        return None
++    path = Path(requested)
++    expected = out / 'runtime-anr/runtime-start.json'
++    if (not requested or not path.is_absolute() or path.is_symlink()
++            or path.resolve(strict=True) != expected.resolve(strict=True)):
++        raise RuntimeError('Diagnostic log preservation requires this exact runtime interval')
++    raw = path.read_bytes()
++    start = json.loads(raw)
++    device_path = path.parent / 'device-logger/start.json'
++    if device_path.is_symlink() or not device_path.is_file():
++        raise RuntimeError('Diagnostic device recorder start is unavailable')
++    device_raw = device_path.read_bytes()
++    device = json.loads(device_raw)
++    identity = {'bytes': len(device_raw), 'sha256': hashlib.sha256(device_raw).hexdigest()}
++    if (start.get('recording_protocol') != 'independent-device-session-v1'
++            or start.get('root_prepared_before_installation') is not True
++            or start.get('device_start') != identity or start.get('serial') != device.get('serial')
++            or device.get('status') != 'PASS' or device.get('errors')
++            or device.get('root', {}).get('uid_after') != '0'
++            or device.get('root', {}).get('boot_completed') != '1'
++            or not re.fullmatch(r'[0-9a-f]{32}', device.get('token', ''))
++            or any((path.parent / name).exists() for name in
++                   ('runtime-end.json', 'device-logger/finish.json', 'device-logger/stop-error.json'))):
++        raise RuntimeError('Diagnostic device recorder is not a bound active interval')
++    if (base.adb('get-serialno').strip() != start['serial']
++            or base.adb('shell', 'getprop', 'ro.build.version.sdk').strip() != '37'):
++        raise RuntimeError('Diagnostic log preservation requires the same actual API37 emulator')
++    return {'runtime_start_sha256': hashlib.sha256(raw).hexdigest(),
++            'device_start_sha256': identity['sha256'], 'serial': start['serial'],
++            'token': device['token']}
+ 
+ 
+ def logcat_fatal() -> list[str]:
+@@ -1108,7 +1146,8 @@
+             raise RuntimeError('Refusing to tour an APK that is not the verified build')
+         result['emulator_root_readiness'] = probe.ensure_rooted_emulator(base.adb, out)
+         result['android_sdk'] = base.adb('shell', 'getprop', 'ro.build.version.sdk').strip()
+-        base.adb('logcat', '-c', check=False)
++        if diagnostic_logcat_context(out) is None:
++            base.adb('logcat', '-c', check=False)
+         base.display(1080, 2400, 420)
+         install = base.adb('install', '-r', '--no-streaming', str(args.apk), timeout=300)
+         (out / 'install.txt').write_text(install)
+--- a/.github/probes/lumo_studio_surfaces_android_probe.py
++++ b/.github/probes/lumo_studio_surfaces_android_probe.py
+@@ -215,7 +215,7 @@
+             'audible_quality_verified': False, 'lip_sync_verified': False}
+ 
+ 
+-def _speech_logcat() -> str:
++def _speech_logcat(*, boundary=None) -> str:
+     """Collect real native speech and Godot events without draining every system log.
+ 
+     CI emulators may return adb/logcat 255 on a disconnected logd stream.
+@@ -223,9 +223,29 @@
+     """
+     for attempt in range(3):
+         try:
+-            return base.adb('logcat', '-d', '-v', 'brief', '-s',
+-                            'LumoLearningSpeech:I', 'godot:I', 'Godot:I', '*:S',
+-                            timeout=60)
++            if boundary is None:
++                return base.adb('logcat', '-d', '-v', 'brief', '-s',
++                                'LumoLearningSpeech:I', 'godot:I', 'Godot:I', '*:S',
++                                timeout=60)
++            marker = boundary['marker']
++            if not re.fullmatch(r'lumo-[0-9a-f]{32}-speech-[0-9a-f]{32}', marker):
++                raise RuntimeError('Invalid observed speech section identity')
++            raw = base.adb('logcat', '-d', '-v', 'brief', '-s',
++                           'LumoLearningSpeech:I', 'godot:I', 'Godot:I',
++                           'LumoSpeechSection:I', '*:S', timeout=60)
++            boundary['reads'] += 1
++            with (boundary['out'] / f"{boundary['reads']:04d}-full-filtered-logcat.txt").open('x') as stream:
++                stream.write(raw)
++            lines = raw.splitlines(keepends=True)
++            matches = [(index, line) for index, line in enumerate(lines) if re.fullmatch(
++                r'I/LumoSpeechSection\s*\(\s*[1-9][0-9]*\):\s*' + re.escape(marker) + r'\s*', line)]
++            if len(matches) != 1:
++                raise RuntimeError('A unique actual speech section boundary is missing or ambiguous')
++            index, observed = matches[0]
++            if boundary.get('observed_line') not in (None, observed):
++                raise RuntimeError('The observed speech section boundary changed')
++            boundary['observed_line'] = observed
++            return ''.join(lines[index + 1:])
+         except RuntimeError as error:
+             if "Command failed (255): ('adb', 'logcat'" not in str(error) or attempt == 2:
+                 raise
+@@ -233,9 +253,30 @@
+     raise RuntimeError('Unreachable speech logcat retry state')
+ 
+ 
+-def completed_native_speech(out: Path, *, after_final_move=False) -> dict:
++def _start_learning_speech_section(out: Path, context: dict) -> dict:
++    """Observe a fresh log marker without clearing the complete ANR history."""
++    import secrets
++
++    directory = out / 'learning-speech-section'
++    directory.mkdir()
++    boundary = {'marker': 'lumo-' + context['token'] + '-speech-' + secrets.token_hex(16),
++                'out': directory, 'reads': 0}
++    base.adb('shell', 'log', '-p', 'i', '-t', 'LumoSpeechSection', boundary['marker'])
++    # The command's successful return alone is not a section boundary. Read the
++    # actual marker back before entering the native lesson; preserve that raw read.
++    _speech_logcat(boundary=boundary)
++    with (directory / 'observed-start.json').open('x') as stream:
++        json.dump({**context, 'marker': boundary['marker'],
++                   'observed_line': boundary['observed_line'],
++                   'scope': 'Actual log section before native entry; full ANR logs remain unchanged'},
++                  stream, indent=2)
++        stream.write('\n')
++    return boundary
++
++
++def completed_native_speech(out: Path, *, after_final_move=False, boundary=None) -> dict:
+     def observe():
+-        log = _speech_logcat()
++        log = _speech_logcat(boundary=boundary)
+         (out / 'learning-speech-logcat.txt').write_text(log)
+         try:
+             return require_learning_voice(log, after_final_move=after_final_move)
+@@ -260,12 +301,18 @@
+     must_see(out, 'Acht und fünf', 'guided-current-example')
+     probe.capture_flutter_ready(out, '01_learning_flutter_before')
+     before = probe.prefs(out, 'learning-before-native')
+-    # Only clear the emulator diagnostic log. Application data is untouched.
+-    base.adb('logcat', '-c')
++    # The API37 recorder must keep the complete boot/root/app history. Its
++    # functional speech proof uses an actually observed fresh section instead.
++    context = tour.diagnostic_logcat_context(out.parent)
++    boundary = None
++    if context is None:
++        base.adb('logcat', '-c')
++    else:
++        boundary = _start_learning_speech_section(out, context)
+     tap_flutter(out, ['Mit Lumo in 3D ausprobieren'], 'learning-native-entry')
+     native_ready(out, 'Zahlen zum Anfassen', 'learning-native-title')
+     probe.capture(out, '02_learning_native_eight_plus_five')
+-    initial_voice = completed_native_speech(out)
++    initial_voice = completed_native_speech(out, boundary=boundary)
+     for index in range(5):
+         probe.native_text(out, 'Ein Objekt zeigen', f'learning-move-{index + 1}',
+                           tap=True, exact=True, settle=True, orientation='responsive')
+@@ -277,10 +324,10 @@
+     probe.native_text(out, 'gefüllt', 'learning-complete', settle=True,
+                       orientation='responsive')
+     probe.capture(out, '04_learning_native_thirteen')
+-    movement_log = _speech_logcat()
++    movement_log = _speech_logcat(boundary=boundary)
+     (out / 'learning-movement-logcat.txt').write_text(movement_log)
+     moves = require_learning_bridge_moves(movement_log)
+-    final_voice = completed_native_speech(out, after_final_move=True)
++    final_voice = completed_native_speech(out, after_final_move=True, boundary=boundary)
+     if (initial_voice['native_process_pid'] != final_voice['native_process_pid'] or
+             min(final_voice['completed_utterance_ids']) <= max(initial_voice['completed_utterance_ids'])):
+         raise RuntimeError('The spoken result was not a new utterance in the same native lesson')
+--- /dev/null
++++ b/scripts/tests/test_android_runtime_device_logger.py
+@@ -0,0 +1,344 @@
++"""Real Python collection/verification with an explicitly synthetic ADB transport.
++
++The subprocess answers below are contract fixtures, not an emulator. The exact
++61c GMS event and monitor exits are original bytes. No test claims Android
++session survival; that still needs the subsequent unchanged-APK device job.
++"""
++from __future__ import annotations
++
++from datetime import datetime, timedelta, timezone
++import hashlib
++import importlib.util
++import json
++import os
++from pathlib import Path
++import re
++import shlex
++import unittest
++from unittest import mock
++
++ROOT = Path(__file__).resolve().parents[2]
++SOURCE_ROOT = Path(os.environ.get("LUMO_RUNTIME_ANR_SOURCE_ROOT", str(ROOT)))
++
++
++def load(path, name):
++    spec = importlib.util.spec_from_file_location(name, path)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
++ANR = load(SOURCE_ROOT / "scripts/verify_android_runtime_anr.py", "device_anr_contract")
++FRAMEWORK = ANR.FRAMEWORK
++OLD = load(ROOT / "scripts/tests/test_verify_android_runtime_anr.py", "device_legacy_fixtures")
++FIXTURES = ROOT / "scripts/tests/fixtures/android37_root_monitor_61c"
++
++
++class Clock:
++    def __init__(self):
++        self.value = 66.0
++
++    def utc(self):
++        self.value += .01
++        return (datetime(2026, 11, 14, 2, 28, 38, tzinfo=timezone.utc) + timedelta(seconds=self.value)).isoformat()
++
++    def monotonic(self):
++        return self.value
++
++    def sleep(self, seconds):
++        self.value += seconds
++
++
++class SyntheticAdb:
++    """Deterministic transport double; production recorders still write bytes."""
++
++    def __init__(self, case, clock):
++        self.case, self.clock = case, clock
++        self.remote = None
++        self.script = b""
++        self.log = b"11-14 02:29:00.000   621   621 I SyntheticBoot: contract only\n"
++        self.rooted, self.alive = False, True
++        self.root_calls = 0
++        self.corrupt_identity = False
++        self.corrupt_inode = False
++        self.filtered = False
++        self.missing_overlap = False
++        self.bad_exit = False
++        self.root_stderr = None
++        self.wait_stderr = b""
++        self.stdout = b""
++        self.stderr = b""
++        self.returncode = 0
++        self.session = 3000
++        self.child = 3001
++
++    def files(self):
++        return {"logcat.stdout": self.log, "logcat.stderr": b"", "session.stdout": b"",
++                "session.stderr": b"", "wait.stderr": self.wait_stderr, "run.sh": self.script}
++
++    def stat(self, pid, ppid, ticks, argv):
++        fields = ["S", str(ppid), "3000", "3000"] + ["0"] * 15 + [str(ticks)]
++        return f"{pid} (synthetic) " + " ".join(fields) + "\n", b"\0".join(x.encode() for x in argv) + b"\0"
++
++    def snapshot(self, live):
++        output = ""
++        if live:
++            if not self.alive:
++                raise RuntimeError("Synthetic logger is dead")
++            for role, pid, ppid, ticks, argv in (
++                ("session", self.session, 1, 101, ["/system/bin/sh", self.remote + "/run.sh"]),
++                ("logger", self.child, self.session, 999 if self.rooted and self.corrupt_identity else 102,
++                 ["/system/bin/logcat", "-b", "main" if self.filtered else "all", "-v", "threadtime"]),
++            ):
++                stat, raw = self.stat(pid, ppid, ticks, argv)
++                output += "__" + role + "_stat__\n" + stat + "__" + role + "_argv__\n" + raw.hex() + "\n"
++        for index, (name, data) in enumerate(self.files().items(), 10):
++            inode = index + (100 if self.rooted and self.corrupt_inode else 0)
++            output += f"__file_{name}__\n1:{inode}:{len(data)}:8180\n"
++        output += "__script_hash__\n" + hashlib.sha256(self.script).hexdigest() + "  run.sh\n"
++        return output.encode()
++
++    def dispatch(self, command):
++        self.stdout, self.stderr, self.returncode = b"", b"", 0
++        args = command[3:]
++        if command[:3] != [self.case.adb, "-s", self.case.serial]:
++            raise AssertionError("Unexpected ADB/device binding")
++        if args == ["root"]:
++            self.root_calls += 1
++            self.rooted = True
++            self.case.transport_ends(self.clock.utc())
++            if self.root_stderr is not None:
++                self.returncode, self.stderr = 1, self.root_stderr
++            else:
++                self.stdout = b"restarting adbd as root\n"
++        elif args == ["wait-for-device"]:
++            pass
++        elif args == ["shell", "id", "-u"]:
++            self.stdout = b"0\n" if self.rooted else b"2000\n"
++        elif args == ["shell", "getprop", "sys.boot_completed"]:
++            self.stdout = b"1\n"
++        elif args[:3] == ["shell", "sh", "-c"]:
++            script = shlex.split(args[3])[0]
++            if "LUMO_LOGGER_SOURCE" in script:
++                self.remote = re.search(r"/data/local/tmp/lumo-runtime-[0-9a-f]{32}", script)[0]
++                self.script = FRAMEWORK.device_logger_script(self.remote).encode()
++            elif "__script_hash__" in script:
++                self.stdout = self.snapshot("__session_stat__" in script)
++            elif "/logger.exit" in script:
++                self.stdout = (b"1\n" if self.bad_exit else b"143\n") if not self.alive else b""
++            else:
++                raise AssertionError("Unexpected remote shell program")
++        elif args[:6] == ["shell", "log", "-p", "i", "-t", "LumoRuntimeRecorder"]:
++            line = ("11-14 02:30:00.000   3010   3010 I LumoRuntimeRecorder: " + args[6] + "\n").encode()
++            self.log += line
++            if args[6].endswith("-start") and not self.missing_overlap:
++                with (self.case.framework / "logcat-all.stdout").open("ab") as stream:
++                    stream.write(line)
++        elif args[:3] == ["shell", "grep", "-F"]:
++            self.stdout = b"".join(line + b"\n" for line in self.log.splitlines() if args[3].encode() in line)
++            self.returncode = 0 if self.stdout else 1
++        elif args[:2] == ["shell", "cat"]:
++            self.stdout = self.files()[args[2].rsplit("/", 1)[1]]
++        elif args[:3] == ["shell", "kill", "-TERM"]:
++            if args[3] != str(self.child):
++                raise AssertionError("Wrong process was signalled")
++            self.alive = False
++            self.wait_stderr = b"Terminated\n"
++        elif args == ["shell", "getprop"]:
++            self.stdout = OLD.PROPERTIES.encode()
++        elif args == ["shell", "pidof", "system_server"]:
++            self.stdout = b"627\n"
++        elif args == ["shell", "dumpsys", "input"]:
++            self.stdout = OLD.INPUT_READY.encode()
++        elif args == ["shell", "dumpsys", "window", "-a"]:
++            self.stdout = (OLD.FIXTURES / "0014-window-state.stdout").read_bytes()
++        elif args == ["shell", "logcat", "-b", "events", "-d", "-v", "threadtime", "-s", "am_anr"]:
++            self.stdout = b"--------- beginning of events\n"
++        else:
++            raise AssertionError("Unexpected command: " + repr(args))
++        return self
++
++    def communicate(self, timeout=None):
++        return self.stdout, self.stderr
++
++
++class DeviceLogContracts(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls):
++        manifest = json.loads((FIXTURES / "manifest.json").read_bytes())
++        if manifest["run_id"] != 43551424080:
++            raise AssertionError("Incorrect original source")
++        for row in manifest["files"]:
++            data = (FIXTURES / row["file"]).read_bytes()
++            if len(data) != row["bytes"] or hashlib.sha256(data).hexdigest() != row["sha256"]:
++                raise AssertionError("Changed original fixture")
++
++    def setUp(self):
++        self.old = OLD.RuntimeAnrTests()
++        self.old.setUp()
++        self.addCleanup(self.old.doCleanups)
++        self.framework, self.out = self.old.framework, self.old.out
++        self.adb, self.serial = self.old.adb, self.old.serial
++        self.old_finished = ANR.read_json(self.framework / "monitor-finished.json")
++        for name in ("monitor-finished.json", "monitor-stop.json"):
++            (self.framework / name).unlink()
++        import shutil
++        shutil.rmtree(self.out)
++        self.out.mkdir()
++        self.clock = Clock()
++        self.fake = SyntheticAdb(self, self.clock)
++        for patcher in (mock.patch.object(FRAMEWORK, "utc", side_effect=self.clock.utc),
++                        mock.patch.object(FRAMEWORK, "adb_path", return_value=self.adb),
++                        mock.patch.object(FRAMEWORK, "monitor_alive", side_effect=lambda _p: not self.fake.rooted),
++                        mock.patch.object(FRAMEWORK, "process_identity", return_value=None),
++                        mock.patch.object(FRAMEWORK.time, "monotonic", side_effect=self.clock.monotonic),
++                        mock.patch.object(FRAMEWORK.time, "sleep", side_effect=self.clock.sleep),
++                        mock.patch.object(FRAMEWORK.subprocess, "Popen", side_effect=lambda command, **_kw: self.fake.dispatch(command))):
++            patcher.start()
++            self.addCleanup(patcher.stop)
++
++    def transport_ends(self, stamp):
++        finished = json.loads(json.dumps(self.old_finished))
++        finished.update(finished_at=stamp, stop_requested=False, budget_exhausted=False)
++        finished["commands"][1].update(finished_at=stamp, stop_requested=False, returncode=255, ended_by_observer=False)
++        OLD.put(self.framework / "monitor-finished.json", finished)
++        OLD.put(self.framework / "monitor-commands.json", {"commands": finished["commands"]})
++
++    def start(self):
++        return ANR.begin(self.framework, self.out, self.serial, preserve_through_adb_root=True)
++
++    def complete(self, *, tour_exit=0):
++        self.start()
++        self.clock.sleep(5)
++        self.fake.log += b"11-14 02:31:00.000   999   999 I SyntheticTour: contract-only event\n"
++        ANR.capture_end(self.framework, self.out, self.serial, tour_exit)
++        FRAMEWORK.finish_device_log(self.out / "device-logger")
++        FRAMEWORK.stop_monitor(self.framework)
++        return ANR.verify(self.framework, self.out, self.serial)
++
++    def test_production_protocol_covers_simulated_root_disconnect_without_restarting_logger(self):
++        result = self.complete()
++        self.assertEqual(result["status"], "PASS", result["errors"])
++        self.assertEqual(self.fake.root_calls, 1)
++        self.assertEqual(result["device_recording"]["start_identity"]["logger"]["pid"], 3001)
++        self.assertEqual(ANR.read_json(self.framework / "monitor-finished.json")["commands"][1]["returncode"], 255)
++        self.assertEqual(result["device_recording"]["logcat"]["anr_record_count"], 0)
++        self.assertFalse(self.fake.alive)
++
++    def test_real_gms_original_is_terminal_even_when_later_events_are_empty(self):
++        self.start()
++        self.fake.log += (FIXTURES / "host-gms-events-anr.stdout").read_bytes()
++        ANR.capture_end(self.framework, self.out, self.serial, 0)
++        FRAMEWORK.finish_device_log(self.out / "device-logger")
++        FRAMEWORK.stop_monitor(self.framework)
++        result = ANR.verify(self.framework, self.out, self.serial)
++        self.assertEqual(result["status"], "FAIL")
++        self.assertIn("recorded_android_anr_in_device_session", result["errors"])
++        self.assertIn("com.google.android.gms.persistent", result["device_recording"]["logcat"]["findings"][0]["original_line"])
++
++    def test_missing_positive_host_device_overlap_fails_before_root(self):
++        self.fake.missing_overlap = True
++        with self.assertRaisesRegex(TimeoutError, "marker"):
++            self.start()
++        self.assertEqual(self.fake.root_calls, 0)
++        self.assertFalse((self.out / "runtime-start.json").exists())
++
++    def test_process_birth_change_at_root_is_not_a_reconnect(self):
++        self.fake.corrupt_identity = True
++        with self.assertRaisesRegex(ValueError, "identity changed"):
++            self.start()
++        self.assertFalse((self.out / "runtime-start.json").exists())
++
++    def test_file_inode_change_at_root_is_not_tolerated(self):
++        self.fake.corrupt_inode = True
++        with self.assertRaisesRegex(ValueError, "file identity changed"):
++            self.start()
++
++    def test_filtered_device_command_cannot_establish_the_session(self):
++        self.fake.filtered = True
++        with self.assertRaisesRegex(ValueError, "command changed"):
++            self.start()
++
++    def test_changed_pre_root_prefix_remains_a_failure(self):
++        self.start()
++        self.fake.log = self.fake.log.replace(b"contract only", b"altered bytes")
++        ANR.capture_end(self.framework, self.out, self.serial, 0)
++        FRAMEWORK.finish_device_log(self.out / "device-logger")
++        FRAMEWORK.stop_monitor(self.framework)
++        result = ANR.verify(self.framework, self.out, self.serial)
++        self.assertEqual(result["status"], "FAIL")
++        self.assertTrue(any("pre-root original" in error for error in result["errors"]), result["errors"])
++
++    def test_unsolicited_device_exit_is_not_accepted(self):
++        self.start()
++        ANR.capture_end(self.framework, self.out, self.serial, 0)
++        self.fake.bad_exit = True
++        with self.assertRaisesRegex(ValueError, "requested TERM"):
++            FRAMEWORK.finish_device_log(self.out / "device-logger")
++
++    def test_tour_failure_cannot_be_overridden_by_continuous_logs(self):
++        result = self.complete(tour_exit=1)
++        self.assertEqual(result["status"], "FAIL")
++        self.assertIn("tour_command_failed_or_missing", result["errors"])
++
++    def test_actual_root_closed_response_requires_independent_uid0(self):
++        self.fake.root_stderr = b"adb: unable to connect for root: closed\n"
++        result = self.complete()
++        self.assertEqual(result["status"], "PASS", result["errors"])
++        self.assertEqual(result["device_recording"]["root"]["uid_after"], "0")
++
++    def test_other_root_stderr_is_not_ignored(self):
++        self.fake.root_stderr = b"error: device offline\n"
++        with self.assertRaisesRegex(RuntimeError, "command failed"):
++            self.start()
++
++    def test_current_original_monitor_failures_are_not_relabelled(self):
++        for name in ("host-monitor-finished.json", "swiftshader-monitor-finished.json"):
++            original = ANR.read_json(FIXTURES / name)
++            self.assertFalse(original["stop_requested"])
++            self.assertFalse(original["budget_exhausted"])
++            self.assertEqual(original["commands"][1]["returncode"], 255)
++            self.assertFalse(original["commands"][1]["ended_by_observer"])
++
++    def test_protocol_cannot_be_enabled_by_changing_a_report_only(self):
++        result = self.complete()
++        self.assertEqual(result["status"], "PASS", result["errors"])
++        (self.out / "device-logger/start/commands/0001-launch.stdout").write_bytes(b"changed")
++        result = ANR.verify(self.framework, self.out, self.serial)
++        self.assertEqual(result["status"], "FAIL")
++        self.assertTrue(any("Original device command bytes changed" in error for error in result["errors"]))
++
++    def test_raw_shell_wait_notification_is_preserved_and_bound_to_term(self):
++        result = self.complete()
++        self.assertEqual(result["status"], "PASS", result["errors"])
++        final = ANR.read_json(self.out / "device-logger/finish.json")
++        raw = self.out / "device-logger/finish" / final["wait.stderr"]
++        self.assertEqual(raw.read_bytes(), b"Terminated\n")
++        self.assertEqual(final["exit_code"], 143)
++
++    def test_device_observation_phases_cannot_replace_existing_originals(self):
++        self.complete()
++        with self.assertRaisesRegex(ValueError, "overwrite"):
++            FRAMEWORK.finish_device_log(self.out / "device-logger")
++
++    def test_host_transport_termination_outside_the_root_phase_stays_a_failure(self):
++        self.complete()
++        finished = ANR.read_json(self.framework / "monitor-finished.json")
++        finished["commands"][1]["finished_at"] = OLD.at(66)
++        OLD.put(self.framework / "monitor-finished.json", finished)
++        OLD.put(self.framework / "monitor-commands.json", {"commands": finished["commands"]})
++        stopped = ANR.read_json(self.framework / "monitor-stop.json")
++        for name in ("monitor-finished.json", "monitor-commands.json"):
++            stopped["files"][name] = ANR.file_identity(self.framework / name)
++        OLD.put(self.framework / "monitor-stop.json", stopped)
++        self.assertIn("recording_does_not_cover_full_interval", ANR.verify(self.framework, self.out, self.serial)["errors"])
++
++    def test_actual_diagnostic_runner_requires_the_new_positive_protocol(self):
++        script = (ROOT / "scripts/run_unchanged_apk_diagnostic.sh").read_text()
++        self.assertEqual(script.count("--preserve-through-adb-root"), 1)
++        self.assertIn('if [[ "$diagnostic_case" == api37-* ]]; then', script)
++        self.assertIn("trap finish_android17 EXIT", script)
++
++
++if __name__ == "__main__":
++    unittest.main()
+--- /dev/null
++++ b/scripts/tests/test_runtime_logcat_sections.py
+@@ -0,0 +1,232 @@
++"""Actual probe functions with synthetic log records, never Android acceptance.
++
++The old source can be selected explicitly to demonstrate that an un-cleared
++earlier lesson was accepted. Both paths execute the original parser/functions;
++no fixture is presented as newly recorded device speech.
++"""
++from __future__ import annotations
++
++import ast
++import hashlib
++import inspect
++import json
++import os
++from pathlib import Path
++import re
++import sys
++import tempfile
++from types import SimpleNamespace
++import unittest
++from unittest.mock import Mock, patch
++
++ROOT = Path(__file__).resolve().parents[2]
++SOURCE_ROOT = Path(os.environ.get('LUMO_SPEECH_SECTION_SOURCE_ROOT', str(ROOT)))
++STUDIO = SOURCE_ROOT / '.github/probes/lumo_studio_surfaces_android_probe.py'
++TOUR = SOURCE_ROOT / '.github/probes/modernization_android_tour.py'
++sys.path.insert(0, str(ROOT / 'tools/android_qa'))
++from nextgen_evidence import require_learning_bridge_moves, require_learning_voice
++
++TOKEN = 'a' * 32
++MARKER = 'lumo-' + TOKEN + '-speech-' + 'b' * 32
++BOUNDARY = 'I/LumoSpeechSection( 2310): ' + MARKER + '\n'
++START = 'I/LumoLearningSpeech( 1234): started id=4 profile=lumo-free-supertonic-de-v1\n'
++DONE = 'I/LumoLearningSpeech( 1234): completed id=4\n'
++MOVES = ''.join(
++    f'I/godot( 1234): [LearningWorld] move kind=bridge_ten token={index} '
++    f'target={7 + index} placed={index} complete={str(index == 5).lower()}\n'
++    for index in range(1, 6))
++
++
++def functions(path, names, scope):
++    selected = [node for node in ast.parse(path.read_text()).body
++                if isinstance(node, ast.FunctionDef) and node.name in names]
++    exec(compile(ast.Module(body=selected, type_ignores=[]), str(path), 'exec'), scope)
++    return scope
++
++
++class RuntimeLogcatSectionTests(unittest.TestCase):
++    def setUp(self):
++        temporary = tempfile.TemporaryDirectory()
++        self.addCleanup(temporary.cleanup)
++        self.out = Path(temporary.name)
++        self.raw = START + DONE + MOVES + BOUNDARY
++        self.adb = Mock(side_effect=lambda *args, **kwargs: self.raw if args[0] == 'logcat' else '')
++        self.scope = functions(STUDIO, {'_speech_logcat', 'completed_native_speech',
++                                        '_start_learning_speech_section'}, {
++            'Path': Path, 're': re, 'json': json,
++            'base': SimpleNamespace(adb=self.adb),
++            'time': SimpleNamespace(sleep=lambda _: None),
++            'require_learning_voice': require_learning_voice,
++            'wait_for': self.wait_for,
++        })
++
++    def wait_for(self, description, observe, accept, *, timeout):
++        self.assertEqual(timeout, 180)
++        for _ in range(2):
++            value = observe()
++            if accept(value):
++                return value
++        raise RuntimeError(description + ' not observed')
++
++    def boundary(self):
++        directory = self.out / 'reads'
++        directory.mkdir(exist_ok=True)
++        return {'marker': MARKER, 'out': directory, 'reads': 0}
++
++    def speech(self, boundary, *, after_final_move=False):
++        function = self.scope['completed_native_speech']
++        # Before/after harness only: the original function has no boundary
++        # parameter. It still executes unchanged and must reject old evidence.
++        options = {'after_final_move': after_final_move}
++        if 'boundary' in inspect.signature(function).parameters:
++            options['boundary'] = boundary
++        return function(self.out, **options)
++
++    def test_earlier_completed_speech_is_not_current_evidence(self):
++        with self.assertRaises(RuntimeError):
++            self.speech(self.boundary())
++
++    def test_earlier_movement_and_final_speech_cannot_satisfy_current_result(self):
++        self.raw = MOVES + START + DONE + BOUNDARY
++        with self.assertRaises(RuntimeError):
++            self.speech(self.boundary(), after_final_move=True)
++
++    def test_direct_movement_read_uses_only_the_same_fresh_section(self):
++        result = self.scope['_speech_logcat'](boundary=self.boundary())
++        with self.assertRaisesRegex(RuntimeError, 'observed 0'):
++            require_learning_bridge_moves(result)
++
++    def test_new_initial_moves_and_final_voice_pass_with_original_pid_and_ids(self):
++        boundary = self.boundary()
++        old = START + DONE + MOVES
++        self.raw = old + BOUNDARY + START + DONE
++        initial = self.speech(boundary)
++        self.raw += MOVES + START.replace('id=4', 'id=5') + DONE.replace('id=4', 'id=5')
++        movement = self.scope['_speech_logcat'](boundary=boundary)
++        self.assertEqual(require_learning_bridge_moves(movement)['moved_objects'], 5)
++        final = self.speech(boundary, after_final_move=True)
++        self.assertEqual(initial['native_process_pid'], final['native_process_pid'])
++        self.assertEqual(initial['completed_utterance_ids'], [4])
++        self.assertEqual(final['completed_utterance_ids'], [5])
++        raw_reads = sorted((self.out / 'reads').glob('*-full-filtered-logcat.txt'))
++        self.assertEqual(len(raw_reads), 3)
++        self.assertEqual(raw_reads[-1].read_text(), self.raw)
++        self.assertTrue(raw_reads[-1].read_text().startswith(old))
++        self.assertNotIn(('logcat', '-c'), [call.args for call in self.adb.call_args_list])
++
++    def test_missing_duplicate_or_changed_marker_fails_closed(self):
++        for raw in (START + DONE, BOUNDARY + START + DONE + BOUNDARY):
++            with self.subTest(raw=raw):
++                self.raw = raw
++                boundary = self.boundary()
++                boundary['reads'] = len(list(boundary['out'].glob('*.txt')))
++                with self.assertRaisesRegex(RuntimeError, 'missing or ambiguous'):
++                    self.scope['_speech_logcat'](boundary=boundary)
++        self.raw = BOUNDARY + START + DONE
++        boundary = self.boundary()
++        boundary['reads'] = len(list(boundary['out'].glob('*.txt')))
++        self.scope['_speech_logcat'](boundary=boundary)
++        self.raw = self.raw.replace('( 2310)', '( 2311)')
++        with self.assertRaisesRegex(RuntimeError, 'boundary changed'):
++            self.scope['_speech_logcat'](boundary=boundary)
++
++    def test_section_is_positively_observed_before_return_and_raw_read_preserved(self):
++        with patch('secrets.token_hex', return_value='b' * 32):
++            boundary = self.scope['_start_learning_speech_section'](
++                self.out, {'token': TOKEN, 'runtime_start_sha256': 'c' * 64})
++        self.assertEqual(self.adb.call_args_list[0].args,
++                         ('shell', 'log', '-p', 'i', '-t', 'LumoSpeechSection', MARKER))
++        self.assertEqual(boundary['observed_line'], BOUNDARY)
++        self.assertEqual((boundary['out'] / '0001-full-filtered-logcat.txt').read_text(), self.raw)
++        proof = json.loads((boundary['out'] / 'observed-start.json').read_text())
++        self.assertEqual(proof['observed_line'], BOUNDARY)
++
++    def test_successful_marker_write_without_actual_readback_is_rejected(self):
++        self.raw = START + DONE
++        with patch('secrets.token_hex', return_value='b' * 32):
++            with self.assertRaisesRegex(RuntimeError, 'boundary.*missing'):
++                self.scope['_start_learning_speech_section'](self.out, {'token': TOKEN})
++        self.assertFalse((self.out / 'learning-speech-section/observed-start.json').exists())
++
++    def test_all_three_production_readers_receive_the_same_boundary(self):
++        tree = ast.parse(STUDIO.read_text())
++        lesson = next(node for node in tree.body
++                      if isinstance(node, ast.FunctionDef) and node.name == 'learning_roundtrip')
++        calls = [node for node in ast.walk(lesson) if isinstance(node, ast.Call)
++                 and isinstance(node.func, ast.Name)
++                 and node.func.id in ('completed_native_speech', '_speech_logcat')]
++        self.assertEqual(len(calls), 3)
++        for call in calls:
++            keywords = {item.arg: item.value for item in call.keywords}
++            self.assertEqual(ast.dump(keywords['boundary']), "Name(id='boundary', ctx=Load())")
++        self.assertIn("initial_voice['native_process_pid'] != final_voice['native_process_pid']",
++                      ast.unparse(lesson))
++        self.assertIn("min(final_voice['completed_utterance_ids']) <= max(initial_voice['completed_utterance_ids'])",
++                      ast.unparse(lesson))
++
++    def context_fixture(self):
++        path = self.out / 'runtime-anr/runtime-start.json'
++        device_path = path.parent / 'device-logger/start.json'
++        device_path.parent.mkdir(parents=True)
++        device = {'status': 'PASS', 'errors': [], 'token': TOKEN, 'serial': 'emulator-5554',
++                  'root': {'uid_after': '0', 'boot_completed': '1'}}
++        device_path.write_text(json.dumps(device))
++        raw = device_path.read_bytes()
++        start = {'recording_protocol': 'independent-device-session-v1',
++                 'root_prepared_before_installation': True, 'serial': 'emulator-5554',
++                 'device_start': {'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}}
++        path.write_text(json.dumps(start))
++        adb = Mock(side_effect=lambda *args: 'emulator-5554' if args == ('get-serialno',) else '37')
++        scope = functions(TOUR, {'diagnostic_logcat_context'}, {
++            'Path': Path, 'os': os, 'json': json, 're': re, 'base': SimpleNamespace(adb=adb)})
++        return path, start, adb, scope['diagnostic_logcat_context']
++
++    def test_preservation_requires_own_positive_source_bound_api37_context(self):
++        path, start, adb, context = self.context_fixture()
++        with patch.dict(os.environ, {}, clear=True):
++            self.assertIsNone(context(self.out))
++            adb.assert_not_called()
++        with patch.dict(os.environ, {'LUMO_RUNTIME_ANR_START': str(path)}, clear=True):
++            proof = context(self.out)
++            self.assertEqual(proof['token'], TOKEN)
++            self.assertEqual(proof['runtime_start_sha256'], hashlib.sha256(path.read_bytes()).hexdigest())
++            adb.side_effect = lambda *args: 'emulator-5554' if args == ('get-serialno',) else '35'
++            with self.assertRaisesRegex(RuntimeError, 'same actual API37'):
++                context(self.out)
++            adb.side_effect = lambda *args: 'emulator-5556' if args == ('get-serialno',) else '37'
++            with self.assertRaisesRegex(RuntimeError, 'same actual API37'):
++                context(self.out)
++            start['device_start']['sha256'] = '0' * 64
++            path.write_text(json.dumps(start))
++            with self.assertRaisesRegex(RuntimeError, 'bound active interval'):
++                context(self.out)
++
++    def test_completed_or_foreign_interval_never_silently_selects_preservation(self):
++        path, _, _, context = self.context_fixture()
++        with patch.dict(os.environ, {'LUMO_RUNTIME_ANR_START': str(path)}, clear=True):
++            (path.parent / 'runtime-end.json').write_text('{}')
++            with self.assertRaisesRegex(RuntimeError, 'bound active interval'):
++                context(self.out)
++            with self.assertRaises((RuntimeError, FileNotFoundError)):
++                context(self.out / 'other-tour')
++
++    def test_existing_clear_calls_are_conditional_and_runner_enables_only_api37(self):
++        for path, condition in ((TOUR, 'diagnostic_logcat_context(out) is None'),
++                                (STUDIO, 'context is None')):
++            tree = ast.parse(path.read_text())
++            clear_nodes = [node for node in ast.walk(tree) if isinstance(node, ast.If)
++                           and ast.unparse(node.test) == condition
++                           and any(isinstance(child, ast.Call) and isinstance(child.func, ast.Attribute)
++                                   and child.func.attr == 'adb' and len(child.args) >= 2
++                                   and all(isinstance(arg, ast.Constant) for arg in child.args[:2])
++                                   and [arg.value for arg in child.args[:2]] == ['logcat', '-c']
++                                   for block in node.body for child in ast.walk(block))]
++            self.assertEqual(len(clear_nodes), 1, str(path))
++        runner = (ROOT / 'scripts/run_unchanged_apk_diagnostic.sh').read_text()
++        branch = runner[runner.index('if [[ "$diagnostic_case" == api37-* ]]; then'):]
++        self.assertIn('export LUMO_RUNTIME_ANR_START="$diagnostic_out/runtime-anr/runtime-start.json"', branch)
++        self.assertLess(branch.index('--preserve-through-adb-root'), branch.index('export LUMO_RUNTIME_ANR_START='))
++
++
++if __name__ == '__main__':
++    unittest.main()
+--- /dev/null
++++ b/scripts/tests/fixtures/android37_root_monitor_61c/host-gms-events-anr.stdout
+@@ -0,0 +1,2 @@
++--------- beginning of events
++11-14 03:30:24.984   621  3402 I am_anr  : [0,1409,com.google.android.gms.persistent,-1597325755,Broadcast of Intent { act=android.intent.action.SIM_STATE_CHANGED flg=0x15000010 xflg=0x4 cmp=com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver (has extras) }]
+--- /dev/null
++++ b/scripts/tests/fixtures/android37_root_monitor_61c/host-monitor-finished.json
+@@ -0,0 +1,41 @@
++{
++  "finished_at": "2026-11-14T03:30:10.432475+00:00",
++  "stop_requested": false,
++  "budget_exhausted": false,
++  "commands": [
++    {
++      "command": [
++        "/usr/local/lib/android/sdk/platform-tools/adb",
++        "-s",
++        "emulator-5554",
++        "wait-for-device"
++      ],
++      "started_at": "2026-11-14T03:29:09.497257+00:00",
++      "finished_at": "2026-11-14T03:29:19.949011+00:00",
++      "returncode": 0,
++      "ended_by_observer": false,
++      "stop_requested": false,
++      "stdout": "wait-for-device.stdout",
++      "stderr": "wait-for-device.stderr"
++    },
++    {
++      "command": [
++        "/usr/local/lib/android/sdk/platform-tools/adb",
++        "-s",
++        "emulator-5554",
++        "logcat",
++        "-b",
++        "all",
++        "-v",
++        "threadtime"
++      ],
++      "started_at": "2026-11-14T03:29:19.949399+00:00",
++      "finished_at": "2026-11-14T03:30:10.432011+00:00",
++      "returncode": 255,
++      "ended_by_observer": false,
++      "stop_requested": false,
++      "stdout": "logcat-all.stdout",
++      "stderr": "logcat-all.stderr"
++    }
++  ]
++}
+--- /dev/null
++++ b/scripts/tests/fixtures/android37_root_monitor_61c/manifest.json
+@@ -0,0 +1,32 @@
++{
++  "qa_source": "61c94cfb78bda8dfbe191331eca0fd0382deb151",
++  "apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
++  "run_id": 43551424080,
++  "scope": "Unchanged original failed-job bytes. Synthetic protocol tests do not convert either failure into Android acceptance.",
++  "files": [
++    {
++      "file": "host-gms-events-anr.stdout",
++      "original_member": "runtime-anr/commands/0005-events-anr.stdout",
++      "artifact_id": 14096004123,
++      "artifact_digest": "sha256:29eae3364927c91522d3771b63b56ce97c6d3400566deb6b037c1a86059f60a2",
++      "bytes": 321,
++      "sha256": "cdea9d527ca2d3ef09ebdbf26ff496f2dda5f4af0aedfbbb3e0bf4eb3e1e8d31"
++    },
++    {
++      "file": "host-monitor-finished.json",
++      "original_member": "framework-start/monitor-finished.json",
++      "artifact_id": 14096004123,
++      "artifact_digest": "sha256:29eae3364927c91522d3771b63b56ce97c6d3400566deb6b037c1a86059f60a2",
++      "bytes": 1074,
++      "sha256": "8af85369c2b34f0de7e26a49fef151ccb69bdab9195446c8076b3dab7f1c3cf1"
++    },
++    {
++      "file": "swiftshader-monitor-finished.json",
++      "original_member": "framework-start/monitor-finished.json",
++      "artifact_id": 14096976074,
++      "artifact_digest": "sha256:9aaa2850bc96b39833a3e5893f020a5ecf19d7038fc326f18affed7448e37055",
++      "bytes": 1074,
++      "sha256": "be9d7574f67d4cb37a6755ca7f923b468653cb05b9a07cda240b9258bc7f46ed"
++    }
++  ]
++}
+--- /dev/null
++++ b/scripts/tests/fixtures/android37_root_monitor_61c/swiftshader-monitor-finished.json
+@@ -0,0 +1,41 @@
++{
++  "finished_at": "2026-11-14T03:27:54.010158+00:00",
++  "stop_requested": false,
++  "budget_exhausted": false,
++  "commands": [
++    {
++      "command": [
++        "/usr/local/lib/android/sdk/platform-tools/adb",
++        "-s",
++        "emulator-5554",
++        "wait-for-device"
++      ],
++      "started_at": "2026-11-14T03:26:55.861988+00:00",
++      "finished_at": "2026-11-14T03:27:05.186404+00:00",
++      "returncode": 0,
++      "ended_by_observer": false,
++      "stop_requested": false,
++      "stdout": "wait-for-device.stdout",
++      "stderr": "wait-for-device.stderr"
++    },
++    {
++      "command": [
++        "/usr/local/lib/android/sdk/platform-tools/adb",
++        "-s",
++        "emulator-5554",
++        "logcat",
++        "-b",
++        "all",
++        "-v",
++        "threadtime"
++      ],
++      "started_at": "2026-11-14T03:27:05.186876+00:00",
++      "finished_at": "2026-11-14T03:27:54.009510+00:00",
++      "returncode": 255,
++      "ended_by_observer": false,
++      "stop_requested": false,
++      "stdout": "logcat-all.stdout",
++      "stderr": "logcat-all.stderr"
++    }
++  ]
++}

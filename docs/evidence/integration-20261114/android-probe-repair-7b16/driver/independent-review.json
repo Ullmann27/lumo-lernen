@@ -1,0 +1,327 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T02:52:34.072955+00:00",
+  "reviewer": "pipeline_repair",
+  "result": "NO_CONCRETE_SOURCE_BLOCKER_FOUND",
+  "scope": "Independent source, hash, exact original-byte and direct two-image review only; no test execution, OCR rerun, Android run or source mutation.",
+  "source_freeze_sha256": "b7c8bd2391e0467318ae0f208389d73f54e4f1d69ba8518184b311648fb5ad20",
+  "tracked_patch_sha256": "17286492d35205e429d30ff1c63e6006239b4ffc102451ddd7ee56b14013e185",
+  "bound_sources": [
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "bytes": 14145,
+      "sha256": "c8c167ce1b59023248b0aba18ba80c96c4c781e55cb0806eddf5252a2e8336bf",
+      "git_blob": "c5103456e98baa696ec6cac8b6bb8af863d19f5b"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 69612,
+      "sha256": "3b5ffbd29d6a4c8ccb9bd2850cef55310f52841ab31a82912bea59bbc96278ba",
+      "git_blob": "4af46a7ea3478ee64798fbae1290e69444444833"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_driver_word_evidence.py",
+      "bytes": 8461,
+      "sha256": "b80b3aa4eb38b289319e32dae9fa6476aa1b3badb77c497246314953230928fd",
+      "git_blob": "b5bb8e3c5f53d79d7a64b5723698292b427c7cf8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "bytes": 4356,
+      "sha256": "70d79f7852eb55cd6ce2cbd279f4c06eb73370a50aefde38ecef594d8a2df61d",
+      "git_blob": "af252cc88dc95bd4a37234b225dec6c86d91f5b1"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "bytes": 3557,
+      "sha256": "91270588c5986fd3831b7017f940b0d1a6d0248b36733c78ea9c850014884a96",
+      "git_blob": "2921c810c6dd46ffac1386cd8a94f1504a8b8c0b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "bytes": 3202,
+      "sha256": "b3a7f353f9c5bf4d71bff28e79528cd83d8f07d910b3fe65bfbd052b1d822762",
+      "git_blob": "5ddf712b91506f07d97095faa728823fcf222929"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "bytes": 3753,
+      "sha256": "3fc1f0d5faad762a9827eae480e303081eef7d0cdea35a7819945be3101e7acc",
+      "git_blob": "02904427cbddc8159d16e0a6f9fc8c9c9d5fc74a"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "bytes": 5124,
+      "sha256": "489fa667ddc409445c51cd42728c1a05241a98d9fdfd190c738efd33e0ce8762",
+      "git_blob": "cf836c4d8b8ca0362ff72d19a44a6d961a68b12b"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "bytes": 3527,
+      "sha256": "b9102ea73357d877ef63b3786b8660eacd6e45a7dfa4b8be131998631bf9432e",
+      "git_blob": "1527db533fb57a4c727c4aafb2df7fde07cc992f"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "bytes": 3567,
+      "sha256": "56dfbaaa5acb1a5b3b008cb09b190a6b8e867ca064decdcc023d94d8b933876d",
+      "git_blob": "e830d558853fbf8f511d1a9c3edec5328da7970e"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0-ocr.json",
+      "bytes": 24660,
+      "sha256": "096c79591f31a71d16731cc1f901702a52bae76e29ee115805a8f5e39baba2ea",
+      "git_blob": "08570b2e858ecc7e9ca396e5ef5a64d48f367de2"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0.png",
+      "bytes": 785894,
+      "sha256": "50b2ffdd9db0c970505b479b4497b1fe212cde38db6158081149d407b2e94772",
+      "git_blob": "abc348f5a479c2aedf4493d69df08fa09b801fa2"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "bytes": 1011,
+      "sha256": "f04f75a520b4a33e910a908a38d0c4320c8524af382cb77a0bafaed53f4d5ea5",
+      "git_blob": "777b661caf575d680330f179bd7101b71a361c62"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/provenance.json",
+      "bytes": 6626,
+      "sha256": "730143a2d7df6d0be5affd070cf4bae106bb8bdd303d9b431265750c0c25b7a2",
+      "git_blob": "58cf9abba377e361ef85fef47f1ce23ec06d2cbd"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "bytes": 4859,
+      "sha256": "81bbbb9636cf57310c1cbfec7ac808e9cb7bd6bdf81827d8fbba4224068254f9",
+      "git_blob": "d9075247fd68c11834d38e734c54d1209cd54ddb"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "bytes": 1997,
+      "sha256": "eacb315051094ae1eb5d76790ce1534fc2fef10ef75968b212219b8efb8d49b8",
+      "git_blob": "1636c358380c690d4b8867bf8b2ae7e33b29b5ba"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "bytes": 4113,
+      "sha256": "be22c59625621e7aedcf9e023d745414be8440d54a2ec2a544c4e48846c66da8",
+      "git_blob": "720e63eff51c361550cb61f0f75403ba02526f62"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "bytes": 2997,
+      "sha256": "adf8769eada6aee36af01cd91176b4b71336ccc4d2350f0b135ea4a34f5db2d9",
+      "git_blob": "c393c4090b2045ea7fae707258385915e928cbe8"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "bytes": 6020,
+      "sha256": "61fca29d6364cc6f0f14c82fec950dc0d334eea0a67b58144cfbea2dd2f93cb1",
+      "git_blob": "936b6774912f092c0bcb5fb97efbad283a1ded8c"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "bytes": 3518,
+      "sha256": "8fa662dd8af4517ac22031cda5dee1a5ebf261169156902aaa6be4540d01cada",
+      "git_blob": "859043002f90c214d7a9f7014eb0539178b4b4e5"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "bytes": 3523,
+      "sha256": "7e7e7e08094ec0a156a62c0f1b4963a9b5eb07ac681fd29547f7951438055dba",
+      "git_blob": "9253ca958a73d3e9aa83c8dbff047b68b034a615"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0-ocr.json",
+      "bytes": 26195,
+      "sha256": "b48cafe000c235d88ffea09906432bd9db4d70a8b2ceee6625a63988d09add0e",
+      "git_blob": "1dd30e56e59d16464f90986c51fe943737761f52"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0.png",
+      "bytes": 761058,
+      "sha256": "b17314a87af1ed0d2d840c1fddbfc396b79e612fd0c80c60fc83cf18e53b19be",
+      "git_blob": "524493b5b1bffb8342eb2a32b3faaccf5529f414"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "bytes": 1003,
+      "sha256": "a02d9015fb22d4a5368999d28cb590d2fccd2fdaef76d2dd7ee0d1f178f9da0a",
+      "git_blob": "0b35c40db72a8d34ff120996f316fa33314fcebe"
+    }
+  ],
+  "original_byte_comparisons": [
+    {
+      "fixture": "api35/21_stage_driver-select-original-lumo-0.png",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/api35/selected-originals/originals/21_stage_driver-select-original-lumo-0.png",
+      "sha256": "50b2ffdd9db0c970505b479b4497b1fe212cde38db6158081149d407b2e94772",
+      "bytes": 785894
+    },
+    {
+      "fixture": "api35/21_stage_driver-select-original-lumo-0-ocr.json",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/api35/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr.json",
+      "sha256": "096c79591f31a71d16731cc1f901702a52bae76e29ee115805a8f5e39baba2ea",
+      "bytes": 24660
+    },
+    {
+      "fixture": "api35/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/api35/selected-originals/originals/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "sha256": "f04f75a520b4a33e910a908a38d0c4320c8524af382cb77a0bafaed53f4d5ea5",
+      "bytes": 1011
+    },
+    {
+      "fixture": "api35/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/api35/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "sha256": "70d79f7852eb55cd6ce2cbd279f4c06eb73370a50aefde38ecef594d8a2df61d",
+      "bytes": 4356
+    },
+    {
+      "fixture": "api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/api35/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "sha256": "91270588c5986fd3831b7017f940b0d1a6d0248b36733c78ea9c850014884a96",
+      "bytes": 3557
+    },
+    {
+      "fixture": "api35/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/api35/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "sha256": "b3a7f353f9c5bf4d71bff28e79528cd83d8f07d910b3fe65bfbd052b1d822762",
+      "bytes": 3202
+    },
+    {
+      "fixture": "api35/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/api35/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "sha256": "3fc1f0d5faad762a9827eae480e303081eef7d0cdea35a7819945be3101e7acc",
+      "bytes": 3753
+    },
+    {
+      "fixture": "api35/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/api35/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "sha256": "489fa667ddc409445c51cd42728c1a05241a98d9fdfd190c738efd33e0ce8762",
+      "bytes": 5124
+    },
+    {
+      "fixture": "api35/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/api35/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "sha256": "b9102ea73357d877ef63b3786b8660eacd6e45a7dfa4b8be131998631bf9432e",
+      "bytes": 3527
+    },
+    {
+      "fixture": "api35/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/api35/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "sha256": "56dfbaaa5acb1a5b3b008cb09b190a6b8e867ca064decdcc023d94d8b933876d",
+      "bytes": 3567
+    },
+    {
+      "fixture": "update/21_stage_driver-select-original-lumo-0.png",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/update/selected-originals/originals/21_stage_driver-select-original-lumo-0.png",
+      "sha256": "b17314a87af1ed0d2d840c1fddbfc396b79e612fd0c80c60fc83cf18e53b19be",
+      "bytes": 761058
+    },
+    {
+      "fixture": "update/21_stage_driver-select-original-lumo-0-ocr.json",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/update/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr.json",
+      "sha256": "b48cafe000c235d88ffea09906432bd9db4d70a8b2ceee6625a63988d09add0e",
+      "bytes": 26195
+    },
+    {
+      "fixture": "update/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/update/selected-originals/originals/21_stage_driver-select-original-lumo-surface-readiness.json",
+      "sha256": "a02d9015fb22d4a5368999d28cb590d2fccd2fdaef76d2dd7ee0d1f178f9da0a",
+      "bytes": 1003
+    },
+    {
+      "fixture": "update/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/update/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-contrast.tsv",
+      "sha256": "81bbbb9636cf57310c1cbfec7ac808e9cb7bd6bdf81827d8fbba4224068254f9",
+      "bytes": 4859
+    },
+    {
+      "fixture": "update/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/update/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-navy-latin-1x.tsv",
+      "sha256": "eacb315051094ae1eb5d76790ce1534fc2fef10ef75968b212219b8efb8d49b8",
+      "bytes": 1997
+    },
+    {
+      "fixture": "update/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/update/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-navy-latin.tsv",
+      "sha256": "be22c59625621e7aedcf9e023d745414be8440d54a2ec2a544c4e48846c66da8",
+      "bytes": 4113
+    },
+    {
+      "fixture": "update/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/update/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-raw.tsv",
+      "sha256": "adf8769eada6aee36af01cd91176b4b71336ccc4d2350f0b135ea4a34f5db2d9",
+      "bytes": 2997
+    },
+    {
+      "fixture": "update/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/update/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-teal-text-1x.tsv",
+      "sha256": "61fca29d6364cc6f0f14c82fec950dc0d334eea0a67b58144cfbea2dd2f93cb1",
+      "bytes": 6020
+    },
+    {
+      "fixture": "update/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/update/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-white-latin.tsv",
+      "sha256": "8fa662dd8af4517ac22031cda5dee1a5ebf261169156902aaa6be4540d01cada",
+      "bytes": 3518
+    },
+    {
+      "fixture": "update/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "original": "/workspace/scratch/b3485b7bb989/host-pr465-7b16f2f5-android35-update-evidence/update/selected-originals/originals/21_stage_driver-select-original-lumo-0-ocr-white-text.tsv",
+      "sha256": "7e7e7e08094ec0a156a62c0f1b4963a9b5eb07ac681fd29547f7951438055dba",
+      "bytes": 3523
+    }
+  ],
+  "ast_scope": [
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "changed_existing": [
+        "stage_driver_target_observation"
+      ],
+      "new": [
+        "stage_driver_word_observations"
+      ],
+      "unchanged": 7
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "changed_existing": [
+        "_select_stage_driver"
+      ],
+      "new": [],
+      "unchanged": 28
+    }
+  ],
+  "findings": [
+    "Fallback is entered only for the two observed line-caption failures; missing tabs/footer and other surface errors remain terminal.",
+    "Exact level-5 Lumo words are read from the current frame/tag existing TSVs. Seven variant scales and confidence >=15 match the unchanged image_lines implementation; nonfinite confidence fails.",
+    "All caption bounds still require finite valid coordinates, landscape, the observed left list between tabs/footer, and IoU >=0.6 against every other eligible word. A spatially separate second Lumo remains ambiguous.",
+    "The original two-observation stability check, screenshot SHA verification, hard pre-dispatch deadline and stationary 120-ms gesture remain byte-identical outside the new scoped-caption acquisition.",
+    "Actual race fox identity and save/progress checks are unchanged; a word touch is not a gameplay result."
+  ],
+  "direct_image_observations": [
+    {
+      "scope": "api35",
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/tests/fixtures/kart-driver-7b16/api35/21_stage_driver-select-original-lumo-0.png",
+      "sha256": "50b2ffdd9db0c970505b479b4497b1fe212cde38db6158081149d407b2e94772",
+      "observed": "One visible Lumo driver-card caption in the left list, adjacent fox icon. Upper brand and central scenery lettering are distinct and outside the accepted card region."
+    },
+    {
+      "scope": "update",
+      "path": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16/tools/android_qa/tests/fixtures/kart-driver-7b16/update/21_stage_driver-select-original-lumo-0.png",
+      "sha256": "b17314a87af1ed0d2d840c1fddbfc396b79e612fd0c80c60fc83cf18e53b19be",
+      "observed": "One visible Lumo driver-card caption in the left list after the inset shift; fox icon occupies a different rectangle. Observed tabs and footer bound the caption."
+    }
+  ],
+  "producer_test_report_read": {
+    "path": "/workspace/scratch/b3485b7bb989/host-7b16-driver-word-repair/focused-green-final.log",
+    "sha256": "7f1b18cc88f44b769952657b3e663e02fc60d7e419bc420c526265729adfcae0",
+    "reported_tests": 34,
+    "reported_new_tests": 9,
+    "reported_existing_tests": 25,
+    "executed_by_reviewer": false
+  },
+  "remaining_limit": "Both original Android jobs remain FAILURE. The patch has not yet been exercised by a new actual Android run."
+}

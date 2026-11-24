@@ -1,0 +1,35 @@
+{
+  "scope": "Independent source review and actual Flutter UI/launcher diagnostic, in-memory synthetic profiles, mocked Android boundary. No device run or storage migration.",
+  "probe_exit_code": 0,
+  "known_issue_confirmed": true,
+  "new_learning_patch_blocking_regression_confirmed": false,
+  "repositories": {
+    "lumo-lernen": {
+      "baseline": "3c712129fef8f144d8946fad567b9ed11c628a60",
+      "sha256": {
+        "lib/domain/tutoring/native_learning_activity.dart": "eafc477d639b59a1d5215a8934c1088e4563d84aaffc2795e57b7299085632ed",
+        "lib/features/learning/adapters/legacy_lumo_task_adapter.dart": "e7f6455b679352b71025266e4c616647ebbd8510db2014e73ce56a6a37e46786",
+        "lib/features/learning/renderers/lumo_premium_visuals.dart": "138735f766360109b12b05b860ac8e608064c767e23f4c34febde4065504d478",
+        "lib/features/lumo3d/lumo3d_launcher.dart": "09ee8c32d75600c4858eae32bfdab0d0f1c41ae6e04f965653aacb365bd49c64",
+        "tools/auto_install/MainActivity.kt": "7930a0eec8566bbd85c509f09cd15a9508b5781ce09e53a158d43e26c4567953",
+        "docs/evidence/studio-learning-review-20261113/native_profile_key_probe.dart": "ea28d155b2efdb2727f116467b62004056fe3a28c9d5f7f2d6ce2aa469600828",
+        "docs/evidence/studio-learning-review-20261113/native-profile-key-probe.log": "e41152ea559465afc5ce4b2f8ae429359493258c1a73c72e48515e84cf85e878"
+      }
+    },
+    "lumo-godot": {
+      "baseline": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+      "sha256": {
+        "scripts/learning/learning_activity.gd": "c8071598b341a9ef8d905effe70aafacf98f325e9289903bb12a370d0d29541a",
+        "scripts/learning/learning_world.gd": "12b8e40ffa1b5187598425690bdca5f2e6f8f2a6425e41b40fcf8679efba4a9d",
+        "scripts/creative/puzzle_world.gd": "6495f46bba959bbfcec3a9bb093a71f54aa1afc970280ce56da4bf4ddc95989e",
+        "scripts/creative/treasure_world.gd": "2232ee9120975e2880b0986ea285a6799c5dee1a0ff37e232c545061503ac76b"
+      }
+    }
+  },
+  "historical_probe_archive": {
+    "path": "docs/evidence/studio-learning-review-20261113/native_profile_key_probe.dart.txt",
+    "original_executed_path": "docs/evidence/studio-learning-review-20261113/native_profile_key_probe.dart",
+    "sha256": "ea28d155b2efdb2727f116467b62004056fe3a28c9d5f7f2d6ce2aa469600828",
+    "note": "Original probe bytes preserved as text evidence, outside production Dart analysis. Original source hashes/logs above describe the earlier diagnostic run."
+  }
+}

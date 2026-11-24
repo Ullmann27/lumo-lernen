@@ -1,0 +1,68 @@
+test_actual_element_representation_accepts_same_view_active_and_next (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_actual_element_representation_accepts_same_view_active_and_next) ... ok
+test_actual_switch_reader_taps_once_from_its_new_xml_and_rejects_missed_or_late_playback (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_actual_switch_reader_taps_once_from_its_new_xml_and_rejects_missed_or_late_playback) ... ok
+test_ambiguous_syllable_or_next_cannot_be_selected (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_ambiguous_syllable_or_next_cannot_be_selected) ... ok
+test_complete_result_remains_separate_from_release_or_full_tour (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_complete_result_remains_separate_from_release_or_full_tour) ... ok
+test_configuration_is_exact_and_attempt_is_positive_integer (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_configuration_is_exact_and_attempt_is_positive_integer) ... ok
+test_density_context_restores_original_override_and_preserves_primary_failure (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_density_context_restores_original_override_and_preserves_primary_failure) ... ok
+test_duplicate_rewritten_or_unassisted_correction_is_rejected (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_duplicate_rewritten_or_unassisted_correction_is_rejected) ... ok
+test_entry_retains_failure_with_non_release_flags_before_android (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_entry_retains_failure_with_non_release_flags_before_android) ... {"status": "FAIL", "run_id": "f0df32e61bff4eccaa4c7556c34265de", "qa_commit": "1111111111111111111111111111111111111111", "apk_source": "e05a96a52aaf57e466e79831f15aaffd144284ee", "release_eligible": false}
+ok
+test_inactive_missing_disabled_hidden_or_foreign_cue_is_not_playback (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_inactive_missing_disabled_hidden_or_foreign_cue_is_not_playback) ... ok
+test_joint_ready_view_requires_owner_all_syllables_and_enabled_controls (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_joint_ready_view_requires_owner_all_syllables_and_enabled_controls) ... ok
+test_late_switch_truncated_video_or_missing_native_case_never_passes (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_late_switch_truncated_video_or_missing_native_case_never_passes) ... ok
+test_merely_edited_answer_or_wrong_expected_prompt_is_not_assessment (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_merely_edited_answer_or_wrong_expected_prompt_is_not_assessment) ... ok
+test_native_owner_rejection_is_not_replaced_by_case_statuses (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_native_owner_rejection_is_not_replaced_by_case_statuses) ... ok
+test_original_xml_proves_visible_next_without_a_syllable_viewport (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_original_xml_proves_visible_next_without_a_syllable_viewport) ... ok
+test_pending_reused_foreign_checkpoint_or_journey_cannot_pass (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_pending_reused_foreign_checkpoint_or_journey_cannot_pass) ... ok
+test_pure_gate_rejects_slow_capture_even_with_zero_post_capture_delay (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_pure_gate_rejects_slow_capture_even_with_zero_post_capture_delay) ... ok
+test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip) ... 
+  test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip) (scenario='ready') ... ERROR
+  test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip) (scenario='missing') ... FAIL
+  test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip) (scenario='lost-final') ... FAIL
+  test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip) (scenario='slow-final') ... FAIL
+test_switch_preserves_actual_learning_and_changes_to_unanswered_rakete (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_switch_preserves_actual_learning_and_changes_to_unanswered_rakete) ... ok
+test_switch_without_joint_viewport_and_restored_density_cannot_pass (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_switch_without_joint_viewport_and_restored_density_cannot_pass) ... ok
+test_viewport_gate_rejects_wrong_density_changed_task_old_capture_or_missing_restore (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_viewport_gate_rejects_wrong_density_changed_task_old_capture_or_missing_restore) ... ok
+test_wrong_and_corrected_attempts_keep_distinct_ids_and_assistance (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_wrong_and_corrected_attempts_keep_distinct_ids_and_assistance) ... ok
+
+======================================================================
+ERROR: test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip) (scenario='ready')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-active-syllable-observation/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py", line 411, in test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip
+    result = item.start_visible_syllable_replay()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/4fa97167812c/agent-active-syllable-observation/.github/probes/lumo_nextgen_2031_runtime_cases_android_probe.py", line 436, in start_visible_syllable_replay
+    require({"Die Wortwerkstatt", WORD_BUILD_PROMPT} <= set(labels), "Word viewport owner/task is no longer visible")
+  File "/workspace/scratch/4fa97167812c/agent-active-syllable-observation/.github/probes/lumo_nextgen_learning_android_probe.py", line 71, in require
+    raise RuntimeError(message)
+RuntimeError: Word viewport owner/task is no longer visible
+
+======================================================================
+FAIL: test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip) (scenario='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-active-syllable-observation/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py", line 421, in test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip
+    self.assertTrue(gestures)
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip) (scenario='lost-final')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-active-syllable-observation/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py", line 421, in test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip
+    self.assertTrue(gestures)
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip (test_nextgen_2031_runtime_cases.RuntimeCaseGates.test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip) (scenario='slow-final')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fa97167812c/agent-active-syllable-observation/tools/android_qa/tests/test_nextgen_2031_runtime_cases.py", line 421, in test_single_replay_uses_fresh_joint_bounds_and_never_taps_from_the_original_hidden_strip
+    self.assertTrue(gestures)
+AssertionError: [] is not true
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.023s
+
+FAILED (failures=3, errors=1)

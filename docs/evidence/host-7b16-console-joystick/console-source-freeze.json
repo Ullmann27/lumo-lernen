@@ -1,0 +1,249 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-14T05:34:52.206773+00:00",
+  "head": "cf0ed7fe743cd8ba067ae7a9adf26745fa7bc628",
+  "tree": "09776392ac3133c992a73809dc0f31e9def555a7",
+  "scope": "Frozen implementation for independent review. No emulator/device continuity PASS; three real Unix tests remain mandatory and locally EPERM-blocked. No Git mutations.",
+  "files": [
+    {
+      "path": "scripts/android_console_transport.py",
+      "bytes": 20839,
+      "sha256": "d0344469bdb68cc2927ffac7f715dd52c73c6730fd7e56fd946f486f2d931cca",
+      "git_blob": "6b72da4c3c49891d70d1f6bc51339dc3efb9559f",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/android_framework_ready.py",
+      "bytes": 51307,
+      "sha256": "9267e62a7a05f05905c36d8446673ec13cacb7edeeca9d58fc9b201b4256b11f",
+      "git_blob": "54438587d4f18ed3496205fd0c043ce8c3cf332f",
+      "before_sha256": "9d26d8141dd9aeacf6a57be29959b4dc442ed9c5db09e452dc4cf92b7653396a",
+      "new_file": false
+    },
+    {
+      "path": "scripts/verify_android_runtime_anr.py",
+      "bytes": 39331,
+      "sha256": "3e3cde21409f1ee8e64a4124a1842df75b6a72eab0ac65576442fb5072308bf2",
+      "git_blob": "d2ed8be4315a3ff1872ad40698276eafb21ddc58",
+      "before_sha256": "96e17dad46b487ec3215d917e525d09a0be3515b4c9f7a025971cf7a4e137a57",
+      "new_file": false
+    },
+    {
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "bytes": 9486,
+      "sha256": "211cad7c3712255a14907b062e77c5accc36e0c4e5a91ff87cdc25f392f980b4",
+      "git_blob": "f017808bc88c0262f27bdfe7a73ebbb686479eeb",
+      "before_sha256": "ebb75b2dc289303962bc224ec739567f773ea7912bd07088f02b8ae4117a61ec",
+      "new_file": false
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 71883,
+      "sha256": "2fcc421ed63eff79a1c089f10d6054caec46c9b9a3b96b226dca082b3a2daa33",
+      "git_blob": "60c6341da4b249fe142a1289599ad02475326c33",
+      "before_sha256": "dcf7ba4c315efe600ac5001de0935a5597e1ac25f63711e9f8732fd92de9257f",
+      "new_file": false
+    },
+    {
+      "path": "scripts/tests/test_android_console_transport.py",
+      "bytes": 13367,
+      "sha256": "60c6802eece6d63c2c839c02c319dc716e0effda911776cf6f09c17036332da9",
+      "git_blob": "98807b114084b780af11b9f9e28de41cf8b2f225",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/test_android_runtime_device_logger.py",
+      "bytes": 24426,
+      "sha256": "a3bf999fe033b1573637a8004b91dfd76989b08c70cda70484f5312d61df4ec1",
+      "git_blob": "0e260d08aad16379913258230471172f6f52bb58",
+      "before_sha256": "bf6b1e4f547f844287f9e0e1afa860427a3838d0384b5527488875cd48df6ae2",
+      "new_file": false
+    },
+    {
+      "path": "scripts/tests/test_runtime_logcat_sections.py",
+      "bytes": 12514,
+      "sha256": "382ddbf5549b55077f3a07c8362cd34666220a0296f27e37e6529bc4ec0ead30",
+      "git_blob": "264ba935edf7227333e9ca44117d6dfde9a7c1c4",
+      "before_sha256": "745703233623614da345102745322a49b9aa75bcfba1849ee6ac71201023de58",
+      "new_file": false
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0006-before-root.stdout",
+      "bytes": 1421,
+      "sha256": "c375d980e392ade3173dd2f1e7e56485f486ed148841f439def53800e7fc3829",
+      "git_blob": "107d3d7f5a6f3db2cda3cb5013d6728d31fb9b6b",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0008-root-request.json",
+      "bytes": 372,
+      "sha256": "998bf4f324317fa20dec5802c57e4b6b80832da48f428b5c8ea55c3f4f5b42bf",
+      "git_blob": "768a3e5c4ede6be6f7c8e9b535c850b018ef1862",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0010-root-after-uid.stdout",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "git_blob": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0011-root-boot.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "git_blob": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0012-after-root.json",
+      "bytes": 1901,
+      "sha256": "dd5f311a64726c804a536a1a9aa2e80c81ffa3d0f1afbfb5e19182bf0b79f63b",
+      "git_blob": "a22760fe01df14898289bcc8ef198d92c1a71805",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0012-after-root.stderr",
+      "bytes": 48,
+      "sha256": "3f38ab20e70604000892987cdd42fe47498abeb9eaf80a33f20e5a08c21f3415",
+      "git_blob": "d4d3de631c619a59909bf656862f56898976d515",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/host-0012-after-root.stdout",
+      "bytes": 17,
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4",
+      "git_blob": "796fedf20f9f6952bbde2030db39da3a1e0f6409",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/manifest.json",
+      "bytes": 11025,
+      "sha256": "714403efd666f3dd89669e05f7c52aa43c0d18f4bcc5f59f41cb185b7aac566f",
+      "git_blob": "fbb691a0c4cce138676471b1de3f8f8a5a9de55c",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0006-before-root.stdout",
+      "bytes": 1416,
+      "sha256": "a99129d256708928f990411d1cd606a772089a6a0d14f221c762ee3c34e6ee14",
+      "git_blob": "be36742b5f03867ccd5fff48c9e6dcee0ac2dcd0",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0008-root-request.json",
+      "bytes": 372,
+      "sha256": "c2a4c29a602034ecece4db7bb1f5f410a168ae099898476e84c354b532fbf95e",
+      "git_blob": "827c2b713e6f428aee5bb095ad746341631dfb1d",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0010-root-after-uid.stdout",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "git_blob": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0011-root-boot.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "git_blob": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0012-after-root.json",
+      "bytes": 1901,
+      "sha256": "daef88511900cb4fc709371957a305779a260be46847f89f211403afc6d76db3",
+      "git_blob": "38d89eca8d448db3e9ebe4580e39cc867899735c",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0012-after-root.stderr",
+      "bytes": 48,
+      "sha256": "42f216cb88b8a9ff51d0372c47767a59fb6990ce29a128744b929ab5d620b2dc",
+      "git_blob": "320b1a12a3d7d15c0103493d6f7932ea5fc78e56",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swangle-0012-after-root.stdout",
+      "bytes": 17,
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4",
+      "git_blob": "796fedf20f9f6952bbde2030db39da3a1e0f6409",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0006-before-root.stdout",
+      "bytes": 1416,
+      "sha256": "eec37ca6aed7a2319efd144f4a8477e512bfe6b5fca11c6fb4110f3ea79c64c2",
+      "git_blob": "34073fb120b7213dfcca5c8ee4f27474952199b3",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0008-root-request.json",
+      "bytes": 372,
+      "sha256": "d5192a2ef99a9e4620412df9ed233474d814a02cc35d74d10e3dce29e0615ba6",
+      "git_blob": "9a4e3a2ce650aea34c0b90ab0d784a998f6f8406",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0010-root-after-uid.stdout",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "git_blob": "573541ac9702dd3969c9bc859d2b91ec1f7e6e56",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0011-root-boot.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "git_blob": "d00491fd7e5bb6fa28c517a0bb32b8b506539d4d",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0012-after-root.json",
+      "bytes": 1901,
+      "sha256": "06a524d5a2fdd442aeaaef6be5c351119874e82303d466349aac7874bd0ca0ad",
+      "git_blob": "0bee442471642e7d034f06da1e21ff14a3cfabe5",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0012-after-root.stderr",
+      "bytes": 48,
+      "sha256": "c95c24165c0f7bee0ac6b01634e6e5ca911bc614b6cafaa6c59d435dc324730c",
+      "git_blob": "1028340f251d636ce18c32df6560c8c30a085ac4",
+      "before_sha256": null,
+      "new_file": true
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_console_root_482/swiftshader-0012-after-root.stdout",
+      "bytes": 17,
+      "sha256": "3ed9264b13ae665cede6be178333ff478e730d99967c58c0e5ebdbc698916df4",
+      "git_blob": "796fedf20f9f6952bbde2030db39da3a1e0f6409",
+      "before_sha256": null,
+      "new_file": true
+    }
+  ]
+}

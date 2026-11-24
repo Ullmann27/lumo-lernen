@@ -1,0 +1,16 @@
+{
+  "members": 114,
+  "all_bytes_equal": true,
+  "archive": {
+    "path": "compact-originals.tar.gz",
+    "bytes": 4368132,
+    "sha256": "8aac812164b1d69029293aa0f3de4e45b477c9cf381a8ab5c8c0d33e352032db",
+    "git_blob": "5c4162d1203243fc4c639c5bee540bba5f76ef13"
+  },
+  "manifest": {
+    "path": "manifest.json",
+    "bytes": 29840,
+    "sha256": "0f3aab694145df8d02c3339bbf3c9de8b9beeeb6a36a8a541f33fe003459daac",
+    "git_blob": "b037d4bd43fa648b6adf6d342f0b09539a1bb37d"
+  }
+}

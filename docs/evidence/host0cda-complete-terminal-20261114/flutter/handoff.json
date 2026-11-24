@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "status": "ACTUAL_CURRENT_FULL_FLUTTER_FAIL_SINGLE_C4_PRECONDITION",
+  "host": "0cda410b9e5dceba3ffaf04f9c0fc45880dac6a9",
+  "tree": "a97942c991cbb38d22c8b97f06a3e5bb162ab942",
+  "run_id": 43637785992,
+  "attempt": 1,
+  "compile_evidence_pack": "../host-compile/complete-original-pack.tar.gz",
+  "conclusion": {
+    "bytes": 6348,
+    "sha256": "cb9a1e976eca46300deb6b8496590717e81657806d2cbb380ffcad9807d351bb",
+    "git_blob": "c7bae31eb4a1325bd5b1d1cebb60390b8111494f"
+  },
+  "machine": {
+    "bytes": 1713662,
+    "sha256": "c692c44eafd4d2e26a5f4d9f66611ac7f5a7df749860398ffed5c4a5ecde3ec2",
+    "git_blob": "b010023bac9e83aed86f4af6467a953a72acc24e"
+  },
+  "summary": {
+    "bytes": 2274,
+    "sha256": "351a405f6c63dffb667cce871ea5e2207aaaae64fe14a1e178c1c76da819b2b9",
+    "git_blob": "e435394d03989beb87b06867dc90438ae6fd5c39"
+  },
+  "actual_result": {
+    "visible": "2732PASS/1FAIL/0SKIP",
+    "target82": "81PASS/1FAIL",
+    "speech23_17_30": "NOT_RUN_STEP20_SKIPPED"
+  },
+  "original_zip": {
+    "path": "/tmp/host0cda-c4-flutter-compile-evidence-20261114/full-flutter/artifact-14131068776.original.zip",
+    "bytes": 337141742,
+    "sha256": "cf7caeb2c8bd06eea294e9610daca813d6a32914a46384426c276d02b1d69053",
+    "complete_crc_sha_member_index": "inspection/zip-members.json"
+  },
+  "storage": "The compact technical archive retains all machine/summary/log/source-binding/report bytes. The original337MB ZIP remains once in place; its552 PNGs are not duplicated or visually reviewed. Root owns durable publication and any future source/CI activation."
+}

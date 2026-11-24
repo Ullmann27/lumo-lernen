@@ -1,0 +1,139 @@
+{
+  "schema": "lumo-prompt-label-focused-qa-preactivation-handoff-v1",
+  "state": "Prepared and independently source-reviewed; no QA commit, ref, trigger or new test/render executed by this agent",
+  "repository": "Ullmann27/lumo-lernen",
+  "frozen_candidate": {
+    "commit": "1375da193af0152af64f91d86577aa9768cd50db",
+    "tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+    "native_pin": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "main_run": "43599456596",
+    "attempt": 1,
+    "quality_ref_changed": false,
+    "pr_491_changed": false
+  },
+  "proposed_qa_commit": {
+    "branch": "qa/lumo-prompt-label-contrast-20261114-2708",
+    "sole_parent": "1375da193af0152af64f91d86577aa9768cd50db",
+    "base_tree": "ebaf259b92a4c7923782e195c3a932112ce81027",
+    "changed_file_count": 2,
+    "tree_entries": [
+      {
+        "path": ".github/workflows/lumo-prompt-label-contrast-qa.yml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bfd93a088d3181444248e57e0ea5b7599921c242"
+      },
+      {
+        "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "643c3bd6868da34550bbc9fa7761818c7b1e6afb"
+      }
+    ],
+    "message": "qa: capture the isolated PromptCard label contrast correction",
+    "creation_and_activation": "Root after independent review; no force/reset of existing branches"
+  },
+  "product_scope": {
+    "path": "lib/widgets/lumo/lumo_prompt_card.dart",
+    "line": 90,
+    "old_blob": "033fb56a1033b7659d6ca7e7386e7ae9cd1074fd",
+    "new_blob": "643c3bd6868da34550bbc9fa7761818c7b1e6afb",
+    "replacement": {
+      "before": "color: LumoColors.ink600,",
+      "after": "color: LumoColors.ink100,"
+    },
+    "accepted_source_review_blob": "9eb1fb29bf40cd5715914c12a540398ea7b362ca",
+    "changed_global_palette": false,
+    "changed_trainers": false,
+    "changed_journal": false,
+    "changed_native": false
+  },
+  "intended_execution": {
+    "command": "python3 scripts/run_full_flutter_acceptance.py --output \"$QA_OUTPUT/focused\" --flutter \"$(command -v flutter)\" test/design/lumo_modernization_capture_test.dart",
+    "runner_blob": "8d17cf8175ce13ef1d756526fa13c306c846ac72",
+    "unchanged_test_blob": "2b3f8adcd1dbf9b968b9bc640ef212257f845586",
+    "unchanged_font_helper_blob": "439c2a8862effae26907ef655304e0c57f76a56c",
+    "unchanged_pubspec_lock_blob": "7843602e3d858660dc52d95587983858803976a5",
+    "flutter_version": "3.44.9",
+    "pub_get": "flutter pub get --enforce-lockfile",
+    "real_font_scope": "Unchanged four Nunito assets and MaterialIcons; original Linux Noto package step retained, but this focus does not invoke the emoji helper",
+    "job_timeout_minutes": 20,
+    "focus_step_timeout_minutes": 12,
+    "permissions": {
+      "contents": "read"
+    },
+    "checkout_persist_credentials": false,
+    "expected_non_hidden_cases": 36,
+    "expected_original_pngs": 42,
+    "outputs": "Original flutter-machine.jsonl, runner stdout/exit, acceptance summary, 42 unmodified PNGs, exact source-before/after and full original hash index",
+    "artifact_name": "lumo-prompt-label-contrast-originals",
+    "original_failure_preservation": "Always final source/report/upload steps; a total infrastructure/job termination can still prevent completion of those steps"
+  },
+  "existing_trigger_review": {
+    "exact_base_commit": "1375da193af0152af64f91d86577aa9768cd50db",
+    "workflow_count": 110,
+    "push_count": 79,
+    "different_literal_branch": 78,
+    "unrestricted_branch_with_nonmatching_own_workflow_path": 1,
+    "existing_push_matches_for_both_changed_files": [],
+    "docs": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow",
+    "scope": "Exact branch/path predicates reviewed, not a claim about a future observed GitHub event. Root should verify actual run count/head after activation."
+  },
+  "actual_local_validation": {
+    "yaml_parse": "PASS",
+    "actual_bash_run_blocks_checked": 6,
+    "bash_syntax_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "embedded_python_blocks_compiled_without_execution": 3,
+    "child_review": "No static blocker; all42 old original PNG names and dimensions match;36 old nonhidden successful cases confirmed read-only",
+    "git_diff_check_exit_code": 0,
+    "actionlint": "No available executable confirmed; no actionlint run or success claimed",
+    "flutter_tests_executed": false,
+    "renderer_executed": false,
+    "dependencies_installed": false
+  },
+  "limitations": [
+    "No after-render or pixel-level visual acceptance yet",
+    "The unchanged modernization focus renders the letter-writing coach, not LumoWritingWordCoachScreen",
+    "The word coach is covered here only by the accepted shared-component/call-site source review",
+    "Emoji font/helper behavior is unchanged; no emoji correction claim",
+    "This focused QA is not a replacement for the running main candidate validation, Android/APK validation, or Play release approval"
+  ],
+  "local_paths": {
+    "isolated_checkout": "/workspace/scratch/2708c7907f28/lumo-prompt-label-1375-2708",
+    "workflow": "/workspace/scratch/2708c7907f28/lumo-prompt-label-1375-2708/.github/workflows/lumo-prompt-label-contrast-qa.yml",
+    "evidence": "/workspace/scratch/2708c7907f28/prompt-label-qa-review-1375-2708"
+  },
+  "separate_evidence_tree_entries": [
+    {
+      "path": "docs/evidence/prompt-label-qa-1375-20261114/push-filter-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "666fd2d6f94ce41e182f28c48da3ac6affa06be8"
+    },
+    {
+      "path": "docs/evidence/prompt-label-qa-1375-20261114/static-validation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1303957a2bcf4a26517dac75eb6a39f3f2bb237f"
+    },
+    {
+      "path": "docs/evidence/prompt-label-qa-1375-20261114/independent-source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6e39568b1f10f11ec458e5cf60d9ce19108f275"
+    },
+    {
+      "path": "docs/evidence/prompt-label-qa-1375-20261114/final-local-source-identity.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f43488837242a8ea9c15aebd983e73c768a1174"
+    }
+  ]
+}

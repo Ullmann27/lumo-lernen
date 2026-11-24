@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "state": "FROZEN",
+  "repository": "Ullmann27/lumo-godot",
+  "native_source": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "native_tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+  "run_id": 43600806315,
+  "attempt": 1,
+  "job_id": 132464933411,
+  "artifact_id": 14116698243,
+  "started_utc": "2026-11-14T14:26:01.305236+00:00",
+  "finished_utc": "2026-11-14T14:26:06.398728+00:00",
+  "archives": [
+    {
+      "path": "native-baf148b-documentary-originals.tar.gz",
+      "bytes": 5258971,
+      "sha256": "88d5ca87abd30a8a4807bb2bc84351afff093682c892081c62e703d53f5a3aa7",
+      "member_count": 203,
+      "uncompressed_original_bytes": 25779974,
+      "all_members_fully_byte_compared": true,
+      "gzip_stream_read_to_eof": true
+    },
+    {
+      "path": "native-baf148b-root-reviewed-15.tar.gz",
+      "bytes": 25465892,
+      "sha256": "c527f35148189bdca92aa42288a66f165c6a2ebcbddee16c5b7a87c518129d2c",
+      "member_count": 17,
+      "uncompressed_original_bytes": 25487846,
+      "all_members_fully_byte_compared": true,
+      "gzip_stream_read_to_eof": true
+    }
+  ],
+  "source_pack": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114",
+  "source_pack_manifest": {
+    "bytes": 407879,
+    "sha256": "88ed1ce2b606f0b48fc95fcfdd7ad04f13b33747e1c641f084df225d48a1b79f"
+  },
+  "root_review": {
+    "path": "/workspace/scratch/b3485b7bb989/root-native-baf148-visual-review-20261114/root-visual-review-15.json",
+    "bytes": 12490,
+    "sha256": "53786944e762a151e21ae17dee1a3921e95893e8367ef10d502f16a2323e7b4e"
+  },
+  "full_original_retention": {
+    "zip_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/artifacts/14116698243/native-baf148b-14116698243.zip",
+    "bytes": 66871509,
+    "sha256": "cc04dd13121a2663cf5c6ae3f21e0da8f1105c566fa13fe59fd9c66f038d49db",
+    "extracted_path": "/workspace/scratch/b3485b7bb989/native-discovery-baf148b-ci-evidence-20261114/verification/originals",
+    "extracted_members": 1516
+  },
+  "inclusion_indexes": [
+    "documentary-inclusion.json",
+    "visual-inclusion.json"
+  ],
+  "exclusion_index": "documentary-exclusion.json",
+  "roundtrip_report": "roundtrip-verification.json",
+  "source_retention_report": "source-retention-verification.json",
+  "scope": "Documentary transport and original-byte preservation only. Root observations remain limited to the actual 15 images. No new test, engine, reader replay, image decode, source/ref/pin change or remote mutation."
+}

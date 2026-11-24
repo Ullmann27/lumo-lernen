@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "base_host": "682f5991feb49d3a73ab7e2b42e23af725857ea9",
+  "run": 43570629751,
+  "build_job": 132375346358,
+  "status": "SOURCE_FROZEN_BEFORE_ACTUAL_ANALYZER_RECHECK",
+  "original_issues": 338,
+  "original_errors": 127,
+  "all_original_errors_in_archived_evidence": true,
+  "archived_files": [
+    "docs/evidence/connect-four-integration-20261114/validation-06b3a113/build-path-boundary.dart",
+    "docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_round.dart",
+    "docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/connect_four_table_session.dart",
+    "docs/evidence/host-c4-pipeline-20261114/producer/before/host/lib/features/games/connect_four/lumo_connect_four_game.dart",
+    "docs/evidence/host-c4-pipeline-20261114/producer/before/host/pubspec.yaml"
+  ],
+  "only_changed_active_path": "analysis_options.yaml",
+  "unchanged_existing_options": true,
+  "unchanged_workflow_flags": true,
+  "before_sha256": "6a9f094e96071af2e4310353c7ff3b9959a4c49f165cc8a7eb377fee566f5d45",
+  "after_sha256": "fd3b800eb8ae50fa934214a7cc174c12043343a5c74eb82684ede1e2c052ca13",
+  "active_source_coverage": [
+    "lib/**",
+    "test/**",
+    "tools/**"
+  ],
+  "actual_analyzer_recheck": "pending"
+}

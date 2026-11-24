@@ -1,0 +1,51 @@
+00:00 +0: loading /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart
+00:00 +0: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:00 +1: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:00 +1: /workspace/scratch/e0abce7d2838/lumo-lernen/test/embedded_game_service_test.dart: lost acknowledgement and process restart replay the reward exactly once
+Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)
+00:00 +2: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:00 +3: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:00 +3: /workspace/scratch/e0abce7d2838/lumo-lernen/test/embedded_game_service_test.dart: parent reset removes pending engine rewards before resetting the wallet
+Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)
+00:00 +4: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:00 +5: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:00 +5: /workspace/scratch/e0abce7d2838/lumo-lernen/test/embedded_game_service_test.dart: new native games award explicit XP once and reject malformed rewards
+Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)
+00:00 +6: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:00 +7: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +8: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +9: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +10: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +11: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +12: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +13: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +14: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +15: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +16: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +17: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +18: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +19: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +20: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+00:01 +21: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=true
+[NativeOriginReturn] scene=learning resultBeforeResume=true reads=2 masked=0 consumed=1 originCurrent=true originRemoved=false originMounted=true
+00:01 +22: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: cards native return retains actual origin route; result before resume=true
+[NativeOriginReturn] scene=cards resultBeforeResume=true reads=2 masked=0 consumed=1 originCurrent=true originRemoved=false originMounted=true
+00:02 +23: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: warm learning return drains and replays rewards once; result before resume=true
+Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)
+[NativeOriginReward] resultBeforeResume=true failedAck=1 replayedOnce=true originCurrent=true
+00:03 +24: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: learning native return retains actual origin route; result before resume=false
+[NativeOriginReturn] scene=learning resultBeforeResume=false reads=2 masked=1 consumed=1 originCurrent=true originRemoved=false originMounted=true
+00:03 +25: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: cards native return retains actual origin route; result before resume=false
+[NativeOriginReturn] scene=cards resultBeforeResume=false reads=2 masked=1 consumed=1 originCurrent=true originRemoved=false originMounted=true
+00:04 +26: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: warm learning return drains and replays rewards once; result before resume=false
+Lumo-Spielstände werden beim nächsten Start erneut synchronisiert: PlatformException(storage, null, null, null)
+[NativeOriginReward] resultBeforeResume=false failedAck=1 replayedOnce=true originCurrent=true
+00:04 +27: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: legacy native Kart return still navigates to learn
+[NativeOriginLegacy] destination=learn navigated=true acknowledged=1
+00:05 +28: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: cold owner loss keeps durable return to learn
+[NativeOriginCold] destination=learn navigated=true acknowledged=1
+00:05 +29: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: legacy native Kart return still navigates to games
+[NativeOriginLegacy] destination=games navigated=true acknowledged=1
+00:05 +30: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_native_origin_return_test.dart: cold owner loss keeps durable return to games
+[NativeOriginCold] destination=games navigated=true acknowledged=1
+00:05 +31: All tests passed!

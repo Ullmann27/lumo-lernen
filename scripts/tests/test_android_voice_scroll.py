@@ -20,8 +20,10 @@ class LongParentScrollTest(unittest.TestCase):
         self.position = 0
         self.scrolled = 0
         self.control_touches = 0
+        self.observations = []
 
-        def nodes(*_):
+        def nodes(_out, tag):
+            self.observations.append((tag, self.scrolled, self.position))
             frame = [{"package": PACKAGE, "scrollable": "true",
                       "bounds": "[20,100][1180,650]", "enabled": "true"}]
             if self.position >= 17:
@@ -63,7 +65,20 @@ class LongParentScrollTest(unittest.TestCase):
     def test_existing_default_search_is_not_silently_unbounded(self):
         with self.assertRaisesRegex(RuntimeError, "No enabled live Flutter control"):
             self.run_reader()
-        self.assertEqual(self.nodes.call_count, 24)
+        self.assertEqual(self.scrolled, 24)
+        self.assertEqual(self.nodes.call_count, 26)
+        # Each direction keeps its 12-gesture budget and observes the view
+        # reached by the final gesture, even when the target remains absent.
+        backward = [(gestures, position) for tag, gestures, position in self.observations
+                    if tag.startswith("unit-scroll--1-")]
+        forward = [(gestures, position) for tag, gestures, position in self.observations
+                   if tag.startswith("unit-scroll-1-")]
+        self.assertEqual(len(backward), 13)
+        self.assertEqual(len(forward), 13)
+        self.assertEqual(backward[0], (0, 0))
+        self.assertEqual(backward[-1], (12, 0))
+        self.assertEqual(forward[0], (12, 0))
+        self.assertEqual(forward[-1], (24, 12))
         self.assertEqual(self.position, 12)
         self.assertEqual(self.control_touches, 0)
         self.capture.assert_called_once()
@@ -138,7 +153,8 @@ class PreservedKartEntryTest(unittest.TestCase):
         eval(compile(ast.Expression(body=call), str(probe), "eval"), {
             "existing": types.SimpleNamespace(leave=scope["leave"]), "out": out})
         touch.assert_called_once_with(
-            out, "Zum Lernen", "preserved-kart-pause", tap=True, exact=True)
+            out, "Zum Lernen", "preserved-kart-pause", tap=True, exact=True,
+            orientation="landscape")
 
     def test_other_games_keep_the_existing_return_caption(self):
         helper = next(node for node in ast.parse(SOURCE.read_text()).body
@@ -156,7 +172,8 @@ class PreservedKartEntryTest(unittest.TestCase):
         out = Path("/unit-fixture")
         scope["leave"](out, "another-game", already_menu=True)
         touch.assert_called_once_with(
-            out, "Zur Spielewelt", "another-game-pause", tap=True)
+            out, "Zur Spielewelt", "another-game-pause", tap=True,
+            orientation="landscape")
 
 
 if __name__ == "__main__":
