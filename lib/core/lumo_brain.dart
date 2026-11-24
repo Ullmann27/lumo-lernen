@@ -371,7 +371,7 @@ class LumoBrain {
     'minus': 'Minus heisst wegnehmen! Zum Beispiel: 5 Aepfel - 2 weg = 3 Aepfel.',
     'mal': 'Mal heisst mehrere Gruppen. 3 mal 2 ist: 3 Gruppen mit je 2 = 6.',
     'geteilt': 'Geteilt heisst aufteilen. 10 geteilt durch 2 ist: 10 Sachen auf 2 Personen = je 5.',
-    'nomen': 'Ein Nomen ist etwas das man anfassen kann: Hund, Haus, Tisch. Es wird gross geschrieben!',
+    'nomen': 'Nomen benennen Menschen, Tiere, Dinge, Orte oder Gefuehle: Kind, Hund, Tisch, Wien, Freude. Sie werden gross geschrieben!',
     'verb': 'Ein Verb ist eine Taetigkeit: laufen, lachen, essen. Das macht jemand!',
     'adjektiv': 'Ein Adjektiv beschreibt wie etwas ist: rot, gross, schnell, lustig.',
     'artikel': 'Artikel sind der, die, das. Sie stehen vor Nomen: der Hund, die Katze, das Auto.',
@@ -465,19 +465,51 @@ class LumoBrain {
   LumoBrainReply ask(String question, {String? topicId}) {
     final q = question.toLowerCase().trim();
 
+    // The singleton has no child/session identity. Resolve only an explicitly
+    // supplied known riddle; never retain another child's last question.
+    if (topicId == null) {
+      for (final riddle in _raetsel) {
+        final wording = riddle['frage']!.toLowerCase();
+        if (q == wording || q == 'aufloesung: $wording' ||
+            q == 'auflösung: $wording') {
+          return LumoBrainReply(
+            text: '${riddle['antwort']} Das passt zu den Hinweisen in diesem Rätsel.',
+            confident: true,
+          );
+        }
+      }
+    }
+    if (RegExp(r'^(?:bitte[,:]?\s+)?(?:aufloesung|auflösung|ich weiss es nicht|ich weiß es nicht|sag mir die antwort)[.!?:]*$')
+        .hasMatch(q)) {
+      return const LumoBrainReply(
+        text: 'Schreib mir bitte die genaue Aufgabe oder den Rätseltext. '
+            'Dann gehen wir die Hinweise gemeinsam durch.',
+        confident: true,
+      );
+    }
+
+    if (topicId == 's4_europa') {
+      final geography = _continentAndOceanReply(q);
+      if (geography != null) {
+        return LumoBrainReply(text: geography, confident: true);
+      }
+    }
+
     // 1. Math-Calculator
-    final mathReply = _tryMath(q);
+    final mathReply = topicId == null || topicId.startsWith('m')
+        ? _tryMath(q)
+        : null;
     if (mathReply != null) return mathReply;
 
     // 2. Tier-Lexikon
-    for (final entry in _tiere.entries) {
+    for (final entry in _topicEntries(_tiere, topicId, const {'s1_tiere'})) {
       if (q.contains(entry.key)) {
         return _tierAntwort(entry.key, entry.value, q);
       }
     }
 
     // 3. Koerper
-    for (final entry in _koerper.entries) {
+    for (final entry in _topicEntries(_koerper, topicId, const {'s1_koerper'})) {
       if (q.contains(entry.key)) {
         return LumoBrainReply(
           text: _wrap(entry.value),
@@ -488,7 +520,8 @@ class LumoBrain {
     }
 
     // 4. Wetter
-    for (final entry in _wetter.entries) {
+    for (final entry in _topicEntries(
+        _wetter, topicId, const {'s2_wetter', 's2_jahreszeiten', 's3_wetter'})) {
       if (q.contains(entry.key)) {
         return LumoBrainReply(
           text: _wrap(entry.value),
@@ -499,7 +532,8 @@ class LumoBrain {
     }
 
     // 5. Geografie
-    for (final entry in _geografie.entries) {
+    for (final entry in _topicEntries(
+        _geografie, topicId, const {'s3_oesterreich', 's4_geografie'})) {
       if (q.contains(entry.key)) {
         return LumoBrainReply(
           text: _wrap(entry.value),
@@ -510,7 +544,8 @@ class LumoBrain {
     }
 
     // 5a. Pflanzen-Lexikon (NEU)
-    for (final entry in _pflanzen.entries) {
+    for (final entry in _topicEntries(
+        _pflanzen, topicId, const {'s1_pflanzen', 's3_natur', 's4_oekosystem'})) {
       if (q.contains(entry.key)) {
         return LumoBrainReply(
           text: _wrap(entry.value),
@@ -521,7 +556,7 @@ class LumoBrain {
     }
 
     // 5b. Berufe-Lexikon (NEU)
-    for (final entry in _berufe.entries) {
+    for (final entry in _topicEntries(_berufe, topicId, const {'s3_berufe'})) {
       if (q.contains(entry.key)) {
         return LumoBrainReply(
           text: _wrap(entry.value),
@@ -532,45 +567,38 @@ class LumoBrain {
     }
 
     // 5c. Witze-Pattern (NEU - macht Lumo lebendig)
-    if (q.contains('witz') || q.contains('lustig') ||
-        q.contains('lach mich')) {
+    if (topicId == null &&
+        (q.contains('witz') || q.contains('lustig') || q.contains('lach mich'))) {
       final witz = _witze[_rng.nextInt(_witze.length)];
       return LumoBrainReply(text: witz, confident: true);
     }
 
     // 5d. Raetsel-Pattern (NEU)
-    if (q.contains('raetsel') || q.contains('rätsel') ||
-        q.contains('rate mal') || q.contains('errate')) {
+    if (topicId == null &&
+        (q.contains('raetsel') || q.contains('rätsel') ||
+            q.contains('rate mal') || q.contains('errate'))) {
       final raetsel = _raetsel[_rng.nextInt(_raetsel.length)];
       return LumoBrainReply(
         text: '🤔 Raetsel-Zeit! ${raetsel['frage']} '
-            '(Loesung kommt wenn du raetst oder "Aufloesung" sagst!)',
+            'Beschreibe zuerst, woran du denkst.',
         confident: true,
       );
     }
 
-    // 5e. Aufloesung-Pattern - gibt letzte Raetsel-Antwort
-    if (q.contains('aufloesung') || q.contains('ich weiss es nicht') ||
-        q.contains('sag mir die antwort')) {
-      // Wir koennen das letzte Raetsel nicht trackn ohne State,
-      // also liefern wir ein zufaelliges
-      final raetsel = _raetsel[_rng.nextInt(_raetsel.length)];
-      return LumoBrainReply(
-        text: 'Die Loesung: ${raetsel['antwort']} Magst du noch ein Raetsel?',
-        confident: true,
-      );
-    }
+    // Requests for an answer without its question are handled above by asking
+    // for the exact wording. Never choose a random riddle solution here.
 
     // 5f. Lern-Tipp Pattern (NEU - selbst-vorschlagende KI)
-    if (q.contains('was soll ich lernen') || q.contains('was kann ich lernen') ||
-        q.contains('was sollen wir') || q.contains('gib mir einen tipp') ||
-        q.contains('was machen wir heute') || q.contains('tipp fuer heute')) {
+    if (topicId == null &&
+        (q.contains('was soll ich lernen') || q.contains('was kann ich lernen') ||
+            q.contains('was sollen wir') || q.contains('gib mir einen tipp') ||
+            q.contains('was machen wir heute') || q.contains('tipp fuer heute'))) {
       final tipp = _lernTipps[_rng.nextInt(_lernTipps.length)];
       return LumoBrainReply(text: '💡 Lumo-Tipp: $tipp', confident: true);
     }
 
     // 6. Geschichte
-    for (final entry in _geschichte.entries) {
+    for (final entry in _topicEntries(_geschichte, topicId, const {'s4_geschichte'})) {
       if (q.contains(entry.key)) {
         return LumoBrainReply(
           text: _wrap(entry.value),
@@ -581,6 +609,8 @@ class LumoBrain {
 
     // 7. Allgemeine Lernbegriffe
     for (final entry in _allgemein.entries) {
+      final isMath = const {'plus', 'minus', 'mal', 'geteilt'}.contains(entry.key);
+      if (topicId != null && !topicId.startsWith(isMath ? 'm' : 'd')) continue;
       if (q.contains(entry.key)) {
         return LumoBrainReply(
           text: _wrap(entry.value),
@@ -591,7 +621,7 @@ class LumoBrain {
 
     // 8. Buchstaben (Single-Letter-Frage)
     final letterMatch = RegExp(r'^(?:wie|der|das)?\s*[a-zA-Z]\s*$').firstMatch(q);
-    if (letterMatch != null) {
+    if (letterMatch != null && (topicId == null || topicId.startsWith('d1_'))) {
       final letter = q.replaceAll(RegExp(r'[^a-z]'), '');
       if (_buchstabenLaut.containsKey(letter)) {
         return LumoBrainReply(
@@ -604,7 +634,7 @@ class LumoBrain {
     // 9. Spezifische Pattern: "wie spricht man X" / "buchstabe X"
     final buchstabePattern = RegExp(r'buchstabe\s+([a-z])|wie\s+spricht\s+man\s+([a-z])');
     final bm = buchstabePattern.firstMatch(q);
-    if (bm != null) {
+    if (bm != null && (topicId == null || topicId.startsWith('d1_'))) {
       final letter = (bm.group(1) ?? bm.group(2)) ?? '';
       if (_buchstabenLaut.containsKey(letter)) {
         return LumoBrainReply(
@@ -637,6 +667,44 @@ class LumoBrain {
       text: '',
       confident: false,
     );
+  }
+
+  /// A noun in a German exercise is not a request for an animal fact. Keep
+  /// unscoped conversation available and restrict lesson dictionaries to
+  /// their actual topic IDs; unsupported scoped requests reach the tutor.
+  Iterable<MapEntry<String, T>> _topicEntries<T>(
+      Map<String, T> entries, String? topicId, Set<String> allowedTopics) {
+    if (topicId == null || allowedTopics.contains(topicId)) return entries.entries;
+    return const [];
+  }
+
+  /// These are the actual quick questions and locally offered tasks for the
+  /// continent/ocean topic. Keep them independent of the capitals dictionary.
+  String? _continentAndOceanReply(String question) {
+    final key = question.replaceAll('ö', 'oe')
+        .replaceAll(RegExp(r'[.!?]+$'), '').trim();
+    const replies = {
+      'ist afrika ein kontinent oder ein ozean':
+          'Afrika ist ein Kontinent. Ein Kontinent ist eine große Landfläche.',
+      'ist der atlantik ein kontinent oder ein ozean':
+          'Der Atlantik ist ein Ozean, also ein sehr großes Meer.',
+      'auf welchem kontinent liegt oesterreich':
+          'Österreich liegt in Europa. Europa ist ein Kontinent.',
+      'welcher ozean liegt zwischen amerika und europa':
+          'Der Atlantische Ozean liegt zwischen Amerika und Europa. '
+          'Auf einer Weltkarte kannst du seine Wasserfläche dazwischen finden.',
+      'was unterscheidet einen kontinent von einem ozean':
+          'Ein Kontinent ist eine große Landfläche. Ein Ozean ist ein sehr großes Meer. '
+          'Europa ist ein Kontinent, der Atlantik ein Ozean.',
+      'welche ozeane kennst du':
+          'Die fünf Ozeane heißen Atlantischer, Pazifischer, Indischer, '
+          'Arktischer und Südlicher Ozean.',
+      'was ist ein kontinent':
+          'Ein Kontinent ist eine große Landfläche. Europa und Afrika sind Kontinente.',
+      'was ist ein ozean':
+          'Ein Ozean ist ein sehr großes Meer. Der Atlantik und der Pazifik sind Ozeane.',
+    };
+    return replies[key];
   }
 
   // ────────────────────────────────────────────────────────────────
@@ -782,7 +850,16 @@ class LumoBrain {
     if (topicId == 's2_wetter' || topicId.contains('wetter')) {
       return _generateWetterAufgabe();
     }
-    if (topicId == 's4_europa' || topicId.contains('europa')) {
+    if (topicId == 's4_europa') {
+      const questions = [
+        'Ist Afrika ein Kontinent oder ein Ozean?',
+        'Ist der Atlantik ein Kontinent oder ein Ozean?',
+        'Auf welchem Kontinent liegt Oesterreich?',
+        'Welcher Ozean liegt zwischen Amerika und Europa?',
+      ];
+      return 'Geografie: ${questions[_rng.nextInt(questions.length)]}';
+    }
+    if (topicId.contains('europa')) {
       return _generateEuropaAufgabe();
     }
     return null;

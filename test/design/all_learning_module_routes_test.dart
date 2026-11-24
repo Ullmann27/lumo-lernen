@@ -4,6 +4,7 @@ import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/curriculum/academy_topic_units.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/core/lumo_learning_session_contract.dart';
 import 'package:lumo_lernen/features/learning/nextgen/module_task_scope.dart';
 import 'package:lumo_lernen/features/learning_modules/learning_module_registry.dart';
@@ -79,6 +80,53 @@ void main() {
             'Two multiplication entries share one of the 18 module screens.');
   });
 
+  testWidgets('grade 2 Plus bis 100 keeps the exact addition route',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(420, 1000));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    late LumoAppState app;
+    await tester.runAsync(() async {
+      app = LumoAppState();
+      await app.school.setActiveStudent('route-plus100-exact');
+      await app.hydrateFromWallet();
+      await app.loadLearningProfile();
+      app.update(app.state.copyWith(grade: 2, section: LumoSection.learn));
+      app.updateSettings(const AppSettings(
+          voiceEnabled: false,
+          autoReadEnabled: false,
+          reduceAnimations: true,
+          calmMode: true));
+    });
+    addTearDown(() async {
+      await tester.pumpWidget(const SizedBox.shrink());
+      await frames(tester);
+      app.dispose();
+    });
+    await tester.pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
+    await frames(tester);
+    await tap(tester, 'learning-subject-Mathematik');
+    await tap(tester, 'learning-unit-Mathematik-Plus bis 100');
+    final numberSense = LearningModuleRegistry.builderFor('m2_zahlen100', app)!;
+    expect(find.byType(numberSense.runtimeType), findsNothing);
+    expect(app.state.section, LumoSection.exercises);
+    expect(app.state.grade, 2);
+    expect(app.state.subject, 'Mathematik');
+    expect(app.state.unit, 'Plus bis 100');
+    final factory = ExerciseFactory(seed: 2078);
+    final addition = RegExp(r'^(\d+) \+ (\d+) = \?$');
+    for (var i = 0; i < 128; i++) {
+      final task = factory.nextExact(
+          grade: app.state.grade, subject: app.state.subject, unit: app.state.unit);
+      final match = addition.firstMatch(task.prompt);
+      expect(match, isNotNull, reason: task.prompt);
+      final matched = match!;
+      final answer = int.parse(matched.group(1)!) + int.parse(matched.group(2)!);
+      expect(answer, inInclusiveRange(0, 100));
+      expect(task.answer, '$answer');
+      expect(task.choices, contains(task.answer));
+    }
+  });
+
   for (final entry in cases) {
     testWidgets('${entry.$1} opens its real module through academy navigation',
         (tester) async {
@@ -113,7 +161,9 @@ void main() {
       await tester
           .pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
       await frames(tester);
-      if (entry.$1 == 's1_farben' || entry.$1 == 'd2_artikel') {
+      if (entry.$1 == 's1_farben' ||
+          entry.$1 == 'd2_artikel' ||
+          entry.$1 == 'm2_zahlen100') {
         await tap(tester, 'learning-advanced-entry');
         await tap(tester, 'academy-tool-${entry.$1}');
       } else {

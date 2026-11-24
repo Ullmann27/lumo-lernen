@@ -630,6 +630,17 @@ class TaskHintService {
                 'Gehe zuerst bis $nextTen und dann die übrigen '
                 '${right - missing} Schritte weiter. Wo landest du?';
           }
+          // Zahlenraum 100, zweistellig: halbschriftlich „Zehner, dann
+          // Einer“ statt 24 Punkte zu legen.
+          if (level == 2 &&
+              left >= 10 &&
+              right > 10 &&
+              right % 10 != 0 &&
+              left + right <= 100) {
+            return 'Zerlege $right in ${right ~/ 10 * 10} und ${right % 10}. '
+                'Rechne zuerst $left + ${right ~/ 10 * 10}. '
+                'Zähle danach die ${right % 10} Einer dazu.';
+          }
           if (right > 20) {
             return level == 2
                 ? 'Zerlege $right in seine Stellen. Zähle zuerst die größte Stelle zu $left dazu, dann die nächste. Schreibe jedes Zwischenergebnis auf.'
@@ -646,6 +657,14 @@ class TaskHintService {
                 'Von den $right Schritten bleiben noch ${right - toTen}. '
                 'Gehe auch diese zurück. Wo landest du? '
                 'Prüfe danach durch Dazuzählen.';
+          }
+          if (level == 2 &&
+              right > 10 &&
+              right % 10 != 0 &&
+              left <= 100) {
+            return 'Zerlege $right in ${right ~/ 10 * 10} und ${right % 10}. '
+                'Rechne zuerst $left − ${right ~/ 10 * 10}. '
+                'Nimm danach die ${right % 10} Einer weg.';
           }
           if (right > 20) {
             return level == 2
