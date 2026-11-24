@@ -10,7 +10,9 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: lumo-2077-complete-apk
+  # v2 isolates repaired 2077 builds from a stale pre-fix runner that can
+  # otherwise hold the old concurrency key without executing any steps.
+  group: lumo-2077-complete-apk-repair-v2
   cancel-in-progress: true
 
 jobs:
