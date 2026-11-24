@@ -9,6 +9,7 @@ import '../../features/shared/widgets/lumo_premium_effects.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import 'lumo_motion.dart';
 import 'lumo_glass_optics.dart';
+import 'lumo_holo_effects.dart';
 import 'lumo_materials.dart';
 import 'lumo_scene_artwork.dart';
 import 'lumo_adventure_card.dart';
@@ -144,6 +145,9 @@ class LumoSceneBackground extends StatelessWidget {
               ),
             ),
           ),
+        // Ruhiges Hologramm-Lichtfeld: feste Lichtpunkte und gelegentlicher
+        // Lichtatem, eigene Repaint-Ebene, statisch bei reduzierter Bewegung.
+        const Positioned.fill(child: LumoHoloField()),
         if (child != null) child!,
         if (showPlaceholderLabel)
           Positioned(
@@ -345,7 +349,8 @@ class LumoColorTile extends StatelessWidget {
                             ]),
                         border: Border.all(
                             color: Color.lerp(color, LumoVisualTokens.cyan, .4)!
-                                .withValues(alpha: .45)),
+                                .withValues(alpha: .7),
+                            width: 1.3),
                         boxShadow: [
                           BoxShadow(
                               color: color.withValues(alpha: .12),

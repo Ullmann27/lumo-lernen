@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'lumo_holo_effects.dart';
+
 /// Gemeinsames Bewegungssystem der Lern-App.
 ///
 /// Kurze Reaktionen 100–250 ms, größere Übergänge 250–500 ms. Jede Bewegung
@@ -27,10 +29,12 @@ abstract final class LumoMotion {
       appReduced || (MediaQuery.maybeDisableAnimationsOf(context) ?? false);
 }
 
-/// Federnde Druckreaktion mit Lichtimpuls für jede tippbare Fläche.
+/// Federnde Druckreaktion mit Lichtimpuls, leichtem 3D-Kippen zum Finger hin
+/// und gelegentlichem holografischem Schimmer für jede tippbare Fläche.
 ///
 /// Der Tap selbst bleibt beim Kind-Widget (InkWell, Button …); diese Hülle
 /// beobachtet nur die Zeiger und verändert nichts an der Gestenerkennung.
+/// Bei reduzierter Bewegung entfallen Skalierung, Kippen und Schimmer.
 class LumoPressable extends StatefulWidget {
   const LumoPressable({
     super.key,
@@ -39,6 +43,8 @@ class LumoPressable extends StatefulWidget {
     this.glowColor = const Color(0xFF52E5FF),
     this.radius = 22,
     this.pressedScale = .955,
+    this.maxTilt = .07,
+    this.shimmer = true,
   });
 
   final Widget child;
@@ -47,6 +53,12 @@ class LumoPressable extends StatefulWidget {
   final double radius;
   final double pressedScale;
 
+  /// Größter Kippwinkel in Radiant beim Drücken (0 schaltet das Kippen ab).
+  final double maxTilt;
+
+  /// Holografischer Lichtschimmer in zufälligen Abständen.
+  final bool shimmer;
+
   @override
   State<LumoPressable> createState() => _LumoPressableState();
 }
@@ -54,6 +66,7 @@ class LumoPressable extends StatefulWidget {
 class _LumoPressableState extends State<LumoPressable>
     with SingleTickerProviderStateMixin {
   bool _hovered = false;
+  Offset _tilt = Offset.zero;
   late final AnimationController _press = AnimationController(
     vsync: this,
     duration: LumoMotion.press,
@@ -66,8 +79,19 @@ class _LumoPressableState extends State<LumoPressable>
     super.dispose();
   }
 
-  void _down(PointerDownEvent _) {
+  void _down(PointerDownEvent event) {
     if (!widget.enabled || LumoMotion.reduced(context)) return;
+    final box = context.findRenderObject();
+    if (box is RenderBox && box.hasSize && !box.size.isEmpty) {
+      final local = box.globalToLocal(event.position);
+      // -1 … 1 relativ zur Mitte: die gedrückte Seite sinkt leicht ein.
+      _tilt = Offset(
+        ((local.dx / box.size.width) * 2 - 1).clamp(-1.0, 1.0),
+        ((local.dy / box.size.height) * 2 - 1).clamp(-1.0, 1.0),
+      );
+    } else {
+      _tilt = Offset.zero;
+    }
     _press.forward();
     unawaited(HapticFeedback.selectionClick().catchError((_) {}));
   }
@@ -100,7 +124,11 @@ class _LumoPressableState extends State<LumoPressable>
         behavior: HitTestBehavior.translucent,
         child: AnimatedBuilder(
           animation: _press,
-          child: widget.child,
+          child: LumoHoloShimmer(
+            enabled: widget.shimmer && widget.enabled,
+            radius: widget.radius,
+            child: widget.child,
+          ),
           builder: (context, child) {
             final reduced = LumoMotion.reduced(context);
             final t = reduced
@@ -108,34 +136,37 @@ class _LumoPressableState extends State<LumoPressable>
                 : _press.isAnimating && _press.status == AnimationStatus.reverse
                     ? LumoMotion.spring.transform(_press.value)
                     : Curves.easeOut.transform(_press.value);
+            final glow = t > 0
+                ? t
+                : _hovered
+                    ? .45
+                    : 0.0;
+            final scale = 1 - (1 - widget.pressedScale) * t;
+            final tilt = widget.maxTilt * t;
+            final transform = t == 0
+                ? Matrix4.identity()
+                : (Matrix4.identity()
+                  ..setEntry(3, 2, .0014)
+                  ..rotateX(_tilt.dy * tilt)
+                  ..rotateY(-_tilt.dx * tilt)
+                  ..scaleByDouble(scale, scale, 1, 1));
             // Gleiche Baumstruktur in Ruhe und beim Drücken: sonst würde das
             // Kind neu aufgebaut und der laufende Tap ginge verloren.
-            return Transform.scale(
-              scale: 1 - (1 - widget.pressedScale) * t,
+            return Transform(
+              alignment: Alignment.center,
+              transform: transform,
               child: DecoratedBox(
                 position: DecorationPosition.foreground,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(widget.radius),
                   border: Border.all(
-                      color: widget.glowColor.withValues(
-                          alpha: .75 *
-                              (t > 0
-                                  ? t
-                                  : _hovered
-                                      ? .45
-                                      : 0)),
-                      width: 1.6),
+                      color: widget.glowColor.withValues(alpha: .8 * glow),
+                      width: 1.8),
                   boxShadow: [
                     BoxShadow(
-                      color: widget.glowColor.withValues(
-                          alpha: .32 *
-                              (t > 0
-                                  ? t
-                                  : _hovered
-                                      ? .45
-                                      : 0)),
-                      blurRadius: 18,
-                      spreadRadius: -2,
+                      color: widget.glowColor.withValues(alpha: .42 * glow),
+                      blurRadius: 26,
+                      spreadRadius: -1,
                     ),
                   ],
                 ),
