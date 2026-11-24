@@ -28,6 +28,9 @@ jobs:
         run: |
           set -euo pipefail
           BASE=6804dbf37faa12db1450a8dfa856208eb867ded2
+          if ! git cat-file -e "${BASE}^{commit}" 2>/dev/null; then
+            git fetch --no-tags --depth=1 origin "$BASE"
+          fi
           git cat-file -e "${BASE}^{commit}"
           mapfile -t changed < <(git diff --name-only "${BASE}" HEAD | sort)
           printf '%s\n' "${changed[@]}" | tee /tmp/lumo-2077-delta.txt
