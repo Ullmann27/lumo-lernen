@@ -1,0 +1,139 @@
+name: Publish repaired LUMO 2077 direct APK
+on:
+  push:
+    branches:
+      - integration/lumo-kart-final-2077
+    paths:
+      - .github/workflows/publish-lumo-2077-release.yml
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: publish-lumo-2077-direct-apk
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_SHA: 5bd5b2fb8ba2f50616b27fd5a23be9f09ab7f842
+      SOURCE_RUN: '45317859300'
+      ARTIFACT_ID: '14885978148'
+      ARTIFACT_NAME: lumo-2077-kart-complete-apk
+      TAG: lumo-0.14.5-2077-repaired-45317859300
+      APK_NAME: Lumo-Lernen-0.14.5-2077-Repariert.apk
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_SHA }}
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Verify immutable source and artifact identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          test "$(grep '^version:' pubspec.yaml)" = "version: 0.14.5+2077"
+          artifact="$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID")"
+          ARTIFACT_JSON="$artifact" python3 - <<'PY'
+          import json, os
+          row=json.loads(os.environ['ARTIFACT_JSON'])
+          assert row['id']==int(os.environ['ARTIFACT_ID'])
+          assert row['name']==os.environ['ARTIFACT_NAME']
+          assert row['expired'] is False
+          run=row.get('workflow_run') or {}
+          assert run.get('id')==int(os.environ['SOURCE_RUN'])
+          assert run.get('head_sha')==os.environ['SOURCE_SHA']
+          print('Immutable LUMO 2077 artifact identity PASS')
+          PY
+
+      - name: Download the exact successful 2077 artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p release
+          curl --fail --location --retry 3 --retry-all-errors \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" \
+            -o "$RUNNER_TEMP/lumo-2077.zip"
+          unzip -q "$RUNNER_TEMP/lumo-2077.zip" -d release
+          test -s release/Lumo-Lernen-Neu.apk
+          test -s release/APK-SHA256.txt
+          test -s release/APK-VERIFICATION.json
+          test -s release/BUILD-PROVENANCE.json
+          test -s release/GODOT-SOURCE.json
+          test -s release/APP-VERSION.txt
+
+      - name: Reverify APK hash, version, ABIs, source and Godot pin
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="$(awk 'NR==1{print $1}' release/APK-SHA256.txt)"
+          actual="$(sha256sum release/Lumo-Lernen-Neu.apk | awk '{print $1}')"
+          test -n "$expected"
+          test "$actual" = "$expected"
+          test "$(cat release/APP-VERSION.txt)" = "version: 0.14.5+2077"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          source=json.loads(Path('release/GODOT-SOURCE.json').read_text())
+          assert source=={
+              'repository':'https://github.com/Ullmann27/lumo-godot.git',
+              'revision':'410327bfd5d1a66c54e3d75f772895d320daa5d6',
+              'engine':'4.6.3',
+          }
+          proof=json.loads(Path('release/BUILD-PROVENANCE.json').read_text())
+          assert proof.get('flutter_source_commit')==os.environ['SOURCE_SHA']
+          assert proof.get('versionName')=='0.14.5'
+          assert int(proof.get('versionCode'))==2077
+          assert {'arm64-v8a','x86_64'} <= set(proof.get('abis', []))
+          assert proof.get('godot', {}).get('revision')==source['revision']
+          assert proof.get('signingCertificateSha256')
+          verification=json.loads(Path('release/APK-VERIFICATION.json').read_text())
+          assert verification
+          print('LUMO 2077 release proof PASS')
+          PY
+          mv release/Lumo-Lernen-Neu.apk "release/$APK_NAME"
+          printf '%s  %s\n' "$actual" "$APK_NAME" > release/SHA256SUMS.txt
+
+      - name: Publish direct APK as GitHub prerelease
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release tag already exists; refusing to replace immutable 2077 delivery." >&2
+            exit 1
+          fi
+          cat > release/LIESMICH.txt <<EOF
+          LUMO Lernen 0.14.5+2077 – reparierter verifizierter Android-Kandidat
+          App-Quellstand: $SOURCE_SHA
+          Godot-Quellstand: 410327bfd5d1a66c54e3d75f772895d320daa5d6
+          Erfolgreicher Build-Run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN
+          Artifact-ID: $ARTIFACT_ID
+          APK: $APK_NAME
+          SHA-256: $(awk 'NR==1{print $1}' release/SHA256SUMS.txt)
+          Enthält ARM64-v8a und x86_64. Paket, Signatur, beide ABIs und Provenance
+          wurden im erfolgreichen 2077-Build geprüft.
+          EOF
+          gh release create "$TAG" \
+            "release/$APK_NAME" \
+            release/SHA256SUMS.txt \
+            release/APK-VERIFICATION.json \
+            release/BUILD-PROVENANCE.json \
+            release/GODOT-SOURCE.json \
+            release/APP-VERSION.txt \
+            release/LIESMICH.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$SOURCE_SHA" \
+            --title "LUMO Lernen 0.14.5+2077 – reparierte APK" \
+            --notes "Direkter Android-Testbuild aus dem erfolgreich verifizierten 2077-Lauf $SOURCE_RUN. Kein Store-Release." \
+            --prerelease \
+            --latest=false
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url,tagName,assets
