@@ -30,19 +30,13 @@ abstract final class LumoMaterials {
           ],
         ),
         border: Border.all(
-          color: border ?? LumoVisualTokens.cyanBright.withValues(alpha: .42),
+          color: border ?? LumoVisualTokens.cyanBright.withValues(alpha: .27),
         ),
-        // Tiefe: dunkler Kontaktschatten plus leiser Cyan-Lichthof der Kante.
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: (border ?? LumoVisualTokens.cyan).withValues(alpha: .16),
-            blurRadius: 20,
-            spreadRadius: -6,
-          ),
-          const BoxShadow(
-            color: Color(0x6600081C),
-            blurRadius: 22,
-            offset: Offset(0, 10),
+            color: Color(0x5000081C),
+            blurRadius: 18,
+            offset: Offset(0, 8),
             spreadRadius: -4,
           ),
         ],
@@ -111,7 +105,7 @@ class LumoGoldAction extends StatelessWidget {
                             horizontal: 10, vertical: 13),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18)),
-                        textStyle: TextStyle(
+                          textStyle: TextStyle(
                             fontFamily: 'Nunito',
                             fontSize: bounds.maxWidth < 160 ? 14 : 16,
                             fontWeight: FontWeight.w900),

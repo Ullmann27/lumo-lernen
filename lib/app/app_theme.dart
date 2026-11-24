@@ -143,9 +143,6 @@ class LumoAppTheme {
       fontFamily: 'Nunito',
       scaffoldBackgroundColor: LumoColors.appBg,
       materialTapTargetSize: MaterialTapTargetSize.padded,
-      // Kühles Cyan-Licht statt grauem Schleier beim Antippen.
-      splashColor: const Color(0x3353DDFD),
-      highlightColor: const Color(0x1A53DDFD),
       visualDensity: VisualDensity.standard,
       iconTheme: const IconThemeData(color: LumoColors.ink700, size: 24),
       dividerTheme: const DividerThemeData(color: Color(0x5537D2FD), thickness: 1),
@@ -160,7 +157,6 @@ class LumoAppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(style: OutlinedButton.styleFrom(
         foregroundColor: LumoColors.ink900, minimumSize: const Size(48, 50),
         side: const BorderSide(color: Color(0xAA53DDFD), width: 1.3),
-        overlayColor: const Color(0xFF53DDFD),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)))),
       textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(
@@ -195,17 +191,22 @@ class LumoAppTheme {
         bodyMedium: LumoTextStyles.body,
         labelMedium: LumoTextStyles.label,
       ),
-      // Holografische Knöpfe: tiefes Blau (Weiß darauf erfüllt WCAG AA),
-      // leuchtende Cyan-Kante, Cyan-Glow beim Drücken, mindestens 48 dp.
-      filledButtonTheme: FilledButtonThemeData(style: _holoButtonStyle()),
-      elevatedButtonTheme: ElevatedButtonThemeData(style: _holoButtonStyle()),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          backgroundColor: const Color(0xFF2387D9),
+          minimumSize: const Size(48, 52),
+          foregroundColor: Colors.white,
+          textStyle: LumoTextStyles.cta,
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        ),
+      ),
       cardTheme: CardThemeData(
         color: LumoColors.cardBg,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LumoRadius.xl),
-          side: const BorderSide(color: Color(0x8837D2FD))),
-        shadowColor: const Color(0xFF37D2FD),
+          side: const BorderSide(color: Color(0x6637D2FD))),
       ),
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: LumoColors.leftNavBg,
@@ -224,53 +225,6 @@ class LumoAppTheme {
       ),
     );
   }
-}
-
-/// Gemeinsamer Stil für Filled- und Elevated-Buttons im Hologramm-Look.
-ButtonStyle _holoButtonStyle() {
-  const cyan = Color(0xFF53DDFD);
-  return ButtonStyle(
-    minimumSize: const WidgetStatePropertyAll(Size(48, 52)),
-    tapTargetSize: MaterialTapTargetSize.padded,
-    padding: const WidgetStatePropertyAll(
-        EdgeInsets.symmetric(horizontal: 18, vertical: 12)),
-    textStyle: const WidgetStatePropertyAll(LumoTextStyles.cta),
-    shape: WidgetStatePropertyAll(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
-    backgroundColor: WidgetStateProperty.resolveWith((states) {
-      if (states.contains(WidgetState.disabled)) return const Color(0xFF223A5C);
-      if (states.contains(WidgetState.pressed)) return const Color(0xFF1F7FD6);
-      return const Color(0xFF1667BC);
-    }),
-    foregroundColor: WidgetStateProperty.resolveWith((states) =>
-        states.contains(WidgetState.disabled)
-            ? const Color(0xFFB8C8DF)
-            : Colors.white),
-    overlayColor: WidgetStateProperty.resolveWith((states) {
-      if (states.contains(WidgetState.pressed)) {
-        return cyan.withValues(alpha: .22);
-      }
-      if (states.contains(WidgetState.hovered) ||
-          states.contains(WidgetState.focused)) {
-        return cyan.withValues(alpha: .12);
-      }
-      return null;
-    }),
-    side: WidgetStateProperty.resolveWith((states) => BorderSide(
-        color: states.contains(WidgetState.disabled)
-            ? const Color(0x5537D2FD)
-            : states.contains(WidgetState.pressed)
-                ? const Color(0xFFB4F2FF)
-                : const Color(0xCC53DDFD),
-        width: states.contains(WidgetState.pressed) ? 2 : 1.4)),
-    elevation: WidgetStateProperty.resolveWith((states) {
-      if (states.contains(WidgetState.disabled)) return 0;
-      if (states.contains(WidgetState.pressed)) return 10;
-      return 5;
-    }),
-    shadowColor: const WidgetStatePropertyAll(Color(0xCC37D2FD)),
-    surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-  );
 }
 
 BoxDecoration lumoCard({
