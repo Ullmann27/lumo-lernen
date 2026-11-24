@@ -9,6 +9,8 @@ import 'widgets/lumo_subject_showcase_card.dart';
 import 'widgets/lumo_home_hero.dart';
 import 'widgets/lumo_subject_register.dart';
 import '../onboarding/lumo_intro_tour.dart';
+import '../teacher_demo/demo_pin_dialog.dart';
+import '../teacher_demo/teacher_demo_screen.dart';
 import '../../widgets/design/lumo_section_heading.dart';
 import '../teacher/student_assignments_card.dart';
 import '../parent_tasks/parent_tasks_entry_card.dart';
@@ -97,6 +99,15 @@ class HomeContent extends StatelessWidget {
       appState.update(appState.state.copyWith(subject: subject));
       onSection(LumoSection.learn);
     }
+  }
+
+  /// Schul-Demo 24.11.2026: sichtbarer Einstieg für Lehrkräfte, mit PIN.
+  Future<void> _openTeacherDemo(BuildContext context) async {
+    final ok = await DemoPinDialog.show(context);
+    if (!ok || !context.mounted) return;
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(builder: (_) => const TeacherDemoScreen()),
+    );
   }
 
   void _open(BuildContext context, Widget screen) {
@@ -223,6 +234,16 @@ class HomeContent extends StatelessWidget {
                           color: Color(0xFF16728F),
                         ),
                         onTap: () => LumoIntroTour.show(context),
+                      ),
+                      LumoRegisterAction(
+                        entry: const LumoRegisterEntry(
+                          id: 'teacher',
+                          title: 'Für Lehrkräfte',
+                          hint: 'Demo-Klasse mit PIN',
+                          icon: Icons.school_rounded,
+                          color: Color(0xFF8A6D1F),
+                        ),
+                        onTap: () => _openTeacherDemo(context),
                       ),
                     ],
                   ),
