@@ -1,0 +1,42 @@
+{
+  "source_base_commit": "5c086af2fa967f743d5801b4be23c15efbbb88ba",
+  "source_base_tree": "45bca796b1b6c05908aad39b1536a485e91102f3",
+  "tested_utc": "2026-11-24T16:40:27.944550+00:00",
+  "flutter": "3.44.9",
+  "dart": "3.12.2",
+  "tests": {
+    "passed": 74,
+    "failed": 0,
+    "skipped": 0,
+    "includes_new_widget_tests": 11,
+    "new_test_count_is_subset": true
+  },
+  "analysis": {
+    "errors": 0,
+    "warnings": 0,
+    "infos": 0
+  },
+  "source_files": {
+    "lib/features/recognition/lumo_task_recognition_screen.dart": {
+      "git_blob": "cfe4f7e90f0af5121f874e770af02ffff344d537",
+      "sha256": "d5d8f8ca2d547ef05912f3f8bcc7c855c092604fe73e1d93fba2178e8c8678f7",
+      "bytes": 17842
+    },
+    "test/recognized_task_speech_test.dart": {
+      "git_blob": "fea6f284d49bbc33ad19f6025e822f43c6d22da7",
+      "sha256": "4b10b4bc4ffcaca0a00e3b855a6e096f7eeefe7244b5adb99ff6ee584e85dc15",
+      "bytes": 12243
+    }
+  },
+  "logs": {
+    "analysis.log": {
+      "sha256": "a419b9d725434789219f23c9c96b456c3fa861442aaad8a1177c1b6bbc5e0617",
+      "bytes": 96
+    },
+    "regression-tests.log": {
+      "sha256": "91dfb46f8090a197f3dfd75805d5769793296cf7b8366062bc99b56ede9c75f4",
+      "bytes": 11092
+    }
+  },
+  "scope": "Synthetic native callback/widget regression with the real local speech adapter; not a physical microphone or delivered APK test."
+}
