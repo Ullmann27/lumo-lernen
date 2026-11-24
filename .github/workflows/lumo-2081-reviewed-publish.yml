@@ -1,0 +1,72 @@
+name: "Lumo 2081 – geprüfte Original-APK veröffentlichen"
+
+# A separate publication order is added only after the exact build and Android
+# gates passed. This workflow never rebuilds, signs, overwrites or changes main.
+on:
+  push:
+    branches: [support/lumo-2081-reviewed-publish]
+    paths: [config/lumo-2081-reviewed-publish.json]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-2081-reviewed-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Unveränderte geprüfte 2081 als neuen Download veröffentlichen
+    if: github.repository == 'Ullmann27/lumo-lernen'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Veröffentlichungsschutz prüfen
+        run: python3 -m unittest discover -s scripts/tests -p test_lumo_2081_reviewed_publish.py -v
+      - name: Auftrag und erfolgreiche Originalprüfungen feststellen
+        id: request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/lumo_2081_reviewed_publish.py prepare
+      - uses: actions/download-artifact@v4
+        with:
+          repository: Ullmann27/lumo-lernen
+          run-id: ${{ steps.request.outputs.build_run_id }}
+          artifact-ids: ${{ steps.request.outputs.apk_artifact_id }}
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: reviewed-2081/apk
+      - uses: actions/download-artifact@v4
+        with:
+          repository: Ullmann27/lumo-lernen
+          run-id: ${{ steps.request.outputs.build_run_id }}
+          artifact-ids: ${{ steps.request.outputs.android_artifact_id }}
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: reviewed-2081/android
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'build-tools;36.0.0'
+      - name: Originalbytes, Manifest, Zertifikat, PCK und Android-Belege prüfen
+        run: python3 scripts/lumo_2081_reviewed_publish.py verify --build-tools "$ANDROID_HOME/build-tools/36.0.0"
+      - name: Neues Release nach Prüfung veröffentlichen und anonym zurücklesen
+        env:
+          LUMO_RELEASE_PUBLISH_TOKEN: ${{ secrets.LUMO_RELEASE_PUBLISH_TOKEN }}
+          LUMO_SOURCE_READ_TOKEN: ${{ github.token }}
+        run: python3 scripts/lumo_2081_reviewed_publish.py publish
+      - name: Tatsächlichen Veröffentlichungsstand sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2081-REVIEWED-PUBLISH-${{ github.run_id }}-${{ github.run_attempt }}
+          path: reviewed-2081/proof/
+          if-no-files-found: warn
