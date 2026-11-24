@@ -1,3 +1,4 @@
+import '../onboarding/lumo_intro_tour.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -479,6 +480,17 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           subtitle: 'Sichere Einstellungen für ${state.childName}, Klasse ${state.grade}.',
           emoji: '⚙️',
           accent: LumoVisualTokens.white,
+        ),
+        const SizedBox(height: 12),
+        OutlinedButton.icon(
+          key: const ValueKey('settings-intro-replay'),
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size(48, 52),
+            foregroundColor: LumoVisualTokens.white,
+          ),
+          onPressed: () => LumoIntroTour.show(context),
+          icon: const Icon(Icons.play_circle_outline_rounded),
+          label: const Text('Hilfe: Lumo-Intro erneut ansehen'),
         ),
         const SizedBox(height: 22),
         const LumoSectionHeading(

@@ -7,6 +7,10 @@ import '../report/lumo_coach_card.dart';
 import '../shared/widgets/lumo_mission_journey.dart';
 import 'widgets/lumo_subject_showcase_card.dart';
 import 'widgets/lumo_home_hero.dart';
+import 'widgets/lumo_subject_register.dart';
+import '../onboarding/lumo_intro_tour.dart';
+import '../teacher_demo/demo_pin_dialog.dart';
+import '../teacher_demo/teacher_demo_screen.dart';
 import '../../widgets/design/lumo_section_heading.dart';
 import '../teacher/student_assignments_card.dart';
 import '../parent_tasks/parent_tasks_entry_card.dart';
@@ -95,6 +99,15 @@ class HomeContent extends StatelessWidget {
       appState.update(appState.state.copyWith(subject: subject));
       onSection(LumoSection.learn);
     }
+  }
+
+  /// Schul-Demo 24.11.2026: sichtbarer Einstieg für Lehrkräfte, mit PIN.
+  Future<void> _openTeacherDemo(BuildContext context) async {
+    final ok = await DemoPinDialog.show(context);
+    if (!ok || !context.mounted) return;
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(builder: (_) => const TeacherDemoScreen()),
+    );
   }
 
   void _open(BuildContext context, Widget screen) {
@@ -206,7 +219,35 @@ class HomeContent extends StatelessWidget {
                         ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8),
+                  // Schul-Demo 24.11.2026: Fächer als klare Register direkt unter Lernen/Spielen.
+                  LumoSubjectRegister(
+                    onSubject: _browseSubject,
+                    onGames: () => onSection(LumoSection.games),
+                    extras: [
+                      LumoRegisterAction(
+                        entry: const LumoRegisterEntry(
+                          id: 'intro',
+                          title: 'Lumo-Intro',
+                          hint: 'Lumo zeigt dir alles',
+                          icon: Icons.play_circle_fill_rounded,
+                          color: Color(0xFF16728F),
+                        ),
+                        onTap: () => LumoIntroTour.show(context),
+                      ),
+                      LumoRegisterAction(
+                        entry: const LumoRegisterEntry(
+                          id: 'teacher',
+                          title: 'Für Lehrkräfte',
+                          hint: 'Demo-Klasse mit PIN',
+                          icon: Icons.school_rounded,
+                          color: Color(0xFF8A6D1F),
+                        ),
+                        onTap: () => _openTeacherDemo(context),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
                   FilledButton.icon(
                     key: const ValueKey('home-3d-workshop'),
                     style: FilledButton.styleFrom(

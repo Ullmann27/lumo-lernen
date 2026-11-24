@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../widgets/design/lumo_task_object_art.dart';
+import '../renderers/story_scene_images.dart';
 
 /// The story's quantities belong to the child. Counting, sketching and jotting
 /// down intermediate results neither choose an answer nor grant progress.
@@ -38,6 +39,7 @@ class _StoryMathWorkbenchState extends State<StoryMathWorkbench> {
   @override
   Widget build(BuildContext context) {
     final data = widget.task.visualPayload.data;
+    final scene = storySceneImageFor(widget.task.prompt);
     final amounts = RegExp(r'\b\d+\b').allMatches(widget.task.prompt).toList();
     final names = [
       for (final amount in amounts)
@@ -66,6 +68,15 @@ class _StoryMathWorkbenchState extends State<StoryMathWorkbench> {
       child: Padding(
         padding: const EdgeInsets.all(14),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          if (scene != null) ...[
+            StorySceneFrame(
+              scene: scene,
+              fallback: const SizedBox.shrink(),
+              maxHeight: 210,
+              glow: _mint,
+            ),
+            const SizedBox(height: 12),
+          ],
           Text(oneStep ? 'Lege die Geschichte' : 'Dein Rechenplan',
               style: const TextStyle(
                   color: _ink, fontWeight: FontWeight.w900, fontSize: 18)),

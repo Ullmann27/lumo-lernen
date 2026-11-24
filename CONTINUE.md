@@ -1,4 +1,14 @@
-# Aktuell: LUMO 0.14.6+2078 – Modelle, Kamera und freie Startbedienung
+# Fortsetzung: Themenbindung und Offline-Hilfe · 24.11.2026
+
+Dieser Prüfzweig basiert auf PR #545 (`6e7b26906a15c8497cb36cf8c1d0c2126740658c`). Die begrenzten Korrekturen und ihre tatsächlichen 64 Dart-Prüfungen sind unter [docs/evidence/topic-help-scope-20261124](docs/evidence/topic-help-scope-20261124/README.md) dokumentiert. Den eigenständigen Test ausdrücklich mit `dart test/learning/topic_context_scope_regression.dart` ausführen; er wird nicht automatisch durch `flutter test` gefunden.
+
+Nächster Integrationsschritt: aktuelle Remote-Köpfe abgleichen, diese Korrekturen zusammen mit PR #545 übernehmen, dann die dort genannten realen Flutter-Navigationsprüfungen und die relevanten Teacher-Widget-Abläufe ausführen. Weiter offen sind die systematische Prüfung aller Themen-/Zahlenraumgrenzen und der tatsächliche Cloud-Kontexttransport; die bisherigen gezielten Prüfungen ersetzen diese Arbeit nicht.
+
+Vollständiger APK-Bau und Android-/Gerätetest fehlen in dieser Sitzung. Nur rund 133 MiB freier Speicher verhinderten eine vollständige neue Projekt-/Assetkopie. Keine alte APK als diesen Quellstand ausgeben. Eine separate World-Kart-Reparatur benötigt eine eigene Godot-Prüfung und anschließende koordinierte Pin-Aktualisierung; dieser Lernzweig ändert keinen Game-Pin. Main bleibt unverändert.
+
+---
+
+# Vorheriger Integrationsstand: LUMO 0.14.6+2078 – Modelle, Kamera und freie Startbedienung
 
 Stand dieses Quellcheckpoints: 24. November 2026, vor dem vollständigen APK-/Android-Abschluss.
 

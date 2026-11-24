@@ -11,6 +11,7 @@ import '../widgets/fox/lumo_free_companion.dart';
 import '../widgets/fox/stage/lumo_actor_library.dart';
 import '../core/lumo_asset_paths.dart';
 import '../features/kart_friends/kart_friends_inbox.dart';
+import '../features/onboarding/lumo_intro_tour.dart';
 import '../features/companion/lumo_lottie.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
@@ -126,6 +127,11 @@ class _AppShellState extends State<AppShell>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted)
         unawaited(KartFriendsInbox.checkIncoming(context, _appState));
+      // Schul-Demo 24.11.2026: Lumo-Intro einmal beim ersten Start
+      // (überspringbar, nicht bei Deep-Links aus dem Godot-Hub).
+      if (mounted && widget.initialSection == null) {
+        unawaited(LumoIntroTour.maybeShowFirstRun(context));
+      }
     });
     // Deep-Link vom Godot-Hub: direkt in die angefragte Section springen.
     final deepSection = widget.initialSection;

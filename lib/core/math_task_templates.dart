@@ -1563,41 +1563,92 @@ String _writtenDivisionSteps(int dividend, int divisor) {
 
 /// Erklärung einer Plusaufgabe, passend zum Zahlenraum, immer mit der
 /// fertigen Rechnung am Schluss. „Lege 4443 und dann 2500 dazu“ hilft bei
-/// großen Zahlen niemandem.
+/// großen Zahlen niemandem. Im Zahlenraum 100 nennt sie die Strategie, die
+/// zur Aufgabe passt: nur Einer, nur Zehner, Ergänzen bis zum nächsten
+/// Zehner (Zehnerübergang) oder erst Zehner, dann Einer.
 String _additionExplanation(int a, int b) {
   final sum = a + b;
+  if (a == 0 || b == 0) {
+    final other = a == 0 ? b : a;
+    return 'Mit 0 kommt nichts dazu. Die Zahl bleibt gleich: $a + $b = $other.';
+  }
   if (sum <= 20) {
-    if (a < 10 && b < 10 && a > 0 && sum > 10) {
+    if (a < 10 && b < 10 && sum > 10) {
       final toTen = 10 - a;
-      return 'Rechne zuerst bis zur 10: $a + $toTen = 10. Dann noch ${b - toTen} dazu: $a + $b = $sum.';
+      return 'Mach zuerst die 10 voll: $a + $toTen = 10. '
+          'Dann noch ${b - toTen} dazu: 10 + ${b - toTen} = $sum. '
+          'Also: $a + $b = $sum.';
     }
-    return 'Lege zuerst $a und dann $b dazu. Zusammen sind es $sum: $a + $b = $sum.';
+    if (a < b && sum <= 10) {
+      return 'Tipp: Starte bei der größeren Zahl $b und zähle $a weiter. '
+          'Zusammen sind es $sum: $a + $b = $sum.';
+    }
+    return 'Starte bei $a und zähle $b ${b == 1 ? 'Schritt' : 'Schritte'} weiter. '
+        'Zusammen sind es $sum: $a + $b = $sum.';
   }
   if (sum <= 100) {
     final tens = b ~/ 10 * 10, ones = b % 10;
-    if (tens == 0 || ones == 0) {
-      return 'Zähle $b zu $a dazu. Achte auf den Zehnerübergang: $a + $b = $sum.';
+    if (ones == 0) {
+      return 'Hier kommen nur ganze Zehner dazu: ${a ~/ 10 * 10} + $b = '
+          '${a ~/ 10 * 10 + b}. Die Einer bleiben gleich. Also: $a + $b = $sum.';
     }
-    return 'Rechne zuerst die Zehner, dann die Einer: $a + $tens = ${a + tens}, dann ${a + tens} + $ones = $sum. Also: $a + $b = $sum.';
+    if (tens == 0) {
+      final nextTen = (a ~/ 10 + 1) * 10;
+      if (a % 10 + b > 10) {
+        final toTen = nextTen - a;
+        return 'Zehnerübergang: Ergänze zuerst bis zum nächsten Zehner: '
+            '$a + $toTen = $nextTen. Dann noch ${b - toTen} dazu: '
+            '$nextTen + ${b - toTen} = $sum. Also: $a + $b = $sum.';
+      }
+      return 'Rechne nur mit den Einern: ${a % 10} + $b = ${a % 10 + b}. '
+          'Die Zehner bleiben gleich. Also: $a + $b = $sum.';
+    }
+    return 'Rechne zuerst die Zehner, dann die Einer: $a + $tens = ${a + tens}, '
+        'dann ${a + tens} + $ones = $sum. Also: $a + $b = $sum.';
   }
   return 'Schreibe die Zahlen untereinander und rechne Stelle für Stelle. Beginne bei den Einern und merke dir den Übertrag. $a + $b = $sum.';
 }
 
 /// Erklärung einer Minusaufgabe, passend zum Zahlenraum, immer mit dem
-/// Ergebnis.
+/// Ergebnis und der Strategie, die zur Aufgabe passt.
 String _subtractionExplanation(int a, int b) {
   final difference = a - b;
+  if (b == 0) {
+    return 'Wenn du 0 wegnimmst, bleibt alles da: $a − 0 = $a.';
+  }
+  if (difference == 0) {
+    return 'Du nimmst alles weg, was da ist. Dann bleibt nichts übrig: $a − $b = 0.';
+  }
   if (a <= 20) {
     if (a > 10 && b > a - 10 && difference < 10) {
       final toTen = a - 10;
-      return 'Gehe zuerst bis zur 10 zurück: $a − $toTen = 10. Dann noch ${b - toTen} weg: $a − $b = $difference.';
+      return 'Gehe zuerst zurück bis zur 10: $a − $toTen = 10. '
+          'Dann noch ${b - toTen} weg: 10 − ${b - toTen} = $difference. '
+          'Also: $a − $b = $difference.';
     }
     return 'Starte bei $a und gehe $b ${b == 1 ? 'Schritt' : 'Schritte'} zurück: $a − $b = $difference.';
   }
   if (a <= 100) {
     final tens = b ~/ 10 * 10, ones = b % 10;
-    if (tens == 0 || ones == 0) {
-      return 'Ziehe $b von $a ab. Achte auf den Zehnerübergang: $a − $b = $difference.';
+    if (ones == 0) {
+      return 'Hier gehen nur ganze Zehner weg: ${a ~/ 10 * 10} − $b = '
+          '${a ~/ 10 * 10 - b}. Die Einer bleiben gleich. Also: $a − $b = $difference.';
+    }
+    if (tens == 0) {
+      final lowerTen = a ~/ 10 * 10;
+      if (a % 10 == 0) {
+        return 'Nimm zuerst einen ganzen Zehner weg: $a − 10 = ${a - 10}. '
+            'Das war ${10 - b} zu viel, also gib ${10 - b} zurück: '
+            '${a - 10} + ${10 - b} = $difference. Also: $a − $b = $difference.';
+      }
+      if (b > a % 10) {
+        final toTen = a - lowerTen;
+        return 'Zehnerübergang: Gehe zuerst zurück bis zum Zehner: '
+            '$a − $toTen = $lowerTen. Dann noch ${b - toTen} weg: '
+            '$lowerTen − ${b - toTen} = $difference. Also: $a − $b = $difference.';
+      }
+      return 'Rechne nur mit den Einern: ${a % 10} − $b = ${a % 10 - b}. '
+          'Die Zehner bleiben gleich. Also: $a − $b = $difference.';
     }
     return 'Ziehe zuerst die Zehner ab, dann die Einer: $a − $tens = ${a - tens}, dann ${a - tens} − $ones = $difference. Also: $a − $b = $difference.';
   }

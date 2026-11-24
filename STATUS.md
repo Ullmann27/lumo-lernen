@@ -1,4 +1,14 @@
-# Aktuell: LUMO 0.14.6+2078 – Modelle, Kamera und freie Startbedienung
+# Ergänzender Prüfzweig: Themenbindung und Offline-Hilfe · 24.11.2026
+
+Ausgangsstand ist PR #545 (`6e7b26906a15c8497cb36cf8c1d0c2126740658c`). Der vorliegende Zweig erhält die exakte Plus-bis-100-Route und korrigiert bestätigte fachfremde Lehrerfragen, den Kontinente-/Ozeane-Kontext, das Millionenbeispiel sowie themenfremde Offline-Antworten. Eine unbekannte Rätsel-/Aufgabenidentität erzeugt keine zufällige Lösung.
+
+Tatsächlich geprüft: 64/64 gezielte Daten- und Antwortprüfungen mit Dart 3.12.2; derselbe Test weist am Ausgangsstand 57/64 fehlgeschlagene Assertions auf (mehrere Varianten derselben Fehler, keine 57 unterschiedlichen Defekte). Dart-Analyse der geprüften reinen Dart-Dateien ohne Befund. [Quellenhashes, Protokolle und Reichweite](docs/evidence/topic-help-scope-20261124/README.md).
+
+Kein vollständiger Lehrplan-/Hilfenachweis und keine neue APK: Flutter-Widgets, Android-Rundgang und der auf Godot 4.6.3 gebundene Gesamtbau sind noch offen. In der aktuellen Sitzung stehen nur rund 133 MiB freier Workspace-Speicher zur Verfügung; vollständige Assets-/Build-Kopien konnten nicht angelegt werden. Für die Übernahme zuerst diesen Zweig plus die bestehende PR-545-Navigation testen, dann den aktuellen integrierten Flutter-/Godot-Stand über den bestehenden vollständigen Buildpfad prüfen. Der Godot-Pin und die App-Version werden durch diesen Lernpatch nicht geändert. Main bleibt unverändert.
+
+---
+
+# Vorheriger Integrationsstand: LUMO 0.14.6+2078 – Modelle, Kamera und freie Startbedienung
 
 Stand dieses Quellcheckpoints: 24. November 2026, vor dem vollständigen APK-/Android-Abschluss.
 

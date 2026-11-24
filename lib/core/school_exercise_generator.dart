@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'adventure/lumo_adventure_tasks.dart';
+import 'curriculum/math_unit_order.dart';
 import 'german_task_templates.dart';
 import 'english_vocabulary_extensions.dart';
 import 'math_task_templates.dart';
@@ -163,10 +164,15 @@ class Curriculum {
   /// This describes app content availability, not an official curriculum.
   static List<String> unitsForGrade(String subject, int grade, {bool currentGradeOnly = false}) {
     final capped = grade.clamp(1, 4).toInt();
-    return <String>{
+    final units = <String>{
       ..._templateUnitsForGrade(subject, capped, currentGradeOnly: currentGradeOnly),
       ...LumoAdventureTasks.unitsFor(subject, capped, currentGradeOnly: currentGradeOnly),
-    }.toList(growable: false);
+    };
+    // Mathematik follows the school book order (numbers, plus/minus, times
+    // tables, sizes, shapes, puzzles), the same order the register shows.
+    return subject == 'Mathematik'
+        ? List<String>.unmodifiable(MathUnitOrder.sorted(units))
+        : units.toList(growable: false);
   }
 
   static List<String> _templateUnitsForGrade(String subject, int capped, {required bool currentGradeOnly}) {
