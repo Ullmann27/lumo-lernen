@@ -19,7 +19,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  integration-hold:
+    name: Build 2080 auf Nutzerwunsch angehalten – Integration 2081
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Integrationspause dokumentieren
+        run: echo "Build 2080 wurde zugunsten der vollständigen Integration 2081 angehalten. Kein APK-Bau in diesem Lauf."
   apk:
+    # Heinz requested stopping 2080 before integrating the missing development.
+    # The unchanged concurrency group cancels the older run on this branch.
+    if: ${{ false }}
     name: Signierte Test-APK bauen
     runs-on: ubuntu-24.04
     timeout-minutes: 120
