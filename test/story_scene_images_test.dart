@@ -26,6 +26,8 @@ void main() {
           missing.add(prompt.replaceAll(RegExp(r'\d+'), '#'));
         } else {
           used.add(scene.asset);
+          // Zahlen im Bild dürfen den Zahlen der Aufgabe nie widersprechen.
+          expect(scene.fitsAmounts(prompt), isTrue, reason: '${scene.asset}: $prompt');
         }
       }
     }
@@ -48,5 +50,21 @@ void main() {
     expect(storySceneImageFor('In der Leseecke liegen 5 Bilderbücher.')?.asset,
         endsWith('story3d_leseecke.webp'));
     expect(storySceneImageFor('Ein Zug hat 4 Wagen.'), isNull);
+  });
+
+  test('alle Bilder der Ein-Schritt-Geschichten zeigen keine zählbaren Mengen', () {
+    for (final scene in allStorySceneImages) {
+      expect(scene.depictedAmounts, isNull, reason: scene.asset);
+    }
+  });
+
+  test('Bild mit sichtbaren Mengen erscheint nur bei passenden Zahlen', () {
+    const counted = StorySceneImage('assets/x.webp', 'fünf rote und fünf blaue Stifte',
+        depictedAmounts: <int>[5, 5]);
+    expect(counted.fitsAmounts('Mia hat 5 rote Buntstifte und 5 blaue.'), isTrue);
+    expect(counted.fitsAmounts('Mia hat 3 rote Buntstifte und 5 blaue.'), isFalse);
+    expect(counted.fitsAmounts('Mia hat 5 rote Buntstifte.'), isFalse);
+    const open = StorySceneImage('assets/y.webp', 'zugedeckter Korb');
+    expect(open.fitsAmounts('Im Korb liegen 7 Äpfel.'), isTrue);
   });
 }
