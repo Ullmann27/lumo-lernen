@@ -3426,8 +3426,12 @@ class _LearningContentState extends State<LearningContent>
                             ),
                           ],
                           if (_allowHelp && _showHelp && !_answered)
-                            ArithmeticTaskAid(task: _taskInstance,
-                                reduceMotion: st.settings.reduceAnimations || st.settings.calmMode),
+                            ArithmeticTaskAid(
+                              task: _taskInstance,
+                              showExtended: _requestedHelpLevel > 0,
+                              reduceMotion: st.settings.reduceAnimations ||
+                                  st.settings.calmMode,
+                            ),
                           if (_showHelp && _visualAid != null) ...[
                             const SizedBox(height: 14),
                             _VisualAidCard(aid: _visualAid!),

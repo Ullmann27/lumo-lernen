@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
 import 'guided_number_line.dart';
 import 'guided_product_array.dart';
+import 'guided_place_value_arithmetic.dart';
 
 /// Uses the verified operands from the current task after the child requests help.
 class ArithmeticTaskAid extends StatelessWidget {
   const ArithmeticTaskAid(
-      {super.key, required this.task, required this.reduceMotion});
+      {super.key, required this.task, required this.reduceMotion, this.showExtended = false});
   final TaskInstance task;
   final bool reduceMotion;
+  final bool showExtended;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,18 @@ class ArithmeticTaskAid extends StatelessWidget {
           practice: true,
           reduceMotion: reduceMotion);
     }
-    final change = switch (data['operation']) {
+    final op = data['operation'];
+    if (showExtended && a <= 100 && b > 0 && b <= 100 &&
+        ((op == 'addition' && a + b == expected && a + b > 20 && a + b <= 100) ||
+         (op == 'subtraction' && a > 20 && a - b == expected && a >= b))) {
+      return GuidedPlaceValueArithmetic(
+        key: ValueKey('place-value-${task.taskInstanceId}'),
+        left: a,
+        right: b,
+        subtract: op == 'subtraction',
+      );
+    }
+    final change = switch (op) {
       'addition' when a + b <= 20 => b,
       'subtraction' when a <= 20 && a - b >= 0 => -b,
       _ => 0,
