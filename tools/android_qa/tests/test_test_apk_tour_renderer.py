@@ -43,7 +43,11 @@ class TestApkTourRenderer(unittest.TestCase):
 
     def test_renderer_evidence_is_uploaded_with_the_tour(self):
         upload = self.steps[-1]
-        self.assertEqual(upload['with']['path'], 'tour/')
+        self.assertEqual(upload['with']['path'].splitlines(), [
+            'tour/', 'LUMO-ANDROID-PRUEFBELEGE.zip',
+        ])
+        self.assertEqual(upload['if'], 'always()')
+        self.assertTrue(upload['uses'].startswith('actions/upload-artifact@'))
         display = next(step for step in self.steps if 'Xvfb :99' in str(step.get('run', '')))
         self.assertIn('tour/mesa-renderer.txt', display['run'])
 
