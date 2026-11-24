@@ -34,6 +34,7 @@ os.environ.setdefault('OMP_THREAD_LIMIT','1')
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts' / 'probes'))
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools' / 'android_qa'))
 from rooted_emulator import ensure_rooted_emulator
+from intro_dialog import intro_skip_target
 from native_ocr_tiles import observed_matches, read_tiled_word
 from native_surface_readiness import inspect_surface, target_observation
 import pr207_android_smoke as base
@@ -847,6 +848,21 @@ def ime_character(out: Path, char: str, tag: str, ime_package: str) -> None:
     raise RuntimeError('Visible IME key was not available: '+char)
 
 
+def dismiss_intro_if_visible(out: Path, nodes: list[dict], tag: str) -> bool:
+    """Tap the observed intro button once; callers must still observe home."""
+    if intro_skip_target(nodes, PACKAGE) is None:
+        return False
+    capture(out, tag + '-intro-before-skip')
+    target = intro_skip_target(live.live_nodes(out, tag + '-intro-confirm'), PACKAGE)
+    if target is None:
+        return False
+    x, y = map(str, target)
+    base.adb('shell', 'input', 'swipe', x, y, x, y, '120')
+    print('[IntroNavigation] Observed Lumo intro and pressed Skip', flush=True)
+    time.sleep(2)
+    return True
+
+
 def onboard(out: Path) -> dict:
     flutter_tap(out,"Los geht's!",'onboard-welcome')
     nodes = live.live_nodes(out,'onboard-name')
@@ -895,8 +911,13 @@ def onboard(out: Path) -> dict:
     base.tap_label(out,'Weiter','onboard-name-next')
     base.tap_label(out,'Weiter','onboard-age-next')
     base.tap_label(out,'Profil speichern','onboard-grade-save')
-    for attempt in range(20):
-        if 'LumoTest' in base.accessible_text(live.live_nodes(out,f'onboard-home-{attempt}')):
+    intro_skipped = False
+    for attempt in range(40):
+        nodes = live.live_nodes(out, f'onboard-home-{attempt}')
+        if not intro_skipped and dismiss_intro_if_visible(out, nodes, f'onboard-home-{attempt}'):
+            intro_skipped = True
+            continue
+        if 'LumoTest' in base.accessible_text(nodes):
             break
         time.sleep(1)
     else:
@@ -915,7 +936,7 @@ def onboard(out: Path) -> dict:
             if any(s in text for s in ('Lumo Cards','Lumo Kart','Spielewelt')):
                 games = capture(out,'08_games_after_navigation')
                 return {'status':'PASS','profile_name':'LumoTest','captures':[home,games],
-                        'games_label':label}
+                        'games_label':label, 'intro_skipped_via_observed_control': intro_skipped}
             time.sleep(1)
     capture(out,'08_games_after_navigation')
     raise RuntimeError('Actual games entry missing after onboarding')

@@ -367,10 +367,16 @@ class Runner:
         self.base.launch(work, tag + '-launch')
         self.require_flutter_host()
         labels = []
-        for index in range(30):
+        intro_skipped = False
+        dismiss_intro = getattr(self.probe, 'dismiss_intro_if_visible', None)
+        for index in range(40):
             try:
-                labels = live_navigation_labels(
-                    self.live.live_nodes(work, f'{tag}-home-{index}'), self.package)
+                nodes = self.live.live_nodes(work, f'{tag}-home-{index}')
+                if not intro_skipped and dismiss_intro is not None and dismiss_intro(
+                        work, nodes, f'{tag}-home-{index}'):
+                    intro_skipped = True
+                    continue
+                labels = live_navigation_labels(nodes, self.package)
             except Exception:
                 labels = []
             if labels:

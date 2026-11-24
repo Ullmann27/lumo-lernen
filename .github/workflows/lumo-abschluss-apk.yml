@@ -57,6 +57,7 @@ jobs:
           python3 -m unittest discover -s scripts/tests -p test_verify_test_apk_candidate.py -v
           python3 -m unittest discover -s scripts/tests -p test_verify_native_start_diagnostics.py -v
           python3 -m unittest discover -s tools/android_qa/tests -p test_native_start_diagnostics.py -v
+          python3 -m unittest discover -s tools/android_qa/tests -p test_intro_dialog.py -v
           python3 -m unittest discover -s tools/android_qa/tests -p test_local_backup_android_probe.py -v
           python3 -m unittest scripts.tests.test_prepare_android -v
           python3 scripts/verify_test_apk_candidate.py source --expected-commit "$GITHUB_SHA" \
