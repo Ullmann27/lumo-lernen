@@ -1,7 +1,7 @@
 name: Lumo Lernen Kart unified integration APK
 on:
   push:
-    branches: [chatgpt/lumo-lernen-kart-unified-2026-10-15, chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15, chatgpt/lumo-technical-art-host-20261111, chatgpt/lumo-2016-host-integration-20261111, chatgpt/lumo-spielewelt-stage-20261112]
+    branches: [chatgpt/lumo-lernen-kart-unified-2026-10-15, chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15, chatgpt/lumo-technical-art-host-20261111, chatgpt/lumo-2016-host-integration-20261111, chatgpt/lumo-spielewelt-stage-20261112, integration/lumo-kart-final-2077]
   pull_request:
     paths:
       - 'lib/widgets/design/**'
@@ -28,7 +28,7 @@ on:
       - '.github/probes/lumo_2017_update_android_probe.py'
       - 'scripts/tests/test_action_2017_delivery.py'
       - 'tools/android_qa/kart_android_race.py'
-      - 'tools/android_qa/tests/test_focused_race_hud.py'
+      - 'tools/android_qa/tests/**'
       - '.github/probes/kart_complete_android_probe.py'
       - '.github/probes/lumo_learning_journey_probe.py'
       - 'config/godot-source.json'
