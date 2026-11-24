@@ -360,6 +360,18 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
         self.cleanup()
         self.assertTrue(outsider.is_file())
 
+    def test_glb_alignment_padding_after_png_is_cleaned(self):
+        self.generate_outputs()
+        for row in self.all_rows:
+            glb = self.repo / row['path']
+            texture = glb.with_name(glb.stem + '_0.png')
+            texture.write_bytes(texture.read_bytes() + b'\x00\x00\x00')
+        self.cleanup()
+        self.assertEqual(
+            MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard'),
+            set(),
+        )
+
     def test_other_revision_never_cleans_2077_meshy_outputs(self):
         self.generate_outputs()
         self.cleanup(source={'revision': '0' * 40})
