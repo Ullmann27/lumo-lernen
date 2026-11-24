@@ -155,22 +155,29 @@ class _LumoPressableState extends State<LumoPressable>
             return Transform(
               alignment: Alignment.center,
               transform: transform,
+              // Glow liegt hinter der Fläche (kein Schleier über dem Text),
+              // die leuchtende Kante darüber.
               child: DecoratedBox(
-                position: DecorationPosition.foreground,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(widget.radius),
-                  border: Border.all(
-                      color: widget.glowColor.withValues(alpha: .8 * glow),
-                      width: 1.8),
                   boxShadow: [
                     BoxShadow(
-                      color: widget.glowColor.withValues(alpha: .42 * glow),
-                      blurRadius: 26,
-                      spreadRadius: -1,
+                      color: widget.glowColor.withValues(alpha: .5 * glow),
+                      blurRadius: 24,
+                      spreadRadius: 1,
                     ),
                   ],
                 ),
-                child: child,
+                child: DecoratedBox(
+                  position: DecorationPosition.foreground,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(widget.radius),
+                    border: Border.all(
+                        color: widget.glowColor.withValues(alpha: .85 * glow),
+                        width: 1.8),
+                  ),
+                  child: child,
+                ),
               ),
             );
           },

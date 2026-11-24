@@ -198,8 +198,8 @@ class _ShimmerPainter extends CustomPainter {
           color.withValues(alpha: 0),
         ],
       ).createShader(rect);
-    canvas.drawRect(rect, paint(.20, band));
-    canvas.drawRect(rect, paint(.26, band * .28));
+    canvas.drawRect(rect, paint(.24, band));
+    canvas.drawRect(rect, paint(.32, band * .28));
     // Kurzes Aufleuchten der Kante, während der Streifen vorbeizieht.
     canvas.drawRRect(
       RRect.fromRectAndRadius(rect.deflate(.9), Radius.circular(radius)),
