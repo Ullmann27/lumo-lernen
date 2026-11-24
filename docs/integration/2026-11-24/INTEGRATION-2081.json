@@ -39,6 +39,13 @@
       "passed": 45,
       "failed": 0,
       "scope": "Reviewed current pin, source/manifest tamper rejection, exact newly generated outputs, import fault handling."
+    },
+    "actual_import_reproduction": {
+      "import": "passed",
+      "new_meshy_outputs_removed": 32,
+      "source_unchanged": true,
+      "export": "interrupted by SIGKILL9; cause not established; no completed local PCK claimed",
+      "evidence": "docs/evidence/build-2081-flutter-20261124/export-fix/reproduction/RESULT.json"
     }
   },
   "apk_acceptance": "Pending exact-source GitHub APK build and real Android emulator tour. Local source tests do not certify an APK or physical-device performance.",

@@ -224,7 +224,7 @@ jobs:
                   archive.write(path, '2081-handoffs/' + path.name)
               for label, directory in sources.items():
                   for path in sorted(directory.rglob('*')):
-                      if path.is_file() and path.suffix in {'.md', '.json', '.txt', '.log', '.png'}:
+                      if path.is_file() and path.suffix in {'.md', '.json', '.txt', '.log', '.png', '.gz'}:
                           archive.write(path, f'{label}/{path.relative_to(directory)}')
               for path in proof:
                   archive.write(path, 'build-proof/' + path.name)

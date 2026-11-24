@@ -19,3 +19,9 @@ Der Fix ergänzt ausschließlich den exakt geprüften Pin in der bestehenden Lis
 Die vorhandene Export-Vertragssuite wurde auf den tatsächlich verwendeten 2081-Pin aktualisiert: **45 Tests bestanden**. Sie prüft auch unveränderte Quellen nach Entfernung der 32 erzeugten Dateien, manipulierte GLBs, unbekannte Revisionen und unerwartete Ausgaben. Ein unmittelbar benachbarter, nicht geprüfter Commitwert bleibt ausdrücklich abgelehnt.
 
 Die Suite ist jetzt Teil des frühen Quellstand-Schritts im APK-Workflow. Ihre vollständige Ausgabe wird unter `build-proof/GODOT-EXPORT-CONTRACT-TESTS.txt` gesichert. Lokaler Testbeleg: `docs/evidence/build-2081-flutter-20261124/export-fix/export-contract-tests.log`.
+
+## Tatsächliche lokale Import-Reproduktion
+
+Mit dem korrigierten Exporter und Godot 4.6.3 bestand der vollständige Import beim ersten Versuch. Die anschließende Bereinigung prüfte und entfernte genau die 32 erwarteten Begleitdateien; Commit, Tree und Git-Status blieben unverändert. Der Exportprozess selbst wurde bei zuletzt gemeldeten 85 Prozent mit SIGKILL (Signal 9) beendet. Die Ursache ist nicht belegt; ein fertiges lokales PCK oder ein APK-Erfolg wird daraus nicht abgeleitet. Der vollständige Paketnachweis erfolgt im neuen regulären APK-Lauf.
+
+Maschinenlesbare Ergebnisse, sauberer Quellstand und vollständige komprimierte Logs: `docs/evidence/build-2081-flutter-20261124/export-fix/reproduction/`. Die Prüfsummen der komprimierten und entpackten Logs wurden abgeglichen.
