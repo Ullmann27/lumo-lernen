@@ -1,0 +1,34 @@
+name: "Lumo 2081 – vorhandenen Veröffentlichungszugang lesen"
+on:
+  push:
+    branches: [support/lumo-2081-reviewed-publish]
+    paths: [.github/workflows/lumo-2081-publisher-access.yml]
+permissions:
+  contents: read
+jobs:
+  identity:
+    name: Vorhandene Publisher-Identität ohne Schreibzugriff prüfen
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Bereitgestellten Zugang am vorgesehenen Konto prüfen
+        env:
+          LUMO_RELEASE_PUBLISH_TOKEN: ${{ secrets.LUMO_RELEASE_PUBLISH_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import sys
+          sys.path.insert(0, 'scripts')
+          from lumo_2081_reviewed_publish import github_json, verify_owner, same, REPOSITORY
+          token = os.environ.get('LUMO_RELEASE_PUBLISH_TOKEN', '')
+          verify_owner(github_json('user', token))
+          repo = github_json('repos/' + REPOSITORY, token)
+          same(repo['full_name'], REPOSITORY, 'Target repository')
+          verify_owner(repo['owner'])
+          print(json.dumps({'publisher_identity_verified': True, 'repository': REPOSITORY,
+                            'writes_performed': False, 'scope': 'Authentication and repository read only; publication permissions are checked by the real publish operation.'}))
+          PY
