@@ -1,0 +1,47 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 0 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Soundscape] ready
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[NeonHomeControls] {"density":1.0,"hero_canvas":"[P: (383.0, 208.0), S: (304.0, 368.0)]","next_canvas":"[P: (596.0, 350.0), S: (84.0, 84.0)]","play_canvas":"[P: (603.1165, 492.1165), S: (69.90289, 69.90289)]","play_gap_dp":33.2561688164824,"window":"(412, 915)"}
+[NeonHomeLayout] window=(412, 915) density=1.0 viewport=(720.0, 1599.0) canvas_per_dp=1.74757281553398 tracks=15
+ERROR: Streckenpfeil vollständig im großen Bild: (720, 1280) @ 2.0 dp TrackPageNext
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/kart_neon_home_regression.gd:23)
+       [1] _track_controls (res://scripts/tests/kart_neon_home_regression.gd:66)
+       [2] _track_layouts (res://scripts/tests/kart_neon_home_regression.gd:98)
+[NeonHomeControls] {"density":2.0,"hero_canvas":"[P: (386.0, 238.0), S: (296.0, 156.0)]","next_canvas":"[P: (591.0, 275.0), S: (96.0, 96.0)]","play_canvas":"[P: (0.0, 0.0), S: (0.0, 0.0)]","play_gap_dp":-1.0,"window":"(720, 1280)"}
+[NeonHomeLayout] window=(720, 1280) density=2.0 viewport=(720.0, 1280.0) canvas_per_dp=2.0 tracks=15
+[NeonHomeControls] {"density":1.0,"hero_canvas":"[P: (644.0, 109.0), S: (603.0, 616.0)]","next_canvas":"[P: (1200.0, 395.0), S: (44.0, 44.0)]","play_canvas":"[P: (1203.114, 681.1143), S: (36.57141, 36.57141)]","play_gap_dp":264.812469482422,"window":"(1384, 1400)"}
+[NeonHomeLayout] window=(1384, 1400) density=1.0 viewport=(1265.0, 1280.0) canvas_per_dp=0.91428571428571 tracks=15
+ERROR: Streckenpfeil hält 4dp Abstand zum Play-Symbol: (1384, 1400) @ 2.0 dp TrackPageNext
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/kart_neon_home_regression.gd:23)
+       [1] _track_controls (res://scripts/tests/kart_neon_home_regression.gd:69)
+       [2] _track_layouts (res://scripts/tests/kart_neon_home_regression.gd:98)
+[NeonHomeControls] {"density":2.0,"hero_canvas":"[P: (656.0, 217.0), S: (574.0, 217.0)]","next_canvas":"[P: (1135.0, 282.0), S: (88.0, 88.0)]","play_canvas":"[P: (1142.229, 346.2286), S: (73.14282, 73.14285)]","play_gap_dp":-12.9999971389771,"window":"(1384, 1400)"}
+[NeonHomeLayout] window=(1384, 1400) density=2.0 viewport=(1265.0, 1280.0) canvas_per_dp=1.82857142857143 tracks=15
+ERROR: Streckenpfeil vollständig im großen Bild: (1280, 720) @ 2.0 dp TrackPagePrev
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/kart_neon_home_regression.gd:23)
+       [1] _track_controls (res://scripts/tests/kart_neon_home_regression.gd:66)
+       [2] _track_layouts (res://scripts/tests/kart_neon_home_regression.gd:98)
+ERROR: Streckenpfeil vollständig im großen Bild: (1280, 720) @ 2.0 dp TrackPageNext
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scripts/tests/kart_neon_home_regression.gd:23)
+       [1] _track_controls (res://scripts/tests/kart_neon_home_regression.gd:66)
+       [2] _track_layouts (res://scripts/tests/kart_neon_home_regression.gd:98)
+[NeonHomeControls] {"density":2.0,"hero_canvas":"[P: (1008.0, 267.0), S: (437.0, 178.0)]","next_canvas":"[P: (1303.0, 292.0), S: (171.0, 171.0)]","play_canvas":"[P: (0.0, 0.0), S: (0.0, 0.0)]","play_gap_dp":-1.0,"window":"(1280, 720)"}
+[NeonHomeLayout] window=(1280, 720) density=2.0 viewport=(2275.0, 1280.0) canvas_per_dp=3.55555555555556 tracks=15
+[NeonHome] audio teardown tracked=0 audio_released=true elapsed_ms=0
+[NeonHome] {"checks":2243,"failures":["Streckenpfeil vollständig im großen Bild: (720, 1280) @ 2.0 dp TrackPageNext","Streckenpfeil hält 4dp Abstand zum Play-Symbol: (1384, 1400) @ 2.0 dp TrackPageNext","Streckenpfeil vollständig im großen Bild: (1280, 720) @ 2.0 dp TrackPagePrev","Streckenpfeil vollständig im großen Bild: (1280, 720) @ 2.0 dp TrackPageNext"],"status":"FAIL"}

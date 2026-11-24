@@ -278,6 +278,7 @@ PRODUCTION_MESHY_ALLOWED_REVISIONS = frozenset((
     PRODUCTION_MESHY_REVISION,
     # Both production asset subtrees are unchanged from the reviewed 2077 pin.
     '21a76bcda69c20ea3a427a63098cb2fc736eb881',
+    'c3f459eca88f659da1a9e4af1c990c804e715528',
 ))
 PRODUCTION_MESHY_MANIFEST = 'assets/kart/production/meshy/manifest.json'
 PRODUCTION_MESHY_VEHICLE_IDS = frozenset((

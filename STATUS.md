@@ -1,16 +1,14 @@
-# Aktuell: LUMO 0.14.6+2078 mit allen neun Meshy-Fahrern
+# Aktuell: LUMO 0.14.6+2078 – Modelle, Kamera und freie Startbedienung
 
-Stand dieses Quellcheckpoints: 24. November 2026, vor Abschluss des erneuten vollständigen Builds.
+Stand dieses Quellcheckpoints: 24. November 2026, vor dem vollständigen APK-/Android-Abschluss.
 
-Godot ist veröffentlicht: `21a76bcda69c20ea3a427a63098cb2fc736eb881`, Baum `dcf3df8eaa14b9b2cce3ecf2276fad239d344f17`. Der App-Pin verwendet genau diesen Commit. Enthalten sind die vollständig übertragenen 27 Meshy-LOD-Dateien, neun Porträts, vorhandene 2078-Kartreparaturen und der wiederaufgenommene World-Kamerafix.
+Aktueller Godot-Pin: `c3f459eca88f659da1a9e4af1c990c804e715528`, exakter Baum `6b7c47a3010cec04736f9cd495adf34ad0ec2e6f`. Enthalten sind alle 27 geriggten Meshy-LOD-Dateien, neun Porträts, die vorhandenen Kartreparaturen, der World-Kamerafix und die korrigierte Position der Streckenpfeile bei hoher Displaydichte.
 
-Zwei Fehler der Testfixtures sind anhand tatsächlicher Läufe korrigiert: Die Menüprüfung verwendet jetzt echte Fenstergrößen und Dichten (2.197 Prüfungen bestanden). Der Meshy-Test wartet die tatsächlichen Renderframes ab und bestätigt die Szenenfreigabe (390 Prüfungen, null GLES-Enginefehler). Alle bisherigen Assertions und das strenge Fehlergate bleiben erhalten. Der folgende Kartensalon-Test besteht unverändert mit 119 Prüfungen. Die ursprünglichen Fehler und A/B-Belege sind erhalten.
+Der vorherige native Lauf bestätigte 15.200 Prüfpunkte und 73 echte Rendererbilder. Die anschließende Sichtkontrolle fand die Play-Überdeckung bei Dichte 2. Die gezielte Produktkorrektur besteht mit 2.243 Menüprüfpunkten und einem echten GLES-Ablauf mit 72 Prüfungen; neue Bilder zeigen rund 8 dp freien Abstand. Alle bisherigen Assertions bleiben erhalten.
 
-Der APK-Exporter kennt nun zusätzlich den exakt geprüften aktuellen Pin für die Bereinigung der unveränderten 16 Fahrzeug-/Garagenmodelle. 56 Tests und ein Lauf mit 32 tatsächlichen Importdateien bestätigen die gezielte Bereinigung bei vollständig erhaltenen Quellen. Diese Anpassung wird im nächsten vollständigen Lauf geprüft.
+Der APK-Exporter akzeptiert die nachweislich unveränderten 16 Fahrzeug-/Garagenmodelle auch am neuen exakten Pin. Manifest-, Hash-, Pfad- und Quellenprüfungen bleiben aktiv. Die Reparatur des Android-Onboarding-Leseservers bleibt enthalten und muss im tatsächlichen neuen Android-Rundgang bestätigt werden.
 
-Der frühere Android-Abbruch beim Onboarding-Leseserver ist mit acht gezielten Regressionen repariert. Der neue vollständige Lauf muss nun Bilder, APK, Android-Aktionen, Sicherung/Wiederherstellung und Veröffentlichung bestätigen. Die Läufe 45353940191 und 45357083172 scheiterten vor dem APK-Bau; aus ihnen existiert keine neue freigegebene APK.
-
-Fortsetzung: den neuen Workflow `lumo-2078-device-repair.yml` auf `repair/lumo-device-bugs-2078` bis zum tatsächlichen Ende verfolgen. Nur die dort geprüfte und veröffentlichte APK als neuen Download ausgeben. Main bleibt unverändert. [Quellstand und Nachweise](docs/evidence/meshy-rigs-20261124/README.md).
+Fortsetzung: den vollständigen Workflow `lumo-2078-device-repair.yml` auf `repair/lumo-device-bugs-2078` bis Bilder, APK, Android-Rundgang, Sicherung/Wiederherstellung und Veröffentlichung verfolgen. Noch keine neue APK ausgeben, bevor diese Stufen tatsächlich bestanden sind. Main bleibt unverändert. [Quellstand und Belege](docs/evidence/meshy-rigs-20261124/README.md).
 
 ---
 

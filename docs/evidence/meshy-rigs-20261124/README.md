@@ -5,8 +5,8 @@ Stand dieses Quellcheckpoints: 24. November 2026, vor dem neuen vollständigen A
 ## Verbindlicher Quellstand
 
 - Flutter-Ausgangsstand: `a7626c17cb38691a3b3d5a974d84ce274d6acf4b`.
-- Veröffentlichter Godot-Commit: `21a76bcda69c20ea3a427a63098cb2fc736eb881`.
-- Geprüfter Godot-Baum: `dcf3df8eaa14b9b2cce3ecf2276fad239d344f17`.
+- Veröffentlichter Godot-Commit: `c3f459eca88f659da1a9e4af1c990c804e715528`.
+- Geprüfter Godot-Baum: `6b7c47a3010cec04736f9cd495adf34ad0ec2e6f`.
 - Entwicklungszweig in beiden Repositories: `repair/lumo-device-bugs-2078`.
 - App-Version: `0.14.6+2078`, Engine Godot 4.6.3, Flutter 3.44.9.
 
@@ -70,3 +70,15 @@ Während Lauf `45359518156` den nativen Stand prüft, wurde im APK-Export eine w
 Der Exporter akzeptiert nun zusätzlich exakt `21a76bcda69c20ea3a427a63098cb2fc736eb881`. Alle bestehenden Manifest-, Hash-, Pfad- und Formatprüfungen bleiben aktiv. Vorhandene Dateien und unbekannte Pins bleiben geschützt; die abschließende Prüfung auf veränderte Quellen bleibt unverändert. Exporter- und Paketprüfung bestehen gemeinsam mit 56 Tests. Ein zusätzlicher isolierter Lauf mit den tatsächlich erzeugten 32 Godot-Importdateien bestätigte ihre Bereinigung und den bytegleichen Erhalt aller 17 Quellen. Belege: `import-cleanup/`.
 
 Dies ist eine vor dem APK-Bau behobene Exportursache, kein bereits bestandenes APK-Ergebnis. Der korrigierte Exporter muss im nächsten vollständigen Workflow gebaut und auf Android bestätigt werden.
+
+## Tatsächliche Bildprüfung und beseitigte Play-Überdeckung
+
+Der native Job von Lauf `45359518156` bestand mit 15.200 Prüfpunkten und 73 erzeugten, quellgebundenen Bilddateien. Das 54.145.053 Byte große Artefakt `14904997577` wurde heruntergeladen; ZIP-SHA-256 und alle 73 Bildhashes wurden unabhängig abgeglichen. Root sichtete alle 14 Garagenfahrzeuge und die Fahrerübersicht, der zweite Prüfer alle acht World-Ansichten und beide Home-Zustände in zwei Dichten. Fahrzeuge, Fuchs und World-Kameraführung zeigten in diesen Stichproben keinen weiteren eindeutigen Defekt.
+
+Die echte Sichtprüfung fand jedoch im Home bei Dichte 2 eine Überdeckung: Der separate rechte Streckenpfeil lag teilweise auf der gezeichneten Play-Affordanz der insgesamt klickbaren Streckenkachel. Das ist ein belegter visueller Bedienkonflikt; ein zuvor falsch ausgelöstes Touch-Ereignis wurde nicht nachgewiesen.
+
+Die korrigierte Produktgeometrie positioniert die volle 48-dp-Pfeilfläche. In kurzen großen Vorschauen rücken beide Pfeile gemeinsam nach oben, bis das Play-Symbol frei bleibt; hohe Vorschauen bleiben zentriert. Die erweiterte Matrix erkannte vor dem Fix vier Fehler und besteht danach mit 2.243 Prüfpunkten, einschließlich aller bisherigen 2.197. Sie prüft außerdem, dass Pfeile in kurzen Ansichten innerhalb der Streckenkachel bleiben.
+
+Ein echter Godot-4.6.3-GLES-Lauf mit sechs Fahrzeugwechseln und Rückkehr ins Home besteht mit 72 Prüfungen und null Enginefehlern. Beide neuen Home-Bilder wurden visuell geprüft; im vollständigen Menü beträgt der Abstand 16,46 Pixel beziehungsweise 8,23 dp. Die Vorher-/Nachhergeometrie, Logs und Originalbild-Hashes liegen unter `home-play-clearance/`.
+
+Der aktuelle Godot-Pin enthält genau diese Zwei-Dateien-Korrektur. Die beiden vom Export-Cleanup geprüften Modellteilbäume sind weiterhin unverändert; deshalb wird auch dieser exakte Pin ausdrücklich akzeptiert. Die vorangegangenen Läufe wurden nach den jeweiligen geprüften Folgekorrrekturen durch die bestehende Workflow-Konkurrenzregel beendet. Ein erfolgreicher nativer Job ersetzt weder die neue APK noch ihren Android-Nachweis; der vollständige finale Workflow muss beide liefern.

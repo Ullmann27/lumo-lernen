@@ -1,0 +1,23 @@
+{
+  "native_revision": "c3f459eca88f659da1a9e4af1c990c804e715528",
+  "native_tree": "6b7c47a3010cec04736f9cd495adf34ad0ec2e6f",
+  "local_equivalent_commit": "c737db6437d3762a054879c32e2426ff1155cff7",
+  "previous_native_pass": {
+    "run_id": 45359518156,
+    "artifact_id": 14904997577,
+    "artifact_sha256": "6deccc6002ac2c0d431614f28d5cdf92b74ac76b697d597878c72a87b59b1290",
+    "native_assertions": 15200,
+    "source_revision": "21a76bcda69c20ea3a427a63098cb2fc736eb881",
+    "image_hashes_verified": 73
+  },
+  "change": "Keep full48dp track arrows within thumbnail and clear of its drawn Play affordance",
+  "visual_defect_not_claimed": "No pre-fix incorrect touch event was demonstrated",
+  "new_regression_checks": 2243,
+  "new_gles_capture_checks": 72,
+  "new_gles_engine_errors": 0,
+  "unchanged_export_asset_trees": {
+    "assets/kart/production/meshy": "54d73b2bea3f0bdfb1cab577d05fa747977641ce",
+    "assets/kart/production/garage": "11ea80a83d67c160e84352ee348086992b561390"
+  },
+  "scope": "Source-bound local tests and actual desktop GLES images; final full APK and Android run still required"
+}
