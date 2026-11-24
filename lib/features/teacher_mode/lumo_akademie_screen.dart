@@ -437,10 +437,17 @@ class LumoCurriculum {
               topics: const [
                 LearningTopic(
                   id: 'm3_zahlen1000',
-                  title: 'Zahlen bis 1000',
-                  icon: Icons.format_list_numbered_rounded,
-                  gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
-                  shortDesc: 'Hunderter, Zehner, Einer',
+                  title: 'Plus bis 1000',
+                  icon: Icons.add_circle_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: '345+230: Hunderter, Zehner, Einer',
+                ),
+                LearningTopic(
+                  id: 'm3_minus1000',
+                  title: 'Minus bis 1000',
+                  icon: Icons.remove_circle_rounded,
+                  gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
+                  shortDesc: '720-350: Hunderter, Zehner, Einer',
                 ),
                 LearningTopic(
                   id: 'm3_einmaleins_voll',
@@ -451,10 +458,10 @@ class LumoCurriculum {
                 ),
                 LearningTopic(
                   id: 'm3_geometrie',
-                  title: 'Geometrie',
+                  title: 'Umfang',
                   icon: Icons.architecture_rounded,
                   gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: 'Umfang, Fläche',
+                  shortDesc: 'Rechteck und Quadrat umrunden',
                 ),
                 LearningTopic(
                   id: 'm3_schrift_add',
