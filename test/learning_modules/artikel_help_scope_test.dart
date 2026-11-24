@@ -9,8 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// App state whose active child can be switched without the school backend.
 class _SwitchableProfileState extends LumoAppState {
-  _SwitchableProfileState()
-      : super(walletRepository: RewardWalletRepository());
+  _SwitchableProfileState() : super(walletRepository: RewardWalletRepository());
 
   int generation = 0;
 
@@ -35,8 +34,8 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(1000, 1800));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final state = _SwitchableProfileState();
-    await tester.pumpWidget(
-        MaterialApp(home: ArtikelLernenScreen(appState: state)));
+    await tester
+        .pumpWidget(MaterialApp(home: ArtikelLernenScreen(appState: state)));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
     return state;
@@ -45,7 +44,8 @@ void main() {
   String currentPrompt() =>
       LumoCompanionRequests.instance.taskContext.value!.prompt;
 
-  testWidgets('Der/Die/Das: Hinweise beziehen sich auf das aktive Wort und '
+  testWidgets(
+      'Der/Die/Das: Hinweise beziehen sich auf das aktive Wort und '
       'vergeben keine Punkte', (tester) async {
     final state = await openArtikel(tester);
     final requests = LumoCompanionRequests.instance;
@@ -62,7 +62,8 @@ void main() {
           tester.widget<Text>(find.byKey(const ValueKey('module-help-text')));
       expect(help.data, contains(word), reason: 'Hinweis $level');
       expect(requests.taskContext.value!.helpLevel, level);
-      expect(currentPrompt(), prompt, reason: 'Hilfe wechselt die Aufgabe nicht');
+      expect(currentPrompt(), prompt,
+          reason: 'Hilfe wechselt die Aufgabe nicht');
     }
 
     expect(state.state.stars, starsBefore);
