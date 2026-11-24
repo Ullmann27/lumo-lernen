@@ -77,11 +77,18 @@ class CurrentFocusedRaceHudTests(unittest.TestCase):
         # observation and clock below are synthetic: no device is touched.
         actual = focused_race_hud_text(FIXTURES / 'update-0.png')
         self.assertTrue(focused_race_hud_visible(actual), actual)
+        recorded_pixels = (FIXTURES / 'update-0.png').read_bytes()
+
+        def replay_recorded_shot(out, name):
+            (out / (name + '.png')).write_bytes(recorded_pixels)
+            return recorded_pixels
+
         for caption in ('Weiterfahren', 'Kleine Pause', 'geschafft', 'Noch ein Rennen'):
-            frame = {'text': caption, 'lines': [{'text': caption}]}
+            frame = {'text': caption, 'lines': [{'text': caption}], 'words': [],
+                     'width': 2400, 'height': 1080}
             with self.subTest(caption=caption), tempfile.TemporaryDirectory() as work:
                 out = Path(work)
-                with patch.object(tour, '_shot', return_value=b'no-new-device-capture'), \
+                with patch.object(tour, '_shot', side_effect=replay_recorded_shot), \
                         patch.object(tour, 'read_frame', return_value=frame), \
                         patch.object(tour, 'focused_race_hud_text', return_value=actual), \
                         patch.object(tour.time, 'monotonic', side_effect=[0, 0, 91]), \

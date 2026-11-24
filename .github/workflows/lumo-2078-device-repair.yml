@@ -7,6 +7,11 @@ on:
       - .github/workflows/lumo-2078-device-repair.yml
       - config/godot-source.json
       - pubspec.yaml
+      - scripts/export_embedded_game.py
+      - scripts/tests/test_export_embedded_game.py
+      - scripts/verify_kart_driver_package.py
+      - scripts/tests/test_verify_kart_driver_package.py
+      - .github/probes/lumo_kart_driver_assets_probe.gd
 
 permissions:
   contents: read
@@ -42,7 +47,7 @@ jobs:
           PY
           bash scripts/install_godot_for_build.sh
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y xvfb xauth libgl1-mesa-dri
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb xauth libgl1-mesa-dri python3-pil
           SOURCE="$(python3 -c 'import json;print(json.load(open("config/godot-source.json"))["revision"])')"
           git clone --filter=blob:none --no-checkout https://github.com/Ullmann27/lumo-godot.git native-source
           git -C native-source sparse-checkout set --no-cone '/assets/' '/scripts/' '/scenes/' '/config/' '/tools/' '/project.godot' '/export_presets.cfg' '/icon.svg' '/.gitignore' '!*.blend' '!*.blend1' '!*.zip' '!*.mp4' '!*.psd'
@@ -65,9 +70,14 @@ jobs:
             python3 native-source/tools/run_godot_probe.py --log "device-proof/$probe.log" --timeout 600 -- \
               godot --headless --path native-source --script "res://scripts/tests/$probe.gd"
           done
+          python3 native-source/tools/run_godot_probe.py --log device-proof/kart_driver_gesture_regression.log --timeout 600 --required DRIVER_GESTURE_PASS -- \
+            godot --headless --path native-source --script res://scripts/tests/kart_driver_gesture_regression.gd
           python3 native-source/tools/run_godot_probe.py --log device-proof/kart_meshy_assets_regression.log --timeout 600 -- \
-            xvfb-run -a godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
+            xvfb-run -a -s '-screen 0 1600x1600x24 -nolisten tcp' godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
               --script res://scripts/tests/kart_meshy_assets_regression.gd
+          python3 native-source/tools/run_godot_probe.py --log device-proof/cards_character_roster_regression.log --timeout 600 --required '[CardsCharacters] checks=' -- \
+            xvfb-run -a -s '-screen 0 1600x1600x24 -nolisten tcp' godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
+              --script res://scripts/tests/cards_character_roster_regression.gd
       - name: Render the actual garage, home menu and World in Fold viewports
         env:
           LIBGL_ALWAYS_SOFTWARE: 'true'
@@ -77,14 +87,85 @@ jobs:
         run: |
           set -euo pipefail
           export LUMO_PRODUCT_SHA="$(cat device-proof/GODOT-COMMIT.txt)"
-          python3 native-source/tools/run_godot_probe.py --log device-proof/kart-capture.log --timeout 1200 -- \
-            xvfb-run -a godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
-              --script res://scripts/tests/kart_device_fix_capture.gd -- "$PWD/device-proof/kart"
+          for capture_density in 1 2; do
+            capture_folder=kart
+            if [ "$capture_density" = 2 ]; then capture_folder=kart-density2; fi
+            python3 native-source/tools/run_godot_probe.py --log "device-proof/$capture_folder-capture.log" --timeout 1200 --required '[KartDeviceFix] checks=' -- \
+              xvfb-run -a -s '-screen 0 1600x1600x24 -nolisten tcp' godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
+                --script res://scripts/tests/kart_device_fix_capture.gd -- --capture --all --density="$capture_density" "$PWD/device-proof/$capture_folder"
+          done
+          python3 native-source/tools/run_godot_probe.py --log device-proof/driver-fit-capture.log --timeout 900 --required '[DriverFit] PASS' -- \
+            xvfb-run -a -s '-screen 0 1600x1600x24 -nolisten tcp' godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
+              --script res://scripts/tests/kart_driver_fit_capture.gd -- "$PWD/device-proof/drivers.png"
           python3 native-source/tools/run_godot_probe.py --log device-proof/world-capture.log --timeout 1200 -- \
-            xvfb-run -a godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
+            xvfb-run -a -s '-screen 0 1600x1600x24 -nolisten tcp' godot --path native-source --rendering-method gl_compatibility --audio-driver Dummy \
               --script res://scripts/tests/lumo_world_capture.gd -- --out="$PWD/device-proof/world"
           test -s device-proof/kart/capture.json
+          test -s device-proof/kart-density2/capture.json
           test -s device-proof/world/world-capture.json
+      - name: Verify actual renderer images and their source-bound reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          from PIL import Image
+          proof=Path('device-proof')
+          revision=json.loads(Path('config/godot-source.json').read_text())['revision']
+          assert (proof/'GODOT-COMMIT.txt').read_text().strip()==revision
+          inventory=json.loads(Path('native-source/assets/kart/production/meshy/manifest.json').read_text())
+          fleet={row['id'] for row in inventory['vehicles']}
+          assert len(fleet)==14
+          images=[]
+          def image_record(folder,filename,dimensions=None):
+              assert Path(filename).name==filename
+              path=folder/filename
+              assert path.is_file() and path.stat().st_size>256
+              with Image.open(path) as image:
+                  image.load()
+                  size=list(image.size)
+                  assert image.format in ('PNG','WEBP') and min(size)>0
+                  if dimensions is not None: assert size==dimensions,(str(path),size,dimensions)
+              images.append({'file':str(path.relative_to(proof)),'dimensions':size,
+                             'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
+          for name,density in (('kart',1.0),('kart-density2',2.0)):
+              folder=proof/name
+              report=json.loads((folder/'capture.json').read_text())
+              assert report['failures']==[] and report['checks']>0
+              frames=report['frames']
+              assert len(frames)==16 and len({row['name'] for row in frames})==16
+              assert {row['kart'] for row in frames if row['name'].startswith('garage-')}==fleet
+              assert {row['name'] for row in frames if row['name'].startswith('home-')}=={'home-comet-1384x1400','home-selected-1384x1400'}
+              for row in frames:
+                  assert row['viewport']==[1384,1400] and row['display_density']==density
+                  assert row['renderer']=='gl_compatibility' and row['physical_android_device'] is False
+                  assert row['touch_targets']['undersized']==[] and row['touch_targets']['outside_viewport']==[]
+                  image_record(folder,row['image'],[1384,1400])
+                  image_record(folder,row['name']+'-preview.png')
+          folder=proof/'world'
+          world=json.loads((folder/'world-capture.json').read_text())
+          assert world['sourceCommit']==revision and world['renderer']=='gl_compatibility'
+          assert world['originalLumo'] is True and world['sameVillageSave'] is True
+          assert len(world['captures'])==8 and len({row['file'] for row in world['captures']})==8
+          for row in world['captures']:
+              assert row['sampledColors']>=10 and row['vegetationClearance']['rendererVerified'] is True
+              image_record(folder,row['file'],[row['width'],row['height']])
+          driver_manifest=json.loads(Path('native-source/assets/kart/production/drivers/manifest.json').read_text())
+          expected_models={row['file']:row['sha256'] for driver in driver_manifest['drivers'] for row in driver['lods'] if row['level']=='lod0'}
+          marker='[DriverFit] PASS '
+          passes=[line.removeprefix(marker) for line in (proof/'driver-fit-capture.log').read_text().splitlines() if line.startswith(marker)]
+          assert len(passes)==1
+          driver_sheet=json.loads(passes[0])
+          assert set(driver_sheet['drivers'])=={'fox','cat','rabbit','frog','lion','owl','squirrel','turtle','otter','badger'}
+          actual_models={row['path'].removeprefix('res://'):row['sha256'] for row in driver_sheet['models']}
+          assert len(driver_sheet['models'])==9 and actual_models==expected_models
+          image_record(proof,'drivers.png',[2100,2520])
+          (proof/'IMAGE-VERIFICATION.json').write_text(json.dumps({'status':'PASS','godot_revision':revision,
+              'scope':'Actual desktop renderer captures in declared viewports; no physical Android performance claim',
+              'images':images},indent=2)+'\n')
+          print('DEVICE_IMAGE_PASS:',len(images),'real renderer images decoded and source-bound')
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -120,7 +201,7 @@ jobs:
           bash scripts/install_godot_for_build.sh
       - name: Verify exporter and build complete APK
         run: |
-          python3 -m unittest scripts.tests.test_export_embedded_game -v
+          python3 -m unittest scripts.tests.test_export_embedded_game scripts.tests.test_verify_kart_driver_package -v
           bash scripts/build_unified_apk.sh
       - name: Verify Android package, signing, ABIs and exact provenance
         shell: bash
@@ -139,6 +220,11 @@ jobs:
           assert proof['flutter_source_commit']==os.environ['GITHUB_SHA']
           assert proof['tracked_source_clean'] is True
           PY
+      - name: Load all 27 repaired driver variants from the actual APK pack
+        run: |
+          python3 scripts/verify_kart_driver_package.py \
+            --apk dist/Lumo-Lernen-Neu.apk --source build/godot-source \
+            --out dist/KART-DRIVER-PACKAGE.json
       - uses: actions/upload-artifact@v4
         with:
           name: LUMO-2078-APK-${{ github.run_id }}
@@ -150,6 +236,8 @@ jobs:
             dist/BUILD-PROVENANCE.json
             dist/GODOT-SOURCE.json
             dist/APP-VERSION.txt
+            dist/KART-DRIVER-PACKAGE.json
+            dist/KART-DRIVER-PACKAGE.log
           if-no-files-found: error
           compression-level: 0
           retention-days: 30
@@ -292,7 +380,8 @@ jobs:
           fi
           gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --prerelease \
             --title 'Lumo 0.14.6+2078 — Gerätefehler korrigiert' --notes-file release/RELEASE-NOTES.md \
-            "release/$ASSET" release/APK-VERIFICATION.json release/BUILD-PROVENANCE.json release/GODOT-SOURCE.json
+            "release/$ASSET" release/APK-VERIFICATION.json release/BUILD-PROVENANCE.json release/GODOT-SOURCE.json \
+            release/KART-DRIVER-PACKAGE.json
           gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" > release/RELEASE.json
           python3 - "$ASSET" <<'PY'
           import json,sys
