@@ -12,7 +12,11 @@ class LumoSubjectRegister extends StatelessWidget {
     super.key,
     required this.onSubject,
     required this.onGames,
+    this.extras = const <LumoRegisterAction>[],
   });
+
+  /// Zusätzliche Kacheln in derselben Reihe (z. B. Intro, Für Lehrkräfte).
+  final List<LumoRegisterAction> extras;
 
   /// Öffnet das Fach mit seinen Untergruppen.
   final ValueChanged<String> onSubject;
@@ -66,31 +70,49 @@ class LumoSubjectRegister extends StatelessWidget {
       child: LayoutBuilder(builder: (context, constraints) {
         final textScale =
             MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0);
-        const columns = 5;
-        final tileWidth = (constraints.maxWidth - (columns - 1) * 8) / columns;
+        final count = entries.length + extras.length;
+        // Eine einzige Reihe: passt sie nicht, wird sie seitlich gewischt.
+        // Jede Kachel bleibt mindestens 84 x 76 dp groß (>= 48 dp).
+        final fitWidth = (constraints.maxWidth - (count - 1) * 8) / count;
+        final tileWidth = fitWidth >= 84 ? fitWidth : 84.0;
         final showHint = tileWidth >= 110;
-        return GridView.count(
+        final height = (showHint ? 96.0 : 76.0) * textScale;
+        final tiles = <Widget>[
+          for (final entry in entries)
+            _RegisterTile(
+              entry: entry,
+              showHint: showHint,
+              onTap: entry.id == 'games' ? onGames : () => onSubject(entry.id),
+            ),
+          for (final extra in extras)
+            _RegisterTile(
+              entry: extra.entry,
+              showHint: showHint,
+              onTap: extra.onTap,
+            ),
+        ];
+        return SizedBox(
           key: const ValueKey('home-subject-register'),
-          crossAxisCount: columns,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          physics: const NeverScrollableScrollPhysics(),
-          childAspectRatio: tileWidth / ((showHint ? 96 : 72) * textScale),
-          children: [
-            for (final entry in entries)
-              _RegisterTile(
-                entry: entry,
-                showHint: showHint,
-                onTap:
-                    entry.id == 'games' ? onGames : () => onSubject(entry.id),
-              ),
-          ],
+          height: height,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.zero,
+            itemCount: tiles.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 8),
+            itemBuilder: (_, i) => SizedBox(width: tileWidth, child: tiles[i]),
+          ),
         );
       }),
     );
   }
+}
+
+/// Eine zusätzliche Kachel mit eigener Aktion.
+class LumoRegisterAction {
+  const LumoRegisterAction({required this.entry, required this.onTap});
+
+  final LumoRegisterEntry entry;
+  final VoidCallback onTap;
 }
 
 class LumoRegisterEntry {
