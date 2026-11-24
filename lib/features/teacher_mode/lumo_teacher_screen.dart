@@ -271,7 +271,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
     final variants = <String>[
       'Komm wir machen das gemeinsam, ohne Cloud! ',
       'Ich erklaer dir das auch so, kein Problem: ',
-      'Lass uns das zusammen durchrechnen: ',
+      'Lass uns das gemeinsam anschauen: ',
       'Brauchen wir gar nicht das Internet - ich helf dir: ',
     ];
     final variant = variants[
@@ -291,6 +291,7 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
   /// Heinz hat Geometrie-Frage 'Umfang Quadrat Seite 5' gestellt - das
   /// muss lokal beantwortbar sein, auch wenn die Cloud streikt.
   String? _tryMathSolver(String q) {
+    if (widget.subject.name != 'Mathematik') return null;
     final lower = q.toLowerCase();
     final nums = RegExp(r'\d+')
         .allMatches(q)
