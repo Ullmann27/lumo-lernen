@@ -1,5 +1,5 @@
 {
-  "request": 54,
+  "request": 55,
   "version": "0.14.6+2079",
-  "note": "Schuldemo 24.11.2026 als Update der bestehenden Familien-App (coachpreview, Debug-Schlüssel tools/lumo-debug.keystore): Stand grok/schule-demo-20261124 @2eac99a6 plus Audit-Fix 132daf61 (#548). Mathe, Sprachen, Sachkunde, Startseite, Intro, Lehrerinnen-Ansicht, Holo-Design. Kein Merge nach main, keine Produktionssignierung."
+  "note": "Schuldemo 24.11.2026 als Update der bestehenden Familien-App (coachpreview, Debug-Schlüssel tools/lumo-debug.keystore): Stand grok/schule-demo-20261124 @2eac99a6 plus Audit-Fix 132daf61 (#548). Mathe, Sprachen, Sachkunde, Startseite, Intro, Lehrerinnen-Ansicht, Holo-Design. Kein Merge nach main, keine Produktionssignierung. Request 55: Startseiten-Hinweis der Lehrkräfte-Kachel nennt keine PIN mehr (PIN-freie Einstellungen, state_persistence_regression_test)."
 }

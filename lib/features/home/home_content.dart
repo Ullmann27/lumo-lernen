@@ -239,7 +239,7 @@ class HomeContent extends StatelessWidget {
                         entry: const LumoRegisterEntry(
                           id: 'teacher',
                           title: 'Für Lehrkräfte',
-                          hint: 'Demo-Klasse mit PIN',
+                          hint: 'Demo-Klasse und Auswertung',
                           icon: Icons.school_rounded,
                           color: Color(0xFF8A6D1F),
                         ),
