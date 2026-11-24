@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../../../app/app_state.dart';
 import '../../../core/learning_attempt_id.dart';
@@ -152,7 +153,26 @@ class _ModuleTaskScopeState extends State<ModuleTaskScope>
       _invalid = true;
       _cancelNarration();
       _requests.clearTask(_published);
+      // A hint shown to the previous child must not stay on screen for the
+      // next one. The module itself keeps owning answers and progress.
+      _discardCandidate(rebuild: false);
+      _clearStaleHelp();
     }
+  }
+
+  void _clearStaleHelp() {
+    if (!mounted || !(_showHelp || _focused || _helpLevel > 0)) return;
+    if (SchedulerBinding.instance.schedulerPhase ==
+        SchedulerPhase.persistentCallbacks) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _clearStaleHelp());
+      return;
+    }
+    setState(() {
+      _helpIndex = -1;
+      _helpLevel = 0;
+      _showHelp = false;
+      _focused = false;
+    });
   }
 
   @override
