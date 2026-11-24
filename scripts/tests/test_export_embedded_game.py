@@ -269,6 +269,144 @@ class GeneratedMeshyGateTexturesTests(unittest.TestCase):
 
 
 
+class GeneratedProductionMeshyImportsTests(unittest.TestCase):
+    """Godot 4.6.3 Meshy GLB import byproducts are cleaned only for the exact 2077 pin."""
+
+    VEHICLES = (
+        'blitz', 'boru_rally', 'comet', 'gecko_velo', 'glider', 'iva_aurora',
+        'koloss', 'nala_comet', 'noa_tide', 'phantom', 'stella', 'terra',
+        'turbo', 'zuri_volt',
+    )
+    GARAGE = ('meshy_tool_workbench', 'meshy_turntable')
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.repo = Path(self.temp.name)
+        subprocess.run(['git', 'init', '-q', str(self.repo)], check=True)
+        self.rows = []
+        for identifier in self.VEHICLES:
+            self.rows.append(self._make_glb(
+                identifier, f'assets/kart/production/meshy/{identifier}.glb'))
+        garage_rows = []
+        for identifier in self.GARAGE:
+            garage_rows.append(self._make_glb(
+                identifier, f'assets/kart/production/garage/{identifier}.glb'))
+        manifest = {
+            'schema_version': 1,
+            'vehicles': self.rows,
+            'garage': garage_rows,
+            'runtime_policy': 'fixture',
+        }
+        manifest_path = self.repo / 'assets/kart/production/meshy/manifest.json'
+        manifest_path.parent.mkdir(parents=True, exist_ok=True)
+        manifest_path.write_text(json.dumps(manifest, indent=2) + '\n')
+        subprocess.run(['git', 'add', '.'], cwd=self.repo, check=True)
+        self.source = {'revision': MODULE.PRODUCTION_MESHY_REVISION}
+        self.all_rows = self.rows + garage_rows
+
+    def _make_glb(self, identifier, relative):
+        path = self.repo / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        content = json.dumps({
+            'asset': {'version': '2.0'},
+            'images': [{'name': 'meshTexture', 'mimeType': 'image/png', 'bufferView': 0}],
+        }).encode()
+        padding = b' ' * ((-len(content)) % 4)
+        chunk = content + padding
+        raw = struct.pack('<4s4I', b'glTF', 2, 20 + len(chunk), len(chunk), 0x4e4f534a) + chunk
+        path.write_bytes(raw)
+        return {
+            'id': identifier,
+            'path': relative,
+            'bytes': len(raw),
+            'sha256': hashlib.sha256(raw).hexdigest(),
+        }
+
+    def generate_outputs(self):
+        for row in self.all_rows:
+            glb = self.repo / row['path']
+            import_path = glb.with_suffix(glb.suffix + '.import')
+            import_path.write_text(
+                '[remap]\nimporter="scene"\n\n[deps]\n'
+                f'source_file="res://{row["path"]}"\n'
+            )
+            texture_path = glb.with_name(glb.stem + '_0.png')
+            texture_path.write_bytes(
+                b'\x89PNG\r\n\x1a\n' + b'x' * 120 + b'IEND\xaeB\x60\x82'
+            )
+
+    def cleanup(self, before=None, source=None):
+        MODULE.remove_generated_production_meshy_imports(
+            self.repo,
+            set() if before is None else before,
+            self.source if source is None else source,
+        )
+
+    def test_exact_2077_meshy_import_outputs_are_cleaned_and_sources_stay_tracked(self):
+        self.generate_outputs()
+        self.cleanup()
+        self.assertEqual(
+            MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard'),
+            set(),
+        )
+        for row in self.all_rows:
+            self.assertTrue((self.repo / row['path']).is_file())
+
+    def test_unknown_untracked_file_is_preserved(self):
+        self.generate_outputs()
+        outsider = self.repo / 'assets/kart/production/meshy/notes.png'
+        outsider.write_bytes(b'keep me')
+        self.cleanup()
+        self.assertTrue(outsider.is_file())
+
+    def test_glb_alignment_padding_after_png_is_cleaned(self):
+        self.generate_outputs()
+        for row in self.all_rows:
+            glb = self.repo / row['path']
+            texture = glb.with_name(glb.stem + '_0.png')
+            texture.write_bytes(texture.read_bytes() + b'\x00\x00\x00')
+        self.cleanup()
+        self.assertEqual(
+            MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard'),
+            set(),
+        )
+
+    def test_more_than_three_alignment_bytes_are_rejected(self):
+        self.generate_outputs()
+        first = self.all_rows[0]
+        glb = self.repo / first['path']
+        texture = glb.with_name(glb.stem + '_0.png')
+        texture.write_bytes(texture.read_bytes() + b'\x00\x00\x00\x00')
+        with self.assertRaisesRegex(RuntimeError, 'invalid PNG output'):
+            self.cleanup()
+        self.assertTrue(texture.is_file())
+
+    def test_other_revision_never_cleans_2077_meshy_outputs(self):
+        self.generate_outputs()
+        self.cleanup(source={'revision': '0' * 40})
+        untracked = MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard')
+        self.assertTrue(any(path.endswith('.glb.import') for path in untracked))
+        self.assertTrue(any(path.endswith('_0.png') for path in untracked))
+
+    def test_manifest_hash_mismatch_fails_closed_without_deleting_outputs(self):
+        self.generate_outputs()
+        target = self.repo / self.all_rows[0]['path']
+        target.write_bytes(target.read_bytes() + b'tamper')
+        with self.assertRaisesRegex(RuntimeError, 'manifest'):
+            self.cleanup()
+        self.assertTrue(target.with_suffix(target.suffix + '.import').is_file())
+        self.assertTrue(target.with_name(target.stem + '_0.png').is_file())
+
+    def test_preexisting_import_output_is_preserved(self):
+        self.generate_outputs()
+        first = self.all_rows[0]
+        relative = first['path'] + '.import'
+        self.cleanup(before={relative})
+        self.assertTrue((self.repo / relative).is_file())
+
+
+
 class ImportCrashRecoveryTests(unittest.TestCase):
     """A recoverable editor SIGSEGV never bypasses source/export checking."""
 
