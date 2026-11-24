@@ -315,7 +315,7 @@ class LumoCurriculum {
                   title: 'Sätze bilden',
                   icon: Icons.format_quote_rounded,
                   gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: 'Subjekt + Prädikat',
+                  shortDesc: 'Wörter zu Sätzen ordnen',
                 ),
                 LearningTopic(
                   id: 'd2_artikel',
@@ -540,7 +540,7 @@ class LumoCurriculum {
                   title: 'Natur',
                   icon: Icons.park_rounded,
                   gradient: [Color(0xFF059669), Color(0xFF34D399)],
-                  shortDesc: 'Pflanzen & Tiere',
+                  shortDesc: 'Blüte, Humus, Nadelbäume',
                 ),
                 LearningTopic(
                   id: 's3_wetter',
@@ -714,7 +714,7 @@ class LumoCurriculum {
                   title: 'Grammatik',
                   icon: Icons.psychology_rounded,
                   gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: 'Fälle, Satzglieder',
+                  shortDesc: 'Die vier Fälle',
                 ),
                 LearningTopic(
                   id: 'd4_aufsatz',
@@ -764,7 +764,7 @@ class LumoCurriculum {
                   title: 'Kontinente und Ozeane',
                   icon: Icons.public_rounded,
                   gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
-                  shortDesc: 'Länder & Hauptstädte',
+                  shortDesc: 'Erdteile und Weltmeere',
                 ),
                 LearningTopic(
                   id: 's4_geschichte',
