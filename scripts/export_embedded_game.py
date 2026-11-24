@@ -392,7 +392,10 @@ def remove_generated_production_meshy_imports(repo: Path, before: set[str], sour
                 handle.seek(-8, 2)
                 suffix = handle.read(8)
             if prefix != b'\x89PNG\r\n\x1a\n' or suffix != b'IEND\xaeB\x60\x82':
-                raise RuntimeError('Refusing 2077 Meshy import cleanup: invalid PNG output')
+                raise RuntimeError(
+                    'Refusing 2077 Meshy import cleanup: invalid PNG output '
+                    f'{relative} size={size} prefix={prefix.hex()} suffix={suffix.hex()}'
+                )
         else:
             raise RuntimeError('Refusing 2077 Meshy import cleanup: unrecognised output')
 
