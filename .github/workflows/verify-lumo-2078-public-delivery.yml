@@ -1,0 +1,226 @@
+name: Verify the original LUMO 2078 public APK bytes
+
+# Root publishes this support branch only after the bound single publisher retry succeeds.
+on:
+  push:
+    branches:
+      - support/lumo-2078-public-delivery
+    paths:
+      - .github/workflows/verify-lumo-2078-public-delivery.yml
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: verify-lumo-2078-public-bytes-45365478105
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      SOURCE_REPOSITORY: Ullmann27/lumo-lernen
+      SOURCE_SHA: 94cabcff7f6c568eddfe6805801f49a00ad58312
+      SOURCE_RUN: '45365478105'
+      QUALITY_ATTEMPT: '1'
+      PUBLISHER_ATTEMPT: '2'
+      FIRST_PUBLISHER_JOB: '138384742953'
+      RETRY_PUBLISHER_JOB: '138386118647'
+      RELEASE_TAG: lumo-0.14.6-2078-45365478105
+      APK_NAME: Lumo-Lernen-0.14.6-2078.apk
+      APK_BYTES: '701640419'
+      APK_SHA256: 3e49c99c22d05f7003e4477911d0f72e20fd3447cf6f9d55f6ab805c5fbc8198
+    steps:
+      - name: Require original quality passes and the single successful publisher retry
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "$SOURCE_REPOSITORY"
+          mkdir -p api proof runtime
+          gh api --method GET "repos/$SOURCE_REPOSITORY/actions/runs/$SOURCE_RUN" > api/run.json
+          gh api --method GET "repos/$SOURCE_REPOSITORY/actions/runs/$SOURCE_RUN/attempts/$QUALITY_ATTEMPT/jobs?per_page=100" > api/original-jobs.json
+          gh api --method GET "repos/$SOURCE_REPOSITORY/actions/runs/$SOURCE_RUN/attempts/$PUBLISHER_ATTEMPT/jobs?per_page=100" > api/retry-jobs.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          run = json.loads(Path('api/run.json').read_text())
+          original = json.loads(Path('api/original-jobs.json').read_text())
+          retry = json.loads(Path('api/retry-jobs.json').read_text())
+          source_run, source = int(os.environ['SOURCE_RUN']), os.environ['SOURCE_SHA']
+          quality_attempt, publisher_attempt = int(os.environ['QUALITY_ATTEMPT']), int(os.environ['PUBLISHER_ATTEMPT'])
+          expected_run = {
+              'id': source_run, 'run_attempt': publisher_attempt,
+              'head_sha': source, 'head_branch': 'repair/lumo-device-bugs-2078',
+              'event': 'push', 'path': '.github/workflows/lumo-2078-device-repair.yml',
+              'status': 'completed', 'conclusion': 'success',
+          }
+          assert (quality_attempt, publisher_attempt) == (1, 2), 'Only the observed single publisher retry is allowed'
+          for key, value in expected_run.items():
+              assert run.get(key) == value, 'Source run field differs: ' + key
+          for key in ('repository', 'head_repository'):
+              assert run[key]['full_name'] == os.environ['SOURCE_REPOSITORY']
+          quality_ids = {
+              'Verify the repaired game and render actual device layouts': 138346148805,
+              'Build the complete signed APK from the exact repaired source': 138357008376,
+              'Install the same APK and exercise Android return paths and backup': 138363355593,
+          }
+          publisher_name = 'Publish the verified APK as a new immutable test release'
+          names = set(quality_ids) | {publisher_name}
+          for listing, attempt in ((original, quality_attempt), (retry, publisher_attempt)):
+              assert listing['total_count'] == len(listing['jobs']) == len(names), 'Incomplete attempt job list'
+              assert {job['name'] for job in listing['jobs']} == names, 'Attempt job names differ'
+              for job in listing['jobs']:
+                  for key, value in {'run_id': source_run, 'run_attempt': attempt, 'head_sha': source,
+                                     'status': 'completed'}.items():
+                      assert job.get(key) == value, 'Attempt job identity differs: ' + key
+          original_by_name = {job['name']: job for job in original['jobs']}
+          retry_by_name = {job['name']: job for job in retry['jobs']}
+          fields = ('id', 'name', 'run_id', 'run_attempt', 'head_sha', 'status', 'conclusion', 'started_at', 'completed_at')
+          quality = []
+          for name, bound_id in quality_ids.items():
+              job = original_by_name[name]
+              assert job['id'] == bound_id and job['conclusion'] == 'success', 'Original quality gate differs'
+              quality.append({key: job[key] for key in fields})
+              carried = retry_by_name[name]
+              assert carried['conclusion'] == 'success', 'Retry quality view is not successful'
+              assert all(carried[key] == job[key] for key in ('started_at', 'completed_at')), 'Quality timing changed in publisher-only retry'
+          first = original_by_name[publisher_name]
+          assert first['id'] == int(os.environ['FIRST_PUBLISHER_JOB']) and first['conclusion'] == 'failure', 'Original publisher failure differs'
+          failed_steps = [{key: step[key] for key in ('number', 'name', 'status', 'conclusion')}
+                          for step in first['steps'] if step['conclusion'] == 'failure']
+          assert failed_steps == [{'number': 4, 'name': 'Publish only the tested bytes under a fresh tag',
+                                   'status': 'completed', 'conclusion': 'failure'}], 'Original publisher failure step differs'
+          published = retry_by_name[publisher_name]
+          assert published['id'] == int(os.environ['RETRY_PUBLISHER_JOB']) and published['conclusion'] == 'success', 'The bound single publisher retry has not succeeded'
+          proof = {
+              'status': 'PASS', 'repository': os.environ['SOURCE_REPOSITORY'],
+              'source_run': expected_run,
+              'original_quality_attempt': quality_attempt, 'original_quality_jobs': quality,
+              'initial_publisher': {
+                  **{key: first[key] for key in fields}, 'failed_steps': failed_steps,
+                  'previously_observed_job_log_diagnostic': 'Unable to determine if workflow can be created or updated due to timeout; workflows scope may be required.',
+                  'diagnostic_scope': 'Observed in original job 138384742953 at 2026-11-24T10:39:13Z during preparation; original failure remains failure.',
+              },
+              'publisher_retry': {key: published[key] for key in fields},
+              'retry_api_jobs': [{key: job[key] for key in fields} for job in retry['jobs']],
+              'retry_quality_start_and_end_times_match_originals': True,
+              'scope': 'Original attempt-1 quality passes; initial publisher failure retained; only publisher job 138386118647 in attempt 2 may authorize the public byte check.',
+          }
+          Path('proof/ORIGINAL-JOBS.json').write_text(json.dumps(proof, indent=2) + '\n')
+          print('Original quality passes and the single bound publisher retry: PASS')
+          PY
+
+      - name: Read the existing release, tag, asset and original download helper
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method GET "repos/$SOURCE_REPOSITORY/releases/tags/$RELEASE_TAG" > api/release.json
+          gh api --method GET "repos/$SOURCE_REPOSITORY/git/ref/tags/$RELEASE_TAG" > api/tag.json
+          gh api --method GET "repos/$SOURCE_REPOSITORY/contents/tools/nextgen/public_learning_download.py?ref=$SOURCE_SHA" > api/helper.json
+          python3 - <<'PY'
+          import base64, hashlib, json, os
+          from pathlib import Path
+          repository, tag_name = os.environ['SOURCE_REPOSITORY'], os.environ['RELEASE_TAG']
+          source = os.environ['SOURCE_SHA']
+          release = json.loads(Path('api/release.json').read_text())
+          tag = json.loads(Path('api/tag.json').read_text())
+          assert tag['ref'] == 'refs/tags/' + tag_name, 'Tag name differs'
+          assert tag['object']['type'] == 'commit' and tag['object']['sha'] == source, 'Actual lightweight tag source differs'
+          assert release['tag_name'] == tag_name, 'Release tag differs'
+          assert release['draft'] is False and release['prerelease'] is True, 'Release is not a published prerelease'
+          assert release.get('published_at'), 'Release was not published'
+          assert release['html_url'] == f'https://github.com/{repository}/releases/tag/{tag_name}', 'Release URL differs'
+          # Existing lightweight tags bind source; target_commitish may be a branch.
+          # Server-side release.immutable is recorded as observed, never required.
+          matches = [a for a in release['assets'] if a['name'] == os.environ['APK_NAME']]
+          assert len(matches) == 1, 'Expected exactly one matching APK asset'
+          asset = matches[0]
+          assert type(asset['id']) is int and asset['id'] > 0 and asset['state'] == 'uploaded', 'APK is not uploaded'
+          assert asset['size'] == int(os.environ['APK_BYTES']), 'APK asset size differs'
+          expected_url = f'https://github.com/{repository}/releases/download/{tag_name}/{os.environ["APK_NAME"]}'
+          public_url = asset['browser_download_url']
+          assert public_url == expected_url, 'Existing APK URL differs from the exact repository/tag/name'
+          if asset.get('digest') is not None:
+              assert asset['digest'] == 'sha256:' + os.environ['APK_SHA256'], 'Published asset digest differs'
+          helper = json.loads(Path('api/helper.json').read_text())
+          helper_path = 'tools/nextgen/public_learning_download.py'
+          helper_blob = 'cc7b37b2a8fad807e9f8bf58ce520ab5df04693c'
+          assert helper['type'] == 'file' and helper['path'] == helper_path and helper['sha'] == helper_blob
+          assert helper['encoding'] == 'base64'
+          data = base64.b64decode(''.join(helper['content'].split()), validate=True)
+          assert hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest() == helper_blob
+          Path('runtime/public_learning_download.py').write_bytes(data)
+          proof = {
+              'repository': repository, 'original_source_sha': source,
+              'original_run_id': int(os.environ['SOURCE_RUN']), 'original_quality_attempt': int(os.environ['QUALITY_ATTEMPT']),
+              'publisher_attempt': int(os.environ['PUBLISHER_ATTEMPT']),
+              'initial_publisher_job_id': int(os.environ['FIRST_PUBLISHER_JOB']), 'publisher_retry_job_id': int(os.environ['RETRY_PUBLISHER_JOB']),
+              'original_artifact_id': 14908418202,
+              'godot_revision': 'c3f459eca88f659da1a9e4af1c990c804e715528',
+              'release': {key: release.get(key) for key in
+                          ('id', 'tag_name', 'target_commitish', 'draft', 'prerelease', 'immutable', 'published_at', 'html_url')},
+              'tag': {'ref': tag['ref'], 'object': {key: tag['object'][key] for key in ('type', 'sha')}},
+              'asset': {key: asset.get(key) for key in
+                        ('id', 'name', 'state', 'size', 'digest', 'content_type', 'browser_download_url')},
+              'expected_download': {'url': public_url, 'bytes': int(os.environ['APK_BYTES']), 'sha256': os.environ['APK_SHA256']},
+              'reused_helper': {'path': helper_path, 'source_sha': source, 'git_blob': helper_blob, 'function': 'download_public'},
+              'verifier_run_id': int(os.environ['GITHUB_RUN_ID']), 'verifier_source_sha': os.environ['GITHUB_SHA'],
+          }
+          Path('proof/PUBLIC-METADATA.json').write_text(json.dumps(proof, indent=2) + '\n')
+          print('Existing release, actual tag source and exact APK URL: PASS')
+          PY
+
+      - name: Stream every public APK byte without credentials or cookies
+        shell: bash
+        run: |
+          set -euo pipefail
+          env -u GH_TOKEN -u GITHUB_TOKEN python3 - <<'PY'
+          import importlib.util, json, sys
+          from pathlib import Path
+          metadata = json.loads(Path('proof/PUBLIC-METADATA.json').read_text())
+          # Reuse only the reviewed, read-only streaming function, not its
+          # candidate-specific release verifier or any publisher command.
+          spec = importlib.util.spec_from_file_location('public_reader', 'runtime/public_learning_download.py')
+          helper = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(helper)
+          try:
+              observation = helper.download_public(metadata['expected_download'])
+          except Exception as error:
+              # Do not expose response bodies or temporary redirect/SAS URLs.
+              safe_messages = {
+                  'Public APK response is not HTTP 200',
+                  'Public APK exceeds the checked byte count',
+                  'Public APK byte count differs',
+                  'Public APK SHA-256 differs',
+                  'Anonymous APK request/redirect must remain credential-free HTTPS',
+              }
+              reason = str(error) if str(error) in safe_messages else type(error).__name__
+              failure = {'status': 'FAIL', 'stage': 'anonymous full APK download', 'reason': reason}
+              Path('proof/PUBLIC-DOWNLOAD-VERIFIED.json').write_text(json.dumps(failure, indent=2) + '\n')
+              print('Public download verification failed: ' + reason, file=sys.stderr)
+              raise SystemExit(1) from None
+          proof = {'status': 'PASS', 'original_source_sha': metadata['original_source_sha'],
+                   'original_run_id': metadata['original_run_id'], 'original_artifact_id': metadata['original_artifact_id'],
+                   'original_quality_attempt': metadata['original_quality_attempt'], 'publisher_attempt': metadata['publisher_attempt'],
+                   'initial_publisher_job_id': metadata['initial_publisher_job_id'], 'publisher_retry_job_id': metadata['publisher_retry_job_id'],
+                   'release_id': metadata['release']['id'], 'tag': metadata['tag'],
+                   'asset_id': metadata['asset']['id'], 'download': observation,
+                   'scope': 'Observed public APK bytes equal the verified original; no server-side immutability or new runtime claim.'}
+          Path('proof/PUBLIC-DOWNLOAD-VERIFIED.json').write_text(json.dumps(proof, indent=2) + '\n')
+          print(f'PUBLIC_APK_BYTES_PASS: {observation["bytes"]} bytes; sha256={observation["sha256"]}; HTTP {observation["httpStatus"]}')
+          PY
+
+      - name: Preserve only the small verification records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2078-PUBLIC-BYTES-${{ github.run_id }}-${{ github.run_attempt }}
+          path: proof/
+          if-no-files-found: warn
+          retention-days: 30
