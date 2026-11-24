@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checks": 2197,
+  "errors": [],
+  "exit_code": 0,
+  "engine": "4.6.3",
+  "godot_commit": "b590322f4ffe881dffbbcc9bc5244a23c997e6b9",
+  "test_file": "scripts/tests/kart_neon_home_regression.gd",
+  "test_file_sha256": "6f2c0d33a796aa660eb893016e1d797d4af4075e224d33a47a00afa8f388868a",
+  "log_sha256": "a4f454aeeaebc872cf8d64a073a08404cfb6313b667612515c33722dd8d66420",
+  "source_scope": "Only test geometry changed; all original assertions retained; five physical window/density configurations, all 15 tracks.",
+  "previous_failed_run": 45353940191
+}

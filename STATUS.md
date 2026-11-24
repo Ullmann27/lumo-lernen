@@ -2,9 +2,9 @@
 
 Stand dieses Quellcheckpoints: 24. November 2026, vor dem vollständigen neuen Build.
 
-Godot ist vollständig veröffentlicht: `19113a97cc5bf58514ea5bd82cc190af0b67817c`, Baum `87a958d9f4e34f873ec070eee5eb0401c3da6974`. Alle 153 übertragenen Dateien stimmen mit dem geprüften lokalen Integrationsstand überein. Die App pinnt genau diesen Remote-Commit. Enthalten sind 27 vollständig geriggte Meshy-LOD-Dateien, neun Porträts, die vorhandenen 2078-Kartreparaturen und der wiederaufgenommene World-Kamerafix.
+Godot ist vollständig veröffentlicht: `b590322f4ffe881dffbbcc9bc5244a23c997e6b9`, Baum `6a19273465c9786d64183cc6af5423ed19727b99`. Alle 153 übertragenen Dateien stimmen mit dem geprüften lokalen Integrationsstand überein. Die App pinnt genau diesen Remote-Commit. Enthalten sind 27 vollständig geriggte Meshy-LOD-Dateien, neun Porträts, die vorhandenen 2078-Kartreparaturen und der wiederaufgenommene World-Kamerafix.
 
-Der vorherige Android-Abbruch beim Onboarding-Leseserver ist gezielt repariert und mit acht Regressionen geprüft. Der neue Workflow enthält außerdem den bestandenen 27-Punkte-Kameratest. Der vollständige 2078-Lauf muss den kombinierten Quellstand, Bilder, APK und echte Android-Aktionen erneut bestätigen; ältere APKs oder Prüfergebnisse sind kein Ersatz dafür.
+Der vorherige Android-Abbruch beim Onboarding-Leseserver ist gezielt repariert und mit acht Regressionen geprüft. Der neue Workflow enthält außerdem den bestandenen 27-Punkte-Kameratest. Der erste vollständige Lauf 45353940191 stoppte an einer widersprüchlichen 64×64-Headless-Testfixture. Diese ist bei unverändertem Produktlayout korrigiert; 2.197 Menüprüfpunkte über fünf echte Fenster-/Dichtekonfigurationen bestehen. Der erneute vollständige 2078-Lauf muss den kombinierten Quellstand, Bilder, APK und echte Android-Aktionen erneut bestätigen; ältere APKs oder Prüfergebnisse sind kein Ersatz dafür.
 
 Fortsetzung: den Workflow `lumo-2078-device-repair.yml` auf `repair/lumo-device-bugs-2078` bis zum Ende verfolgen. Nur die dort tatsächlich geprüfte und veröffentlichte APK als neuen Download ausgeben. Kein Merge nach main ist erfolgt. [Quellstand und Nachweise](docs/evidence/meshy-rigs-20261124/README.md).
 

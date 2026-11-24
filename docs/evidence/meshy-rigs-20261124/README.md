@@ -5,12 +5,12 @@ Stand dieses Quellcheckpoints: 24. November 2026, vor dem neuen vollständigen A
 ## Verbindlicher Quellstand
 
 - Flutter-Ausgangsstand: `a7626c17cb38691a3b3d5a974d84ce274d6acf4b`.
-- Veröffentlichter Godot-Commit: `19113a97cc5bf58514ea5bd82cc190af0b67817c`.
-- Geprüfter Godot-Baum: `87a958d9f4e34f873ec070eee5eb0401c3da6974`.
+- Veröffentlichter Godot-Commit: `b590322f4ffe881dffbbcc9bc5244a23c997e6b9`.
+- Geprüfter Godot-Baum: `6a19273465c9786d64183cc6af5423ed19727b99`.
 - Entwicklungszweig in beiden Repositories: `repair/lumo-device-bugs-2078`.
 - App-Version: `0.14.6+2078`, Engine Godot 4.6.3, Flutter 3.44.9.
 
-Alle 153 geänderten Godot-Dateien wurden über die verbundene GitHub-Schnittstelle übertragen. Ihre 94.993.886 Bytes wurden gegen die lokalen Git-Blob-IDs geprüft. Der anschließend von GitHub erstellte vollständige Baum ist exakt identisch mit dem geprüften lokalen Integrationsbaum. Der App-Pin verwendet den tatsächlich veröffentlichten Commit.
+Die ursprünglichen 153 geänderten Godot-Dateien wurden über die verbundene GitHub-Schnittstelle übertragen. Ihre 94.993.886 Bytes wurden gegen die lokalen Git-Blob-IDs geprüft. Der anschließend von GitHub erstellte vollständige Baum ist exakt identisch mit dem geprüften lokalen Integrationsbaum. Der App-Pin verwendet den tatsächlich veröffentlichten Commit.
 
 ## Enthaltene Verbesserungen
 
@@ -46,3 +46,11 @@ Die Reparatur startet jetzt denselben Leseserver gezielt neu, stellt seine Konfi
 Der frühere lokale Bauversuch um 07:43 UTC ist unverändert in `local-build-attempt.json` und `.log` dokumentiert: `flutter` war damals nicht im verwendeten PATH. Inzwischen wurden passende Flutter- und SDK-Installationen in anderen Arbeitsverzeichnissen gefunden, jedoch kein vollständiger lokaler NDK-/Emulator-/Abhängigkeitsbestand bestätigt. Deshalb wird der eingerichtete GitHub-Bau verwendet. Der frühere Uploadstopp ist durch die erteilte Freigabe und die bestätigte vollständige Übertragung erledigt.
 
 Zum Zeitpunkt dieses Quellcommits ist der neue Build noch nicht abgeschlossen. Seine aktuellen Ergebnisse müssen aus dem tatsächlichen 2078-Lauf und dessen unveränderlichen Artefakten übernommen werden. Desktop-Renderer und Emulator belegen keine physische Fold7-Bildrate.
+
+## Erster vollständiger Lauf und korrigierte Testgeometrie
+
+Lauf `45353940191` auf Flutter `099d96adc38760f223165cb396b60e0656c59f84` und dem vorherigen Godot-Pin bestand 27/27 GLBs sowie World 206, World-HUD 939, World-Geräteprüfung 44, Kamera 27, ExtraDrivers 333, SpatialMenu 641 und LAN-Einstieg 78. Danach scheiterte die NeonHome-Testfixture an drei überlappenden Streckenvorschauen. APK, Android und Veröffentlichung wurden deshalb korrekt übersprungen.
+
+Die Fixture hatte nur das Menü auf 1280×720 vergrößert, während das reale Headless-Fenster bei 64×64 blieb. Der korrigierte Test setzt Fenstergröße und Host-Dichte vor der Menüerzeugung. Das Produktlayout bleibt unverändert; alle ursprünglichen 343 Prüfpunkte sind erhalten. Die zusätzliche Prüfung aller 15 Strecken in fünf Handy-/Fold-Konfigurationen besteht mit insgesamt 2.197 Prüfpunkten, keinen Fehlern und Exitcode 0. Der einzige zusätzliche Godot-Blob ist diese Testdatei; die Modelle bleiben unverändert. Siehe `neon-window-matrix.log` und `neon-window-verification.json`.
+
+Der aktuelle Pin enthält diese Korrektur. Der vollständige Lieferablauf wird auf diesem neuen exakt gepinnten Stand erneut ausgeführt.
