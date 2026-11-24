@@ -764,7 +764,7 @@ class LumoCurriculum {
                   title: 'Kontinente und Ozeane',
                   icon: Icons.public_rounded,
                   gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
-                  shortDesc: 'Länder & Hauptstädte',
+                  shortDesc: 'Land und Meer auf der Weltkarte',
                 ),
                 LearningTopic(
                   id: 's4_geschichte',
