@@ -6,7 +6,8 @@
   "integrated_flutter_sources": {
     "adaptive_tutor": "97ac9c19a8573f8d201d4cd14735610c22062337",
     "intro_android_qa": "809a649ac6f1bfa183079ba1857e3dba3f789aca",
-    "guarded_chess_and_coverage": "65bc96d3a8feeac431048dd5ebb79c16410120a0"
+    "guarded_chess_and_coverage": "65bc96d3a8feeac431048dd5ebb79c16410120a0",
+    "recognition_voice": "222460d8e5a9de3a23c855e8fbbbcc82bcdc243a"
   },
   "integrated_native_sources": {
     "world_quests_cards_dialogues": "e0f70a3afa134df895989fbab132470419f70341",
@@ -23,7 +24,17 @@
     "flutter_targeted_failures": 0,
     "flutter_targeted_skips": 0,
     "godot_checks": 1098,
-    "godot_65_bone_gait": "PASS"
+    "godot_65_bone_gait": "PASS",
+    "recognition_voice_regression": {
+      "passed": 74,
+      "failed": 0,
+      "skipped": 0,
+      "new_widget_tests_included": 11,
+      "analysis_errors": 0,
+      "analysis_warnings": 0,
+      "analysis_infos": 0,
+      "evidence": "docs/evidence/build-2081-flutter-20261124/recognition-voice/"
+    }
   },
   "apk_acceptance": "Pending exact-source GitHub APK build and real Android emulator tour. Local source tests do not certify an APK or physical-device performance.",
   "previous_intermediate_flutter": "5c086af2fa967f743d5801b4be23c15efbbb88ba",

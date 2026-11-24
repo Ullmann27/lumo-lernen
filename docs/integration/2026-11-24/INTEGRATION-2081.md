@@ -25,6 +25,7 @@ Zusätzlich wurden die zugänglichen älteren Projektberichte und ausführbaren 
 
 - Exakte Quell-IDs: `INTEGRATION-2081.json`.
 - Lern-/Schachvergleich: `docs/handover/BUILD_2081_FLUTTER_COVERAGE_20261124.md`, tatsächliche lokale Logs unter `docs/evidence/build-2081-flutter-20261124/`. 58 gezielte Flutter-Tests bestanden; der neue Schachtest schlägt gegen die alte Implementierung nachvollziehbar fehl.
+- Direkte Spracheingabe: `docs/handover/BUILD_2081_RECOGNITION_VOICE_20261124.md`; 74 Erkennungs-/Sprachprüfungen bestanden, einschließlich elf neuer Widgettests. Statische Analyse ohne Fehler, Warnungen oder Hinweise. Diese Tests verwenden kontrollierte native Rückmeldungen und behaupten keine physische Mikrofonaufnahme.
 - 47 gezielte Python-Prüfungen für Intro, Profilanlage und native Spielstarts bestanden.
 - Godot: `docs/handoffs/LUMO_2081_NATIVE_INTEGRATION_20261124.md` im gepinnten Repository; 1098 Prüfpunkte und die 65-Knochen-Gangprüfung bestanden unter 4.6.3. Alle vorhandenen Charakter-/Modell-/Texturdateien gegenüber dem alten Pin bleiben bytegleich.
 - Die Pipeline führt jetzt die vollständige Flutter-Suite aus, zusätzlich die fünf strikten World-Prüfungen, dann den signierten APK-Bau und die echte Android-Tour samt Datensicherung. Alle vorhandenen Paket-/Signatur-/PCK-/SHA-Prüfungen bleiben bestehen.
