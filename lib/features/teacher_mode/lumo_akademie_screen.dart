@@ -153,7 +153,7 @@ class LumoCurriculum {
                   title: '✨ Schreibcoach LIVE',
                   icon: Icons.draw_rounded,
                   gradient: [Color(0xFFEC4899), Color(0xFFDB2777)],
-                  shortDesc: 'Lumo schaut beim Schreiben zu!',
+                  shortDesc: 'Buchstaben schreiben, Lumo schaut zu',
                 ),
                 LearningTopic(
                   id: 'd1_buchstaben_alle',
