@@ -119,7 +119,8 @@ void main() {
           grade: app.state.grade, subject: app.state.subject, unit: app.state.unit);
       final match = addition.firstMatch(task.prompt);
       expect(match, isNotNull, reason: task.prompt);
-      final answer = int.parse(match!.group(1)!) + int.parse(match.group(2)!);
+      final matched = match!;
+      final answer = int.parse(matched.group(1)!) + int.parse(matched.group(2)!);
       expect(answer, inInclusiveRange(0, 100));
       expect(task.answer, '$answer');
       expect(task.choices, contains(task.answer));
