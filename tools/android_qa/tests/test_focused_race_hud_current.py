@@ -78,12 +78,15 @@ class CurrentFocusedRaceHudTests(unittest.TestCase):
         actual = focused_race_hud_text(FIXTURES / 'update-0.png')
         self.assertTrue(focused_race_hud_visible(actual), actual)
         for caption in ('Weiterfahren', 'Kleine Pause', 'geschafft', 'Noch ein Rennen'):
-            frame = {'text': caption, 'lines': [{'text': caption}]}
+            # Full-frame OCR contract: no guide button is observed in this overlay.
+            frame = {'text': caption, 'lines': [{'text': caption}],
+                     'words': [], 'width': 2400, 'height': 1080}
             with self.subTest(caption=caption), tempfile.TemporaryDirectory() as work:
                 out = Path(work)
                 with patch.object(tour, '_shot', return_value=b'no-new-device-capture'), \
                         patch.object(tour, 'read_frame', return_value=frame), \
                         patch.object(tour, 'focused_race_hud_text', return_value=actual), \
+                        patch.object(tour, '_focused_icon_hud_lap', return_value='RUNDE 1/2'), \
                         patch.object(tour.time, 'monotonic', side_effect=[0, 0, 91]), \
                         patch.object(tour.time, 'sleep'), \
                         patch.object(tour.evidence, 'rendered_race_frame') as pixels, \
@@ -92,6 +95,7 @@ class CurrentFocusedRaceHudTests(unittest.TestCase):
                         tour.wait_race_hud(out)
                 report = json.loads((out / '21_race_hud_0-focused-hud.json').read_text())
                 self.assertTrue(report['three_hud_indicators'])
+                self.assertTrue(report['icon_hud_lap'])
                 self.assertFalse(report['not_paused_or_finished'])
                 self.assertFalse((out / '21_race_hud.png').exists())
                 pixels.assert_not_called()
