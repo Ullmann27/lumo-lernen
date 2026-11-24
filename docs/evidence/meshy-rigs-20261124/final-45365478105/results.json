@@ -210,7 +210,13 @@
     "proof": "publisher/PUBLICATION-STATUS.json",
     "release_url": null,
     "apk_download_url": null,
-    "public_bytes_verified": false
+    "public_bytes_verified": false,
+    "publisher_preflight": {
+      "run_id": 45385067930,
+      "status": "BLOCKED",
+      "credential_available": false,
+      "proof": "publisher/PUBLISHER-PREFLIGHT.json"
+    }
   },
   "update_channels": {
     "manual_2078": "Original APK verified; public release blocked after two publisher failures; no public download URL.",

@@ -286,6 +286,18 @@
       "source_job_id": 138386118647,
       "source_run_id": 45365478105,
       "source_attempt": 2
+    },
+    {
+      "path": "publisher/PUBLISHER-PREFLIGHT.json",
+      "original_local_path": "/tmp/lumo-2078-publisher-preflight-result/PUBLISHER-PREFLIGHT.json",
+      "bytes": 572,
+      "sha256": "bfb02ce4c8949373040f12c93678226ce28457733d08c557400feca288cb5558"
+    },
+    {
+      "path": "publisher/publisher-preflight-original.log",
+      "original_local_path": "GitHub connector job138413747264 original decoded log",
+      "bytes": 10638,
+      "sha256": "67ee27e3a04a3b4922f48471efac7bab8928859770698229ba70074f133b0449"
     }
   ]
 }

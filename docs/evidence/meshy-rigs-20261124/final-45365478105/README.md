@@ -96,7 +96,11 @@ Beide Originallogs melden: **Unable to determine if workflow can be created or u
 
 Der Retry veränderte weder Produktquellen, APK-Bytes, Signatur noch Berechtigungen. Nach dem zweiten Fehler bestätigte Root per read-only API **404 für Release und Tag**. Diese Beobachtung ist in [PUBLICATION-STATUS.json](publisher/PUBLICATION-STATUS.json) mit ihrer Herkunft gekennzeichnet; für dieses Dokumentations-Overlay wurde keine erneute Remoteabfrage ausgeführt. Beide Fehler bleiben Fehler. Es gibt hier **keinen öffentlichen APK-Link** und **keinen bereits bestandenen öffentlichen Voll-Download**.
 
-Der vorbereitete öffentliche Byteverifier wurde nicht aktiviert. Seine aktuelle Fassung verlangt den erfolgreichen Publisher-Retry und ist deshalb bei diesem Stand nicht startbar. Root sichert zuerst den Nachweischeckpoint und schließt anschließend den legitimen GitHub-Authentifizierungs-/Veröffentlichungsweg ab. Nach tatsächlicher Veröffentlichung muss der öffentliche Komplettdownload an genau diesen realen Veröffentlichungsweg gebunden und bytegeprüft werden.
+Der vorbereitete öffentliche Byteverifier wurde nicht aktiviert. Seine aktuelle Fassung verlangt den erfolgreichen Publisher-Retry und ist deshalb bei diesem Stand nicht startbar. Der Nachweischeckpoint ist gesichert. Der unten dokumentierte zusätzliche Zugangscheck bestimmt die verbleibende Voraussetzung; eine Browser-Anmeldung ist nicht als alleiniger Weg festgelegt. Nach tatsächlicher Veröffentlichung muss der öffentliche Komplettdownload an genau diesen realen Veröffentlichungsweg gebunden und bytegeprüft werden.
+
+## Nachtrag: verbundener GitHub-Zugang erneut belegt
+
+Der Connector hat den zusätzlichen read-only Workflow erfolgreich gespeichert und gestartet. Run `45385067930` / Job `138413747264` belegt die fehlende Bereitstellung des vorgesehenen Publisher-Zugangs für diesen Job. Der [vollständige Zugangsbericht](publisher/GITHUB-ACCESS-STATUS.md), das [Originalergebnis](publisher/PUBLISHER-PREFLIGHT.json) und das [Originallog](publisher/publisher-preflight-original.log) sind gesichert. Das ist keine neue Produkt- oder Veröffentlichungsprüfung. Keine weitere Browser-Anmeldung, Veröffentlichung oder Rechteänderung wurde daraus abgeleitet.
 
 ## Updatekanal und Grenzen
 

@@ -22,6 +22,10 @@ APK: **Lumo-Lernen-0.14.6-2078.apk**, **701.640.419 Bytes**,
 SHA256 `3e49c99c22d05f7003e4477911d0f72e20fd3447cf6f9d55f6ab805c5fbc8198`.
 Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, Version **0.14.6**, Code **2078**. Originalbytes und Testsignatur bleiben unverändert.
 
+## GitHub-Zugang und aktueller Veröffentlichungsblocker
+
+Der verbundene GitHub-Zugang ist bestätigt und schreibt erfolgreich. Der zusätzliche read-only Prüflauf [45385067930](https://github.com/Ullmann27/lumo-lernen/actions/runs/45385067930) belegt, dass das vorgesehene `LUMO_RELEASE_PUBLISH_TOKEN` diesem Job nicht zur Verfügung steht (`credential_available: false`). Die Originalpublisher bleiben FAIL; es wurde kein weiterer Veröffentlichungsversuch und keine Rechteänderung vorgenommen. [Originalnachweis und präzise Zugangsabgrenzung](docs/evidence/meshy-rigs-20261124/final-45365478105/publisher/GITHUB-ACCESS-STATUS.md).
+
 ## Verbleibende Grenzen und sichtbarer Restbefund
 
 - Im Sternenpost-Zeitfenster enthält das Tourlog **drei nichtfatale Godot-`can_process`-/Outside-tree-Meldungen**. Freiflug, Belohnung und Rückkehr bestanden; der genaue Aufrufer ist im Log nicht erkennbar. Keine Behauptung fehlerfreier Gesamtlogs.

@@ -1,3 +1,9 @@
+# Nachtrag: Fortsetzung über den verbundenen GitHub-Zugang
+
+Der Nutzer hat die Fortsetzung ausdrücklich über GitHub verlangt. Der Connectorzugang ist bestätigt; das für Actions vorgesehene Publisher-Secret ist im tatsächlichen Preflight nicht verfügbar. [Aktueller Befund](GITHUB-ACCESS-STATUS.md). Die unten beschriebene Browseranmeldung ist ein historischer, fehlgeschlagener Versuch und kein festgelegter nächster Pflichtschritt.
+
+---
+
 # Veröffentlichung der geprüften Originaldatei
 
 Die Qualitätsnachweise sind abgeschlossen. Die zwei automatischen Publisher-Versuche scheiterten beim Anlegen des Tags an GitHubs Timeout der Workflow-Rechteprüfung. Der öffentliche Release und der Tag waren nach beiden Versuchen nicht vorhanden. Die reguläre GitHub-Release-Seite verlangt eine Anmeldung.

@@ -43,5 +43,14 @@
   "release_url": null,
   "public_apk_url": null,
   "public_byte_verifier": "NOT_STARTED; the prepared retry-bound workflow requires retry SUCCESS and must not run after these two failures.",
-  "remaining_delivery_step": "Record the source/evidence checkpoint, then use the legitimate authenticated publication path. Verify the actual public APK bytes after publication."
+  "remaining_delivery_step": "Provision the already intended legitimate repository-bound publisher identity through the account owner, then bind an isolated 2078 publisher to original quality evidence and exact APK bytes. Do not retry the built-in token or require browser authentication as the only route.",
+  "publisher_preflight": {
+    "run_id": 45385067930,
+    "job_id": 138413747264,
+    "source_sha": "71a56e4500580779db014e508468d60a90eaf1fb",
+    "credential_available": false,
+    "proof": "PUBLISHER-PREFLIGHT.json",
+    "report": "GITHUB-ACCESS-STATUS.md",
+    "writes_performed": false
+  }
 }

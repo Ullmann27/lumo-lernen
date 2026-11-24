@@ -1,0 +1,14 @@
+{
+  "status": "BLOCKED",
+  "repository": "Ullmann27/lumo-lernen",
+  "credential_name": "LUMO_RELEASE_PUBLISH_TOKEN",
+  "expected_login": "Ullmann27",
+  "expected_user_id": 64243701,
+  "run_id": 45385067930,
+  "run_attempt": 1,
+  "source_sha": "71a56e4500580779db014e508468d60a90eaf1fb",
+  "writes_performed": false,
+  "scope": "Read-only availability and identity check; not proof of release permission or publication.",
+  "credential_available": false,
+  "reason": "The existing repository publisher credential is not available to this job. No fallback was attempted."
+}
