@@ -1,0 +1,226 @@
+name: Transport the unchanged verified LUMO 2078 APK
+
+# Based on export-lumo-2077-chunks.yml: copy one existing artifact only.
+# No build, signing, release, tag, or change to the original Android gates.
+on:
+  push:
+    branches: [support/lumo-2078-artifact-transport]
+    paths: [.github/workflows/export-lumo-2078-chunks.yml]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-2078-artifact-14908418202-transport
+  cancel-in-progress: false
+
+jobs:
+  transfer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_REPOSITORY: Ullmann27/lumo-lernen
+      SOURCE_SHA: 94cabcff7f6c568eddfe6805801f49a00ad58312
+      SOURCE_RUN: '45365478105'
+      ARTIFACT_ID: '14908418202'
+      ARTIFACT_BYTES: '701710167'
+      ARTIFACT_SHA256: 1b52eac413a54f1f8406a76f2880cccec3294c5e16b6ee0705f38e0b4dc2e97e
+      APK_BYTES: '701640419'
+      APK_SHA256: 3e49c99c22d05f7003e4477911d0f72e20fd3447cf6f9d55f6ab805c5fbc8198
+      NATIVE_SHA: c3f459eca88f659da1a9e4af1c990c804e715528
+      PCK_BYTES: '394293988'
+      PCK_SHA256: c5370a45b32fc72856dc4c0021d800f2e1189fdd47b2793f5a6016c04cf74578
+      CERTIFICATE_SHA256: a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+    steps:
+      - name: Bind the immutable original artifact and source run
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p source chunks proof
+          gh api "repos/$SOURCE_REPOSITORY/actions/artifacts/$ARTIFACT_ID" > proof/SOURCE-ARTIFACT.json
+          gh api "repos/$SOURCE_REPOSITORY/actions/runs/$SOURCE_RUN" > proof/SOURCE-RUN.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          artifact=json.loads(Path('proof/SOURCE-ARTIFACT.json').read_text())
+          run=json.loads(Path('proof/SOURCE-RUN.json').read_text())
+          assert artifact['id']==int(os.environ['ARTIFACT_ID'])
+          assert artifact['name']=='LUMO-2078-APK-'+os.environ['SOURCE_RUN']
+          assert artifact['expired'] is False
+          assert artifact['size_in_bytes']==int(os.environ['ARTIFACT_BYTES'])
+          assert artifact['digest']=='sha256:'+os.environ['ARTIFACT_SHA256']
+          assert artifact['workflow_run']['id']==int(os.environ['SOURCE_RUN'])
+          assert artifact['workflow_run']['head_sha']==os.environ['SOURCE_SHA']
+          assert run['id']==int(os.environ['SOURCE_RUN'])
+          assert run['head_sha']==os.environ['SOURCE_SHA']
+          assert run['repository']['full_name']==os.environ['SOURCE_REPOSITORY']
+          assert run['path']=='.github/workflows/lumo-2078-device-repair.yml'
+          # Android may still be running: transport makes no acceptance claim.
+          print('Original artifact identity verified; no build or release is performed.')
+          PY
+
+      - name: Download and verify the exact original artifact archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --retry-all-errors \
+            --proto '=https' --proto-redir '=https' \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$SOURCE_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" \
+            -o "$RUNNER_TEMP/lumo-2078-original.zip"
+          test "$(stat -c '%s' "$RUNNER_TEMP/lumo-2078-original.zip")" = "$ARTIFACT_BYTES"
+          printf '%s  %s\n' "$ARTIFACT_SHA256" "$RUNNER_TEMP/lumo-2078-original.zip" | sha256sum -c -
+
+      - name: Verify original provenance and split the unchanged APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os, re, shutil, zipfile
+          from pathlib import Path
+
+          def digest(path):
+              with path.open('rb') as stream:
+                  return hashlib.file_digest(stream,'sha256').hexdigest()
+
+          env=os.environ
+          original_name='Lumo-Lernen-Neu.apk'
+          delivery_name='Lumo-Lernen-0.14.6-2078.apk'
+          expected_sha=env['APK_SHA256']
+          expected_bytes=int(env['APK_BYTES'])
+          metadata_names=(
+              'APK-SHA256.txt','SHA256SUMS.txt','APK-VERIFICATION.json',
+              'BUILD-PROVENANCE.json','GODOT-SOURCE.json','APP-VERSION.txt',
+              'KART-DRIVER-PACKAGE.json','KART-DRIVER-PACKAGE.log',
+          )
+          archive=Path(env['RUNNER_TEMP'])/'lumo-2078-original.zip'
+          assert archive.stat().st_size==int(env['ARTIFACT_BYTES'])
+          assert digest(archive)==env['ARTIFACT_SHA256']
+          with zipfile.ZipFile(archive) as package:
+              names=package.namelist()
+              assert len(names)==len(set(names))
+              assert set(names)==set(metadata_names)|{original_name}
+              assert package.getinfo(original_name).file_size==expected_bytes
+              for name in metadata_names:
+                  assert 0<package.getinfo(name).file_size<4*1024*1024
+                  (Path('proof')/name).write_bytes(package.read(name))
+              with package.open(original_name) as reader, (Path('source')/original_name).open('xb') as writer:
+                  shutil.copyfileobj(reader,writer,1024*1024)
+
+          read=lambda name: json.loads((Path('proof')/name).read_text())
+          verification=read('APK-VERIFICATION.json')
+          provenance=read('BUILD-PROVENANCE.json')
+          native=read('GODOT-SOURCE.json')
+          drivers=read('KART-DRIVER-PACKAGE.json')
+          expected_native={
+              'repository':'https://github.com/Ullmann27/lumo-godot.git',
+              'revision':env['NATIVE_SHA'],'engine':'4.6.3',
+          }
+          expected_pack={**expected_native,'bytes':int(env['PCK_BYTES']),'pck_sha256':env['PCK_SHA256']}
+          assert native==expected_native
+          for record in (verification,provenance):
+              assert record['bytes']==expected_bytes and record['sha256']==expected_sha
+              assert record['package']=='dev.ullmann.lumo.lumo_lernen.coachpreview'
+              assert record['versionName']=='0.14.6' and record['versionCode']==2078
+              assert set(record['abis'])=={'arm64-v8a','x86_64'}
+              assert record['signingCertificateSha256']==env['CERTIFICATE_SHA256']
+              assert record['godot']==expected_pack
+          assert provenance['flutter_source_commit']==env['SOURCE_SHA']
+          assert provenance['tracked_source_clean'] is True
+          assert (Path('proof')/'APP-VERSION.txt').read_text().strip()=='version: 0.14.6+2078'
+          assert (Path('proof')/'APK-SHA256.txt').read_text().split()[0]==expected_sha
+          checksum_lines=(Path('proof')/'SHA256SUMS.txt').read_text().splitlines()
+          assert len(checksum_lines)==1
+          assert re.fullmatch(re.escape(expected_sha)+r' [ *]'+re.escape(original_name),checksum_lines[0])
+          assert drivers['status']=='PASS' and drivers['apk_sha256']==expected_sha
+          assert drivers['flutter_source_commit']==env['SOURCE_SHA']
+          assert drivers['godot']==expected_pack and len(drivers['packaged_scenes'])==27
+          apk=Path('source')/original_name
+          assert apk.stat().st_size==expected_bytes and digest(apk)==expected_sha
+
+          # 240 MiB payloads leave room for ZIP headers below the 256 MiB target.
+          part_limit=240*1024*1024
+          part_count=(expected_bytes+part_limit-1)//part_limit
+          assert part_count==3
+          suffix=env['GITHUB_RUN_ID']+'-'+env['GITHUB_RUN_ATTEMPT']
+          parts=[]
+          with apk.open('rb') as reader:
+              for index in range(part_count):
+                  data=reader.read(part_limit)
+                  assert data
+                  name=delivery_name+f'.part-{index:02d}'
+                  (Path('chunks')/name).write_bytes(data)
+                  parts.append({'index':index,'name':name,'bytes':len(data),
+                      'sha256':hashlib.sha256(data).hexdigest(),
+                      'artifact':f'LUMO-2078-APK-PART-{index:02d}-{suffix}'})
+              assert reader.read(1)==b''
+          combined=hashlib.sha256()
+          combined_bytes=0
+          for part in parts:
+              path=Path('chunks')/part['name']
+              assert 0<part['bytes']<=part_limit
+              assert path.stat().st_size==part['bytes'] and digest(path)==part['sha256']
+              with path.open('rb') as reader:
+                  while data:=reader.read(1024*1024):
+                      combined.update(data)
+                      combined_bytes+=len(data)
+          assert combined_bytes==expected_bytes and combined.hexdigest()==expected_sha
+          original_metadata=[{'name':name,'bytes':(Path('proof')/name).stat().st_size,
+              'sha256':digest(Path('proof')/name)} for name in metadata_names]
+          manifest={
+              'schema_version':1,
+              'purpose':'Lossless transport of the original APK; no rebuild, signing, release or Android acceptance.',
+              'repository':env['SOURCE_REPOSITORY'],'source_sha':env['SOURCE_SHA'],
+              'source_run_id':int(env['SOURCE_RUN']),'source_artifact_id':int(env['ARTIFACT_ID']),
+              'source_artifact_bytes':int(env['ARTIFACT_BYTES']),
+              'source_artifact_sha256':env['ARTIFACT_SHA256'],
+              'transfer_run_id':int(env['GITHUB_RUN_ID']),
+              'transfer_run_attempt':int(env['GITHUB_RUN_ATTEMPT']),
+              'transfer_commit':env['GITHUB_SHA'],
+              'apk':{'source_name':original_name,'name':delivery_name,
+                  'bytes':expected_bytes,'sha256':expected_sha,
+                  'package':verification['package'],'versionName':verification['versionName'],
+                  'versionCode':verification['versionCode'],'abis':verification['abis'],
+                  'signingCertificateSha256':verification['signingCertificateSha256']},
+              'godot':expected_pack,'part_limit_bytes':part_limit,'parts':parts,
+              'original_metadata':original_metadata,'concatenation_verified':True,
+          }
+          (Path('proof')/'TRANSPORT-MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          (Path('proof')/'PARTS-SHA256SUMS.txt').write_text(''.join(
+              f"{part['sha256']}  {part['name']}\n" for part in parts))
+          print(json.dumps(manifest,indent=2))
+          PY
+
+      - name: Save original metadata and verified transport manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2078-TRANSPORT-METADATA-${{ github.run_id }}-${{ github.run_attempt }}
+          path: proof/
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2078-APK-PART-00-${{ github.run_id }}-${{ github.run_attempt }}
+          path: chunks/Lumo-Lernen-0.14.6-2078.apk.part-00
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2078-APK-PART-01-${{ github.run_id }}-${{ github.run_attempt }}
+          path: chunks/Lumo-Lernen-0.14.6-2078.apk.part-01
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2078-APK-PART-02-${{ github.run_id }}-${{ github.run_attempt }}
+          path: chunks/Lumo-Lernen-0.14.6-2078.apk.part-02
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 30
