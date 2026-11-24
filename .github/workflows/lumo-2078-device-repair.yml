@@ -12,6 +12,9 @@ on:
       - scripts/verify_kart_driver_package.py
       - scripts/tests/test_verify_kart_driver_package.py
       - .github/probes/lumo_kart_driver_assets_probe.gd
+      - .github/probes/creative_android_probe.py
+      - scripts/probes/pr207_android_ui_probe.py
+      - tools/android_qa/tests/test_live_reader_recovery.py
 
 permissions:
   contents: read
@@ -45,12 +48,13 @@ jobs:
           assert cfg['engine']=='4.6.3'
           assert re.search(r'^version:\s*0\.14\.6\+2078\s*$',Path('pubspec.yaml').read_text(),re.M)
           PY
+          python3 -m unittest tools.android_qa.tests.test_live_reader_recovery -v
           bash scripts/install_godot_for_build.sh
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y xvfb xauth libgl1-mesa-dri python3-pil
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb xauth libgl1-mesa-dri python3-pil python3-numpy
           SOURCE="$(python3 -c 'import json;print(json.load(open("config/godot-source.json"))["revision"])')"
           git clone --filter=blob:none --no-checkout https://github.com/Ullmann27/lumo-godot.git native-source
-          git -C native-source sparse-checkout set --no-cone '/assets/' '/scripts/' '/scenes/' '/config/' '/tools/' '/project.godot' '/export_presets.cfg' '/icon.svg' '/.gitignore' '!*.blend' '!*.blend1' '!*.zip' '!*.mp4' '!*.psd'
+          git -C native-source sparse-checkout set --no-cone '/assets/' '/art/lumo_kart/meshy/20261123/drivers/' '/scripts/' '/scenes/' '/config/' '/tools/' '/project.godot' '/export_presets.cfg' '/icon.svg' '/.gitignore' '!*.blend' '!*.blend1' '!*.zip' '!*.mp4' '!*.psd'
           git -C native-source checkout --detach "$SOURCE"
           test "$(git -C native-source rev-parse HEAD)" = "$SOURCE"
           mkdir -p device-proof
@@ -66,10 +70,16 @@ jobs:
           set -euo pipefail
           python3 native-source/tools/run_godot_probe.py --log device-proof/import.log --timeout 900 --required 'Godot Engine v4.6.3' -- \
             godot --headless --single-threaded-scene --path native-source --editor --import --quit
-          for probe in lumo_world_regression lumo_world_hud_regression lumo_world_device_regression kart_extra_drivers_regression kart_spatial_menu_regression kart_lan_entry_layout_regression kart_neon_home_regression; do
+          /usr/bin/python3 native-source/tools/lumo_kart_art/drivers/validate_meshy_rigs.py \
+            --root native-source --output device-proof/meshy-rigs.json
+          for probe in lumo_world_regression lumo_world_hud_regression lumo_world_device_regression lumo_world_camera_regression kart_extra_drivers_regression kart_spatial_menu_regression kart_lan_entry_layout_regression kart_neon_home_regression; do
             python3 native-source/tools/run_godot_probe.py --log "device-proof/$probe.log" --timeout 600 -- \
               godot --headless --path native-source --script "res://scripts/tests/$probe.gd"
           done
+          python3 native-source/tools/run_godot_probe.py --log device-proof/lumo_rival_rig_contract_regression.log --timeout 600 --required '[RivalRig] checks=' -- \
+            godot --headless --path native-source --script res://scripts/tests/lumo_rival_rig_contract_regression.gd
+          python3 native-source/tools/run_godot_probe.py --log device-proof/lumo_kart_production_driver_regression.log --timeout 600 --required '[ProductionDriver] checks=' -- \
+            godot --headless --path native-source --script res://scripts/tests/lumo_kart_production_driver_regression.gd
           python3 native-source/tools/run_godot_probe.py --log device-proof/kart_driver_gesture_regression.log --timeout 600 --required DRIVER_GESTURE_PASS -- \
             godot --headless --path native-source --script res://scripts/tests/kart_driver_gesture_regression.gd
           python3 native-source/tools/run_godot_probe.py --log device-proof/kart_meshy_assets_regression.log --timeout 600 -- \
@@ -351,12 +361,15 @@ jobs:
           EXPECTED="$(cut -d' ' -f1 release/SHA256SUMS.txt)"
           printf '%s  %s\n' "$EXPECTED" release/Lumo-Lernen-Neu.apk | sha256sum -c -
           mv release/Lumo-Lernen-Neu.apk "release/$ASSET"
+          printf '%s  %s\n' "$EXPECTED" "$ASSET" > release/SHA256SUMS.txt
           NATIVE="$(python3 -c 'import json;print(json.load(open("release/GODOT-SOURCE.json"))["revision"])')"
           cat > release/RELEASE-NOTES.md <<EOF
           ## Lumo 0.14.6+2078 — korrigierte Testversion
 
           Neue vollständige Android-Test-APK mit reparierter Kartmontage, freier Garagenansicht,
           korrigierter Dorf-/Stadtgrenze und geprüften Fold-Bedienelementen.
+          Alle neun originalen Meshy-Gegner besitzen nun Körper- und Gesichtsrigs mit
+          26 Knochen, zwölf Animationen und drei expliziten Detailstufen pro Figur.
 
           Flutter-Commit: $GITHUB_SHA
           Godot-Commit: $NATIVE
@@ -381,7 +394,7 @@ jobs:
           gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --prerelease \
             --title 'Lumo 0.14.6+2078 — Gerätefehler korrigiert' --notes-file release/RELEASE-NOTES.md \
             "release/$ASSET" release/APK-VERIFICATION.json release/BUILD-PROVENANCE.json release/GODOT-SOURCE.json \
-            release/KART-DRIVER-PACKAGE.json
+            release/KART-DRIVER-PACKAGE.json release/SHA256SUMS.txt
           gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" > release/RELEASE.json
           python3 - "$ASSET" <<'PY'
           import json,sys

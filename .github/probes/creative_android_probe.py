@@ -126,15 +126,19 @@ def read_live_nodes(out: Path, name: str) -> list:
     for attempt in range(3):
         try:
             return _original_live_nodes(out, name)
-        except (RemoteDisconnected, json.JSONDecodeError):
-            if attempt == 2:
-                raise
+        except (RemoteDisconnected, json.JSONDecodeError) as error:
             record = out / 'ui-reader-recovery.json'
             events = json.loads(record.read_text()) if record.exists() else []
-            events.append({'read':name, 'attempt':attempt+1,
-                           'reason':'accessibility reader returned an incomplete response'})
+            event = {'read':name, 'attempt':attempt+1,
+                     'reason':'accessibility reader returned an incomplete response',
+                     'error_type':type(error).__name__, 'retry':attempt < 2,
+                     'reader_restarted':False}
+            events.append(event)
             record.write_text(json.dumps(events, indent=2)+'\n')
-            live._device = None
+            if attempt == 2:
+                raise
+            event['reader_restarted'] = live.restart_reader(out)
+            record.write_text(json.dumps(events, indent=2)+'\n')
             time.sleep(1)
     raise RuntimeError('Live accessibility retry exhausted')
 

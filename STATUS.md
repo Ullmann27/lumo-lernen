@@ -1,3 +1,17 @@
+# Aktuell: LUMO 0.14.6+2078 mit allen neun Meshy-Fahrern
+
+Stand dieses Quellcheckpoints: 24. November 2026, vor dem vollständigen neuen Build.
+
+Godot ist vollständig veröffentlicht: `19113a97cc5bf58514ea5bd82cc190af0b67817c`, Baum `87a958d9f4e34f873ec070eee5eb0401c3da6974`. Alle 153 übertragenen Dateien stimmen mit dem geprüften lokalen Integrationsstand überein. Die App pinnt genau diesen Remote-Commit. Enthalten sind 27 vollständig geriggte Meshy-LOD-Dateien, neun Porträts, die vorhandenen 2078-Kartreparaturen und der wiederaufgenommene World-Kamerafix.
+
+Der vorherige Android-Abbruch beim Onboarding-Leseserver ist gezielt repariert und mit acht Regressionen geprüft. Der neue Workflow enthält außerdem den bestandenen 27-Punkte-Kameratest. Der vollständige 2078-Lauf muss den kombinierten Quellstand, Bilder, APK und echte Android-Aktionen erneut bestätigen; ältere APKs oder Prüfergebnisse sind kein Ersatz dafür.
+
+Fortsetzung: den Workflow `lumo-2078-device-repair.yml` auf `repair/lumo-device-bugs-2078` bis zum Ende verfolgen. Nur die dort tatsächlich geprüfte und veröffentlichte APK als neuen Download ausgeben. Kein Merge nach main ist erfolgt. [Quellstand und Nachweise](docs/evidence/meshy-rigs-20261124/README.md).
+
+---
+
+## Historische Checkpoints früherer Builds
+
 ## Aktuell: vollständiger Wiederholungslauf für Auftrag 49
 
 Stand: 23. November 2026, 16:51 Uhr Wien. Version **0.14.2+2071**, nativer Pin **e0460c0b3eda9d42e9d963eb2236dc8d9c7b5913**. Dieser Commit startet den vollständigen Standardlauf erneut. Ein neues Android-Ergebnis liegt beim Commit noch nicht vor.

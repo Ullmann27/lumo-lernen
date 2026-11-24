@@ -20,16 +20,35 @@ _device = None
 _original_tap_label = probe.tap_label
 
 
+def _configure_reader(out: Path) -> None:
+    _device.jsonrpc.setConfigurator({
+        'waitForIdleTimeout': 0,
+        'waitForSelectorTimeout': 0,
+    })
+    config = _device.jsonrpc.getConfigurator()
+    (out / 'uiautomator-config.json').write_text(json.dumps(config, indent=2) + '\n')
+
+
+def restart_reader(out: Path) -> bool:
+    """Restart only the probe server, retaining its owned process handle.
+
+    Reconnecting a new Python client only pings an existing server. Run
+    45342477617 exhausted all three reads against that same broken server.
+    No application, profile, window, input event or acceptance gate changes.
+    """
+    if _device is None:
+        return False
+    _device.stop_uiautomator()
+    _device.start_uiautomator()
+    _configure_reader(out)
+    return True
+
+
 def live_nodes(out: Path, name: str) -> list:
     global _device
     if _device is None:
         _device = u2.connect()
-        _device.jsonrpc.setConfigurator({
-            'waitForIdleTimeout': 0,
-            'waitForSelectorTimeout': 0,
-        })
-        config = _device.jsonrpc.getConfigurator()
-        (out / 'uiautomator-config.json').write_text(json.dumps(config, indent=2) + '\n')
+        _configure_reader(out)
     xml = _device.dump_hierarchy(compressed=False, pretty=False)
     (out / (name + '.xml')).write_text(xml)
     hierarchy = ET.fromstring(xml)
