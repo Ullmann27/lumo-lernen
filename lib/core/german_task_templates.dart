@@ -1129,6 +1129,9 @@ const List<_LetterSound> _letterSounds = <_LetterSound>[
   _LetterSound('iiii', 'I', <String>['I', 'E', 'A', 'U']),
   _LetterSound('oooo', 'O', <String>['O', 'A', 'U', 'E']),
   _LetterSound('uuuu', 'U', <String>['U', 'O', 'A', 'I']),
+  _LetterSound('jjjj', 'J', <String>['J', 'I', 'G', 'L']),
+  _LetterSound('auuu', 'Au', <String>['Au', 'Ei', 'Eu', 'A']),
+  _LetterSound('eiii', 'Ei', <String>['Ei', 'Au', 'E', 'I']),
 ];
 
 const List<_FamilyItem> _families = <_FamilyItem>[

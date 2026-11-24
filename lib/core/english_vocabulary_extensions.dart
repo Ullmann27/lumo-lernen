@@ -9,7 +9,13 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'orange': 'orange',
       'pink': 'rosa',
       'purple': 'lila',
-      'grey': 'grau'
+      'grey': 'grau',
+      'silver': 'silbern',
+      'gold': 'golden',
+      'dark blue': 'dunkelblau',
+      'light green': 'hellgrün',
+      'turquoise': 'türkis',
+      'colourful': 'bunt'
     },
     'Tiere': {
       'bird': 'Vogel',
@@ -21,7 +27,11 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'sheep': 'Schaf',
       'duck': 'Ente',
       'mouse': 'Maus',
-      'frog': 'Frosch'
+      'frog': 'Frosch',
+      'chicken': 'Huhn',
+      'goat': 'Ziege',
+      'donkey': 'Esel',
+      'chick': 'Küken'
     },
     'Begruessung': {
       'hi': 'hallo',
@@ -33,7 +43,11 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'yes': 'ja',
       'no': 'nein',
       'sorry': 'Entschuldigung',
-      'see you': 'bis bald'
+      'see you': 'bis bald',
+      'good afternoon': 'guten Nachmittag',
+      'How are you?': 'Wie geht es dir?',
+      "I'm fine.": 'Mir geht es gut.',
+      'My name is Lumo.': 'Ich heiße Lumo.'
     },
     'Familie': {
       'grandmother': 'Großmutter',
@@ -42,7 +56,13 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'uncle': 'Onkel',
       'cousin': 'Cousin oder Cousine',
       'baby': 'Baby',
-      'family': 'Familie'
+      'family': 'Familie',
+      'parents': 'Eltern',
+      'grandparents': 'Großeltern',
+      'son': 'Sohn',
+      'daughter': 'Tochter',
+      'mum': 'Mama',
+      'dad': 'Papa'
     },
     'Zahlen': {
       'one': 'eins',
@@ -54,7 +74,13 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'seven': 'sieben',
       'eight': 'acht',
       'nine': 'neun',
-      'ten': 'zehn'
+      'ten': 'zehn',
+      'zero': 'null',
+      'eleven': 'elf',
+      'twelve': 'zwölf',
+      'thirteen': 'dreizehn',
+      'fourteen': 'vierzehn',
+      'fifteen': 'fünfzehn'
     },
     'Körper': {
       'hand': 'Hand',
@@ -69,7 +95,13 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'toes': 'Zehen',
       'nose': 'Nase',
       'mouth': 'Mund',
-      'head': 'Kopf'
+      'head': 'Kopf',
+      'tooth': 'Zahn',
+      'tummy': 'Bauch',
+      'back': 'Rücken',
+      'neck': 'Hals',
+      'face': 'Gesicht',
+      'cheek': 'Wange'
     },
     'Schulsachen': {
       'pen': 'Stift',
@@ -79,7 +111,7 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'desk': 'Schultisch',
       'chair': 'Sessel',
       'pencil case': 'Federpennal',
-      'paper': 'Papier'
+      'paper': 'Papier',
     },
   },
   2: {
@@ -116,7 +148,9 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'teeth': 'Zähne',
       'neck': 'Hals',
       'face': 'Gesicht',
-      'feet': 'Füße'
+      'feet': 'Füße',
+      'chin': 'Kinn',
+      'lips': 'Lippen'
     },
     'Spielzeug': {
       'teddy bear': 'Teddybär',
@@ -128,7 +162,13 @@ const englishVocabularyExtensions = <int, Map<String, Map<String, String>>>{
       'skipping rope': 'Springschnur',
       'board game': 'Brettspiel',
       'bicycle': 'Fahrrad',
-      'scooter': 'Roller'
+      'scooter': 'Roller',
+      'doll': 'Puppe',
+      'marbles': 'Murmeln',
+      'swing': 'Schaukel',
+      'slide': 'Rutsche',
+      'balloon': 'Luftballon',
+      'robot': 'Roboter'
     },
     'Tiere': {
       'lion': 'Löwe',

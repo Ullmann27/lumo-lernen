@@ -565,17 +565,24 @@ class LumoCurriculum {
               topics: const [
                 LearningTopic(
                   id: 's3_oesterreich',
-                  title: 'Österreich',
+                  title: 'Bundesländer',
                   icon: Icons.map_rounded,
                   gradient: [Color(0xFF10A894), Color(0xFF34D399)],
                   shortDesc: 'Bundesländer & Hauptstädte',
                 ),
                 LearningTopic(
                   id: 's3_natur',
-                  title: 'Natur',
+                  title: 'Pflanzen',
                   icon: Icons.park_rounded,
                   gradient: [Color(0xFF059669), Color(0xFF34D399)],
-                  shortDesc: 'Blüte, Humus, Nadelbäume',
+                  shortDesc: 'Blüte, Wurzel, Nadelbäume',
+                ),
+                LearningTopic(
+                  id: 's3_tiere',
+                  title: 'Tiere',
+                  icon: Icons.pets_rounded,
+                  gradient: [Color(0xFFB45309), Color(0xFFF59E0B)],
+                  shortDesc: 'Lebensräume und Merkmale',
                 ),
                 LearningTopic(
                   id: 's3_wetter',
@@ -746,10 +753,10 @@ class LumoCurriculum {
               topics: const [
                 LearningTopic(
                   id: 'd4_grammatik',
-                  title: 'Grammatik',
+                  title: 'Die 4 Fälle',
                   icon: Icons.psychology_rounded,
                   gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: 'Die vier Fälle',
+                  shortDesc: 'Wer? Wessen? Wem? Wen?',
                 ),
                 LearningTopic(
                   id: 'd4_aufsatz',
@@ -1158,6 +1165,15 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
           enrolledGrade: widget.appState.state.grade,
         ),
       ));
+      return;
+    }
+    // Der Schreibcoach ist ein eigenes Schreibmodul, keine Lautierungs-Quizrunde.
+    if (t.id == 'd1_schreibcoach') {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => LumoWritingCoachScreen(appState: widget.appState),
+        ),
+      );
       return;
     }
     // Viewing any non-enrolled grade is real practice, not a teaser or

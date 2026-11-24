@@ -129,7 +129,7 @@ void main() {
 
   test('Wörter lesen: genug Rätsel je Klasse', () {
     final factory = ExerciseFactory(seed: 3);
-    for (final entry in <int, int>{1: 9, 2: 14, 4: 16}.entries) {
+    for (final entry in <int, int>{1: 17, 2: 22, 4: 24}.entries) {
       final prompts = <String>{};
       for (var i = 0; i < 600; i++) {
         final task = factory.next(
