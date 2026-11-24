@@ -16,9 +16,11 @@ from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_ope
 import zipfile
 
 from lumo_team_b_reviewed_publish import (
+    BACKUP_STEPS, TOUR_STEPS,
     archive_matches, decode, digest, read, require, same, save,
-    verify_android, verify_metadata,
+    passed_steps, verify_identity, verify_metadata,
 )
+from verify_native_start_diagnostics import verify as verify_native_starts
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools/nextgen'))
 from public_learning_download import download_public
@@ -185,6 +187,40 @@ def prepare(order):
             output.write(f'{field}={order[field]}\n')
 
 
+def verify_installed_package(order, installed, uid_output):
+    """Check the unmodified PackageManager records emitted by the 2081 tour."""
+    require(isinstance(installed, dict), 'Tour installed package must be a PackageManager record')
+    same(set(installed), {'userId', 'firstInstallTime', 'versionCode', 'versionName'},
+         'Tour installed package fields')
+    same(installed['versionCode'], f'{order["version_code"]} minSdk=24 targetSdk=36',
+         'Tour installed versionCode and SDKs')
+    same(installed['versionName'], order['version_name'], 'Tour installed versionName')
+    require(isinstance(installed['firstInstallTime'], str)
+            and bool(installed['firstInstallTime'].strip()), 'Tour install time missing')
+    match = re.fullmatch(r'package:' + re.escape(PACKAGE) + r'\s+uid:([1-9][0-9]*)\s*', uid_output)
+    require(match is not None, 'Tour PackageManager package and UID missing or different')
+    same(installed['userId'], match[1], 'Tour installed package UID')
+
+
+def verify_android(order, split, tour, backup, native, gate, installed_uid):
+    # The current producer writes installed_package as dumpsys metadata, not a
+    # package-name string. Retain the raw report and bind its UID to the separate
+    # unmodified `cmd package list packages -U PACKAGE` capture.
+    emulator_hash = split['packages']['x86_64']['sha256']
+    same(tour.get('apk_sha256'), emulator_hash, 'Tour emulator APK')
+    verify_installed_package(order, tour.get('installed_package'), installed_uid)
+    same(tour.get('fatal_crashes'), 0, 'Tour fatal crashes')
+    steps = passed_steps(tour, TOUR_STEPS, 'Tour')
+    verify_identity(order, steps['apk-identity'], emulator_hash)
+    steps = passed_steps(backup, BACKUP_STEPS, 'Backup')
+    verify_identity(order, backup.get('identity', {}), emulator_hash)
+    same(steps['apk-identity'].get('installed_sha256'), emulator_hash, 'Backup installed APK')
+    for key in ('installed', 'installed_after'):
+        same(backup.get(key, {}).get('sha256'), emulator_hash, 'Backup ' + key)
+    same(native.get('package'), PACKAGE, 'Native diagnostics package')
+    same(gate, verify_native_starts(native), 'Original native-start gate')
+
+
 def verify_files(order, build_tools):
     verify_api(order, read(ROOT / 'proof/ORIGINAL-RUN-AND-ARTIFACTS.json'))
     same(read(ROOT / 'proof/PUBLICATION-ORDER.json'), order, 'Prepared order')
@@ -223,10 +259,12 @@ def verify_files(order, build_tools):
         require(rows and all(row.get('ok') is True for row in rows), 'No failed Android step may be omitted')
         require(len({row['step'] for row in rows}) == len(rows), 'Duplicate Android step')
     verify_android(order, split, tour, backup, read(android / 'native-starts.json'),
-                   read(android / 'NATIVE-GAME-STARTS.json'))
+                   read(android / 'NATIVE-GAME-STARTS.json'),
+                   (android / 'installed-package-uid.txt').read_text())
     archive_matches(ROOT / 'android/LUMO-ANDROID-PRUEFBELEGE.zip', {
         'tour/' + name: android / name for name in ('tour-result.json', 'local-backup/backup-result.json',
-            'native-starts.json', 'NATIVE-GAME-STARTS.json', 'SPLIT-APK-IDENTITY.json')})
+            'native-starts.json', 'NATIVE-GAME-STARTS.json', 'SPLIT-APK-IDENTITY.json',
+            'installed-package-uid.txt')})
     archive_matches(metadata / 'LUMO-INTEGRATIONSBELEGE.zip', {
         'build-proof/' + name: metadata / name for name in ('APK-VERIFICATION.json', 'SPLIT-APK-IDENTITY.json')})
     release = ROOT / 'release'

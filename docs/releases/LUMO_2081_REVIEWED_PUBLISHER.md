@@ -21,6 +21,14 @@ Der Actions-Zugang liest die Actions-Metadaten auch unmittelbar vor Veröffentli
 
 ## Bereits ausgeführte technische Prüfung
 
-11 neue Veröffentlichungsschutz-Tests und 24 bestehende Prüfungen der wiederverwendeten Metadaten-/Android-Verträge bestanden. YAML, Shell-Schritte, Python-Syntax und Whitespace wurden geprüft. Dies ist kein Nachweis einer bereits gebauten oder veröffentlichten 2081-APK. Original-Bau und Android-Abnahme bleiben zwingende Voraussetzungen.
+15 Veröffentlichungsschutz-Tests für 2081 und 48 bestehende Prüfungen der verwandten Publisher bestanden. Python-Syntax und Whitespace der Schemakorrektur wurden geprüft. Diese Tests ersetzen weder die tatsächliche Android-Abnahme noch den verifizierten öffentlichen APK-Download.
+
+### Schemaabgleich mit den echten Android-Belegen
+
+Die Produktionsprobe schreibt `tour-result.json.installed_package` als PackageManager-Datensatz mit `userId`, `firstInstallTime`, `versionCode` und `versionName`. Die zuvor wiederverwendete Prüfung erwartete hier irrtümlich einen Paketnamen als Zeichenkette. Der auf 2081 begrenzte Validator prüft jetzt die unveränderte tatsächliche Struktur, Version `0.14.8`, `versionCode=2081`, `minSdk=24` und `targetSdk=36`. Der Paketname und dieselbe UID müssen zusätzlich im originalen `installed-package-uid.txt` stehen; auch diese Datei muss mit ihrer Kopie im Belegarchiv übereinstimmen. Die Rohbelege werden weder umgeschrieben noch normalisiert.
+
+Die Regressionen weisen insbesondere falsche Versionen, SDKs, Paketnamen und UIDs sowie weiterhin falsche Quell-/APK-/Signaturbindungen, fehlgeschlagene Backups und fehlende oder abgestürzte native Spielstarts zurück. Der echte Datensatz und die UID-Datei aus Artefakt `14949032444` wurden ebenfalls ohne Dateiveränderung geprüft. Dieser erste Android-Versuch scheiterte später am Emulatortransport und bleibt ausdrücklich kein vollständiger Abnahmenachweis.
+
+Bei einem gezielten Job-Neulauf enthält GitHubs Versuchsliste auch den übernommenen erfolgreichen Bau mit einer neuen Job-ID. Die Veröffentlichungsanforderung muss die tatsächlich beobachteten IDs des abgeschlossenen erfolgreichen Versuchs verwenden. Artefakte werden weiterhin über ihre exakten IDs und Prüfsummen gebunden; ein gleicher Name aus einem früheren Versuch genügt nicht.
 
 Das Originalartefakt enthält die ARM64-APK; die Android-Abnahme verwendet eine separat signierte x86_64-APK mit identischem PCK. Eine Prüfung auf einem physischen ARM64-Gerät oder 60 FPS wird nicht daraus abgeleitet. World-NPC-Dialoge sind derzeit Textdialoge; vorhandene Sprach-/3D-Nachhilfe bleibt erhalten.

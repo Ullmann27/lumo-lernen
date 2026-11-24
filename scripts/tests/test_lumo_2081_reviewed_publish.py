@@ -10,6 +10,8 @@ import unittest
 from unittest.mock import patch
 from urllib.error import HTTPError
 
+from test_lumo_team_b_reviewed_publish import android_evidence, metadata
+
 SCRIPTS = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SCRIPTS))
 spec = importlib.util.spec_from_file_location('reviewed2081', SCRIPTS / 'lumo_2081_reviewed_publish.py')
@@ -121,6 +123,73 @@ class SourceGateTests(unittest.TestCase):
             change(sample['artifacts']['apk'])
             with self.assertRaises(ValueError):
                 publisher.verify_api(request, sample)
+
+
+class AndroidPackageSchemaTests(unittest.TestCase):
+    def reports(self):
+        request = order()
+        tour, backup, native, gate = android_evidence(request)
+        # Shape captured from the original 2081 emulator artifact. This remains
+        # a unit-test fixture, never substituted for runtime publication proof.
+        tour['installed_package'] = {
+            'userId': '10209', 'firstInstallTime': '2026-11-24 17:45:08',
+            'versionCode': '2081 minSdk=24 targetSdk=36', 'versionName': '0.14.8',
+        }
+        return request, metadata(request)[2], [tour, backup, native, gate,
+            'package:' + publisher.PACKAGE + ' uid:10209']
+
+    def test_accepts_actual_package_manager_shape_without_rewriting_reports(self):
+        request, split, reports = self.reports()
+        original = deepcopy(reports)
+        publisher.verify_android(request, split, *reports)
+        self.assertEqual(reports, original)
+
+    def test_rejects_old_string_shape_and_wrong_installed_version_or_sdks(self):
+        changes = [
+            lambda r: r[0].update(installed_package=publisher.PACKAGE),
+            lambda r: r[0].update(installed_package=None),
+            lambda r: r[0]['installed_package'].update(versionCode='2080 minSdk=24 targetSdk=36'),
+            lambda r: r[0]['installed_package'].update(versionCode='2081 minSdk=24 targetSdk=35'),
+            lambda r: r[0]['installed_package'].update(versionCode=2081),
+            lambda r: r[0]['installed_package'].update(versionName='0.14.7'),
+            lambda r: r[0]['installed_package'].pop('userId'),
+        ]
+        for change in changes:
+            request, split, reports = self.reports()
+            change(reports)
+            with self.assertRaises(ValueError):
+                publisher.verify_android(request, split, *reports)
+
+    def test_rejects_wrong_package_uid_and_non_package_manager_captures(self):
+        for output in ('package:other.package uid:10209',
+                       'package:' + publisher.PACKAGE + ' uid:10210',
+                       'package:' + publisher.PACKAGE + ' uid:-1', '',
+                       'package:' + publisher.PACKAGE + ' uid:10209\npackage:other uid:10210'):
+            request, split, reports = self.reports()
+            reports[-1] = output
+            with self.subTest(output=output), self.assertRaises(ValueError):
+                publisher.verify_android(request, split, *reports)
+
+    def test_package_record_does_not_bypass_source_backup_or_native_gates(self):
+        changes = [
+            lambda r: r[0].update(apk_sha256='0' * 64),
+            lambda r: r[0].update(fatal_crashes=1),
+            lambda r: next(s for s in r[0]['steps'] if s['step'] == 'apk-identity').update(
+                flutter_source_commit='0' * 40),
+            lambda r: next(s for s in r[0]['steps'] if s['step'] == 'apk-identity').update(
+                signingCertificateSha256='0' * 64),
+            lambda r: r[1].update(status='FAIL'),
+            lambda r: r[1]['installed_after'].update(sha256='0' * 64),
+            lambda r: next(s for s in r[1]['steps'] if s['step'] == 'restore-and-preservation').update(ok=False),
+            lambda r: r[2].update(package='other.package'),
+            lambda r: r[2]['scenes'].pop(),
+            lambda r: r[2]['scenes'][0]['issues'].update(fatal_signal=1),
+        ]
+        for change in changes:
+            request, split, reports = self.reports()
+            change(reports)
+            with self.assertRaises(ValueError):
+                publisher.verify_android(request, split, *reports)
 
 
 class ReleaseTests(unittest.TestCase):
