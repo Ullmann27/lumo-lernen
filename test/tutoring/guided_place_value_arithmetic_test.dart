@@ -46,4 +46,19 @@ void main() {
     expect(find.text('52 − 20 = ?'), findsOneWidget);
     expect(find.textContaining('noch einmal getrennt'), findsNothing);
   });
+  testWidgets('repeated callback cannot skip an intermediate step', (tester) async {
+    await show(tester, 37, 25, false);
+    final button = tester.widget<OutlinedButton>(
+      find.byKey(const ValueKey('place-value-choice-57')),
+    );
+    final tap = button.onPressed!;
+    tap();
+    tap();
+    await tester.pump();
+    expect(find.text('57 + 3 = ?'), findsOneWidget);
+    expect(find.byKey(const ValueKey('place-value-choice-60')), findsOneWidget);
+    expect(find.text('60 + 2 = ?'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
 }

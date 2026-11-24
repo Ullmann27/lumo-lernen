@@ -73,7 +73,8 @@ class _GuidedPlaceValueArithmeticState
   @override
   Widget build(BuildContext context) {
     final stops = _stops;
-    final current = stops[_phase];
+    final phaseAtBuild = _phase;
+    final current = stops[phaseAtBuild];
     final finalStep = _phase == stops.length - 1;
     final target = finalStep ? _end : stops[_phase + 1];
     final change = (target - current).abs();
@@ -156,14 +157,19 @@ class _GuidedPlaceValueArithmeticState
                     minimumSize: const Size(64, 48),
                   ),
                   key: ValueKey('place-value-choice-$choice'),
-                  onPressed: () => setState(() {
-                    if (choice == target) {
-                      _phase++;
-                      _retry = false;
-                    } else {
-                      _retry = true;
-                    }
-                  }),
+                  onPressed: () {
+                    // A second tap can arrive before Flutter rebuilds the
+                    // buttons. Ignore callbacks belonging to the old step.
+                    if (_phase != phaseAtBuild) return;
+                    setState(() {
+                      if (choice == target) {
+                        _phase++;
+                        _retry = false;
+                      } else {
+                        _retry = true;
+                      }
+                    });
+                  },
                   child: Text('$choice'),
                 ),
             ],
