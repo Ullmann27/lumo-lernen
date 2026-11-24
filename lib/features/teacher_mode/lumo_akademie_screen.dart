@@ -957,6 +957,21 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
                       MaterialPageRoute(
                           builder: (_) => LearningModuleRegistry.builderFor(
                               's1_farben', widget.appState)!))),
+            if (_selectedGrade == 2 &&
+                _selectedGrade == widget.appState.state.grade)
+              ListTile(
+                  key: const ValueKey('academy-tool-m2_zahlen100'),
+                  leading: const Icon(Icons.format_list_numbered_rounded,
+                      color: LumoVisualTokens.cyanBright),
+                  title: const Text('Zahlen bis 100',
+                      style: TextStyle(color: Colors.white)),
+                  subtitle: const Text(
+                      'Zahlen vergleichen, Vorgänger, Nachfolger, Zehner und Einer',
+                      style: TextStyle(color: LumoVisualTokens.muted)),
+                  onTap: () => Navigator.of(context).push<void>(
+                      MaterialPageRoute(
+                          builder: (_) => LearningModuleRegistry.builderFor(
+                              'm2_zahlen100', widget.appState)!))),
             for (final activity in const [
               ('Deutsch', 'Deutsch gestalten', Icons.edit_note_rounded),
               ('Englisch', 'Englisch ausprobieren', Icons.translate_rounded),
