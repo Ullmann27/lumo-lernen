@@ -1,0 +1,153 @@
+name: Export LUMO 2077 APK transport chunks
+on:
+  push:
+    branches:
+      - integration/lumo-kart-final-2077
+    paths:
+      - .github/workflows/export-lumo-2077-chunks.yml
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: export-lumo-2077-chunks
+  cancel-in-progress: true
+
+jobs:
+  split:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_SHA: 5bd5b2fb8ba2f50616b27fd5a23be9f09ab7f842
+      SOURCE_RUN: '45317859300'
+      ARTIFACT_ID: '14885978148'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_SHA }}
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Download and reverify exact successful APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p source chunks proof
+          artifact="$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID")"
+          ARTIFACT_JSON="$artifact" python3 - <<'PY'
+          import json, os
+          row=json.loads(os.environ['ARTIFACT_JSON'])
+          assert row['id']==int(os.environ['ARTIFACT_ID'])
+          assert row['name']=='lumo-2077-kart-complete-apk'
+          assert row['expired'] is False
+          run=row.get('workflow_run') or {}
+          assert run.get('id')==int(os.environ['SOURCE_RUN'])
+          assert run.get('head_sha')==os.environ['SOURCE_SHA']
+          PY
+          curl --fail --location --retry 3 --retry-all-errors \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" \
+            -o "$RUNNER_TEMP/lumo-2077.zip"
+          printf '%s  %s\n' 77ab3a7af7ae693277381a23ab455bb90a3495e9a79d34fb751f7a902625003d "$RUNNER_TEMP/lumo-2077.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/lumo-2077.zip" -d source
+          test -s source/Lumo-Lernen-Neu.apk
+          expected="$(awk 'NR==1{print $1}' source/APK-SHA256.txt)"
+          actual="$(sha256sum source/Lumo-Lernen-Neu.apk | awk '{print $1}')"
+          test "$actual" = "$expected"
+          cp source/APK-SHA256.txt proof/APK-SHA256-original.txt
+          cp source/APK-VERIFICATION.json proof/
+          cp source/BUILD-PROVENANCE.json proof/
+          cp source/GODOT-SOURCE.json proof/
+          cp source/APP-VERSION.txt proof/
+          printf '%s\n' "$actual" > proof/APK-SHA256.txt
+          stat -c '%s' source/Lumo-Lernen-Neu.apk > proof/APK-SIZE.txt
+          test "$(cat source/APP-VERSION.txt)" = "version: 0.14.5+2077"
+
+      - name: Split exact APK into seven deterministic 100 MiB transport chunks
+        shell: bash
+        run: |
+          set -euo pipefail
+          split --bytes=100M --numeric-suffixes=0 --suffix-length=2 \
+            source/Lumo-Lernen-Neu.apk chunks/Lumo-Lernen-0.14.5-2077.apk.part-
+          count="$(find chunks -maxdepth 1 -type f -name '*.part-*' | wc -l)"
+          test "$count" -eq 7
+          sha256sum chunks/Lumo-Lernen-0.14.5-2077.apk.part-* > proof/PARTS-SHA256.txt
+          stat -c '%n %s' chunks/Lumo-Lernen-0.14.5-2077.apk.part-* > proof/PARTS-SIZES.txt
+          cat chunks/Lumo-Lernen-0.14.5-2077.apk.part-* > "$RUNNER_TEMP/reassembled.apk"
+          test "$(sha256sum "$RUNNER_TEMP/reassembled.apk" | awk '{print $1}')" = "$(cat proof/APK-SHA256.txt)"
+          python3 - <<'PY'
+          import json, pathlib
+          proof={
+              'schema_version':1,
+              'version':'0.14.5+2077',
+              'source_sha':'5bd5b2fb8ba2f50616b27fd5a23be9f09ab7f842',
+              'build_run':45317859300,
+              'artifact_id':14885978148,
+              'apk_size':int(pathlib.Path('proof/APK-SIZE.txt').read_text().strip()),
+              'apk_sha256':pathlib.Path('proof/APK-SHA256.txt').read_text().strip(),
+              'parts':[],
+          }
+          hashes={}
+          for line in pathlib.Path('proof/PARTS-SHA256.txt').read_text().splitlines():
+              digest,name=line.split(maxsplit=1)
+              hashes[pathlib.Path(name).name]=digest
+          for line in pathlib.Path('proof/PARTS-SIZES.txt').read_text().splitlines():
+              name,size=line.rsplit(' ',1)
+              base=pathlib.Path(name).name
+              proof['parts'].append({'name':base,'bytes':int(size),'sha256':hashes[base]})
+          pathlib.Path('proof/TRANSPORT-MANIFEST.json').write_text(json.dumps(proof,indent=2)+'\n')
+          print(json.dumps(proof,indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2077-part-00
+          path: chunks/Lumo-Lernen-0.14.5-2077.apk.part-00
+          compression-level: 0
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2077-part-01
+          path: chunks/Lumo-Lernen-0.14.5-2077.apk.part-01
+          compression-level: 0
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2077-part-02
+          path: chunks/Lumo-Lernen-0.14.5-2077.apk.part-02
+          compression-level: 0
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2077-part-03
+          path: chunks/Lumo-Lernen-0.14.5-2077.apk.part-03
+          compression-level: 0
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2077-part-04
+          path: chunks/Lumo-Lernen-0.14.5-2077.apk.part-04
+          compression-level: 0
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2077-part-05
+          path: chunks/Lumo-Lernen-0.14.5-2077.apk.part-05
+          compression-level: 0
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2077-part-06
+          path: chunks/Lumo-Lernen-0.14.5-2077.apk.part-06
+          compression-level: 0
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2077-transport-proof
+          path: proof/
+          compression-level: 0
+          if-no-files-found: error
