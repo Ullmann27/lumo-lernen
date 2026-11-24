@@ -143,9 +143,6 @@ class LumoAppTheme {
       fontFamily: 'Nunito',
       scaffoldBackgroundColor: LumoColors.appBg,
       materialTapTargetSize: MaterialTapTargetSize.padded,
-      // Kühles Cyan-Licht statt grauem Schleier beim Antippen.
-      splashColor: const Color(0x3353DDFD),
-      highlightColor: const Color(0x1A53DDFD),
       visualDensity: VisualDensity.standard,
       iconTheme: const IconThemeData(color: LumoColors.ink700, size: 24),
       dividerTheme: const DividerThemeData(color: Color(0x5537D2FD), thickness: 1),
