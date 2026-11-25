@@ -14,7 +14,6 @@ import stat
 import subprocess
 import sys
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener
 import zipfile
 
@@ -700,6 +699,8 @@ def verify_local_assets(order):
 
 
 def publish(order):
+    token = os.environ.get('GITHUB_TOKEN', '')
+    require(bool(token), 'Workflow GITHUB_TOKEN unavailable; no alternate credential')
     SOURCE, NATIVE, RUN = order['flutter_commit'], order['godot_commit'], order['build_run_id']
     TAG = order['release_tag']
     publication_phase('publisher-identity')
@@ -710,8 +711,6 @@ def publish(order):
     same(stage_proof['publisher'], publisher, 'Stage verification publisher')
     same(stage_proof['manifest_sha256'], digest(ROOT / 'proof/PREPUBLICATION-VERIFICATION.json'),
          'Unchanged staged verification')
-    token = os.environ.get('GITHUB_TOKEN', '')
-    require(bool(token), 'Workflow GITHUB_TOKEN unavailable; no alternate credential')
     base = 'repos/' + REPOSITORY
     publication_phase('publisher-repository')
     verify_repository(github_json(base, token))
@@ -750,6 +749,10 @@ def publish(order):
     })
     require(type(created['id']) is int and created['id'] > 0, 'Created release ID')
     same(created['draft'], True, 'Upload into new draft')
+    same(created.get('tag_name'), TAG, 'Created draft tag')
+    same(created.get('target_commitish'), SOURCE, 'Created draft source')
+    same(created.get('prerelease'), True, 'Created draft test classification')
+    same(created.get('assets'), [], 'New draft must start without assets')
     verify_actions_identity(created['author'])
     save(ROOT / 'proof/CREATED-RELEASE.json', created)
     publication_phase('upload-assets')
@@ -758,6 +761,7 @@ def publish(order):
     publication_phase('verify-draft')
     release = github_json(base + '/releases/' + str(created['id']), token)
     ref = github_json(base + '/git/ref/tags/' + TAG, token)
+    same(release.get('id'), created['id'], 'Observed draft ID')
     verify_release(order, release, ref, assets, draft=True)
     publication_phase('publish-draft')
     publisher_cli(token, ['api', '--method', 'PATCH', base + '/releases/' + str(created['id']), '--input', '-'],
@@ -765,6 +769,7 @@ def publish(order):
     publication_phase('verify-public-release')
     release = github_json(base + '/releases/' + str(created['id']), token)
     ref = github_json(base + '/git/ref/tags/' + TAG, token)
+    same(release.get('id'), created['id'], 'Observed published release ID')
     asset = verify_release(order, release, ref, assets, draft=False)
     save(ROOT / 'proof/PUBLISHED-RELEASE.json', release)
     save(ROOT / 'proof/PUBLISHED-TAG.json', ref)

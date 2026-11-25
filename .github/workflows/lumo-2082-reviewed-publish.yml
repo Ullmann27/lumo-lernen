@@ -32,7 +32,7 @@ jobs:
           persist-credentials: false
           fetch-depth: 2
       - name: Veröffentlichungsschutz prüfen
-        run: python3 -m unittest discover -s scripts/tests -p test_lumo_2082_reviewed_publish.py -v
+        run: python3 -m unittest scripts.tests.test_lumo_2082_reviewed_publish -v
       - name: Auftrag und drei erfolgreiche Originalprüfungen feststellen
         env:
           GH_TOKEN: ${{ github.token }}
