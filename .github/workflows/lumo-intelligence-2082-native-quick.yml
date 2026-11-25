@@ -1,0 +1,65 @@
+name: "Lumo 2082 – gezielte native Routineprüfung"
+on:
+  push:
+    branches: [qa/intelligence-2082-native-20261125]
+    paths:
+      - config/intelligence-2082-native-qa-request.json
+permissions:
+  contents: read
+concurrency:
+  group: lumo-intelligence-2082-native-quick
+  cancel-in-progress: true
+jobs:
+  world-routines:
+    name: Zwei native World-Routineprüfungen
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Godot 4.6.3 aus dem bestehenden Installer
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p native-quick-proof
+          git rev-parse HEAD > native-quick-proof/HOST-COMMIT.txt
+          cp config/godot-source.json native-quick-proof/GODOT-SOURCE.json
+          cp config/intelligence-2082-native-qa-request.json native-quick-proof/REQUEST.json
+          bash scripts/install_godot_for_build.sh 2>&1 | tee native-quick-proof/ENGINE-INSTALL.txt
+      - name: Exakten nativen Stand laden und vollständig importieren
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          test "$SOURCE" = b22f3bb424c6488f107ed6a772e19c878a837154
+          godot --version | tee native-quick-proof/ENGINE-VERSION.txt
+          test "$(godot --version | cut -d. -f1-3)" = 4.6.3
+          git clone --filter=blob:none --no-checkout https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
+          git -C build/lumo-godot-qa checkout --detach "$SOURCE"
+          test "$(git -C build/lumo-godot-qa rev-parse HEAD)" = "$SOURCE"
+          git -C build/lumo-godot-qa rev-parse HEAD > native-quick-proof/NATIVE-COMMIT.txt
+          if ! godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit 2>&1 | tee native-quick-proof/IMPORT-1.txt; then
+            godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit 2>&1 | tee native-quick-proof/IMPORT-2.txt
+          fi
+      - name: Genau die zwei neuen Routineprüfungen streng ausführen
+        shell: bash
+        run: |
+          set -euo pipefail
+          result=0
+          for probe in lumo_world_routines_regression lumo_world_routines_integration_regression; do
+            if python3 build/lumo-godot-qa/tools/run_godot_probe.py               --timeout 600 --required PASS --log "native-quick-proof/$probe.txt" --               godot --headless --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd"; then
+              echo "$probe: PASS" >> native-quick-proof/RESULTS.txt
+            else
+              echo "$probe: FAIL" >> native-quick-proof/RESULTS.txt
+              result=1
+            fi
+          done
+          exit "$result"
+      - name: Vollständige tatsächliche Logs sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2082-NATIVE-QUICK-${{ github.run_id }}
+          path: native-quick-proof/
+          if-no-files-found: error
