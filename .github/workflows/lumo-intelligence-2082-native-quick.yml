@@ -32,7 +32,7 @@ jobs:
         run: |
           set -euo pipefail
           SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
-          test "$SOURCE" = 0046b2597b2521a46285092717005d754a995e26
+          test "$SOURCE" = b6562a763aedb4363709d84e4c3cc92eba13da30
           godot --version | tee native-quick-proof/ENGINE-VERSION.txt
           test "$(godot --version | cut -d. -f1-3)" = 4.6.3
           git clone --filter=blob:none --no-checkout https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
