@@ -28,87 +28,90 @@ class AssignmentEvidenceSummary extends StatelessWidget {
         if (progress.answers.isNotEmpty)
           Theme(
             data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-            child: ExpansionTile(
-              key: ValueKey('assignment-evidence-${progress.answers.first.id}'),
-              tilePadding: EdgeInsets.zero,
-              childrenPadding: const EdgeInsets.only(bottom: 8),
-              iconColor: LumoVisualTokens.cyanBright,
-              collapsedIconColor: LumoVisualTokens.cyanBright,
-              title: const Text(
-                'Antworten ansehen',
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w800,
-                  color: LumoVisualTokens.cyanBright,
-                ),
-              ),
-              children: [
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Auswertung der ersten aktuell gespeicherten Antworten '
-                    'zum Thema seit der Zuweisung.',
-                    style: TextStyle(color: Color(0xFFD6E8FF), fontSize: 12),
+            child: Material(
+              type: MaterialType.transparency,
+              child: ExpansionTile(
+                key: ValueKey('assignment-evidence-${progress.answers.first.id}'),
+                tilePadding: EdgeInsets.zero,
+                childrenPadding: const EdgeInsets.only(bottom: 8),
+                iconColor: LumoVisualTokens.cyanBright,
+                collapsedIconColor: LumoVisualTokens.cyanBright,
+                title: const Text(
+                  'Antworten ansehen',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    color: LumoVisualTokens.cyanBright,
                   ),
                 ),
-                for (var i = 0; i < progress.answers.length; i++)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          progress.answers[i].correct
-                              ? Icons.check_circle_outline_rounded
-                              : Icons.lightbulb_outline_rounded,
-                          color: progress.answers[i].correct
-                              ? const Color(0xFF7BE08C)
-                              : LumoVisualTokens.gold,
-                          size: 22,
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                progress.answers[i].prompt.isEmpty
-                                    ? 'Aufgabe ${i + 1}: '
-                                      '${progress.answers[i].competency}'
-                                    : progress.answers[i].prompt,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              if (progress.answers[i].given.isNotEmpty)
-                                Text(
-                                  'Antwort: ${progress.answers[i].given}',
-                                  style: const TextStyle(
-                                      color: Color(0xFFD6E8FF)),
-                                ),
-                              if (!progress.answers[i].correct &&
-                                  progress.answers[i].expected.isNotEmpty)
-                                Text(
-                                  'Lösung: ${progress.answers[i].expected}',
-                                  style: const TextStyle(
-                                      color: LumoVisualTokens.gold),
-                                ),
-                              Text(
-                                progress.answers[i].hintUsed
-                                    ? 'Mit Unterstützung bearbeitet'
-                                    : 'Selbstständig beantwortet',
-                                style: const TextStyle(
-                                    color: Color(0xFFD6E8FF), fontSize: 12),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Auswertung der ersten aktuell gespeicherten Antworten '
+                      'zum Thema seit der Zuweisung.',
+                      style: TextStyle(color: Color(0xFFD6E8FF), fontSize: 12),
                     ),
                   ),
-              ],
+                  for (var i = 0; i < progress.answers.length; i++)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(
+                            progress.answers[i].correct
+                                ? Icons.check_circle_outline_rounded
+                                : Icons.lightbulb_outline_rounded,
+                            color: progress.answers[i].correct
+                                ? const Color(0xFF7BE08C)
+                                : LumoVisualTokens.gold,
+                            size: 22,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  progress.answers[i].prompt.isEmpty
+                                      ? 'Aufgabe ${i + 1}: '
+                                        '${progress.answers[i].competency}'
+                                      : progress.answers[i].prompt,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                if (progress.answers[i].given.isNotEmpty)
+                                  Text(
+                                    'Antwort: ${progress.answers[i].given}',
+                                    style: const TextStyle(
+                                        color: Color(0xFFD6E8FF)),
+                                  ),
+                                if (!progress.answers[i].correct &&
+                                    progress.answers[i].expected.isNotEmpty)
+                                  Text(
+                                    'Lösung: ${progress.answers[i].expected}',
+                                    style: const TextStyle(
+                                        color: LumoVisualTokens.gold),
+                                  ),
+                                Text(
+                                  progress.answers[i].hintUsed
+                                      ? 'Mit Unterstützung bearbeitet'
+                                      : 'Selbstständig beantwortet',
+                                  style: const TextStyle(
+                                      color: Color(0xFFD6E8FF), fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
       ],
