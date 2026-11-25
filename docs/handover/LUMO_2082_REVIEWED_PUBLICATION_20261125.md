@@ -55,6 +55,11 @@ Quellen:
 
 ## Tests und Ausführung
 
+Der isolierte Read-only-Lauf [45547317562](https://github.com/Ullmann27/lumo-lernen/actions/runs/45547317562), Versuch 1, hat am 25.11.2026 den exakten Stand `7801bb63a483eb8e11285ef31f2dc60924946718` erfolgreich geprüft: Python-Syntax und 36 Tests, Ergebnis `OK`. Job-ID: `138979930358`. Das Runner-Protokoll zeigt ausschließlich `Contents:read` und `Metadata:read`.
+
+Das Prüfartefakt `14992585347` umfasst 2211 Bytes; GitHub meldet ZIP-SHA-256 `cd91e8ec8fecb19e1b6666f73cad604f85dea908f30d7e90893233bbf498f29c`. Die API-Belege und das originale Jobprotokoll sind unter `docs/evidence/publication-2082-contracts-20261125/` gesichert. Die im Unit-Test protokollierten Release-/Downloadantworten sind ausdrücklich synthetische Fixtures; dieser Lauf hat kein echtes Release erzeugt.
+
+
 Direkter Testaufruf: `python3 -m unittest scripts.tests.test_lumo_2082_reviewed_publish -v`. Das Testmodul muss vorhanden und importierbar sein; ein fehlender Dateiname darf nicht als erfolgreicher Lauf mit null Tests gelten. Die Tests verwenden ausschließlich synthetische Dateien/API-Antworten und führen keine Netzwerkmutationen aus.
 
 Die vorhandene Arbeitsumgebung konnte keine lokalen Shell- oder Python-Befehle ausführen. Daher behauptet diese Übergabe keinen lokal bestandenen Testlauf. Der Read-only-Workflow-Job führt die Tests vor jedem Auftrag aus; die Koordination kann sie zusätzlich auf einem isolierten CI-Zweig prüfen. Der unabhängige statische Review des ersten Skript-/Workflow-Stands ergab keine blockierenden Befunde.
