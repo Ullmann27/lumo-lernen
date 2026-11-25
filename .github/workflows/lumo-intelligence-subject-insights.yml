@@ -1,0 +1,43 @@
+name: LUMO Intelligence – echte Fachanalysen prüfen
+on:
+  push:
+    branches: [feature/intelligence-2-0-live-subject-insights-20261125]
+  pull_request:
+    branches: [integration/lumo-intelligence-2082-20261125]
+    paths:
+      - 'lib/domain/school/learning_chart_data.dart'
+      - 'lib/features/report/learning_analytics_panel.dart'
+      - 'test/parents/live_subject_insights_test.dart'
+permissions:
+  contents: read
+concurrency:
+  group: live-subject-insights-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  subject-insights:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Analyse und Regressionen
+        run: |
+          set -euo pipefail
+          mkdir -p subject-insights-proof
+          git rev-parse HEAD > subject-insights-proof/commit.txt
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings lib/domain/school/learning_chart_data.dart lib/features/report/learning_analytics_panel.dart test/parents/live_subject_insights_test.dart 2>&1 | tee subject-insights-proof/analysis.txt
+          flutter test --no-pub --reporter expanded --timeout=60s --concurrency=2 test/domain/learning_chart_data_test.dart test/parents/live_learning_analytics_test.dart test/parents/live_subject_insights_test.dart test/features/learning_analysis_evidence_view_test.dart 2>&1 | tee subject-insights-proof/tests.txt
+      - name: Originalprotokolle sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-SUBJECT-INSIGHTS-${{ github.run_id }}
+          path: subject-insights-proof/
+          if-no-files-found: warn

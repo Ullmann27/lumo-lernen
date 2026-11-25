@@ -7,10 +7,27 @@ import '../teacher_demo/holo_widgets.dart';
 
 /// Shared live charts for parents and teachers. Receives only an owner-scoped
 /// projection; it has no demo generator, storage writes, or network requests.
-class LearningAnalyticsPanel extends StatelessWidget {
+class LearningAnalyticsPanel extends StatefulWidget {
   const LearningAnalyticsPanel({super.key, required this.data});
 
   final LearningChartData data;
+
+  @override
+  State<LearningAnalyticsPanel> createState() => _LearningAnalyticsPanelState();
+}
+
+class _LearningAnalyticsPanelState extends State<LearningAnalyticsPanel> {
+  String? _subject;
+  LearningChartData get data => widget.data;
+
+  @override
+  void didUpdateWidget(covariant LearningAnalyticsPanel oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.data.studentId != data.studentId ||
+        !data.subjectActivity.any((item) => item.subject == _subject)) {
+      _subject = null;
+    }
+  }
 
   static const _colors = [
     HoloPalette.cyan,
@@ -21,8 +38,17 @@ class LearningAnalyticsPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final radar = data.competencies.take(6).toList();
-    final subjects = data.subjects.take(_colors.length).toList();
+    final selected = _subject;
+    final eligible = data.competencies
+        .where((item) => selected == null || item.subject == selected)
+        .toList();
+    final radar = eligible.take(6).toList();
+    final subjects = data.subjects
+        .where((subject) => selected == null || subject == selected)
+        .take(_colors.length).toList();
+    final activity = data.subjectActivity
+        .where((item) => selected == null || item.subject == selected)
+        .toList();
     return HoloPanel(
       key: const ValueKey('live-learning-analytics'),
       shimmer: false,
@@ -70,8 +96,24 @@ class LearningAnalyticsPanel extends StatelessWidget {
                   color: HoloPalette.muted, fontSize: 12, height: 1.4),
             ),
             const SizedBox(height: 16),
+            const Text('Fach auswählen',
+                style: TextStyle(color: HoloPalette.text,
+                    fontWeight: FontWeight.w800)),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: [
+                _filterChip(null, 'Alle Fächer'),
+                for (final item in data.subjectActivity)
+                  _filterChip(item.subject, item.subject),
+              ],
+            ),
+            const SizedBox(height: 16),
+            _activityPanel(activity),
+            const SizedBox(height: 20),
             LayoutBuilder(builder: (context, constraints) {
-              final radarContent = _radar(radar);
+              final radarContent = _radar(radar, eligible.length);
               final trendContent = _trend(subjects);
               if (constraints.maxWidth < 660) {
                 return Column(
@@ -98,7 +140,116 @@ class LearningAnalyticsPanel extends StatelessWidget {
     );
   }
 
-  Widget _radar(List<LearningChartCount> entries) {
+  Widget _filterChip(String? subject, String label) {
+    final selected = _subject == subject;
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 48, minWidth: 48),
+      child: ChoiceChip(
+        key: ValueKey('live-subject-filter-${subject ?? 'all'}'),
+        label: Text(label),
+        selected: selected,
+        onSelected: (_) => setState(() => _subject = subject),
+        materialTapTargetSize: MaterialTapTargetSize.padded,
+        showCheckmark: false,
+        backgroundColor: HoloPalette.night,
+        selectedColor: HoloPalette.cyan,
+        labelStyle: TextStyle(
+          color: selected ? HoloPalette.deep : HoloPalette.text,
+          fontWeight: FontWeight.w700,
+        ),
+        side: BorderSide(color: HoloPalette.cyan.withValues(alpha: .65)),
+      ),
+    );
+  }
+
+  Color _subjectColor(String subject) => switch (subject) {
+    'Mathematik' => HoloPalette.cyan,
+    'Deutsch' || 'Lesen' || 'Schreiben' => HoloPalette.amber,
+    'Englisch' => HoloPalette.violet,
+    'Sachkunde' || 'Sachunterricht' => HoloPalette.mint,
+    _ => HoloPalette.blue,
+  };
+
+  String _percent(double? rate) =>
+      rate == null ? 'Keine Messung' : '${(rate * 100).round()} %';
+
+  String _seconds(double milliseconds) =>
+      (milliseconds / 1000).toStringAsFixed(1).replaceAll('.', ',');
+
+  Widget _activityPanel(List<LearningSubjectActivity> entries) {
+    const body = TextStyle(color: HoloPalette.text, height: 1.4);
+    const muted = TextStyle(color: HoloPalette.muted, fontSize: 12, height: 1.4);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Text('Genauigkeit, Hilfen und Bearbeitungszeit',
+            style: TextStyle(color: HoloPalette.text, fontWeight: FontWeight.w800)),
+        const SizedBox(height: 8),
+        for (final entry in entries)
+          Padding(
+            key: ValueKey('live-subject-activity-${entry.subject}'),
+            padding: const EdgeInsets.only(bottom: 12),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: HoloPalette.night.withValues(alpha: .75),
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: _subjectColor(entry.subject)
+                    .withValues(alpha: .35)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(entry.subject, style: body.copyWith(
+                        color: _subjectColor(entry.subject),
+                        fontWeight: FontWeight.w800)),
+                    const SizedBox(height: 6),
+                    Text(entry.independent == 0
+                        ? 'Noch keine Antworten ohne Hilfe'
+                        : 'Ohne Hilfe richtig: ${entry.independentCorrect}/${entry.independent} '
+                          '(${_percent(entry.independentAccuracy)})', style: body),
+                    if (entry.independentAccuracy != null) ...[
+                      const SizedBox(height: 5),
+                      LinearProgressIndicator(
+                        value: entry.independentAccuracy,
+                        minHeight: 8,
+                        color: _subjectColor(entry.subject),
+                        backgroundColor: HoloPalette.deep,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ],
+                    const SizedBox(height: 8),
+                    Text('Mit Hilfe: ${entry.assisted}/${entry.total} '
+                        '(${_percent(entry.helpRate)})', style: body),
+                    const SizedBox(height: 5),
+                    LinearProgressIndicator(
+                      value: entry.helpRate,
+                      minHeight: 6,
+                      color: HoloPalette.violet,
+                      backgroundColor: HoloPalette.deep,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(entry.medianIndependentMs == null
+                        ? 'Bearbeitungszeit: keine erfasste Zeit ohne Hilfe'
+                        : 'Bearbeitungszeit (Median): ${_seconds(entry.medianIndependentMs!)} s '
+                          '· ${entry.timedIndependent} von ${entry.independent} '
+                          'Antworten ohne Hilfe mit Zeitmessung', style: muted),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        const Text('Aktivität aus dem vorhandenen Aufgabenprotokoll. '
+            'Hilfenutzung ist kein Fehler. Zeitwerte dienen nur der Orientierung '
+            'und verändern weder Trefferquote noch Förderempfehlung.',
+            style: muted),
+      ],
+    );
+  }
+
+  Widget _radar(List<LearningChartCount> entries, int eligibleCount) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -139,7 +290,7 @@ class LearningAnalyticsPanel extends StatelessWidget {
               style: const TextStyle(color: HoloPalette.text, height: 1.35),
             ),
           ),
-        if (data.competencies.length > entries.length)
+        if (eligibleCount > entries.length)
           const Text('Angezeigt: die sechs am häufigsten selbstständig geübten Kompetenzen.',
               style: TextStyle(color: HoloPalette.muted, fontSize: 12)),
       ],
@@ -147,6 +298,7 @@ class LearningAnalyticsPanel extends StatelessWidget {
   }
 
   Widget _trend(List<String> subjects) {
+    final colors = subjects.map(_subjectColor).toList(growable: false);
     final hasRecentData = data.weeks.any((week) =>
         subjects.any((subject) => week.subjects.containsKey(subject)));
     return Column(
@@ -163,7 +315,7 @@ class LearningAnalyticsPanel extends StatelessWidget {
           SizedBox(
             height: 180,
             child: CustomPaint(
-                painter: _LiveTrendPainter(data, subjects, _colors)),
+                painter: _LiveTrendPainter(data, subjects, colors)),
           ),
           const SizedBox(height: 8),
           Wrap(
@@ -173,7 +325,7 @@ class LearningAnalyticsPanel extends StatelessWidget {
               for (var index = 0; index < subjects.length; index++)
                 Text(subjects[index],
                     style: TextStyle(
-                        color: _colors[index], fontWeight: FontWeight.w700)),
+                        color: colors[index], fontWeight: FontWeight.w700)),
             ],
           ),
           const SizedBox(height: 10),
@@ -202,7 +354,7 @@ class LearningAnalyticsPanel extends StatelessWidget {
           style:
               TextStyle(color: HoloPalette.muted, fontSize: 12, height: 1.4),
         ),
-        if (data.subjects.length > subjects.length)
+        if (_subject == null && data.subjects.length > subjects.length)
           const Text('Angezeigt: die vier in diesem Zeitraum am häufigsten selbstständig geübten Fächer.',
               style: TextStyle(color: HoloPalette.muted, fontSize: 12)),
       ],

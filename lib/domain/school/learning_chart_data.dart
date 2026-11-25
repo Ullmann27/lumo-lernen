@@ -18,6 +18,31 @@ class LearningChartCount {
   bool get hasEnoughEvidence => total >= LearningAnalysis.minReliable;
 }
 
+/// Actual recorded activity in one subject, separate from mastery estimates.
+/// Duration is an independent-response median, not a speed score.
+class LearningSubjectActivity {
+  const LearningSubjectActivity({
+    required this.subject,
+    required this.total,
+    required this.assisted,
+    required this.independentCorrect,
+    required this.timedIndependent,
+    required this.medianIndependentMs,
+  });
+
+  final String subject;
+  final int total;
+  final int assisted;
+  final int independentCorrect;
+  final int timedIndependent;
+  final double? medianIndependentMs;
+
+  int get independent => total - assisted;
+  double? get independentAccuracy =>
+      independent == 0 ? null : independentCorrect / independent;
+  double? get helpRate => total == 0 ? null : assisted / total;
+}
+
 /// A calendar week-sized window. A missing measurement stays null.
 class LearningChartWeek {
   LearningChartWeek({
@@ -44,9 +69,11 @@ class LearningChartData {
     required this.assistedTotal,
     required this.independentCorrect,
     required List<LearningChartCount> competencies,
+    required List<LearningSubjectActivity> subjectActivity,
     required List<String> subjects,
     required List<LearningChartWeek> weeks,
   })  : competencies = List.unmodifiable(competencies),
+        subjectActivity = List.unmodifiable(subjectActivity),
         subjects = List.unmodifiable(subjects),
         weeks = List.unmodifiable(weeks);
 
@@ -58,6 +85,7 @@ class LearningChartData {
   final int independentCorrect;
   int get independentTotal => total - assistedTotal;
   final List<LearningChartCount> competencies;
+  final List<LearningSubjectActivity> subjectActivity;
   final List<String> subjects;
   final List<LearningChartWeek> weeks;
   /// The plotted rate uses only independent answers. Assisted work remains
@@ -87,6 +115,36 @@ class LearningChartData {
         attempts.add(attempt);
       }
     }
+
+    // Reuse the same validated, owner-scoped, deduplicated attempts.
+    final activityGroups = <String, List<Attempt>>{};
+    for (final attempt in attempts) {
+      activityGroups.putIfAbsent(attempt.subject, () => []).add(attempt);
+    }
+    final activity = <LearningSubjectActivity>[];
+    for (final entry in activityGroups.entries) {
+      final independent = entry.value.where((a) => !a.hintUsed).toList();
+      final times = independent
+          .map((a) => a.durationMs)
+          .whereType<int>()
+          .where((ms) => ms > 0)
+          .toList()..sort();
+      final middle = times.length ~/ 2;
+      final double? median = times.isEmpty
+          ? null
+          : times.length.isOdd
+              ? times[middle].toDouble()
+              : times[middle - 1] / 2 + times[middle] / 2;
+      activity.add(LearningSubjectActivity(
+        subject: entry.key,
+        total: entry.value.length,
+        assisted: entry.value.length - independent.length,
+        independentCorrect: independent.where((a) => a.correct).length,
+        timedIndependent: times.length,
+        medianIndependentMs: median,
+      ));
+    }
+    activity.sort((a, b) => a.subject.compareTo(b.subject));
 
     final groups = <(String, String), List<Attempt>>{};
     for (final attempt in attempts) {
@@ -162,6 +220,7 @@ class LearningChartData {
       independentCorrect: attempts
           .where((attempt) => !attempt.hintUsed && attempt.correct).length,
       competencies: competencies,
+      subjectActivity: activity,
       subjects: subjects,
       weeks: weeks,
     );
