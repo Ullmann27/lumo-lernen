@@ -103,6 +103,11 @@ class LumoTutorEngine {
     if (request.subject == LumoTutorSubject.deutsch) {
       final unit = request.unit.toLowerCase();
       if (unit.contains('silb')) {
+        // Displaying every syllable also reveals the count. A first hint must
+        // leave that discovery to the child.
+        if (request.shouldAvoidDirectSolution) {
+          return const LumoTutorVisualPlan.none();
+        }
         final word = RegExp(r'Silben\s+hat\s+([A-Za-zÄÖÜäöüß]+)', caseSensitive: false)
             .firstMatch(request.currentPrompt ?? '')?.group(1);
         if (word == null) return const LumoTutorVisualPlan.none();

@@ -49,7 +49,11 @@ void main() {
       speeches.add(response.speech);
       expect(response.speech.toLowerCase(), contains('silben'));
       expect(response.speech, isNot(contains('3')));
-      expect(response.visualPlan.parts, ['Ba', 'na', 'ne']);
+      if (level == LumoTutorHelpLevel.hintOnly) {
+        expect(response.visualPlan.type, LumoTutorVisualType.none);
+      } else {
+        expect(response.visualPlan.parts, ['Ba', 'na', 'ne']);
+      }
     }
     expect(speeches, hasLength(3));
   });
