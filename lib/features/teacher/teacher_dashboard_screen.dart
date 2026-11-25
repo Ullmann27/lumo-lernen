@@ -234,7 +234,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
       var open = 0;
       for (final r in rows) {
         if (!_dir.assignmentAppliesTo(a, r.student)) continue;
-        if (!AssignmentProgress.of(a, r.attempts).completed) open++;
+        if (!AssignmentProgress.of(a, r.attempts, studentId: r.student.id).completed) open++;
       }
       return open;
     }
@@ -559,7 +559,8 @@ class _ClassAssignmentRow extends StatelessWidget {
     for (final r in rows) {
       if (!dir.assignmentAppliesTo(assignment, r.student)) continue;
       total++;
-      if (AssignmentProgress.of(assignment, r.attempts).completed) done++;
+      if (AssignmentProgress.of(assignment, r.attempts,
+          studentId: r.student.id).completed) done++;
     }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),

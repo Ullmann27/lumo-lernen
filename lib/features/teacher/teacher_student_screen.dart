@@ -11,6 +11,7 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../report/student_report_view.dart';
 import 'assign_task_sheet.dart';
+import 'assignment_evidence_summary.dart';
 import 'teacher_widgets.dart';
 
 /// Einzelansicht eines Kindes für die Lehrkraft: Lernbericht, Empfehlung der
@@ -186,7 +187,8 @@ class _TeacherStudentScreenState extends State<TeacherStudentScreen> {
                       for (final a in assignments)
                         _AssignmentRow(
                           assignment: a,
-                          progress: AssignmentProgress.of(a, _attempts),
+                          progress: AssignmentProgress.of(a, _attempts,
+                              studentId: student.id),
                         ),
                     ]),
             ),
@@ -284,6 +286,7 @@ class _AssignmentRow extends StatelessWidget {
             '${due == null ? '' : ' · bis ${due.day}.${due.month}.'}'
             '${overdue ? ' (überfällig)' : ''}',
             style: kTeacherMuted),
+        AssignmentEvidenceSummary(progress: progress),
         if (assignment.goal.isNotEmpty)
           Text('Ziel: ${assignment.goal}', style: kTeacherMuted),
       ]),

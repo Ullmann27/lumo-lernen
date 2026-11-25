@@ -190,27 +190,75 @@ class Assignment {
   }
 }
 
-/// Stand einer Aufgabe für ein Kind: gezählt werden Aufgaben zum selben
-/// Thema, die nach dem Zuweisen gelöst wurden.
+/// Auswertung zum zugewiesenen Thema. Der unveränderte Aufgabenverlauf bleibt
+/// die einzige Quelle: die ersten [Assignment.taskCount] eindeutigen Antworten
+/// eines Kindes seit der Zuweisung bilden die nachvollziehbare Stichprobe.
+/// Mehrere Zuweisungen desselben Themas können dieselben Antworten enthalten.
 class AssignmentProgress {
-  const AssignmentProgress(
-      {required this.done, required this.correct, required this.target});
+  const AssignmentProgress({
+    required this.done,
+    required this.correct,
+    required this.target,
+    this.guided = 0,
+    this.independentCorrect = 0,
+    this.answers = const [],
+  });
+
   final int done;
   final int correct;
   final int target;
+  final int guided;
+  final int independentCorrect;
+  final List<Attempt> answers;
 
-  bool get completed => done >= target;
-  double get fraction => target == 0 ? 1 : (done / target).clamp(0.0, 1.0);
+  int get independent => done - guided;
+  bool get completed => target > 0 && done >= target;
+  double get fraction =>
+      target <= 0 ? 0 : (done / target).clamp(0.0, 1.0);
 
-  static AssignmentProgress of(Assignment a, Iterable<Attempt> studentAttempts) {
-    final mine = studentAttempts.where((t) =>
+  static AssignmentProgress of(
+    Assignment a,
+    Iterable<Attempt> studentAttempts, {
+    String? studentId,
+    DateTime? now,
+  }) {
+    final all = studentAttempts.toList(growable: false);
+    // Legacy callers may pass an already isolated log. Ambiguous class-wide
+    // input must never turn several children's answers into one result.
+    final owners = all.map((t) => t.studentId).toSet();
+    final owner = studentId ??
+        (a.targetKind == AssignmentTargetKind.student ? a.targetId : null) ??
+        (owners.length == 1 ? owners.single : null);
+    final target = a.taskCount > 0 ? a.taskCount : 0;
+    if (owner == null || owner.trim().isEmpty || target == 0 ||
+        (a.targetKind == AssignmentTargetKind.student &&
+            a.targetId != owner)) {
+      return AssignmentProgress(done: 0, correct: 0, target: target);
+    }
+
+    final cutoff = now ?? DateTime.now();
+    final seen = <String>{};
+    final matching = all.where((t) =>
+        t.studentId == owner &&
+        t.id.trim().isNotEmpty &&
         t.subject == a.subject &&
         t.unit == a.unit &&
-        !t.at.isBefore(a.createdAt));
+        !t.at.isBefore(a.createdAt) &&
+        !t.at.isAfter(cutoff)).toList()
+      ..sort((a, b) {
+        final byTime = a.at.compareTo(b.at);
+        return byTime != 0 ? byTime : a.id.compareTo(b.id);
+      });
+    final sample = List<Attempt>.unmodifiable(
+        matching.where((t) => seen.add(t.id)).take(target));
     return AssignmentProgress(
-      done: mine.length,
-      correct: mine.where((t) => t.correct).length,
-      target: a.taskCount,
+      done: sample.length,
+      correct: sample.where((t) => t.correct).length,
+      target: target,
+      guided: sample.where((t) => t.hintUsed).length,
+      independentCorrect:
+          sample.where((t) => t.correct && !t.hintUsed).length,
+      answers: sample,
     );
   }
 }
