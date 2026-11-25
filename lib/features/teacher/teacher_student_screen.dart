@@ -11,6 +11,7 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../report/student_report_view.dart';
 import 'assign_task_sheet.dart';
+import 'assignment_evidence_summary.dart';
 import 'teacher_widgets.dart';
 
 /// Einzelansicht eines Kindes für die Lehrkraft: Lernbericht, Empfehlung der
@@ -186,7 +187,8 @@ class _TeacherStudentScreenState extends State<TeacherStudentScreen> {
                       for (final a in assignments)
                         _AssignmentRow(
                           assignment: a,
-                          progress: AssignmentProgress.of(a, _attempts),
+                          progress: AssignmentProgress.of(a, _attempts,
+                              studentId: student.id),
                         ),
                     ]),
             ),
@@ -231,10 +233,15 @@ class _TeacherStudentScreenState extends State<TeacherStudentScreen> {
   String? _unitFor(PracticeSuggestion s) {
     // Die Kompetenz „Addition mit Zehnerübergang“ gehört zum Thema der
     // zuletzt geübten Aufgabe dieser Kompetenz.
-    for (final a in _attempts.reversed) {
-      if (a.competency == s.competency) return a.unit;
+    Attempt? latest;
+    for (final a in _attempts) {
+      if (a.subject == s.subject &&
+          a.competency == s.competency &&
+          (latest == null || a.at.isAfter(latest.at))) {
+        latest = a;
+      }
     }
-    return null;
+    return latest?.unit;
   }
 }
 
@@ -284,6 +291,7 @@ class _AssignmentRow extends StatelessWidget {
             '${due == null ? '' : ' · bis ${due.day}.${due.month}.'}'
             '${overdue ? ' (überfällig)' : ''}',
             style: kTeacherMuted),
+        AssignmentEvidenceSummary(progress: progress),
         if (assignment.goal.isNotEmpty)
           Text('Ziel: ${assignment.goal}', style: kTeacherMuted),
       ]),
@@ -343,3 +351,4 @@ class _CognitiveTeacherPanel extends StatelessWidget {
     );
   }
 }
+

@@ -1,3 +1,15 @@
+# LUMO Intelligence 2.0 · Kandidat 2082 · 25.11.2026
+
+Arbeitszweig: `integration/lumo-intelligence-2082-20261125`; Version `0.14.9+2082`; Godot `62108c0355f860ab9a0a020ecb5f3f941f1032e9`.
+
+Echte Lernanalysen, unabhängige Kompetenzquoten, profilgebundener Coach und Hausaufgabenergebnisse sind integriert. Die zusätzliche Rückmeldung zu abrupten Karten-/Schachzügen ist mit geordneten Bewegungen, Denkpausen und korrektem Pause-/Abbruchverhalten umgesetzt.
+
+Tatsächlich bestanden: Flutter-Vorprüfung auf f346db8e mit 114 Tests und 0 Analysefehlern; nativer Vorlauf auf 62108c03 mit 133 Ablaufprüfungen, 212.968 Kartenregelprüfungen, 238 Schachregelprüfungen, 634 Karten- und 919 Schachszenenprüfungen. Die Originalbelege stehen unter docs/evidence/intelligence-2082-*.
+
+Der gemeinsame vollständige APK-/Android-Lauf wird mit Request 3 neu angefordert. Die strenge Rendereraufnahme 45569486039 auf demselben Native-Pin ist noch offen; die frühere Rechnerzeit-/Spielzeit-Abweichung der Prüfgrenze ist dokumentiert und ausschließlich in der Probe korrigiert. Noch keine fertige oder öffentlich veröffentlichte 2082-APK; keine Fold7-/60-FPS-Behauptung. [Umfang, Belege und Grenzen](docs/integration/2026-11-25/INTELLIGENCE-2082.md).
+
+## Historische Statusabschnitte
+
 # Ergänzender Prüfzweig: Themenbindung und Offline-Hilfe · 24.11.2026
 
 Ausgangsstand ist PR #545 (`6e7b26906a15c8497cb36cf8c1d0c2126740658c`). Der vorliegende Zweig erhält die exakte Plus-bis-100-Route und korrigiert bestätigte fachfremde Lehrerfragen, den Kontinente-/Ozeane-Kontext, das Millionenbeispiel sowie themenfremde Offline-Antworten. Eine unbekannte Rätsel-/Aufgabenidentität erzeugt keine zufällige Lösung.

@@ -1,0 +1,40 @@
+name: "Lumo 2082 – Publisher-Verträge ohne Veröffentlichung"
+
+on:
+  push:
+    branches: [feature/intelligence-2082-publisher-20261125]
+    paths: [config/lumo-2082-publisher-test-request.json]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-2082-publisher-contract-tests
+  cancel-in-progress: false
+
+jobs:
+  publisher-contracts:
+    name: Synthetische Publisher-Verträge ohne externe Schreibaktionen prüfen
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Publisher-Syntax und echte Regressionen ausführen
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e config/lumo-2082-reviewed-publish.json
+          mkdir -p publisher-contract-proof
+          git rev-parse HEAD > publisher-contract-proof/SOURCE-COMMIT.txt
+          python3 -m py_compile scripts/lumo_2082_reviewed_publish.py scripts/tests/test_lumo_2082_reviewed_publish.py
+          python3 -m unittest scripts.tests.test_lumo_2082_reviewed_publish -v \
+            2>&1 | tee publisher-contract-proof/PUBLISHER-CONTRACT-TESTS.txt
+      - name: Tatsächliches Testergebnis sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2082-PUBLISHER-CONTRACTS-${{ github.run_id }}-${{ github.run_attempt }}
+          path: publisher-contract-proof/
+          if-no-files-found: error

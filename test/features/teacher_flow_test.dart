@@ -179,7 +179,7 @@ void main() {
     await tester.tap(find.byKey(const ValueKey('assignment-Plus bis 10')));
     expect(started, 'Mathematik/Plus bis 10');
 
-    // Nach drei Aufgaben ist sie erledigt und verschwindet.
+    // Nach drei Aufgaben wird die offene Aufgabe zur echten Auswertung.
     await _saveWhilePumping(tester, () async {
       for (var i = 0; i < 3; i++) {
         await app.recordLearningAnswer(
@@ -189,6 +189,9 @@ void main() {
     });
     await _settle(tester);
     expect(find.text('Von deiner Lehrerin'), findsNothing);
+    expect(find.text('Deine erledigten Aufgaben'), findsOneWidget);
+    expect(find.textContaining('3 von 3 Aufgaben bearbeitet'), findsOneWidget);
+    expect(find.textContaining('3 von 3 ohne Hilfe richtig'), findsOneWidget);
     await tester.pumpWidget(const SizedBox());
     app.dispose();
   });

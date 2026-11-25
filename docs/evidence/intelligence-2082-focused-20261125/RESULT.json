@@ -1,0 +1,65 @@
+{
+  "status": "passed",
+  "source_commit": "f346db8e21bbc7ee7202a444b866bb1f862d85cb",
+  "source_tree": "e594c39970de46d7ed397f4d6368f33f8fee889e",
+  "workflow_commit": "d176ec8c38668bd35bcd1af096260f627d3c74cd",
+  "workflow_path": ".github/workflows/lumo-2082-focused-qa.yml",
+  "workflow_blob": "d2e2611e45fe7acbba02d8fa91d2bf98333ada18",
+  "run_id": 45561984220,
+  "job_id": 139027621354,
+  "run_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45561984220",
+  "event": "push",
+  "run_started_at": "2026-11-25T06:37:29Z",
+  "run_completed_at": "2026-11-25T06:39:27Z",
+  "flutter": "3.44.9 stable",
+  "dart": "3.12.2",
+  "dependencies": "flutter pub get --enforce-lockfile: success",
+  "analysis": {
+    "status": "success",
+    "errors": 0,
+    "warnings": 5,
+    "infos": 299,
+    "command": "flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings"
+  },
+  "tests": {
+    "status": "success",
+    "passed": 114,
+    "failed": 0,
+    "files": [
+      "test/domain/adaptive_practice_plan_test.dart",
+      "test/domain/learning_chart_data_test.dart",
+      "test/domain/assignment_evidence_2082_test.dart",
+      "test/domain/school_model_test.dart",
+      "test/parents/live_learning_analytics_test.dart",
+      "test/features/teacher_flow_test.dart",
+      "test/features/assignment_evidence_2082_widget_test.dart",
+      "test/tutoring/intelligence_2082_daily_plan_test.dart",
+      "test/tutoring/intelligence_2082_language_tutor_test.dart",
+      "test/features/lumo_coach_profile_guard_2082_test.dart",
+      "test/domain/learning_analysis_independent_evidence_test.dart",
+      "test/features/learning_analysis_evidence_view_test.dart",
+      "test/domain/learning_analysis_extended_test.dart",
+      "test/domain/school_analysis_test.dart",
+      "test/learning_loop_restart_scenario_test.dart",
+      "test/features/report_screen_test.dart"
+    ],
+    "command": "flutter test --no-pub --reporter expanded --timeout=60s --concurrency=2"
+  },
+  "artifact": {
+    "id": 14998332164,
+    "name": "LUMO-2082-FOCUSED-45561984220",
+    "bytes": 45922,
+    "sha256": "f6f3923709fb9b2888567a12ed8af5339b229ce206fb48279312c4e4a416782f",
+    "expires_at": "2026-12-25T06:39:18Z",
+    "downloaded_and_hash_verified": true,
+    "files": [
+      "FLUTTER-ANALYSIS.txt",
+      "FLUTTER-FOCUSED-TESTS.txt",
+      "FLUTTER-VERSION.txt",
+      "PUB-GET.txt",
+      "SOURCE-BLOBS.txt",
+      "SOURCE-COMMIT.txt",
+      "SOURCE-TREE.txt"
+    ]
+  }
+}

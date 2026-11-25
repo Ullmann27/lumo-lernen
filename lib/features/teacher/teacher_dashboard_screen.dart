@@ -234,7 +234,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
       var open = 0;
       for (final r in rows) {
         if (!_dir.assignmentAppliesTo(a, r.student)) continue;
-        if (!AssignmentProgress.of(a, r.attempts).completed) open++;
+        if (!AssignmentProgress.of(a, r.attempts, studentId: r.student.id).completed) open++;
       }
       return open;
     }
@@ -243,10 +243,11 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
     final needHelp = rows.where((r) => r.analysis.weak.isNotEmpty).toList();
 
     // Kompetenzen, bei denen mehrere Kinder Hilfe brauchen.
-    final weakCount = <String, int>{};
+    final weakCount = <(String, String), int>{};
     for (final r in rows) {
       for (final w in r.analysis.weak) {
-        weakCount[w.competency] = (weakCount[w.competency] ?? 0) + 1;
+        final key = (w.subject, w.competency);
+        weakCount[key] = (weakCount[key] ?? 0) + 1;
       }
     }
     final weakSorted = weakCount.entries.toList()
@@ -368,7 +369,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       child: Text(
-                          '${e.key}: ${e.value} ${e.value == 1 ? 'Kind' : 'Kinder'}',
+                          '${e.key.$1} · ${e.key.$2}: ${e.value} ${e.value == 1 ? 'Kind' : 'Kinder'}',
                           style: kTeacherLabel.copyWith(fontSize: 14)),
                     ),
                 ]),
@@ -559,7 +560,8 @@ class _ClassAssignmentRow extends StatelessWidget {
     for (final r in rows) {
       if (!dir.assignmentAppliesTo(assignment, r.student)) continue;
       total++;
-      if (AssignmentProgress.of(assignment, r.attempts).completed) done++;
+      if (AssignmentProgress.of(assignment, r.attempts,
+          studentId: r.student.id).completed) done++;
     }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
@@ -586,3 +588,4 @@ class _ClassAssignmentRow extends StatelessWidget {
     );
   }
 }
+

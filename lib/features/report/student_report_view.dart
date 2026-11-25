@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/school/attempt.dart';
+import '../../domain/school/learning_chart_data.dart';
+import 'learning_analytics_panel.dart';
+import '../../domain/school/adaptive_practice_plan.dart';
+import 'adaptive_practice_plan_card.dart';
 import '../../domain/school/learning_analysis.dart';
 import '../../theme/lumo_visual_tokens.dart';
 
@@ -47,11 +51,28 @@ class StudentReportContent extends StatelessWidget {
     if (analysis.totalAttempts == 0) {
       return const _EmptyReport();
     }
-    final wrongRecent = attempts.reversed.where((a) => !a.correct).take(6);
+    final owners = attempts.map((a) => a.studentId).toSet();
+    final asOf = DateTime.now();
+    final chartData = owners.length == 1
+        ? LearningChartData.fromAttempts(attempts,
+            studentId: owners.single, now: asOf)
+        : null;
+    final plan = owners.length == 1
+        ? AdaptivePracticePlan.fromAttempts(attempts,
+            studentId: owners.single, now: asOf)
+        : null;
+    final wrongRecent = attempts.reversed
+        .where((a) => !a.correct &&
+            !LearningAnalysis.assessmentSubjects.contains(a.subject))
+        .take(6);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _SummaryRow(analysis: analysis),
+        if (chartData != null) ...[
+          const SizedBox(height: 12),
+          LearningAnalyticsPanel(data: chartData),
+        ],
         if (showSuggestion && analysis.suggestion != null) ...[
           const SizedBox(height: 12),
           _SuggestionCard(suggestion: analysis.suggestion!),
@@ -61,7 +82,7 @@ class StudentReportContent extends StatelessWidget {
           title: 'Was Lumo bemerkt hat',
           child: analysis.insights.isEmpty
               ? const _Muted('Noch zu wenig Aufgaben für ein sicheres Urteil. '
-                  'Ab fünf Aufgaben je Thema zeigt Lumo hier Stärken und Hilfebedarf.')
+                  'Ab fünf Aufgaben ohne Hilfe je Thema zeigt Lumo hier Stärken und Hilfebedarf.')
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -79,6 +100,10 @@ class StudentReportContent extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         _Section(title: 'Letzte 14 Tage', child: _DayBars(days: analysis.days)),
+        if (plan != null) ...[
+          const SizedBox(height: 12),
+          AdaptivePracticePlanCard(plan: plan),
+        ],
         if (wrongRecent.isNotEmpty) ...[
           const SizedBox(height: 12),
           _Section(
@@ -258,11 +283,17 @@ class _CompetencyRow extends StatelessWidget {
     final ms = stat.avgMs;
     if (ms != null) parts.add('Ø ${(ms / 1000).toStringAsFixed(ms < 10000 ? 1 : 0)} s');
     final t = stat.trend;
-    if (t != null) parts.add(t >= 0 ? 'Trend +$t' : 'Trend −${-t}');
+    if (t != null) {
+      parts.add(t >= 0
+          ? 'Trend ohne Hilfe +$t Prozentpunkte'
+          : 'Trend ohne Hilfe −${-t} Prozentpunkte');
+    }
     final score = stat.avgScore;
-    if (score != null) parts.add('Genauigkeit ${(score * 100).round()}\u00A0%');
+    if (score != null) {
+      parts.add('Genauigkeit ohne Hilfe ${(score * 100).round()}\u00A0%');
+    }
     final wpm = stat.wordsPerMinute;
-    if (wpm != null) parts.add('$wpm Wörter/Min');
+    if (wpm != null) parts.add('$wpm Wörter/Min ohne Hilfe');
     final days = DateTime.now().difference(stat.lastAt).inDays;
     parts.add(days == 0 ? 'zuletzt heute' : days == 1 ? 'zuletzt gestern' : 'zuletzt vor $days Tagen');
     return parts.join(' · ');
@@ -281,13 +312,14 @@ class _CompetencyRow extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
           Expanded(
-            child: Text(stat.competency,
+            child: Text('${stat.subject} · ${stat.competency}',
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: _label.copyWith(fontSize: 14)),
           ),
           const SizedBox(width: 8),
-          Text('${stat.percent} %', style: _label.copyWith(fontSize: 14)),
+          Text(stat.independentAttempts == 0 ? '–' : '${stat.percent} %',
+              style: _label.copyWith(fontSize: 14)),
         ]),
         const SizedBox(height: 4),
         ClipRRect(
@@ -300,12 +332,22 @@ class _CompetencyRow extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 2),
-        Text('$text · ${stat.correct} von ${stat.attempts} richtig',
+        Text(
+            stat.independentAttempts == 0
+                ? '$text · noch keine Antworten ohne Hilfe'
+                : '$text · ${stat.independentCorrect} von ${stat.independentAttempts} ohne Hilfe richtig',
             style: TextStyle(
                 fontFamily: 'Nunito',
                 fontSize: 12,
                 fontWeight: FontWeight.w800,
                 color: color)),
+        if (stat.hints > 0)
+          Text('${stat.attempts} Aufgaben insgesamt · ${stat.hints} mit Hilfe',
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFFD6E8FF))),
         if (_details().isNotEmpty)
           Text(_details(),
               style: const TextStyle(
@@ -397,3 +439,4 @@ class _WrongTile extends StatelessWidget {
     );
   }
 }
+

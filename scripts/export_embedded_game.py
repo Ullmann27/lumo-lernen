@@ -282,6 +282,9 @@ PRODUCTION_MESHY_ALLOWED_REVISIONS = frozenset((
     # 2081 World integration keeps the production asset tree byte-identical
     # to c3f459e; all 16 manifest GLB hashes and output checks still apply.
     'c814e35249e4038f903d1fca3e19bb4751040a43',
+    # 2082 changes World/table scripts, tests, docs and CI; every asset blob
+    # is unchanged from c814. Manifest hashes and exact cleanup checks remain.
+    '62108c0355f860ab9a0a020ecb5f3f941f1032e9',
 ))
 PRODUCTION_MESHY_MANIFEST = 'assets/kart/production/meshy/manifest.json'
 PRODUCTION_MESHY_VEHICLE_IDS = frozenset((

@@ -20,6 +20,11 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
+import '../../domain/school/adaptive_practice_plan.dart';
+import '../../domain/school/learning_chart_data.dart';
+import '../report/learning_analytics_panel.dart';
+import '../report/adaptive_practice_plan_card.dart';
+import '../report/lernbericht_screen.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/premium/lumo_empty_error_state.dart';
@@ -43,6 +48,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
   bool _loading = true;
   bool _showFullDna = false;
   int _dataRevision = 0;
+  Future<(AdaptivePracticePlan, LearningChartData)?>? _planData;
 
   // 2026-06-04: KI-Wochenanalyse direkt im Insight-Dashboard.
   // Bisher war diese Funktion nur in parent_report_card.dart versteckt.
@@ -86,6 +92,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     setState(() {
       _dataRevision++;
       _dna = dna;
+      _planData = _loadPlan(widget.appState);
       _loading = false;
       _aiInsight = null;
       _aiError = null;
@@ -134,6 +141,8 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                           _nextRecCard(),
                           const SizedBox(height: 16),
                         ],
+                        _adaptivePlan(),
+                        const SizedBox(height: 16),
                         LumoInsightHeatmap(entries: _allEntries()),
                         const SizedBox(height: 16),
                         if (_dna!.errorBreakdown.isNotEmpty) ...[
@@ -154,6 +163,74 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
       ), // close LumoMagicBackground
     );
   }
+
+  Future<(AdaptivePracticePlan, LearningChartData)?> _loadPlan(LumoAppState app) async {
+    try {
+      final generation = app.profileGeneration;
+      final owner = await app.captureLearningProfile();
+      if (owner.generation != generation || !app.canUseLearningLease(owner)) {
+        return null;
+      }
+      final attempts = await app.attemptLog.load(studentId: owner.logStudentId);
+      if (!mounted || !identical(app, widget.appState) ||
+          generation != app.profileGeneration || !app.canUseLearningLease(owner)) {
+        return null;
+      }
+      final asOf = DateTime.now();
+      return (
+        AdaptivePracticePlan.fromAttempts(attempts,
+            studentId: owner.logStudentId, now: asOf),
+        LearningChartData.fromAttempts(attempts,
+            studentId: owner.logStudentId, now: asOf),
+      );
+    } catch (_) {
+      // Do not show an empty or previous child's report on storage failure.
+      return null;
+    }
+  }
+
+  Widget _adaptivePlan() => FutureBuilder<(AdaptivePracticePlan, LearningChartData)?>(
+        key: ValueKey(widget.appState.profileGeneration),
+        future: _planData,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Center(child: CircularProgressIndicator(
+                color: LumoColors.orange));
+          }
+          final evidence = snapshot.data;
+          if (evidence == null) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text('Lernplan konnte nicht sicher geladen werden.',
+                    style: TextStyle(color: LumoVisualTokens.white)),
+                TextButton(onPressed: _build,
+                    child: const Text('Erneut versuchen')),
+              ],
+            );
+          }
+          final (plan, chartData) = evidence;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              LearningAnalyticsPanel(data: chartData),
+              const SizedBox(height: 16),
+              AdaptivePracticePlanCard(plan: plan),
+              const SizedBox(height: 8),
+              OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: LumoVisualTokens.white,
+                  minimumSize: const Size(48, 48),
+                ),
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(
+                    builder: (_) => LernberichtScreen(appState: widget.appState))),
+                icon: const Icon(Icons.insights_rounded),
+                label: const Text('Echten Lernverlauf ansehen'),
+              ),
+            ],
+          );
+        },
+      );
 
   List<DnaSkillEntry> _allEntries() {
     return _dna!.skillObservations;

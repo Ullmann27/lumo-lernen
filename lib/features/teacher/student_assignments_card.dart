@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../domain/school/school_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
+import 'assignment_evidence_summary.dart';
 
 /// „Von deiner Lehrerin“: zeigt dem Kind offene Aufgaben seiner Lehrkraft
-/// mit Fortschritt. Ein Tipp startet genau dieses Thema. Ohne Zuordnung des
-/// Geräts oder ohne offene Aufgaben bleibt das Feld unsichtbar.
+/// mit Fortschritt. Ein Tipp startet genau dieses Thema. Nach Abschluss bleibt
+/// eine kleine, nachprüfbare Zusammenfassung sichtbar. Ohne Gerätezuordnung
+/// oder Aufgaben bleibt das Feld unsichtbar.
 class StudentAssignmentsCard extends StatefulWidget {
   const StudentAssignmentsCard(
       {super.key, required this.appState, required this.onStart});
@@ -25,15 +27,18 @@ class _Open {
 
 class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
   List<_Open> _open = const [];
+  List<_Open> _completed = const [];
   String? _displayedStudentId;
   int _loadRevision = 0;
 
   void _onSchoolChanged() {
     // The teacher card must never keep showing the previous child's tasks.
     final selected = widget.appState.school.cachedActiveStudentId;
-    if (_displayedStudentId != selected && _open.isNotEmpty) {
+    if (_displayedStudentId != selected &&
+        (_open.isNotEmpty || _completed.isNotEmpty)) {
       setState(() {
         _open = const [];
+        _completed = const [];
         _displayedStudentId = selected;
       });
     }
@@ -46,6 +51,22 @@ class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
     widget.appState.addListener(_load);
     widget.appState.school.addListener(_onSchoolChanged);
     _load();
+  }
+
+  @override
+  void didUpdateWidget(covariant StudentAssignmentsCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.appState, widget.appState)) {
+      oldWidget.appState.removeListener(_load);
+      oldWidget.appState.school.removeListener(_onSchoolChanged);
+      _loadRevision++;
+      _open = const [];
+      _completed = const [];
+      _displayedStudentId = null;
+      widget.appState.addListener(_load);
+      widget.appState.school.addListener(_onSchoolChanged);
+      _load();
+    }
   }
 
   @override
@@ -66,6 +87,7 @@ class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
         setState(() {
           _displayedStudentId = null;
           _open = const [];
+          _completed = const [];
         });
         return;
       }
@@ -76,15 +98,21 @@ class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
         setState(() {
           _displayedStudentId = id;
           _open = const [];
+          _completed = const [];
         });
         return;
       }
       final attempts =
           await widget.appState.attemptLog.load(studentId: student.id);
       final open = <_Open>[];
+      final completed = <_Open>[];
       for (final a in dir.assignmentsFor(student)) {
-        final p = AssignmentProgress.of(a, attempts);
-        if (!p.completed) open.add(_Open(a, p));
+        final p = AssignmentProgress.of(a, attempts, studentId: student.id);
+        if (p.completed) {
+          completed.add(_Open(a, p));
+        } else {
+          open.add(_Open(a, p));
+        }
       }
       // ANTON-inspired clarity: the nearest due teacher assignment comes first,
       // without introducing an account, analytics or a new task repository.
@@ -101,11 +129,14 @@ class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
         }
         return a.assignment.createdAt.compareTo(b.assignment.createdAt);
       });
+      completed.sort((a, b) =>
+          b.assignment.createdAt.compareTo(a.assignment.createdAt));
       if (!mounted || revision != _loadRevision ||
           repo.cachedActiveStudentId != id) return;
       setState(() {
         _displayedStudentId = id;
         _open = open;
+        _completed = completed.take(3).toList(growable: false);
       });
     } catch (_) {
       // Do not retain another child's tasks when a profile or directory fails.
@@ -113,6 +144,7 @@ class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
         setState(() {
           _displayedStudentId = null;
           _open = const [];
+          _completed = const [];
         });
       }
     }
@@ -120,7 +152,7 @@ class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
 
   @override
   Widget build(BuildContext context) {
-    if (_open.isEmpty) return const SizedBox.shrink();
+    if (_open.isEmpty && _completed.isEmpty) return const SizedBox.shrink();
     return Container(
       key: const ValueKey('student-assignments'),
       padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
@@ -130,12 +162,15 @@ class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
         border: Border.all(color: LumoVisualTokens.gold.withOpacity(.8), width: 1.6),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        const Row(children: [
-          Icon(Icons.mark_email_unread_rounded, color: LumoVisualTokens.gold),
-          SizedBox(width: 8),
+        Row(children: [
+          const Icon(Icons.mark_email_unread_rounded,
+              color: LumoVisualTokens.gold),
+          const SizedBox(width: 8),
           Expanded(
-            child: Text('Von deiner Lehrerin',
-                style: TextStyle(
+            child: Text(_open.isEmpty
+                ? 'Deine erledigten Aufgaben'
+                : 'Von deiner Lehrerin',
+                style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 17,
                     fontWeight: FontWeight.w900,
@@ -147,7 +182,14 @@ class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
           InkWell(
             key: ValueKey('assignment-${o.assignment.unit}'),
             borderRadius: BorderRadius.circular(14),
-            onTap: () => widget.onStart(o.assignment.subject, o.assignment.unit),
+            onTap: () {
+              if (widget.appState.school.cachedActiveStudentId !=
+                  _displayedStudentId) {
+                _load();
+                return;
+              }
+              widget.onStart(o.assignment.subject, o.assignment.unit);
+            },
             child: Container(
               constraints: const BoxConstraints(minHeight: 56),
               padding: const EdgeInsets.symmetric(vertical: 8),
@@ -200,6 +242,36 @@ class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
               ]),
             ),
           ),
+        if (_completed.isNotEmpty) ...[
+          if (_open.isNotEmpty) ...[
+            const SizedBox(height: 12),
+            const Text('Schon geschafft', style: TextStyle(
+                fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                color: Colors.white)),
+          ],
+          for (final o in _completed)
+            Padding(
+              key: ValueKey('completed-assignment-${o.assignment.id}'),
+              padding: const EdgeInsets.only(top: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text('${o.assignment.subject}: ${o.assignment.title}',
+                      style: const TextStyle(
+                        fontFamily: 'Nunito', fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                      )),
+                  Text('${o.progress.done} von ${o.progress.target} Aufgaben '
+                      'bearbeitet · ${o.progress.correct} richtig',
+                      style: const TextStyle(
+                        fontFamily: 'Nunito', color: Color(0xFFD6E8FF),
+                        fontSize: 13,
+                      )),
+                  AssignmentEvidenceSummary(progress: o.progress),
+                ],
+              ),
+            ),
+        ],
       ]),
     );
   }
