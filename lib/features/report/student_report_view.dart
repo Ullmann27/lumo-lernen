@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/school/attempt.dart';
+import '../../domain/school/adaptive_practice_plan.dart';
+import 'adaptive_practice_plan_card.dart';
 import '../../domain/school/learning_analysis.dart';
 import '../../theme/lumo_visual_tokens.dart';
 
@@ -47,7 +49,15 @@ class StudentReportContent extends StatelessWidget {
     if (analysis.totalAttempts == 0) {
       return const _EmptyReport();
     }
-    final wrongRecent = attempts.reversed.where((a) => !a.correct).take(6);
+    final owners = attempts.map((a) => a.studentId).toSet();
+    final plan = owners.length == 1
+        ? AdaptivePracticePlan.fromAttempts(attempts,
+            studentId: owners.single, now: DateTime.now())
+        : null;
+    final wrongRecent = attempts.reversed
+        .where((a) => !a.correct &&
+            !LearningAnalysis.assessmentSubjects.contains(a.subject))
+        .take(6);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -79,6 +89,10 @@ class StudentReportContent extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         _Section(title: 'Letzte 14 Tage', child: _DayBars(days: analysis.days)),
+        if (plan != null) ...[
+          const SizedBox(height: 12),
+          AdaptivePracticePlanCard(plan: plan),
+        ],
         if (wrongRecent.isNotEmpty) ...[
           const SizedBox(height: 12),
           _Section(
