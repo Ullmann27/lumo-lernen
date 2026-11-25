@@ -149,6 +149,10 @@ void main() {
     for (var i = 0; i < 3000; i++) {
       final task = byId('g1_day_hours').concretize(i * 131 + 7);
       facts.add(task.prompt);
+      expect(task.prompt, isNot(matches(RegExp(
+        r'Jahreszeit|nach dem Winter|nach dem Sommer|frühstückst|gehst du schlafen',
+        caseSensitive: false,
+      ))), reason: task.prompt);
       expect(task.choices, contains(task.answer));
       expect(task.choices.toSet(), hasLength(3), reason: task.prompt);
     }

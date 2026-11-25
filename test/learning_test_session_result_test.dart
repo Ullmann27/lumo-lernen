@@ -67,6 +67,31 @@ void main() {
     expect(await highest(3, 1, LumoSessionKind.test), lessThanOrEqualTo(4));
   });
 
+  testWidgets('alle Testkategorien zeigen keine Lernwerkstatt oder Lösungsmethode',
+      (tester) async {
+    for (final subject in [
+      'Mathematik', 'Deutsch', 'Sachunterricht', 'Englisch', 'Logik', 'Alle',
+    ]) {
+      await open(tester, grade: 2, level: 0, subject: subject);
+      final renderer = tester.widget<AdaptiveTaskRenderer>(
+          find.byType(AdaptiveTaskRenderer));
+      expect(renderer.allowRetry, isFalse, reason: subject);
+      expect(find.byKey(const ValueKey('learning-3d-workshop')), findsNothing,
+          reason: subject);
+      expect(find.text('Lies die Aufgabe aufmerksam und antworte selbstständig.'),
+          findsOneWidget, reason: subject);
+      await tester.pumpWidget(const SizedBox.shrink());
+    }
+    await open(tester, grade: 2, level: 0,
+        kind: LumoSessionKind.schoolwork);
+    expect(find.byKey(const ValueKey('learning-3d-workshop')), findsNothing);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await open(tester, grade: 2, level: 0,
+        kind: LumoSessionKind.quickPractice);
+    expect(find.byKey(const ValueKey('learning-3d-workshop')), findsOneWidget);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
   testWidgets('ein fertiger Test speichert sein Ergebnis', (tester) async {
     // Englisch hat nur Auswahlaufgaben; Mathe enthält auch Zeichenaufgaben.
     final state = await open(tester, grade: 1, level: 0, subject: 'Englisch');

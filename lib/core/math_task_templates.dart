@@ -553,34 +553,34 @@ class MathTaskTemplate {
             'Das Jahr endet mit dem Dezember. Danach beginnt ein neues Jahr mit dem Jänner.'
           ),
           (
-            'Wie viele Jahreszeiten gibt es?',
-            '4',
-            ['2', '4', '12'],
-            'Frühling, Sommer, Herbst und Winter: Das sind vier Jahreszeiten.'
+            'Eine Pause dauert 5 Minuten, die nächste 5 Minuten. Wie lange dauern beide zusammen?',
+            '10 Minuten',
+            ['5 Minuten', '10 Minuten', '15 Minuten'],
+            '5 Minuten plus 5 Minuten sind 10 Minuten.'
           ),
           (
-            'Welche Jahreszeit kommt nach dem Winter?',
-            'Frühling',
-            ['Herbst', 'Sommer', 'Frühling'],
-            'Nach dem Winter wird es wärmer. Dann ist Frühling.'
+            'Ein Spiel dauert 8 Minuten. Ein Lied dauert 3 Minuten. Was dauert länger?',
+            'das Spiel',
+            ['das Spiel', 'das Lied', 'beides gleich lang'],
+            '8 Minuten sind länger als 3 Minuten.'
           ),
           (
-            'Welche Jahreszeit kommt nach dem Sommer?',
-            'Herbst',
-            ['Herbst', 'Winter', 'Frühling'],
-            'Nach dem Sommer kommt der Herbst. Die Blätter werden bunt.'
+            'Lumo malt 6 Minuten und liest 4 Minuten. Wie lange dauert beides zusammen?',
+            '10 Minuten',
+            ['2 Minuten', '10 Minuten', '12 Minuten'],
+            '6 Minuten plus 4 Minuten sind 10 Minuten.'
           ),
           (
-            'Wann stehst du auf und frühstückst?',
-            'am Morgen',
-            ['am Morgen', 'am Abend', 'in der Nacht'],
-            'Am Morgen beginnt der Tag. Da stehst du auf und frühstückst.'
+            'Ein Spiel dauert 10 Minuten. Ein anderes dauert 2 Minuten. Welches dauert kürzer?',
+            'das zweite Spiel',
+            ['das erste Spiel', 'das zweite Spiel', 'beide gleich lang'],
+            '2 Minuten sind kürzer als 10 Minuten.'
           ),
           (
-            'Wann gehst du schlafen?',
-            'am Abend',
-            ['am Morgen', 'zu Mittag', 'am Abend'],
-            'Am Abend endet der Tag. Dann gehst du schlafen.'
+            'Lumo wartet 7 Minuten. Davon sind 3 Minuten vorbei. Wie lange wartet er noch?',
+            '4 Minuten',
+            ['3 Minuten', '4 Minuten', '10 Minuten'],
+            '7 Minuten minus 3 Minuten sind 4 Minuten.'
           ),
           (
             'Was dauert länger: eine Stunde oder eine Minute?',
