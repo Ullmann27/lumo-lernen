@@ -1,10 +1,11 @@
 {
   "version": 1,
-  "request": 1,
-  "native": "b22f3bb424c6488f107ed6a772e19c878a837154",
+  "request": 2,
+  "native": "0046b2597b2521a46285092717005d754a995e26",
   "scope": [
     "lumo_world_routines_regression",
     "lumo_world_routines_integration_regression"
   ],
-  "engine": "4.6.3"
+  "engine": "4.6.3",
+  "reason": "Explicit String type for test source variable; production code unchanged."
 }
