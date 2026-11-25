@@ -16,6 +16,7 @@ final _now = DateTime(2026, 11, 25, 12);
 Attempt _answer(int n, {
   String student = 'child-a',
   bool correct = true,
+  bool hint = false,
   DateTime? reference,
 }) =>
     Attempt(
@@ -25,6 +26,7 @@ Attempt _answer(int n, {
       unit: 'Üben',
       competency: 'Kompetenz ${n % 3}',
       correct: correct,
+      hintUsed: hint,
       at: (reference ?? _now).subtract(Duration(days: n)),
     );
 
@@ -51,7 +53,28 @@ void main() {
     ));
     expect(find.byKey(const ValueKey('live-learning-empty')), findsOneWidget);
     expect(find.byKey(const ValueKey('live-learning-summary')), findsNothing);
-    expect(find.text('Kompetenz-Radar'), findsNothing);
+    expect(find.text('Kompetenz-Radar · ohne Hilfe'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Help-only activity stays visible without a competence percentage',
+      (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: SingleChildScrollView(
+          child: LearningAnalyticsPanel(
+            data: LearningChartData.fromAttempts(
+              [for (var i = 0; i < 5; i++) _answer(i, hint: true)],
+              studentId: 'child-a', now: _now,
+            ),
+          ),
+        ),
+      ),
+    ));
+    expect(find.text('5 protokollierte Antworten · 0 ohne Hilfe · 5 mit Hilfe'),
+        findsOneWidget);
+    expect(find.text('Noch keine selbstständigen Antworten.'), findsOneWidget);
+    expect(find.textContaining('(100 %)'), findsNothing);
     expect(tester.takeException(), isNull);
   });
 
@@ -82,9 +105,10 @@ void main() {
         ),
       ));
       await tester.pump();
-      expect(find.text('12 protokollierte Antworten · 3 richtig · 25 %'),
+      expect(find.text('12 protokollierte Antworten · 12 ohne Hilfe · 0 mit Hilfe'),
           findsOneWidget);
-      expect(find.text('Kompetenz-Radar'), findsOneWidget);
+      expect(find.text('3 von 12 ohne Hilfe richtig (25 %)'), findsOneWidget);
+      expect(find.text('Kompetenz-Radar · ohne Hilfe'), findsOneWidget);
       expect(find.textContaining('keine Antworten'), findsWidgets);
       expect(tester.takeException(), isNull);
     });
@@ -119,14 +143,14 @@ void main() {
       await app.loadLearningProfile();
     });
     await _frames(tester);
-    expect(find.text('1 protokollierte Antworten · 0 richtig · 0 %'),
+    expect(find.text('1 protokollierte Antworten · 1 ohne Hilfe · 0 mit Hilfe'),
         findsOneWidget);
 
     await tester.runAsync(() async => log.firstGate.complete());
     await _frames(tester);
-    expect(find.text('1 protokollierte Antworten · 0 richtig · 0 %'),
+    expect(find.text('1 protokollierte Antworten · 1 ohne Hilfe · 0 mit Hilfe'),
         findsOneWidget);
-    expect(find.text('7 protokollierte Antworten · 7 richtig · 100 %'),
+    expect(find.text('7 protokollierte Antworten · 7 ohne Hilfe · 0 mit Hilfe'),
         findsNothing);
     expect(tester.takeException(), isNull);
   });

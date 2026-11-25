@@ -45,15 +45,25 @@ class LearningAnalyticsPanel extends StatelessWidget {
           else ...[
             Text(
               '${data.total} protokollierte Antworten · '
-              '${data.correct} richtig · '
-              '${(data.accuracy! * 100).round()} %',
+              '${data.independentTotal} ohne Hilfe · '
+              '${data.assistedTotal} mit Hilfe',
               key: const ValueKey('live-learning-summary'),
               style: const TextStyle(
                   color: HoloPalette.text, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 6),
+            Text(
+              data.independentTotal == 0
+                  ? 'Noch keine selbstständigen Antworten.'
+                  : '${data.independentCorrect} von ${data.independentTotal} '
+                      'ohne Hilfe richtig (${(data.accuracy! * 100).round()} %)',
+              key: const ValueKey('live-learning-independent-summary'),
+              style: const TextStyle(color: HoloPalette.text),
+            ),
+            const SizedBox(height: 6),
             const Text(
-              'Aus den gespeicherten Einzelaufgaben dieses Kindes. '
+              'Radar und Verlauf nutzen nur Antworten ohne Hilfe. '
+              'Aufgaben mit Hilfe bleiben getrennt im Aktivitätszähler. '
               'Zeit und Tempo verändern die Trefferquote nicht. '
               'Kleine Stichproben sind noch keine sichere Kompetenzbewertung.',
               style: TextStyle(
@@ -92,27 +102,29 @@ class LearningAnalyticsPanel extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text('Kompetenz-Radar',
+        const Text('Kompetenz-Radar · ohne Hilfe',
             style: TextStyle(
                 color: HoloPalette.text, fontWeight: FontWeight.w800)),
         if (entries.length >= 3)
           Semantics(
-            label: 'Kompetenz-Radar. Skala null bis hundert Prozent. '
+            label: 'Kompetenz-Radar ohne Hilfe. Skala null bis hundert Prozent. '
                 '${entries.map((entry) => '${entry.subject}, '
                     '${entry.competency}: ${entry.correct} von '
-                    '${entry.total} Antworten richtig').join('. ')}',
+                    '${entry.total} Antworten ohne Hilfe richtig').join('. ')}',
             child: SizedBox(
               height: 210,
               child: CustomPaint(painter: _LiveRadarPainter(entries)),
             ),
           )
         else
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: Text(
-              'Für ein Radar sind drei geübte Kompetenzen nötig. '
-              'Die vorhandenen Ergebnisse stehen bereits hier.',
-              style: TextStyle(color: HoloPalette.muted, fontSize: 12),
+              entries.isEmpty
+                  ? 'Für das Kompetenz-Radar fehlen noch selbstständig beantwortete Aufgaben.'
+                  : 'Für ein Radar sind drei selbstständig geübte Kompetenzen nötig. '
+                      'Die vorhandenen Ergebnisse stehen bereits hier.',
+              style: const TextStyle(color: HoloPalette.muted, fontSize: 12),
             ),
           ),
         for (var index = 0; index < entries.length; index++)
@@ -121,14 +133,14 @@ class LearningAnalyticsPanel extends StatelessWidget {
             child: Text(
               '${index + 1}. ${entries[index].subject} · '
               '${entries[index].competency}\n'
-              '${entries[index].correct} von ${entries[index].total} richtig '
+              '${entries[index].correct} von ${entries[index].total} ohne Hilfe richtig '
               '(${(entries[index].accuracy * 100).round()} %)'
               '${entries[index].hasEnoughEvidence ? '' : ' · kleine Stichprobe'}',
               style: const TextStyle(color: HoloPalette.text, height: 1.35),
             ),
           ),
         if (data.competencies.length > entries.length)
-          const Text('Angezeigt: die sechs am häufigsten geübten Kompetenzen.',
+          const Text('Angezeigt: die sechs am häufigsten selbstständig geübten Kompetenzen.',
               style: TextStyle(color: HoloPalette.muted, fontSize: 12)),
       ],
     );
@@ -140,12 +152,12 @@ class LearningAnalyticsPanel extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text('Lernverlauf · letzte 28 Tage',
+        const Text('Lernverlauf ohne Hilfe · letzte 28 Tage',
             style: TextStyle(
                 color: HoloPalette.text, fontWeight: FontWeight.w800)),
         const SizedBox(height: 8),
         if (!hasRecentData)
-          const Text('In diesem Zeitraum sind keine Antworten protokolliert.',
+          const Text('In diesem Zeitraum sind keine Antworten ohne Hilfe protokolliert.',
               style: TextStyle(color: HoloPalette.muted))
         else ...[
           SizedBox(
@@ -174,8 +186,8 @@ class LearningAnalyticsPanel extends StatelessWidget {
                 '${subjects.map((subject) {
                   final count = week.subjects[subject];
                   return count == null
-                      ? '$subject: keine Antworten'
-                      : '$subject: ${count.correct}/${count.total} richtig';
+                      ? '$subject: keine Antworten ohne Hilfe'
+                      : '$subject: ${count.correct}/${count.total} ohne Hilfe richtig';
                 }).join(' · ')}',
                 style: const TextStyle(
                     color: HoloPalette.muted, fontSize: 12, height: 1.4),
@@ -184,14 +196,14 @@ class LearningAnalyticsPanel extends StatelessWidget {
         ],
         const SizedBox(height: 6),
         const Text(
-          'Die Kurven zeigen Trefferquoten je Siebentagesabschnitt. '
-          'Lücken bleiben offen; keine Antworten werden nicht als 0 % gewertet. '
+          'Die Kurven zeigen selbstständige Trefferquoten je Siebentagesabschnitt. '
+          'Lücken bleiben offen; fehlende Antworten ohne Hilfe werden nicht als 0 % gewertet. '
           'Unterschiedlich schwierige Aufgaben sind nicht direkt vergleichbar.',
           style:
               TextStyle(color: HoloPalette.muted, fontSize: 12, height: 1.4),
         ),
         if (data.subjects.length > subjects.length)
-          const Text('Angezeigt: die vier am häufigsten geübten Fächer.',
+          const Text('Angezeigt: die vier in diesem Zeitraum am häufigsten selbstständig geübten Fächer.',
               style: TextStyle(color: HoloPalette.muted, fontSize: 12)),
       ],
     );

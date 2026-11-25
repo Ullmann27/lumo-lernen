@@ -1,7 +1,7 @@
 import 'attempt.dart';
 import 'learning_analysis.dart';
 
-/// Observed answers for one subject/competency; time is never a score.
+/// Observed independent answers for one competency; time is never a score.
 class LearningChartCount {
   const LearningChartCount({
     required this.subject,
@@ -41,6 +41,8 @@ class LearningChartData {
     required this.asOf,
     required this.total,
     required this.correct,
+    required this.assistedTotal,
+    required this.independentCorrect,
     required List<LearningChartCount> competencies,
     required List<String> subjects,
     required List<LearningChartWeek> weeks,
@@ -52,10 +54,16 @@ class LearningChartData {
   final DateTime asOf;
   final int total;
   final int correct;
+  final int assistedTotal;
+  final int independentCorrect;
+  int get independentTotal => total - assistedTotal;
   final List<LearningChartCount> competencies;
   final List<String> subjects;
   final List<LearningChartWeek> weeks;
-  double? get accuracy => total == 0 ? null : correct / total;
+  /// The plotted rate uses only independent answers. Assisted work remains
+  /// visible in the activity count, never as proof of independent competence.
+  double? get accuracy =>
+      independentTotal == 0 ? null : independentCorrect / independentTotal;
 
   factory LearningChartData.fromAttempts(
     Iterable<Attempt> source, {
@@ -82,6 +90,7 @@ class LearningChartData {
 
     final groups = <(String, String), List<Attempt>>{};
     for (final attempt in attempts) {
+      if (attempt.hintUsed) continue;
       groups
           .putIfAbsent((attempt.subject, attempt.competency), () => <Attempt>[])
           .add(attempt);
@@ -110,6 +119,7 @@ class LearningChartData {
       final end = DateTime(start.year, start.month, start.day + 7);
       final weekGroups = <String, List<Attempt>>{};
       for (final attempt in attempts) {
+        if (attempt.hintUsed) continue;
         final at = attempt.at.toLocal();
         if (!at.isBefore(start) && at.isBefore(end)) {
           weekGroups
@@ -148,6 +158,9 @@ class LearningChartData {
       asOf: asOf,
       total: attempts.length,
       correct: attempts.where((attempt) => attempt.correct).length,
+      assistedTotal: attempts.where((attempt) => attempt.hintUsed).length,
+      independentCorrect: attempts
+          .where((attempt) => !attempt.hintUsed && attempt.correct).length,
       competencies: competencies,
       subjects: subjects,
       weeks: weeks,

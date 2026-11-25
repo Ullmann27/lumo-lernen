@@ -9,6 +9,7 @@ Attempt _answer(String id, {
   String subject = 'Mathematik',
   String competency = 'Muster',
   bool correct = true,
+  bool hint = false,
   DateTime? at,
   int? durationMs,
 }) => Attempt(
@@ -18,6 +19,7 @@ Attempt _answer(String id, {
   unit: 'Üben',
   competency: competency,
   correct: correct,
+  hintUsed: hint,
   at: at ?? _now.subtract(const Duration(hours: 1)),
   durationMs: durationMs,
 );
@@ -101,6 +103,32 @@ void main() {
     expect(data.total, 9);
     expect(data.subjects, ['Sachunterricht']);
     expect(data.competencies.first.subject, 'Deutsch');
+  });
+
+  test('Assisted success is activity, never independent chart evidence', () {
+    final assistedOnly =
+        _data([for (var i = 0; i < 8; i++) _answer('help-$i', hint: true)]);
+    expect(assistedOnly.total, 8);
+    expect(assistedOnly.assistedTotal, 8);
+    expect(assistedOnly.independentTotal, 0);
+    expect(assistedOnly.accuracy, isNull);
+    expect(assistedOnly.competencies, isEmpty);
+    expect(assistedOnly.weeks.every((week) => week.subjects.isEmpty), isTrue);
+
+    final mixed = _data([
+      for (var i = 0; i < 8; i++) _answer('help-$i', hint: true),
+      _answer('own-wrong', correct: false),
+      _answer('own-correct'),
+    ]);
+    expect(mixed.total, 10);
+    expect(mixed.assistedTotal, 8);
+    expect(mixed.independentTotal, 2);
+    expect(mixed.independentCorrect, 1);
+    expect(mixed.accuracy, .5);
+    expect(mixed.competencies.single.total, 2);
+    expect(mixed.competencies.single.hasEnoughEvidence, isFalse);
+    expect(mixed.weeks.last.subjects['Mathematik']!.total, 2);
+    expect(mixed.weeks.last.accuracyFor('Mathematik'), .5);
   });
 
   test('Returned chart collections cannot mutate the source projection', () {
