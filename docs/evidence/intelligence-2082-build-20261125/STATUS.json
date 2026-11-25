@@ -1,6 +1,6 @@
 {
-  "snapshot_utc": "2026-11-25T09:20:36Z",
-  "status": "BUILD_LOCAL_BYTES_AND_ANDROID_CONTENT_PASS_PUBLIC_DELIVERY_PENDING",
+  "snapshot_utc": "2026-11-25T09:29:54Z",
+  "status": "TECHNICAL_ACCEPTANCE_PASS_PUBLICATION_FAILED_HTTP403_BROWSER_PREPARED",
   "source_commit": "6574b19f92abb4f6421fd3074cec09738dc0974a",
   "native_commit": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
   "original_run": 45569841812,
@@ -79,9 +79,51 @@
   },
   "public_release": {
     "created_by_this_evidence_work": false,
-    "phase": "PUBLISHER_RESULT_PENDING_SEPARATE_EVIDENCE",
+    "phase": "WORKFLOW_CREATE_TAG_FAILED_HTTP403_BROWSER_PREPARED_NOT_UPLOADED",
+    "publication_success_claimed": false,
     "public_download_verified": false,
-    "approval_claimed": false
+    "workflow_run": 45584568855,
+    "workflow_attempt": 1,
+    "publisher_commit": "8223c723c63ec361c887a905d833c5bd078946e9",
+    "verify_job": {
+      "id": 139102772508,
+      "conclusion": "success"
+    },
+    "publish_job": {
+      "id": 139103963328,
+      "stage_reverification": "success",
+      "conclusion": "failure"
+    },
+    "failure": {
+      "status": "FAIL",
+      "phase": "create-tag",
+      "exception": "PublicationOperationError",
+      "reason": "permission",
+      "http_status": 403,
+      "exit_code": 1
+    },
+    "failure_timestamp_utc": "2026-11-25T09:25:11.9764227Z",
+    "failure_file": "publication/failed-run-45584568855/publish/PUBLICATION-FAILURE.json",
+    "prepublication_verification": {
+      "status": "PASS",
+      "bytes": 3595,
+      "sha256": "dcc739178e0d5ad8fa547b5cfdcc0c14d46541ae9d2cb9bc4972c6f8207f163e",
+      "both_original_copies_byte_identical": true
+    },
+    "post_failure_reads": {
+      "checked_at": "2026-11-25 09:28:40 UTC",
+      "release_tag": "lumo-0.14.9-2082-45569841812",
+      "tag_http_status": 404,
+      "release_http_status": 404,
+      "file": "publication/failed-run-45584568855/POST-FAILURE-TAG-RELEASE-READS.json"
+    },
+    "browser_preparation": {
+      "status": "PREPARED_NOT_UPLOADED",
+      "asset_count": 7,
+      "manifest": "publication/failed-run-45584568855/pending-browser/BROWSER-RELEASE-PREPARED.json",
+      "scope": "Prepared original bytes; no login, upload, tag or public release at this snapshot."
+    },
+    "scope": "Observed HTTP403/permission at create-tag; no broader unobserved cause or public-delivery success inferred."
   },
   "transfer_run": 45579662500,
   "transfer_commit": "f26dfe3c1472e49936b703b671fcdfa74dedfa6f",
@@ -134,12 +176,12 @@
     "android_required_native_starts": 7,
     "android_fatal_crashes": 0
   },
-  "original_documents_copied": 26,
+  "original_documents_copied": 46,
   "original_copy_policy": "Original bytes are unchanged. Historical statements that verification remained pending retain their original temporal scope.",
   "original_run_status": {
     "status": "completed",
     "conclusion": "success",
     "updated_at": "2026-11-25T09:16:49Z"
   },
-  "prior_combined_status": "history/build-and-bytes-8edd474/STATUS.json"
+  "prior_combined_status": "history/android-accepted-dec46cfa/STATUS.json"
 }

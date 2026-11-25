@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "order": {
+    "schema": 2,
+    "repository": "Ullmann27/lumo-lernen",
+    "repository_id": 1222433959,
+    "repository_owner_id": 64243701,
+    "branch": "integration/lumo-intelligence-2082-20261125",
+    "build_workflow": ".github/workflows/lumo-intelligence-2082.yml",
+    "version_name": "0.14.9",
+    "version_code": 2082,
+    "apk_file": "Lumo-Lernen-Test-0.14.9-2082.apk",
+    "certificate_sha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "publisher_authentication": "github-actions-installation-token",
+    "build_run_id": 45569841812,
+    "build_run_attempt": 1,
+    "flutter_commit": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+    "godot_commit": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
+    "apk_bytes": 653020163,
+    "apk_sha256": "0ab02c4f1d3b3a625be42f5f974d1592ec993af27e5ed56135245dfee4996243",
+    "pck_bytes": 394388252,
+    "pck_sha256": "fbd0d7c1155dac14be5913d5ee57eb9d0cc1fe586bfff0350459746eaf6097ab",
+    "release_tag": "lumo-0.14.9-2082-45569841812",
+    "intelligence_job_id": 139053500085,
+    "build_job_id": 139054345083,
+    "android_job_id": 139080694208,
+    "apk_artifact_id": 15004539062,
+    "apk_artifact_bytes": 662435961,
+    "apk_artifact_sha256": "c186795be0f83ab20a4510b8a67b870b18686a52660f86b8137667a80bb52e75",
+    "android_artifact_id": 15007906728,
+    "android_artifact_bytes": 170350580,
+    "android_artifact_sha256": "2f808087899ae0a0d7d4b1d249ebfdab6f0260865879d205b1f27cb21463be2b",
+    "intelligence_artifact_id": 15001986315,
+    "intelligence_artifact_bytes": 6877,
+    "intelligence_artifact_sha256": "47c64a5f023841f2efccac6f64206346b27130c992aa2ce063a681d210cc8d81"
+  },
+  "assets": {
+    "APK-VERIFICATION.json": {
+      "bytes": 3834,
+      "sha256": "0cc7bd488829c64af939a10c3773b29e89423a7c13d068cb44207eea2cc5c068"
+    },
+    "LUMO-INTEGRATIONSBELEGE.zip": {
+      "bytes": 5201556,
+      "sha256": "d81e06d9b815711d890ba336e67636883f8a426dc280dd9b11f61713162e351d"
+    },
+    "ORIGINAL-RUN-AND-ARTIFACTS.json": {
+      "bytes": 32456,
+      "sha256": "c3254acf14dae6b8aec76c6ead750c036216b914ea3d7fe68e172e26a6b98e71"
+    },
+    "PUBLISHER-CONTEXT.json": {
+      "bytes": 295,
+      "sha256": "0de201c5b711b5f89d1ce500cad8b9a52c8d3f843aaea531593f80956d5f3ded"
+    },
+    "Lumo-Lernen-Test-0.14.9-2082.apk": {
+      "bytes": 653020163,
+      "sha256": "0ab02c4f1d3b3a625be42f5f974d1592ec993af27e5ed56135245dfee4996243"
+    },
+    "SHA256SUMS.txt": {
+      "bytes": 99,
+      "sha256": "1bc64a890218edbe91e836d3b17c2c436c1ce403d33be61cfddb1bb6fb45541d"
+    },
+    "SPLIT-APK-IDENTITY.json": {
+      "bytes": 1249,
+      "sha256": "a6002d5a24fedad2160924247acf75b22f3a5654469c5822ab143657e6dfe002"
+    },
+    "LUMO-INTELLIGENCE-TESTS.zip": {
+      "bytes": 6877,
+      "sha256": "47c64a5f023841f2efccac6f64206346b27130c992aa2ce063a681d210cc8d81"
+    },
+    "BUILD-PROVENANCE.json": {
+      "bytes": 9644,
+      "sha256": "f441b64ad54d6a5946408fafcd4dd342ff82275edee13f20e7a0cf5275575ba2"
+    },
+    "LUMO-ANDROID-PRUEFBELEGE.zip": {
+      "bytes": 85466965,
+      "sha256": "1868b88b1ffcb1dba423f50250180d096c8fa4c73dcfb3497f44a066bf083bcd"
+    },
+    "PUBLICATION-ORDER.json": {
+      "bytes": 1590,
+      "sha256": "7e0ea491f9514e9d4cd584ad5a02fddd4d43d494f09cebc72791b0c3c0ca0834"
+    },
+    "DOWNLOADED-ARTIFACTS.json": {
+      "bytes": 614,
+      "sha256": "09030afce5378de64f7a1533f39e62ba2820019e6156ba2fae0ccc51e792a7b0"
+    },
+    "LIESMICH.md": {
+      "bytes": 1147,
+      "sha256": "cf1f6c175a1e035fddf112b23b293d4c818d655e3718c07fcddbd56c740fafe0"
+    }
+  }
+}

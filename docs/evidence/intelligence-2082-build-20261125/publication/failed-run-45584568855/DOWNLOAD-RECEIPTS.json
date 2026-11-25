@@ -1,0 +1,71 @@
+[
+  {
+    "file": "LUMO-2082-REVIEWED-PUBLISH-45584568855-1.zip",
+    "bytes": 3001,
+    "sha256": "702cedd22f25e775e3340a504af1d63a0fa49fc8e52f1aeefb8680a152dc9c2e",
+    "original_files": [
+      {
+        "path": "PREPUBLICATION-VERIFICATION.json",
+        "bytes": 3595,
+        "sha256": "dcc739178e0d5ad8fa547b5cfdcc0c14d46541ae9d2cb9bc4972c6f8207f163e"
+      },
+      {
+        "path": "PUBLICATION-FAILURE.json",
+        "bytes": 158,
+        "sha256": "33ccfda1737445f8aa840ab049c4a627d955eaecc157d32fe84d249465749c6d"
+      },
+      {
+        "path": "PUBLICATION-PROGRESS.json",
+        "bytes": 28,
+        "sha256": "c8ffcf7e3347e1ac6ceafa90238e2a8a240ba55d16895883cb2ff5b0140736c4"
+      },
+      {
+        "path": "PUBLISHER-CONTEXT.json",
+        "bytes": 295,
+        "sha256": "0de201c5b711b5f89d1ce500cad8b9a52c8d3f843aaea531593f80956d5f3ded"
+      },
+      {
+        "path": "STAGE-ARTIFACT-VERIFICATION.json",
+        "bytes": 622,
+        "sha256": "4de6d9d0334b74498c4ce836c17e995986102e34a539f21d0d9f2527207c0128"
+      }
+    ]
+  },
+  {
+    "file": "LUMO-2082-PUBLICATION-CHECKS-45584568855-1.zip",
+    "bytes": 7570,
+    "sha256": "cf199a453759f085745e4b21c54876e259de4cbd18310686e262c92d87e23f01",
+    "original_files": [
+      {
+        "path": "DOWNLOADED-ARTIFACTS.json",
+        "bytes": 614,
+        "sha256": "09030afce5378de64f7a1533f39e62ba2820019e6156ba2fae0ccc51e792a7b0"
+      },
+      {
+        "path": "PREPUBLICATION-VERIFICATION.json",
+        "bytes": 3595,
+        "sha256": "dcc739178e0d5ad8fa547b5cfdcc0c14d46541ae9d2cb9bc4972c6f8207f163e"
+      },
+      {
+        "path": "PUBLICATION-ORDER.json",
+        "bytes": 1590,
+        "sha256": "7e0ea491f9514e9d4cd584ad5a02fddd4d43d494f09cebc72791b0c3c0ca0834"
+      },
+      {
+        "path": "ORIGINAL-RUN-AND-ARTIFACTS.json",
+        "bytes": 32456,
+        "sha256": "c3254acf14dae6b8aec76c6ead750c036216b914ea3d7fe68e172e26a6b98e71"
+      },
+      {
+        "path": "PUBLISHER-CONTEXT.json",
+        "bytes": 295,
+        "sha256": "0de201c5b711b5f89d1ce500cad8b9a52c8d3f843aaea531593f80956d5f3ded"
+      },
+      {
+        "path": "PUBLICATION-PROGRESS.json",
+        "bytes": 24,
+        "sha256": "44c8362082e4c09bea3d5ca173c58efac301c61401169a477e14d830ed7e52b8"
+      }
+    ]
+  }
+]

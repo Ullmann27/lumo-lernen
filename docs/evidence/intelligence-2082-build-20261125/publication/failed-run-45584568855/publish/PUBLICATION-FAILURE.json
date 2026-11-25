@@ -1,0 +1,8 @@
+{
+  "status": "FAIL",
+  "phase": "create-tag",
+  "exception": "PublicationOperationError",
+  "reason": "permission",
+  "http_status": 403,
+  "exit_code": 1
+}

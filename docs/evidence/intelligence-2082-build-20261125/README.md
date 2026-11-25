@@ -1,6 +1,6 @@
 # LUMO 2082: completed build, internal transport and actual local byte verification
 
-Evidence snapshot: **2026-11-25 09:20:36 UTC**. The signed APK build, actual local APK/PCK byte verification and independent inspection of the completed Android artifact passed. **All three original jobs are completed/success. Public delivery remains a separate pending phase; no public APK download is claimed in this snapshot.** The earlier combined status is retained byte-for-byte in [history/build-and-bytes-8edd474](history/build-and-bytes-8edd474/).
+Evidence snapshot: **2026-11-25 09:29:54 UTC**. Build, actual local APK/PCK byte verification and Android artifact-content acceptance passed. **The automatic publisher then failed at `create-tag` with HTTP 403 / `permission`. Both the exact intended tag and release returned 404 after the failure. No verified public APK download is available for this intended release in this snapshot.** Seven original files are prepared for a legitimate authenticated browser publication, but login/upload/publication have not occurred. Earlier combined snapshots remain byte-identical under [history](history/).
 
 ## Exact candidate
 
@@ -66,7 +66,23 @@ The complete [additional native-start diagnostic report](android/original-run-45
 
 The nested `LUMO-ANDROID-PRUEFBELEGE.zip` is represented by its original identity only: **85466965 bytes**, SHA256 **`1868b88b1ffcb1dba423f50250180d096c8fa4c73dcfb3497f44a066bf083bcd`**. Neither archive nor an APK is committed. [Raw final run](android/original-run-45569841812-job-139080694208/FINAL-RUN-RAW.json), [raw final jobs](android/original-run-45569841812-job-139080694208/FINAL-JOBS-RAW.json), and [original artifact metadata](android/original-run-45569841812-job-139080694208/FINAL-ARTIFACTS.json) bind the evidence to host `6574b19`, native `62108`, original run `45569841812`, attempt 1. [The log-source manifest](android/original-run-45569841812-job-139080694208/ANDROID-LOG-SOURCE.json) records the full original log hash and exact selected line ranges.
 
-This establishes the recorded Android emulator UI/runtime and backup acceptance. It does not claim complete gameplay for every launched game, physical Fold7/ARM64 performance, audible playback acceptance or 60 FPS. Publication and anonymous access to a final APK require their own later result.
+This establishes the recorded Android emulator UI/runtime and backup acceptance. It does not claim complete gameplay for every launched game, physical Fold7/ARM64 performance, audible playback acceptance or 60 FPS. The actual publication attempt and permission failure are documented separately below; no successful public download follows from Android acceptance.
+
+## Actual publication attempt and observed permission failure
+
+The [original publisher run 45584568855](https://github.com/Ullmann27/lumo-lernen/actions/runs/45584568855) executed from `8223c723c63ec361c887a905d833c5bd078946e9` on `support/lumo-2082-reviewed-publication` against the unchanged accepted host/native candidate. The read-only original-artifact verification job **139102772508 passed**, and the second job's exact stage re-verification also passed. The real write attempt in job **139103963328 failed at 2026-11-25T09:25:11.9764227Z**:
+
+```json
+{"status":"FAIL","phase":"create-tag","exception":"PublicationOperationError","reason":"permission","http_status":403,"exit_code":1}
+```
+
+This is the observed GitHub permission rejection. No additional token-scope diagnosis is inferred. [The original failure file](publication/failed-run-45584568855/publish/PUBLICATION-FAILURE.json) is **158 bytes**, SHA256 **`33ccfda1737445f8aa840ab049c4a627d955eaecc157d32fe84d249465749c6d`**. Root independently downloaded and hashed both small proof ZIPs; [the receipts](publication/failed-run-45584568855/DOWNLOAD-RECEIPTS.json) retain their identities and every original file hash. The [checks](publication/failed-run-45584568855/checks/PREPUBLICATION-VERIFICATION.json) and [publish](publication/failed-run-45584568855/publish/PREPUBLICATION-VERIFICATION.json) copies of the successful prepublication report are byte-identical: **3595 bytes**, SHA256 **`dcc739178e0d5ad8fa547b5cfdcc0c14d46541ae9d2cb9bc4972c6f8207f163e`**.
+
+At **09:28:40 UTC**, subsequent GET requests for exact tag/release `lumo-0.14.9-2082-45569841812` both returned **404**, recorded unchanged in [POST-FAILURE-TAG-RELEASE-READS.json](publication/failed-run-45584568855/POST-FAILURE-TAG-RELEASE-READS.json). There is therefore no verified public APK download in this snapshot.
+
+Both full original text job logs and [raw final job statuses](publication/failed-run-45584568855/PUBLISHER-FINAL-JOBS-RAW.json) are retained. **The verification log contains simulated `create-tag`, `complete` and other phases from the publication-guard contract tests around 09:21:55. Those test messages are not actual tag creation, release publication or anonymous download.** The real publication job is [PUBLISHER-JOB-139103963328.log](publication/failed-run-45584568855/PUBLISHER-JOB-139103963328.log), whose actual write phase stops at the recorded 403.
+
+The [pending browser manifest](publication/failed-run-45584568855/pending-browser/BROWSER-RELEASE-PREPARED.json) records seven exact prepared assets and their hashes; its status is `PREPARED_NOT_UPLOADED`. The prepared APK is a hard link to the independently hashed original APK, not a rebuilt or re-signed file. [The pending LIESMICH text](publication/failed-run-45584568855/pending-browser/LIESMICH.md) is archived as a prepared asset, not a published release. No browser authentication data, APK or ZIP is included in this evidence commit. A later legitimate authenticated publication and public-download verification need a new observed result; this failure and all historical originals remain preserved.
 
 ## Historical snapshots are preserved
 
@@ -77,6 +93,8 @@ Every source file listed in [ORIGINAL-FILES.json](ORIGINAL-FILES.json) is an exa
 - `local/original-release-metadata/` contains the original build-generated reports with their original limitations. Packaged voice assets do not prove audible playback; generated launcher resources do not prove an installed-device launcher inspection. The split identity's x86_64 emulator scope does not claim a physical ARM64 device test.
 - `history/build-and-bytes-8edd474/` preserves the earlier top-level README, STATUS and manifests byte-for-byte, including their then-accurate pending Android status.
 - `android/` contains the later completed original job/API evidence and root's separate actual artifact-content verification.
-- `STATUS.json` and this README describe the combined state now documented: build, local bytes and Android artifact contents passed; public delivery remains pending separate evidence.
+- `history/android-accepted-dec46cfa/` preserves the Android-accepted, publication-pending top-level snapshot byte-for-byte.
+- `publication/failed-run-45584568855/` preserves the later successful prepublication checks, actual create-tag permission failure, post-failure 404 reads and pending browser assets.
+- `STATUS.json` and this README describe the combined state now documented: technical acceptance passed; the real automatic publication failed; authenticated browser publication remains prepared and not uploaded.
 
-The evidence branch starts with a direct child of the tested host source; this completion update follows evidence commit `8edd474dc3ac5256a3b95854df417cab60281e5b`. It changes only evidence files below `docs/evidence/intelligence-2082-build-20261125/` and carries `[skip ci]`. Product pins, source code, workflows, integration and main branches are unchanged. No Fold7/physical-device performance or 60 FPS claim is made. The linked Actions artifacts retain their own expiry dates in the preserved metadata; the text and hashes in this Git commit remain inspectable independently.
+The evidence branch starts with a direct child of the tested host source; this publication-outcome update follows evidence commit `dec46cfa0b9100d1b8014c8b6df42a9f90d81106`. It changes only evidence files below `docs/evidence/intelligence-2082-build-20261125/` and carries `[skip ci]`. Product pins, source code, workflows, integration and main branches are unchanged. No Fold7/physical-device performance or 60 FPS claim is made. The linked Actions artifacts retain their own expiry dates in the preserved metadata; the text and hashes in this Git commit remain inspectable independently.

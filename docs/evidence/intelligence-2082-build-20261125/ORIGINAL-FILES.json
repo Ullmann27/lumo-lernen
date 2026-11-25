@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "snapshot_utc": "2026-11-25T09:20:36Z",
+  "snapshot_utc": "2026-11-25T09:29:54Z",
   "files": [
     {
       "file": "build/README.md",
@@ -209,6 +209,166 @@
       "sha256": "2ee84efe4f2fd0e309ec77b8e72655a9c193b2a664b23779a64c246642591279",
       "copy": "byte-identical",
       "scope": "Original completed-run GitHub API response captured by build_monitor."
+    },
+    {
+      "file": "publication/failed-run-45584568855/checks/DOWNLOADED-ARTIFACTS.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/checks/DOWNLOADED-ARTIFACTS.json",
+      "bytes": 614,
+      "sha256": "09030afce5378de64f7a1533f39e62ba2820019e6156ba2fae0ccc51e792a7b0",
+      "copy": "byte-identical",
+      "scope": "Original text file from a downloaded and hash-verified publisher proof artifact."
+    },
+    {
+      "file": "publication/failed-run-45584568855/checks/ORIGINAL-RUN-AND-ARTIFACTS.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/checks/ORIGINAL-RUN-AND-ARTIFACTS.json",
+      "bytes": 32456,
+      "sha256": "c3254acf14dae6b8aec76c6ead750c036216b914ea3d7fe68e172e26a6b98e71",
+      "copy": "byte-identical",
+      "scope": "Original text file from a downloaded and hash-verified publisher proof artifact."
+    },
+    {
+      "file": "publication/failed-run-45584568855/checks/PREPUBLICATION-VERIFICATION.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/checks/PREPUBLICATION-VERIFICATION.json",
+      "bytes": 3595,
+      "sha256": "dcc739178e0d5ad8fa547b5cfdcc0c14d46541ae9d2cb9bc4972c6f8207f163e",
+      "copy": "byte-identical",
+      "scope": "Original text file from a downloaded and hash-verified publisher proof artifact."
+    },
+    {
+      "file": "publication/failed-run-45584568855/checks/PUBLICATION-ORDER.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/checks/PUBLICATION-ORDER.json",
+      "bytes": 1590,
+      "sha256": "7e0ea491f9514e9d4cd584ad5a02fddd4d43d494f09cebc72791b0c3c0ca0834",
+      "copy": "byte-identical",
+      "scope": "Original text file from a downloaded and hash-verified publisher proof artifact."
+    },
+    {
+      "file": "publication/failed-run-45584568855/checks/PUBLICATION-PROGRESS.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/checks/PUBLICATION-PROGRESS.json",
+      "bytes": 24,
+      "sha256": "44c8362082e4c09bea3d5ca173c58efac301c61401169a477e14d830ed7e52b8",
+      "copy": "byte-identical",
+      "scope": "Original text file from a downloaded and hash-verified publisher proof artifact."
+    },
+    {
+      "file": "publication/failed-run-45584568855/checks/PUBLISHER-CONTEXT.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/checks/PUBLISHER-CONTEXT.json",
+      "bytes": 295,
+      "sha256": "0de201c5b711b5f89d1ce500cad8b9a52c8d3f843aaea531593f80956d5f3ded",
+      "copy": "byte-identical",
+      "scope": "Original text file from a downloaded and hash-verified publisher proof artifact."
+    },
+    {
+      "file": "publication/failed-run-45584568855/publish/PREPUBLICATION-VERIFICATION.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/publish/PREPUBLICATION-VERIFICATION.json",
+      "bytes": 3595,
+      "sha256": "dcc739178e0d5ad8fa547b5cfdcc0c14d46541ae9d2cb9bc4972c6f8207f163e",
+      "copy": "byte-identical",
+      "scope": "Original text file from a downloaded and hash-verified publisher proof artifact."
+    },
+    {
+      "file": "publication/failed-run-45584568855/publish/PUBLICATION-FAILURE.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/publish/PUBLICATION-FAILURE.json",
+      "bytes": 158,
+      "sha256": "33ccfda1737445f8aa840ab049c4a627d955eaecc157d32fe84d249465749c6d",
+      "copy": "byte-identical",
+      "scope": "Original text file from a downloaded and hash-verified publisher proof artifact."
+    },
+    {
+      "file": "publication/failed-run-45584568855/publish/PUBLICATION-PROGRESS.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/publish/PUBLICATION-PROGRESS.json",
+      "bytes": 28,
+      "sha256": "c8ffcf7e3347e1ac6ceafa90238e2a8a240ba55d16895883cb2ff5b0140736c4",
+      "copy": "byte-identical",
+      "scope": "Original text file from a downloaded and hash-verified publisher proof artifact."
+    },
+    {
+      "file": "publication/failed-run-45584568855/publish/PUBLISHER-CONTEXT.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/publish/PUBLISHER-CONTEXT.json",
+      "bytes": 295,
+      "sha256": "0de201c5b711b5f89d1ce500cad8b9a52c8d3f843aaea531593f80956d5f3ded",
+      "copy": "byte-identical",
+      "scope": "Original text file from a downloaded and hash-verified publisher proof artifact."
+    },
+    {
+      "file": "publication/failed-run-45584568855/publish/STAGE-ARTIFACT-VERIFICATION.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/publish/STAGE-ARTIFACT-VERIFICATION.json",
+      "bytes": 622,
+      "sha256": "4de6d9d0334b74498c4ce836c17e995986102e34a539f21d0d9f2527207c0128",
+      "copy": "byte-identical",
+      "scope": "Original text file from a downloaded and hash-verified publisher proof artifact."
+    },
+    {
+      "file": "publication/failed-run-45584568855/DOWNLOAD-RECEIPTS.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/DOWNLOAD-RECEIPTS.json",
+      "bytes": 2282,
+      "sha256": "c5b0c0021fa33229c96491c934503fb3a4cc5ec5fccc449ea910f5d7f0da1fbf",
+      "copy": "byte-identical",
+      "scope": "Root verified both actual downloaded proof ZIPs and their extracted original files."
+    },
+    {
+      "file": "publication/failed-run-45584568855/POST-FAILURE-TAG-RELEASE-READS.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/POST-FAILURE-TAG-RELEASE-READS.json",
+      "bytes": 1348,
+      "sha256": "426482101f77bfeb1902a06381434a4fdeda7c7b83d005ed0d80a2ce6967c622",
+      "copy": "byte-identical",
+      "scope": "Actual post-failure GET requests for the exact intended tag and release; both returned 404."
+    },
+    {
+      "file": "publication/failed-run-45584568855/pending-browser/BROWSER-RELEASE-PREPARED.json",
+      "source_file": "/tmp/lumo-2082-publication-proof/BROWSER-RELEASE-PREPARED.json",
+      "bytes": 1648,
+      "sha256": "4e002fb26d8ead6860fdfe803a305f1dfa03ebae17e040d6f3e034202f1c4f50",
+      "copy": "byte-identical",
+      "scope": "Prepared exact original files only; no browser login, upload or publication at this snapshot."
+    },
+    {
+      "file": "publication/failed-run-45584568855/pending-browser/LIESMICH.md",
+      "source_file": "/workspace/shared/lumo-2082-release-45569841812/LIESMICH.md",
+      "bytes": 3069,
+      "sha256": "947a8148b163182a304bc54f339f0e830780f1eed5f4d2eadd071347e2a95f92",
+      "copy": "byte-identical",
+      "scope": "Prepared release-description asset, retained as pending; not proof of public release."
+    },
+    {
+      "file": "publication/failed-run-45584568855/PUBLISHER-FINAL-RUN-RAW.json",
+      "source_file": "/tmp/lumo-2082-build-monitor/PUBLISHER-FINAL-RUN-RAW.json",
+      "bytes": 13791,
+      "sha256": "1f7b31be7792a8dfdc2f3fb893abfc86527d5681688635b3fe9e02969144299a",
+      "copy": "byte-identical",
+      "scope": "Original final GitHub API response."
+    },
+    {
+      "file": "publication/failed-run-45584568855/PUBLISHER-FINAL-JOBS-RAW.json",
+      "source_file": "/tmp/lumo-2082-build-monitor/PUBLISHER-FINAL-JOBS-RAW.json",
+      "bytes": 7848,
+      "sha256": "12cc129bec439479f53ea586e84fde4613b7689b6aaa32a8f542d4b39d8215c3",
+      "copy": "byte-identical",
+      "scope": "Original final GitHub API response."
+    },
+    {
+      "file": "publication/failed-run-45584568855/PUBLISHER-FINAL-ARTIFACTS.json",
+      "source_file": "/tmp/lumo-2082-build-monitor/PUBLISHER-FINAL-ARTIFACTS.json",
+      "bytes": 2588,
+      "sha256": "0e3e60c129248f727dfdba5dc90f1a3cebe2e5bb45bf0c2c458d653f00fb9541",
+      "copy": "byte-identical",
+      "scope": "Original final GitHub API response."
+    },
+    {
+      "file": "publication/failed-run-45584568855/PUBLISHER-JOB-139102772508.log",
+      "source_file": "/tmp/lumo-2082-build-monitor/PUBLISHER-JOB-139102772508.log",
+      "bytes": 196971,
+      "sha256": "992acad86238b193d7327327f65964f22fa08d99e08ace27e379bcc879f1159b",
+      "copy": "byte-identical",
+      "scope": "Complete original publisher job log; the verification job includes synthetic guard-test phases, which are not real publication events."
+    },
+    {
+      "file": "publication/failed-run-45584568855/PUBLISHER-JOB-139103963328.log",
+      "source_file": "/tmp/lumo-2082-build-monitor/PUBLISHER-JOB-139103963328.log",
+      "bytes": 20081,
+      "sha256": "a51d5b45f333d12483a9a39b8b64ab1f525359baa73ac4253968133365f04aac",
+      "copy": "byte-identical",
+      "scope": "Complete original publisher job log; the verification job includes synthetic guard-test phases, which are not real publication events."
     }
   ],
   "historical_combined_snapshots": [
@@ -242,6 +402,38 @@
       "source_path": "docs/evidence/intelligence-2082-build-20261125/SHA256SUMS.txt",
       "bytes": 1806,
       "sha256": "8502041d6f5c48c80b35f3b7891e39a2c49b044208a65cd91b6e1a912107e940",
+      "copy": "byte-identical"
+    },
+    {
+      "file": "history/android-accepted-dec46cfa/README.md",
+      "source_commit": "dec46cfa0b9100d1b8014c8b6df42a9f90d81106",
+      "source_path": "docs/evidence/intelligence-2082-build-20261125/README.md",
+      "bytes": 10497,
+      "sha256": "e43dbd36d5814991f7c835a08231284101dc8c13fe8c52244eb9bf7c4b96704c",
+      "copy": "byte-identical"
+    },
+    {
+      "file": "history/android-accepted-dec46cfa/STATUS.json",
+      "source_commit": "dec46cfa0b9100d1b8014c8b6df42a9f90d81106",
+      "source_path": "docs/evidence/intelligence-2082-build-20261125/STATUS.json",
+      "bytes": 5169,
+      "sha256": "49a383e8e76b66292dcbeacba6719d21fd9d4278d54d0d7892b3aa8f5154c4ac",
+      "copy": "byte-identical"
+    },
+    {
+      "file": "history/android-accepted-dec46cfa/ORIGINAL-FILES.json",
+      "source_commit": "dec46cfa0b9100d1b8014c8b6df42a9f90d81106",
+      "source_path": "docs/evidence/intelligence-2082-build-20261125/ORIGINAL-FILES.json",
+      "bytes": 12433,
+      "sha256": "6cd9596661017e02a7f4a7ad68e8ce70243c8e6674e97faf45b5a1f7fdc69431",
+      "copy": "byte-identical"
+    },
+    {
+      "file": "history/android-accepted-dec46cfa/SHA256SUMS.txt",
+      "source_commit": "dec46cfa0b9100d1b8014c8b6df42a9f90d81106",
+      "source_path": "docs/evidence/intelligence-2082-build-20261125/SHA256SUMS.txt",
+      "bytes": 4107,
+      "sha256": "b3d4219bf013cf9aeac4ab8bc62891fc9dc320001a0063522fdcb16c29fc3037",
       "copy": "byte-identical"
     }
   ],

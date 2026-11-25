@@ -1,0 +1,221 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 139102772508,
+      "run_id": 45584568855,
+      "workflow_name": "Lumo 2082 – geprüfte Original-APK veröffentlichen",
+      "head_branch": "support/lumo-2082-reviewed-publication",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/45584568855",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSNzcp88AAAAgYyvdHA",
+      "head_sha": "8223c723c63ec361c887a905d833c5bd078946e9",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/139102772508",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45584568855/job/139102772508",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-25T09:21:09Z",
+      "started_at": "2026-11-25T09:21:12Z",
+      "completed_at": "2026-11-25T09:23:22Z",
+      "name": "Originalartefakte ohne Schreibrechte vollständig prüfen",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-25T09:21:13Z",
+          "completed_at": "2026-11-25T09:21:16Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-25T09:21:16Z",
+          "completed_at": "2026-11-25T09:21:54Z"
+        },
+        {
+          "name": "Veröffentlichungsschutz prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-25T09:21:54Z",
+          "completed_at": "2026-11-25T09:21:55Z"
+        },
+        {
+          "name": "Auftrag und drei erfolgreiche Originalprüfungen feststellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-25T09:21:55Z",
+          "completed_at": "2026-11-25T09:21:58Z"
+        },
+        {
+          "name": "Drei Originalartefakte nach ID, Bytezahl und SHA-256 laden",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-25T09:21:58Z",
+          "completed_at": "2026-11-25T09:22:50Z"
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-25T09:22:50Z",
+          "completed_at": "2026-11-25T09:22:51Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v3",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-25T09:22:51Z",
+          "completed_at": "2026-11-25T09:23:03Z"
+        },
+        {
+          "name": "Originalbytes, Manifest, Zertifikat, PCK und Android-Belege prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-25T09:23:03Z",
+          "completed_at": "2026-11-25T09:23:07Z"
+        },
+        {
+          "name": "Geprüfte unveränderte Auslieferung übergeben",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-25T09:23:07Z",
+          "completed_at": "2026-11-25T09:23:16Z"
+        },
+        {
+          "name": "Tatsächliche Prüfergebnisse sichern",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-25T09:23:16Z",
+          "completed_at": "2026-11-25T09:23:18Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-25T09:23:18Z",
+          "completed_at": "2026-11-25T09:23:18Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-25T09:23:18Z",
+          "completed_at": "2026-11-25T09:23:18Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-25T09:23:18Z",
+          "completed_at": "2026-11-25T09:23:18Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/139102772508",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000028800,
+      "runner_name": "GitHub Actions 1000028800",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 139103963328,
+      "run_id": 45584568855,
+      "workflow_name": "Lumo 2082 – geprüfte Original-APK veröffentlichen",
+      "head_branch": "support/lumo-2082-reviewed-publication",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/45584568855",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSNzcp88AAAAgYz4IwA",
+      "head_sha": "8223c723c63ec361c887a905d833c5bd078946e9",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/139103963328",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45584568855/job/139103963328",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-25T09:23:23Z",
+      "started_at": "2026-11-25T09:23:25Z",
+      "completed_at": "2026-11-25T09:25:15Z",
+      "name": "Geprüfte 2082 als neuen öffentlichen Download veröffentlichen",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-25T09:23:26Z",
+          "completed_at": "2026-11-25T09:23:28Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-25T09:23:28Z",
+          "completed_at": "2026-11-25T09:24:02Z"
+        },
+        {
+          "name": "Exakt diese geprüfte Übergabe erneut verifizieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-25T09:24:02Z",
+          "completed_at": "2026-11-25T09:25:02Z"
+        },
+        {
+          "name": "Neues Release mit Workflow-Token veröffentlichen und anonym zurücklesen",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 4,
+          "started_at": "2026-11-25T09:25:02Z",
+          "completed_at": "2026-11-25T09:25:11Z"
+        },
+        {
+          "name": "Tatsächlichen Veröffentlichungsstand sichern",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-25T09:25:11Z",
+          "completed_at": "2026-11-25T09:25:13Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-25T09:25:13Z",
+          "completed_at": "2026-11-25T09:25:13Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-25T09:25:13Z",
+          "completed_at": "2026-11-25T09:25:13Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/139103963328",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000028803,
+      "runner_name": "GitHub Actions 1000028803",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

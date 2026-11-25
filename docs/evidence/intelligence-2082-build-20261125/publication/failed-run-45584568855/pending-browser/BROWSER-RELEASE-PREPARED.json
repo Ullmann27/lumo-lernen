@@ -1,0 +1,41 @@
+{
+  "status": "PREPARED_NOT_UPLOADED",
+  "directory": "/workspace/shared/lumo-2082-release-45569841812",
+  "release_tag": "lumo-0.14.9-2082-45569841812",
+  "target_commit": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+  "target_branch": "integration/lumo-intelligence-2082-20261125",
+  "release_title": "LUMO 0.14.9+2082 – ruhige Karten- und Schachzüge",
+  "prerelease": true,
+  "make_latest": false,
+  "assets": {
+    "APK-VERIFICATION.json": {
+      "bytes": 3834,
+      "sha256": "0cc7bd488829c64af939a10c3773b29e89423a7c13d068cb44207eea2cc5c068"
+    },
+    "BUILD-PROVENANCE.json": {
+      "bytes": 9644,
+      "sha256": "f441b64ad54d6a5946408fafcd4dd342ff82275edee13f20e7a0cf5275575ba2"
+    },
+    "LIESMICH.md": {
+      "bytes": 3069,
+      "sha256": "947a8148b163182a304bc54f339f0e830780f1eed5f4d2eadd071347e2a95f92"
+    },
+    "LUMO-2082-PRUEFNACHWEISE.zip": {
+      "bytes": 32123,
+      "sha256": "175a9212c57c8134620c977623b99d3d1fddb88706c59f6d9e6ed44af33885b8"
+    },
+    "Lumo-Lernen-Test-0.14.9-2082.apk": {
+      "bytes": 653020163,
+      "sha256": "0ab02c4f1d3b3a625be42f5f974d1592ec993af27e5ed56135245dfee4996243"
+    },
+    "SHA256SUMS.txt": {
+      "bytes": 99,
+      "sha256": "1bc64a890218edbe91e836d3b17c2c436c1ce403d33be61cfddb1bb6fb45541d"
+    },
+    "SPLIT-APK-IDENTITY.json": {
+      "bytes": 1249,
+      "sha256": "a6002d5a24fedad2160924247acf75b22f3a5654469c5822ab143657e6dfe002"
+    }
+  },
+  "scope": "Legitimate browser publication prepared after workflow token create-tag HTTP403. No browser sign-in, upload, tag or release yet. APK is a hard link to independently hashed original bytes; no rebuilding/signing."
+}

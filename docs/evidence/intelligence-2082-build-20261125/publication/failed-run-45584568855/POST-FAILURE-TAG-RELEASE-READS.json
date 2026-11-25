@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-11-25 09:28:40 UTC",
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "lumo-0.14.9-2082-45569841812",
+  "tag_read": {
+    "request": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/ref/tags/lumo-0.14.9-2082-45569841812",
+    "response": {
+      "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/git/refs#get-a-reference\",\"status\":\"404\"}",
+      "error_code": "NOT_FOUND",
+      "error_data": {
+        "message": "Not Found",
+        "documentation_url": "https://docs.github.com/rest/git/refs#get-a-reference",
+        "status": "404"
+      }
+    }
+  },
+  "release_read": {
+    "request": "https://api.github.com/repos/Ullmann27/lumo-lernen/releases/tags/lumo-0.14.9-2082-45569841812",
+    "response": {
+      "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}",
+      "error_code": "NOT_FOUND",
+      "error_data": {
+        "message": "Not Found",
+        "documentation_url": "https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name",
+        "status": "404"
+      }
+    }
+  },
+  "scope": "Observed post-failure GET results. Both returned GitHub 404. No create retry or credential change."
+}

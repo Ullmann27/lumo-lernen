@@ -1,0 +1,61 @@
+{
+  "artifacts": [
+    {
+      "id": 15008985244,
+      "name": "LUMO-2082-REVIEWED-PUBLISH-45584568855-1",
+      "size_in_bytes": 3001,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15008985244",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15008985244/zip",
+      "expired": false,
+      "created_at": "2026-11-25T09:25:13Z",
+      "expires_at": "2027-02-23T09:21:09Z",
+      "updated_at": "2026-11-25T09:25:13Z",
+      "digest": "sha256:702cedd22f25e775e3340a504af1d63a0fa49fc8e52f1aeefb8680a152dc9c2e",
+      "workflow_run": {
+        "id": 45584568855,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "support/lumo-2082-reviewed-publication",
+        "head_sha": "8223c723c63ec361c887a905d833c5bd078946e9"
+      }
+    },
+    {
+      "id": 15008446275,
+      "name": "LUMO-2082-REVIEWED-STAGE-45584568855-1",
+      "size_in_bytes": 743788035,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15008446275",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15008446275/zip",
+      "expired": false,
+      "created_at": "2026-11-25T09:23:16Z",
+      "expires_at": "2026-12-02T09:23:07Z",
+      "updated_at": "2026-11-25T09:23:16Z",
+      "digest": "sha256:65d05698efa20ece152b605af27d98e88e1bae988cd0eb7965f8c718c0046b72",
+      "workflow_run": {
+        "id": 45584568855,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "support/lumo-2082-reviewed-publication",
+        "head_sha": "8223c723c63ec361c887a905d833c5bd078946e9"
+      }
+    },
+    {
+      "id": 15007642659,
+      "name": "LUMO-2082-PUBLICATION-CHECKS-45584568855-1",
+      "size_in_bytes": 7570,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15007642659",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15007642659/zip",
+      "expired": false,
+      "created_at": "2026-11-25T09:23:18Z",
+      "expires_at": "2027-02-23T09:21:09Z",
+      "updated_at": "2026-11-25T09:23:18Z",
+      "digest": "sha256:cf199a453759f085745e4b21c54876e259de4cbd18310686e262c92d87e23f01",
+      "workflow_run": {
+        "id": 45584568855,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "support/lumo-2082-reviewed-publication",
+        "head_sha": "8223c723c63ec361c887a905d833c5bd078946e9"
+      }
+    }
+  ]
+}
