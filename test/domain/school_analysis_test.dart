@@ -55,7 +55,7 @@ void main() {
       final r = LearningAnalysis.analyze(list, now: DateTime(2026, 10, 5, 12));
       final texts = r.insights.map((i) => i.text).toList();
       expect(texts.first,
-          'Bei 14 Aufgaben zu „Addition mit Zehnerübergang“ gab es 7 Fehler.');
+          'Bei 14 Aufgaben ohne Hilfe zu „Addition mit Zehnerübergang“ gab es 7 Fehler.');
       expect(
           texts.any((t) => t.contains('„Addition ohne Zehnerübergang“') &&
               t.contains('dagegen bei 85\u00A0%')),
