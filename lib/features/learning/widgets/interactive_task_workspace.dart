@@ -88,6 +88,10 @@ class InteractiveTaskWorkspace extends StatefulWidget {
 
   static String goalFor(TaskInstance task) {
     final data = task.visualPayload.data;
+    if (task.subject == LearningSubject.mathematik &&
+        task.parameters['visual'] == 'time_fact') {
+      return 'Zeitspannen vergleichen, ordnen oder berechnen.';
+    }
     if (data['operation'] == 'addition') {
       final left = _integer(data['left']);
       final right = _integer(data['right']);

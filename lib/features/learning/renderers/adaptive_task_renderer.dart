@@ -518,8 +518,12 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
     );
   }
 
+  String _goalText(TaskInstance task) => widget.allowRetry
+      ? InteractiveTaskWorkspace.goalFor(task)
+      : 'Lies die Aufgabe aufmerksam und antworte selbstständig.';
+
   Widget _goal(TaskInstance task) => Semantics(
-        label: 'Dein Lernziel: ${InteractiveTaskWorkspace.goalFor(task)}',
+        label: 'Dein Lernziel: ${_goalText(task)}',
         excludeSemantics: true,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -528,7 +532,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
             const SizedBox(width: 7),
             Expanded(
               child: Text(
-                InteractiveTaskWorkspace.goalFor(task),
+                _goalText(task),
                 key: const ValueKey('task-learning-goal'),
                 style: const TextStyle(
                   fontFamily: 'Nunito',

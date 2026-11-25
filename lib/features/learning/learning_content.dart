@@ -610,6 +610,9 @@ class _LearningContentState extends State<LearningContent>
   }
 
   Future<void> _hydrateAiQueueAndMaybeRefill() async {
+    // Assessments use the checked local curriculum, never free-form tutor drafts.
+    if (!_allowHelp) return;
+    final sessionScope = _sessionScope;
     final generation = widget.appState.profileGeneration;
     final st = widget.appState.state;
     final subject = _aiSubjectName(st.subject);
@@ -618,6 +621,8 @@ class _LearningContentState extends State<LearningContent>
     final scope = _currentAiScope;
     bool isCurrent() =>
         mounted &&
+        _allowHelp &&
+        sessionScope == _sessionScope &&
         generation == widget.appState.profileGeneration &&
         _childId == childId &&
         widget.appState.state.grade == st.grade &&
@@ -1408,7 +1413,7 @@ class _LearningContentState extends State<LearningContent>
   /// ordinary lesson. This does not falsely attach an unrelated 3D model
   /// to the current exercise or submit its answer to a second evaluator.
   Future<void> _open3DWorkshop() async {
-    if (!mounted || widget.appState.resetting || _nativeLearningOpen) return;
+    if (!mounted || !_allowHelp || widget.appState.resetting || _nativeLearningOpen) return;
     final generation = widget.appState.profileGeneration;
     await Navigator.of(context).push<void>(MaterialPageRoute<void>(
       builder: (_) => LearningLabHub(appState: widget.appState),
@@ -1851,7 +1856,8 @@ class _LearningContentState extends State<LearningContent>
     // auf den Standard-Generator zurueck.
     final aiSubject = _aiSubjectName(st.subject);
     LumoTask? relaxedFallback;
-    if (aiSubject != null &&
+    if (_allowHelp &&
+        aiSubject != null &&
         factoryUnit == 'Alle' &&
         _aiQueueScope == _currentAiScope &&
         taskGrade == st.grade &&
@@ -3135,8 +3141,11 @@ class _LearningContentState extends State<LearningContent>
     final chip = st.subject == 'Alle'
         ? 'Klasse ${st.grade} • adaptiv'
         : '${st.subject} • $unitDisplay';
-    final progressTitle =
-        st.subject == 'Mathematik' ? 'Mathe-Abenteuer • $unitDisplay' : chip;
+    final progressTitle = !_allowHelp
+        ? 'Klasse $_taskGrade • ${st.subject == 'Alle' ? 'alle Fächer' : st.subject}'
+        : st.subject == 'Mathematik'
+            ? 'Mathe-Abenteuer • $unitDisplay'
+            : chip;
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -3268,7 +3277,7 @@ class _LearningContentState extends State<LearningContent>
                                 MediaQuery.disableAnimationsOf(context),
                           ),
                           const SizedBox(height: 12),
-                          OutlinedButton.icon(
+                          if (_allowHelp) OutlinedButton.icon(
                             key: const ValueKey('learning-3d-workshop'),
                             onPressed: _nativeLearningOpen
                                 ? null
