@@ -106,10 +106,14 @@ class LumoTutorEngine {
         final word = RegExp(r'Silben\s+hat\s+([A-Za-zÄÖÜäöüß]+)', caseSensitive: false)
             .firstMatch(request.currentPrompt ?? '')?.group(1);
         if (word == null) return const LumoTutorVisualPlan.none();
+        final parts = PrimarySchoolWordData.syllablesFor(word);
+        if (parts == null || parts.isEmpty) {
+          return const LumoTutorVisualPlan.none();
+        }
         return LumoTutorVisualPlan(
           type: LumoTutorVisualType.syllableChips,
           word: word,
-          parts: PrimarySchoolWordData.syllablesFor(word) ?? const [],
+          parts: parts,
         );
       }
       if (unit.contains('satz')) {
@@ -143,10 +147,10 @@ class LumoTutorEngine {
     final calculation = WholeArithmetic.parse(request.currentPrompt ?? '',
         expected: request.correctAnswer);
     final given = WholeArithmetic.integerAnswer(request.childAnswer);
-    if (calculation == null || request.correctAnswer == null || given == null ||
-        !(calculation.matchesMissingCarry(given) ||
-          calculation.matchesMissingBorrow(given) ||
-          calculation.matchesReversedOnes(given))) {
+    if (calculation == null ||
+        request.correctAnswer == null ||
+        given == null ||
+        given == calculation.result) {
       return fallback;
     }
     final detection = const ErrorDetective().analyze(
@@ -155,6 +159,7 @@ class LumoTutorEngine {
       correctAnswer: request.correctAnswer!,
       givenAnswer: request.childAnswer!,
     );
+    if (!detection.isRecognised) return fallback;
     final text = detection.childFriendlyMessage;
     return LumoTutorResponse(
       speech: text,
@@ -189,34 +194,33 @@ class LumoTutorEngine {
     );
   }
 
-  LumoTutorResponse _germanFallback(LumoTutorRequest request) {
-    final visual = suggestVisualPlan(request);
-    final unit = request.unit.toLowerCase();
-    final speech = unit.contains('nomen') || unit.contains('namenswort')
-        ? 'Ein Namenswort ist etwas, das einen Namen hat. Oft passt der, die oder das davor.'
-        : unit.contains('verb') || unit.contains('tunwort')
-            ? 'Ein Tunwort sagt, was jemand macht. Zum Beispiel laufen, malen oder lesen.'
-            : unit.contains('silb')
-                ? 'Wir klatschen das Wort langsam in Silben.'
-                : 'Wir schauen das Wort ganz genau an.';
-    return LumoTutorResponse(
-      speech: speech,
-      shortHint: request.helpLevel == LumoTutorHelpLevel.hintOnly
-          ? 'Schau auf die Wortart.'
-          : null,
-      explanation: speech,
-      visualPlan: visual,
-      source: 'local_tutor_engine_v1',
-    );
-  }
+  LumoTutorResponse _germanFallback(LumoTutorRequest request) =>
+      _contextualFallback(request, 'Deutsch');
 
   LumoTutorResponse _readingFallback(LumoTutorRequest request) {
-    return const LumoTutorResponse(
-      speech:
-          'Lies langsam. Wenn ein Wort schwer ist, teilen wir es in kleine Teile.',
-      shortHint: 'Langsam lesen.',
-      explanation:
-          'Lumo kann schwierige Wörter in Silben teilen und danach noch einmal üben lassen.',
+    // Picture/word tasks contain no passage to search. Their existing units
+    // need decoding and meaning checks instead of an unrelated text instruction.
+    final stage = request.helpLevel.index.clamp(0, 2).toInt();
+    final String text;
+    if (request.unit == 'Bild und Wort') {
+      text = const [
+        'Schau dir das Bild in Ruhe an. Lies jedes angebotene Wort langsam und vergleiche es mit dem Bild.',
+        'Beschreibe, was du auf dem Bild siehst. Sprich dann jedes Wort in kleinen Teilen und setze die Teile wieder zusammen.',
+        'Prüfe jedes Wort einzeln: Passt seine Bedeutung zum Bild? Achte auch auf die Buchstaben in der Mitte und am Ende.',
+      ][stage];
+    } else if (request.unit == 'Woerter lesen') {
+      text = const [
+        'Lies die Beschreibung langsam. Lies danach jedes angebotene Wort ganz und prüfe seine Bedeutung.',
+        'Teile ein schwieriges Wort in kleine Sprechstücke. Setze sie wieder zusammen und vergleiche das Wort mit der Beschreibung.',
+        'Ähnliche Wörter können etwas anderes bedeuten. Vergleiche Buchstabe für Buchstabe und prüfe jedes Wort an der Beschreibung.',
+      ][stage];
+    } else {
+      return _contextualFallback(request, 'Lesen');
+    }
+    return LumoTutorResponse(
+      speech: text,
+      shortHint: text,
+      explanation: text,
       source: 'local_tutor_engine_v1',
     );
   }
