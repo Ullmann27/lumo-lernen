@@ -21,6 +21,8 @@ import '../../app/app_theme.dart';
 import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
 import '../../domain/school/adaptive_practice_plan.dart';
+import '../../domain/school/learning_chart_data.dart';
+import '../report/learning_analytics_panel.dart';
 import '../report/adaptive_practice_plan_card.dart';
 import '../report/lernbericht_screen.dart';
 import '../../core/lumo_ai_proxy_client.dart';
@@ -46,7 +48,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
   bool _loading = true;
   bool _showFullDna = false;
   int _dataRevision = 0;
-  Future<AdaptivePracticePlan?>? _planData;
+  Future<(AdaptivePracticePlan, LearningChartData)?>? _planData;
 
   // 2026-06-04: KI-Wochenanalyse direkt im Insight-Dashboard.
   // Bisher war diese Funktion nur in parent_report_card.dart versteckt.
@@ -162,7 +164,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     );
   }
 
-  Future<AdaptivePracticePlan?> _loadPlan(LumoAppState app) async {
+  Future<(AdaptivePracticePlan, LearningChartData)?> _loadPlan(LumoAppState app) async {
     try {
       final generation = app.profileGeneration;
       final owner = await app.captureLearningProfile();
@@ -174,15 +176,20 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
           generation != app.profileGeneration || !app.canUseLearningLease(owner)) {
         return null;
       }
-      return AdaptivePracticePlan.fromAttempts(attempts,
-          studentId: owner.logStudentId, now: DateTime.now());
+      final asOf = DateTime.now();
+      return (
+        AdaptivePracticePlan.fromAttempts(attempts,
+            studentId: owner.logStudentId, now: asOf),
+        LearningChartData.fromAttempts(attempts,
+            studentId: owner.logStudentId, now: asOf),
+      );
     } catch (_) {
       // Do not show an empty or previous child's report on storage failure.
       return null;
     }
   }
 
-  Widget _adaptivePlan() => FutureBuilder<AdaptivePracticePlan?>(
+  Widget _adaptivePlan() => FutureBuilder<(AdaptivePracticePlan, LearningChartData)?>(
         key: ValueKey(widget.appState.profileGeneration),
         future: _planData,
         builder: (context, snapshot) {
@@ -190,8 +197,8 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
             return const Center(child: CircularProgressIndicator(
                 color: LumoColors.orange));
           }
-          final plan = snapshot.data;
-          if (plan == null) {
+          final evidence = snapshot.data;
+          if (evidence == null) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -202,9 +209,12 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
               ],
             );
           }
+          final (plan, chartData) = evidence;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              LearningAnalyticsPanel(data: chartData),
+              const SizedBox(height: 16),
               AdaptivePracticePlanCard(plan: plan),
               const SizedBox(height: 8),
               OutlinedButton.icon(

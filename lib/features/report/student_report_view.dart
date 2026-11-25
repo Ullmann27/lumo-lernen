@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/school/attempt.dart';
+import '../../domain/school/learning_chart_data.dart';
+import 'learning_analytics_panel.dart';
 import '../../domain/school/adaptive_practice_plan.dart';
 import 'adaptive_practice_plan_card.dart';
 import '../../domain/school/learning_analysis.dart';
@@ -50,9 +52,14 @@ class StudentReportContent extends StatelessWidget {
       return const _EmptyReport();
     }
     final owners = attempts.map((a) => a.studentId).toSet();
+    final asOf = DateTime.now();
+    final chartData = owners.length == 1
+        ? LearningChartData.fromAttempts(attempts,
+            studentId: owners.single, now: asOf)
+        : null;
     final plan = owners.length == 1
         ? AdaptivePracticePlan.fromAttempts(attempts,
-            studentId: owners.single, now: DateTime.now())
+            studentId: owners.single, now: asOf)
         : null;
     final wrongRecent = attempts.reversed
         .where((a) => !a.correct &&
@@ -62,6 +69,10 @@ class StudentReportContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _SummaryRow(analysis: analysis),
+        if (chartData != null) ...[
+          const SizedBox(height: 12),
+          LearningAnalyticsPanel(data: chartData),
+        ],
         if (showSuggestion && analysis.suggestion != null) ...[
           const SizedBox(height: 12),
           _SuggestionCard(suggestion: analysis.suggestion!),
