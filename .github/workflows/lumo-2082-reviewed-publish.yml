@@ -1,0 +1,108 @@
+name: "Lumo 2082 – geprüfte Original-APK veröffentlichen"
+
+# Activates only when the coordinator adds a complete, observed publication order.
+# The development branch contains no order and never triggers publication.
+on:
+  push:
+    branches: [support/lumo-2082-reviewed-publication]
+    paths: [config/lumo-2082-reviewed-publish.json]
+
+permissions: {}
+
+concurrency:
+  group: lumo-2082-reviewed-publication
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Originalartefakte ohne Schreibrechte vollständig prüfen
+    if: github.repository == 'Ullmann27/lumo-lernen'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      stage_artifact_id: ${{ steps.stage.outputs.artifact-id }}
+      stage_artifact_sha256: ${{ steps.stage.outputs.artifact-digest }}
+      manifest_sha256: ${{ steps.verification.outputs.manifest_sha256 }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Veröffentlichungsschutz prüfen
+        run: python3 -m unittest discover -s scripts/tests -p test_lumo_2082_reviewed_publish.py -v
+      - name: Auftrag und drei erfolgreiche Originalprüfungen feststellen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/lumo_2082_reviewed_publish.py prepare
+      - name: Drei Originalartefakte nach ID, Bytezahl und SHA-256 laden
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/lumo_2082_reviewed_publish.py download
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'build-tools;36.0.0'
+      - name: Originalbytes, Manifest, Zertifikat, PCK und Android-Belege prüfen
+        id: verification
+        run: python3 scripts/lumo_2082_reviewed_publish.py verify --build-tools "$ANDROID_HOME/build-tools/36.0.0"
+      - name: Geprüfte unveränderte Auslieferung übergeben
+        id: stage
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2082-REVIEWED-STAGE-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            reviewed-2082/release/
+            reviewed-2082/proof/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+      - name: Tatsächliche Prüfergebnisse sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2082-PUBLICATION-CHECKS-${{ github.run_id }}-${{ github.run_attempt }}
+          path: reviewed-2082/proof/
+          if-no-files-found: warn
+
+  publish:
+    name: Geprüfte 2082 als neuen öffentlichen Download veröffentlichen
+    needs: verify
+    if: github.repository == 'Ullmann27/lumo-lernen'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Exakt diese geprüfte Übergabe erneut verifizieren
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          STAGE_ARTIFACT_ID: ${{ needs.verify.outputs.stage_artifact_id }}
+          STAGE_ARTIFACT_SHA256: ${{ needs.verify.outputs.stage_artifact_sha256 }}
+          MANIFEST_SHA256: ${{ needs.verify.outputs.manifest_sha256 }}
+        run: |
+          python3 scripts/lumo_2082_reviewed_publish.py stage \
+            --stage-artifact-id "$STAGE_ARTIFACT_ID" \
+            --stage-artifact-sha256 "$STAGE_ARTIFACT_SHA256" \
+            --manifest-sha256 "$MANIFEST_SHA256"
+      - name: Neues Release mit Workflow-Token veröffentlichen und anonym zurücklesen
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/lumo_2082_reviewed_publish.py publish
+      - name: Tatsächlichen Veröffentlichungsstand sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2082-REVIEWED-PUBLISH-${{ github.run_id }}-${{ github.run_attempt }}
+          path: reviewed-2082/proof/
+          if-no-files-found: warn
