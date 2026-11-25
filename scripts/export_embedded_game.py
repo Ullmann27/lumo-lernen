@@ -284,7 +284,7 @@ PRODUCTION_MESHY_ALLOWED_REVISIONS = frozenset((
     'c814e35249e4038f903d1fca3e19bb4751040a43',
     # 2082 changes World/table scripts, tests, docs and CI; every asset blob
     # is unchanged from c814. Manifest hashes and exact cleanup checks remain.
-    'bfc1eda07e65af57b33a6c0f2db3641aab3bf9bd',
+    '62108c0355f860ab9a0a020ecb5f3f941f1032e9',
 ))
 PRODUCTION_MESHY_MANIFEST = 'assets/kart/production/meshy/manifest.json'
 PRODUCTION_MESHY_VEHICLE_IDS = frozenset((

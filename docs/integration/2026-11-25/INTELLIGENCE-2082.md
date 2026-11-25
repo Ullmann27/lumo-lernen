@@ -10,7 +10,7 @@ Stand: 25. November 2026. Reale Lernanalysen, Hausaufgaben und Coach sind integr
 - Individuelle Lernhilfe: `6d709bc2e004a2da5569039e4bed61eaa803bcb5`.
 - Hausaufgaben-Auswertung: `046457c503f1808c4f04e2fc5f2034be646f9164`, anschließend präzisierter Hinweis zur begrenzten Protokollaufbewahrung.
 - Native 2081-Basis: `c814e35249e4038f903d1fca3e19bb4751040a43`.
-- Neuer Godot-Pin: `bfc1eda07e65af57b33a6c0f2db3641aab3bf9bd` (World plus ruhige, geordnete Karten-/Schachzüge).
+- Neuer Godot-Pin: `62108c0355f860ab9a0a020ecb5f3f941f1032e9` (World plus ruhige, geordnete Karten-/Schachzüge).
 - Integrierter Flutter-Vorprüfstand: `f346db8e21bbc7ee7202a444b866bb1f862d85cb`.
 - Unabhängige Kompetenzanalyse: `a933456b85edf3ddf205d46d44402b438c8fed05`; profilgebundener Coach: `a4aa0c26afd365e92f404e27738eebba85691627`.
 
@@ -42,16 +42,18 @@ Die Änderungen liegen in eigenen Git-Zweigen und wurden unabhängig gelesen sow
 | Ausgeführter Vorlauf | Quelle | Ergebnis |
 | --- | --- | --- |
 | Vollständige Flutter-Analyse und 16 gezielte Dateien | f346db8e | 114 Tests bestanden, 0 Analysefehler; 5 Warnungen und 299 Hinweise bleiben sichtbar |
-| Neue Karten-/Schachabläufe | bfc1eda0 | 133 Prüfungen, 0 Fehler |
-| Kartenregeln und Massenspiele | bfc1eda0 | 212.968 Prüfungen, 148.154 Züge, 0 Fehler |
-| Schachregeln | bfc1eda0 | 238 Prüfungen, 0 Fehler |
-| Vollständiger Kartentisch | bfc1eda0 | 640 Prüfungen, 0 Fehler |
-| Vollständiger Schachtisch | bfc1eda0 | 919 Prüfungen, 0 Fehler |
+| Neue Karten-/Schachabläufe | 62108c03 | 133 Prüfungen, 0 Fehler |
+| Kartenregeln und Massenspiele | 62108c03 | 212.968 Prüfungen, 148.154 Züge, 0 Fehler |
+| Schachregeln | 62108c03 | 238 Prüfungen, 0 Fehler |
+| Vollständiger Kartentisch | 62108c03 | 634 Prüfungen, 0 Fehler |
+| Vollständiger Schachtisch | 62108c03 | 919 Prüfungen, 0 Fehler |
 | World-Routinen | b6562a76; diese World-Dateien bleiben unverändert | 124 Modell- und 57 Szenenprüfungen, 0 Fehler |
 
 Der frühere gemeinsame Lauf 45545648754 bestand auf 250ad2c die vollständige Flutter-Suite mit 3.640 bestandenen und 193 übersprungenen Tests. Danach scheiterte er am neuen World-Testaufbau des alten Pins b22f3bb; er erzeugte keine APK. Dieser Testaufbau ist im aktuellen Native-Pin korrigiert. Frühere Fehlbelege werden nicht zu Erfolgen umgedeutet.
 
-Die zusätzliche echte Rendereraufnahme läuft unter [45567127413](https://github.com/Ullmann27/lumo-godot/actions/runs/45567127413) auf demselben Native-Pin. Sie ist beim Anfordern des gemeinsamen APK-Laufs noch offen. Die öffentliche Auslieferung setzt auch deren Abschluss und Sichtkontrolle voraus.
+Der erste Renderer-Lauf [45567127413](https://github.com/Ullmann27/lumo-godot/actions/runs/45567127413) erreichte bei der Quartett-Endprüfung nach 12,161 Sekunden Rechnerzeit erst 4,658 Sekunden Spielzeit. Der gültige, nicht pausierte Kartentween bewegte sich im Folgedump weiter. Dieser fehlgeschlagene Beleg bleibt erhalten. Der finale Pin ändert gegenüber bfc1eda0 ausschließlich die Prüfzeitmessung: weiterhin höchstens zwölf Spielsekunden für die Übergabe, zusätzlich ein fester Wächter von 60 Sekunden Rechnerzeit. Der neue Headless-Lauf [45568517233](https://github.com/Ullmann27/lumo-godot/actions/runs/45568517233) besteht auf exakt 62108c03; die Quartettfolge benötigte dort 6,050 Spiel- und Rechnersekunden. Produktdateien bleiben bytegleich.
+
+Die neue strenge Rendereraufnahme [45569486039](https://github.com/Ullmann27/lumo-godot/actions/runs/45569486039) prüft exakt denselben finalen Native-Pin. Sie ist beim Anfordern des gemeinsamen APK-Laufs noch offen. Öffentliche Auslieferung setzt ihren Abschluss und die Sichtkontrolle voraus. Software-Rendererbilder belegen keine Fold7-Bildrate.
 
 Der eigene Workflow `.github/workflows/lumo-intelligence-2082.yml` startet zuerst gezielte Flutter-Analyse/Regressionen. Danach folgt die erhaltene vollständige 2081-Pipeline: Flutter-Gesamtsuite, JVM-Verträge, Godot-Kernprüfungen, World-Prüfungen einschließlich der zwei neuen Routine-Skripte, fünf strenge Karten-/Schachproben mit denselben Aufrufen wie im nativen Vorlauf, frisch signierte ARM64/x86_64-Pakete, Herkunfts-/PCK-/Signaturkontrolle und Android-Tour mit sieben Pflichtspielstarts und lokaler Sicherung/Wiederherstellung.
 
