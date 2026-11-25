@@ -1,0 +1,308 @@
+Original source: /tmp/lumo-2082-build-monitor/JOB-139054345083.log
+SHA256: 54c676ac9e046beb335c874277c4c381d20826ecc0cde15cb61453d21ad930a0
+Exact complete build source: 6574b19f92abb4f6421fd3074cec09738dc0974a
+Scope: APK job only; Android pending.
+
+L1514 2026-11-25T07:42:44.2039148Z Ran 10 tests in 0.227s
+L1515 2026-11-25T07:42:44.2039373Z 
+L1516 2026-11-25T07:42:44.2039505Z OK
+L1517 2026-11-25T07:42:44.2605309Z test_all_observed_native_ui_starts_pass_with_explicit_scope (test_verify_native_start_diagnostics.NativeStartGateTests.test_all_observed_native_ui_starts_pass_with_explicit_scope) ... ok
+L1528 2026-11-25T07:42:44.2666733Z Ran 9 tests in 0.006s
+L1529 2026-11-25T07:42:44.2666998Z 
+L1530 2026-11-25T07:42:44.2667135Z OK
+L1531 2026-11-25T07:42:44.3712708Z test_android_runtime_start_noise_is_not_a_crash (test_native_start_diagnostics.FilterTests.test_android_runtime_start_noise_is_not_a_crash) ... ok
+L1601 2026-11-25T07:42:44.5589740Z Ran 38 tests in 0.188s
+L1602 2026-11-25T07:42:44.5589898Z 
+L1603 2026-11-25T07:42:44.5589991Z OK
+L1604 2026-11-25T07:42:44.6192797Z test_all_five_actual_intro_titles (test_intro_dialog.IntroDialogTests.test_all_five_actual_intro_titles) ... ok
+L1611 2026-11-25T07:42:44.6289492Z Ran 5 tests in 0.001s
+L1612 2026-11-25T07:42:44.6289796Z 
+L1613 2026-11-25T07:42:44.6289968Z OK
+L1614 2026-11-25T07:42:44.7162311Z test_export_navigation_normalization_never_allows_added_routes_after_restore (test_local_backup_android_probe.BackupArchiveContracts.test_export_navigation_normalization_never_allows_added_routes_after_restore) ... ok
+L1640 2026-11-25T07:42:44.7411247Z Ran 23 tests in 0.025s
+L1641 2026-11-25T07:42:44.7411493Z 
+L1642 2026-11-25T07:42:44.7411630Z OK
+L1643 2026-11-25T07:42:44.8064577Z test_actual_local_voice_templates_preserve_host_namespace_and_user_files (scripts.tests.test_prepare_android.AndroidHostTest.test_actual_local_voice_templates_preserve_host_namespace_and_user_files)
+L1649 2026-11-25T07:42:44.8668967Z Ran 3 tests in 0.059s
+L1650 2026-11-25T07:42:44.8669225Z 
+L1651 2026-11-25T07:42:44.8669321Z OK
+L1652 2026-11-25T07:42:44.8674516Z Android host prepared: dev.ullmann.lumo.lumo_lernen; distribution=family; 3D bridge connected
+L1953 2026-11-25T07:42:48.6514324Z Ran 47 tests in 3.679s
+L1954 2026-11-25T07:42:48.6547308Z 
+L1955 2026-11-25T07:42:48.6550530Z OK
+L1956 2026-11-25T07:42:49.1324513Z {
+L2213 2026-11-25T07:43:45.8772498Z Ran 39 tests in 24.953s
+L2214 2026-11-25T07:43:45.8772740Z 
+L2215 2026-11-25T07:43:45.8774902Z OK
+L2216 2026-11-25T07:43:45.8776228Z Compiled complete production Java source bytes SHA256=7bb05c431723549842884a927e5debe298f3710c6e3a4a3c3b7347555f8fbda5
+L2398 2026-11-25T07:44:07.5292417Z warning • Duplicate import. Try removing all but one import of the library • lib/features/home/home_content.dart:33:8 • duplicate_import
+L2411 2026-11-25T07:44:07.5319824Z warning • Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive • lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8 • unused_import
+L2450 2026-11-25T07:44:07.5382926Z warning • The value of the field '_ink' isn't used. Try removing the field, or using it • lib/features/story/widgets/lumo_story_scene.dart:150:16 • unused_field
+L2461 2026-11-25T07:44:07.5404511Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/design/denkprofil_knobel_before_after_capture_test.dart:11:8 • unused_import
+L2471 2026-11-25T07:44:07.5420238Z 304 issues found. (ran in 21.1s)
+L2504 2026-11-25T07:44:07.5480703Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/iq/iq_extended_adventure_test.dart:5:8 • unused_import
+L6832 2026-11-25T07:59:03.2704906Z 14:43 +3669 ~193: All tests passed!
+L19015 2026-11-25T08:03:22.0773952Z [TableTurnFlow] cancelled search frames=2 nodes=640
+L19016 2026-11-25T08:03:27.4855977Z [TableTurnFlow] cards settled can_act=true moving=false busy=false final_distance=0.000000 earlier_target_shift=0.005000
+L19017 2026-11-25T08:03:35.4380330Z [TableTurnFlow] motion completed wall_seconds=6.134 engine_seconds=6.133 wall_budget=60.0 engine_budget=12.0
+L19018 2026-11-25T08:03:41.9879423Z TABLE_TURN_FLOW_PASS checks=133 failures=0 captures=0
+L19047 2026-11-25T08:05:17.1777366Z CARDS_RULES_PASS checks=212968 failures=0 moves=148154
+L19076 2026-11-25T08:05:20.2130122Z CHESS_RULES_PASS checks=238 failures=0 time=2.7s
+L19096 2026-11-25T08:05:47.2764071Z CARDS_TABLE_RUNTIME_PASS checks=632 failures=0
+L19119 2026-11-25T08:06:27.1761091Z CHESS_TABLE_PASS checks=919 failures=0 time=39.6s
+L19143 2026-11-25T08:06:31.8692701Z [NeonHome] {"checks":2243,"failures":[],"status":"PASS"}
+L19162 2026-11-25T08:06:39.4345491Z [GarageLandscape] PASS: 88 checks
+L19179 2026-11-25T08:06:52.4006792Z [KartRaceKinds] PASS: 133 checks; five race kinds and START on 4 displays
+L19264 2026-11-25T08:07:31.1145636Z [KartResultReach] PASS: all result actions reachable on 11 display sizes
+L19278 2026-11-25T08:07:32.3478428Z [NativeTableBoot] PASS 26 actual boot, resource and authority-context checks
+L19283 2026-11-25T08:07:32.9757292Z {"checks":43,"failures":[],"scope":"4.6.3 capability dispatch and actual routed Stop owners; no Android audio or device PASS claim","status":"PASS","test":"learning_android_host_capability"}
+L19306 2026-11-25T08:07:34.2175876Z [NativeLearningBoot] PASS 41 actual boot, plan and task-context checks
+L19320 2026-11-25T08:07:35.7002743Z [ProductionDriver] checks=8245 failures=0 imported=27 maximum_hand_error_m=0.00020817259792
+L19333 2026-11-25T08:07:36.3023598Z [OpponentRoster] checks=149 failures=0
+L19390 2026-11-25T08:07:57.8568125Z EXTRA_DRIVERS_PASS checks=333 failures=0
+L19468 2026-11-25T08:09:21.5699407Z [HoloLesson] checks=1336 failures=0
+L19510 2026-11-25T08:09:30.6195083Z [RunRelay] PASS
+L19530 2026-11-25T08:09:37.5821788Z ARENA_BATTLE_PASS checks=16 failures=0
+L19554 2026-11-25T08:09:44.4072013Z [ParcoursMenu] PASS: 8 Prüfungen
+L19579 2026-11-25T08:09:59.1158555Z [ParcoursRace] PASS
+L19979 2026-11-25T08:24:19.9691003Z [LumoRun] PASS: 511 checks
+L20018 2026-11-25T08:24:44.4909878Z [LumoFlow] PASS: 13 checks
+L20032 2026-11-25T08:24:45.8962696Z {"checks":14,"failures":[],"status":"PASS","test":"quiz_studio_escape"}
+L20050 2026-11-25T08:24:49.0344508Z [Tutor] PASS checks=107 failures=0
+L20087 2026-11-25T08:24:49.8402008Z [LumoWorldQuestIntegrity] PASS 201 checks
+L20105 2026-11-25T08:25:14.2967763Z [LumoWorldFirstEntry] PASS 134 checks engine=4.6.3-stable (official)
+L20123 2026-11-25T08:25:46.4029727Z [LumoWorldKartGround] PASS 51 checks engine=4.6.3-stable (official)
+L20139 2026-11-25T08:25:59.2373740Z [LumoOpenWorldIntegration] PASS 183 checks
+L20151 2026-11-25T08:26:00.2251787Z [WorldKartPersistence] PASS 63 checks engine=4.6.3-stable (official) scope=state_and_atlas
+L20162 2026-11-25T08:26:00.8770755Z [WorldRoutines] PASS 124 checks; 0 failures
+L20178 2026-11-25T08:26:06.7723757Z [WorldRoutinesIntegration] PASS 57 checks; 0 failures
+L20337 2026-11-25T08:26:38.1701234Z Ran 9 tests in 3.235s
+L20338 2026-11-25T08:26:38.1701393Z 
+L20339 2026-11-25T08:26:38.1701486Z OK
+L20340 2026-11-25T08:26:38.1702333Z [LumoLauncher] prepared 5 densities, legacy/round/adaptive/monochrome; source=8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f
+L37241 2026-11-25T08:37:16.5628794Z {
+L37242 2026-11-25T08:37:16.5629525Z   "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+L37243 2026-11-25T08:37:16.5630200Z   "versionCode": 2082,
+L37244 2026-11-25T08:37:16.5630641Z   "versionName": "0.14.9",
+L37245 2026-11-25T08:37:16.5631083Z   "minSdk": 24,
+L37246 2026-11-25T08:37:16.5631527Z   "targetSdk": 36,
+L37247 2026-11-25T08:37:16.5631882Z   "abis": [
+L37248 2026-11-25T08:37:16.5632242Z     "arm64-v8a"
+L37249 2026-11-25T08:37:16.5632455Z   ],
+L37250 2026-11-25T08:37:16.5632709Z   "elf16KiBAligned": true,
+L37251 2026-11-25T08:37:16.5633305Z   "resourcesArscAligned": true,
+L37252 2026-11-25T08:37:16.5633632Z   "bytes": 653020163,
+L37253 2026-11-25T08:37:16.5634103Z   "sha256": "0ab02c4f1d3b3a625be42f5f974d1592ec993af27e5ed56135245dfee4996243",
+L37254 2026-11-25T08:37:16.5634864Z   "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+L37255 2026-11-25T08:37:16.5635360Z   "godot": {
+L37256 2026-11-25T08:37:16.5635733Z     "repository": "https://github.com/Ullmann27/lumo-godot.git",
+L37257 2026-11-25T08:37:16.5636228Z     "revision": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
+L37258 2026-11-25T08:37:16.5636583Z     "engine": "4.6.3",
+L37259 2026-11-25T08:37:16.5637358Z     "pck_sha256": "fbd0d7c1155dac14be5913d5ee57eb9d0cc1fe586bfff0350459746eaf6097ab",
+L37260 2026-11-25T08:37:16.5637850Z     "bytes": 394388252
+L37261 2026-11-25T08:37:16.5638065Z   },
+L37262 2026-11-25T08:37:16.5638288Z   "offlineVoice": {
+L37263 2026-11-25T08:37:16.5638596Z     "profile": "lumo-free-supertonic-de-v1",
+L37264 2026-11-25T08:37:16.5638925Z     "preset": "F2",
+L37265 2026-11-25T08:37:16.5639161Z     "speakerId": 1,
+L37266 2026-11-25T08:37:16.5639403Z     "sampleRate": 44100,
+L37267 2026-11-25T08:37:16.5639705Z     "onnxruntimeVersion": "1.23.1",
+L37268 2026-11-25T08:37:16.5640282Z     "clipCount": 155,
+L37269 2026-11-25T08:37:16.5640535Z     "modelSha256": {
+L37270 2026-11-25T08:37:16.5641100Z       "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+L37271 2026-11-25T08:37:16.5641916Z       "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+L37272 2026-11-25T08:37:16.5642728Z       "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+L37273 2026-11-25T08:37:16.5643856Z       "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+L37274 2026-11-25T08:37:16.5644567Z       "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+L37275 2026-11-25T08:37:16.5645220Z       "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+L37276 2026-11-25T08:37:16.5645921Z       "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+L37277 2026-11-25T08:37:16.5646364Z     },
+L37278 2026-11-25T08:37:16.5646830Z     "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+L37279 2026-11-25T08:37:16.5647493Z     "scope": "Actual APK package validation, not audible playback acceptance"
+L37280 2026-11-25T08:37:16.5647873Z   },
+L37281 2026-11-25T08:37:16.5648063Z   "notices": {
+L37282 2026-11-25T08:37:16.5648306Z     "status": "verified",
+L37283 2026-11-25T08:37:16.5648788Z     "policySha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+L37284 2026-11-25T08:37:16.5649378Z     "nativeRevision": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
+L37285 2026-11-25T08:37:16.5649722Z     "files": [
+L37286 2026-11-25T08:37:16.5649926Z       {
+L37287 2026-11-25T08:37:16.5650146Z         "source": "host",
+L37288 2026-11-25T08:37:16.5650429Z         "path": "assets/fonts/OFL.txt",
+L37289 2026-11-25T08:37:16.5650731Z         "bytes": 4385,
+L37290 2026-11-25T08:37:16.5651185Z         "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+L37291 2026-11-25T08:37:16.5651738Z         "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+L37292 2026-11-25T08:37:16.5652211Z         "entry": "assets/lumo_notices/host/assets/fonts/OFL.txt"
+L37293 2026-11-25T08:37:16.5652540Z       },
+L37294 2026-11-25T08:37:16.5652721Z       {
+L37295 2026-11-25T08:37:16.5652945Z         "source": "native",
+L37296 2026-11-25T08:37:16.5653504Z         "path": "THIRD_PARTY_NOTICES.md",
+L37297 2026-11-25T08:37:16.5653813Z         "bytes": 1582,
+L37298 2026-11-25T08:37:16.5654255Z         "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+L37299 2026-11-25T08:37:16.5654810Z         "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c",
+L37300 2026-11-25T08:37:16.5655293Z         "entry": "assets/lumo_notices/native/THIRD_PARTY_NOTICES.md"
+L37301 2026-11-25T08:37:16.5655638Z       },
+L37302 2026-11-25T08:37:16.5655819Z       {
+L37303 2026-11-25T08:37:16.5656046Z         "source": "native",
+L37304 2026-11-25T08:37:16.5656428Z         "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+L37305 2026-11-25T08:37:16.5656795Z         "bytes": 1640,
+L37306 2026-11-25T08:37:16.5657249Z         "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+L37307 2026-11-25T08:37:16.5657797Z         "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+L37308 2026-11-25T08:37:16.5658386Z         "entry": "assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md"
+L37309 2026-11-25T08:37:16.5658812Z       },
+L37310 2026-11-25T08:37:16.5658990Z       {
+L37311 2026-11-25T08:37:16.5659216Z         "source": "native",
+L37312 2026-11-25T08:37:16.5659578Z         "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+L37313 2026-11-25T08:37:16.5660091Z         "bytes": 2626,
+L37314 2026-11-25T08:37:16.5660534Z         "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+L37315 2026-11-25T08:37:16.5661093Z         "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+L37316 2026-11-25T08:37:16.5661656Z         "entry": "assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md"
+L37317 2026-11-25T08:37:16.5662079Z       },
+L37318 2026-11-25T08:37:16.5662260Z       {
+L37319 2026-11-25T08:37:16.5662482Z         "source": "native",
+L37320 2026-11-25T08:37:16.5662989Z         "path": "assets/fonts/Nunito-LICENSE.txt",
+L37321 2026-11-25T08:37:16.5663682Z         "bytes": 4385,
+L37322 2026-11-25T08:37:16.5664139Z         "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+L37323 2026-11-25T08:37:16.5664694Z         "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+L37324 2026-11-25T08:37:16.5665217Z         "entry": "assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt"
+L37325 2026-11-25T08:37:16.5665592Z       }
+L37326 2026-11-25T08:37:16.5665766Z     ],
+L37327 2026-11-25T08:37:16.5666202Z     "scope": "Exact original outer-package assets; no rights or PCK-content approval"
+L37328 2026-11-25T08:37:16.5666606Z   }
+L37329 2026-11-25T08:37:16.5666781Z }
+L37330 2026-11-25T08:37:23.3973459Z {
+L37331 2026-11-25T08:37:23.3974352Z   "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+L37332 2026-11-25T08:37:23.3975078Z   "versionCode": 2082,
+L37333 2026-11-25T08:37:23.3975602Z   "versionName": "0.14.9",
+L37334 2026-11-25T08:37:23.3976093Z   "minSdk": 24,
+L37335 2026-11-25T08:37:23.3976552Z   "targetSdk": 36,
+L37336 2026-11-25T08:37:23.3976989Z   "abis": [
+L37337 2026-11-25T08:37:23.3977378Z     "x86_64"
+L37338 2026-11-25T08:37:23.3977749Z   ],
+L37339 2026-11-25T08:37:23.3978211Z   "elf16KiBAligned": true,
+L37340 2026-11-25T08:37:23.3979149Z   "resourcesArscAligned": true,
+L37341 2026-11-25T08:37:23.3979873Z   "bytes": 656191676,
+L37342 2026-11-25T08:37:23.3980779Z   "sha256": "3e89e180f15d03f0484c87f210a3181d1d8175f916baf37abfe86217d8a34d3e",
+L37343 2026-11-25T08:37:23.3982048Z   "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+L37344 2026-11-25T08:37:23.3982915Z   "godot": {
+L37345 2026-11-25T08:37:23.3983741Z     "repository": "https://github.com/Ullmann27/lumo-godot.git",
+L37346 2026-11-25T08:37:23.3984545Z     "revision": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
+L37347 2026-11-25T08:37:23.3985127Z     "engine": "4.6.3",
+L37348 2026-11-25T08:37:23.3985873Z     "pck_sha256": "fbd0d7c1155dac14be5913d5ee57eb9d0cc1fe586bfff0350459746eaf6097ab",
+L37349 2026-11-25T08:37:23.3986620Z     "bytes": 394388252
+L37350 2026-11-25T08:37:23.3986962Z   },
+L37351 2026-11-25T08:37:23.3987311Z   "offlineVoice": {
+L37352 2026-11-25T08:37:23.3987811Z     "profile": "lumo-free-supertonic-de-v1",
+L37353 2026-11-25T08:37:23.3988339Z     "preset": "F2",
+L37354 2026-11-25T08:37:23.3988727Z     "speakerId": 1,
+L37355 2026-11-25T08:37:23.3989139Z     "sampleRate": 44100,
+L37356 2026-11-25T08:37:23.3989623Z     "onnxruntimeVersion": "1.23.1",
+L37357 2026-11-25T08:37:23.3990117Z     "clipCount": 155,
+L37358 2026-11-25T08:37:23.3990536Z     "modelSha256": {
+L37359 2026-11-25T08:37:23.3991513Z       "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+L37360 2026-11-25T08:37:23.3992902Z       "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+L37361 2026-11-25T08:37:23.3994485Z       "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+L37362 2026-11-25T08:37:23.3995810Z       "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+L37363 2026-11-25T08:37:23.3996971Z       "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+L37364 2026-11-25T08:37:23.3998087Z       "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+L37365 2026-11-25T08:37:23.3999298Z       "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+L37366 2026-11-25T08:37:23.4000038Z     },
+L37367 2026-11-25T08:37:23.4000837Z     "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+L37368 2026-11-25T08:37:23.4001954Z     "scope": "Actual APK package validation, not audible playback acceptance"
+L37369 2026-11-25T08:37:23.4002852Z   },
+L37370 2026-11-25T08:37:23.4003363Z   "notices": {
+L37371 2026-11-25T08:37:23.4003760Z     "status": "verified",
+L37372 2026-11-25T08:37:23.4004567Z     "policySha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+L37373 2026-11-25T08:37:23.4005536Z     "nativeRevision": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
+L37374 2026-11-25T08:37:23.4006109Z     "files": [
+L37375 2026-11-25T08:37:23.4006435Z       {
+L37376 2026-11-25T08:37:23.4006807Z         "source": "host",
+L37377 2026-11-25T08:37:23.4007296Z         "path": "assets/fonts/OFL.txt",
+L37378 2026-11-25T08:37:23.4008571Z         "bytes": 4385,
+L37379 2026-11-25T08:37:23.4009359Z         "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+L37380 2026-11-25T08:37:23.4010322Z         "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+L37381 2026-11-25T08:37:23.4011130Z         "entry": "assets/lumo_notices/host/assets/fonts/OFL.txt"
+L37382 2026-11-25T08:37:23.4011679Z       },
+L37383 2026-11-25T08:37:23.4011982Z       {
+L37384 2026-11-25T08:37:23.4012359Z         "source": "native",
+L37385 2026-11-25T08:37:23.4012884Z         "path": "THIRD_PARTY_NOTICES.md",
+L37386 2026-11-25T08:37:23.4013596Z         "bytes": 1582,
+L37387 2026-11-25T08:37:23.4014367Z         "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+L37388 2026-11-25T08:37:23.4015290Z         "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c",
+L37389 2026-11-25T08:37:23.4016107Z         "entry": "assets/lumo_notices/native/THIRD_PARTY_NOTICES.md"
+L37390 2026-11-25T08:37:23.4016680Z       },
+L37391 2026-11-25T08:37:23.4016982Z       {
+L37392 2026-11-25T08:37:23.4017374Z         "source": "native",
+L37393 2026-11-25T08:37:23.4018020Z         "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+L37394 2026-11-25T08:37:23.4018640Z         "bytes": 1640,
+L37395 2026-11-25T08:37:23.4019434Z         "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+L37396 2026-11-25T08:37:23.4020379Z         "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+L37397 2026-11-25T08:37:23.4021392Z         "entry": "assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md"
+L37398 2026-11-25T08:37:23.4022125Z       },
+L37399 2026-11-25T08:37:23.4022428Z       {
+L37400 2026-11-25T08:37:23.4022802Z         "source": "native",
+L37401 2026-11-25T08:37:23.4023602Z         "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+L37402 2026-11-25T08:37:23.4024206Z         "bytes": 2626,
+L37403 2026-11-25T08:37:23.4024974Z         "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+L37404 2026-11-25T08:37:23.4025894Z         "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+L37405 2026-11-25T08:37:23.4026933Z         "entry": "assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md"
+L37406 2026-11-25T08:37:23.4027677Z       },
+L37407 2026-11-25T08:37:23.4027980Z       {
+L37408 2026-11-25T08:37:23.4028354Z         "source": "native",
+L37409 2026-11-25T08:37:23.4028911Z         "path": "assets/fonts/Nunito-LICENSE.txt",
+L37410 2026-11-25T08:37:23.4029459Z         "bytes": 4385,
+L37411 2026-11-25T08:37:23.4030236Z         "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+L37412 2026-11-25T08:37:23.4031193Z         "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+L37413 2026-11-25T08:37:23.4032082Z         "entry": "assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt"
+L37414 2026-11-25T08:37:23.4032712Z       }
+L37415 2026-11-25T08:37:23.4033192Z     ],
+L37416 2026-11-25T08:37:23.4033932Z     "scope": "Exact original outer-package assets; no rights or PCK-content approval"
+L37417 2026-11-25T08:37:23.4034622Z   }
+L37418 2026-11-25T08:37:23.4034914Z }
+L37421 2026-11-25T08:37:27.7613488Z {
+L37422 2026-11-25T08:37:27.7614414Z   "flutter_source_commit": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+L37423 2026-11-25T08:37:27.7615308Z   "versionName": "0.14.9",
+L37424 2026-11-25T08:37:27.7615888Z   "versionCode": 2082,
+L37425 2026-11-25T08:37:27.7616281Z   "godot": {
+L37426 2026-11-25T08:37:27.7616870Z     "repository": "https://github.com/Ullmann27/lumo-godot.git",
+L37427 2026-11-25T08:37:27.7617386Z     "revision": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
+L37428 2026-11-25T08:37:27.7617758Z     "engine": "4.6.3"
+L37429 2026-11-25T08:37:27.7618267Z   },
+L37430 2026-11-25T08:37:27.7618497Z   "packages": {
+L37431 2026-11-25T08:37:27.7618741Z     "arm64-v8a": {
+L37432 2026-11-25T08:37:27.7618994Z       "abi": "arm64-v8a",
+L37433 2026-11-25T08:37:27.7619486Z       "sha256": "0ab02c4f1d3b3a625be42f5f974d1592ec993af27e5ed56135245dfee4996243",
+L37434 2026-11-25T08:37:27.7619958Z       "bytes": 653020163,
+L37435 2026-11-25T08:37:27.7620532Z       "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+L37436 2026-11-25T08:37:27.7621441Z       "godot_pck_sha256": "fbd0d7c1155dac14be5913d5ee57eb9d0cc1fe586bfff0350459746eaf6097ab",
+L37437 2026-11-25T08:37:27.7622050Z       "godot_pck_bytes": 394388252
+L37438 2026-11-25T08:37:27.7622303Z     },
+L37439 2026-11-25T08:37:27.7622503Z     "x86_64": {
+L37440 2026-11-25T08:37:27.7622740Z       "abi": "x86_64",
+L37441 2026-11-25T08:37:27.7623512Z       "sha256": "3e89e180f15d03f0484c87f210a3181d1d8175f916baf37abfe86217d8a34d3e",
+L37442 2026-11-25T08:37:27.7623967Z       "bytes": 656191676,
+L37443 2026-11-25T08:37:27.7624539Z       "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+L37444 2026-11-25T08:37:27.7625317Z       "godot_pck_sha256": "fbd0d7c1155dac14be5913d5ee57eb9d0cc1fe586bfff0350459746eaf6097ab",
+L37445 2026-11-25T08:37:27.7625844Z       "godot_pck_bytes": 394388252
+L37446 2026-11-25T08:37:27.7626095Z     }
+L37447 2026-11-25T08:37:27.7626278Z   },
+L37448 2026-11-25T08:37:27.7626489Z   "same_pck": true,
+L37449 2026-11-25T08:37:27.7627180Z   "runtime_scope": "The Android tour executes the x86_64 package in an emulator; this identity check is not a physical ARM64 device test."
+L37450 2026-11-25T08:37:27.7627783Z }
+L37789 2026-11-25T08:37:53.1455422Z SHA256 digest of uploaded artifact zip is 78f9fefa8dbb2523bc34fd1a645ae38358b25eca222b5a99339b3d50b3fe3d61
+L37791 2026-11-25T08:37:53.7067692Z Artifact LUMO-EMULATOR-APK-45569841812.zip successfully finalized. Artifact ID 15005606309
+L37792 2026-11-25T08:37:53.7069435Z Artifact LUMO-EMULATOR-APK-45569841812 has been successfully uploaded! Final size is 656207161 bytes. Artifact ID is 15005606309
+L37827 2026-11-25T08:37:53.9121910Z package: name='dev.ullmann.lumo.lumo_lernen.coachpreview' versionCode='2082' versionName='0.14.9' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+L37829 2026-11-25T08:37:55.1693485Z Signer #1 certificate SHA-256 digest: a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+L37832 2026-11-25T08:37:55.6542083Z package=dev.ullmann.lumo.lumo_lernen.coachpreview
+L37833 2026-11-25T08:37:55.6542806Z versionCode=2082
+L37834 2026-11-25T08:37:55.6543874Z cert_sha256=a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+L37835 2026-11-25T08:37:55.6544799Z apk=Lumo-Lernen-Test-0.14.9-2082.apk
+L37836 2026-11-25T08:37:55.6545992Z apk_sha256=0ab02c4f1d3b3a625be42f5f974d1592ec993af27e5ed56135245dfee4996243
+L37837 2026-11-25T08:37:55.6546452Z apk_bytes=653020163
+L37955 2026-11-25T08:38:04.7090334Z SHA256 digest of uploaded artifact zip is c186795be0f83ab20a4510b8a67b870b18686a52660f86b8137667a80bb52e75
+L37957 2026-11-25T08:38:05.2634597Z Artifact LUMO-TEST-APK-45569841812.zip successfully finalized. Artifact ID 15004539062
+L37958 2026-11-25T08:38:05.2635548Z Artifact LUMO-TEST-APK-45569841812 has been successfully uploaded! Final size is 662435961 bytes. Artifact ID is 15004539062
+
+Original focus source: /tmp/lumo-2082-build-monitor/JOB-139053500085.log
+SHA256: 9bdb73766943339cc22f86f269218c3d4aa217c47adae5ca7855178661b2f125
+L781 2026-11-25T07:41:17.3906506Z 00:10 +114: All tests passed!

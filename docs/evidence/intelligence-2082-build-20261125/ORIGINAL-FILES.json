@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "snapshot_utc": "2026-11-25T09:03:41Z",
+  "files": [
+    {
+      "file": "build/README.md",
+      "source_file": "/tmp/lumo-2082-final-evidence/README.md",
+      "bytes": 2863,
+      "sha256": "309390c6c88859338cd070afd72c3876891e5c47ffa35e0930bc2c53666023af",
+      "copy": "byte-identical",
+      "scope": "Historical completed-build snapshot, before local byte verification."
+    },
+    {
+      "file": "build/BUILD-45569841812-RESULT.json",
+      "source_file": "/tmp/lumo-2082-final-evidence/BUILD-45569841812-RESULT.json",
+      "bytes": 17937,
+      "sha256": "019249ed3d8fabbf3312f422fb4b109239e572a9313bd036b3100fbcf62f902d",
+      "copy": "byte-identical",
+      "scope": "Historical completed-build snapshot, before local byte verification."
+    },
+    {
+      "file": "build/BUILD-45569841812-ORIGINAL-EXCERPTS.txt",
+      "source_file": "/tmp/lumo-2082-final-evidence/BUILD-45569841812-ORIGINAL-EXCERPTS.txt",
+      "bytes": 25762,
+      "sha256": "3ec9cab3be4b7dbe4090522cd48adc32dc31840dbdec754b3ce6f5631acbff1e",
+      "copy": "byte-identical",
+      "scope": "Historical completed-build snapshot, before local byte verification."
+    },
+    {
+      "file": "build/BUILD-45569841812-PACKAGE-METADATA.json",
+      "source_file": "/tmp/lumo-2082-final-evidence/BUILD-45569841812-PACKAGE-METADATA.json",
+      "bytes": 9944,
+      "sha256": "fe3db2092e8d79b5ac530c1d854cba32e3f43e4991e9c659c80b28546a05e5a0",
+      "copy": "byte-identical",
+      "scope": "Historical completed-build snapshot, before local byte verification."
+    },
+    {
+      "file": "build/BUILD-45569841812-PCK-PASS-LINES.txt",
+      "source_file": "/tmp/lumo-2082-final-evidence/BUILD-45569841812-PCK-PASS-LINES.txt",
+      "bytes": 17201,
+      "sha256": "832cc2700238d05912102674daa452c927d528638374c90d3b9c6cb62037a9d0",
+      "copy": "byte-identical",
+      "scope": "Historical completed-build snapshot, before local byte verification."
+    },
+    {
+      "file": "transfer/MANIFEST.json",
+      "source_file": "/tmp/lumo-2082-apk-transfer/MANIFEST.json",
+      "bytes": 3256,
+      "sha256": "a8e487bf2a275ea60c552ab2103b0bcaa527c660955fe572e68eba5d8ed17ac8",
+      "copy": "byte-identical",
+      "scope": "Historical completed internal-transfer snapshot, before recipient verification."
+    },
+    {
+      "file": "transfer/TRANSFER-RESULT.json",
+      "source_file": "/tmp/lumo-2082-apk-transfer/TRANSFER-RESULT.json",
+      "bytes": 4136,
+      "sha256": "60d3ce1e55aeaeec5d14d7995cce37b6c87f6a4f70a5325eecd482772a6d8963",
+      "copy": "byte-identical",
+      "scope": "Historical completed internal-transfer snapshot, before recipient verification."
+    },
+    {
+      "file": "transfer/TRANSFER-ARTIFACTS.json",
+      "source_file": "/tmp/lumo-2082-apk-transfer/TRANSFER-ARTIFACTS.json",
+      "bytes": 2572,
+      "sha256": "c2537c52e905869505e7c1de0abf666d067c495c875a19da632f6f24d2248d7d",
+      "copy": "byte-identical",
+      "scope": "Historical completed internal-transfer snapshot, before recipient verification."
+    },
+    {
+      "file": "local/APK-LOCAL-VERIFICATION.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/APK-LOCAL-VERIFICATION.json",
+      "bytes": 937,
+      "sha256": "ee22ed2985736da3c4dfcb2f9b2b9262c725ea9717bbc1479a7546e679e124de",
+      "copy": "byte-identical",
+      "scope": "Actual recipient-side verification and received transport identity."
+    },
+    {
+      "file": "local/TRANSFER-RECEIPTS.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/TRANSFER-RECEIPTS.json",
+      "bytes": 489,
+      "sha256": "3d44369e0bfd4d6f81d2bc75bfa8697ec0e069607d13cbd6d3accb4bd66cccb7",
+      "copy": "byte-identical",
+      "scope": "Actual recipient-side verification and received transport identity."
+    },
+    {
+      "file": "local/TRANSFER-MANIFEST.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/TRANSFER-MANIFEST.json",
+      "bytes": 3256,
+      "sha256": "a8e487bf2a275ea60c552ab2103b0bcaa527c660955fe572e68eba5d8ed17ac8",
+      "copy": "byte-identical",
+      "scope": "Actual recipient-side verification and received transport identity."
+    },
+    {
+      "file": "local/original-release-metadata/APK-VERIFICATION.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/original-release-metadata/APK-VERIFICATION.json",
+      "bytes": 3834,
+      "sha256": "0cc7bd488829c64af939a10c3773b29e89423a7c13d068cb44207eea2cc5c068",
+      "copy": "byte-identical",
+      "scope": "Original release metadata, retained byte-for-byte with its original scope."
+    },
+    {
+      "file": "local/original-release-metadata/BUILD-PROVENANCE.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/original-release-metadata/BUILD-PROVENANCE.json",
+      "bytes": 9644,
+      "sha256": "f441b64ad54d6a5946408fafcd4dd342ff82275edee13f20e7a0cf5275575ba2",
+      "copy": "byte-identical",
+      "scope": "Original release metadata, retained byte-for-byte with its original scope."
+    },
+    {
+      "file": "local/original-release-metadata/SHA256SUMS.txt",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/original-release-metadata/SHA256SUMS.txt",
+      "bytes": 99,
+      "sha256": "1bc64a890218edbe91e836d3b17c2c436c1ce403d33be61cfddb1bb6fb45541d",
+      "copy": "byte-identical",
+      "scope": "Original release metadata, retained byte-for-byte with its original scope."
+    },
+    {
+      "file": "local/original-release-metadata/SPLIT-APK-IDENTITY.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/original-release-metadata/SPLIT-APK-IDENTITY.json",
+      "bytes": 1249,
+      "sha256": "a6002d5a24fedad2160924247acf75b22f3a5654469c5822ab143657e6dfe002",
+      "copy": "byte-identical",
+      "scope": "Original release metadata, retained byte-for-byte with its original scope."
+    }
+  ]
+}

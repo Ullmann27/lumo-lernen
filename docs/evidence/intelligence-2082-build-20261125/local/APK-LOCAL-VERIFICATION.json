@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "source_commit": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+  "native_commit": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
+  "source_run": 45569841812,
+  "transfer_run": 45579662500,
+  "apk": {
+    "path": "/tmp/lumo-2082-publication-artifacts/Lumo-Lernen-Test-0.14.9-2082.apk",
+    "bytes": 653020163,
+    "sha256": "0ab02c4f1d3b3a625be42f5f974d1592ec993af27e5ed56135245dfee4996243"
+  },
+  "actual_pck": {
+    "bytes": 394388252,
+    "sha256": "fbd0d7c1155dac14be5913d5ee57eb9d0cc1fe586bfff0350459746eaf6097ab"
+  },
+  "actual_abis": [
+    "arm64-v8a"
+  ],
+  "original_metadata_byte_verified": [
+    "BUILD-PROVENANCE.json",
+    "APK-VERIFICATION.json",
+    "SPLIT-APK-IDENTITY.json",
+    "SHA256SUMS.txt"
+  ],
+  "signature_verification_scope": "Original successful Android build tools report; no local re-signing",
+  "android_acceptance_scope": "Independent original Android job; not inferred from transport"
+}

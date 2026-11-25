@@ -1,0 +1,564 @@
+{
+  "status": "BUILD_JOB_SUCCESS_ANDROID_PENDING",
+  "repository": "Ullmann27/lumo-lernen",
+  "run_id": 45569841812,
+  "attempt": 1,
+  "job_id": 139054345083,
+  "source_commit": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+  "native_commit": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
+  "run_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45569841812",
+  "source_logs": [
+    {
+      "path": "/tmp/lumo-2082-build-monitor/JOB-139054345083.log",
+      "bytes": 4268955,
+      "sha256": "54c676ac9e046beb335c874277c4c381d20826ecc0cde15cb61453d21ad930a0",
+      "lines": 37986
+    },
+    {
+      "path": "/tmp/lumo-2082-build-monitor/JOB-139053500085.log",
+      "bytes": 128186,
+      "sha256": "9bdb73766943339cc22f86f269218c3d4aa217c47adae5ca7855178661b2f125",
+      "lines": 831
+    }
+  ],
+  "flutter_full_suite": {
+    "passed": 3669,
+    "skipped": 193,
+    "failed": 0,
+    "line": 6832,
+    "original": "2026-11-25T07:59:03.2704906Z 14:43 +3669 ~193: All tests passed!"
+  },
+  "flutter_focused_suite": {
+    "line": 781,
+    "original": "2026-11-25T07:41:17.3906506Z 00:10 +114: All tests passed!",
+    "passed": 114
+  },
+  "flutter_analysis": {
+    "error": 0,
+    "warning": 5,
+    "info": 299
+  },
+  "python_jvm_suites": [
+    {
+      "suite": "APK candidate contracts",
+      "tests": 10,
+      "seconds": 0.227,
+      "result": "OK",
+      "line": 1514,
+      "original": "2026-11-25T07:42:44.2039148Z Ran 10 tests in 0.227s"
+    },
+    {
+      "suite": "Native start gate contracts",
+      "tests": 9,
+      "seconds": 0.006,
+      "result": "OK",
+      "line": 1528,
+      "original": "2026-11-25T07:42:44.2666733Z Ran 9 tests in 0.006s"
+    },
+    {
+      "suite": "Native diagnostics contracts",
+      "tests": 38,
+      "seconds": 0.188,
+      "result": "OK",
+      "line": 1601,
+      "original": "2026-11-25T07:42:44.5589740Z Ran 38 tests in 0.188s"
+    },
+    {
+      "suite": "Intro dialog contracts",
+      "tests": 5,
+      "seconds": 0.001,
+      "result": "OK",
+      "line": 1611,
+      "original": "2026-11-25T07:42:44.6289492Z Ran 5 tests in 0.001s"
+    },
+    {
+      "suite": "Backup probe contracts",
+      "tests": 23,
+      "seconds": 0.025,
+      "result": "OK",
+      "line": 1640,
+      "original": "2026-11-25T07:42:44.7411247Z Ran 23 tests in 0.025s"
+    },
+    {
+      "suite": "Android preparation contracts",
+      "tests": 3,
+      "seconds": 0.059,
+      "result": "OK",
+      "line": 1649,
+      "original": "2026-11-25T07:42:44.8668967Z Ran 3 tests in 0.059s"
+    },
+    {
+      "suite": "Godot export contracts",
+      "tests": 47,
+      "seconds": 3.679,
+      "result": "OK",
+      "line": 1953,
+      "original": "2026-11-25T07:42:48.6514324Z Ran 47 tests in 3.679s"
+    },
+    {
+      "suite": "Native speech/dialog/backup JVM contracts",
+      "tests": 39,
+      "seconds": 24.953,
+      "result": "OK",
+      "line": 2213,
+      "original": "2026-11-25T07:43:45.8772498Z Ran 39 tests in 24.953s"
+    },
+    {
+      "suite": "Launcher icon contracts",
+      "tests": 9,
+      "seconds": 3.235,
+      "result": "OK",
+      "line": 20337,
+      "original": "2026-11-25T08:26:38.1701234Z Ran 9 tests in 3.235s"
+    }
+  ],
+  "native_probe_completions": [
+    {
+      "line": 19018,
+      "original": "2026-11-25T08:03:41.9879423Z TABLE_TURN_FLOW_PASS checks=133 failures=0 captures=0",
+      "checks": 133
+    },
+    {
+      "line": 19047,
+      "original": "2026-11-25T08:05:17.1777366Z CARDS_RULES_PASS checks=212968 failures=0 moves=148154",
+      "checks": 212968
+    },
+    {
+      "line": 19076,
+      "original": "2026-11-25T08:05:20.2130122Z CHESS_RULES_PASS checks=238 failures=0 time=2.7s",
+      "checks": 238
+    },
+    {
+      "line": 19096,
+      "original": "2026-11-25T08:05:47.2764071Z CARDS_TABLE_RUNTIME_PASS checks=632 failures=0",
+      "checks": 632
+    },
+    {
+      "line": 19119,
+      "original": "2026-11-25T08:06:27.1761091Z CHESS_TABLE_PASS checks=919 failures=0 time=39.6s",
+      "checks": 919
+    },
+    {
+      "line": 19143,
+      "original": "2026-11-25T08:06:31.8692701Z [NeonHome] {\"checks\":2243,\"failures\":[],\"status\":\"PASS\"}",
+      "checks": 2243
+    },
+    {
+      "line": 19162,
+      "original": "2026-11-25T08:06:39.4345491Z [GarageLandscape] PASS: 88 checks",
+      "checks": 88
+    },
+    {
+      "line": 19179,
+      "original": "2026-11-25T08:06:52.4006792Z [KartRaceKinds] PASS: 133 checks; five race kinds and START on 4 displays",
+      "checks": 133
+    },
+    {
+      "line": 19264,
+      "original": "2026-11-25T08:07:31.1145636Z [KartResultReach] PASS: all result actions reachable on 11 display sizes"
+    },
+    {
+      "line": 19278,
+      "original": "2026-11-25T08:07:32.3478428Z [NativeTableBoot] PASS 26 actual boot, resource and authority-context checks",
+      "checks": 26
+    },
+    {
+      "line": 19283,
+      "original": "2026-11-25T08:07:32.9757292Z {\"checks\":43,\"failures\":[],\"scope\":\"4.6.3 capability dispatch and actual routed Stop owners; no Android audio or device PASS claim\",\"status\":\"PASS\",\"test\":\"learning_android_host_capability\"}",
+      "checks": 43
+    },
+    {
+      "line": 19306,
+      "original": "2026-11-25T08:07:34.2175876Z [NativeLearningBoot] PASS 41 actual boot, plan and task-context checks",
+      "checks": 41
+    },
+    {
+      "line": 19320,
+      "original": "2026-11-25T08:07:35.7002743Z [ProductionDriver] checks=8245 failures=0 imported=27 maximum_hand_error_m=0.00020817259792",
+      "checks": 8245
+    },
+    {
+      "line": 19333,
+      "original": "2026-11-25T08:07:36.3023598Z [OpponentRoster] checks=149 failures=0",
+      "checks": 149
+    },
+    {
+      "line": 19390,
+      "original": "2026-11-25T08:07:57.8568125Z EXTRA_DRIVERS_PASS checks=333 failures=0",
+      "checks": 333
+    },
+    {
+      "line": 19468,
+      "original": "2026-11-25T08:09:21.5699407Z [HoloLesson] checks=1336 failures=0",
+      "checks": 1336
+    },
+    {
+      "line": 19510,
+      "original": "2026-11-25T08:09:30.6195083Z [RunRelay] PASS"
+    },
+    {
+      "line": 19530,
+      "original": "2026-11-25T08:09:37.5821788Z ARENA_BATTLE_PASS checks=16 failures=0",
+      "checks": 16
+    },
+    {
+      "line": 19554,
+      "original": "2026-11-25T08:09:44.4072013Z [ParcoursMenu] PASS: 8 Prüfungen",
+      "checks": 8
+    },
+    {
+      "line": 19579,
+      "original": "2026-11-25T08:09:59.1158555Z [ParcoursRace] PASS"
+    },
+    {
+      "line": 19979,
+      "original": "2026-11-25T08:24:19.9691003Z [LumoRun] PASS: 511 checks",
+      "checks": 511
+    },
+    {
+      "line": 20018,
+      "original": "2026-11-25T08:24:44.4909878Z [LumoFlow] PASS: 13 checks",
+      "checks": 13
+    },
+    {
+      "line": 20032,
+      "original": "2026-11-25T08:24:45.8962696Z {\"checks\":14,\"failures\":[],\"status\":\"PASS\",\"test\":\"quiz_studio_escape\"}",
+      "checks": 14
+    },
+    {
+      "line": 20050,
+      "original": "2026-11-25T08:24:49.0344508Z [Tutor] PASS checks=107 failures=0",
+      "checks": 107
+    },
+    {
+      "line": 20087,
+      "original": "2026-11-25T08:24:49.8402008Z [LumoWorldQuestIntegrity] PASS 201 checks",
+      "checks": 201
+    },
+    {
+      "line": 20105,
+      "original": "2026-11-25T08:25:14.2967763Z [LumoWorldFirstEntry] PASS 134 checks engine=4.6.3-stable (official)",
+      "checks": 134
+    },
+    {
+      "line": 20123,
+      "original": "2026-11-25T08:25:46.4029727Z [LumoWorldKartGround] PASS 51 checks engine=4.6.3-stable (official)",
+      "checks": 51
+    },
+    {
+      "line": 20139,
+      "original": "2026-11-25T08:25:59.2373740Z [LumoOpenWorldIntegration] PASS 183 checks",
+      "checks": 183
+    },
+    {
+      "line": 20151,
+      "original": "2026-11-25T08:26:00.2251787Z [WorldKartPersistence] PASS 63 checks engine=4.6.3-stable (official) scope=state_and_atlas",
+      "checks": 63
+    },
+    {
+      "line": 20162,
+      "original": "2026-11-25T08:26:00.8770755Z [WorldRoutines] PASS 124 checks; 0 failures",
+      "checks": 124
+    },
+    {
+      "line": 20178,
+      "original": "2026-11-25T08:26:06.7723757Z [WorldRoutinesIntegration] PASS 57 checks; 0 failures",
+      "checks": 57
+    }
+  ],
+  "actual_packaged_pck_pass_lines": 201,
+  "actual_packaged_pck_scope": "Count of original PASS assertion lines from assets/race probes; not added to independent test-suite totals.",
+  "apk": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2082,
+    "versionName": "0.14.9",
+    "minSdk": 24,
+    "targetSdk": 36,
+    "abis": [
+      "arm64-v8a"
+    ],
+    "bytes": 653020163,
+    "sha256": "0ab02c4f1d3b3a625be42f5f974d1592ec993af27e5ed56135245dfee4996243",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "elf16KiBAligned": true,
+    "resourcesArscAligned": true
+  },
+  "pck": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
+    "engine": "4.6.3",
+    "pck_sha256": "fbd0d7c1155dac14be5913d5ee57eb9d0cc1fe586bfff0350459746eaf6097ab",
+    "bytes": 394388252
+  },
+  "emulator_apk": {
+    "abi": "x86_64",
+    "sha256": "3e89e180f15d03f0484c87f210a3181d1d8175f916baf37abfe86217d8a34d3e",
+    "bytes": 656191676,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "godot_pck_sha256": "fbd0d7c1155dac14be5913d5ee57eb9d0cc1fe586bfff0350459746eaf6097ab",
+    "godot_pck_bytes": 394388252
+  },
+  "same_pck": true,
+  "artifacts": [
+    {
+      "id": 15005606309,
+      "name": "LUMO-EMULATOR-APK-45569841812",
+      "size_in_bytes": 656207161,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15005606309",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15005606309/zip",
+      "expired": false,
+      "created_at": "2026-11-25T08:37:53Z",
+      "expires_at": "2027-02-23T07:39:23Z",
+      "updated_at": "2026-11-25T08:37:53Z",
+      "digest": "sha256:78f9fefa8dbb2523bc34fd1a645ae38358b25eca222b5a99339b3d50b3fe3d61",
+      "workflow_run": {
+        "id": 45569841812,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-intelligence-2082-20261125",
+        "head_sha": "6574b19f92abb4f6421fd3074cec09738dc0974a"
+      }
+    },
+    {
+      "id": 15004539062,
+      "name": "LUMO-TEST-APK-45569841812",
+      "size_in_bytes": 662435961,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15004539062",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15004539062/zip",
+      "expired": false,
+      "created_at": "2026-11-25T08:38:05Z",
+      "expires_at": "2027-02-23T07:39:23Z",
+      "updated_at": "2026-11-25T08:38:05Z",
+      "digest": "sha256:c186795be0f83ab20a4510b8a67b870b18686a52660f86b8137667a80bb52e75",
+      "workflow_run": {
+        "id": 45569841812,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-intelligence-2082-20261125",
+        "head_sha": "6574b19f92abb4f6421fd3074cec09738dc0974a"
+      }
+    },
+    {
+      "id": 15001986315,
+      "name": "LUMO-INTELLIGENCE-TESTS-45569841812",
+      "size_in_bytes": 6877,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15001986315",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15001986315/zip",
+      "expired": false,
+      "created_at": "2026-11-25T07:41:18Z",
+      "expires_at": "2027-02-23T07:39:23Z",
+      "updated_at": "2026-11-25T07:41:18Z",
+      "digest": "sha256:47c64a5f023841f2efccac6f64206346b27130c992aa2ce063a681d210cc8d81",
+      "workflow_run": {
+        "id": 45569841812,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-intelligence-2082-20261125",
+        "head_sha": "6574b19f92abb4f6421fd3074cec09738dc0974a"
+      }
+    }
+  ],
+  "job_api_snapshot": {
+    "checked_at": "2026-11-25T08:41:32.669Z",
+    "job": {
+      "id": 139054345083,
+      "name": "Signierte Test-APK bauen",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 45569841812,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run android-actions/setup-android@v3",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run subosito/flutter-action@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Quellstand und Godot-Pin festhalten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Android- und Godot-Werkzeuge einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Native Sprache, Lerndialog und Datensicherung – JVM-Verträge",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Flutter – Analyse und vollständige Testsuite",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "World – integrierte Missionen, Kart, Figuren und Spielstand",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Eine signierte Flutter-Godot-APK bauen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "APK für den Android-Emulator sichern",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Paketname und Signaturzertifikat gegen die installierte 2078 prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "APK und Belege als Artefakt sichern",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Run subosito/flutter-action@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Post Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31
+        }
+      ]
+    },
+    "android": {
+      "id": 139080694208,
+      "name": "Installierte APK im Android-Emulator prüfen",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_id": 45569841812,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Emulator und Prüftools vorbereiten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Mesa-Software-Anzeige für das Emulator-GL starten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run reactivecircus/android-emulator-runner@v2",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 6
+        },
+        {
+          "name": "Beobachtete native Spielstarts verbindlich prüfen",
+          "status": "pending",
+          "conclusion": null,
+          "number": 7
+        },
+        {
+          "name": "Abgeschlossene Android-Prüfbelege zum selben Kandidaten bereitstellen",
+          "status": "pending",
+          "conclusion": null,
+          "number": 8
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 18
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Original build log and GitHub artifact metadata only; root performs independent downloaded-byte verification.",
+    "Android tour has not completed in this evidence snapshot; no publication/full release approval.",
+    "Card scene count in this exact integrated run is 632; separate native run reported 634. Do not substitute counts between runs.",
+    "No physical ARM64/Fold7 or 60 FPS claim."
+  ]
+}

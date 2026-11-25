@@ -1,0 +1,118 @@
+{
+  "status": "TRANSFER_COMPLETED_NOT_RELEASE_APPROVAL",
+  "run_id": 45579662500,
+  "run_attempt": 1,
+  "job_id": 139086213700,
+  "workflow": ".github/workflows/lumo-2082-apk-transfer.yml",
+  "head_sha": "f26dfe3c1472e49936b703b671fcdfa74dedfa6f",
+  "head_branch": "qa/lumo-2082-apk-transfer-20261125",
+  "url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45579662500",
+  "original_run": 45569841812,
+  "original_source": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+  "original_artifact_id": 15004539062,
+  "apk": {
+    "file": "Lumo-Lernen-Test-0.14.9-2082.apk",
+    "bytes": 653020163,
+    "sha256": "0ab02c4f1d3b3a625be42f5f974d1592ec993af27e5ed56135245dfee4996243"
+  },
+  "parts": [
+    {
+      "index": 1,
+      "file": "Lumo-Lernen-Test-0.14.9-2082.apk.part01",
+      "offset": 0,
+      "bytes": 268435456,
+      "sha256": "c519c1cb54f2f63554e1ab18c587d28e14cd0930a6732c7343999ac65325e456"
+    },
+    {
+      "index": 2,
+      "file": "Lumo-Lernen-Test-0.14.9-2082.apk.part02",
+      "offset": 268435456,
+      "bytes": 268435456,
+      "sha256": "f78b43e422c93b74f9fc292b5d82e4d0aea6511238cfed2dfa823730b84ed505"
+    },
+    {
+      "index": 3,
+      "file": "Lumo-Lernen-Test-0.14.9-2082.apk.part03",
+      "offset": 536870912,
+      "bytes": 116149251,
+      "sha256": "c8ae52870e3005d9f31c64c59a30f5dea9ba1840c07932216c56c07fb4dfdf43"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 15006371375,
+      "name": "LUMO-2082-APK-PART-03-45579662500-1",
+      "bytes": 116152817,
+      "sha256": "835e82b8478974acee3b5509c1a64c90fb2cb17736c057bdc718ce4dcf17a53f",
+      "workflow_run": {
+        "id": 45579662500,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-2082-apk-transfer-20261125",
+        "head_sha": "f26dfe3c1472e49936b703b671fcdfa74dedfa6f"
+      },
+      "expires_at": "2026-12-02T08:51:59Z"
+    },
+    {
+      "id": 15005947276,
+      "name": "LUMO-2082-APK-PART-02-45579662500-1",
+      "bytes": 268439022,
+      "sha256": "8af364f8f13018c4ec8ac1917908ba775a446eb7f26b5efea195b5a3ce1df1e2",
+      "workflow_run": {
+        "id": 45579662500,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-2082-apk-transfer-20261125",
+        "head_sha": "f26dfe3c1472e49936b703b671fcdfa74dedfa6f"
+      },
+      "expires_at": "2026-12-02T08:51:54Z"
+    },
+    {
+      "id": 15005572927,
+      "name": "LUMO-2082-APK-PART-01-45579662500-1",
+      "bytes": 268454438,
+      "sha256": "16d40872eaf98a047da80df99c946ff7ba6da53c8cb82791dd2ac47c0b7284c8",
+      "workflow_run": {
+        "id": 45579662500,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "qa/lumo-2082-apk-transfer-20261125",
+        "head_sha": "f26dfe3c1472e49936b703b671fcdfa74dedfa6f"
+      },
+      "expires_at": "2026-12-02T08:51:48Z"
+    }
+  ],
+  "original_documents": [
+    {
+      "part_index": 1,
+      "file": "release/BUILD-PROVENANCE.json",
+      "source_member": "release/BUILD-PROVENANCE.json",
+      "bytes": 9644,
+      "sha256": "f441b64ad54d6a5946408fafcd4dd342ff82275edee13f20e7a0cf5275575ba2"
+    },
+    {
+      "part_index": 1,
+      "file": "release/APK-VERIFICATION.json",
+      "source_member": "release/APK-VERIFICATION.json",
+      "bytes": 3834,
+      "sha256": "0cc7bd488829c64af939a10c3773b29e89423a7c13d068cb44207eea2cc5c068"
+    },
+    {
+      "part_index": 1,
+      "file": "release/SPLIT-APK-IDENTITY.json",
+      "source_member": "release/SPLIT-APK-IDENTITY.json",
+      "bytes": 1249,
+      "sha256": "a6002d5a24fedad2160924247acf75b22f3a5654469c5822ab143657e6dfe002"
+    },
+    {
+      "part_index": 1,
+      "file": "release/SHA256SUMS.txt",
+      "source_member": "release/SHA256SUMS.txt",
+      "bytes": 99,
+      "sha256": "1bc64a890218edbe91e836d3b17c2c436c1ce403d33be61cfddb1bb6fb45541d"
+    }
+  ],
+  "independent_review": "review_resume: no blocker; final source hashes matched local validation",
+  "limitations": "Internal transfer only; no rebuild/signing/public release. Root verifies the received full APK and its embedded PCK."
+}
+
