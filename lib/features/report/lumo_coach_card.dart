@@ -17,6 +17,9 @@ class LumoCoachCard extends StatefulWidget {
 
 class _LumoCoachCardState extends State<LumoCoachCard> {
   CoachMessage? _message;
+  LumoAppState? _messageApp;
+  LearningProfileLease? _messageOwner;
+  int _loadRevision = 0;
 
   @override
   void initState() {
@@ -26,24 +29,99 @@ class _LumoCoachCardState extends State<LumoCoachCard> {
   }
 
   @override
+  void didUpdateWidget(covariant LumoCoachCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.appState, widget.appState)) {
+      oldWidget.appState.removeListener(_load);
+      _clearMessage();
+      widget.appState.addListener(_load);
+      _load();
+    }
+  }
+
+  @override
   void dispose() {
+    _loadRevision++;
     widget.appState.removeListener(_load);
     super.dispose();
   }
 
+  void _clearMessage() {
+    _message = null;
+    _messageApp = null;
+    _messageOwner = null;
+  }
+
+  bool _ownsCurrentProfile(LumoAppState app, LearningProfileLease owner) =>
+      mounted &&
+      identical(app, widget.appState) &&
+      owner.generation == app.profileGeneration &&
+      app.canUseLearningLease(owner);
+
+  bool get _hasCurrentMessage {
+    final app = _messageApp;
+    final owner = _messageOwner;
+    return _message != null &&
+        app != null &&
+        owner != null &&
+        _ownsCurrentProfile(app, owner);
+  }
+
+  bool _isCurrentRequest(LumoAppState app, int revision, int generation) =>
+      mounted &&
+      identical(app, widget.appState) &&
+      revision == _loadRevision &&
+      generation == app.profileGeneration &&
+      !app.resetting;
+
+  bool _sameMessage(CoachMessage? left, CoachMessage? right) =>
+      left?.text == right?.text &&
+      left?.subject == right?.subject &&
+      left?.unit == right?.unit &&
+      left?.isHelp == right?.isHelp;
+
   Future<void> _load() async {
+    final app = widget.appState;
+    final revision = ++_loadRevision;
+    final generation = app.profileGeneration;
+    // Hide the previous child's recommendation before any storage await.
+    if (_message != null && !_hasCurrentMessage) setState(_clearMessage);
     try {
-      final who = await widget.appState.school.activeStudentId() ?? 'self';
-      final attempts = await widget.appState.attemptLog.load(studentId: who);
+      final owner = await app.captureLearningProfile();
+      if (!_isCurrentRequest(app, revision, generation) ||
+          owner.generation != generation ||
+          !app.canUseLearningLease(owner)) {
+        return;
+      }
+      final attempts = await app.attemptLog.load(studentId: owner.logStudentId);
+      if (!_isCurrentRequest(app, revision, generation) ||
+          !_ownsCurrentProfile(app, owner)) {
+        return;
+      }
       final message = LearningAnalysis.analyze(attempts).coachMessage;
-      if (!mounted) return;
-      if (message?.text != _message?.text) setState(() => _message = message);
-    } catch (_) {}
+      _messageApp = app;
+      _messageOwner = owner;
+      if (!_sameMessage(message, _message)) {
+        setState(() => _message = message);
+      }
+    } catch (_) {
+      // A failed latest read cannot keep advertising an unverified route.
+      if (_isCurrentRequest(app, revision, generation)) {
+        setState(_clearMessage);
+      }
+    }
+  }
+
+  void _start(CoachMessage message) {
+    // A callback from the previous frame must not start another child's topic.
+    if (identical(message, _message) && _hasCurrentMessage) {
+      widget.onStart(message.subject, message.unit);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final m = _message;
+    final m = _hasCurrentMessage ? _message : null;
     if (m == null) return const SizedBox.shrink();
     return Container(
       key: const ValueKey('lumo-coach-card'),
@@ -78,7 +156,7 @@ class _LumoCoachCardState extends State<LumoCoachCard> {
             child: InkWell(
               key: const ValueKey('lumo-coach-start'),
               borderRadius: BorderRadius.circular(99),
-              onTap: () => widget.onStart(m.subject, m.unit),
+              onTap: () => _start(m),
               child: Container(
                 constraints: const BoxConstraints(minHeight: 48),
                 padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),

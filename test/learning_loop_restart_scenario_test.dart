@@ -39,17 +39,40 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
-  test('wiederholte Fehler führen zu Empfehlung, überstehen Neustart, Üben ändert sie',
+  test('Vier unabhängige Antworten bleiben auch nach Neustart noch offen',
       () async {
-    // Runde 1: Minus bis 10 sechsmal falsch (zweimal mit Tipp), Plus bis 10 sicher.
     var app = await _start();
     await _answer(app, 'Minus bis 10', false, times: 4);
+    await _answer(app, 'Minus bis 10', false, times: 2, hint: true);
+    var analysis = LearningAnalysis.analyze(await app.attemptLog.load());
+    expect(_stat(analysis, 'Minus bis 10').level, MasteryLevel.unknown);
+    expect(analysis.coachMessage, isNull);
+    expect(analysis.suggestion, isNull);
+    app.dispose();
+
+    app = await _start();
+    analysis = LearningAnalysis.analyze(await app.attemptLog.load());
+    final minus = _stat(analysis, 'Minus bis 10');
+    expect(minus.attempts, 6);
+    expect(minus.hints, 2);
+    expect(minus.independentAttempts, 4);
+    expect(minus.level, MasteryLevel.unknown);
+    expect(analysis.coachMessage, isNull);
+    expect(analysis.suggestion, isNull);
+    app.dispose();
+  });
+
+  test('wiederholte Fehler führen zu Empfehlung, überstehen Neustart, Üben ändert sie',
+      () async {
+    // Runde 1: Minus bis 10 siebenmal falsch (zweimal mit Tipp), Plus bis 10 sicher.
+    var app = await _start();
+    await _answer(app, 'Minus bis 10', false, times: 5);
     await _answer(app, 'Minus bis 10', false, times: 2, hint: true);
     await _answer(app, 'Plus bis 10', true, times: 6);
 
     final minusId = SkillRecord.makeId('Mathematik', 'Minus bis 10');
     final plusId = SkillRecord.makeId('Mathematik', 'Plus bis 10');
-    expect(app.learningSkills()[minusId]!.wrong, 6);
+    expect(app.learningSkills()[minusId]!.wrong, 7);
     expect(app.learningSkills()[minusId]!.hintCount, 2);
     expect(app.learningSkills()[plusId]!.correct, 6);
     expect(app.learningWeaknessesBySubject()['Mathematik'], contains('Minus bis 10'));
@@ -64,25 +87,28 @@ void main() {
 
     // Neustart: neue App über demselben Speicher.
     app = await _start();
-    expect(app.learningSkills()[minusId]!.wrong, 6);
+    expect(app.learningSkills()[minusId]!.wrong, 7);
     expect(app.learningSkills()[plusId]!.correct, 6);
     expect(app.topLearningRecommendation()?.unit, 'Minus bis 10');
     analysis = LearningAnalysis.analyze(await app.attemptLog.load());
-    expect(_stat(analysis, 'Minus bis 10').attempts, 6);
+    expect(_stat(analysis, 'Minus bis 10').attempts, 7);
+    expect(_stat(analysis, 'Minus bis 10').independentAttempts, 5);
 
     // Runde 2 nach dem Neustart: zwölfmal richtig geübt.
     await _answer(app, 'Minus bis 10', true, times: 12);
     expect(app.learningSkills()[minusId]!.correct, 12);
     analysis = LearningAnalysis.analyze(await app.attemptLog.load());
     final minus = _stat(analysis, 'Minus bis 10');
-    expect(minus.attempts, 18);
+    expect(minus.attempts, 19);
+    expect(minus.independentAttempts, 17);
     expect(minus.level, isNot(MasteryLevel.needsHelp));
     app.dispose();
 
     // Zweiter Neustart: der verbesserte Stand bleibt erhalten.
     app = await _start();
     expect(app.learningSkills()[minusId]!.correct, 12);
-    expect(app.learningSkills()[minusId]!.wrong, 6);
+    expect(app.learningSkills()[minusId]!.wrong, 7);
     app.dispose();
   });
 }
+

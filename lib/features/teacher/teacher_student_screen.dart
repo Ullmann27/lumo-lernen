@@ -233,10 +233,15 @@ class _TeacherStudentScreenState extends State<TeacherStudentScreen> {
   String? _unitFor(PracticeSuggestion s) {
     // Die Kompetenz „Addition mit Zehnerübergang“ gehört zum Thema der
     // zuletzt geübten Aufgabe dieser Kompetenz.
-    for (final a in _attempts.reversed) {
-      if (a.competency == s.competency) return a.unit;
+    Attempt? latest;
+    for (final a in _attempts) {
+      if (a.subject == s.subject &&
+          a.competency == s.competency &&
+          (latest == null || a.at.isAfter(latest.at))) {
+        latest = a;
+      }
     }
-    return null;
+    return latest?.unit;
   }
 }
 
@@ -346,3 +351,4 @@ class _CognitiveTeacherPanel extends StatelessWidget {
     );
   }
 }
+

@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Observed LUMO Intelligence 2082 publication order",
+  "$comment": "No sample candidate is supplied. Job/artifact IDs must be distinct; release_tag must end in build_run_id. The Python verifier enforces these cross-field constraints and live evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "repository",
+    "repository_id",
+    "repository_owner_id",
+    "branch",
+    "build_workflow",
+    "version_name",
+    "version_code",
+    "apk_file",
+    "certificate_sha256",
+    "publisher_authentication",
+    "build_run_id",
+    "build_run_attempt",
+    "intelligence_job_id",
+    "build_job_id",
+    "android_job_id",
+    "apk_bytes",
+    "pck_bytes",
+    "apk_artifact_id",
+    "apk_artifact_bytes",
+    "android_artifact_id",
+    "android_artifact_bytes",
+    "intelligence_artifact_id",
+    "intelligence_artifact_bytes",
+    "apk_sha256",
+    "pck_sha256",
+    "apk_artifact_sha256",
+    "android_artifact_sha256",
+    "intelligence_artifact_sha256",
+    "flutter_commit",
+    "godot_commit",
+    "release_tag"
+  ],
+  "properties": {
+    "schema": {
+      "type": "integer",
+      "const": 2
+    },
+    "repository": {
+      "type": "string",
+      "const": "Ullmann27/lumo-lernen"
+    },
+    "repository_id": {
+      "type": "integer",
+      "const": 1222433959
+    },
+    "repository_owner_id": {
+      "type": "integer",
+      "const": 64243701
+    },
+    "branch": {
+      "type": "string",
+      "const": "integration/lumo-intelligence-2082-20261125"
+    },
+    "build_workflow": {
+      "type": "string",
+      "const": ".github/workflows/lumo-intelligence-2082.yml"
+    },
+    "version_name": {
+      "type": "string",
+      "const": "0.14.9"
+    },
+    "version_code": {
+      "type": "integer",
+      "const": 2082
+    },
+    "apk_file": {
+      "type": "string",
+      "const": "Lumo-Lernen-Test-0.14.9-2082.apk"
+    },
+    "certificate_sha256": {
+      "type": "string",
+      "const": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702"
+    },
+    "publisher_authentication": {
+      "type": "string",
+      "const": "github-actions-installation-token"
+    },
+    "build_run_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "build_run_attempt": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "intelligence_job_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "build_job_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "android_job_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "apk_bytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "pck_bytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "apk_artifact_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "apk_artifact_bytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "android_artifact_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "android_artifact_bytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "intelligence_artifact_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "intelligence_artifact_bytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "apk_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "pck_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "apk_artifact_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "android_artifact_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "intelligence_artifact_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "flutter_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "godot_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "release_tag": {
+      "type": "string",
+      "pattern": "^lumo-0\\.14\\.9-2082-[1-9][0-9]*$"
+    }
+  }
+}
