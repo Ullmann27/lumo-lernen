@@ -58,8 +58,9 @@ class LumoDailyTutorStep {
 /// There are no guesses when the child has not yet answered enough
 /// questions. The caller supplies records belonging to one active profile,
 /// and an eligibility check for their current grade's existing curriculum.
-/// All returned units originate in those records, never from fabricated
-/// weaknesses or empty-profile defaults.
+/// Observed focus units originate in those records; a supplied grade may add
+/// eligible curriculum units as explicitly unverified checks. No empty-profile
+/// defaults or fabricated weaknesses are generated.
 class LumoPersonalDailyTutorPlanner {
   const LumoPersonalDailyTutorPlanner();
 
@@ -109,31 +110,37 @@ class LumoPersonalDailyTutorPlanner {
     int priority(SkillRecord r) {
       final evidence = journey[r.skillId];
       final status = knowledge(evidence);
-      return status.index * 2 +
-          (evidence != null && !at.isBefore(evidence.dueAt) ? 0 : 1);
+      if (status == LumoKnowledgeStatus.review) return 0;
+      if (_reviewDue(evidence, at)) return 1;
+      if (status == LumoKnowledgeStatus.assisted) return 2;
+      if (status == LumoKnowledgeStatus.insufficient) return 3;
+      return 4;
     }
 
     eligible.sort((a, b) {
       final byNeed = priority(a).compareTo(priority(b));
       if (byNeed != 0) return byNeed;
+      final aEvidence = journey[a.skillId];
+      final bEvidence = journey[b.skillId];
+      if (_reviewDue(aEvidence, at) && _reviewDue(bEvidence, at)) {
+        final byDue = aEvidence!.dueAt.compareTo(bEvidence!.dueAt);
+        if (byDue != 0) return byDue;
+      }
       final bySeen = (journey[a.skillId]?.lastSeen ?? a.lastSeen)
           .compareTo(journey[b.skillId]?.lastSeen ?? b.lastSeen);
       return bySeen != 0 ? bySeen : a.skillId.compareTo(b.skillId);
     });
-    // Repetition/assisted work first; absence of evidence never means weakness.
-    final needs = eligible
-        .where((r) => [LumoKnowledgeStatus.review, LumoKnowledgeStatus.assisted]
-            .contains(knowledge(journey[r.skillId])))
-        .toList();
-    final first = needs.isNotEmpty ? needs.first : eligible.first;
-    if (grade != null) return _balanced(first, eligible, journey, grade);
+    // Repeated errors and due recall receive attention before new work.
+    // A due date is a scheduling observation, never a claim of forgetting.
+    final first = eligible.first;
+    if (grade != null) {
+      return _balanced(first, eligible, journey, grade, at,
+          isEligible: isEligible);
+    }
     final second = eligible.firstWhere((r) => r.skillId != first.skillId,
         orElse: () => first);
     final strengths = eligible
-        .where((r) => [
-              LumoKnowledgeStatus.retained,
-              LumoKnowledgeStatus.independent
-            ].contains(knowledge(journey[r.skillId])))
+        .where((r) => _confirmedStrength(journey[r.skillId]))
         .toList();
     LumoDailyTutorStep step(
             SkillRecord r, LumoDailyTutorStepKind kind, int minutes) =>
@@ -142,14 +149,9 @@ class LumoPersonalDailyTutorPlanner {
             subject: r.subject,
             unit: r.unit,
             durationMinutes: minutes,
-            reason: knowledge(journey[r.skillId]).label);
+            reason: _reason(journey[r.skillId], at));
     return List.unmodifiable([
-      step(
-          first,
-          needs.isNotEmpty
-              ? LumoDailyTutorStepKind.revise
-              : LumoDailyTutorStepKind.practice,
-          5),
+      step(first, _openingKind(journey[first.skillId], at), 5),
       step(second, LumoDailyTutorStepKind.practice, 4),
       step(
           strengths.isEmpty ? second : strengths.last,
@@ -160,8 +162,43 @@ class LumoPersonalDailyTutorPlanner {
     ]);
   }
 
+  /// Recency alone never establishes forgotten knowledge. Only observations
+  /// that already justify practice or recall have a meaningful review date.
+  bool _reviewDue(JourneySkill? record, DateTime at) =>
+      record != null &&
+      knowledge(record) != LumoKnowledgeStatus.insufficient &&
+      !at.isBefore(record.dueAt);
+
+  bool _confirmedStrength(JourneySkill? record) =>
+      record != null &&
+      (record.status == JourneyStatus.independentlyChecked ||
+          record.status == JourneyStatus.retained);
+
+  LumoDailyTutorStepKind _openingKind(JourneySkill? record, DateTime at) {
+    final status = knowledge(record);
+    if (status == LumoKnowledgeStatus.review ||
+        status == LumoKnowledgeStatus.assisted ||
+        _reviewDue(record, at)) {
+      return LumoDailyTutorStepKind.revise;
+    }
+    return status == LumoKnowledgeStatus.insufficient
+        ? LumoDailyTutorStepKind.check
+        : LumoDailyTutorStepKind.practice;
+  }
+
+  String _reason(JourneySkill? record, DateTime at) {
+    final status = knowledge(record);
+    if (_reviewDue(record, at) &&
+        (status == LumoKnowledgeStatus.independent ||
+            status == LumoKnowledgeStatus.retained)) {
+      return 'Kurze Wiederholung nach einer Lernpause · ${status.label}';
+    }
+    return status.label;
+  }
+
   List<LumoDailyTutorStep> _balanced(SkillRecord first, List<SkillRecord> known,
-      Map<String, JourneySkill> journey, int grade) {
+      Map<String, JourneySkill> journey, int grade, DateTime at,
+      {bool Function(SkillRecord record)? isEligible}) {
     final graph = LumoConceptGraph.reference();
     const intelligence = LumoIntelligenceEngine();
     bool ready(SkillRecord r) {
@@ -185,17 +222,19 @@ class LumoPersonalDailyTutorPlanner {
           in Curriculum.unitsForGrade(subject, grade, currentGradeOnly: true)) {
         final id = SkillRecord.makeId(subject, unit);
         if (id == first.skillId || pool.any((r) => r.skillId == id)) continue;
-        pool.add(SkillRecord(skillId: id, subject: subject, unit: unit));
+        final candidate =
+            SkillRecord(skillId: id, subject: subject, unit: unit);
+        if (isEligible?.call(candidate) ?? true) pool.add(candidate);
       }
     }
     if (pool.isEmpty)
       return [
         LumoDailyTutorStep(
-            kind: LumoDailyTutorStepKind.practice,
+            kind: _openingKind(journey[first.skillId], at),
             subject: first.subject,
             unit: first.unit,
             durationMinutes: 5,
-            reason: knowledge(journey[first.skillId]).label)
+            reason: _reason(journey[first.skillId], at))
       ];
     final second = pool.firstWhere(ready, orElse: () => pool.first);
     final strengths = known
@@ -218,19 +257,11 @@ class LumoPersonalDailyTutorPlanner {
             durationMinutes: minutes,
             reason: reason,
             pauseAfter: pause);
-    // A first-time or previously successful unit is not automatically a
-    // weakness. Only independently observed review/assistance evidence may
-    // turn the opening action into an explicit repetition lesson.
-    final firstKnowledge = knowledge(journey[first.skillId]);
-    final firstKind = switch (firstKnowledge) {
-      LumoKnowledgeStatus.review || LumoKnowledgeStatus.assisted =>
-        LumoDailyTutorStepKind.revise,
-      LumoKnowledgeStatus.insufficient => LumoDailyTutorStepKind.check,
-      LumoKnowledgeStatus.independent || LumoKnowledgeStatus.retained =>
-        LumoDailyTutorStepKind.practice,
-    };
+    // A due recall or supported practice may start with revision. Unobserved
+    // curriculum units stay checks and never become claimed weaknesses.
     return List.unmodifiable([
-      step(first, firstKind, 5, firstKnowledge.label),
+      step(first, _openingKind(journey[first.skillId], at), 5,
+          _reason(journey[first.skillId], at)),
       step(
           second,
           ready(second)

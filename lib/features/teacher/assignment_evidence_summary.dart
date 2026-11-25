@@ -47,8 +47,8 @@ class AssignmentEvidenceSummary extends StatelessWidget {
                 const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Gezählt werden die ersten Antworten zum Thema seit der '
-                    'Zuweisung. Weitere Übungen verändern dieses Ergebnis nicht.',
+                    'Auswertung der ersten aktuell gespeicherten Antworten '
+                    'zum Thema seit der Zuweisung.',
                     style: TextStyle(color: Color(0xFFD6E8FF), fontSize: 12),
                   ),
                 ),
