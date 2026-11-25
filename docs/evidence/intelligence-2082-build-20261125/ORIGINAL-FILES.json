@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "snapshot_utc": "2026-11-25T09:03:41Z",
+  "snapshot_utc": "2026-11-25T09:20:36Z",
   "files": [
     {
       "file": "build/README.md",
@@ -121,6 +121,133 @@
       "sha256": "a6002d5a24fedad2160924247acf75b22f3a5654469c5822ab143657e6dfe002",
       "copy": "byte-identical",
       "scope": "Original release metadata, retained byte-for-byte with its original scope."
+    },
+    {
+      "file": "android/original-run-45569841812-job-139080694208/ROOT-ANDROID-VERIFICATION.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/android-original/ROOT-ANDROID-VERIFICATION.json",
+      "bytes": 4287,
+      "sha256": "6c3f2197707023dcc9835c8e7d48774ce618d3ac8e3cb8ed56c670576fbba99e",
+      "copy": "byte-identical",
+      "scope": "Root independently hashed the downloaded Android artifact and checked its actual original reports with unchanged publisher validators."
+    },
+    {
+      "file": "android/original-run-45569841812-job-139080694208/tour/tour-result.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/android-original/tour/tour-result.json",
+      "bytes": 10030,
+      "sha256": "f247f6c53ced1fc5406bb92bc0ace0c221913326a0767aba914800135aa45065",
+      "copy": "byte-identical",
+      "scope": "Unmodified original file from the byte-verified Android artifact."
+    },
+    {
+      "file": "android/original-run-45569841812-job-139080694208/tour/local-backup/backup-result.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/android-original/tour/local-backup/backup-result.json",
+      "bytes": 14266,
+      "sha256": "ebaa092a8630d115130b159051b9c83a78fbe108131d6df881513c78005707c9",
+      "copy": "byte-identical",
+      "scope": "Unmodified original file from the byte-verified Android artifact."
+    },
+    {
+      "file": "android/original-run-45569841812-job-139080694208/tour/native-starts.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/android-original/tour/native-starts.json",
+      "bytes": 118336,
+      "sha256": "96afb2dc9f778a9148b49d3a4085245980402c11e3778228068cd54c88ebaf77",
+      "copy": "byte-identical",
+      "scope": "Unmodified original file from the byte-verified Android artifact."
+    },
+    {
+      "file": "android/original-run-45569841812-job-139080694208/tour/NATIVE-GAME-STARTS.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/android-original/tour/NATIVE-GAME-STARTS.json",
+      "bytes": 2623,
+      "sha256": "9ced28693d190f8cfc39ca84fe0879cd8080d70d3de8ea13588bd37cbe5cad5b",
+      "copy": "byte-identical",
+      "scope": "Unmodified original file from the byte-verified Android artifact."
+    },
+    {
+      "file": "android/original-run-45569841812-job-139080694208/tour/SPLIT-APK-IDENTITY.json",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/android-original/tour/SPLIT-APK-IDENTITY.json",
+      "bytes": 1249,
+      "sha256": "a6002d5a24fedad2160924247acf75b22f3a5654469c5822ab143657e6dfe002",
+      "copy": "byte-identical",
+      "scope": "Unmodified original file from the byte-verified Android artifact."
+    },
+    {
+      "file": "android/original-run-45569841812-job-139080694208/tour/installed-package-uid.txt",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/android-original/tour/installed-package-uid.txt",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+      "copy": "byte-identical",
+      "scope": "Unmodified original file from the byte-verified Android artifact."
+    },
+    {
+      "file": "android/original-run-45569841812-job-139080694208/tour/installed-package.txt",
+      "source_file": "/tmp/lumo-2082-publication-artifacts/android-original/tour/installed-package.txt",
+      "bytes": 12718,
+      "sha256": "4cf8c7c28354c727627b929eaaaf0e777a3dd5ae610743a599019c448753bfbe",
+      "copy": "byte-identical",
+      "scope": "Unmodified original file from the byte-verified Android artifact."
+    },
+    {
+      "file": "android/original-run-45569841812-job-139080694208/FINAL-RUN-RAW.json",
+      "source_file": "/tmp/lumo-2082-build-monitor/FINAL-RUN-RAW.json",
+      "bytes": 14546,
+      "sha256": "9f1592923609167294a5871a91ec9891c2f15e1bdc8a2a8f0ee051d1b3ca0d42",
+      "copy": "byte-identical",
+      "scope": "Original completed-run GitHub API response captured by build_monitor."
+    },
+    {
+      "file": "android/original-run-45569841812-job-139080694208/FINAL-JOBS-RAW.json",
+      "source_file": "/tmp/lumo-2082-build-monitor/FINAL-JOBS-RAW.json",
+      "bytes": 13841,
+      "sha256": "2628ea41c7070aa8f5b5797b09ac2944f022a594defdd9d961c12022a7227938",
+      "copy": "byte-identical",
+      "scope": "Original completed-run GitHub API response captured by build_monitor."
+    },
+    {
+      "file": "android/original-run-45569841812-job-139080694208/FINAL-ARTIFACTS.json",
+      "source_file": "/tmp/lumo-2082-build-monitor/FINAL-ARTIFACTS.json",
+      "bytes": 3429,
+      "sha256": "2ee84efe4f2fd0e309ec77b8e72655a9c193b2a664b23779a64c246642591279",
+      "copy": "byte-identical",
+      "scope": "Original completed-run GitHub API response captured by build_monitor."
     }
-  ]
+  ],
+  "historical_combined_snapshots": [
+    {
+      "file": "history/build-and-bytes-8edd474/README.md",
+      "source_commit": "8edd474dc3ac5256a3b95854df417cab60281e5b",
+      "source_path": "docs/evidence/intelligence-2082-build-20261125/README.md",
+      "bytes": 6476,
+      "sha256": "7ace2d782bbeccbd3b3ee7a4ec9fcfdae6e3d2495c89da5b0413a103245e2706",
+      "copy": "byte-identical"
+    },
+    {
+      "file": "history/build-and-bytes-8edd474/STATUS.json",
+      "source_commit": "8edd474dc3ac5256a3b95854df417cab60281e5b",
+      "source_path": "docs/evidence/intelligence-2082-build-20261125/STATUS.json",
+      "bytes": 2577,
+      "sha256": "cc78fcafdc0bc2248dd773567554057448309bd9d71430daae7194b58bdd8506",
+      "copy": "byte-identical"
+    },
+    {
+      "file": "history/build-and-bytes-8edd474/ORIGINAL-FILES.json",
+      "source_commit": "8edd474dc3ac5256a3b95854df417cab60281e5b",
+      "source_path": "docs/evidence/intelligence-2082-build-20261125/ORIGINAL-FILES.json",
+      "bytes": 5831,
+      "sha256": "65f1a54e47a0e67c5065fe10a574341642e16278ba639af89cd569ea6927f503",
+      "copy": "byte-identical"
+    },
+    {
+      "file": "history/build-and-bytes-8edd474/SHA256SUMS.txt",
+      "source_commit": "8edd474dc3ac5256a3b95854df417cab60281e5b",
+      "source_path": "docs/evidence/intelligence-2082-build-20261125/SHA256SUMS.txt",
+      "bytes": 1806,
+      "sha256": "8502041d6f5c48c80b35f3b7891e39a2c49b044208a65cd91b6e1a912107e940",
+      "copy": "byte-identical"
+    }
+  ],
+  "derived_original_log_excerpt": {
+    "file": "android/original-run-45569841812-job-139080694208/ANDROID-ORIGINAL-EXCERPTS.txt",
+    "source_manifest": "android/original-run-45569841812-job-139080694208/ANDROID-LOG-SOURCE.json",
+    "policy": "Exact selected original lines in original order; full log SHA256 and source line ranges are retained."
+  }
 }

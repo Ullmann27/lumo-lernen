@@ -1,0 +1,80 @@
+{
+  "artifacts": [
+    {
+      "id": 15007906728,
+      "name": "LUMO-ANDROID-TOUR-45569841812",
+      "size_in_bytes": 170350580,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15007906728",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15007906728/zip",
+      "expired": false,
+      "created_at": "2026-11-25T09:16:47Z",
+      "expires_at": "2027-02-23T07:39:23Z",
+      "updated_at": "2026-11-25T09:16:47Z",
+      "digest": "sha256:2f808087899ae0a0d7d4b1d249ebfdab6f0260865879d205b1f27cb21463be2b",
+      "workflow_run": {
+        "id": 45569841812,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-intelligence-2082-20261125",
+        "head_sha": "6574b19f92abb4f6421fd3074cec09738dc0974a"
+      }
+    },
+    {
+      "id": 15005606309,
+      "name": "LUMO-EMULATOR-APK-45569841812",
+      "size_in_bytes": 656207161,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15005606309",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15005606309/zip",
+      "expired": false,
+      "created_at": "2026-11-25T08:37:53Z",
+      "expires_at": "2027-02-23T07:39:23Z",
+      "updated_at": "2026-11-25T08:37:53Z",
+      "digest": "sha256:78f9fefa8dbb2523bc34fd1a645ae38358b25eca222b5a99339b3d50b3fe3d61",
+      "workflow_run": {
+        "id": 45569841812,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-intelligence-2082-20261125",
+        "head_sha": "6574b19f92abb4f6421fd3074cec09738dc0974a"
+      }
+    },
+    {
+      "id": 15004539062,
+      "name": "LUMO-TEST-APK-45569841812",
+      "size_in_bytes": 662435961,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15004539062",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15004539062/zip",
+      "expired": false,
+      "created_at": "2026-11-25T08:38:05Z",
+      "expires_at": "2027-02-23T07:39:23Z",
+      "updated_at": "2026-11-25T08:38:05Z",
+      "digest": "sha256:c186795be0f83ab20a4510b8a67b870b18686a52660f86b8137667a80bb52e75",
+      "workflow_run": {
+        "id": 45569841812,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-intelligence-2082-20261125",
+        "head_sha": "6574b19f92abb4f6421fd3074cec09738dc0974a"
+      }
+    },
+    {
+      "id": 15001986315,
+      "name": "LUMO-INTELLIGENCE-TESTS-45569841812",
+      "size_in_bytes": 6877,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15001986315",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/15001986315/zip",
+      "expired": false,
+      "created_at": "2026-11-25T07:41:18Z",
+      "expires_at": "2027-02-23T07:39:23Z",
+      "updated_at": "2026-11-25T07:41:18Z",
+      "digest": "sha256:47c64a5f023841f2efccac6f64206346b27130c992aa2ce063a681d210cc8d81",
+      "workflow_run": {
+        "id": 45569841812,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "integration/lumo-intelligence-2082-20261125",
+        "head_sha": "6574b19f92abb4f6421fd3074cec09738dc0974a"
+      }
+    }
+  ]
+}

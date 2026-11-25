@@ -1,0 +1,73 @@
+{
+  "snapshot_utc": "2026-11-25T09:03:41Z",
+  "status": "BUILD_AND_LOCAL_BYTES_PASS_ANDROID_PENDING_NO_PUBLIC_RELEASE",
+  "source_commit": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+  "native_commit": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
+  "original_run": 45569841812,
+  "original_attempt": 1,
+  "build_job": {
+    "id": 139054345083,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "android_job": {
+    "id": 139080694208,
+    "status_in_available_snapshot": "in_progress",
+    "acceptance_claimed": false,
+    "followup_evidence": "Separate future addition; original snapshots remain unchanged."
+  },
+  "public_release": {
+    "created_by_this_work": false,
+    "public_download_verified": false,
+    "approval_claimed": false
+  },
+  "transfer_run": 45579662500,
+  "transfer_commit": "f26dfe3c1472e49936b703b671fcdfa74dedfa6f",
+  "transfer_manifest_sha256": "a8e487bf2a275ea60c552ab2103b0bcaa527c660955fe572e68eba5d8ed17ac8",
+  "original_artifact": {
+    "artifact_id": 15004539062,
+    "bytes": 662435961,
+    "sha256": "c186795be0f83ab20a4510b8a67b870b18686a52660f86b8137667a80bb52e75",
+    "storage_authorization_header_sent": false
+  },
+  "transfer_receipts": [
+    {
+      "index": 1,
+      "artifact_id": 15005572927,
+      "bytes": 268454438,
+      "sha256": "16d40872eaf98a047da80df99c946ff7ba6da53c8cb82791dd2ac47c0b7284c8"
+    },
+    {
+      "index": 2,
+      "artifact_id": 15005947276,
+      "bytes": 268439022,
+      "sha256": "8af364f8f13018c4ec8ac1917908ba775a446eb7f26b5efea195b5a3ce1df1e2"
+    },
+    {
+      "index": 3,
+      "artifact_id": 15006371375,
+      "bytes": 116152817,
+      "sha256": "835e82b8478974acee3b5509c1a64c90fb2cb17736c057bdc718ce4dcf17a53f"
+    }
+  ],
+  "local_verification": {
+    "status": "PASS",
+    "apk_bytes": 653020163,
+    "apk_sha256": "0ab02c4f1d3b3a625be42f5f974d1592ec993af27e5ed56135245dfee4996243",
+    "actual_pck": {
+      "bytes": 394388252,
+      "sha256": "fbd0d7c1155dac14be5913d5ee57eb9d0cc1fe586bfff0350459746eaf6097ab"
+    },
+    "scope": "Actual whole received APK and embedded PCK hashed by root; existing successful build-tools signature report, no local re-signing."
+  },
+  "counts": {
+    "flutter_passed": 3669,
+    "flutter_skipped": 193,
+    "flutter_failed": 0,
+    "focused_flutter_passed": 114,
+    "integrated_cards_scene_checks": 632,
+    "separate_native_cards_scene_checks": 634
+  },
+  "original_documents_copied": 15,
+  "original_copy_policy": "Original bytes are unchanged. Historical statements that verification remained pending retain their original temporal scope."
+}

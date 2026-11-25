@@ -1,0 +1,393 @@
+{
+  "total_count": 3,
+  "jobs": [
+    {
+      "id": 139053500085,
+      "run_id": 45569841812,
+      "workflow_name": "Lumo Intelligence 2082 – Familien-App und Android-Abnahme",
+      "head_branch": "integration/lumo-intelligence-2082-20261125",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/45569841812",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSNzcp88AAAAgYDwGtQ",
+      "head_sha": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/139053500085",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45569841812/job/139053500085",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-25T07:39:23Z",
+      "started_at": "2026-11-25T07:39:26Z",
+      "completed_at": "2026-11-25T07:41:22Z",
+      "name": "Echte Lernanalysen, Lernhilfe und Hausaufgaben prüfen",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-25T07:39:26Z",
+          "completed_at": "2026-11-25T07:39:30Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-25T07:39:30Z",
+          "completed_at": "2026-11-25T07:40:09Z"
+        },
+        {
+          "name": "Run subosito/flutter-action@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-25T07:40:09Z",
+          "completed_at": "2026-11-25T07:40:41Z"
+        },
+        {
+          "name": "Abhängigkeiten und neue Lernwege prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-25T07:40:41Z",
+          "completed_at": "2026-11-25T07:41:17Z"
+        },
+        {
+          "name": "Tatsächliche Prüfergebnisse sichern",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-25T07:41:17Z",
+          "completed_at": "2026-11-25T07:41:18Z"
+        },
+        {
+          "name": "Post Run subosito/flutter-action@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-25T07:41:18Z",
+          "completed_at": "2026-11-25T07:41:19Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-25T07:41:19Z",
+          "completed_at": "2026-11-25T07:41:19Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-25T07:41:19Z",
+          "completed_at": "2026-11-25T07:41:19Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/139053500085",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000028763,
+      "runner_name": "GitHub Actions 1000028763",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 139054345083,
+      "run_id": 45569841812,
+      "workflow_name": "Lumo Intelligence 2082 – Familien-App und Android-Abnahme",
+      "head_branch": "integration/lumo-intelligence-2082-20261125",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/45569841812",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSNzcp88AAAAgYEjrew",
+      "head_sha": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/139054345083",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45569841812/job/139054345083",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-25T07:41:22Z",
+      "started_at": "2026-11-25T07:41:24Z",
+      "completed_at": "2026-11-25T08:38:12Z",
+      "name": "Signierte Test-APK bauen",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-25T07:41:25Z",
+          "completed_at": "2026-11-25T07:41:28Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-25T07:41:28Z",
+          "completed_at": "2026-11-25T07:42:04Z"
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-25T07:42:04Z",
+          "completed_at": "2026-11-25T07:42:04Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v3",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-25T07:42:04Z",
+          "completed_at": "2026-11-25T07:42:17Z"
+        },
+        {
+          "name": "Run subosito/flutter-action@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-25T07:42:17Z",
+          "completed_at": "2026-11-25T07:42:43Z"
+        },
+        {
+          "name": "Quellstand und Godot-Pin festhalten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-25T07:42:43Z",
+          "completed_at": "2026-11-25T07:42:49Z"
+        },
+        {
+          "name": "Android- und Godot-Werkzeuge einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-25T07:42:49Z",
+          "completed_at": "2026-11-25T07:43:19Z"
+        },
+        {
+          "name": "Native Sprache, Lerndialog und Datensicherung – JVM-Verträge",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-25T07:43:19Z",
+          "completed_at": "2026-11-25T07:43:45Z"
+        },
+        {
+          "name": "Flutter – Analyse und vollständige Testsuite",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-25T07:43:45Z",
+          "completed_at": "2026-11-25T07:59:03Z"
+        },
+        {
+          "name": "Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-25T07:59:03Z",
+          "completed_at": "2026-11-25T08:24:49Z"
+        },
+        {
+          "name": "World – integrierte Missionen, Kart, Figuren und Spielstand",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-25T08:24:49Z",
+          "completed_at": "2026-11-25T08:26:06Z"
+        },
+        {
+          "name": "Eine signierte Flutter-Godot-APK bauen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-25T08:26:06Z",
+          "completed_at": "2026-11-25T08:37:43Z"
+        },
+        {
+          "name": "APK für den Android-Emulator sichern",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-25T08:37:43Z",
+          "completed_at": "2026-11-25T08:37:53Z"
+        },
+        {
+          "name": "Paketname und Signaturzertifikat gegen die installierte 2078 prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-25T08:37:53Z",
+          "completed_at": "2026-11-25T08:37:55Z"
+        },
+        {
+          "name": "APK und Belege als Artefakt sichern",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-25T08:37:55Z",
+          "completed_at": "2026-11-25T08:38:05Z"
+        },
+        {
+          "name": "Post Run subosito/flutter-action@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-11-25T08:38:05Z",
+          "completed_at": "2026-11-25T08:38:09Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-11-25T08:38:09Z",
+          "completed_at": "2026-11-25T08:38:09Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-11-25T08:38:09Z",
+          "completed_at": "2026-11-25T08:38:10Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-11-25T08:38:10Z",
+          "completed_at": "2026-11-25T08:38:10Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/139054345083",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000028771,
+      "runner_name": "GitHub Actions 1000028771",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 139080694208,
+      "run_id": 45569841812,
+      "workflow_name": "Lumo Intelligence 2082 – Familien-App und Android-Abnahme",
+      "head_branch": "integration/lumo-intelligence-2082-20261125",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/45569841812",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSNzcp88AAAAgYdr5wA",
+      "head_sha": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/139080694208",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45569841812/job/139080694208",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-25T08:38:12Z",
+      "started_at": "2026-11-25T08:38:14Z",
+      "completed_at": "2026-11-25T09:16:48Z",
+      "name": "Installierte APK im Android-Emulator prüfen",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-25T08:38:15Z",
+          "completed_at": "2026-11-25T08:38:16Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-25T08:38:16Z",
+          "completed_at": "2026-11-25T08:38:45Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-25T08:38:45Z",
+          "completed_at": "2026-11-25T08:38:52Z"
+        },
+        {
+          "name": "Emulator und Prüftools vorbereiten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-25T08:38:52Z",
+          "completed_at": "2026-11-25T08:39:20Z"
+        },
+        {
+          "name": "Mesa-Software-Anzeige für das Emulator-GL starten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-25T08:39:20Z",
+          "completed_at": "2026-11-25T08:39:24Z"
+        },
+        {
+          "name": "Run reactivecircus/android-emulator-runner@v2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-25T08:39:24Z",
+          "completed_at": "2026-11-25T09:16:38Z"
+        },
+        {
+          "name": "Beobachtete native Spielstarts verbindlich prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-25T09:16:38Z",
+          "completed_at": "2026-11-25T09:16:38Z"
+        },
+        {
+          "name": "Abgeschlossene Android-Prüfbelege zum selben Kandidaten bereitstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-25T09:16:38Z",
+          "completed_at": "2026-11-25T09:16:40Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-25T09:16:40Z",
+          "completed_at": "2026-11-25T09:16:47Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-25T09:16:47Z",
+          "completed_at": "2026-11-25T09:16:47Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-25T09:16:47Z",
+          "completed_at": "2026-11-25T09:16:47Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/139080694208",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000028790,
+      "runner_name": "GitHub Actions 1000028790",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

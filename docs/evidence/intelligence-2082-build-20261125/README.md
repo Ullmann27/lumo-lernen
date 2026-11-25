@@ -1,6 +1,6 @@
 # LUMO 2082: completed build, internal transport and actual local byte verification
 
-Evidence snapshot: **2026-11-25 09:03:41 UTC**. The signed APK build and the actual local APK/PCK byte verification passed. **Android job 139080694208 is still in progress in the available snapshot. No public release or public APK delivery is claimed.** Subsequent Android acceptance and any public delivery will be documented separately.
+Evidence snapshot: **2026-11-25 09:20:36 UTC**. The signed APK build, actual local APK/PCK byte verification and independent inspection of the completed Android artifact passed. **All three original jobs are completed/success. Public delivery remains a separate pending phase; no public APK download is claimed in this snapshot.** The earlier combined status is retained byte-for-byte in [history/build-and-bytes-8edd474](history/build-and-bytes-8edd474/).
 
 ## Exact candidate
 
@@ -10,7 +10,7 @@ Evidence snapshot: **2026-11-25 09:03:41 UTC**. The signed APK build and the act
 | Native source | `62108c0355f860ab9a0a020ecb5f3f941f1032e9` |
 | Original build run / attempt | `45569841812` / `1` |
 | Successful APK build job | `139054345083` |
-| Android job, not yet accepted | `139080694208` |
+| Android job, original artifact content verified | `139080694208` |
 | Package | `dev.ullmann.lumo.lumo_lernen.coachpreview` |
 | Version / ABI | `0.14.9+2082` / `arm64-v8a` |
 | APK bytes | `653020163` |
@@ -49,6 +49,25 @@ The original [APK artifact 15004539062](https://github.com/Ullmann27/lumo-lernen
 
 The [transport result](transfer/TRANSFER-RESULT.json), [original transport manifest](transfer/MANIFEST.json), [artifact metadata](transfer/TRANSFER-ARTIFACTS.json), and [recipient receipts](local/TRANSFER-RECEIPTS.json) distinguish raw APK part sizes from each part's ZIP size. Root received the parts, verified the archive/part identities, reassembled the full APK and independently hashed its embedded PCK. The copied [recipient manifest](local/TRANSFER-MANIFEST.json) is byte-identical to the original transport manifest: SHA256 **`a8e487bf2a275ea60c552ab2103b0bcaa527c660955fe572e68eba5d8ed17ac8`**. The four [original release metadata files](local/original-release-metadata/) also match their manifest sizes and hashes byte-for-byte.
 
+## Completed Android evidence, checked from the actual artifact
+
+The [original Android job](https://github.com/Ullmann27/lumo-lernen/actions/runs/45569841812/job/139080694208) completed successfully. Root then downloaded [artifact 15007906728](https://github.com/Ullmann27/lumo-lernen/actions/runs/45569841812/artifacts/15007906728) and independently verified **170350580 bytes**, SHA256 **`2f808087899ae0a0d7d4b1d249ebfdab6f0260865879d205b1f27cb21463be2b`**. Root checked the actual original reports and their nested evidence copies with the unchanged publisher validators. [ROOT-ANDROID-VERIFICATION.json](android/original-run-45569841812-job-139080694208/ROOT-ANDROID-VERIFICATION.json) records that content verification separately from the successful job status.
+
+| Original Android evidence | Observed result |
+| --- | --- |
+| [Tour result](android/original-run-45569841812-job-139080694208/tour/tour-result.json) | 23 passed steps; 0 fatal crashes |
+| [Real backup/restore roundtrip](android/original-run-45569841812-job-139080694208/tour/local-backup/backup-result.json) | 8 passed steps, including actual SAF export/review, process close, restore and preservation |
+| [Mandatory native-start gate](android/original-run-45569841812-job-139080694208/tour/NATIVE-GAME-STARTS.json) | `run`, `quiz`, `memory`, `chess`, `kart`, `cards`, `world`: actual UI start and surviving game process |
+| Installed package | UID `10209`, versionCode `2082`, versionName `0.14.9` |
+| Installed emulator APK SHA256 | `3e89e180f15d03f0484c87f210a3181d1d8175f916baf37abfe86217d8a34d3e` |
+| [Split identity](android/original-run-45569841812-job-139080694208/tour/SPLIT-APK-IDENTITY.json) | Byte-identical to the original release split report; ARM64 and x86_64 contain the same PCK hash and size |
+
+The complete [additional native-start diagnostic report](android/original-run-45569841812-job-139080694208/tour/native-starts.json) is preserved. **The additional UI searches for `settlement`, `build` and `treasure` did not find an enabled matching Flutter control; those routes were not started or accepted by these attempts.** They are not counted among the seven required successful starts and are not described as passing gameplay checks. The original failed search lines also remain in [the exact log excerpts](android/original-run-45569841812-job-139080694208/ANDROID-ORIGINAL-EXCERPTS.txt).
+
+The nested `LUMO-ANDROID-PRUEFBELEGE.zip` is represented by its original identity only: **85466965 bytes**, SHA256 **`1868b88b1ffcb1dba423f50250180d096c8fa4c73dcfb3497f44a066bf083bcd`**. Neither archive nor an APK is committed. [Raw final run](android/original-run-45569841812-job-139080694208/FINAL-RUN-RAW.json), [raw final jobs](android/original-run-45569841812-job-139080694208/FINAL-JOBS-RAW.json), and [original artifact metadata](android/original-run-45569841812-job-139080694208/FINAL-ARTIFACTS.json) bind the evidence to host `6574b19`, native `62108`, original run `45569841812`, attempt 1. [The log-source manifest](android/original-run-45569841812-job-139080694208/ANDROID-LOG-SOURCE.json) records the full original log hash and exact selected line ranges.
+
+This establishes the recorded Android emulator UI/runtime and backup acceptance. It does not claim complete gameplay for every launched game, physical Fold7/ARM64 performance, audible playback acceptance or 60 FPS. Publication and anonymous access to a final APK require their own later result.
+
 ## Historical snapshots are preserved
 
 Every source file listed in [ORIGINAL-FILES.json](ORIGINAL-FILES.json) is an exact byte copy; its provenance, size and SHA256 are retained. [SHA256SUMS.txt](SHA256SUMS.txt) covers all evidence files except itself. No APK, ZIP, binary payload, credential or signed temporary URL is committed.
@@ -56,6 +75,8 @@ Every source file listed in [ORIGINAL-FILES.json](ORIGINAL-FILES.json) is an exa
 - `build/` is the earlier successful-build extraction. Its README and result say root still needs to verify downloaded bytes. That was the true scope when recorded; those originals have not been retroactively edited.
 - `transfer/` is the completed transport snapshot. Its scope says the recipient must verify APK/PCK. That remains the original transfer scope, while the later actual verification is independently recorded in `local/APK-LOCAL-VERIFICATION.json`.
 - `local/original-release-metadata/` contains the original build-generated reports with their original limitations. Packaged voice assets do not prove audible playback; generated launcher resources do not prove an installed-device launcher inspection. The split identity's x86_64 emulator scope does not claim a physical ARM64 device test.
-- `STATUS.json` and this README describe the combined state of these snapshots: build and local bytes passed, Android pending, no public release.
+- `history/build-and-bytes-8edd474/` preserves the earlier top-level README, STATUS and manifests byte-for-byte, including their then-accurate pending Android status.
+- `android/` contains the later completed original job/API evidence and root's separate actual artifact-content verification.
+- `STATUS.json` and this README describe the combined state now documented: build, local bytes and Android artifact contents passed; public delivery remains pending separate evidence.
 
-This evidence-only commit is a direct child of the tested host source. It adds only files below `docs/evidence/intelligence-2082-build-20261125/` and carries `[skip ci]`. Product pins, source code, workflows, integration and main branches are unchanged. No Fold7/physical-device performance or 60 FPS claim is made. The linked Actions artifacts retain their own expiry dates in the preserved metadata; the text and hashes in this Git commit remain inspectable independently.
+The evidence branch starts with a direct child of the tested host source; this completion update follows evidence commit `8edd474dc3ac5256a3b95854df417cab60281e5b`. It changes only evidence files below `docs/evidence/intelligence-2082-build-20261125/` and carries `[skip ci]`. Product pins, source code, workflows, integration and main branches are unchanged. No Fold7/physical-device performance or 60 FPS claim is made. The linked Actions artifacts retain their own expiry dates in the preserved metadata; the text and hashes in this Git commit remain inspectable independently.

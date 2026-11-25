@@ -1,0 +1,372 @@
+{
+  "source_job": 139080694208,
+  "source_run": 45569841812,
+  "source_commit": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+  "source_path": "/tmp/lumo-2082-build-monitor/JOB-139080694208.log",
+  "source_job_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/45569841812/job/139080694208",
+  "original_log_bytes": 2592902,
+  "original_log_sha256": "ee3e0d0819ba9ad4a19d61db9db03f895e5cfeae9a2dd26b8b33ae08c03ae5cf",
+  "original_log_lines": 9551,
+  "excerpt_file": "ANDROID-ORIGINAL-EXCERPTS.txt",
+  "excerpt_bytes": 19223,
+  "excerpt_sha256": "d2dcd6484378b9369fe953b32193c85702c0b9249332755c2a13d4e2c9cd04f8",
+  "extraction": "Exact original lines, including timestamps and newline bytes, concatenated in original order without rewriting; line ranges below reference the full original job log.",
+  "ranges": [
+    {
+      "start_line": 1130,
+      "end_line": 1130,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 1474,
+      "end_line": 1474,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 1707,
+      "end_line": 1707,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 1716,
+      "end_line": 1716,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 1807,
+      "end_line": 1807,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 1827,
+      "end_line": 1827,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 1839,
+      "end_line": 1839,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2012,
+      "end_line": 2012,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2114,
+      "end_line": 2114,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2240,
+      "end_line": 2240,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2243,
+      "end_line": 2243,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2260,
+      "end_line": 2260,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2265,
+      "end_line": 2265,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2321,
+      "end_line": 2321,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2340,
+      "end_line": 2341,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2343,
+      "end_line": 2343,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2347,
+      "end_line": 2347,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2515,
+      "end_line": 2515,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2548,
+      "end_line": 2548,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2567,
+      "end_line": 2567,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2595,
+      "end_line": 2595,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 2914,
+      "end_line": 2914,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3241,
+      "end_line": 3241,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3268,
+      "end_line": 3268,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3275,
+      "end_line": 3275,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3298,
+      "end_line": 3298,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3316,
+      "end_line": 3316,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3336,
+      "end_line": 3336,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3356,
+      "end_line": 3356,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3380,
+      "end_line": 3380,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3402,
+      "end_line": 3402,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3428,
+      "end_line": 3428,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3454,
+      "end_line": 3454,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3473,
+      "end_line": 3473,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3495,
+      "end_line": 3495,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3514,
+      "end_line": 3514,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3541,
+      "end_line": 3541,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3560,
+      "end_line": 3560,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3584,
+      "end_line": 3584,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3607,
+      "end_line": 3607,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3633,
+      "end_line": 3633,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3660,
+      "end_line": 3660,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3679,
+      "end_line": 3679,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3692,
+      "end_line": 3692,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 3990,
+      "end_line": 3990,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 4338,
+      "end_line": 4338,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 4720,
+      "end_line": 4720,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 5082,
+      "end_line": 5082,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 5487,
+      "end_line": 5487,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 5555,
+      "end_line": 5555,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 5911,
+      "end_line": 5911,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 6152,
+      "end_line": 6152,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 6393,
+      "end_line": 6393,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 6671,
+      "end_line": 6671,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 6988,
+      "end_line": 6988,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 7334,
+      "end_line": 7334,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 7575,
+      "end_line": 7575,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 8026,
+      "end_line": 8026,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 8360,
+      "end_line": 8360,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 8498,
+      "end_line": 8498,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 8500,
+      "end_line": 8500,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 8894,
+      "end_line": 8894,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 8950,
+      "end_line": 8951,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 8955,
+      "end_line": 8955,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 9016,
+      "end_line": 9016,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 9020,
+      "end_line": 9020,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 9373,
+      "end_line": 9373,
+      "reason": "Original observation or capture identity"
+    },
+    {
+      "start_line": 9386,
+      "end_line": 9454,
+      "reason": "Original mandatory native-start gate invocation and result"
+    },
+    {
+      "start_line": 9528,
+      "end_line": 9528,
+      "reason": "Original final artifact-upload record"
+    },
+    {
+      "start_line": 9530,
+      "end_line": 9532,
+      "reason": "Original final artifact-upload record"
+    }
+  ],
+  "includes_unsuccessful_extra_ui_searches": [
+    "settlement",
+    "build",
+    "treasure"
+  ],
+  "artifact_content_acceptance": "Recorded independently in ROOT-ANDROID-VERIFICATION.json; this file identifies unmodified original log excerpts only."
+}

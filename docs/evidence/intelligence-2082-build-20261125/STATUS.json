@@ -1,6 +1,6 @@
 {
-  "snapshot_utc": "2026-11-25T09:03:41Z",
-  "status": "BUILD_AND_LOCAL_BYTES_PASS_ANDROID_PENDING_NO_PUBLIC_RELEASE",
+  "snapshot_utc": "2026-11-25T09:20:36Z",
+  "status": "BUILD_LOCAL_BYTES_AND_ANDROID_CONTENT_PASS_PUBLIC_DELIVERY_PENDING",
   "source_commit": "6574b19f92abb4f6421fd3074cec09738dc0974a",
   "native_commit": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
   "original_run": 45569841812,
@@ -12,12 +12,74 @@
   },
   "android_job": {
     "id": 139080694208,
-    "status_in_available_snapshot": "in_progress",
-    "acceptance_claimed": false,
-    "followup_evidence": "Separate future addition; original snapshots remain unchanged."
+    "status": "completed",
+    "conclusion": "success",
+    "content_acceptance": "PASS",
+    "content_evidence": "android/original-run-45569841812-job-139080694208/ROOT-ANDROID-VERIFICATION.json",
+    "basis": "Actual downloaded artifact ZIP byte count/hash and original plus nested evidence reports independently checked by root; not inferred from job status.",
+    "artifact": {
+      "id": 15007906728,
+      "bytes": 170350580,
+      "sha256": "2f808087899ae0a0d7d4b1d249ebfdab6f0260865879d205b1f27cb21463be2b"
+    },
+    "nested_archive_identities": [
+      {
+        "path": "LUMO-ANDROID-PRUEFBELEGE.zip",
+        "bytes": 85466965,
+        "sha256": "1868b88b1ffcb1dba423f50250180d096c8fa4c73dcfb3497f44a066bf083bcd"
+      }
+    ],
+    "tour_steps": 23,
+    "backup_steps": 8,
+    "required_native_starts": [
+      "run",
+      "quiz",
+      "memory",
+      "chess",
+      "kart",
+      "cards",
+      "world"
+    ],
+    "fatal_crashes": 0,
+    "installed_package": {
+      "userId": "10209",
+      "firstInstallTime": "2026-11-25 08:41:44",
+      "versionCode": "2082 minSdk=24 targetSdk=36",
+      "versionName": "0.14.9"
+    },
+    "same_pck": true,
+    "emulator_apk_sha256": "3e89e180f15d03f0484c87f210a3181d1d8175f916baf37abfe86217d8a34d3e",
+    "optional_ui_searches_not_accepted": [
+      {
+        "id": "settlement",
+        "scene": "settlement",
+        "skipped": null,
+        "error": null,
+        "tap_error": "RuntimeError: No enabled live Flutter control: Dorf & Wirtschaft. Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn! Spielen",
+        "router_loaded": false
+      },
+      {
+        "id": "build",
+        "scene": "build",
+        "skipped": null,
+        "error": null,
+        "tap_error": "RuntimeError: No enabled live Flutter control: Bauwelt. Bauen. Gestalten. Deiner Fantasie sind keine Grenzen gesetzt! Spielen",
+        "router_loaded": false
+      },
+      {
+        "id": "treasure",
+        "scene": "treasure",
+        "skipped": null,
+        "error": null,
+        "tap_error": "RuntimeError: No enabled live Flutter control: Schatzsuche. Rätsel. Hinweise. Schätze! Spielen",
+        "router_loaded": false
+      }
+    ],
+    "scope": "API 35 x86_64 Android emulator UI/runtime and actual SAF backup roundtrip; not complete gameplay for every start, a physical Fold7 test, or an FPS result."
   },
   "public_release": {
-    "created_by_this_work": false,
+    "created_by_this_evidence_work": false,
+    "phase": "PUBLISHER_RESULT_PENDING_SEPARATE_EVIDENCE",
     "public_download_verified": false,
     "approval_claimed": false
   },
@@ -66,8 +128,18 @@
     "flutter_failed": 0,
     "focused_flutter_passed": 114,
     "integrated_cards_scene_checks": 632,
-    "separate_native_cards_scene_checks": 634
+    "separate_native_cards_scene_checks": 634,
+    "android_tour_steps": 23,
+    "android_backup_steps": 8,
+    "android_required_native_starts": 7,
+    "android_fatal_crashes": 0
   },
-  "original_documents_copied": 15,
-  "original_copy_policy": "Original bytes are unchanged. Historical statements that verification remained pending retain their original temporal scope."
+  "original_documents_copied": 26,
+  "original_copy_policy": "Original bytes are unchanged. Historical statements that verification remained pending retain their original temporal scope.",
+  "original_run_status": {
+    "status": "completed",
+    "conclusion": "success",
+    "updated_at": "2026-11-25T09:16:49Z"
+  },
+  "prior_combined_status": "history/build-and-bytes-8edd474/STATUS.json"
 }

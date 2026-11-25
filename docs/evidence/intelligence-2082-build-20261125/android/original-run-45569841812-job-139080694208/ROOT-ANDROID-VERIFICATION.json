@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "source_run": 45569841812,
+  "source_attempt": 1,
+  "host_source": "6574b19f92abb4f6421fd3074cec09738dc0974a",
+  "native_source": "62108c0355f860ab9a0a020ecb5f3f941f1032e9",
+  "android_artifact_id": 15007906728,
+  "zip_bytes": 170350580,
+  "zip_sha256": "2f808087899ae0a0d7d4b1d249ebfdab6f0260865879d205b1f27cb21463be2b",
+  "tour_steps": 23,
+  "backup_steps": 8,
+  "fatal_crashes": 0,
+  "required_native_starts": [
+    "run",
+    "quiz",
+    "memory",
+    "chess",
+    "kart",
+    "cards",
+    "world"
+  ],
+  "installed_package": {
+    "userId": "10209",
+    "firstInstallTime": "2026-11-25 08:41:44",
+    "versionCode": "2082 minSdk=24 targetSdk=36",
+    "versionName": "0.14.9"
+  },
+  "same_pck": true,
+  "arm64_apk_sha256": "0ab02c4f1d3b3a625be42f5f974d1592ec993af27e5ed56135245dfee4996243",
+  "emulator_apk_sha256": "3e89e180f15d03f0484c87f210a3181d1d8175f916baf37abfe86217d8a34d3e",
+  "original_files": [
+    {
+      "path": "tour/tour-result.json",
+      "bytes": 10030,
+      "sha256": "f247f6c53ced1fc5406bb92bc0ace0c221913326a0767aba914800135aa45065"
+    },
+    {
+      "path": "tour/local-backup/backup-result.json",
+      "bytes": 14266,
+      "sha256": "ebaa092a8630d115130b159051b9c83a78fbe108131d6df881513c78005707c9"
+    },
+    {
+      "path": "tour/native-starts.json",
+      "bytes": 118336,
+      "sha256": "96afb2dc9f778a9148b49d3a4085245980402c11e3778228068cd54c88ebaf77"
+    },
+    {
+      "path": "tour/NATIVE-GAME-STARTS.json",
+      "bytes": 2623,
+      "sha256": "9ced28693d190f8cfc39ca84fe0879cd8080d70d3de8ea13588bd37cbe5cad5b"
+    },
+    {
+      "path": "tour/SPLIT-APK-IDENTITY.json",
+      "bytes": 1249,
+      "sha256": "a6002d5a24fedad2160924247acf75b22f3a5654469c5822ab143657e6dfe002"
+    },
+    {
+      "path": "tour/installed-package-uid.txt",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a"
+    },
+    {
+      "path": "tour/installed-package.txt",
+      "bytes": 12718,
+      "sha256": "4cf8c7c28354c727627b929eaaaf0e777a3dd5ae610743a599019c448753bfbe"
+    },
+    {
+      "path": "LUMO-ANDROID-PRUEFBELEGE.zip",
+      "bytes": 85466965,
+      "sha256": "1868b88b1ffcb1dba423f50250180d096c8fa4c73dcfb3497f44a066bf083bcd"
+    }
+  ],
+  "optional_ui_diagnostics": [
+    {
+      "id": "run-intent",
+      "scene": "run",
+      "skipped": null,
+      "error": null,
+      "tap_error": null,
+      "router_loaded": true
+    },
+    {
+      "id": "settlement",
+      "scene": "settlement",
+      "skipped": null,
+      "error": null,
+      "tap_error": "RuntimeError: No enabled live Flutter control: Dorf & Wirtschaft. Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn! Spielen",
+      "router_loaded": false
+    },
+    {
+      "id": "build",
+      "scene": "build",
+      "skipped": null,
+      "error": null,
+      "tap_error": "RuntimeError: No enabled live Flutter control: Bauwelt. Bauen. Gestalten. Deiner Fantasie sind keine Grenzen gesetzt! Spielen",
+      "router_loaded": false
+    },
+    {
+      "id": "run-abenteuer",
+      "scene": "run",
+      "skipped": null,
+      "error": null,
+      "tap_error": null,
+      "router_loaded": true
+    },
+    {
+      "id": "puzzle",
+      "scene": "puzzle",
+      "skipped": null,
+      "error": null,
+      "tap_error": null,
+      "router_loaded": true
+    },
+    {
+      "id": "rhythm",
+      "scene": "rhythm",
+      "skipped": null,
+      "error": null,
+      "tap_error": null,
+      "router_loaded": true
+    },
+    {
+      "id": "treasure",
+      "scene": "treasure",
+      "skipped": null,
+      "error": null,
+      "tap_error": "RuntimeError: No enabled live Flutter control: Schatzsuche. Rätsel. Hinweise. Schätze! Spielen",
+      "router_loaded": false
+    },
+    {
+      "id": "games",
+      "scene": "games",
+      "skipped": null,
+      "error": null,
+      "tap_error": null,
+      "router_loaded": true
+    },
+    {
+      "id": "jump-intent",
+      "scene": "jump",
+      "skipped": null,
+      "error": null,
+      "tap_error": null,
+      "router_loaded": true
+    }
+  ],
+  "scope": "Actual downloaded Android artifact bytes and original reports verified against the bound candidate using unchanged publisher validators. Emulator UI/runtime and backup evidence; no physical Fold7 or 60 FPS claim."
+}

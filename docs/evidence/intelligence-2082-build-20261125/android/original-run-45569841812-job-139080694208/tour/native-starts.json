@@ -1,0 +1,4293 @@
+{
+  "section": "native-starts",
+  "status": "DONE",
+  "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+  "wait_seconds": 45,
+  "scenes": [
+    {
+      "id": "run",
+      "scene": "run",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 5974,
+        "resumed": "topResumedActivity=ActivityRecord{f7ce149 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t11}"
+      },
+      "label": "Lumo Lauf. Spring. Laufe. Sei mutig! Spielen",
+      "tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{8f7ddfe u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t11}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{8f7ddfe u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t11}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "8:52",
+          "8:52 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone signal full.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 5974,
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 6151
+      },
+      "observed_process_pids": [
+        5974,
+        6151
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 6151,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": true,
+      "log_lines": 43,
+      "full_relevant_log_lines": 43,
+      "router_loaded": true,
+      "router_loaded_pid": 6151,
+      "router_loaded_line": "11-25 08:51:33.581  6151  6171 I godot   : [Router] loaded:run (res://scenes/games/lumo_run.tscn)",
+      "router_loaded_after_s": 10.6,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 08:51:33.581  6151  6171 I godot   : [Router] loaded:run (res://scenes/games/lumo_run.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": [
+          "11-25 08:51:33.580  6151  6171 I godot   : [LumoRun] ready: grade=1 subject=Mathematik courses=3"
+        ]
+      },
+      "seconds": 71.2
+    },
+    {
+      "id": "quiz",
+      "scene": "quiz",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 6339,
+        "resumed": "topResumedActivity=ActivityRecord{672b215 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t12}"
+      },
+      "label": "Wer wird Lumo-Meister?. 20 Fragen · 3 Joker · bis 5.000 Sterne Spielen",
+      "tapped": true,
+      "native_table_button": "3D-Quizstudio öffnen",
+      "studio_button_tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{223120a u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.TableGameActivity t12}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{223120a u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.TableGameActivity t12}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "8:53",
+          "8:53 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone signal full.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 6339,
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 6493
+      },
+      "observed_process_pids": [
+        6339,
+        6493
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 6493,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": true,
+      "log_lines": 38,
+      "full_relevant_log_lines": 38,
+      "router_loaded": true,
+      "router_loaded_pid": 6493,
+      "router_loaded_line": "11-25 08:52:40.102  6493  6513 I godot   : [Router] loaded:quiz (res://scenes/games/quiz_studio.tscn)",
+      "router_loaded_after_s": 5.4,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 08:52:40.102  6493  6513 I godot   : [Router] loaded:quiz (res://scenes/games/quiz_studio.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 68.6
+    },
+    {
+      "id": "memory",
+      "scene": "memory",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 6657,
+        "resumed": "topResumedActivity=ActivityRecord{3914430 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t13}"
+      },
+      "label": "Memory. Finde die Paare! Spielen",
+      "tapped": true,
+      "native_table_button": "3D-Memory-Tisch freiwillig öffnen",
+      "memory_table_button_tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{9ffd362 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.TableGameActivity t13}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{9ffd362 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.TableGameActivity t13}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "8:54",
+          "8:54 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone two bars.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 6657,
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 6783
+      },
+      "observed_process_pids": [
+        6657,
+        6783
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 6783,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": true,
+      "log_lines": 38,
+      "full_relevant_log_lines": 38,
+      "router_loaded": true,
+      "router_loaded_pid": 6783,
+      "router_loaded_line": "11-25 08:53:47.521  6783  6802 I godot   : [Router] loaded:memory (res://scenes/games/memory_table.tscn)",
+      "router_loaded_after_s": 5.3,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 08:53:47.521  6783  6802 I godot   : [Router] loaded:memory (res://scenes/games/memory_table.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 69.9
+    },
+    {
+      "id": "chess",
+      "scene": "chess",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 6964,
+        "resumed": "topResumedActivity=ActivityRecord{76a5433 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t14}"
+      },
+      "label": "Lumo Schach. Schach lernen mit Lumo – oder gegen ihn spielen Spielen",
+      "tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{a23ab58 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t14}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{a23ab58 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t14}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "8:55",
+          "8:55 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone signal full.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 6964,
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 7076
+      },
+      "observed_process_pids": [
+        6964,
+        7076
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 7076,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": true,
+      "log_lines": 40,
+      "full_relevant_log_lines": 40,
+      "router_loaded": true,
+      "router_loaded_pid": 7076,
+      "router_loaded_line": "11-25 08:54:54.453  7076  7094 I godot   : [Router] loaded:chess (res://scenes/games/chess_table.tscn)",
+      "router_loaded_after_s": 5.2,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 08:54:54.453  7076  7094 I godot   : [Router] loaded:chess (res://scenes/games/chess_table.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 69.7
+    },
+    {
+      "id": "kart",
+      "scene": "kart",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 7253,
+        "resumed": "topResumedActivity=ActivityRecord{cfd4a5e u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t15}"
+      },
+      "label": "Lumo Kart. Fahre mit Lumo um die Wette! Spielen",
+      "tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{1577edb u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t15}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{1577edb u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t15}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "8:56",
+          "8:56 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone three bars.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 7253,
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 7362
+      },
+      "observed_process_pids": [
+        7253,
+        7362
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 7362,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": true,
+      "log_lines": 46,
+      "full_relevant_log_lines": 46,
+      "router_loaded": true,
+      "router_loaded_pid": 7362,
+      "router_loaded_line": "11-25 08:56:11.801  7362  7381 I godot   : [Router] loaded:kart (res://scenes/games/kart_island.tscn)",
+      "router_loaded_after_s": 10.6,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 08:56:11.801  7362  7381 I godot   : [Router] loaded:kart (res://scenes/games/kart_island.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 66.5
+    },
+    {
+      "id": "run-intent",
+      "scene": "run",
+      "path": "intent",
+      "intent": {
+        "component": "dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity",
+        "lumoLaunchOptions": "{\"game\":\"run\",\"grade\":1,\"subject\":\"Mathematik\",\"sessionId\":\"337afe96-0684-49c8-ac92-77bd262af4fd\",\"stars\":0,\"lifetimeStars\":0,\"childKey\":\"standalone\",\"reduceAnimations\":false}"
+      },
+      "am_start": "Starting: Intent { cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity\nTotalTime: 1962\nWaitTime: 1964\nComplete\n",
+      "tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{544f133 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t16}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{544f133 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t16}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "8:57",
+          "8:57 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone two bars.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 7536
+      },
+      "observed_process_pids": [
+        7536
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 7536,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": false,
+      "log_lines": 42,
+      "full_relevant_log_lines": 42,
+      "router_loaded": true,
+      "router_loaded_pid": 7536,
+      "router_loaded_line": "11-25 08:57:00.769  7536  7558 I godot   : [Router] loaded:run (res://scenes/games/lumo_run.tscn)",
+      "router_loaded_after_s": 5.3,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 08:57:00.769  7536  7558 I godot   : [Router] loaded:run (res://scenes/games/lumo_run.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": [
+          "11-25 08:57:00.769  7536  7558 I godot   : [LumoRun] ready: grade=1 subject=Mathematik courses=3"
+        ]
+      },
+      "seconds": 57.0
+    },
+    {
+      "id": "cards",
+      "scene": "cards",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 7712,
+        "resumed": "topResumedActivity=ActivityRecord{b005043 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t17}"
+      },
+      "label": "Lumo Karten. Sammeln. Spielen. Staunen! Spielen",
+      "tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{7406f72 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t17}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{7406f72 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t17}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "8:58",
+          "8:58 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone signal full.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 7712,
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 7823
+      },
+      "observed_process_pids": [
+        7712,
+        7823
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 7823,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": true,
+      "log_lines": 41,
+      "full_relevant_log_lines": 41,
+      "router_loaded": true,
+      "router_loaded_pid": 7823,
+      "router_loaded_line": "11-25 08:58:07.789  7823  7842 I godot   : [Router] loaded:cards (res://scenes/games/cards_table.tscn)",
+      "router_loaded_after_s": 5.1,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 08:58:07.789  7823  7842 I godot   : [Router] loaded:cards (res://scenes/games/cards_table.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 69.4
+    },
+    {
+      "id": "settlement",
+      "scene": "settlement",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 8000,
+        "resumed": "topResumedActivity=ActivityRecord{d1d14b8 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t18}"
+      },
+      "label": "Dorf & Wirtschaft. Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn! Spielen",
+      "tapped": false,
+      "tap_error": "RuntimeError: No enabled live Flutter control: Dorf & Wirtschaft. Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn! Spielen",
+      "observed_portal_labels": [],
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{d1d14b8 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t18}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{d1d14b8 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t18}",
+      "screen_texts": {
+        "app": [
+          "Lumo Spielewelt",
+          "1 Sterne",
+          "Dein nächstes Abenteuer",
+          "Auf ins Abenteuer!",
+          "Lumo mit blauer Brille und Jacke begrüßt dich in der Spielwelt",
+          "Lumo World. Dein Dorf, deine Freunde und neue Abenteuer Spielen",
+          "Logikspiele. Sudoku, Wörterwerkstatt und Zahlenbrücken Spielen",
+          "Lumo Kart. Fahre mit Lumo um die Wette! Spielen",
+          "Lumos Sternenpost. Fliegen, Briefe liefern, Rätsel lösen Spielen",
+          "Lumo Schach. Schach lernen mit Lumo – oder gegen ihn spielen Spielen",
+          "Lumo Karten. Sammeln. Spielen. Staunen! Spielen",
+          "Hilfe & Ideen",
+          "Frag deinen Lumo",
+          "Lumo, dein Lernfuchs. Hilfe und Ideen öffnen",
+          "Lumo, dein Profilbild\nLumo, dein Profilbild",
+          "Start\nStart",
+          "Lernen\nLernen",
+          "Spielen\nSpielen",
+          "Tests\nTests",
+          "Profil\nProfil",
+          "Mehr\nMehr"
+        ],
+        "system": [
+          "9:00",
+          "9:00 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone three bars.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 8000
+      },
+      "observed_process_pids": [
+        8000
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": null,
+      "game_processes_at_end": [],
+      "game_process_alive_at_end": false,
+      "app_alive_at_end": true,
+      "log_lines": 0,
+      "full_relevant_log_lines": 0,
+      "router_loaded": false,
+      "router_loaded_pid": null,
+      "router_loaded_line": null,
+      "router_loaded_after_s": null,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 86.5
+    },
+    {
+      "id": "build",
+      "scene": "build",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 8374,
+        "resumed": "topResumedActivity=ActivityRecord{390d193 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t19}"
+      },
+      "label": "Bauwelt. Bauen. Gestalten. Deiner Fantasie sind keine Grenzen gesetzt! Spielen",
+      "tapped": false,
+      "tap_error": "RuntimeError: No enabled live Flutter control: Bauwelt. Bauen. Gestalten. Deiner Fantasie sind keine Grenzen gesetzt! Spielen",
+      "observed_portal_labels": [],
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{390d193 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t19}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{390d193 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t19}",
+      "screen_texts": {
+        "app": [
+          "Lumo Spielewelt",
+          "1 Sterne",
+          "Dein nächstes Abenteuer",
+          "Auf ins Abenteuer!",
+          "Lumo mit blauer Brille und Jacke begrüßt dich in der Spielwelt",
+          "Lumo World. Dein Dorf, deine Freunde und neue Abenteuer Spielen",
+          "Logikspiele. Sudoku, Wörterwerkstatt und Zahlenbrücken Spielen",
+          "Lumo Kart. Fahre mit Lumo um die Wette! Spielen",
+          "Lumos Sternenpost. Fliegen, Briefe liefern, Rätsel lösen Spielen",
+          "Lumo Schach. Schach lernen mit Lumo – oder gegen ihn spielen Spielen",
+          "Lumo Karten. Sammeln. Spielen. Staunen! Spielen",
+          "Hilfe & Ideen",
+          "Frag deinen Lumo",
+          "Lumo, dein Lernfuchs. Hilfe und Ideen öffnen",
+          "Lumo, dein Profilbild\nLumo, dein Profilbild",
+          "Start\nStart",
+          "Lernen\nLernen",
+          "Spielen\nSpielen",
+          "Tests\nTests",
+          "Profil\nProfil",
+          "Mehr\nMehr"
+        ],
+        "system": [
+          "9:01",
+          "9:01 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone signal full.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 8374
+      },
+      "observed_process_pids": [
+        8374
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": null,
+      "game_processes_at_end": [],
+      "game_process_alive_at_end": false,
+      "app_alive_at_end": true,
+      "log_lines": 0,
+      "full_relevant_log_lines": 0,
+      "router_loaded": false,
+      "router_loaded_pid": null,
+      "router_loaded_line": null,
+      "router_loaded_after_s": null,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 86.7
+    },
+    {
+      "id": "run-abenteuer",
+      "scene": "run",
+      "path": "ui-button",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 8730,
+        "resumed": "topResumedActivity=ActivityRecord{74be4cf u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t20}"
+      },
+      "label": "Auf ins Abenteuer!",
+      "tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{d14ac44 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t20}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{d14ac44 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t20}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "9:02",
+          "9:02 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone three bars.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 8730,
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 8840
+      },
+      "observed_process_pids": [
+        8730,
+        8840
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 8840,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": true,
+      "log_lines": 42,
+      "full_relevant_log_lines": 42,
+      "router_loaded": true,
+      "router_loaded_pid": 8840,
+      "router_loaded_line": "11-25 09:02:12.478  8840  8859 I godot   : [Router] loaded:run (res://scenes/games/lumo_run.tscn)",
+      "router_loaded_after_s": 5.6,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 09:02:12.478  8840  8859 I godot   : [Router] loaded:run (res://scenes/games/lumo_run.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": [
+          "11-25 09:02:12.477  8840  8859 I godot   : [LumoRun] ready: grade=1 subject=Mathematik courses=3"
+        ]
+      },
+      "seconds": 68.5
+    },
+    {
+      "id": "puzzle",
+      "scene": "puzzle",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 9045,
+        "resumed": "topResumedActivity=ActivityRecord{70d41e6 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t21}"
+      },
+      "label": "Puzzle. Stück für Stück die Welt entdecken! Spielen",
+      "tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{6c67b54 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t21}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{6c67b54 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t21}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "9:04",
+          "9:04 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone two bars.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 9045,
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 9160
+      },
+      "observed_process_pids": [
+        9045,
+        9160
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 9160,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": true,
+      "log_lines": 44,
+      "full_relevant_log_lines": 44,
+      "router_loaded": true,
+      "router_loaded_pid": 9160,
+      "router_loaded_line": "11-25 09:03:20.642  9160  9179 I godot   : [Router] loaded:puzzle (res://scenes/creative/puzzle_world.tscn)",
+      "router_loaded_after_s": 5.2,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 09:03:20.642  9160  9179 I godot   : [Router] loaded:puzzle (res://scenes/creative/puzzle_world.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 68.0
+    },
+    {
+      "id": "rhythm",
+      "scene": "rhythm",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 9327,
+        "resumed": "topResumedActivity=ActivityRecord{fce55aa u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t22}"
+      },
+      "label": "Rhythm Party. Fühl den Beat! Spielen",
+      "tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{77ab51b u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t22}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{77ab51b u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t22}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "9:05",
+          "9:05 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone signal full.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 9327,
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 9453
+      },
+      "observed_process_pids": [
+        9327,
+        9453
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 9453,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": true,
+      "log_lines": 45,
+      "full_relevant_log_lines": 45,
+      "router_loaded": true,
+      "router_loaded_pid": 9453,
+      "router_loaded_line": "11-25 09:04:30.579  9453  9472 I godot   : [Router] loaded:rhythm (res://scenes/creative/rhythm_world.tscn)",
+      "router_loaded_after_s": 5.5,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 09:04:30.579  9453  9472 I godot   : [Router] loaded:rhythm (res://scenes/creative/rhythm_world.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 68.5
+    },
+    {
+      "id": "treasure",
+      "scene": "treasure",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 9626,
+        "resumed": "topResumedActivity=ActivityRecord{92c6e7f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t23}"
+      },
+      "label": "Schatzsuche. Rätsel. Hinweise. Schätze! Spielen",
+      "tapped": false,
+      "tap_error": "RuntimeError: No enabled live Flutter control: Schatzsuche. Rätsel. Hinweise. Schätze! Spielen",
+      "observed_portal_labels": [],
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{92c6e7f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t23}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{92c6e7f u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t23}",
+      "screen_texts": {
+        "app": [
+          "Lumo Spielewelt",
+          "1 Sterne",
+          "Dein nächstes Abenteuer",
+          "Auf ins Abenteuer!",
+          "Lumo mit blauer Brille und Jacke begrüßt dich in der Spielwelt",
+          "Lumo World. Dein Dorf, deine Freunde und neue Abenteuer Spielen",
+          "Logikspiele. Sudoku, Wörterwerkstatt und Zahlenbrücken Spielen",
+          "Lumo Kart. Fahre mit Lumo um die Wette! Spielen",
+          "Lumos Sternenpost. Fliegen, Briefe liefern, Rätsel lösen Spielen",
+          "Lumo Schach. Schach lernen mit Lumo – oder gegen ihn spielen Spielen",
+          "Lumo Karten. Sammeln. Spielen. Staunen! Spielen",
+          "Hilfe & Ideen",
+          "Frag deinen Lumo",
+          "Lumo, dein Lernfuchs. Hilfe und Ideen öffnen",
+          "Lumo, dein Profilbild\nLumo, dein Profilbild",
+          "Start\nStart",
+          "Lernen\nLernen",
+          "Spielen\nSpielen",
+          "Tests\nTests",
+          "Profil\nProfil",
+          "Mehr\nMehr"
+        ],
+        "system": [
+          "9:06",
+          "9:06 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone two bars.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 9626
+      },
+      "observed_process_pids": [
+        9626
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": null,
+      "game_processes_at_end": [],
+      "game_process_alive_at_end": false,
+      "app_alive_at_end": true,
+      "log_lines": 0,
+      "full_relevant_log_lines": 0,
+      "router_loaded": false,
+      "router_loaded_pid": null,
+      "router_loaded_line": null,
+      "router_loaded_after_s": null,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 86.8
+    },
+    {
+      "id": "world",
+      "scene": "world",
+      "path": "ui",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 9993,
+        "resumed": "topResumedActivity=ActivityRecord{b226fc8 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t24}"
+      },
+      "label": "Lumo World. Dein Dorf, deine Freunde und neue Abenteuer Spielen",
+      "tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{9f3c665 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t24}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{9f3c665 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t24}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "9:07",
+          "9:07 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone signal full.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 9993,
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 10105
+      },
+      "observed_process_pids": [
+        9993,
+        10105
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 10105,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": true,
+      "log_lines": 43,
+      "full_relevant_log_lines": 43,
+      "router_loaded": true,
+      "router_loaded_pid": 10105,
+      "router_loaded_line": "11-25 09:07:05.971 10105 10124 I godot   : [Router] loaded:world (res://scenes/creative/lumo_world.tscn)",
+      "router_loaded_after_s": 10.2,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 09:07:05.971 10105 10124 I godot   : [Router] loaded:world (res://scenes/creative/lumo_world.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 67.7
+    },
+    {
+      "id": "games",
+      "scene": "games",
+      "path": "ui-button",
+      "navigated": "Spielen",
+      "flutter_host": {
+        "pid": 10287,
+        "resumed": "topResumedActivity=ActivityRecord{5ee06ab u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.MainActivity t25}"
+      },
+      "label": "Magische 3D-Spielewelt betreten",
+      "tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{a07ee59 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t25}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{a07ee59 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t25}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "9:08",
+          "9:08 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone three bars.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview": 10287,
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 10418
+      },
+      "observed_process_pids": [
+        10287,
+        10418
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 10418,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": true,
+      "log_lines": 41,
+      "full_relevant_log_lines": 41,
+      "router_loaded": true,
+      "router_loaded_pid": 10418,
+      "router_loaded_line": "11-25 09:08:12.419 10418 10436 I godot   : [Router] loaded:games (res://scenes/games/game_hub.tscn)",
+      "router_loaded_after_s": 5.2,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 09:08:12.419 10418 10436 I godot   : [Router] loaded:games (res://scenes/games/game_hub.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 72.9
+    },
+    {
+      "id": "jump-intent",
+      "scene": "jump",
+      "path": "intent",
+      "intent": {
+        "component": "dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity",
+        "lumoLaunchOptions": "{\"game\":\"jump\",\"grade\":1,\"subject\":\"Mathematik\",\"sessionId\":\"e4505f04-268e-4eca-a424-6ca46f835ead\",\"stars\":0,\"lifetimeStars\":0,\"childKey\":\"standalone\",\"reduceAnimations\":false}"
+      },
+      "am_start": "Starting: Intent { cmp=dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity\nTotalTime: 1974\nWaitTime: 1977\nComplete\n",
+      "tapped": true,
+      "resumed_after_tap": "topResumedActivity=ActivityRecord{15bde23 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t26}",
+      "resumed_at_end": "topResumedActivity=ActivityRecord{15bde23 u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t26}",
+      "screen_texts": {
+        "app": [],
+        "system": [
+          "9:09",
+          "9:09 AM",
+          "Android System notification:",
+          "Wifi signal full.",
+          "Phone two bars.",
+          "Battery charging, 100 percent."
+        ]
+      },
+      "process_snapshot_at_end": {
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game": 10630
+      },
+      "observed_process_pids": [
+        10630
+      ],
+      "native_process_name": "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game",
+      "native_pid_at_end": 10630,
+      "game_processes_at_end": [
+        "dev.ullmann.lumo.lumo_lernen.coachpreview:lumo_game"
+      ],
+      "game_process_alive_at_end": true,
+      "app_alive_at_end": false,
+      "log_lines": 44,
+      "full_relevant_log_lines": 44,
+      "router_loaded": true,
+      "router_loaded_pid": 10630,
+      "router_loaded_line": "11-25 09:09:11.271 10630 10650 I godot   : [Router] loaded:jump (res://scenes/games/jump_islands.tscn)",
+      "router_loaded_after_s": 5.2,
+      "issues": {
+        "script_error": 0,
+        "godot_error": 0,
+        "fatal": 0,
+        "android_runtime": 0,
+        "fatal_signal": 0,
+        "lowmemorykiller": 0,
+        "loading_too_long": 0,
+        "boot_load_error": 0,
+        "process_died": 0
+      },
+      "godot_error_classes": {
+        "gl_shader_link": 0,
+        "other": 0
+      },
+      "markers": {
+        "router_loaded": [
+          "11-25 09:09:11.271 10630 10650 I godot   : [Router] loaded:jump (res://scenes/games/jump_islands.tscn)"
+        ],
+        "boot_load_error": [],
+        "script_error": [],
+        "fatal": [],
+        "lowmemorykiller": [],
+        "lumo_run_ready": []
+      },
+      "seconds": 55.1
+    }
+  ],
+  "adb_checks": [
+    {
+      "scene": null,
+      "command": "pm path dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 225
+    },
+    {
+      "scene": null,
+      "command": "getprop ro.build.version.sdk",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 107
+    },
+    {
+      "scene": null,
+      "command": "cat /proc/meminfo",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 1396
+    },
+    {
+      "scene": "run",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8448
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8496
+    },
+    {
+      "scene": "run",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 35839
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8503
+    },
+    {
+      "scene": "run",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 35841
+    },
+    {
+      "scene": "run",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "run",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 42212
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8545
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8551
+    },
+    {
+      "scene": "run",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 389865
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8551
+    },
+    {
+      "scene": "run",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 582837
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8551
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8534
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8554
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8543
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8543
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8560
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8553
+    },
+    {
+      "scene": "run",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41581
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8548
+    },
+    {
+      "scene": "run",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 743446
+    },
+    {
+      "scene": "run",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "run",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8432
+    },
+    {
+      "scene": "quiz",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8418
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8464
+    },
+    {
+      "scene": "quiz",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36844
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8473
+    },
+    {
+      "scene": "quiz",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36848
+    },
+    {
+      "scene": "quiz",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "quiz",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36848
+    },
+    {
+      "scene": "quiz",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 42241
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8514
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8532
+    },
+    {
+      "scene": "quiz",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 77390
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8521
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8531
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8521
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8526
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8494
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8479
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8489
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8485
+    },
+    {
+      "scene": "quiz",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 42178
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8491
+    },
+    {
+      "scene": "quiz",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 203078
+    },
+    {
+      "scene": "quiz",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "quiz",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8378
+    },
+    {
+      "scene": "memory",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8389
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8366
+    },
+    {
+      "scene": "memory",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36845
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8325
+    },
+    {
+      "scene": "memory",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36848
+    },
+    {
+      "scene": "memory",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "memory",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36849
+    },
+    {
+      "scene": "memory",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 42176
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8372
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8354
+    },
+    {
+      "scene": "memory",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 43750
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8359
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8359
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8353
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8399
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8399
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8393
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8383
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8389
+    },
+    {
+      "scene": "memory",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 42179
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8389
+    },
+    {
+      "scene": "memory",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 176763
+    },
+    {
+      "scene": "memory",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "memory",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8284
+    },
+    {
+      "scene": "chess",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8309
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8346
+    },
+    {
+      "scene": "chess",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36901
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8352
+    },
+    {
+      "scene": "chess",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36903
+    },
+    {
+      "scene": "chess",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "chess",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41776
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8407
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8405
+    },
+    {
+      "scene": "chess",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 196977
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8410
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8415
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8415
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8447
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8453
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8448
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8448
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8442
+    },
+    {
+      "scene": "chess",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41640
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8448
+    },
+    {
+      "scene": "chess",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 332214
+    },
+    {
+      "scene": "chess",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "chess",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8341
+    },
+    {
+      "scene": "kart",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8353
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8390
+    },
+    {
+      "scene": "kart",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36910
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8261
+    },
+    {
+      "scene": "kart",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36911
+    },
+    {
+      "scene": "kart",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "kart",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 42124
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8317
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8314
+    },
+    {
+      "scene": "kart",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 69638
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8324
+    },
+    {
+      "scene": "kart",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 139694
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8318
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8318
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8313
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8313
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8313
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8277
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8285
+    },
+    {
+      "scene": "kart",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41665
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8285
+    },
+    {
+      "scene": "kart",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 253257
+    },
+    {
+      "scene": "kart",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "kart",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8173
+    },
+    {
+      "scene": "run-intent",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8177
+    },
+    {
+      "scene": "run-intent",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "run-intent",
+      "command": "am start -W -n dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity --es lumoLaunchOptions '{\"game\":\"run\",\"grade\":1,\"subject\":\"Mathematik\",\"sessionId\":\"337afe96-0684-49c8-ac92-77bd262af4fd\",\"stars\":0,\"lifetimeStars\":0,\"childKey\":\"standalone\",\"reduceAnimations\":false}'",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 397
+    },
+    {
+      "scene": "run-intent",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36371
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8243
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8240
+    },
+    {
+      "scene": "run-intent",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 162731
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8235
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8235
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8229
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8200
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8201
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8200
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8200
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8205
+    },
+    {
+      "scene": "run-intent",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36377
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8205
+    },
+    {
+      "scene": "run-intent",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 302981
+    },
+    {
+      "scene": "run-intent",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "run-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8146
+    },
+    {
+      "scene": "cards",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8147
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8300
+    },
+    {
+      "scene": "cards",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36894
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8294
+    },
+    {
+      "scene": "cards",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36893
+    },
+    {
+      "scene": "cards",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "cards",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41700
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8364
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8359
+    },
+    {
+      "scene": "cards",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 200827
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8355
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8355
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8343
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8363
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8359
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8323
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8317
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8317
+    },
+    {
+      "scene": "cards",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41636
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8317
+    },
+    {
+      "scene": "cards",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 332368
+    },
+    {
+      "scene": "cards",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "cards",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8225
+    },
+    {
+      "scene": "settlement",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8230
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8261
+    },
+    {
+      "scene": "settlement",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36874
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8261
+    },
+    {
+      "scene": "settlement",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36877
+    },
+    {
+      "scene": "settlement",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "settlement",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36879
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8308
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8308
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8299
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8307
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8307
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8341
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8341
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8351
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8341
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8281
+    },
+    {
+      "scene": "settlement",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36885
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8275
+    },
+    {
+      "scene": "settlement",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 77284
+    },
+    {
+      "scene": "settlement",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "settlement",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8234
+    },
+    {
+      "scene": "build",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8265
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8318
+    },
+    {
+      "scene": "build",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36828
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8314
+    },
+    {
+      "scene": "build",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36830
+    },
+    {
+      "scene": "build",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "build",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36827
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8311
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8310
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8309
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8305
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8310
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8331
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8331
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8331
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8331
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8331
+    },
+    {
+      "scene": "build",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36837
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8331
+    },
+    {
+      "scene": "build",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 77270
+    },
+    {
+      "scene": "build",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "build",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8287
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8297
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8338
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36863
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8338
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36865
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41851
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8397
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8395
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 168179
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8393
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8387
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8431
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8435
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8429
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8435
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8429
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8422
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41626
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8424
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 326553
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "run-abenteuer",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8312
+    },
+    {
+      "scene": "puzzle",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8299
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8305
+    },
+    {
+      "scene": "puzzle",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36910
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8323
+    },
+    {
+      "scene": "puzzle",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36913
+    },
+    {
+      "scene": "puzzle",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "puzzle",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41696
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8375
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8358
+    },
+    {
+      "scene": "puzzle",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 250485
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8363
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8374
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8374
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8370
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8365
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8370
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8377
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8376
+    },
+    {
+      "scene": "puzzle",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41720
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8370
+    },
+    {
+      "scene": "puzzle",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 374690
+    },
+    {
+      "scene": "puzzle",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "puzzle",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8275
+    },
+    {
+      "scene": "rhythm",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8260
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8318
+    },
+    {
+      "scene": "rhythm",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36924
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8318
+    },
+    {
+      "scene": "rhythm",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36928
+    },
+    {
+      "scene": "rhythm",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "rhythm",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41910
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8377
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8381
+    },
+    {
+      "scene": "rhythm",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 309657
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8379
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8374
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8371
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8377
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8346
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8339
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8344
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8248
+    },
+    {
+      "scene": "rhythm",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41677
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8264
+    },
+    {
+      "scene": "rhythm",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 435207
+    },
+    {
+      "scene": "rhythm",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "rhythm",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8144
+    },
+    {
+      "scene": "treasure",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8143
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8223
+    },
+    {
+      "scene": "treasure",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36869
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8218
+    },
+    {
+      "scene": "treasure",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36872
+    },
+    {
+      "scene": "treasure",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "treasure",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36871
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8254
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8254
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8254
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8254
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8248
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8248
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8254
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8254
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8207
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8213
+    },
+    {
+      "scene": "treasure",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36878
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8213
+    },
+    {
+      "scene": "treasure",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 83846
+    },
+    {
+      "scene": "treasure",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "treasure",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8169
+    },
+    {
+      "scene": "world",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8165
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8218
+    },
+    {
+      "scene": "world",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36865
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8218
+    },
+    {
+      "scene": "world",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36866
+    },
+    {
+      "scene": "world",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "world",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41596
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8271
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8271
+    },
+    {
+      "scene": "world",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 262810
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8271
+    },
+    {
+      "scene": "world",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 275775
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8265
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8246
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8264
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8264
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8269
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8266
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8226
+    },
+    {
+      "scene": "world",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41620
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8233
+    },
+    {
+      "scene": "world",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 387501
+    },
+    {
+      "scene": "world",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "world",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8163
+    },
+    {
+      "scene": "games",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8175
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8271
+    },
+    {
+      "scene": "games",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36931
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8269
+    },
+    {
+      "scene": "games",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36936
+    },
+    {
+      "scene": "games",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "games",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41961
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8342
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8327
+    },
+    {
+      "scene": "games",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 206048
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8332
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8337
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8337
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8337
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8317
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8332
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8316
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8332
+    },
+    {
+      "scene": "games",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 41674
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8327
+    },
+    {
+      "scene": "games",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 445659
+    },
+    {
+      "scene": "games",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "games",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8214
+    },
+    {
+      "scene": "jump-intent",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8230
+    },
+    {
+      "scene": "jump-intent",
+      "command": "logcat -c",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "jump-intent",
+      "command": "am start -W -n dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity --es lumoLaunchOptions '{\"game\":\"jump\",\"grade\":1,\"subject\":\"Mathematik\",\"sessionId\":\"e4505f04-268e-4eca-a424-6ca46f835ead\",\"stars\":0,\"lifetimeStars\":0,\"childKey\":\"standalone\",\"reduceAnimations\":false}'",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 397
+    },
+    {
+      "scene": "jump-intent",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36441
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8277
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8283
+    },
+    {
+      "scene": "jump-intent",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 160540
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8280
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8274
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8274
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8284
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8284
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8278
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8278
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8272
+    },
+    {
+      "scene": "jump-intent",
+      "command": "dumpsys activity activities",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 36446
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8272
+    },
+    {
+      "scene": "jump-intent",
+      "command": "logcat -d -v threadtime",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 287988
+    },
+    {
+      "scene": "jump-intent",
+      "command": "am force-stop dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 104
+    },
+    {
+      "scene": "jump-intent",
+      "command": "ps -A -o PID,NAME",
+      "adb_exit_ok": true,
+      "complete": true,
+      "shell_exit_code": 0,
+      "response_bytes": 8221
+    }
+  ],
+  "not_covered": {
+    "learning": "braucht eine Lernaufgabe aus einem Lernmodul (launch3D learning=…)",
+    "connect_four": "braucht ein Vier-gewinnt-Token aus der Flutter-Runde",
+    "skypost": "eigener Freiflug- und Rückkehrtest im Hauptrundgang"
+  },
+  "note": "Diagnose; beeinflusst tour-result.json und den Exit-Code nicht.",
+  "android_sdk": "35",
+  "memory": "MemTotal:        2019400 kB\nMemFree:          117120 kB\nMemAvailable:     722000 kB\nBuffers:            4380 kB\nCached:           821192 kB\nSwapCached:        11628 kB\nActive:           920896 kB\nInac",
+  "seconds": 1133.1
+}
