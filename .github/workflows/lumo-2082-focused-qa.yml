@@ -1,0 +1,84 @@
+name: "Lumo 2082 – isolated Flutter evidence"
+
+on:
+  push:
+    branches: [qa/lumo-intelligence-2082-focus-20261125]
+    paths: [.github/workflows/lumo-2082-focused-qa.yml]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-2082-focused-qa-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  flutter-evidence:
+    name: Exact-source analysis and focused learning tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+      LUMO_QA_SOURCE: 'f346db8e21bbc7ee7202a444b866bb1f862d85cb'
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout the exact integrated source
+        uses: actions/checkout@v4
+        with:
+          ref: 'f346db8e21bbc7ee7202a444b866bb1f862d85cb'
+          persist-credentials: false
+      - name: Record immutable source provenance
+        run: |
+          set -euo pipefail
+          mkdir -p focused-proof
+          git rev-parse HEAD | tee focused-proof/SOURCE-COMMIT.txt
+          test "$(git rev-parse HEAD)" = "$LUMO_QA_SOURCE"
+          git rev-parse HEAD^{tree} | tee focused-proof/SOURCE-TREE.txt
+          git ls-tree -r HEAD -- lib test pubspec.yaml pubspec.lock > focused-proof/SOURCE-BLOBS.txt
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve the locked Flutter dependencies
+        run: |
+          set -euo pipefail
+          flutter --version 2>&1 | tee focused-proof/FLUTTER-VERSION.txt
+          flutter pub get --enforce-lockfile 2>&1 | tee focused-proof/PUB-GET.txt
+      - name: Analyze the entire Flutter project
+        run: |
+          set -euo pipefail
+          flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings \
+            2>&1 | tee focused-proof/FLUTTER-ANALYSIS.txt
+      - name: Exercise all sixteen learning and coach test files
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter expanded --timeout=60s --concurrency=2 \
+            test/domain/adaptive_practice_plan_test.dart \
+            test/domain/learning_chart_data_test.dart \
+            test/domain/assignment_evidence_2082_test.dart \
+            test/domain/school_model_test.dart \
+            test/parents/live_learning_analytics_test.dart \
+            test/features/teacher_flow_test.dart \
+            test/features/assignment_evidence_2082_widget_test.dart \
+            test/tutoring/intelligence_2082_daily_plan_test.dart \
+            test/tutoring/intelligence_2082_language_tutor_test.dart \
+            test/features/lumo_coach_profile_guard_2082_test.dart \
+            test/domain/learning_analysis_independent_evidence_test.dart \
+            test/features/learning_analysis_evidence_view_test.dart \
+            test/domain/learning_analysis_extended_test.dart \
+            test/domain/school_analysis_test.dart \
+            test/learning_loop_restart_scenario_test.dart \
+            test/features/report_screen_test.dart \
+            2>&1 | tee focused-proof/FLUTTER-FOCUSED-TESTS.txt
+      - name: Preserve all available evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2082-FOCUSED-${{ github.run_id }}
+          path: focused-proof/
+          if-no-files-found: warn
+          retention-days: 30
