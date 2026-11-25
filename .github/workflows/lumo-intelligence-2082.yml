@@ -1,0 +1,378 @@
+name: "Lumo Intelligence 2082 – Familien-App und Android-Abnahme"
+# Baut eine installierbare, signierte Test-APK aus genau diesem Stand.
+# Baut auf der erfolgreichen 2081-Pipeline auf; frühere APKs bleiben unverändert.
+# Ausgelöst nur durch config/intelligence-2082-apk-request.json. Ergebnis: Workflow-Artefakt.
+# Paket bleibt dev.ullmann.lumo.lumo_lernen.coachpreview (prepare_android.py --side-by-side
+# erzeugt genau diese bestehende App-ID), Schlüssel tools/lumo-debug.keystore wie 2078.
+on:
+  push:
+    branches: [integration/lumo-intelligence-2082-20261125]
+    paths:
+      - config/intelligence-2082-apk-request.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-intelligence-2082-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    name: Signierte Test-APK bauen
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+      # Eine APK je Prozessorart: Handys brauchen nur ARM64. Das halbiert die
+      # nativen Bibliotheken gegenüber einer Universal-APK.
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;36.0.0'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Quellstand und Godot-Pin festhalten
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          python3 scripts/verify_legacy_release_pin.py
+          mkdir -p build-proof
+          python3 -m unittest discover -s scripts/tests -p test_verify_test_apk_candidate.py -v
+          python3 -m unittest discover -s scripts/tests -p test_verify_native_start_diagnostics.py -v
+          python3 -m unittest discover -s tools/android_qa/tests -p test_native_start_diagnostics.py -v
+          python3 -m unittest discover -s tools/android_qa/tests -p test_intro_dialog.py -v
+          python3 -m unittest discover -s tools/android_qa/tests -p test_local_backup_android_probe.py -v
+          python3 -m unittest scripts.tests.test_prepare_android -v
+          python3 -m unittest scripts.tests.test_export_embedded_game -v \
+            2>&1 | tee build-proof/GODOT-EXPORT-CONTRACT-TESTS.txt
+          python3 scripts/verify_test_apk_candidate.py source --expected-commit "$GITHUB_SHA" \
+            --out build-proof/CANDIDATE-SOURCE.json
+          git rev-parse HEAD > build-proof/FLUTTER-COMMIT.txt
+          cp config/godot-source.json build-proof/GODOT-SOURCE.json
+          cp config/test-apk-request.json build-proof/TEST-APK-REQUEST.json
+      - name: Android- und Godot-Werkzeuge einrichten
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          bash scripts/install_ndk_for_build.sh build-proof/ndk
+          bash scripts/install_godot_for_build.sh
+      - name: Native Sprache, Lerndialog und Datensicherung – JVM-Verträge
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 https://services.gradle.org/distributions/gradle-9.1.0-bin.zip \
+            -o "$RUNNER_TEMP/lumo-contract-gradle.zip"
+          printf '%s  %s\n' a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806 \
+            "$RUNNER_TEMP/lumo-contract-gradle.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/lumo-contract-gradle.zip" -d "$RUNNER_TEMP/lumo-contract-gradle"
+          export LUMO_KOTLIN_LIB_DIR="$RUNNER_TEMP/lumo-contract-gradle/gradle-9.1.0/lib"
+          python3 -m unittest scripts.tests.test_english_lesson_speech \
+            scripts.tests.test_speech_envelope_contract scripts.tests.test_learning_dialog_logic \
+            scripts.tests.test_studio_learning_contract \
+            scripts.tests.test_local_backup_transaction -v \
+            2>&1 | tee build-proof/NATIVE-SPEECH-DIALOG-TESTS.txt
+      - name: Flutter – Analyse und vollständige Testsuite
+        shell: bash
+        env:
+          LUMO_ROOM_SCREENSHOT_DIR: build-proof/room
+        run: |
+          set -euo pipefail
+          flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings \
+            | tee build-proof/FLUTTER-ANALYSIS.txt
+          flutter test --no-pub --reporter expanded --timeout=60s --concurrency=2 \
+            | tee build-proof/FLUTTER-CORE-TESTS.txt
+      - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          git clone --filter=blob:none https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
+          git -C build/lumo-godot-qa checkout --detach "$SOURCE"
+          python3 scripts/verify_kart_fleet_mirror.py build/lumo-godot-qa
+          # Der Erstimport stürzt in Godot 4.6.3 auf vollen CI-Rechnern ab, wenn
+          # Szenen-Benachrichtigungen aus Arbeits-Threads kommen. Wie im Bauskript
+          # läuft der Importer deshalb mit --single-threaded-scene; zusätzlich
+          # wird der idempotente Import genau einmal wiederholt.
+          godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
+            || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
+          for probe in kart_neon_home_regression kart_garage_landscape_regression kart_race_kinds_regression \
+            kart_result_reachability_regression native_table_boot_regression \
+            learning_android_host_capability_regression native_learning_boot_regression; do
+            echo "::group::$probe"
+            timeout 600 godot --headless --path build/lumo-godot-qa \
+              --script "res://scripts/tests/$probe.gd" | tee "build-proof/GODOT-${probe}.txt"
+            echo "::endgroup::"
+          done
+          for probe in lumo_kart_production_driver_regression lumo_opponent_roster_regression \
+            kart_extra_drivers_regression \
+            learning_holo_lesson_regression lumo_run_stunt_relay_regression \
+            kart_arena_battle_regression parcours_menu_entry_regression parcours_race_regression \
+            lumo_run_regression lumo_run_flow_regression quiz_studio_escape_regression; do
+            echo "::group::$probe"
+            # Der Lauf-Test spielt 30 ganze Dschungelherz-Läufe mit den echten
+            # Teilschritten des Spiels (rund 18 s je Lauf im CI): 600 s reichten nur
+            # bis Lauf 24 (Lauf 44551761545, Abbruch mit 124 ohne Fehlschlag).
+            limit=600
+            if [ "$probe" = lumo_run_regression ]; then limit=1500; fi
+            timeout "$limit" godot --headless --path build/lumo-godot-qa \
+              --script "res://scripts/tests/$probe.gd" | tee "build-proof/GODOT-${probe}.txt"
+            echo "::endgroup::"
+          done
+          echo "::group::learning_tutor_regression (validation, invalid, return, voice)"
+          timeout 600 godot --headless --path build/lumo-godot-qa \
+            --script res://scripts/tests/learning_tutor_regression.gd -- \
+            --part=validation,invalid,return,voice | tee build-proof/GODOT-learning_tutor_regression.txt
+          echo "::endgroup::"
+      - name: World – integrierte Missionen, Kart, Figuren und Spielstand
+        shell: bash
+        run: |
+          set -euo pipefail
+          for probe in lumo_world_quest_integrity_regression lumo_world_first_entry_regression \
+            lumo_world_kart_ground_regression lumo_world_open_world_integration_regression \
+            lumo_world_kart_persistence_regression; do
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 600 --required "PASS" --log "build-proof/GODOT-${probe}.txt" -- \
+              godot --headless --path build/lumo-godot-qa \
+              --script "res://scripts/tests/${probe}.gd"
+          done
+      - name: Eine signierte Flutter-Godot-APK bauen
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh
+          test -s dist/Lumo-Lernen-Neu.apk
+          # Both ABI builds are complete. Release the build JVM before the PCK runtime probe.
+          (cd android && ./gradlew --stop)
+          python3 scripts/verify_test_apk_candidate.py packages --expected-commit "$GITHUB_SHA" \
+            --extract-pck "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
+            --out build-proof/SPLIT-APK-IDENTITY.json
+          # Separate processes release the asset audit's resources before the full race scene.
+          # Both phases are mandatory and inspect the same PCK extracted from the ARM64 APK.
+          for phase in assets race; do
+            timeout 90 godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
+              --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
+              --script "$PWD/.github/probes/lumo_kart_driver_package_probe.gd" -- "$phase" \
+              | tee "build-proof/KART-DRIVER-PCK-${phase}.txt"
+          done
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+          VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
+          NAME="Lumo-Lernen-Test-${VERSION/+/-}.apk"
+          mkdir -p release
+          cp dist/Lumo-Lernen-Neu.apk "release/$NAME"
+          cp dist/BUILD-PROVENANCE.json release/BUILD-PROVENANCE.json
+          cp build-proof/APK-VERIFICATION.json release/APK-VERIFICATION.json
+          cp build-proof/SPLIT-APK-IDENTITY.json release/SPLIT-APK-IDENTITY.json
+          cp build-proof/SPLIT-APK-IDENTITY.json dist/x86_64/SPLIT-APK-IDENTITY.json
+          python3 - <<'PY_EVIDENCE'
+          from pathlib import Path
+          import zipfile
+
+          required_documents = [
+              Path('docs/integration/2026-11-22/INTEGRATION.md'),
+              Path('docs/integration/2026-11-24/INTEGRATION-2081.json'),
+              Path('docs/handover/BUILD_2081_FLUTTER_COVERAGE_20261124.md'),
+              Path('docs/handover/BUILD_2081_RECOGNITION_VOICE_20261124.md'),
+              Path('build/lumo-godot-qa/docs/handoffs/LUMO_2081_NATIVE_INTEGRATION_20261124.md'),
+              Path('docs/integration/2026-11-22/LEARNING-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/UPLOAD-ABGLEICH.md'),
+              Path('docs/integration/2026-11-22/CUSTOM-REWARDS-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/PARENT-TASKS-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/BACKUP-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/LUMO-ROOM-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/ACHIEVEMENTS-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/RECOGNITION-INTEGRATION.md'),
+              Path('docs/integration/2026-11-22/flutter-branch-inventory.json'),
+              Path('build/lumo-godot-qa/docs/integration/2026-11-22/GODOT_INTEGRATION.md'),
+              Path('build/lumo-godot-qa/docs/integration/2026-11-22/godot-branch-inventory.json'),
+          ]
+          for path in required_documents:
+              if not path.is_file():
+                  raise FileNotFoundError(f'Missing integration evidence: {path}')
+          sources = {
+              'flutter': Path('docs/integration/2026-11-22'),
+              'flutter-2081': Path('docs/integration/2026-11-24'),
+              'flutter-2081-tests': Path('docs/evidence/build-2081-flutter-20261124'),
+              'godot-2081-tests': Path('build/lumo-godot-qa/docs/evidence/integration-2081-20261124'),
+              'godot': Path('build/lumo-godot-qa/docs/integration/2026-11-22'),
+          }
+          proof = sorted(Path('build-proof').glob('*.txt')) + sorted(Path('build-proof').glob('*.json'))
+          with zipfile.ZipFile('release/LUMO-INTEGRATIONSBELEGE.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in (Path('docs/handover/BUILD_2081_FLUTTER_COVERAGE_20261124.md'),
+                           Path('docs/handover/BUILD_2081_RECOGNITION_VOICE_20261124.md'),
+                           Path('build/lumo-godot-qa/docs/handoffs/LUMO_2081_NATIVE_INTEGRATION_20261124.md')):
+                  archive.write(path, '2081-handoffs/' + path.name)
+              for label, directory in sources.items():
+                  for path in sorted(directory.rglob('*')):
+                      if path.is_file() and path.suffix in {'.md', '.json', '.txt', '.log', '.png', '.gz'}:
+                          archive.write(path, f'{label}/{path.relative_to(directory)}')
+              for path in proof:
+                  archive.write(path, 'build-proof/' + path.name)
+              for label, directory in {
+                  'room': Path('build-proof/room'),
+                  'achievements': Path('.ci-results/achievements'),
+              }.items():
+                  for path in sorted(directory.glob('*.png')):
+                      archive.write(path, f'widget-previews/{label}/{path.name}')
+          PY_EVIDENCE
+          (cd release && sha256sum "$NAME" > SHA256SUMS.txt)
+          echo "LUMO_APK_NAME=$NAME" >> "$GITHUB_ENV"
+          echo "LUMO_APK_VERSION=$VERSION" >> "$GITHUB_ENV"
+      - name: APK für den Android-Emulator sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-EMULATOR-APK-${{ github.run_id }}
+          path: dist/x86_64/
+          if-no-files-found: error
+          compression-level: 0
+      - name: Paketname und Signaturzertifikat gegen die installierte 2078 prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          BT="$ANDROID_SDK_ROOT/build-tools/36.0.0"
+          APK="release/$LUMO_APK_NAME"
+          "$BT/aapt" dump badging "$APK" | head -1 | tee build-proof/APK-BADGING.txt
+          PKG="$(sed -n "s/^package: name='\([^']*\)'.*/\1/p" build-proof/APK-BADGING.txt)"
+          VC="$(sed -n "s/.*versionCode='\([0-9]*\)'.*/\1/p" build-proof/APK-BADGING.txt)"
+          "$BT/apksigner" verify --print-certs "$APK" | tee build-proof/APK-SIGNER.txt
+          CERT="$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' build-proof/APK-SIGNER.txt)"
+          EXPECTED_CERT=a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+          test "$PKG" = dev.ullmann.lumo.lumo_lernen.coachpreview
+          test "$CERT" = "$EXPECTED_CERT"
+          test "$VC" -eq 2082
+          SHA="$(sha256sum "$APK" | cut -d' ' -f1)"
+          SIZE="$(stat -c %s "$APK")"
+          printf 'package=%s\nversionCode=%s\ncert_sha256=%s\napk=%s\napk_sha256=%s\napk_bytes=%s\n' "$PKG" "$VC" "$CERT" "$LUMO_APK_NAME" "$SHA" "$SIZE" | tee build-proof/APK-IDENTITY-ABSCHLUSS.txt
+          cat build-proof/APK-IDENTITY-ABSCHLUSS.txt >> "$GITHUB_STEP_SUMMARY"
+      - name: APK und Belege als Artefakt sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-TEST-APK-${{ github.run_id }}
+          # Nur die APK und die kleinen Belege; die APK ist bereits komprimiert.
+          path: |
+            release/
+            build-proof/*.txt
+            build-proof/*.json
+            build-proof/room/*.png
+            .ci-results/achievements/*.png
+          if-no-files-found: warn
+          compression-level: 0
+
+  android-tour:
+    name: Installierte APK im Android-Emulator prüfen
+    needs: apk
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-EMULATOR-APK-${{ github.run_id }}
+          path: candidate/x86_64
+      - name: Emulator und Prüftools vorbereiten
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          cp candidate/x86_64/SPLIT-APK-IDENTITY.json tour/SPLIT-APK-IDENTITY.json
+          sudo chmod a+rw /dev/kvm
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr-deu tesseract-ocr-eng
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          awk '{print $1 "  dist/x86_64/Lumo-Lernen-Neu.apk"}' candidate/x86_64/SHA256SUMS.txt > candidate/ANDROID-TOUR-SHA256SUMS.txt
+      - name: Mesa-Software-Anzeige für das Emulator-GL starten
+        # SwiftShader (swiftshader_indirect) linkt Godots gl_compatibility-Shader nicht
+        # ("Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)",
+        # Lauf 44473804677): Godot zeigte nur die Clear-Farbe, die Tour fand keine Knöpfe.
+        # -gpu host über Mesa llvmpipe ist der Weg der übrigen Android-Touren.
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -Fi 'llvmpipe' tour/mesa-renderer.txt
+      - uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          LUMO_NATIVE_START_DIAGNOSTICS: '1'
+          LUMO_NATIVE_START_WAIT: '35'
+          LUMO_NATIVE_START_BUDGET: '1200'
+          LUMO_ANDROID_SKYPOST_PROBE: '1'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          ram-size: 4096M
+          emulator-build: '14472402'
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour
+            .probe-venv/bin/python .github/probes/lumo_local_backup_android_probe.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour/local-backup
+      - name: Beobachtete native Spielstarts verbindlich prüfen
+        run: python3 scripts/verify_native_start_diagnostics.py tour/native-starts.json --out tour/NATIVE-GAME-STARTS.json
+      - name: Abgeschlossene Android-Prüfbelege zum selben Kandidaten bereitstellen
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY_ANDROID_EVIDENCE'
+          import json
+          from pathlib import Path
+          import zipfile
+
+          backup = json.loads(Path('tour/local-backup/backup-result.json').read_text())
+          if backup.get('status') != 'PASS':
+              raise RuntimeError('The real Android backup roundtrip has not passed')
+          required = {'apk-identity', 'fictional-profile', 'saf-export', 'export-archive',
+                      'changed-setting', 'saf-review', 'process-closed', 'restore-and-preservation'}
+          passed = {row['step'] for row in backup.get('steps', []) if row.get('ok') is True}
+          if not required <= passed:
+              raise RuntimeError('Incomplete Android backup evidence')
+          if not Path('tour/NATIVE-GAME-STARTS.json').is_file():
+              raise RuntimeError('Missing mandatory native game gate evidence')
+          with zipfile.ZipFile('LUMO-ANDROID-PRUEFBELEGE.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for path in sorted(Path('tour').rglob('*')):
+                  if path.is_file():
+                      archive.write(path, str(path))
+          PY_ANDROID_EVIDENCE
+          # Abschluss 24.11.: kein Release/Tag; Belege nur als Workflow-Artefakt.
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: LUMO-ANDROID-TOUR-${{ github.run_id }}
+          path: |
+            tour/
+            LUMO-ANDROID-PRUEFBELEGE.zip
+
