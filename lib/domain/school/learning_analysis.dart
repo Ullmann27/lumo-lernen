@@ -12,6 +12,7 @@ class CompetencyStat {
     required this.attempts,
     required this.correct,
     required this.hints,
+    required this.independentCorrect,
     required this.lastAt,
     required this.avgMs,
     this.trend,
@@ -28,29 +29,40 @@ class CompetencyStat {
   final int attempts;
   final int correct;
   final int hints;
+
+  /// Richtige Antworten ohne Hilfe. Die Aktivitätszahlen darüber enthalten
+  /// weiterhin alle Antworten; nur unabhängige Antworten belegen Kompetenz.
+  final int independentCorrect;
   final DateTime lastAt;
   final int? avgMs;
 
-  /// Veränderung der Trefferquote in Prozentpunkten: die letzten Versuche
-  /// gegen die davor (je mindestens vier). null = noch zu wenig Daten.
+  /// Veränderung der Trefferquote ohne Hilfe in Prozentpunkten: die letzten
+  /// unabhängigen Antworten gegen die davor (je mindestens vier).
+  /// null = noch zu wenig unabhängige Antworten.
   final int? trend;
 
   /// Wiederkehrende Fehlermuster (mindestens zweimal), häufigstes zuerst.
   final List<(String, int)> patterns;
 
-  /// Mittlere Teilbewertung 0..1 (z. B. Lese-Genauigkeit), falls erfasst.
+  /// Mittlere Teilbewertung 0..1 ohne Hilfe (z. B. Lese-Genauigkeit).
   final double? avgScore;
 
-  /// Lesetempo in Wörtern pro Minute (nur beim Vorlesen von Sätzen).
+  /// Lesetempo ohne Hilfe in Wörtern pro Minute (beim Vorlesen von Sätzen).
   final int? wordsPerMinute;
 
   int get wrong => attempts - correct;
-  double get accuracy => attempts == 0 ? 0 : correct / attempts;
+  int get independentAttempts => attempts - hints;
+  int get independentWrong => independentAttempts - independentCorrect;
+  double get accuracy => independentAttempts == 0
+      ? 0
+      : independentCorrect / independentAttempts;
   int get percent => (accuracy * 100).round();
 
-  /// Ab fünf Versuchen belastbar; vorher nur „noch unklar“.
+  /// Ab fünf Antworten ohne Hilfe belastbar; vorher nur „noch unklar“.
   MasteryLevel get level {
-    if (attempts < 5) return MasteryLevel.unknown;
+    if (independentAttempts < LearningAnalysis.minReliable) {
+      return MasteryLevel.unknown;
+    }
     if (accuracy >= .85) return MasteryLevel.secure;
     if (accuracy >= .6) return MasteryLevel.developing;
     return MasteryLevel.needsHelp;
@@ -188,9 +200,9 @@ class LearningAnalysis {
     ];
     final today = now ?? DateTime.now();
     const detector = ErrorPatternDetector();
-    final byComp = <String, List<Attempt>>{};
+    final byComp = <(String, String), List<Attempt>>{};
     for (final a in attempts) {
-      byComp.putIfAbsent(a.competency, () => []).add(a);
+      byComp.putIfAbsent((a.subject, a.competency), () => []).add(a);
     }
     final stats = <CompetencyStat>[];
     byComp.forEach((name, list) {
@@ -201,13 +213,13 @@ class LearningAnalysis {
                   timed.length)
               .round();
       final ordered = [...list]..sort((x, y) => x.at.compareTo(y.at));
+      final independent = ordered.where((a) => !a.hintUsed).toList();
       int? trend;
-      if (ordered.length >= 8) {
-        final half = (ordered.length / 2).floor().clamp(4, 10).toInt();
-        final recent = ordered.sublist(ordered.length - half);
-        final before = ordered.sublist(
-            (ordered.length - 2 * half).clamp(0, ordered.length).toInt(),
-            ordered.length - half);
+      if (independent.length >= 8) {
+        final half = (independent.length / 2).floor().clamp(4, 10).toInt();
+        final recent = independent.sublist(independent.length - half);
+        final before = independent.sublist(
+            independent.length - 2 * half, independent.length - half);
         double rate(List<Attempt> l) =>
             l.where((a) => a.correct).length / l.length;
         if (before.length >= 4) {
@@ -223,14 +235,14 @@ class LearningAnalysis {
         for (final e in counts.entries)
           if (e.value >= 2) (e.key, e.value),
       ]..sort((x, y) => y.$2.compareTo(x.$2));
-      final scored = list.where((a) => a.score != null).toList();
+      final scored = independent.where((a) => a.score != null).toList();
       final avgScore = scored.isEmpty
           ? null
           : scored.map((a) => a.score!).reduce((x, y) => x + y) / scored.length;
       int? wpm;
-      if (list.first.subject == 'Lesen') {
+      if (name.$1 == 'Lesen') {
         var words = 0, ms = 0;
-        for (final a in timed) {
+        for (final a in independent.where((a) => a.durationMs != null)) {
           final n = a.prompt.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
           if (n == 0 || a.durationMs! < 500) continue;
           words += n;
@@ -239,13 +251,14 @@ class LearningAnalysis {
         if (words > 0 && ms > 0) wpm = (words / (ms / 60000)).round();
       }
       stats.add(CompetencyStat(
-        competency: name,
-        subject: list.first.subject,
-        unit: list.last.unit,
+        competency: name.$2,
+        subject: name.$1,
+        unit: ordered.last.unit,
         attempts: list.length,
         correct: list.where((a) => a.correct).length,
         hints: list.where((a) => a.hintUsed).length,
-        lastAt: list.map((a) => a.at).reduce((x, y) => x.isAfter(y) ? x : y),
+        independentCorrect: independent.where((a) => a.correct).length,
+        lastAt: ordered.last.at,
         avgMs: avg,
         trend: trend,
         patterns: patterns,
@@ -260,14 +273,14 @@ class LearningAnalysis {
       if (s.level == MasteryLevel.needsHelp) {
         insights.add(Insight(
           InsightKind.weakness,
-          'Bei ${s.attempts} Aufgaben zu „${s.competency}“ gab es ${s.wrong} Fehler.',
+          'Bei ${s.independentAttempts} Aufgaben ohne Hilfe zu „${s.competency}“ gab es ${s.independentWrong} Fehler.',
           competency: s.competency,
         ));
         final sibling = _sibling(s, stats);
         if (sibling != null) {
           insights.add(Insight(
             InsightKind.comparison,
-            'Bei „${sibling.competency}“ liegt die Trefferquote dagegen bei ${sibling.percent}\u00A0%.',
+            'Bei „${sibling.competency}“ liegt die Trefferquote ohne Hilfe dagegen bei ${sibling.percent}\u00A0%.',
             competency: sibling.competency,
           ));
         }
@@ -277,7 +290,7 @@ class LearningAnalysis {
       if (s.level == MasteryLevel.secure) {
         insights.add(Insight(
           InsightKind.strength,
-          '„${s.competency}“ sitzt sicher (${s.percent}\u00A0% richtig bei ${s.attempts} Aufgaben).',
+          '„${s.competency}“ sitzt sicher (${s.percent}\u00A0% richtig bei ${s.independentAttempts} Aufgaben ohne Hilfe).',
           competency: s.competency,
         ));
       }
@@ -297,8 +310,8 @@ class LearningAnalysis {
         insights.add(Insight(
           InsightKind.trend,
           t > 0
-              ? '„${s.competency}“ wird besser (+$t Prozentpunkte).'
-              : '„${s.competency}“ ist zuletzt schwächer geworden (−${-t} Prozentpunkte).',
+              ? '„${s.competency}“ wird besser (+$t Prozentpunkte ohne Hilfe).'
+              : '„${s.competency}“ ist zuletzt schwächer geworden (−${-t} Prozentpunkte ohne Hilfe).',
           competency: s.competency,
         ));
       }
@@ -360,11 +373,13 @@ class LearningAnalysis {
     }
     if (other == null) return null;
     for (final candidate in all) {
-      if (candidate.competency == other &&
-          candidate.attempts >= minReliable) {
+      if (candidate.subject == s.subject &&
+          candidate.competency == other &&
+          candidate.independentAttempts >= minReliable) {
         return candidate;
       }
     }
     return null;
   }
 }
+
