@@ -49,6 +49,13 @@ jobs:
             test/features/assignment_evidence_2082_widget_test.dart \
             test/tutoring/intelligence_2082_daily_plan_test.dart \
             test/tutoring/intelligence_2082_language_tutor_test.dart \
+            test/features/lumo_coach_profile_guard_2082_test.dart \
+            test/domain/learning_analysis_independent_evidence_test.dart \
+            test/features/learning_analysis_evidence_view_test.dart \
+            test/domain/learning_analysis_extended_test.dart \
+            test/domain/school_analysis_test.dart \
+            test/learning_loop_restart_scenario_test.dart \
+            test/features/report_screen_test.dart \
             2>&1 | tee intelligence-proof/FLUTTER-FOCUSED-TESTS.txt
       - name: Tatsächliche Prüfergebnisse sichern
         if: always()
@@ -155,6 +162,23 @@ jobs:
           # wird der idempotente Import genau einmal wiederholt.
           godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
             || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
+          # Gleiche strenge Aufruf- und Zeitgrenzen wie der separate native Prüflauf.
+          for probe in table_turn_flow_regression cards_rules_regression chess_rules_regression; do
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 900 --required PASS --log "build-proof/GODOT-${probe}.txt" -- \
+              godot --headless --single-threaded-scene --audio-driver Dummy \
+              --path build/lumo-godot-qa --script "res://scripts/tests/${probe}.gd"
+          done
+          python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+            --timeout 1200 --required CARDS_TABLE_RUNTIME_PASS \
+            --log build-proof/GODOT-cards_table_regression.txt -- \
+            godot --headless --single-threaded-scene --audio-driver Dummy \
+            --path build/lumo-godot-qa --script res://scripts/tests/cards_table_regression.gd
+          python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+            --timeout 1800 --required CHESS_TABLE_PASS \
+            --log build-proof/GODOT-chess_table_regression.txt -- \
+            godot --headless --single-threaded-scene --audio-driver Dummy \
+            --path build/lumo-godot-qa --script res://scripts/tests/chess_table_regression.gd -- --scene=chess
           for probe in kart_neon_home_regression kart_garage_landscape_regression kart_race_kinds_regression \
             kart_result_reachability_regression native_table_boot_regression \
             learning_android_host_capability_regression native_learning_boot_regression; do
@@ -256,6 +280,8 @@ jobs:
               'flutter': Path('docs/integration/2026-11-22'),
               'flutter-2081': Path('docs/integration/2026-11-24'),
               'flutter-2081-tests': Path('docs/evidence/build-2081-flutter-20261124'),
+              'flutter-2082-focused': Path('docs/evidence/intelligence-2082-focused-20261125'),
+              'godot-2082-tables': Path('docs/evidence/intelligence-2082-native-tables-20261125'),
               'godot-2081-tests': Path('build/lumo-godot-qa/docs/evidence/integration-2081-20261124'),
               'godot': Path('build/lumo-godot-qa/docs/integration/2026-11-22'),
           }

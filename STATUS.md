@@ -1,7 +1,12 @@
 # LUMO Intelligence 2.0 · Kandidat 2082 · 25.11.2026
 
-Eigener Integrationszweig: `integration/lumo-intelligence-2082-20261125`.
-Neue Quellcodefunktionen für echte Lernanalysen, individuelle Lernhilfe, Hausaufgaben-Auswertung und World-Tagesaktivitäten sind integriert. Version: `0.14.9+2082`; Godot: `b22f3bb424c6488f107ed6a772e19c878a837154`. Keine neuen Testerfolge behauptet: Beim Schreiben dieses Checkpoints ist die neue Remote-Ausführung noch ausstehend. [Umfang und Prüfpfad](docs/integration/2026-11-25/INTELLIGENCE-2082.md).
+Arbeitszweig: `integration/lumo-intelligence-2082-20261125`; Version `0.14.9+2082`; Godot `bfc1eda07e65af57b33a6c0f2db3641aab3bf9bd`.
+
+Echte Lernanalysen, unabhängige Kompetenzquoten, profilgebundener Coach und Hausaufgabenergebnisse sind integriert. Die zusätzliche Rückmeldung zu abrupten Karten-/Schachzügen ist mit geordneten Bewegungen, Denkpausen und korrektem Pause-/Abbruchverhalten umgesetzt.
+
+Tatsächlich bestanden: Flutter-Vorprüfung auf f346db8e mit 114 Tests und 0 Analysefehlern; nativer Vorlauf auf bfc1eda0 mit 133 Ablaufprüfungen, 212.968 Kartenregelprüfungen, 238 Schachregelprüfungen, 640 Karten- und 919 Schachszenenprüfungen. Die Originalbelege stehen unter docs/evidence/intelligence-2082-*.
+
+Der gemeinsame vollständige APK-/Android-Lauf wird mit Request 3 neu angefordert. Die echte Rendereraufnahme auf demselben Native-Pin ist noch offen. Noch keine fertige oder öffentlich veröffentlichte 2082-APK; keine Fold7-/60-FPS-Behauptung. [Umfang, Belege und Grenzen](docs/integration/2026-11-25/INTELLIGENCE-2082.md).
 
 ## Historische Statusabschnitte
 

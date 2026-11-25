@@ -1,13 +1,15 @@
 # Fortsetzung · LUMO Intelligence 2082 · 25.11.2026
 
-Arbeitszweig: `integration/lumo-intelligence-2082-20261125`. Native-Pin: `b22f3bb424c6488f107ed6a772e19c878a837154`. Die vorherigen Intelligence-Änderungen aus `b978499b` wurden erhalten. Main bleibt unverändert.
+Arbeitszweig: `integration/lumo-intelligence-2082-20261125`; Native-Pin `bfc1eda07e65af57b33a6c0f2db3641aab3bf9bd`. Main bleibt geschützt.
 
-1. Den tatsächlichen letzten Head und den Workflow `lumo-intelligence-2082.yml` prüfen. Die Aktivierung erfolgt ausschließlich über `config/intelligence-2082-apk-request.json`.
-2. Neue gezielte Flutterprüfungen ausführen; danach die bestehende vollständige APK-/Godot-/Android-Kette bis zum echten Ergebnis verfolgen. Bei Fehlern die Originalprotokolle lesen und eng reparieren. Weder 2081-Erfolge noch statische Reviews als neue erfolgreiche Tests ausgeben.
-3. Nach allen bestandenen Gates genau die neu erzeugten Original-APK-Bytes unveränderlich veröffentlichen und öffentlich zurückprüfen. Der ältere separate 2081-Publisher hatte bei seinem Veröffentlichungszugang HTTP403 auf create-tag; seine Ergebnisse und seine alte APK sind keine2082-Auslieferung.
-4. Quellstand, Teststatus, APK-Provenienz, Größe, SHA256 und tatsächlichen Downloadlink dokumentieren. Physische Fold7-/60FPS-/Audioqualität erfordert einen entsprechenden Gerätetest.
+1. Den durch `config/intelligence-2082-apk-request.json` Request 3 gestarteten gemeinsamen Lauf beobachten. Er prüft alle 16 Fokusdateien, die vollständige Flutter-Suite, JVM-Verträge, fünf Karten-/Schachproben, bisherige Godot-/World-Proben, Signatur/PCK/Quellen und die echte Androidtour mit Spielstarts sowie Sicherung/Wiederherstellung.
+2. Zusätzlichen Renderer-Lauf 45567127413 auf demselben Native-Pin bis zum tatsächlichen Ergebnis verfolgen und die Originalbilder selbst ansehen. Dieser Schritt ist beim Schreiben noch offen. Bei einem Produktfehler den APK-Lauf stoppen, eng reparieren und den neuen Stand erneut binden.
+3. Erst nach allen tatsächlichen Erfolgen genau die neu gebauten Original-APK-Bytes veröffentlichen und anonym zurückprüfen. Der neue geprüfte Publisher ist integriert, ein aktiver Veröffentlichungsauftrag noch nicht angelegt. Frühere 2081-Veröffentlichungsversuche scheiterten an GitHub HTTP 403; kein Ausweichen auf einen ungetesteten Commit oder alte APK.
+4. Finale Quelle, APK-Provenienz, Paket, Version, Zertifikat, Größe, SHA-256, originaler Downloadlink und tatsächliche Prüfergebnisse dokumentieren. Eine 2082-APK ist aktuell noch nicht hergestellt.
 
-[Implementierter Umfang, Datengrenzen und offene Punkte](docs/integration/2026-11-25/INTELLIGENCE-2082.md).
+Bereits ausgeführte Belege: Flutter 114/114 auf f346db8e, native Karten-/Schachläufe auf bfc1eda0, World-Routinen 124+57 auf unveränderten World-Dateien. Sie ersetzen die abschließende gemeinsame Kette nicht. Der frühere Gesamtlauf auf 250ad2c bestand 3.640 Fluttertests (193 übersprungen), scheiterte anschließend im alten World-Testaufbau und lieferte keine APK.
+
+[Implementierter Umfang und Grenzen](docs/integration/2026-11-25/INTELLIGENCE-2082.md).
 
 ## Historische Fortsetzungen
 

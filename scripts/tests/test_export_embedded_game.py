@@ -383,7 +383,7 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
 
     def test_current_2082_pin_cleans_outputs_and_preserves_exact_sources(self):
         source = json.loads((MODULE.ROOT / 'config/godot-source.json').read_text())
-        self.assertEqual(source['revision'], 'b22f3bb424c6488f107ed6a772e19c878a837154')
+        self.assertEqual(source['revision'], 'bfc1eda07e65af57b33a6c0f2db3641aab3bf9bd')
         tracked = MODULE.git_paths(self.repo, 'ls-files')
         original = {name: (self.repo / name).read_bytes() for name in tracked}
         self.generate_outputs()

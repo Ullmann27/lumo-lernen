@@ -1,0 +1,116 @@
+00:00 +0: loading /home/runner/work/lumo-lernen/lumo-lernen/test/domain/adaptive_practice_plan_test.dart
+00:00 +0: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_chart_data_test.dart: Empty and unknown owners have no invented measurements
+00:00 +1: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/adaptive_practice_plan_test.dart: Keine Daten oder nur Hilfen ergeben keine Kompetenzbehauptung
+00:00 +2: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_chart_data_test.dart: Owner filtering precedes deduplication; assessments and future are excluded
+00:00 +3: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/adaptive_practice_plan_test.dart: Eigener Fortschritt bleibt getrennt, Hilfen erhöhen die Quote nicht
+00:00 +4: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_chart_data_test.dart: Same competency in different subjects remains distinct
+00:00 +5: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/adaptive_practice_plan_test.dart: Gleiche Kompetenz in zwei Fächern bleibt getrennt
+00:00 +6: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_chart_data_test.dart: Calendar windows preserve missing weeks and actual zero accuracy
+00:00 +7: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/adaptive_practice_plan_test.dart: Mehrere Übungstage vor Steigerung, danach Wiederholung bei Abstand
+00:00 +8: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_chart_data_test.dart: Time does not change correctness and small samples stay explicit
+00:00 +9: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/adaptive_practice_plan_test.dart: Duplikate, Fremdprofile, Tests und Zukunftszeiten zählen nicht
+00:00 +10: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_chart_data_test.dart: Trend subjects come from the displayed period, not old lifetime counts
+00:00 +11: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/adaptive_practice_plan_test.dart: Höchstens drei Ziele, kein Widerspruch im gleichen Thema
+00:00 +12: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_chart_data_test.dart: Assisted success is activity, never independent chart evidence
+00:00 +13: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_chart_data_test.dart: Returned chart collections cannot mutate the source projection
+00:00 +14: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/assignment_evidence_2082_test.dart: Nur eindeutige eigene Antworten im Zeitraum und Thema zählen
+00:00 +15: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/assignment_evidence_2082_test.dart: Ergebnis bleibt an die ersten Zielaufgaben gebunden
+00:00 +16: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/assignment_evidence_2082_test.dart: Hilfen zählen als Arbeit, aber nicht als selbstständige Leistung
+00:00 +17: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/assignment_evidence_2082_test.dart: Bearbeitungsdauer ändert keine Antwortbewertung
+00:00 +18: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/assignment_evidence_2082_test.dart: Gemischte ungebundene Profile werden niemals aufsummiert
+00:00 +19: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/assignment_evidence_2082_test.dart: Leere Daten und ungültige Aufgabenanzahl behaupten keinen Abschluss
+00:00 +20: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/school_model_test.dart: Klasse, Schüler, Gruppen und Untergruppen werden gespeichert
+00:00 +21: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/school_model_test.dart: Leere Namen und fremde Klassen werden abgelehnt
+00:00 +22: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/school_model_test.dart: Zuweisung trifft Klasse, Gruppe (mit Untergruppe) und Einzelkind
+00:00 +23: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/school_model_test.dart: Fortschritt zählt nur Aufgaben zum Thema nach dem Zuweisen
+00:00 +24: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/school_model_test.dart: Berechtigung: Lehrkraft nur eigene Klassen, Schüler nur sich selbst
+00:00 +25: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/school_model_test.dart: Schüler entfernen löscht dessen Einzelaufgaben und die Zuordnung
+00:00 +26: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/school_model_test.dart: Kaputte Schuldaten führen nicht zum Absturz
+00:01 +27: /home/runner/work/lumo-lernen/lumo-lernen/test/parents/live_learning_analytics_test.dart: Empty live charts never fall back to example percentages
+00:01 +28: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:01 +29: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:01 +30: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:01 +31: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:02 +32: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:03 +33: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:03 +34: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:03 +35: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +36: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +37: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +38: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +39: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +40: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +41: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +42: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +43: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +44: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +45: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +46: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +47: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +48: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +49: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +50: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +51: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Lehrer: Klasse → Kind → Schwäche erkennen → Aufgabe zuweisen → Kind erledigt → Lehrer sieht Ergebnis
+00:04 +52: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Kind sieht offene Lehrer-Aufgabe, Tippen startet das Thema
+00:05 +53: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Fällige Lehrkraftaufgaben werden vor späteren und undatierten angezeigt
+00:05 +54: /home/runner/work/lumo-lernen/lumo-lernen/test/features/lumo_coach_profile_guard_2082_test.dart: late answers from the previous child cannot replace the coach
+00:05 +55: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Wechsel zwischen Kindern entfernt sofort fremde Aufgaben
+00:05 +56: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Wechsel zwischen Kindern entfernt sofort fremde Aufgaben
+00:05 +57: /home/runner/work/lumo-lernen/lumo-lernen/test/features/lumo_coach_profile_guard_2082_test.dart: a delayed profile lease never starts an obsolete log read
+00:05 +58: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Ohne Zuordnung bleibt das Feld unsichtbar
+00:05 +59: /home/runner/work/lumo-lernen/lumo-lernen/test/features/teacher_flow_test.dart: Ohne Zuordnung bleibt das Feld unsichtbar
+00:05 +60: /home/runner/work/lumo-lernen/lumo-lernen/test/features/lumo_coach_profile_guard_2082_test.dart: only the latest request may update the same profile
+00:05 +61: /home/runner/work/lumo-lernen/lumo-lernen/test/features/lumo_coach_profile_guard_2082_test.dart: identical message text refreshes route to (Mathematik, Minus bis 20)
+00:05 +62: /home/runner/work/lumo-lernen/lumo-lernen/test/features/lumo_coach_profile_guard_2082_test.dart: identical message text refreshes route to (Deutsch, Plus bis 20)
+00:05 +63: /home/runner/work/lumo-lernen/lumo-lernen/test/features/lumo_coach_profile_guard_2082_test.dart: an old failure is ignored and a latest failure clears the route
+00:06 +64: /home/runner/work/lumo-lernen/lumo-lernen/test/features/lumo_coach_profile_guard_2082_test.dart: completion after disposal does not update a detached coach
+00:06 +65: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Hilfen bleiben Aktivität, belegen aber keine sichere Kompetenz
+00:06 +66: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Vier unabhängige Fehler plus Hilfen bleiben unter der Mindestmenge
+00:06 +67: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Viele richtige Antworten mit Hilfe verdecken unabhängige Fehler nicht
+00:06 +68: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Fehler mit Hilfe entwerten unabhängig belegte Kompetenz nicht
+00:06 +69: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Hilfen können die Mindestmenge für einen Trend nicht auffüllen
+00:06 +70: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Trend vergleicht chronologisch nur unabhängige Antworten
+00:06 +71: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Lesegenauigkeit und Lesetempo schließen unterstützte Antworten aus
+00:06 +72: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Gleichnamige Kompetenzen verschiedener Fächer bleiben getrennt
+00:06 +73: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Antworten fremder Fächer erfüllen keine Mindestmenge
+00:06 +74: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Vergleichskompetenz benötigt dasselbe Fach und unabhängige Antworten
+00:06 +75: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Neueste Einheit folgt dem Zeitpunkt und lässt Eingabereihenfolge intakt
+00:06 +76: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/learning_analysis_independent_evidence_test.dart: Bearbeitungszeit ändert keine Kompetenzstufe
+00:06 +77: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.0, nur Hilfe false
+00:06 +78: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.0, nur Hilfe false
+00:06 +79: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.0, nur Hilfe false
+00:06 +80: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.0, nur Hilfe false
+00:06 +81: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.0, nur Hilfe false
+00:06 +82: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.0, nur Hilfe false
+00:06 +83: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.0, nur Hilfe false
+00:06 +84: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.0, nur Hilfe false
+00:07 +85: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.0, nur Hilfe true
+00:07 +86: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.6, nur Hilfe false
+00:07 +87: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.6, nur Hilfe true
+00:07 +88: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.6, nur Hilfe true
+00:07 +89: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.6, nur Hilfe true
+00:07 +90: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Bericht trennt Hilfe und Kompetenz bei Schrift 1.6, nur Hilfe true
+00:07 +91: /home/runner/work/lumo-lernen/lumo-lernen/test/domain/school_analysis_test.dart: LearningAnalysis erkennt Schwäche und vergleicht mit dem sicheren Gegenstück
+00:07 +92: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach false
+00:07 +93: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach false
+00:07 +94: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach false
+00:07 +95: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach false
+00:07 +96: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach false
+00:07 +97: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach false
+00:07 +98: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach false
+00:07 +99: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach false
+00:07 +100: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach false
+00:07 +101: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach false
+00:08 +102: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach true
+00:08 +103: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Lehrerempfehlung wählt neueste Einheit im richtigen Fach, Fremdfach true
+00:08 +104: /home/runner/work/lumo-lernen/lumo-lernen/test/features/report_screen_test.dart: Bericht ohne Überlauf bei Size(280.0, 640.0), Schrift 1.6
+00:08 +105: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Klassenübersicht zählt Hilfebedarf getrennt nach Fach
+00:08 +106: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Klassenübersicht zählt Hilfebedarf getrennt nach Fach
+00:08 +107: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Klassenübersicht zählt Hilfebedarf getrennt nach Fach
+00:08 +108: /home/runner/work/lumo-lernen/lumo-lernen/test/features/learning_analysis_evidence_view_test.dart: Klassenübersicht zählt Hilfebedarf getrennt nach Fach
+00:08 +109: /home/runner/work/lumo-lernen/lumo-lernen/test/features/report_screen_test.dart: Bericht ohne Überlauf bei Size(673.0, 841.0), Schrift 1.6
+00:09 +110: /home/runner/work/lumo-lernen/lumo-lernen/test/features/report_screen_test.dart: Leerer Bericht erklärt freundlich, was fehlt
+00:09 +111: /home/runner/work/lumo-lernen/lumo-lernen/test/features/report_screen_test.dart: Antwort speichern -> Bericht zeigt sie (End-to-End lokal)
+00:09 +112: /home/runner/work/lumo-lernen/lumo-lernen/test/features/report_screen_test.dart: Lumo bietet bei Schwäche Hilfe an und startet das Thema
+00:09 +113: /home/runner/work/lumo-lernen/lumo-lernen/test/features/report_screen_test.dart: Ohne belastbare Daten schweigt Lumo
+00:09 +114: All tests passed!
