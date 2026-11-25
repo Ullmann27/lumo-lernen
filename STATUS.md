@@ -1,3 +1,10 @@
+# LUMO Intelligence 2.0 · Kandidat 2082 · 25.11.2026
+
+Eigener Integrationszweig: `integration/lumo-intelligence-2082-20261125`.
+Neue Quellcodefunktionen für echte Lernanalysen, individuelle Lernhilfe, Hausaufgaben-Auswertung und World-Tagesaktivitäten sind integriert. Version: `0.14.9+2082`; Godot: `b22f3bb424c6488f107ed6a772e19c878a837154`. Keine neuen Testerfolge behauptet: Beim Schreiben dieses Checkpoints ist die neue Remote-Ausführung noch ausstehend. [Umfang und Prüfpfad](docs/integration/2026-11-25/INTELLIGENCE-2082.md).
+
+## Historische Statusabschnitte
+
 # Ergänzender Prüfzweig: Themenbindung und Offline-Hilfe · 24.11.2026
 
 Ausgangsstand ist PR #545 (`6e7b26906a15c8497cb36cf8c1d0c2126740658c`). Der vorliegende Zweig erhält die exakte Plus-bis-100-Route und korrigiert bestätigte fachfremde Lehrerfragen, den Kontinente-/Ozeane-Kontext, das Millionenbeispiel sowie themenfremde Offline-Antworten. Eine unbekannte Rätsel-/Aufgabenidentität erzeugt keine zufällige Lösung.

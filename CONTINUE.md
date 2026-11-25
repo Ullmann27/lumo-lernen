@@ -1,3 +1,16 @@
+# Fortsetzung · LUMO Intelligence 2082 · 25.11.2026
+
+Arbeitszweig: `integration/lumo-intelligence-2082-20261125`. Native-Pin: `b22f3bb424c6488f107ed6a772e19c878a837154`. Die vorherigen Intelligence-Änderungen aus `b978499b` wurden erhalten. Main bleibt unverändert.
+
+1. Den tatsächlichen letzten Head und den Workflow `lumo-intelligence-2082.yml` prüfen. Die Aktivierung erfolgt ausschließlich über `config/intelligence-2082-apk-request.json`.
+2. Neue gezielte Flutterprüfungen ausführen; danach die bestehende vollständige APK-/Godot-/Android-Kette bis zum echten Ergebnis verfolgen. Bei Fehlern die Originalprotokolle lesen und eng reparieren. Weder 2081-Erfolge noch statische Reviews als neue erfolgreiche Tests ausgeben.
+3. Nach allen bestandenen Gates genau die neu erzeugten Original-APK-Bytes unveränderlich veröffentlichen und öffentlich zurückprüfen. Der ältere separate 2081-Publisher hatte bei seinem Veröffentlichungszugang HTTP403 auf create-tag; seine Ergebnisse und seine alte APK sind keine2082-Auslieferung.
+4. Quellstand, Teststatus, APK-Provenienz, Größe, SHA256 und tatsächlichen Downloadlink dokumentieren. Physische Fold7-/60FPS-/Audioqualität erfordert einen entsprechenden Gerätetest.
+
+[Implementierter Umfang, Datengrenzen und offene Punkte](docs/integration/2026-11-25/INTELLIGENCE-2082.md).
+
+## Historische Fortsetzungen
+
 # Fortsetzung: Themenbindung und Offline-Hilfe · 24.11.2026
 
 Dieser Prüfzweig basiert auf PR #545 (`6e7b26906a15c8497cb36cf8c1d0c2126740658c`). Die begrenzten Korrekturen und ihre tatsächlichen 64 Dart-Prüfungen sind unter [docs/evidence/topic-help-scope-20261124](docs/evidence/topic-help-scope-20261124/README.md) dokumentiert. Den eigenständigen Test ausdrücklich mit `dart test/learning/topic_context_scope_regression.dart` ausführen; er wird nicht automatisch durch `flutter test` gefunden.

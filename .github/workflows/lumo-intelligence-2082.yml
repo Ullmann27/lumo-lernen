@@ -18,7 +18,48 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  intelligence-tests:
+    name: Echte Lernanalysen, Lernhilfe und Hausaufgaben prüfen
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Abhängigkeiten und neue Lernwege prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p intelligence-proof
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings \
+            2>&1 | tee intelligence-proof/FLUTTER-ANALYSIS.txt
+          flutter test --no-pub --reporter expanded --timeout=60s --concurrency=2 \
+            test/domain/adaptive_practice_plan_test.dart \
+            test/domain/learning_chart_data_test.dart \
+            test/domain/assignment_evidence_2082_test.dart \
+            test/domain/school_model_test.dart \
+            test/parents/live_learning_analytics_test.dart \
+            test/features/teacher_flow_test.dart \
+            test/features/assignment_evidence_2082_widget_test.dart \
+            test/tutoring/intelligence_2082_daily_plan_test.dart \
+            test/tutoring/intelligence_2082_language_tutor_test.dart \
+            2>&1 | tee intelligence-proof/FLUTTER-FOCUSED-TESTS.txt
+      - name: Tatsächliche Prüfergebnisse sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-INTELLIGENCE-TESTS-${{ github.run_id }}
+          path: intelligence-proof/
+          if-no-files-found: warn
+
   apk:
+    needs: intelligence-tests
     name: Signierte Test-APK bauen
     runs-on: ubuntu-24.04
     timeout-minutes: 120
@@ -148,7 +189,8 @@ jobs:
           set -euo pipefail
           for probe in lumo_world_quest_integrity_regression lumo_world_first_entry_regression \
             lumo_world_kart_ground_regression lumo_world_open_world_integration_regression \
-            lumo_world_kart_persistence_regression; do
+            lumo_world_kart_persistence_regression lumo_world_routines_regression \
+            lumo_world_routines_integration_regression; do
             python3 build/lumo-godot-qa/tools/run_godot_probe.py \
               --timeout 600 --required "PASS" --log "build-proof/GODOT-${probe}.txt" -- \
               godot --headless --path build/lumo-godot-qa \
@@ -188,6 +230,7 @@ jobs:
           import zipfile
 
           required_documents = [
+              Path('docs/integration/2026-11-25/INTELLIGENCE-2082.md'),
               Path('docs/integration/2026-11-22/INTEGRATION.md'),
               Path('docs/integration/2026-11-24/INTEGRATION-2081.json'),
               Path('docs/handover/BUILD_2081_FLUTTER_COVERAGE_20261124.md'),
@@ -209,6 +252,7 @@ jobs:
               if not path.is_file():
                   raise FileNotFoundError(f'Missing integration evidence: {path}')
           sources = {
+              'intelligence-2082': Path('docs/integration/2026-11-25'),
               'flutter': Path('docs/integration/2026-11-22'),
               'flutter-2081': Path('docs/integration/2026-11-24'),
               'flutter-2081-tests': Path('docs/evidence/build-2081-flutter-20261124'),
