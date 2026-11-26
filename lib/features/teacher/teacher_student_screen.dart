@@ -175,15 +175,6 @@ class _TeacherStudentScreenState extends State<TeacherStudentScreen> {
               ),
               const SizedBox(height: 12),
             ],
-            // Auf einen Blick: Stärken, Förderbedarf, Lernplan; jede
-            // Empfehlung lässt sich direkt als Aufgabe zuweisen.
-            LearningGuidancePanel(
-              guidance: LearningGuidance.fromAttempts(_attempts,
-                  studentId: student.id, now: DateTime.now()),
-              onAssign: (r) => _assign(
-                  preset: AssignPreset(subject: r.subject, unit: r.unit)),
-            ),
-            const SizedBox(height: 12),
             TeacherPanel(
               title: 'Aufgaben',
               trailing: TeacherButton(
@@ -227,6 +218,16 @@ class _TeacherStudentScreenState extends State<TeacherStudentScreen> {
                   ),
                 ),
               ]),
+            ),
+            const SizedBox(height: 12),
+            // Auf einen Blick: Stärken, Förderbedarf, Lernplan; jede
+            // Empfehlung lässt sich direkt als Aufgabe zuweisen. Steht unter
+            // Aufgaben und Gerät, damit die Arbeitsknöpfe oben bleiben.
+            LearningGuidancePanel(
+              guidance: LearningGuidance.fromAttempts(_attempts,
+                  studentId: student.id, now: DateTime.now()),
+              onAssign: (r) => _assign(
+                  preset: AssignPreset(subject: r.subject, unit: r.unit)),
             ),
             if (_cognitive != null) ...[
               const SizedBox(height: 12),
