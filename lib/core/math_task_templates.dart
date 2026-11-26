@@ -469,18 +469,6 @@ class MathTaskTemplate {
             'Zähle Montag bis Sonntag. Es sind sieben Tage.'
           ),
           (
-            'Welche Tageszeit kommt nach dem Morgen und vor dem Nachmittag?',
-            'Mittag',
-            ['Abend', 'Nacht', 'Mittag'],
-            'Die Reihenfolge ist Morgen, Mittag, Nachmittag und Abend.'
-          ),
-          (
-            'Welche Tageszeit folgt auf den Nachmittag?',
-            'Abend',
-            ['Morgen', 'Mittag', 'Abend'],
-            'Nach dem Nachmittag kommt der Abend.'
-          ),
-          (
             'Was dauert normalerweise länger: Zähneputzen oder eine Nacht schlafen?',
             'eine Nacht schlafen',
             ['Zähneputzen', 'eine Nacht schlafen', 'beides gleich lang'],
@@ -493,64 +481,81 @@ class MathTaskTemplate {
             'Ein einzelner Klatscher dauert nur einen kurzen Moment.'
           ),
           (
-            'Was bedeutet morgen?',
-            'der Tag nach heute',
-            ['der Tag vor heute', 'der Tag nach heute', 'der heutige Tag'],
-            'Gehe von heute einen Tag weiter. Dann ist morgen.'
-          ),
-          (
-            'Was bedeutet gestern?',
-            'der Tag vor heute',
-            ['der Tag vor heute', 'der Tag nach morgen', 'der heutige Tag'],
-            'Gehe von heute einen Tag zurück. Dann ist gestern.'
-          ),
-          (
-            'Welcher Tag kommt nach Montag?',
-            'Dienstag',
-            ['Sonntag', 'Dienstag', 'Mittwoch'],
-            'Die Woche geht so: Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag.'
-          ),
-          (
-            'Welcher Tag kommt vor Sonntag?',
-            'Samstag',
-            ['Montag', 'Freitag', 'Samstag'],
-            'Vor dem Sonntag kommt der Samstag. Beide zusammen sind das Wochenende.'
-          ),
-          (
-            'Welcher Tag kommt nach Freitag?',
-            'Samstag',
-            ['Donnerstag', 'Samstag', 'Sonntag'],
-            'Nach Freitag kommt Samstag. Dann beginnt das Wochenende.'
-          ),
-          (
-            'Heute ist Mittwoch. Welcher Tag ist morgen?',
-            'Donnerstag',
-            ['Dienstag', 'Donnerstag', 'Freitag'],
-            'Morgen ist der Tag nach heute. Nach Mittwoch kommt Donnerstag.'
-          ),
-          (
-            'Heute ist Dienstag. Welcher Tag war gestern?',
-            'Montag',
-            ['Montag', 'Mittwoch', 'Sonntag'],
-            'Gestern ist der Tag vor heute. Vor Dienstag kommt Montag.'
-          ),
-          (
             'Wie viele Monate hat ein Jahr?',
             '12',
             ['7', '10', '12'],
             'Von Jänner bis Dezember sind es zwölf Monate.'
           ),
+          // Volle Stunden in einfachen Sachsituationen (Lehrplan VS 2023,
+          // Mathematik 1. Schulstufe, Größen). Wochentage, Monate und
+          // Tageszeiten der Reihe nach sind Sachunterricht („Jahr und
+          // Zeit“, „Kalender und Uhr“) und kommen dort vor, nicht in
+          // einem Mathe-Test.
           (
-            'Welcher Monat kommt nach dem Jänner?',
-            'Februar',
-            ['Dezember', 'Februar', 'März'],
-            'Das Jahr beginnt mit Jänner, Februar, März.'
+            'Lumo spielt von 2 Uhr bis 4 Uhr. Wie viele Stunden spielt er?',
+            '2 Stunden',
+            ['1 Stunde', '2 Stunden', '6 Stunden'],
+            'Von 2 Uhr bis 4 Uhr: Der kleine Zeiger geht zwei Stunden weiter. 4 minus 2 sind 2.'
           ),
           (
-            'Welcher Monat ist der letzte im Jahr?',
-            'Dezember',
-            ['Jänner', 'November', 'Dezember'],
-            'Das Jahr endet mit dem Dezember. Danach beginnt ein neues Jahr mit dem Jänner.'
+            'Die Schule beginnt um 8 Uhr und dauert 4 Stunden. Um wie viel Uhr ist sie aus?',
+            '12 Uhr',
+            ['4 Uhr', '11 Uhr', '12 Uhr'],
+            'Von 8 Uhr vier Stunden weiter: 9, 10, 11, 12. Die Schule ist um 12 Uhr aus.'
+          ),
+          (
+            'Es ist 3 Uhr. Wie spät ist es in 2 Stunden?',
+            '5 Uhr',
+            ['1 Uhr', '4 Uhr', '5 Uhr'],
+            'Von 3 Uhr zwei Stunden weiter: 4 Uhr, 5 Uhr.'
+          ),
+          (
+            'Es ist 9 Uhr. Wie spät war es vor 1 Stunde?',
+            '8 Uhr',
+            ['8 Uhr', '10 Uhr', '1 Uhr'],
+            'Eine Stunde zurück: Vor 9 Uhr war es 8 Uhr.'
+          ),
+          (
+            'Der Ausflug dauert von 9 Uhr bis 12 Uhr. Wie viele Stunden dauert er?',
+            '3 Stunden',
+            ['2 Stunden', '3 Stunden', '21 Stunden'],
+            'Von 9 Uhr bis 12 Uhr sind es 3 Stunden: 10, 11, 12.'
+          ),
+          (
+            'Ein Film dauert 1 Stunde, ein zweiter Film 2 Stunden. Wie lange dauern beide zusammen?',
+            '3 Stunden',
+            ['1 Stunde', '2 Stunden', '3 Stunden'],
+            '1 Stunde plus 2 Stunden sind 3 Stunden.'
+          ),
+          (
+            'Mia schläft um 7 Uhr in der Früh noch. Sie wacht 1 Stunde später auf. Um wie viel Uhr wacht sie auf?',
+            '8 Uhr',
+            ['6 Uhr', '8 Uhr', '9 Uhr'],
+            'Eine Stunde nach 7 Uhr ist es 8 Uhr.'
+          ),
+          (
+            'Das Turnen dauert 1 Stunde, das Schwimmen 2 Stunden. Was dauert länger?',
+            'das Schwimmen',
+            ['das Turnen', 'das Schwimmen', 'beides gleich lang'],
+            '2 Stunden sind länger als 1 Stunde.'
+          ),
+          (
+            'Der Bus fährt um 10 Uhr ab. Es ist 8 Uhr. Wie viele Stunden musst du noch warten?',
+            '2 Stunden',
+            ['2 Stunden', '8 Stunden', '18 Stunden'],
+            'Von 8 Uhr bis 10 Uhr sind es 2 Stunden: 9 Uhr, 10 Uhr.'
+          ),
+          (
+            'Oma kommt um 6 Uhr. Lumo kommt 3 Stunden früher. Um wie viel Uhr kommt Lumo?',
+            '3 Uhr',
+            ['3 Uhr', '6 Uhr', '9 Uhr'],
+            '3 Stunden vor 6 Uhr: 5 Uhr, 4 Uhr, 3 Uhr.'
+          ),
+          (
+            'Der Kuchen bäckt 1 Stunde. Er kommt um 4 Uhr in den Ofen. Wann ist er fertig?',
+            'um 5 Uhr',
+            ['um 3 Uhr', 'um 4 Uhr', 'um 5 Uhr'],
+            'Eine Stunde nach 4 Uhr ist es 5 Uhr.'
           ),
           (
             'Eine Pause dauert 5 Minuten, die nächste 5 Minuten. Wie lange dauern beide zusammen?',

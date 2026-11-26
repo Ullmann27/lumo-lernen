@@ -6,7 +6,6 @@ import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/domain/games/game_level_catalog.dart';
-import 'package:lumo_lernen/domain/games/game_math_tasks.dart';
 import 'package:lumo_lernen/features/games/mini_games/color_boxes_game.dart';
 import 'package:lumo_lernen/features/games/mini_games/letter_fill_game.dart';
 import 'package:lumo_lernen/features/games/mini_games/number_house_game.dart';
@@ -79,7 +78,10 @@ void main() {
         if (game == 'house' || game == 'stars') {
           final prompt = tester.widget<Text>(find.textContaining(game == 'house'
               ? 'Welche Zahl fehlt'
-              : GameMathTasks.starsPath(GameLevelCatalog.byId(42)!, 0).prompt));
+              // Stufe 42 übt die 3er-Reihe. Welche Aufgabe die Runde zuerst
+              // zeigt, bestimmt seit A1 der Rundensamen (vorher war jede
+              // Runde gleich); geprüft wird die Lesbarkeit der Aufgabe.
+              : '3 × '));
           expect(_contrast(prompt.style!.color!, const Color(0xFFF0F7FC)),
               greaterThan(7),
               reason: 'Task ink must remain readable in the night app theme.');

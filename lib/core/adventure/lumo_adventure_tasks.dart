@@ -158,11 +158,28 @@ class LumoAdventureTasks {
       answer + 10, answer - 10, answer + 1, answer - 1,
       answer + 2, answer - 2, answer + 3, answer - 3,
     ]..shuffle(_random);
-    for (final c in candidates) {
-      if (c >= 0 && (max == null || c <= max)) options.add(c);
-      if (options.length == 4) break;
-    }
+    options.addAll(_spreadAround(answer, [
+      for (final c in candidates)
+        if (c >= 0 && (max == null || c <= max)) c,
+    ]));
     return _shuffle(options.map((n) => '$n').toList());
+  }
+
+  /// Drei falsche Werte so, dass die Lösung gleich oft die kleinste, eine
+  /// mittlere oder die größte Karte ist. Feste Muster (immer −10, +10, +60
+  /// Minuten; Nachbarzahlen) machten die Lösung fast immer zur zweit-
+  /// kleinsten Karte: Wer das merkt, löst ohne zu rechnen.
+  List<int> _spreadAround(int answer, Iterable<int> candidates) {
+    final below = <int>[], above = <int>[];
+    for (final c in candidates) {
+      if (c < answer && !below.contains(c)) below.add(c);
+      if (c > answer && !above.contains(c)) above.add(c);
+    }
+    final low = (3 - above.length).clamp(0, 3);
+    final high = below.length.clamp(0, 3);
+    final belowCount =
+        low >= high ? high : low + _random.nextInt(high - low + 1);
+    return [...below.take(belowCount), ...above.take(3 - belowCount)];
   }
 
   List<String> _choicesWith(String answer, Iterable<String> others) {
@@ -175,6 +192,11 @@ class LumoAdventureTasks {
   }
 
   List<String> _shuffle(List<String> list) => list..shuffle(_random);
+
+  /// Dativ Plural: Endet der Plural nicht auf -n oder -s, kommt -n dazu
+  /// (Nüsse → Nüssen, Äpfel → Äpfeln, aber Perlen, Ballons).
+  static String _dativePlural(String plural) =>
+      plural.endsWith('n') || plural.endsWith('s') ? plural : '${plural}n';
 
   /// Meist Inhalte der eigenen Klasse, manchmal Wiederholung von früher.
   List<T> _preferGrade<T>(List<T> all, int g, int Function(T) gradeOf) {
@@ -283,8 +305,11 @@ class LumoAdventureTasks {
           return _math(
               'Rechengeschichten',
               '$hero kauft $n Packungen. In jeder Packung sind $k $pl. '
-                  '$hero bekommt noch $b $pl dazu. Von allen $pl verschenkt '
-                  '$hero $c. Wie viele $pl hat $hero am Ende?',
+                  // „Von allen“ (nicht „Davon“, Befund M20) braucht den
+                  // Dativ Plural: „von allen Nüssen“, nicht „Nüsse“.
+                  '$hero bekommt noch $b $pl dazu. Von allen '
+                  '${_dativePlural(pl)} verschenkt $hero $c. '
+                  'Wie viele $pl hat $hero am Ende?',
               n * k + b - c,
               'Erst $n · $k = ${n * k}, dann + $b = ${n * k + b}, '
                   'dann − $c = ${n * k + b - c}.',
@@ -528,11 +553,10 @@ class LumoAdventureTasks {
     final firstText = count == 1
         ? '${first[0]} (${_euro(p1)})'
         : '$count-mal ${first[0]} (je ${_euro(p1)})';
-    final wrong = <String>{
-      for (final delta in [10, -10, 50, -50, 100, -100])
-        if (change + delta > 0) _euro(change + delta),
-    }.toList()
-      ..shuffle(_random);
+    final wrong = _spreadAround(change, [
+      for (final delta in [10, -10, 50, -50, 100, -100]..shuffle(_random))
+        if (change + delta > 0) change + delta,
+    ]).map(_euro).toList();
     return AdventureTask(
       subject: 'Mathematik',
       unit: 'Marktstand',
@@ -615,11 +639,14 @@ class LumoAdventureTasks {
         prompt: 'Lumos Kart-Turnier beginnt um $start Uhr und dauert $hours '
             '${hours == 1 ? 'Stunde' : 'Stunden'}. Um wie viel Uhr ist es aus?',
         answer: '$end Uhr',
+        // Typische Fehler: Startzeit genannt, eine Stunde verzählt.
         choices: _choicesWith('$end Uhr', [
-          '${end + 1} Uhr',
-          '${end - 1} Uhr',
-          '${start + hours + 2} Uhr',
-          '$start Uhr',
+          for (final hour in _spreadAround(end, [
+            for (final h in [start, end + 1, end - 1, end + 2, end - 2]
+              ..shuffle(_random))
+              if (h >= 1) h,
+          ]))
+            '$hour Uhr',
         ]),
         explanation: 'Von $start Uhr $hours '
             '${hours == 1 ? 'Stunde' : 'Stunden'} weiter: '
@@ -639,11 +666,13 @@ class LumoAdventureTasks {
       prompt: '$hero startet um ${fmt(startH * 60 + startM)} Uhr eine Wanderung '
           'auf die Alm. Sie dauert $dur Minuten. Um wie viel Uhr kommt $hero an?',
       answer: '$answer Uhr',
+      // Typische Fehler: zehn Minuten verzählt, Stunde statt Minuten.
       choices: _choicesWith('$answer Uhr', [
-        '${fmt(total + 10)} Uhr',
-        '${fmt(total - 10)} Uhr',
-        '${fmt(total + 60)} Uhr',
-        '${fmt(total - 15)} Uhr',
+        for (final minutes in _spreadAround(total, [
+          total + 10, total - 10, total + 60, total - 60, total - 15,
+          total + 15,
+        ]..shuffle(_random)))
+          '${fmt(minutes)} Uhr',
       ]),
       explanation: '${fmt(startH * 60 + startM)} Uhr + $dur Minuten = $answer Uhr.',
     );
@@ -961,15 +990,31 @@ class LumoAdventureTasks {
       subject: 'Sachunterricht',
       unit: 'Österreich-Reise',
       prompt: askCapital
-          ? 'Lumo fliegt mit dem Ballon über ${state[0]}. '
+          ? 'Lumo fliegt mit dem Ballon über ${_stateAccusative(state[0])}. '
               'Wie heißt die Landeshauptstadt?'
           : 'Lumo landet in ${state[1]}. In welchem Bundesland ist das?',
       answer: answer,
       choices: _choicesWith(answer, others),
-      explanation: '${state[1]} ist die Landeshauptstadt von ${state[0]}.',
+      explanation:
+          '${state[1]} ist die Landeshauptstadt ${_stateGenitive(state[0])}.',
       visual: 'science',
     );
   }
+
+  /// Die Steiermark und das Burgenland stehen mit Artikel: „über die
+  /// Steiermark“, „die Landeshauptstadt des Burgenlandes“. Die übrigen
+  /// Bundesländer stehen ohne Artikel („über Tirol“, „von Tirol“).
+  static String _stateAccusative(String state) => switch (state) {
+        'Steiermark' => 'die Steiermark',
+        'Burgenland' => 'das Burgenland',
+        _ => state,
+      };
+
+  static String _stateGenitive(String state) => switch (state) {
+        'Steiermark' => 'der Steiermark',
+        'Burgenland' => 'des Burgenlandes',
+        _ => 'von $state',
+      };
 
   // ─── Logik ─────────────────────────────────────────────────────────
 
@@ -1024,17 +1069,29 @@ class LumoAdventureTasks {
     String encode(String w) => w.split('').map((c) => '${code(c)}').join('-');
     final pool = <String>{...adventureCodeWords, ..._extraCodeWords}
       ..remove(word);
-    final sameStart = pool.where((w) => w[0] == word[0]).toList()
-      ..shuffle(_random);
-    final similarLength = pool
-        .where((w) => w[0] != word[0] && (w.length - word.length).abs() <= 1)
-        .toList()
-      ..shuffle(_random);
-    // Ab Klasse 2 zuerst Wörter mit demselben Anfang: dann muss man
-    // weiterlesen. In Klasse 1 genügen Wörter ähnlicher Länge.
+    List<String> pick(bool Function(String) test) =>
+        pool.where(test).toList()..shuffle(_random);
+    final sameLength = word.length;
+    // Gleich lange Wörter zuerst: Sonst verrät schon die Anzahl der Zahlen
+    // das Wort (vorher in 40 % der Aufgaben, z. B. 6 Zahlen und nur
+    // KUCHEN hat 6 Buchstaben). Ab Klasse 2 dabei zuerst Wörter mit
+    // demselben Anfang, dann muss man weiterlesen.
+    final sameStartSameLength =
+        pick((w) => w[0] == word[0] && w.length == sameLength);
+    final otherStartSameLength =
+        pick((w) => w[0] != word[0] && w.length == sameLength);
+    final sameStart = pick((w) => w[0] == word[0] && w.length != sameLength);
+    final similarLength = pick((w) =>
+        w[0] != word[0] && (w.length - sameLength).abs() == 1);
     final others = g >= 2
-        ? <String>[...sameStart, ...similarLength]
-        : <String>[...similarLength, ...sameStart];
+        ? <String>[
+            ...sameStartSameLength, ...otherStartSameLength, ...sameStart,
+            ...similarLength,
+          ]
+        : <String>[
+            ...otherStartSameLength, ...sameStartSameLength, ...similarLength,
+            ...sameStart,
+          ];
     final rule = shift == 0
         ? 'Im Code ist A = 1, B = 2, C = 3 und so weiter bis Z = 26.'
         : 'Lumo hat den Code verschoben: Jetzt ist A = 2, B = 3, C = 4 und so weiter bis Z = 27.';
