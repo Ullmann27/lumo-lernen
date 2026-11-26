@@ -9,7 +9,10 @@
 | Parallele 2083-Integration Flutter `d5b50c331b2235544daa9c4aba61c9dee3eb9b25` | Probe der gepackten Laufzeitdaten übernommen. Der gewählte Flutter-Ausgangspunkt enthält zusätzlich die drei Sachunterrichtsdiagramme sowie die Prüfung ähnlicher Aufgaben anhand der Kompetenz. |
 | Parallele 2083-Integration Godot `94477ade6339133bb15125d719b50af80d615ea0` | Exportfilter für Stadt-, Figuren-, Strecken- und Musikdaten übernommen. Die dortige abweichende Windschatten-Änderung und die bereits im Ausgangspunkt ersetzten Importprodukte gehören nicht zum Integrationsstand. |
 | 2081, 2082 und frühere Kart-, World- und Lernzweige | Die übernommenen Branches und Patches sind in den früheren [2081-Daten](../../2026-11-24/INTEGRATION-2081.json), der [2082-Matrix](../../2026-11-25/INTELLIGENCE-2082.md) und der [2083-Übergabe](../INTELLIGENCE-2-0.md) verzeichnet. Der Ausgangspunkt baut auf 2082 auf. |
-| 2082 APK | Das [ARM64-Artefakt](https://github.com/Ullmann27/lumo-lernen/actions/runs/45569841812/artifacts/15004539062) ist der jüngste gelungene Ausgangsbau. Seine drei Workflow-Jobs einschließlich Android-Tour meldeten Erfolg. Ein späterer, getrennter Versuch, die unveränderte Datei öffentlich zu veröffentlichen, scheiterte beim Erstellen des Tags mit HTTP 403. |
+| Frühere Fable-Stände 2065, Kurs- und Garage-Überarbeitung | Flutter `52c2c570` und Godot `25fc4ff` sind jeweils Vorfahren der Ausgangspunkte. Die Branches sind in der Integrationshistorie enthalten. |
+| Fachintegrität, Fachanalysen und Meshy-Auslieferung | Die Spitzen von Lern-App PR #554 (`b00e1fbc`) und #555 (`26458911`) sowie des nativen Meshy-Stands (`410327bf`) sind Vorfahren der Ausgangspunkte. |
+| Fable-Werbevideo `1e00457e` | Der eigenständige Zweig ergänzt ausschließlich `tools/promo_video/`. Er erstellt ein Werbevideo außerhalb der APK. Der bereits integrierte Kart-Vorspann ist ein eigener Spielpfad. |
+| 2082 APK | Das [ARM64-Artefakt](https://github.com/Ullmann27/lumo-lernen/actions/runs/45569841812/artifacts/15004539062) ist der jüngste gelungene Ausgangsbau. Seine drei Workflow-Jobs einschließlich Android-Tour meldeten Erfolg. Ein späterer, getrennter Versuch, die unveränderte Datei öffentlich zu veröffentlichen, scheiterte beim Erstellen des Tags mit HTTP 403. Details und Dateihash stehen im [APK-Nachweis](2082-APK.json). |
 | 2079 APK | Jüngstes öffentlich gefundenes Test-Release. Zeitpunkt und Verfügbarkeit sind getrennt vom Ergebnis des jeweiligen Emulatorlaufs zu bewerten. |
 
 ## Freigabematrix
@@ -29,3 +32,10 @@
 | Signiertes Android-Update | FEHLERHAFT | 2083 erreichte die Android-Stufe nicht. 2084 erhält einen neuen, exakten Flutter-/Godot-Pin und prüft `dev.ullmann.lumo.lumo_lernen.coachpreview`, ARM64 und das vorhandene Familienzertifikat. |
 
 Die Einträge beschreiben den Stand vor dem Zwischenbuild. Testergebnisse für den neuen Stand müssen mit genau seinem APK-Quellpin verknüpft werden.
+
+## Abnahme am Gerät
+
+1. Die signierte ARM64-APK über die vorhandene Test-App installieren. Vorher ein lokales Backup mit der eingebauten Sicherung anlegen. Beim ersten Start aktive Kinderprofile, Spielstände, Gutscheine, Sternestand und individuelle Einstellungen prüfen.
+2. Auf dem Fold7 außen, innen und quer je aus dem Kart-Hauptmenü Garage und Werkstatt öffnen. Original-Lumo, Kart und Sonderlack drehen und nach einer echten Ziellinie wieder in die Garage gehen. Auf Dschungelherz fünf Gegner ins Ziel fahren lassen.
+3. Flugmodus einschalten. Eine Nachhilfeaufgabe in Mathematik und eine weitere in Deutsch oder Englisch lösen. Sprache starten, unterbrechen und stummschalten. Sonnenhafen öffnen, parken, einen Auftrag lösen und den Spielstand nach App-Neustart laden.
+4. Dieselben Wege auf einem 11-Zoll-Tablet wiederholen. Zehn Minuten Rennen mit der gewählten Grafikstufe messen. Displayform, Grafikstufe, Bildzeiten, Temperatur, sichtbare Einbrüche und Zeitpunkt notieren.
