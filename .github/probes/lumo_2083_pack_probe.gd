@@ -10,6 +10,9 @@ const FILES := [
 	"res://assets/kart/signature/vulkanexpress/models.json",
 	"res://assets/kart/signature/wolkensturm/models.json",
 	"res://assets/kart/signature/kristallflut/models.json",
+	"res://assets/audio/kart/signature/vulkanexpress/manifest.json",
+	"res://assets/audio/kart/signature/wolkensturm/manifest.json",
+	"res://assets/audio/kart/signature/kristallflut/manifest.json",
 ]
 const FIGURES := ["badger", "cat", "frog", "lion", "otter", "owl", "rabbit", "squirrel", "turtle"]
 
