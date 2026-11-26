@@ -169,7 +169,17 @@ void main() {
       } else {
         expect(entry.$4, isNotNull);
         await tap(tester, 'learning-subject-${entry.$3}');
-        await tap(tester, 'learning-unit-${entry.$3}-${entry.$4}');
+        final unitKey = 'learning-unit-${entry.$3}-${entry.$4}';
+        // A long subject list builds its cards as the child scrolls.
+        await tester.scrollUntilVisible(
+          find.byKey(ValueKey(unitKey)),
+          240,
+          scrollable: find.descendant(
+            of: find.byKey(const PageStorageKey('lumo-1992-learning-hub')),
+            matching: find.byType(Scrollable),
+          ).first,
+        );
+        await tap(tester, unitKey);
       }
       expect(find.byType(expected.runtimeType), findsOneWidget,
           reason:
