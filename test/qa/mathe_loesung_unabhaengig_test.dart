@@ -1,12 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lumo_lernen/core/data_chart_exercise.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/core/task_quality_guard.dart';
 
 /// Mathematik: Lösungen unabhängig nachrechnen.
 ///
 /// Jede Mathe-Rubrik aller Klassen wird mit 300 Startwerten erzeugt. Für jede
-/// Aufgabe mit Rechenstruktur rechnet ein eigener Löser aus dem Aufgabentext
-/// (nicht aus dem Generator) die Lösung nach. Zusätzlich gilt für jede
+/// Aufgabe mit Rechenstruktur ermittelt ein eigener Löser die Lösung aus
+/// dem Aufgabentext oder den dargestellten Beobachtungen. Zusätzlich gilt für jede
 /// Aufgabe: Lösung genau einmal unter den Karten, Ablenker verschieden und
 /// falsch, Zahlen im Zahlenraum der Klasse (Lehrplan VS 2023: Klasse 1 bis
 /// 20, Klasse 2 bis 100, Klasse 3 bis 1000, Klasse 4 bis 1 000 000).
@@ -56,9 +57,40 @@ int _cents(String text) {
 
 String _sign(int a, int b) => a < b ? '<' : (a > b ? '>' : '=');
 
-/// Unabhängige Lösung aus dem Aufgabentext oder null (kein Löser).
-String? solve(String prompt, String pattern) {
+const _tallyTransfer = 'mathe-striche-in-tabelle-uebertragen';
+const _chartTransfer = 'mathe-diagramm-eintrag-uebertragen';
+const _countTransfers = {_tallyTransfer, _chartTransfer};
+
+String? _solveCountTransfer(
+    String prompt, String pattern, DataChartExercise? figures) {
+  if (figures == null) return null;
+  final tally = pattern == _tallyTransfer;
+  final question = (tally
+          ? RegExp(r'^Zähle die Striche bei „([^“]+)“\. Trage die Zahl ein\.$')
+          : RegExp(r'^[^.]+\. Ergänze (den Balken|die Säule) für „([^“]+)“\.$'))
+      .firstMatch(prompt);
+  if (question == null || tally != figures.tallyToTable) return null;
+  if (!tally && figures.horizontal != (question[1] == 'den Balken')) {
+    return null;
+  }
+  // Use the requested name in the child's prompt, independent of the
+  // generator's designated row and answer. Check the visible target agrees.
+  final label = question[tally ? 1 : 2]!;
+  final matching = figures.rows.asMap().entries
+      .where((row) => row.value.label == label)
+      .toList(growable: false);
+  if (matching.length != 1 || matching.single.key != figures.requestedRow) {
+    return null;
+  }
+  return matching.single.value.value?.toString();
+}
+
+/// Unabhängige Lösung aus den sichtbaren Angaben oder null.
+String? solve(String prompt, String pattern, {DataChartExercise? figures}) {
   final p = prompt.replaceAll('\u00a0', ' ');
+  if (_countTransfers.contains(pattern)) {
+    return _solveCountTransfer(p, pattern, figures);
+  }
   RegExpMatch? m(String source) => RegExp(source).firstMatch(p);
   int g(RegExpMatch match, int i) => _int(match.group(i)!);
   RegExpMatch? r;
@@ -428,6 +460,23 @@ void main() {
   // Lage der Lösung unter den Karten, nach Größe sortiert (Befund S1).
   final ranks = <String, List<int>>{};
 
+  test('Zähldaten prüfen Null, fehlende Beobachtung und Zielzeile', () {
+    const rows = [(label: 'Rosen', value: 0), (label: 'Tulpen', value: null),
+      (label: 'Nelken', value: 5)];
+    DataChartExercise figures(int row, {bool tally = false}) =>
+        DataChartExercise(rows: rows, requestedRow: row, pictogram: false,
+            horizontal: false, tallyToTable: tally);
+    const zero = 'Zähle die Striche bei „Rosen“. Trage die Zahl ein.';
+    const missing = 'Zähle die Striche bei „Tulpen“. Trage die Zahl ein.';
+    const positive = 'Im Garten wurden Blumen gezählt. Ergänze die Säule für „Nelken“.';
+    expect(solve(zero, _tallyTransfer, figures: figures(0, tally: true)), '0');
+    expect(solve(missing, _tallyTransfer, figures: figures(1, tally: true)), isNull);
+    expect(solve(zero, _tallyTransfer, figures: figures(2, tally: true)), isNull);
+    expect(solve(positive, _chartTransfer, figures: figures(2)), '5');
+    expect(solve(positive.replaceFirst('die Säule', 'den Balken'),
+        _chartTransfer, figures: figures(2)), isNull);
+  });
+
   for (var grade = 1; grade <= 4; grade++) {
     test('Klasse $grade: alle Mathe-Rubriken, je $_seeds Startwerte', () {
       final errors = <String>[];
@@ -467,7 +516,7 @@ void main() {
             final answerValue = _comparable(task.answer)!;
             (ranks[pattern] ??= [0, 0, 0, 0])[sorted.indexOf(answerValue)]++;
           }
-          final expected = solve(task.prompt, pattern);
+          final expected = solve(task.prompt, pattern, figures: task.dataChart);
           if (expected == null) continue;
           solved[pattern] = (solved[pattern] ?? 0) + 1;
           if (_norm(expected) != _norm(task.answer)) {
@@ -506,7 +555,8 @@ void main() {
       final share = (solved[entry.key] ?? 0) / entry.value;
       // Rechengeschichten mischen viele Baupläne; mindestens 90 % jeder
       // anderen Familie werden von einem Löser nachgerechnet.
-      if (share < .9) {
+      final minimum = _countTransfers.contains(entry.key) ? 1.0 : .9;
+      if (share < minimum) {
         unknown.add('${entry.key}: ${(share * 100).round()} % von ${entry.value}');
       }
     }
