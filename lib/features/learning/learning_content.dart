@@ -38,11 +38,13 @@ import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/error_detective.dart';
 import '../../domain/school/competency.dart';
 import '../../domain/school/attempt.dart';
+import '../../domain/tutoring/fach_nachhilfe.dart';
 import '../../domain/tutoring/hilfe_folge.dart';
 import '../../domain/tutoring/lumo_nachhilfe.dart';
 import '../../domain/tutoring/nachhilfe_lernstand.dart';
 import '../../domain/tutoring/verstaendnis.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
+import '../tutoring/fach_nachhilfe_screen.dart';
 import '../tutoring/lumo_nachhilfe_screen.dart';
 import '../tutoring/arithmetic_task_aid.dart';
 import '../lumo3d/lumo3d_launcher.dart';
@@ -1009,6 +1011,141 @@ class _LearningContentState extends State<LearningContent>
     return sameUnit;
   }
 
+  /// Ähnliche Aufgaben für die Fach-Nachhilfe (Beispiel und Prüfaufgabe):
+  /// gleiches Thema, andere Lösung. Ein eigener, je Aufgabe fester Generator,
+  /// damit die Reihenfolge der Übung unverändert bleibt.
+  List<FachAufgabe> _fachBeispiele(FachAufgabe original, {int anzahl = 2}) {
+    final grade = _task.grade.clamp(1, 4).toInt();
+    if (!Curriculum.unitsForGrade(_task.subject, grade).contains(_task.unit)) {
+      return const [];
+    }
+    var seed = 17;
+    for (final c in _task.prompt.codeUnits) {
+      seed = (seed * 31 + c) & 0x7fffffff;
+    }
+    final generator = ExerciseFactory(seed: seed);
+    final kind = _varietyGuard.promptPattern(_task.prompt);
+    final gleich = <FachAufgabe>[], anders = <FachAufgabe>[];
+    for (var versuch = 0; versuch < 40 && gleich.length < anzahl; versuch++) {
+      final LumoTask t;
+      try {
+        t = generator.nextExact(
+            grade: grade, subject: _task.subject, unit: _task.unit);
+      } catch (_) {
+        break;
+      }
+      if (!_taskQualityGuard.validate(t)) continue;
+      final f = FachAufgabe.ausTask(t);
+      if (f == null ||
+          f.prompt == original.prompt ||
+          f.antwort == original.antwort ||
+          [...gleich, ...anders].any((x) => x.prompt == f.prompt)) {
+        continue;
+      }
+      (_varietyGuard.promptPattern(t.prompt) == kind ? gleich : anders).add(f);
+    }
+    return [...gleich, ...anders].take(anzahl).toList();
+  }
+
+  /// Fach-Nachhilfe Englisch, Lesen, Sachunterricht: fünf Stufen wie in
+  /// Mathematik. Das Öffnen zählt als Hilfe für die folgende Antwort; nur die
+  /// eigenständige Prüfaufgabe wird als Vergleichsaufgabe gespeichert.
+  Future<void> _openFachNachhilfe(FachAufgabe aufgabe) async {
+    if (!mounted ||
+        _activeSessionScope != _sessionScope ||
+        !_allowHelp ||
+        _answered ||
+        _sessionFinished ||
+        _nativeLearningOpen) {
+      return;
+    }
+    const tutor = FachNachhilfe();
+    final taskId = _taskInstance.taskInstanceId;
+    final generation = widget.appState.profileGeneration;
+    final settings = widget.appState.state.settings;
+    final subject = _task.subject, unit = _task.unit;
+    final originalPrompt = _task.prompt;
+    final kompetenz = _kompetenz;
+    final stopping = _cancelCoachMedia();
+    setState(() => _requestedHelpLevel = math.max(1, _requestedHelpLevel));
+    _publishTaskContext(immediately: true);
+    LumoCompanionRequests.instance.recordLearningEvent(
+        LumoLearningEventKind.hintRequested,
+        context: _publishedTaskContext);
+    final lernstand = await _nachhilfeLernstand(subject, unit, _task.prompt);
+    await stopping;
+    if (!mounted ||
+        widget.appState.profileGeneration != generation ||
+        _taskInstance.taskInstanceId != taskId) {
+      return;
+    }
+    final aehnliche = _fachBeispiele(aufgabe);
+    final beispiel = aehnliche.isEmpty ? null : aehnliche.first;
+    final pruefung = aehnliche.length > 1 ? aehnliche[1] : beispiel;
+    final stufe = lernstand?.startStufe(const LumoNachhilfe(),
+            versuche: _attemptCount) ??
+        tutor.startStufe(versuche: _attemptCount);
+    await Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => FachNachhilfeScreen(
+        aufgabe: aufgabe,
+        beispiel: beispiel,
+        pruefung: pruefung,
+        startStufe: stufe == NachhilfeStufe.ueben
+            ? NachhilfeStufe.vorzeigen
+            : stufe,
+        reduceMotion: settings.reduceAnimations || settings.calmMode,
+        lernstandSatz: lernstand?.kindSatz,
+        onMethode: (methode) {
+          if (!mounted ||
+              widget.appState.profileGeneration != generation ||
+              _taskInstance.taskInstanceId != taskId ||
+              methode == 'pruefen') {
+            return;
+          }
+          _gezeigteMethoden.add(methode);
+          _letzteMethode = methode;
+          _antwortenSeitMethode = 0;
+        },
+        onPruefung: (pruefung) {
+          if (!mounted ||
+              widget.appState.profileGeneration != generation ||
+              _taskInstance.taskInstanceId != taskId ||
+              !_allowHelp) {
+            return;
+          }
+          // Vergleichsaufgabe nach der Hilfe – ohne Sterne oder XP.
+          unawaited(widget.appState.recordLearningAnswer(
+            subject: subject,
+            unit: unit,
+            correct: pruefung.richtig,
+            hintUsed: !pruefung.selbststaendig,
+            prompt: pruefung.aufgabe.prompt,
+            given: pruefung.antwort,
+            expected: pruefung.aufgabe.antwort,
+            check: Attempt.vergleichNachHilfe,
+            reference: originalPrompt,
+            method: pruefung.methode,
+          ));
+          if (!pruefung.richtig) {
+            _methodenOhneErfolg
+                .putIfAbsent(kompetenz, () => <String>{})
+                .addAll(_gezeigteMethoden);
+          }
+        },
+        onSpeak: settings.voiceEnabled
+            ? (text, {bool langsam = false}) => _voice.speak(text,
+                style: VoiceStyle.explain, speedFactor: langsam ? .7 : 1)
+            : null,
+        onStopSpeech: () => unawaited(_voice.stop()),
+      ),
+    ));
+    if (mounted &&
+        widget.appState.profileGeneration == generation &&
+        _taskInstance.taskInstanceId == taskId) {
+      _publishTaskContext();
+    }
+  }
+
   /// Opens a long session at the round where the child stopped last time.
   Future<void> _restoreRound() async {
     final total = _plannedQuestions;
@@ -1186,6 +1323,7 @@ class _LearningContentState extends State<LearningContent>
   /// Erklärweisen dieser Aufgabe in der Reihenfolge der Hilfeleiter.
   List<HilfeVariante> _hilfeVarianten() {
     final rechnung = NachhilfeAufgabe.ausTask(_taskInstance);
+    final fach = rechnung == null ? FachAufgabe.ausTask(_task) : null;
     final folge = HilfeFolge.folge(
       stufen: HilfeFolge.stufen(
         _taskHints.explain(_task, level: 1),
@@ -1193,8 +1331,13 @@ class _LearningContentState extends State<LearningContent>
             _taskHints.explain(_task, level: 2),
         _taskHints.explain(_task, level: 3),
       ),
-      wege: rechnung == null ? const [] : HilfeFolge.rechenwege(rechnung),
-      nachhilfeVerfuegbar: rechnung != null,
+      wege: rechnung != null
+          ? HilfeFolge.rechenwege(rechnung)
+          : fach != null
+              ? const FachNachhilfe().hilfeVarianten(fach,
+                  beispiel: _fachBeispiele(fach, anzahl: 1).firstOrNull)
+              : const [],
+      nachhilfeVerfuegbar: rechnung != null || fach != null,
     );
     return HilfeMethodenwechsel.zuerstNeue(
         folge,
@@ -2922,6 +3065,26 @@ class _LearningContentState extends State<LearningContent>
         ),
       );
 
+  Widget _fachNachhilfeEinstieg(FachAufgabe aufgabe) => SizedBox(
+        width: double.infinity,
+        child: FilledButton.icon(
+          key: const ValueKey('fach-nachhilfe-open'),
+          style: FilledButton.styleFrom(
+            minimumSize: const Size(48, 56),
+            backgroundColor: const Color(0xFFFFC94A),
+            foregroundColor: const Color(0xFF10243A),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+          ),
+          onPressed: _nativeLearningOpen
+              ? null
+              : () => unawaited(_openFachNachhilfe(aufgabe)),
+          icon: const Icon(Icons.school_rounded, size: 26),
+          label: const Text('Schritt für Schritt mit Lumo',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
+        ),
+      );
+
   Widget _coachControls() {
     Widget action(String label, IconData icon, VoidCallback onPressed,
             {Key? key}) =>
@@ -3650,6 +3813,10 @@ class _LearningContentState extends State<LearningContent>
                                 case final nachhilfe?) ...[
                               const SizedBox(height: 12),
                               _nachhilfeEinstieg(nachhilfe),
+                            ] else if (FachAufgabe.ausTask(_task)
+                                case final fach?) ...[
+                              const SizedBox(height: 12),
+                              _fachNachhilfeEinstieg(fach),
                             ],
                             const SizedBox(height: 12),
                             LumoStageTarget(

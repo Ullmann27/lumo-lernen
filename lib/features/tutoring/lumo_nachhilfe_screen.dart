@@ -925,7 +925,9 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
         ? (_fertig ? '${_plan.lob}\n${_plan.abschluss}' : _plan.einleitung)
         : s == null
             ? '${_plan.lob}\n${_plan.abschluss}'
-            : (_schritt == 0 ? '${_plan.einleitung}\n${s.text}' : s.text);
+            : (_schritt == 0
+                ? '${_pruefRichtig == false ? 'Jetzt rechnen wir ${_plan.aufgabe.text} Schritt für Schritt zusammen.' : _plan.einleitung}\n${s.text}'
+                : s.text);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
