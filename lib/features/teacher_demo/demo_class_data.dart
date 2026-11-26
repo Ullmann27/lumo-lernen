@@ -4,13 +4,15 @@ import '../../core/math_task_templates.dart';
 import '../../domain/school/attempt.dart';
 import '../../domain/school/competency.dart';
 import '../../domain/school/learning_analysis.dart';
+import '../../domain/school/learning_guidance.dart';
 
 /// Kennzeichnung, die überall in der Lehrkräfte-Demo sichtbar ist.
 const String demoDataLabel = 'DEMO-DATEN';
 
 /// Präfix aller Demo-Schüler-IDs. Echte Profile tragen es nie, dadurch
-/// bleiben Demo-Daten und echte Lerndaten sicher getrennt.
-const String demoStudentPrefix = 'demo-kind-';
+/// bleiben Demo-Daten und echte Lerndaten sicher getrennt. Dieselbe Konstante
+/// sperrt Demo-Kinder in der echten Eltern-/Lehrkräfte-Auswertung.
+const String demoStudentPrefix = LearningGuidance.demoStudentPrefix;
 
 bool isDemoStudentId(String id) => id.startsWith(demoStudentPrefix);
 

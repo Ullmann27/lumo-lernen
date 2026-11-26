@@ -22,8 +22,11 @@ import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
 import '../../domain/school/adaptive_practice_plan.dart';
 import '../../domain/school/learning_chart_data.dart';
+import '../../domain/school/learning_guidance.dart';
 import '../report/learning_analytics_panel.dart';
 import '../report/adaptive_practice_plan_card.dart';
+import '../report/learning_guidance_panel.dart';
+import '../report/learning_route_launcher.dart';
 import '../report/lernbericht_screen.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -48,7 +51,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
   bool _loading = true;
   bool _showFullDna = false;
   int _dataRevision = 0;
-  Future<(AdaptivePracticePlan, LearningChartData)?>? _planData;
+  Future<(AdaptivePracticePlan, LearningChartData, LearningGuidance)?>? _planData;
 
   // 2026-06-04: KI-Wochenanalyse direkt im Insight-Dashboard.
   // Bisher war diese Funktion nur in parent_report_card.dart versteckt.
@@ -135,14 +138,16 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                         const SizedBox(height: 16),
                         _statsRow(),
                         const SizedBox(height: 16),
+                        // Echte, profilgebundene Auswertung zuerst: was das
+                        // Kind gerade übt und welche Unterstützung hilft.
+                        _adaptivePlan(),
+                        const SizedBox(height: 16),
                         _lumoSays(),
                         const SizedBox(height: 16),
                         if (_dna!.nextRecommendation != null) ...[
                           _nextRecCard(),
                           const SizedBox(height: 16),
                         ],
-                        _adaptivePlan(),
-                        const SizedBox(height: 16),
                         LumoInsightHeatmap(entries: _allEntries()),
                         const SizedBox(height: 16),
                         if (_dna!.errorBreakdown.isNotEmpty) ...[
@@ -164,7 +169,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     );
   }
 
-  Future<(AdaptivePracticePlan, LearningChartData)?> _loadPlan(LumoAppState app) async {
+  Future<(AdaptivePracticePlan, LearningChartData, LearningGuidance)?> _loadPlan(LumoAppState app) async {
     try {
       final generation = app.profileGeneration;
       final owner = await app.captureLearningProfile();
@@ -182,6 +187,8 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
             studentId: owner.logStudentId, now: asOf),
         LearningChartData.fromAttempts(attempts,
             studentId: owner.logStudentId, now: asOf),
+        LearningGuidance.fromAttempts(attempts,
+            studentId: owner.logStudentId, now: asOf),
       );
     } catch (_) {
       // Do not show an empty or previous child's report on storage failure.
@@ -189,7 +196,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     }
   }
 
-  Widget _adaptivePlan() => FutureBuilder<(AdaptivePracticePlan, LearningChartData)?>(
+  Widget _adaptivePlan() => FutureBuilder<(AdaptivePracticePlan, LearningChartData, LearningGuidance)?>(
         key: ValueKey(widget.appState.profileGeneration),
         future: _planData,
         builder: (context, snapshot) {
@@ -209,10 +216,19 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
               ],
             );
           }
-          final (plan, chartData) = evidence;
+          final (plan, chartData, guidance) = evidence;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              LearningGuidancePanel(
+                guidance: guidance,
+                canPractice: (r) => LearningRouteLauncher.canStart(
+                    widget.appState, r.subject, r.unit),
+                onPractice: (r) => LearningRouteLauncher.start(
+                    context, widget.appState,
+                    subject: r.subject, unit: r.unit, guided: r.guided),
+              ),
+              const SizedBox(height: 16),
               LearningAnalyticsPanel(data: chartData),
               const SizedBox(height: 16),
               AdaptivePracticePlanCard(plan: plan),

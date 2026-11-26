@@ -6,9 +6,11 @@ import '../../core/cognitive_profile_repository.dart';
 import '../../domain/school/attempt.dart';
 import '../../domain/cognitive/cognitive_profile.dart';
 import '../../domain/school/learning_analysis.dart';
+import '../../domain/school/learning_guidance.dart';
 import '../../domain/school/school_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../report/learning_guidance_panel.dart';
 import '../report/student_report_view.dart';
 import 'assign_task_sheet.dart';
 import 'assignment_evidence_summary.dart';
@@ -173,6 +175,15 @@ class _TeacherStudentScreenState extends State<TeacherStudentScreen> {
               ),
               const SizedBox(height: 12),
             ],
+            // Auf einen Blick: Stärken, Förderbedarf, Lernplan; jede
+            // Empfehlung lässt sich direkt als Aufgabe zuweisen.
+            LearningGuidancePanel(
+              guidance: LearningGuidance.fromAttempts(_attempts,
+                  studentId: student.id, now: DateTime.now()),
+              onAssign: (r) => _assign(
+                  preset: AssignPreset(subject: r.subject, unit: r.unit)),
+            ),
+            const SizedBox(height: 12),
             TeacherPanel(
               title: 'Aufgaben',
               trailing: TeacherButton(
