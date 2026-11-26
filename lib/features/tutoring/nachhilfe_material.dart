@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../domain/tutoring/lumo_nachhilfe.dart';
+import '../../widgets/design/lumo_design_system.dart';
 
 /// Anschauungsmaterial der Lumo-Nachhilfe.
 ///
@@ -262,7 +263,11 @@ class NachhilfeZahlenstrahl extends StatelessWidget {
     required this.position,
     required this.spruenge,
     this.reduceMotion = false,
+    this.lumoGroesse = 52,
   });
+
+  /// Höhe des Fuchses unter dem Strahl (größer auf Fold innen und Tablet).
+  final double lumoGroesse;
 
   /// Sichtbarer Bereich (auf Zehner gerundet).
   final int von;
@@ -281,7 +286,7 @@ class NachhilfeZahlenstrahl extends StatelessWidget {
       return Semantics(
         label: 'Zahlenstrahl von $von bis $bis. Lumo steht auf $position.',
         child: SizedBox(
-          height: 204,
+          height: 176 + lumoGroesse,
           child: Stack(clipBehavior: Clip.none, children: [
             Positioned.fill(
               child: TweenAnimationBuilder<double>(
@@ -303,10 +308,14 @@ class NachhilfeZahlenstrahl extends StatelessWidget {
               key: const ValueKey('nachhilfe-strahl-lumo'),
               duration: _dauer(reduceMotion, 150),
               curve: Curves.easeInOutCubic,
-              left: x(position) - 16,
-              top: 146,
-              child: const Icon(Icons.pets_rounded,
-                  color: Color(0xFFFF9F43), size: 32),
+              left: x(position) - lumoGroesse / 2,
+              top: 150,
+              child: NachhilfeLumoFigur(
+                key: const ValueKey('nachhilfe-strahl-fuchs'),
+                groesse: lumoGroesse,
+                huepfAnlass: position,
+                reduceMotion: reduceMotion,
+              ),
             ),
             Positioned(
               left: 0,
@@ -321,6 +330,53 @@ class NachhilfeZahlenstrahl extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+/// Der echte Lumo (Originalbild mit Brille und Jacke) als kleine Figur auf dem
+/// Zahlenstrahl. Bei jedem neuen Platz ([huepfAnlass]) macht er einen kleinen
+/// Hüpfer; mit [reduceMotion] steht er still.
+class NachhilfeLumoFigur extends StatelessWidget {
+  const NachhilfeLumoFigur({
+    super.key,
+    required this.groesse,
+    required this.huepfAnlass,
+    this.reduceMotion = false,
+    this.semanticLabel = 'Lumo',
+  });
+
+  final double groesse;
+  final int huepfAnlass;
+  final bool reduceMotion;
+  final String semanticLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final pixel = (groesse * MediaQuery.devicePixelRatioOf(context)).round();
+    final bild = Image.asset(
+      LumoDesignFoxPose.cheer.assetPath,
+      width: groesse,
+      height: groesse,
+      cacheWidth: pixel,
+      fit: BoxFit.contain,
+      semanticLabel: semanticLabel,
+      errorBuilder: (_, __, ___) => Icon(Icons.pets_rounded,
+          color: const Color(0xFFFF9F43),
+          size: groesse * 0.7,
+          semanticLabel: semanticLabel),
+    );
+    if (reduceMotion) return bild;
+    return TweenAnimationBuilder<double>(
+      key: ValueKey('lumo-huepfer-$huepfAnlass'),
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 650),
+      curve: Curves.easeInOut,
+      builder: (context, t, child) => Transform.translate(
+        offset: Offset(0, -math.sin(math.pi * t) * groesse * 0.28),
+        child: child,
+      ),
+      child: bild,
+    );
   }
 }
 

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
@@ -91,6 +92,11 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
   int _reihe1 = 0;
   int _reihe2 = 0;
   int _position = 0;
+
+  /// Steine 0–20 passen auf dem Handy nicht nebeneinander: die Leiste rollt
+  /// so, dass Lumos Stein immer sichtbar ist.
+  final ScrollController _steinLeiste = ScrollController();
+  int? _steinLeisteBei;
   final List<(int, int)> _spruenge = <(int, int)>[];
   List<int>? _zerlegung;
   int? _gewaehlt;
@@ -128,6 +134,7 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
   void dispose() {
     widget.onStopSpeech?.call();
     _lumo.dispose();
+    _steinLeiste.dispose();
     super.dispose();
   }
 
@@ -559,48 +566,180 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
               _aktionen(s),
             ];
             const rand = EdgeInsets.fromLTRB(16, 12, 16, 24);
+            final eingabe = _eingabeOffen(s);
             // Aufgeklapptes Fold oder Tablet: Lumo links, Material rechts.
+            // Beide Spalten füllen die ganze Höhe; der Ziffernblock steht fest
+            // unter dem Material und ist ohne Scrollen erreichbar.
             if (constraints.maxWidth >= 760) {
               return Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
                     flex: 5,
-                    child: SingleChildScrollView(
-                      padding: rand,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [...kopf, ...fuss],
-                      ),
-                    ),
+                    child: _fuellendeSpalte(
+                        oben: [...kopf, ..._wegBisher()],
+                        unten: fuss,
+                        rand: rand),
                   ),
                   Expanded(
                     flex: 6,
-                    child: SingleChildScrollView(
+                    child: Padding(
                       padding: rand,
-                      child: _material(s),
+                      child: _material(
+                        s,
+                        fuellend: true,
+                        ziffernblock: eingabe
+                            ? _ziffernblock(
+                                kompakt: constraints.maxHeight < 900)
+                            : null,
+                      ),
                     ),
                   ),
                 ],
               );
             }
-            return SingleChildScrollView(
-              padding: rand,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ...kopf,
-                  const SizedBox(height: 14),
-                  _material(s),
-                  ...fuss,
-                ],
-              ),
+            // Handy: Lumo und Material scrollen, der Ziffernblock bleibt
+            // unten fest im sichtbaren Bereich.
+            return Column(
+              children: [
+                Expanded(
+                  child: _fuellendeSpalte(
+                    oben: [...kopf, const SizedBox(height: 14), _material(s)],
+                    unten: fuss,
+                    rand: rand,
+                  ),
+                ),
+                if (eingabe)
+                  Container(
+                    key: const ValueKey('nachhilfe-ziffernleiste'),
+                    width: double.infinity,
+                    padding: const EdgeInsets.fromLTRB(8, 8, 8, 10),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF0E2744),
+                      border: Border(
+                          top: BorderSide(color: Color(0xFF3B7FA6), width: 2)),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Color(0x66000000),
+                            blurRadius: 14,
+                            offset: Offset(0, -4)),
+                      ],
+                    ),
+                    child: Center(child: _ziffernblock(kompakt: true)),
+                  ),
+              ],
             );
           }),
         ),
       ),
     );
   }
+
+  /// Scrollt nur, wenn der Inhalt höher als der Bildschirm ist. Sonst füllt
+  /// die Spalte die Höhe: oben Lumo, unten die Knöpfe – keine leere Fläche.
+  Widget _fuellendeSpalte({
+    required List<Widget> oben,
+    required List<Widget> unten,
+    required EdgeInsets rand,
+  }) =>
+      LayoutBuilder(
+        builder: (context, constraints) => SingleChildScrollView(
+          padding: rand,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+                minHeight: math.max(0, constraints.maxHeight - rand.vertical)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: oben,
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: unten,
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+
+  /// Fold innen und Tablet: die schon gegangenen Schritte bleiben neben dem
+  /// Material lesbar (höchstens die letzten vier), statt leerer Fläche.
+  List<Widget> _wegBisher() {
+    if (_pruefPhase) return const [];
+    final fertig = _plan.schritte
+        .take(_schritt.clamp(0, _plan.schritte.length))
+        .toList(growable: false);
+    if (fertig.isEmpty) return const [];
+    final zeigen =
+        fertig.length > 4 ? fertig.sublist(fertig.length - 4) : fertig;
+    return [
+      const SizedBox(height: 16),
+      Container(
+        key: const ValueKey('nachhilfe-weg-bisher'),
+        padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+        decoration: BoxDecoration(
+          color: const Color(0x8016324F),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: const Color(0x803B7FA6), width: 1.5),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Unser Weg bisher',
+                style: TextStyle(
+                    color: Color(0xFFFFE08A),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800)),
+            for (final schritt in zeigen)
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 2),
+                      child: Icon(Icons.check_circle_rounded,
+                          color: Color(0xFF5BD69A), size: 20),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        schritt.frage == null
+                            ? schritt.text
+                            : '${schritt.text}  →  ${schritt.frage}',
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            height: 1.3,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        ),
+      ),
+    ];
+  }
+
+  bool _eingabeOffen(NachhilfeSchritt? s) => _pruefPhase
+      ? !_fertig && (_pruefRichtig == null)
+      : s != null && s.frage != null && !_lumoIstDran && !_vorgezeigt;
+
+  Widget _ziffernblock({required bool kompakt}) => NachhilfeZiffernblock(
+        kompakt: kompakt,
+        eingabe: _eingabe,
+        onZiffer: _ziffer,
+        onLoeschen: _loeschen,
+        onFertig: _eingabeFertig,
+      );
 
   /// Auf dem Handy eine waagrechte Leiste (spart Höhe für das Material),
   /// auf breiten Bildschirmen umbrechend.
@@ -728,7 +867,12 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
           pose: _fertig
               ? LumoDesignFoxPose.cheer
               : LumoDesignFoxPose.teacherStick,
-          size: MediaQuery.sizeOf(context).width < 520 ? 76 : 96,
+          size: MediaQuery.sizeOf(context).width < 520
+              ? 76
+              : (MediaQuery.sizeOf(context).width >= 760 &&
+                      MediaQuery.sizeOf(context).height >= 640
+                  ? 120
+                  : 96),
           controller: _lumo,
           reduceMotion: widget.reduceMotion,
           intro: false,
@@ -788,12 +932,13 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
     );
   }
 
-  Widget _material(NachhilfeSchritt? s) {
+  /// Material der aktuellen Stufe. [fuellend]: Panel füllt die Spalte, Inhalt
+  /// mittig, [ziffernblock] steht fest darunter (Fold innen, Tablet).
+  Widget _material(NachhilfeSchritt? s,
+      {bool fuellend = false, Widget? ziffernblock}) {
     final art = _materialArt();
     final reduce = widget.reduceMotion;
-    final eingabeOffen = _pruefPhase
-        ? !_fertig && (_pruefRichtig == null)
-        : s != null && s.frage != null && !_lumoIstDran && !_vorgezeigt;
+    final inhalt = _materialInhalt(s, art, reduce);
     return Container(
       key: const ValueKey('nachhilfe-material'),
       padding: const EdgeInsets.all(14),
@@ -806,8 +951,33 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
               color: Color(0x66000000), blurRadius: 18, offset: Offset(0, 8)),
         ],
       ),
-      child: Column(
-        children: [
+      child: !fuellend
+          ? Column(children: inhalt)
+          : Column(children: [
+              Expanded(
+                child: LayoutBuilder(
+                  builder: (context, c) => SingleChildScrollView(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: c.maxHeight),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: inhalt,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              if (ziffernblock != null) ...[
+                const SizedBox(height: 8),
+                ziffernblock,
+              ],
+            ]),
+    );
+  }
+
+  List<Widget> _materialInhalt(
+          NachhilfeSchritt? s, String art, bool reduce) =>
+      [
           Text(
             '${_plan.aufgabe.text} = ?',
             key: const ValueKey('nachhilfe-aufgabe'),
@@ -853,20 +1023,7 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
               _ergebnis(s!),
             ],
           ],
-          if (eingabeOffen) ...[
-            const SizedBox(height: 12),
-            NachhilfeZiffernblock(
-              kompakt: MediaQuery.sizeOf(context).width < 520,
-              eingabe: _eingabe,
-              onZiffer: _ziffer,
-              onLoeschen: _loeschen,
-              onFertig: _eingabeFertig,
-            ),
-          ],
-        ],
-      ),
-    );
-  }
+      ];
 
   static const _materialArten = {
     'perlen',
@@ -905,7 +1062,10 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
       bis = 100;
       von = von.clamp(0, 90);
     }
+    final gross = MediaQuery.sizeOf(context).width >= 760 &&
+        MediaQuery.sizeOf(context).height >= 640;
     return NachhilfeZahlenstrahl(
+      lumoGroesse: gross ? 76 : 52,
       von: von,
       bis: bis,
       position: _position,
@@ -1013,9 +1173,32 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
     );
   }
 
-  Widget _zahlenstrahl() => SizedBox(
+  /// Rollt die Steinleiste, bis Lumos Stein in der Mitte steht (ein Stein ist
+  /// 52 dp breit plus 2 × 3 dp Abstand).
+  void _steinZeigen() {
+    if (!mounted || !_steinLeiste.hasClients) return;
+    if (_steinLeisteBei == _position) return;
+    _steinLeisteBei = _position;
+    const stein = 58.0;
+    final pos = _steinLeiste.position;
+    final ziel = (_position * stein + stein / 2 - pos.viewportDimension / 2)
+        .clamp(pos.minScrollExtent, pos.maxScrollExtent);
+    if (widget.reduceMotion) {
+      _steinLeiste.jumpTo(ziel);
+    } else {
+      unawaited(_steinLeiste.animateTo(ziel,
+          duration: const Duration(milliseconds: 450),
+          curve: Curves.easeInOutCubic));
+    }
+  }
+
+  Widget _zahlenstrahl() {
+    WidgetsBinding.instance.addPostFrameCallback((_) => _steinZeigen());
+    return SizedBox(
         height: 104,
         child: ListView.builder(
+          key: const ValueKey('nachhilfe-steinleiste'),
+          controller: _steinLeiste,
           scrollDirection: Axis.horizontal,
           itemCount: 21,
           itemBuilder: (context, zahl) {
@@ -1029,9 +1212,11 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
                   SizedBox(
                     height: 40,
                     child: hier
-                        ? const Icon(Icons.pets_rounded,
-                            color: Color(0xFFFF9F43),
-                            size: 34,
+                        ? NachhilfeLumoFigur(
+                            key: const ValueKey('nachhilfe-stein-fuchs'),
+                            groesse: 40,
+                            huepfAnlass: _position,
+                            reduceMotion: widget.reduceMotion,
                             semanticLabel: 'Lumo steht hier')
                         : null,
                   ),
@@ -1070,6 +1255,7 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
           },
         ),
       );
+  }
 
   Widget _zerlegen(NachhilfeSchritt? s) {
     final aktion = s?.aktion.art == 'zerlegen'
