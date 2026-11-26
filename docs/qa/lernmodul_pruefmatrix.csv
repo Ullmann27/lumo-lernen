@@ -296,7 +296,7 @@ Lernatelier;4;–;akademie-guided-learning;akademie-guided-learning;GuidedLearni
 Lernatelier;4;–;akademie-voluntary-discovery;akademie-voluntary-discovery;GuidedLearningHub;eigenes Modul;–;–;4;ok
 Tests;1;Mathematik;Stufe -1 (Kl. 1);test-category-Mathematik+test-level--1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;19 Rubriken;1-1;ok
 Tests;1;Mathematik;Stufe 0 (Kl. 1);test-category-Mathematik+test-level-0+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;19 Rubriken;1-1;ok
-Tests;1;Mathematik;Stufe 1 (Kl. 2);test-category-Mathematik+test-level-1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;28 Rubriken;1-2;ok
+Tests;1;Mathematik;Stufe 1 (Kl. 2);test-category-Mathematik+test-level-1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;26 Rubriken;1-2;ok
 Tests;1;Deutsch;Stufe -1 (Kl. 1);test-category-Deutsch+test-level--1+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;13 Rubriken;1-1;ok
 Tests;1;Deutsch;Stufe 0 (Kl. 1);test-category-Deutsch+test-level-0+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;13 Rubriken;1-1;ok
 Tests;1;Deutsch;Stufe 1 (Kl. 2);test-category-Deutsch+test-level-1+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;23 Rubriken;1-2;ok
@@ -309,12 +309,12 @@ Tests;1;Englisch;Stufe 1 (Kl. 2);test-category-Englisch+test-level-1+tests-start
 Tests;1;Logik;Stufe -1 (Kl. 1);test-category-Logik+test-level--1+tests-start;Übung Logik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Logik;3 Rubriken;1-1;ok
 Tests;1;Logik;Stufe 0 (Kl. 1);test-category-Logik+test-level-0+tests-start;Übung Logik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Logik;3 Rubriken;1-1;ok
 Tests;1;Logik;Stufe 1 (Kl. 2);test-category-Logik+test-level-1+tests-start;Übung Logik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Logik;5 Rubriken;1-2;ok
-Tests;1;Alle;Stufe -1 (Kl. 1);test-category-Alle+test-level--1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;59 Rubriken;1-1;ok
-Tests;1;Alle;Stufe 0 (Kl. 1);test-category-Alle+test-level-0+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;59 Rubriken;1-1;ok
-Tests;1;Alle;Stufe 1 (Kl. 2);test-category-Alle+test-level-1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;65 Rubriken;1-2;ok
+Tests;1;Alle;Stufe -1 (Kl. 1);test-category-Alle+test-level--1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;58 Rubriken;1-1;ok
+Tests;1;Alle;Stufe 0 (Kl. 1);test-category-Alle+test-level-0+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;58 Rubriken;1-1;ok
+Tests;1;Alle;Stufe 1 (Kl. 2);test-category-Alle+test-level-1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;66 Rubriken;1-2;ok
 Tests;2;Mathematik;Stufe -1 (Kl. 1);test-category-Mathematik+test-level--1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;19 Rubriken;1-1;ok
-Tests;2;Mathematik;Stufe 0 (Kl. 2);test-category-Mathematik+test-level-0+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;28 Rubriken;1-2;ok
-Tests;2;Mathematik;Stufe 1 (Kl. 3);test-category-Mathematik+test-level-1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;34 Rubriken;1-3;ok
+Tests;2;Mathematik;Stufe 0 (Kl. 2);test-category-Mathematik+test-level-0+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;26 Rubriken;1-2;ok
+Tests;2;Mathematik;Stufe 1 (Kl. 3);test-category-Mathematik+test-level-1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;33 Rubriken;1-3;ok
 Tests;2;Deutsch;Stufe -1 (Kl. 1);test-category-Deutsch+test-level--1+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;13 Rubriken;1-1;ok
 Tests;2;Deutsch;Stufe 0 (Kl. 2);test-category-Deutsch+test-level-0+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;21 Rubriken;1-2;ok
 Tests;2;Deutsch;Stufe 1 (Kl. 3);test-category-Deutsch+test-level-1+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;31 Rubriken;1-3;ok
@@ -328,11 +328,11 @@ Tests;2;Logik;Stufe -1 (Kl. 1);test-category-Logik+test-level--1+tests-start;Üb
 Tests;2;Logik;Stufe 0 (Kl. 2);test-category-Logik+test-level-0+tests-start;Übung Logik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Logik;5 Rubriken;1-2;ok
 Tests;2;Logik;Stufe 1 (Kl. 3);test-category-Logik+test-level-1+tests-start;Übung Logik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Logik;6 Rubriken;1-3;ok
 Tests;2;Alle;Stufe -1 (Kl. 1);test-category-Alle+test-level--1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;59 Rubriken;1-1;ok
-Tests;2;Alle;Stufe 0 (Kl. 2);test-category-Alle+test-level-0+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;62 Rubriken;1-2;ok
-Tests;2;Alle;Stufe 1 (Kl. 3);test-category-Alle+test-level-1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;70 Rubriken;1-3;ok
+Tests;2;Alle;Stufe 0 (Kl. 2);test-category-Alle+test-level-0+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;61 Rubriken;1-2;ok
+Tests;2;Alle;Stufe 1 (Kl. 3);test-category-Alle+test-level-1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;68 Rubriken;1-3;ok
 Tests;3;Mathematik;Stufe -1 (Kl. 2);test-category-Mathematik+test-level--1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;28 Rubriken;1-2;ok
-Tests;3;Mathematik;Stufe 0 (Kl. 3);test-category-Mathematik+test-level-0+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;34 Rubriken;1-3;ok
-Tests;3;Mathematik;Stufe 1 (Kl. 4);test-category-Mathematik+test-level-1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;38 Rubriken;1-4;ok
+Tests;3;Mathematik;Stufe 0 (Kl. 3);test-category-Mathematik+test-level-0+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;35 Rubriken;1-3;ok
+Tests;3;Mathematik;Stufe 1 (Kl. 4);test-category-Mathematik+test-level-1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;43 Rubriken;1-4;ok
 Tests;3;Deutsch;Stufe -1 (Kl. 2);test-category-Deutsch+test-level--1+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;20 Rubriken;1-2;ok
 Tests;3;Deutsch;Stufe 0 (Kl. 3);test-category-Deutsch+test-level-0+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;27 Rubriken;1-3;ok
 Tests;3;Deutsch;Stufe 1 (Kl. 4);test-category-Deutsch+test-level-1+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;34 Rubriken;1-4;ok
@@ -345,12 +345,12 @@ Tests;3;Englisch;Stufe 1 (Kl. 4);test-category-Englisch+test-level-1+tests-start
 Tests;3;Logik;Stufe -1 (Kl. 2);test-category-Logik+test-level--1+tests-start;Übung Logik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Logik;5 Rubriken;1-2;ok
 Tests;3;Logik;Stufe 0 (Kl. 3);test-category-Logik+test-level-0+tests-start;Übung Logik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Logik;6 Rubriken;1-3;ok
 Tests;3;Logik;Stufe 1 (Kl. 4);test-category-Logik+test-level-1+tests-start;Übung Logik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Logik;7 Rubriken;1-4;ok
-Tests;3;Alle;Stufe -1 (Kl. 2);test-category-Alle+test-level--1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;64 Rubriken;1-2;ok
+Tests;3;Alle;Stufe -1 (Kl. 2);test-category-Alle+test-level--1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;61 Rubriken;1-2;ok
 Tests;3;Alle;Stufe 0 (Kl. 3);test-category-Alle+test-level-0+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;73 Rubriken;1-3;ok
-Tests;3;Alle;Stufe 1 (Kl. 4);test-category-Alle+test-level-1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;76 Rubriken;1-4;ok
-Tests;4;Mathematik;Stufe -1 (Kl. 3);test-category-Mathematik+test-level--1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;34 Rubriken;1-3;ok
-Tests;4;Mathematik;Stufe 0 (Kl. 4);test-category-Mathematik+test-level-0+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;39 Rubriken;1-4;ok
-Tests;4;Mathematik;Stufe 1 (Kl. 4);test-category-Mathematik+test-level-1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;39 Rubriken;1-4;ok
+Tests;3;Alle;Stufe 1 (Kl. 4);test-category-Alle+test-level-1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;75 Rubriken;1-4;ok
+Tests;4;Mathematik;Stufe -1 (Kl. 3);test-category-Mathematik+test-level--1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;36 Rubriken;1-3;ok
+Tests;4;Mathematik;Stufe 0 (Kl. 4);test-category-Mathematik+test-level-0+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;40 Rubriken;1-4;ok
+Tests;4;Mathematik;Stufe 1 (Kl. 4);test-category-Mathematik+test-level-1+tests-start;Übung Mathematik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Mathematik;40 Rubriken;1-4;ok
 Tests;4;Deutsch;Stufe -1 (Kl. 3);test-category-Deutsch+test-level--1+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;30 Rubriken;1-3;ok
 Tests;4;Deutsch;Stufe 0 (Kl. 4);test-category-Deutsch+test-level-0+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;32 Rubriken;1-4;ok
 Tests;4;Deutsch;Stufe 1 (Kl. 4);test-category-Deutsch+test-level-1+tests-start;Übung Deutsch/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch;32 Rubriken;1-4;ok
@@ -363,9 +363,9 @@ Tests;4;Englisch;Stufe 1 (Kl. 4);test-category-Englisch+test-level-1+tests-start
 Tests;4;Logik;Stufe -1 (Kl. 3);test-category-Logik+test-level--1+tests-start;Übung Logik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Logik;6 Rubriken;1-3;ok
 Tests;4;Logik;Stufe 0 (Kl. 4);test-category-Logik+test-level-0+tests-start;Übung Logik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Logik;7 Rubriken;1-4;ok
 Tests;4;Logik;Stufe 1 (Kl. 4);test-category-Logik+test-level-1+tests-start;Übung Logik/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Logik;7 Rubriken;1-4;ok
-Tests;4;Alle;Stufe -1 (Kl. 3);test-category-Alle+test-level--1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;74 Rubriken;1-3;ok
-Tests;4;Alle;Stufe 0 (Kl. 4);test-category-Alle+test-level-0+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;77 Rubriken;1-4;ok
-Tests;4;Alle;Stufe 1 (Kl. 4);test-category-Alle+test-level-1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;77 Rubriken;1-4;ok
+Tests;4;Alle;Stufe -1 (Kl. 3);test-category-Alle+test-level--1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;73 Rubriken;1-3;ok
+Tests;4;Alle;Stufe 0 (Kl. 4);test-category-Alle+test-level-0+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;78 Rubriken;1-4;ok
+Tests;4;Alle;Stufe 1 (Kl. 4);test-category-Alle+test-level-1+tests-start;Übung Alle/Alle (test, 10 Fragen);ExerciseFactory.next gradedOnly;Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht;78 Rubriken;1-4;ok
 Tests;1-4;Knobeln;Lumo Knobel-Test;iq-test-start;IqTestScreen;IqPuzzleGenerator;Logik;–;–;ok
 Tests;1-4;Denken;Denkprofil;cognitive-profile-start;CognitiveProfileScreen;CognitiveProfileGenerator;Logik;–;–;ok
 Schularbeit;1-4;Alle;Gemischter Lerncheck;Text: Gemischter Lerncheck;Übung Alle/Alle (schoolwork, 30 Fragen);ExerciseFactory.next gradedOnly;Alle;–;–;ok

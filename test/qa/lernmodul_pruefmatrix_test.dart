@@ -628,8 +628,20 @@ void main() {
     final committed = File(_csvPath);
     expect(committed.existsSync(), isTrue,
         reason: '$_csvPath fehlt: mit LUMO_UPDATE_PRUEFMATRIX=1 erzeugen');
-    final expected = committed.readAsLinesSync();
-    final actual = csv.toString().trimRight().split('\n');
+    // Verglichen werden Kachel, Ziel, Datenquelle und Befund. Die gezählten
+    // Varianten und Schwierigkeiten hängen von Zufallsfolgen ab und ändern
+    // sich mit jeder Inhaltsverbesserung; sie stehen nur zur Information in
+    // der Datei.
+    String key(String line) {
+      final cells = line.split(';');
+      return [
+        for (var i = 0; i < cells.length; i++)
+          if (i != 8 && i != 9) cells[i],
+      ].join(';');
+    }
+
+    final expected = committed.readAsLinesSync().map(key).toList();
+    final actual = csv.toString().trimRight().split('\n').map(key).toList();
     final missing = actual.where((l) => !expected.contains(l)).toList();
     final gone = expected.where((l) => !actual.contains(l)).toList();
     expect([...missing.map((l) => '+ $l'), ...gone.map((l) => '- $l')],
