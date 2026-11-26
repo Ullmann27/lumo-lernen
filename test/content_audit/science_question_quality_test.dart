@@ -234,25 +234,34 @@ void main() {
   test('Diagramme lesen: das Diagramm steht in der Aufgabe (S-M14)', () {
     final factory = ExerciseFactory(seed: 14);
     final drawn = <String>{};
+    final squareRow = RegExp(r'^[^:]+: (?:🟦)+$');
+    var sawHedgehogChart = false;
     for (var i = 0; i < 400; i++) {
       final task = factory.next(
           grade: 4, subject: 'Sachunterricht', unit: 'Diagramme lesen');
       if (task.unit != 'Diagramme lesen') continue;
       expect(task.prompt, isNot(contains('Ein Diagramm zeigt 8')));
       if (task.prompt.startsWith('Lies das Diagramm.')) {
-        // Mindestens zwei Reihen aus Kästchen, die Werte selbst stehen
-        // nicht als Zahl im Text.
-        final rows = task.prompt
-            .split('\n')
-            .where((line) => line.contains(': 🟦'))
-            .toList();
-        expect(rows.length, greaterThanOrEqualTo(2), reason: task.prompt);
-        for (final row in rows) {
-          expect(row, isNot(matches(RegExp(r'\d+$'))), reason: row);
+        final lines = task.prompt.split('\n');
+        expect(lines.length, greaterThanOrEqualTo(4), reason: task.prompt);
+        final rows = lines.sublist(1, lines.length - 1);
+        if (lines.first.contains('ist ein Igel')) {
+          // Die Null ist eine Beobachtung und darf kein Kästchen bekommen.
+          expect(rows, <String>[
+            'September: 🟦🟦🟦🟦🟦',
+            'Dezember: 0 (keinen Igel gesehen)',
+          ]);
+          expect(task.answer, 'Sie halten Winterschlaf.');
+          sawHedgehogChart = true;
+        } else {
+          for (final row in rows) {
+            expect(squareRow.hasMatch(row), isTrue, reason: row);
+          }
         }
         drawn.add(task.prompt);
       }
     }
     expect(drawn.length, greaterThanOrEqualTo(4));
+    expect(sawHedgehogChart, isTrue);
   });
 }
