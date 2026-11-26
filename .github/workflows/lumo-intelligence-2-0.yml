@@ -258,6 +258,21 @@ jobs:
               godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
               --path build/lumo-godot-qa --script res://scripts/tests/kart_rival_ai_regression.gd \
               -- --tracks=jungle_emerald_3600,jungle_temple
+      - name: Fold-Steuerung, Streckendetails, Kartenrunde und Grafikwahl prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          for entry in kart_hud_controls_regression:KART_HUD_CONTROLS_OK \
+            kart_detail_layer_regression:PASS kart_racecraft_regression:PASS \
+            cards_punktlandung_reveal_regression:PASS kart_quality_persistence_regression:PASS; do
+            probe="${entry%:*}"
+            required="${entry#*:}"
+            XDG_DATA_HOME="$RUNNER_TEMP/lumo-fold-$probe" \
+              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+                --timeout 1200 --required "$required" --log "build-proof/GODOT-$probe.txt" -- \
+                godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
+                --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd"
+          done
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
