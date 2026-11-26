@@ -296,4 +296,23 @@ void main() {
       }
     });
   }
+
+  testWidgets('Muster aus dem Verlauf wählt still den Weg, ohne Rückmeldung',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(412, 892));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(MaterialApp(
+      home: LumoNachhilfeScreen(
+        aufgabe: NachhilfeAufgabe.additionBis100(37, 25)!,
+        startWeg: NachhilfeWeg.zahlenstrahl,
+        reduceMotion: true,
+        lernstandSatz:
+            'Ich zeige dir gleich einen Weg, der bei solchen Aufgaben gut hilft.',
+      ),
+    ));
+    await tester.pump(const Duration(milliseconds: 50));
+    expect(find.byType(NachhilfeZahlenstrahl), findsOneWidget);
+    expect(find.byKey(const ValueKey('nachhilfe-rueckmeldung')), findsNothing);
+    expect(find.byKey(const ValueKey('nachhilfe-lernstand')), findsOneWidget);
+  });
 }

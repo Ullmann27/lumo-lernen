@@ -51,6 +51,7 @@ class LumoNachhilfeScreen extends StatefulWidget {
     this.tutor = const LumoNachhilfe(),
     this.onPruefung,
     this.lernstandSatz,
+    this.startWeg,
   });
 
   final NachhilfeAufgabe aufgabe;
@@ -72,6 +73,9 @@ class LumoNachhilfeScreen extends StatefulWidget {
 
   /// Ruhiger Satz aus dem Lernstand (nur bei belastbaren Daten).
   final String? lernstandSatz;
+
+  /// Weg aus einem wiederkehrenden Muster im Verlauf (ohne Rückmeldung).
+  final NachhilfeWeg? startWeg;
 
   @override
   State<LumoNachhilfeScreen> createState() => _LumoNachhilfeScreenState();
@@ -108,7 +112,11 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
   @override
   void initState() {
     super.initState();
-    _weg = widget.tutor.wegFuer(widget.aufgabe, fehler: widget.fehler);
+    final startWeg = widget.startWeg;
+    _weg = startWeg != null &&
+            widget.tutor.wegeFuer(widget.aufgabe).contains(startWeg)
+        ? startWeg
+        : widget.tutor.wegFuer(widget.aufgabe, fehler: widget.fehler);
     _stufe = widget.startStufe;
     _starte();
     if (widget.fehler != NachhilfeFehlermuster.keines) {

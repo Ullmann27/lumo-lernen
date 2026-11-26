@@ -1460,10 +1460,15 @@ class _LearningContentState extends State<LearningContent>
         _taskInstance.taskInstanceId != taskId) {
       return;
     }
-    final antwortFehler = tutor.erkenneFehler(aufgabe, _lastGivenAnswer);
-    final fehler = antwortFehler != NachhilfeFehlermuster.keines
-        ? antwortFehler
-        : (lernstand?.haeufigstesMuster ?? NachhilfeFehlermuster.keines);
+    // Rückmeldung nur zur tatsächlichen letzten Antwort; ein Muster aus dem
+    // Verlauf wählt still den passenden Weg.
+    final fehler = tutor.erkenneFehler(aufgabe, _lastGivenAnswer);
+    final verlaufsMuster =
+        lernstand?.haeufigstesMuster ?? NachhilfeFehlermuster.keines;
+    final startWeg = fehler == NachhilfeFehlermuster.keines &&
+            verlaufsMuster != NachhilfeFehlermuster.keines
+        ? tutor.wegFuer(aufgabe, fehler: verlaufsMuster)
+        : null;
     final stufe = lernstand?.startStufe(tutor, versuche: _attemptCount) ??
         tutor.startStufe(versuche: _attemptCount);
     await Navigator.of(context).push(MaterialPageRoute<void>(
@@ -1471,6 +1476,7 @@ class _LearningContentState extends State<LearningContent>
         aufgabe: aufgabe,
         fehler: fehler,
         startStufe: stufe,
+        startWeg: startWeg,
         tutor: tutor,
         reduceMotion: settings.reduceAnimations || settings.calmMode,
         lernstandSatz: lernstand?.kindSatz,
