@@ -1010,11 +1010,15 @@ class FachNachhilfe {
               : 'Anders erklärt: ${p.titel}',
           text: text));
     }
-    varianten.add(const HilfeVariante(
+    varianten.add(HilfeVariante(
         methode: 'ausschliessen',
         titel: 'Anders erklärt: ausschließen',
-        text: 'Streiche zuerst eine Antwort, die sicher nicht passt. Sag dir, '
-            'warum. Dann die nächste. Was bleibt übrig?'));
+        text: _sicher(
+            'Streiche zuerst eine Antwort, die sicher nicht passt. Sag dir, '
+                'warum. Dann die nächste. Was bleibt übrig?',
+            a,
+            'Streiche zuerst eine Antwort, die sicher nicht passt, und sag '
+                'dir, warum. Prüfe dann die anderen noch einmal.')));
     return varianten;
   }
 }
