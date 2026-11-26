@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/attempt_log_repository.dart';
@@ -90,6 +92,14 @@ void main() {
   });
 
   group('AttemptLogRepository', () {
+    const logKey = 'lumo_attempt_log_v1';
+    final mixedLog = jsonEncode([
+      {'id': 'legacy', 'at': '2026-10-05', 'unit': 'Plus bis 20'},
+      null,
+      {'id': 'bad', 'at': '2026-10-05', 'ms': 'keine Zahl'},
+      {..._a(2, 'Einmaleins', true).toJson(), 'sid': 'andere'},
+    ]);
+
     test('speichert, lädt und vermeidet Duplikate', () async {
       final repo = AttemptLogRepository();
       final a = _a(1, 'Einmaleins', true);
@@ -108,9 +118,77 @@ void main() {
       expect((await repo.load()).map((a) => a.id), ['t2', 't3', 't4']);
     });
 
-    test('kaputte Daten werden verworfen statt zu crashen', () async {
-      SharedPreferences.setMockInitialValues({'lumo_attempt_log_v1': '{kaputt'});
-      expect(await AttemptLogRepository().load(), isEmpty);
+    for (final entry in <String, Object>{
+      'ungültiges JSON': '[{"id":"t1","sid":"self"},',
+      'falsche JSON-Struktur': '{"versuche":[]}',
+      'falscher Speichertyp': 42,
+    }.entries) {
+      test('${entry.key} bleibt beim Lesen erhalten', () async {
+        SharedPreferences.setMockInitialValues({logKey: entry.value});
+        expect(await AttemptLogRepository().load(), isEmpty);
+        expect(
+            (await SharedPreferences.getInstance()).get(logKey), entry.value);
+      });
+    }
+
+    test('liest intakte alte und neue Zeilen neben beschädigten Zeilen',
+        () async {
+      SharedPreferences.setMockInitialValues({logKey: mixedLog});
+      final repo = AttemptLogRepository();
+      final local = (await repo.load(studentId: 'self')).single;
+      expect(local.id, 'legacy');
+      expect(local.competency, 'Plus bis 20');
+      expect((await repo.load(studentId: 'andere')).single.id, 't2');
+      expect((await SharedPreferences.getInstance()).get(logKey), mixedLog);
+    });
+
+    for (final entry in {
+      'ganz': '{kaputt',
+      'teilweise': mixedLog,
+    }.entries) {
+      test('Anhängen bewahrt das ${entry.key} beschädigte Protokoll', () async {
+        SharedPreferences.setMockInitialValues({logKey: entry.value});
+        final repo = AttemptLogRepository();
+        await expectLater(
+            repo.append(_a(3, 'Einmaleins', true)), throwsA(isA<StateError>()));
+        expect(
+            (await SharedPreferences.getInstance()).get(logKey), entry.value);
+      });
+
+      test('Profil-Löschen bewahrt das ${entry.key} beschädigte Protokoll',
+          () async {
+        SharedPreferences.setMockInitialValues({logKey: entry.value});
+        final repo = AttemptLogRepository();
+        await expectLater(
+            repo.clear(studentId: 'self'), throwsA(isA<StateError>()));
+        expect(
+            (await SharedPreferences.getInstance()).get(logKey), entry.value);
+      });
+    }
+
+    test('explizites Löschen des ganzen Protokolls erlaubt einen Neustart',
+        () async {
+      SharedPreferences.setMockInitialValues({logKey: mixedLog});
+      final repo = AttemptLogRepository();
+      await repo.clear();
+      expect(
+          (await SharedPreferences.getInstance()).containsKey(logKey), isFalse);
+      await repo.append(_a(3, 'Einmaleins', true));
+      expect((await repo.load()).single.id, 't3');
+    });
+
+    test('löscht aus einem intakten Altprotokoll nur das gewählte Profil',
+        () async {
+      SharedPreferences.setMockInitialValues({
+        logKey: jsonEncode([
+          {'id': 'legacy', 'at': '2026-10-05', 'unit': 'Plus bis 20'},
+          {..._a(2, 'Einmaleins', true).toJson(), 'sid': 'andere'},
+        ]),
+      });
+      final repo = AttemptLogRepository();
+      await repo.append(_a(3, 'Einmaleins', true));
+      await repo.clear(studentId: 'andere');
+      expect((await repo.load()).map((a) => a.id), ['legacy', 't3']);
     });
   });
 

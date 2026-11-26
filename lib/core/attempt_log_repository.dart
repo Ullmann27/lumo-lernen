@@ -14,35 +14,61 @@ class AttemptLogRepository {
   static const _key = 'lumo_attempt_log_v1';
   final int maxEntries;
 
+  /// Liefert die lesbaren Einträge und belässt beschädigte Daten im Speicher.
   Future<List<Attempt>> load({String? studentId}) =>
       LearningStorage.run((prefs) async {
-        final list = await _read(prefs);
+        final list = _read(prefs);
         return studentId == null
             ? list
             : list.where((a) => a.studentId == studentId).toList();
       });
 
-  Future<List<Attempt>> _read(SharedPreferences prefs) async {
-    final raw = prefs.getString(_key);
-    if (raw == null || raw.isEmpty) return <Attempt>[];
+  List<Attempt> _read(SharedPreferences prefs, {bool forWrite = false}) {
+    final raw = prefs.get(_key);
+    final attempts = <Attempt>[];
+    if (raw == null || raw == '') return attempts;
+
+    final rows = _decodeRows(raw);
+    var damaged = rows == null;
+    for (final row in rows ?? const <Object?>[]) {
+      Attempt? attempt;
+      try {
+        attempt = Attempt.tryFromJson(row);
+      } on TypeError {
+        // A stored field has an incompatible type.
+      } on UnsupportedError {
+        // A number outside the supported range cannot be converted to int.
+      }
+      if (attempt == null || attempt.score?.isFinite == false) {
+        damaged = true;
+        continue;
+      }
+      attempts.add(attempt);
+    }
+    if (damaged && forWrite) {
+      throw StateError('Learning attempt log is damaged');
+    }
+    return attempts;
+  }
+
+  List<Object?>? _decodeRows(Object raw) {
+    if (raw is! String) return null;
     try {
-      return (jsonDecode(raw) as List)
-          .map(Attempt.tryFromJson)
-          .whereType<Attempt>()
-          .toList();
-    } catch (_) {
-      await LearningStorage.remove(prefs, _key);
-      return <Attempt>[];
+      final decoded = jsonDecode(raw);
+      return decoded is List<Object?> ? decoded : null;
+    } on FormatException {
+      return null;
     }
   }
 
-  /// Hängt Einträge an. Wirft [StateError], wenn der Speicher nicht
-  /// schreibt; der Aufrufer behält die Einträge dann und versucht es erneut.
+  /// Hängt Einträge an. Bei Speicherfehlern oder einem beschädigten Protokoll
+  /// behält der Aufrufer die ausstehenden Einträge und kann es erneut versuchen.
   Future<void> append(Attempt attempt) => appendAll([attempt]);
 
   Future<void> appendAll(List<Attempt> attempts) =>
       LearningStorage.run((prefs) async {
-        final all = await _read(prefs);
+        if (attempts.isEmpty) return;
+        final all = _read(prefs, forWrite: true);
         final known = {for (final a in all) a.id};
         var added = false;
         for (final a in attempts) {
@@ -59,12 +85,14 @@ class AttemptLogRepository {
             prefs, _key, jsonEncode(kept.map((a) => a.toJson()).toList()));
       });
 
+  /// Gezieltes Löschen setzt ein lesbares Protokoll voraus. Ohne [studentId]
+  /// wird das ganze Protokoll ausdrücklich aus dem Speicher entfernt.
   Future<void> clear({String? studentId}) => LearningStorage.run((prefs) async {
         if (studentId == null) {
           await LearningStorage.remove(prefs, _key);
           return;
         }
-        final all = await _read(prefs);
+        final all = _read(prefs, forWrite: true);
         final kept =
             all.where((attempt) => attempt.studentId != studentId).toList();
         if (kept.length == all.length) return;
