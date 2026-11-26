@@ -121,6 +121,60 @@ void main() {
     }
   });
 
+  for (final scene in ['build', 'treasure', 'settlement']) {
+    testWidgets('original $scene campaign launches directly with profile grade',
+        (tester) async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      const bridge = MethodChannel('lumo_lernen/bridge');
+      final calls = <MethodCall>[];
+      final messenger = tester.binding.defaultBinaryMessenger;
+      messenger.setMockMethodCallHandler(bridge, (call) async {
+        calls.add(call);
+        return {'destination': 'games'};
+      });
+      final app = LumoAppState();
+      try {
+        SharedPreferences.setMockInitialValues({
+          'lumo_kart_launch_v1': '{"grade":1,"subject":"Deutsch"}',
+        });
+        app.update(app.state.copyWith(grade: 3, subject: 'Mathematik'));
+        await _pumpHub(tester, app);
+        final original = find.byKey(const PageStorageKey('games-original-3d'));
+        await tester.scrollUntilVisible(original, 260,
+            scrollable: find.byType(Scrollable).first);
+        await tester.tap(find.text('Originale 3D-Abenteuer'));
+        await tester.pump(const Duration(milliseconds: 350));
+        final tile = find.byKey(ValueKey('spielwelt-original-$scene'));
+        await tester.scrollUntilVisible(tile, 180,
+            scrollable: find.byType(Scrollable).first);
+        await tester.tap(tile);
+        await tester.runAsync(
+            () => Future<void>.delayed(const Duration(milliseconds: 300)));
+        await tester.pump(const Duration(milliseconds: 800));
+        final launches = calls.where((call) => call.method == 'launch3D');
+        expect(launches, hasLength(1));
+        final payload = launches.single.arguments as Map;
+        expect(payload['scene'], scene);
+        expect(payload['grade'], 3);
+        expect(payload['subject'], 'Mathematik');
+        expect(payload['childKey'], isNotNull);
+        if (scene == 'settlement') {
+          expect(payload['livingVillage'], isTrue);
+          expect(payload['settlementMode'], 'settlement');
+        } else {
+          expect(payload.containsKey('livingVillage'), isFalse);
+        }
+        expect(tester.takeException(), isNull);
+      } finally {
+        await tester.pumpWidget(const SizedBox());
+        app.dispose();
+        messenger.setMockMethodCallHandler(bridge, null);
+        debugDefaultTargetPlatformOverride = null;
+        await tester.binding.setSurfaceSize(null);
+      }
+    });
+  }
+
   testWidgets('every visible portal opens its own target scene', (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
     const bridge = MethodChannel('lumo_lernen/bridge');

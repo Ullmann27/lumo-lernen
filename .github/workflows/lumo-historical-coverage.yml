@@ -1,0 +1,50 @@
+name: LUMO historical source coverage – read-only
+on:
+  push:
+    branches: [integration/lumo-completeness-2094-20261126]
+    paths:
+      - .github/workflows/lumo-historical-coverage.yml
+      - scripts/audit_historical_branch_coverage.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  branch-coverage:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - repo: Ullmann27/lumo-lernen
+            candidate: 91792e93461a9fca2d55d3d28cf2546586f34506
+            name: flutter
+          - repo: Ullmann27/lumo-godot
+            candidate: 558180687624105ad778d031be33f72334aa5ae0
+            name: godot
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch commit and tree metadata without historical code checkout
+        shell: bash
+        env:
+          REPOSITORY: ${{ matrix.repo }}
+          CANDIDATE: ${{ matrix.candidate }}
+        run: |
+          set -euo pipefail
+          git init --bare "$RUNNER_TEMP/lumo-history.git"
+          git -C "$RUNNER_TEMP/lumo-history.git" remote add origin "https://github.com/$REPOSITORY.git"
+          git -C "$RUNNER_TEMP/lumo-history.git" config remote.origin.promisor true
+          git -C "$RUNNER_TEMP/lumo-history.git" config remote.origin.partialclonefilter blob:none
+          git -C "$RUNNER_TEMP/lumo-history.git" fetch --no-tags --filter=blob:none origin '+refs/heads/*:refs/remotes/origin/*'
+          git -C "$RUNNER_TEMP/lumo-history.git" cat-file -e "$CANDIDATE^{commit}"
+      - name: Classify historical branches and unmatched file identities
+        shell: bash
+        env:
+          CANDIDATE: ${{ matrix.candidate }}
+        run: python3 scripts/audit_historical_branch_coverage.py "$RUNNER_TEMP/lumo-history.git" "$CANDIDATE" branch-coverage
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: LUMO-HISTORICAL-COVERAGE-${{ matrix.name }}-${{ github.run_id }}
+          path: branch-coverage/
+          if-no-files-found: error
