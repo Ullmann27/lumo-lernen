@@ -1,3 +1,6 @@
+import '../domain/learning/whole_arithmetic.dart';
+import '../domain/tutoring/lumo_nachhilfe.dart';
+import 'holo_lesson_catalog.dart';
 import 'school_exercise_generator.dart';
 
 /// Immediate offline explanations of the next step, never the stored answer.
@@ -19,6 +22,14 @@ class TaskHintService {
     // Offline-Stellenwerthilfe mit drei verschiedenen Erklärungsformen.
     final placeValue = _placeValueHint(task, level);
     if (placeValue != null) return placeValue;
+    // Kleines Einmaleins: Punktefeld und Kernaufgaben statt allgemeiner Sätze.
+    final mal = _kleinesEinmaleins(task, level);
+    if (mal != null) return mal;
+    // Deutsch: Silben hörbar machen, Rechtschreibregel statt Lösung.
+    final silben = _silbenHint(task, level);
+    if (silben != null) return silben;
+    final regel = _rechtschreibHint(task, level);
+    if (regel != null) return regel;
     if (level >= 2) return _guidedHint(task, level);
     final unit = task.unit.toLowerCase();
     final prompt = task.prompt.toLowerCase();
@@ -117,6 +128,8 @@ class TaskHintService {
       // Nur eine echte Rechnung „a − b“ oder „a + b“ bekommt den Minus- oder
       // Plus-Tipp. Ein Bindestrich in „Kart-Rennen“ oder „4-mal“ ist kein
       // Minuszeichen.
+      final konkret = _plusMinusErsterTipp(task);
+      if (konkret != null) return konkret;
       if (operation == '−') {
         return 'Beginne bei der ersten Zahl und nimm die zweite Menge weg. Bei großen Zahlen hilft es, zuerst Zehner und dann Einer abzuziehen.';
       }
@@ -167,6 +180,200 @@ class TaskHintService {
       return 'Lies den ganzen Satz. Achte auf Wortstellung, Satzanfang und Satzende. Bei wörtlicher Rede wird das Gesprochene mit Anführungszeichen markiert.';
     }
     return 'Sprich das Wort langsam. Achte auf die Stelle, nach der gefragt wird, und vergleiche die Schreibweisen Buchstabe für Buchstabe.';
+  }
+
+  WholeArithmetic? _rechnung(LumoTask task) {
+    final expected = task.answer.trim();
+    return WholeArithmetic.parse(task.prompt,
+        expected: expected.isEmpty ? null : expected);
+  }
+
+  /// Erster Tipp zu Plus und Minus bis 100 mit den Zahlen der Aufgabe:
+  /// Kraft der Zehn, erst die Zehner, dann die Einer. Nie das Ergebnis.
+  String? _plusMinusErsterTipp(LumoTask task) {
+    final r = _rechnung(task);
+    if (r == null || !r.isAddOrSubtract || !r.inPrimaryHundred) return null;
+    if (task.prompt.trim().startsWith('Schriftlich')) return null;
+    final a = r.left, b = r.right;
+    final bz = b ~/ 10 * 10, be = b % 10;
+    if (r.operation == WholeOperation.addition) {
+      final zusatz = bz > 0 && be > 0
+          ? ' Zerlege die $b in $bz und $be: erst die Zehner, dann die Einer.'
+          : a % 10 != 0 && a % 10 + be > 10
+              ? ' Mach zuerst den nächsten Zehner voll und zähle dann den Rest dazu.'
+              : '';
+      return 'Beginne mit der ersten Menge: $a. Lege dann $b dazu.$zusatz';
+    }
+    final zusatz = bz > 0 && be > 0
+        ? ' Zerlege die $b in $bz und $be: Nimm zuerst die Zehner weg, dann die Einer.'
+        : a % 10 != 0 && a % 10 < be
+            ? ' Geh zuerst zurück bis zum Zehner ${a - a % 10} und dann weiter.'
+            : '';
+    return 'Beginne bei $a und nimm $b weg.$zusatz';
+  }
+
+  /// Kleines Einmaleins (1 bis 10): ein Punktefeld mit Reihen und eine
+  /// Kernaufgabe (1·, 2·, 5·, 10·) als Anker. Das Ergebnis wird nie genannt.
+  String? _kleinesEinmaleins(LumoTask task, int level) {
+    if (task.subject != 'Mathematik') return null;
+    final r = _rechnung(task);
+    if (r == null || r.operation != WholeOperation.multiplication) return null;
+    final a = r.left, b = r.right;
+    if (a < 1 || b < 1 || a > 10 || b > 10) return null;
+    final zeichen = task.prompt.contains('×') ? '×' : '·';
+    String z(String text) => text.replaceAll('·', zeichen);
+    final reihen = '${a == 1 ? '1 Reihe' : '$a Reihen'} mit je '
+        '${b == 1 ? '1 Punkt' : '$b Punkten'}';
+    if (level <= 1) {
+      return z('$a · $b heißt: $reihen. '
+          '${const LumoNachhilfe().einmaleinsTipp(a, b)}');
+    }
+    if (level == 2) {
+      final anker = switch (a) {
+        1 => 'Es ist nur eine Reihe. Zähle ihre Punkte.',
+        2 => 'Verdopple die $b: $b + $b.',
+        3 => '2 · $b = ${2 * b}. Dann kommt noch eine Reihe mit $b dazu.',
+        4 => '5 · $b = ${5 * b}. Dann nimm eine Reihe mit $b wieder weg.',
+        5 => '10 · $b = ${10 * b}. 5 Reihen sind die Hälfte davon.',
+        6 => '5 · $b = ${5 * b}. Dann kommt noch eine Reihe mit $b dazu.',
+        7 => '5 · $b = ${5 * b} und 2 · $b = ${2 * b}. Zähle beide Teile zusammen.',
+        8 => '10 · $b = ${10 * b}. Nimm 2 Reihen weg: 2 · $b = ${2 * b}.',
+        9 => '10 · $b = ${10 * b}. Dann nimm eine Reihe mit $b wieder weg.',
+        _ => '10 Reihen mit je $b sind $b Zehner.',
+      };
+      final gruppen = a == 1
+          ? 'Lege eine Gruppe mit ${b == 1 ? '1 Ding' : '$b Dingen'}'
+          : 'Lege $a gleich große Gruppen mit je ${b == 1 ? '1 Ding' : '$b Dingen'}';
+      return z('$gruppen, zum Beispiel $reihen. $anker');
+    }
+    final schritte = [for (var i = 1; i < a && i <= 3; i++) i * b];
+    final zaehlen = schritte.isEmpty
+        ? 'Zähle die Punkte der Reihe.'
+        : 'Zähle in ${b}er-Schritten: ${schritte.join(', ')}, … '
+            'Mache genau $a Schritte.';
+    return z('$zaehlen Oder dreh die Aufgabe um: $a · $b ist dasselbe wie '
+        '$b · $a. Nimm die, die du leichter findest.');
+  }
+
+  /// Silben zählen: erst klatschen, dann das Kinn spüren, dann zeigt Lumo
+  /// das Silbenteilen an einem anderen Wort mit anderer Silbenzahl – so wird
+  /// die Zahl der gefragten Wortes nicht verraten.
+  String? _silbenHint(LumoTask task, int level) {
+    final match = RegExp(r'Wie viele Silben hat „?([A-Za-zÄÖÜäöüß]+)“?\?')
+        .firstMatch(task.prompt);
+    if (match == null) return null;
+    final wort = match[1]!;
+    if (level <= 1) {
+      return 'Sprich „$wort“ ganz langsam und klatsche die Silben: bei jedem '
+          'Sprechteil einmal. Zähle die Klatscher, nicht die Buchstaben.';
+    }
+    if (level == 2) {
+      return 'Leg deine Hand unter das Kinn und sprich „$wort“ deutlich. Bei '
+          'jeder Silbe geht das Kinn nach unten. In jeder Silbe klingt ein '
+          'Selbstlaut: a, e, i, o, u, ä, ö, ü – oder au, ei, eu. Zähle so die '
+          'Silben.';
+    }
+    final eigene = HoloLessonCatalog.syllableWords
+        .where((w) => w.word.toLowerCase() == wort.toLowerCase())
+        .map((w) => w.syllables.length)
+        .firstOrNull;
+    final anderes = HoloLessonCatalog.syllableWords
+        .where((w) =>
+            w.word.toLowerCase() != wort.toLowerCase() &&
+            w.syllables.length >= 2 &&
+            (eigene == null || w.syllables.length != eigene))
+        .firstOrNull;
+    if (anderes == null) return null;
+    final boegen = anderes.syllables.length;
+    final zahl = const ['', 'einen', 'zwei', 'drei', 'vier', 'fünf']
+        .elementAtOrNull(boegen) ?? '$boegen';
+    return 'Schau, wie Lumo ein anderes Wort teilt: ${anderes.syllables.join(' – ')}. '
+        'Für jede Silbe ein Bogen, das sind $zahl Bögen. Sprich jetzt „$wort“ '
+        'genauso langsam, male für jede Silbe einen Bogen und zähle die '
+        'Silben-Bögen.';
+  }
+
+  /// Rechtschreibung: Lumo nennt die passende Regel oder Strategie
+  /// (Mitsprechen, Verlängern, Ableiten, Merken), nie das richtige Wort.
+  String? _rechtschreibHint(LumoTask task, int level) {
+    if (task.subject != 'Deutsch') return null;
+    if (!task.prompt.contains('Schreibweise') &&
+        !task.prompt.contains('richtig geschrieben')) {
+      return null;
+    }
+    final richtig = task.answer.trim();
+    final falsch = [
+      for (final c in task.choices)
+        if (c.trim() != richtig && c.trim().isNotEmpty) c.trim()
+    ];
+    if (richtig.isEmpty || richtig.contains(' ') || falsch.isEmpty) return null;
+    final klein = richtig.toLowerCase();
+    bool fehltIn(String muster) =>
+        klein.contains(muster) &&
+        falsch.any((f) => !f.toLowerCase().contains(muster));
+    final doppelt = RegExp(r'(bb|dd|ff|gg|ll|mm|nn|pp|rr|ss|tt)');
+    // Beispielwörter, die weder das gesuchte Wort noch eine Auswahl sind.
+    final belegt = {klein, for (final f in falsch) f.toLowerCase()};
+    String bsp(List<String> kandidaten) => kandidaten.firstWhere(
+        (k) => !belegt.any((w) => k.toLowerCase().contains(w)),
+        orElse: () => kandidaten.last);
+    final List<String> regel;
+    if (falsch.any((f) => f.toLowerCase() == klein && f != richtig)) {
+      regel = [
+        'Schau auf den ersten Buchstaben. Kannst du der, die oder das davor sagen?',
+        'Wörter, vor die du der, die oder das setzen kannst, sind Namenwörter. Namenwörter schreibt man groß.',
+        'Prüfe jede Schreibweise: Passt der, die oder das davor? Dann muss der erste Buchstabe groß sein.',
+      ];
+    } else if (fehltIn('ck') || fehltIn('tz')) {
+      regel = [
+        'Sprich das Wort langsam. Klingt der Selbstlaut vor dem k- oder z-Laut kurz und schnell?',
+        'Nach einem kurzen Selbstlaut schreibt man ck statt k und tz statt z – wie bei „${bsp(const ['Decke', 'Socke', 'Jacke'])}“ und „${bsp(const ['Katze', 'Mütze', 'Platz'])}“.',
+        'Prüfe jede Schreibweise: Kurzer Selbstlaut, dann ck oder tz. Nach einem langen Selbstlaut nur k oder z.',
+      ];
+    } else if (fehltIn('ie')) {
+      regel = [
+        'Sprich das Wort langsam. Klingt das i lang wie in „${bsp(const ['Biene', 'Wiese', 'Ziege'])}“ oder kurz wie in „${bsp(const ['Fisch', 'Kind', 'Mitte'])}“?',
+        'Klingt das i lang, schreibt man es meistens ie.',
+        'Prüfe jede Schreibweise: Langes i → meistens ie. Kurzes i → nur i.',
+      ];
+    } else if (doppelt.hasMatch(klein) &&
+        falsch.any((f) => !doppelt.hasMatch(f.toLowerCase()))) {
+      regel = [
+        'Sprich das Wort langsam in Silben. Klingt der Selbstlaut in der Mitte kurz und schnell oder lang?',
+        'Nach einem kurzen, schnellen Selbstlaut hörst du oft zwei Mitlaute – wie bei „${bsp(const ['Sonne', 'Puppe', 'Teller'])}“ und „${bsp(const ['Mutter', 'Kanne', 'Wolle'])}“. Nach einem langen Selbstlaut wie bei „${bsp(const ['Hose', 'Rose', 'Nase'])}“ nur einen.',
+        'Prüfe jede Schreibweise: Kurzer Selbstlaut → zwei gleiche Mitlaute danach. Langer Selbstlaut → nur einer.',
+      ];
+    } else if ((klein.endsWith('d') || klein.endsWith('b') || klein.endsWith('g')) &&
+        falsch.any((f) => RegExp(r'[tpk]$').hasMatch(f.toLowerCase()))) {
+      regel = [
+        'Am Wortende klingen d und t, b und p, g und k fast gleich. Hör nicht nur aufs Ende.',
+        'Verlängere das Wort: Mach daraus mehrere – ${bsp(const ['Hund → Hunde', 'Kind → Kinder', 'Berg → Berge'])}. Dann hörst du den Buchstaben deutlich.',
+        'Prüfe jede Schreibweise mit der Verlängerung: Sprich die Mehrzahl oder ein passendes Tunwort und hör genau hin.',
+      ];
+    } else if ((klein.contains('ä') || klein.contains('äu')) &&
+        falsch.any((f) => !f.toLowerCase().contains('ä'))) {
+      regel = [
+        'Gibt es ein verwandtes Wort mit a oder au?',
+        'Ableiten: ${bsp(const ['Bäume kommt von Baum', 'Häuser kommt von Haus', 'Äpfel kommt von Apfel'])}. Steckt ein a oder au drin, schreibt man ä oder äu.',
+        'Prüfe jede Schreibweise: Such das verwandte Wort mit a oder au. Gibt es keins, schreibt man meistens e oder eu.',
+      ];
+    } else if (klein.contains('h') &&
+        falsch.any((f) => !f.toLowerCase().contains('h'))) {
+      regel = [
+        'Sprich das Wort langsam. Hörst du alle Buchstaben – oder ist einer stumm?',
+        'Manche Wörter haben ein stummes h nach einem langen Selbstlaut, wie „${bsp(const ['Bahn', 'Zahn', 'Kuh'])}“ oder „${bsp(const ['Uhr', 'Ohr', 'Mehl'])}“. Solche Wörter sind Merkwörter.',
+        'Merkwort: Schau dir jede Schreibweise genau an und schreib das Wort einmal ab. Welche hast du schon oft gelesen?',
+      ];
+    } else {
+      return null;
+    }
+    final text = regel[(level.clamp(1, 3)) - 1];
+    // Ein Beispielwort darf nie das gesuchte Wort sein.
+    if (text.toLowerCase().contains(klein)) {
+      return 'Sprich das Wort langsam in Silben und schreib es dir auf. '
+          'Vergleiche die Schreibweisen Buchstabe für Buchstabe.';
+    }
+    return text;
   }
 
   /// Rechenzeichen einer reinen Rechnung „a ○ b = ?“ (auch mit „Schriftlich:“

@@ -646,6 +646,11 @@ class LumoNachhilfe {
     return wege.first;
   }
 
+  /// Denkanstoß fürs kleine Einmaleins mit einer Kernaufgabe als Anker
+  /// (z. B. „6 · 7 ist eine Reihe mehr als 5 · 7. Kennst du 5 · 7?“).
+  /// Nennt nie das Ergebnis; auch die Texthilfe der Aufgabe nutzt ihn.
+  String einmaleinsTipp(int a, int b) => _ankerTipp(a, b);
+
   /// Nächster Weg für „Anders zeigen“ (zyklisch).
   NachhilfeWeg naechsterWeg(NachhilfeAufgabe aufgabe, NachhilfeWeg aktuell) {
     final wege = wegeFuer(aufgabe);
