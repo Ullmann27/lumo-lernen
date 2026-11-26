@@ -116,7 +116,7 @@ void main() {
     expect(seen, {'Steiermark', 'Burgenland'});
   });
 
-  test('Rechengeschichten Klasse 4: kein Dativ ohne -n („von allen Nüsse“)', () {
+  test('Rechengeschichten Klasse 4: „von allen Nüssen“ mit Dativ-n', () {
     var seen = 0;
     for (var seed = 0; seed < 1500; seed++) {
       final task = generator(seed).generate(
@@ -124,6 +124,7 @@ void main() {
       if (!task.prompt.contains('Packungen')) continue;
       seen++;
       // Dativ Plural endet auf -n (Ausnahme: Plural auf -s wie Ballons).
+      expect(task.prompt, contains('Von allen'), reason: task.prompt);
       expect(task.prompt,
           isNot(matches(RegExp(r'[Vv]on allen \S*[^ns] '))),
           reason: task.prompt);

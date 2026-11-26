@@ -176,6 +176,11 @@ class LumoAdventureTasks {
 
   List<String> _shuffle(List<String> list) => list..shuffle(_random);
 
+  /// Dativ Plural: Endet der Plural nicht auf -n oder -s, kommt -n dazu
+  /// (Nüsse → Nüssen, Äpfel → Äpfeln, aber Perlen, Ballons).
+  static String _dativePlural(String plural) =>
+      plural.endsWith('n') || plural.endsWith('s') ? plural : '${plural}n';
+
   /// Meist Inhalte der eigenen Klasse, manchmal Wiederholung von früher.
   List<T> _preferGrade<T>(List<T> all, int g, int Function(T) gradeOf) {
     final current = all.where((e) => gradeOf(e) == g).toList();
@@ -283,9 +288,11 @@ class LumoAdventureTasks {
           return _math(
               'Rechengeschichten',
               '$hero kauft $n Packungen. In jeder Packung sind $k $pl. '
-                  // Kein „Von allen Nüsse“: Der Dativ Plural bräuchte -n.
-                  '$hero bekommt noch $b $pl dazu. Dann verschenkt $hero '
-                  '$c davon. Wie viele $pl hat $hero am Ende?',
+                  // „Von allen“ (nicht „Davon“, Befund M20) braucht den
+                  // Dativ Plural: „von allen Nüssen“, nicht „Nüsse“.
+                  '$hero bekommt noch $b $pl dazu. Von allen '
+                  '${_dativePlural(pl)} verschenkt $hero $c. '
+                  'Wie viele $pl hat $hero am Ende?',
               n * k + b - c,
               'Erst $n · $k = ${n * k}, dann + $b = ${n * k + b}, '
                   'dann − $c = ${n * k + b - c}.',
