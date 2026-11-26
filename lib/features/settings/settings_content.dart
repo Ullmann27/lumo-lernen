@@ -14,6 +14,7 @@ import '../../core/app_settings.dart';
 import '../../core/app_update_service.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_error_log.dart';
+import '../../core/lumo_music.dart';
 import '../../core/lumo_voice.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/settings_repository.dart';
@@ -61,6 +62,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
   static const String _aiDiagnosticsVersion = 'KI-Health-Client v4 (root-slash + diagnostics + smoketest)';
 
   late AppSettings _settings = widget.appState.state.settings;
+  late final Future<void> _musicPreference = LumoMusic.instance.init();
   bool _saving = false;
   bool _changingSchoolGrade = false;
   String? _schoolGradeError;
@@ -657,6 +659,18 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         ),
         const SizedBox(height: 14),
         _SettingsCard(title: 'Ton und Stimme', children: [
+          FutureBuilder<void>(
+            future: _musicPreference,
+            builder: (context, _) => _SwitchRow(
+              title: 'Menümusik',
+              subtitle: 'Leise Hintergrundmusik auf der Startseite. '
+                  'Bei ausgeschaltetem Ton oder im ruhigen Modus bleibt sie stumm.',
+              value: !LumoMusic.instance.muted,
+              onChanged: (enabled) {
+                setState(() => LumoMusic.instance.muted = !enabled);
+              },
+            ),
+          ),
           _SwitchRow(title: 'Lumo-Stimme', subtitle: 'Lumo darf Antworten laut sprechen.', value: _settings.voiceEnabled, onChanged: (v) => _save(_settings.copyWith(voiceEnabled: v)),
                 ),
           _SwitchRow(title: 'Automatisch vorlesen', subtitle: 'Lumo spricht beim Wechseln von Bereichen und liest in Klasse 1 und 2 neue Aufgaben vor.', value: _settings.autoReadEnabled, onChanged: (v) => _save(_settings.copyWith(autoReadEnabled: v)),
@@ -725,7 +739,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
                 _SwitchRow(
                   title: 'Ton-Effekte',
                   subtitle:
-                      'Vorbereitung für spätere Klick- und Belohnungstöne.',
+                      'Schaltet Klick- und Belohnungstöne. Bei ausgeschaltetem Ton bleibt auch die Menümusik stumm.',
                   value: _settings.soundEnabled,
                   onChanged: (v) => _save(_settings.copyWith(soundEnabled: v)),
                 ),

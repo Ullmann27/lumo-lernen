@@ -102,9 +102,10 @@ void main() {
   });
 
   Future<void> showHome(WidgetTester tester,
-      {GlobalKey<NavigatorState>? navigator}) async {
+      {GlobalKey<NavigatorState>? navigator,
+      Size size = const Size(390, 840)}) async {
     tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
-    await tester.binding.setSurfaceSize(const Size(390, 840));
+    await tester.binding.setSurfaceSize(size);
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.runAsync(() => tester.pumpWidget(DefaultAssetBundle(
           bundle: _TestArtwork(),
@@ -222,6 +223,53 @@ void main() {
     await _frames(tester);
     expect(volumes(), everyElement(0.0));
     expect(native('stop'), isNotEmpty);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await _frames(tester);
+  });
+
+  testWidgets(
+      'Eltern schalten Menümusik separat aus und lesen sie nach Neustart zurück',
+      (tester) async {
+    const window = Size(900, 940);
+    final toggle = find.widgetWithText(SwitchListTile, 'Menümusik');
+    Future<void> tap(Finder finder) async {
+      await tester.runAsync(() async {
+        await tester.ensureVisible(finder);
+        await tester.tap(finder);
+      });
+      await _frames(tester);
+    }
+
+    await showHome(tester, size: window);
+    final app = appState(tester);
+    expect(native('resume'), hasLength(1));
+    await tap(find.text('Eltern'));
+    expect(find.text('Ton und Stimme'), findsOneWidget);
+    expect(toggle, findsOneWidget);
+    expect(tester.widget<SwitchListTile>(toggle).value, isTrue);
+    await tap(toggle);
+    final prefs = await SharedPreferences.getInstance();
+    expect(prefs.getBool('lumo_music_muted'), isTrue);
+    expect(app.state.settings.soundEnabled, isTrue);
+    await tap(find.text('Start'));
+    expect(native('resume'), hasLength(1));
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await _frames(tester);
+    await tester.runAsync(music.dispose);
+    await showHome(tester, size: window);
+    expect(native('resume'), hasLength(1));
+    await tap(find.text('Eltern'));
+    expect(tester.widget<SwitchListTile>(toggle).value, isFalse);
+    await tap(toggle);
+    expect(prefs.getBool('lumo_music_muted'), isFalse);
+    await tap(find.text('Start'));
+    expect(find.byType(HomeContent), findsOneWidget);
+    await _frames(tester);
+    expect(native('resume'), hasLength(2),
+        reason: 'Calls: ${calls.map((call) => call.method).join(', ')}');
+    expect(volumes().last, 0.12);
+
     await tester.pumpWidget(const SizedBox.shrink());
     await _frames(tester);
   });
