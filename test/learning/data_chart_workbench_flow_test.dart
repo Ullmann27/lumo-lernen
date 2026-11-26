@@ -212,9 +212,22 @@ void main() {
     expect((app.state.stars, app.state.xp), before);
     await _button(tester, 'submit');
     expect(find.textContaining('Suche die Zeile'), findsWidgets);
+    final workbench = find.byType(DataChartAnswer);
+    expect(tester.widget<DataChartAnswer>(workbench).rejectedValues, {'1'});
     await _button(tester, 'add');
+    expect(find.text('Dein Eintrag für ${data.requested.label}: 2'),
+        findsOneWidget);
+    expect(tester.widget<FilledButton>(submit).onPressed, isNotNull);
     await _button(tester, 'submit');
-    expect(find.textContaining('Zähle nur die Kästchen'), findsWidgets);
+    await _settle(tester);
+    final worked = find.byType(LumoWorkedSolutionCard);
+    expect(worked, findsOneWidget);
+    expect(
+        tester.widget<LumoWorkedSolutionCard>(worked).steps.first,
+        startsWith(data.pictogram
+            ? 'Zähle nur die Kästchen'
+            : 'Lies die Zahl rechts'));
+
     expect(find.textContaining('trage ausdrücklich Null ein'), findsWidgets);
     await _capture(tester, 'datenwerkstatt-fehlerhilfe-344dp');
     await _button(tester, 'zero');

@@ -411,6 +411,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
           const SizedBox(height: 12),
         ],
         LumoStageTarget(
+          key: const ValueKey('adaptive-answer-stage'),
           id: 'answers',
           kind: LumoStageRegionKind.answers,
           child: dataChart != null
