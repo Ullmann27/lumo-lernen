@@ -46,19 +46,42 @@ void main() {
 
   testWidgets('Explorer button creates 36 tasks, normal start keeps 24',
       (tester) async {
-    await tester.binding.setSurfaceSize(const Size(412, 915));
+    await tester.binding.setSurfaceSize(const Size(344, 882));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final state = iqTestApp();
     addTearDown(state.dispose);
-    await tester.pumpWidget(iqScreenApp(state));
+    await tester.pumpWidget(iqScreenApp(state, textScale: 1.6));
     await tester.pump(const Duration(milliseconds: 400));
-    expect(find.byKey(const ValueKey('iq-start-button')), findsOneWidget);
-    expect(find.byKey(const ValueKey('iq-extended-button')), findsOneWidget);
+    for (final key in ['iq-start-button', 'iq-extended-button']) {
+      final button = find.byKey(ValueKey(key));
+      expect(button.hitTestable(), findsOneWidget);
+      expect(tester.getSize(button).height, greaterThanOrEqualTo(48));
+    }
+    expect(find.text('24 Rätsel starten'), findsOneWidget);
+    expect(find.text('36 Rätsel entdecken'), findsOneWidget);
     await tester.tap(find.byKey(const ValueKey('iq-extended-button')));
     await tester.pump(const Duration(milliseconds: 400));
     expect(find.text('Bereich 1 von 6'), findsWidgets);
     expect(find.textContaining('36'), findsWidgets,
         reason: 'The real extended test should expose 36 in progress.');
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('short landscape fits the actual title and both rounds',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(882, 344));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final state = iqTestApp();
+    addTearDown(state.dispose);
+    await tester.pumpWidget(iqScreenApp(state));
+    await settleIq(tester);
+    final title = tester.getRect(find.text('Lumo Knobel-Test'));
+    final short = find.byKey(const ValueKey('iq-start-button'));
+    final extended = find.byKey(const ValueKey('iq-extended-button'));
+    expect(title.bottom, lessThan(tester.getRect(short).top));
+    expect(short.hitTestable(), findsOneWidget);
+    expect(extended.hitTestable(), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });

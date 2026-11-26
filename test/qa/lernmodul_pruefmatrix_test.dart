@@ -513,7 +513,7 @@ void main() {
 
   testWidgets('Schularbeit-Karten starten das versprochene Fach',
       (tester) async {
-    await tester.binding.setSurfaceSize(const Size(900, 3000));
+    await tester.binding.setSurfaceSize(const Size(344, 882));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final app = LumoAppState();
     addTearDown(app.dispose);
@@ -537,8 +537,12 @@ void main() {
     ];
     for (final card in cards) {
       section = null;
-      await tester.ensureVisible(find.text(card));
-      await tester.tap(find.text(card));
+      final action = find.byKey(ValueKey('schoolwork-$card'));
+      await tester.ensureVisible(action);
+      await tester.pump();
+      expect(action.hitTestable(), findsOneWidget);
+      expect(tester.getSize(action).height, greaterThanOrEqualTo(48));
+      await tester.tap(action);
       await _settle(tester);
       final st = app.state;
       final total = switch (st.sessionKind) {

@@ -9,6 +9,7 @@ import '../../core/lumo_companion_engine.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/test_result_repository.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../rewards/reward_shop_content.dart';
 import '../tutoring/tutoring_flow_card.dart';
@@ -90,26 +91,12 @@ class SectionContent extends StatelessWidget {
           ],
         );
       case LumoSection.schoolwork:
-        return _ActionPage(
-          title: 'Schularbeit',
-          subtitle: 'Bereite dich ruhig und strukturiert auf eine Schularbeit vor.',
-          emoji: '🏆',
-          accent: LumoColors.schoolwork,
-          cards: [
-            _ActionData(
-              'Gemischter Lerncheck',
-              '30 Aufgaben aus Mathe, Deutsch, Sachunterricht und Englisch.',
-              'Starten',
-              Icons.assignment_rounded,
-              () => _startSession(
-                subject: 'Alle',
-                message: 'Gemischter\nLerncheck\nstartet jetzt.',
-                sessionKind: LumoSessionKind.schoolwork,
-              ),
-            ),
+        return _SchoolworkPage(
+          grade: appState.state.grade,
+          schoolwork: [
             _ActionData(
               'Mathe-Schularbeit',
-              '30 Aufgaben: Rechnen, Größen, Geld, Zeit, Geometrie und Sachaufgaben.',
+              'Rechnen, Größen, Geometrie und Sachaufgaben',
               'Starten',
               Icons.calculate_rounded,
               () => _startSession(
@@ -120,9 +107,7 @@ class SectionContent extends StatelessWidget {
             ),
             _ActionData(
               'Deutsch-Schularbeit',
-              // Schreiben (Texte verfassen) wird nicht automatisch bewertet
-              // und kommt deshalb nicht in die Schularbeit.
-              '30 Aufgaben: Lesen, Sprache und Rechtschreibung. Texte schreibst du im Schreibtrainer.',
+              'Lesen, Sprache und Rechtschreibung',
               'Starten',
               Icons.edit_document,
               () => _startSession(
@@ -132,8 +117,21 @@ class SectionContent extends StatelessWidget {
               ),
             ),
             _ActionData(
+              'Gemischter Lerncheck',
+              'Mathe, Deutsch, Sachunterricht und Englisch',
+              'Starten',
+              Icons.assignment_rounded,
+              () => _startSession(
+                subject: 'Alle',
+                message: 'Gemischter\nLerncheck\nstartet jetzt.',
+                sessionKind: LumoSessionKind.schoolwork,
+              ),
+            ),
+          ],
+          shortPractice: [
+            _ActionData(
               'Sachunterricht-Lerncheck',
-              'Natur, Körper, Gemeinschaft, Österreich, Verkehr, Technik und Umwelt.',
+              '$kLumoTestQuestions Aufgaben aus Sachunterricht',
               'Starten',
               Icons.public_rounded,
               () => _startSession(
@@ -143,19 +141,19 @@ class SectionContent extends StatelessWidget {
               ),
             ),
             _ActionData(
-                'Englisch-Lerncheck',
-                'Hören/Lesen, Wortschatz und einfache Alltagssituationen.',
-                'Starten',
-                Icons.language_rounded,
-                () => _startSession(
-                  subject: 'Englisch',
-                  message: 'English Check\nstarts now.',
-                  sessionKind: LumoSessionKind.test,
-                ),
+              'Englisch-Lerncheck',
+              '$kLumoTestQuestions Aufgaben aus Englisch',
+              'Starten',
+              Icons.language_rounded,
+              () => _startSession(
+                subject: 'Englisch',
+                message: 'English Check\nstarts now.',
+                sessionKind: LumoSessionKind.test,
               ),
+            ),
             _ActionData(
               'Schnelle Wiederholung',
-              '20 Aufgaben gemischt zum Festigen.',
+              '20 gemischte Aufgaben mit Lernhilfe',
               'Üben',
               Icons.refresh_rounded,
               () => _startSession(
@@ -217,6 +215,215 @@ class SectionContent extends StatelessWidget {
         );
     }
   }
+}
+
+class _SchoolworkPage extends StatelessWidget {
+  const _SchoolworkPage({
+    required this.grade,
+    required this.schoolwork,
+    required this.shortPractice,
+  });
+
+  final int grade;
+  final List<_ActionData> schoolwork;
+  final List<_ActionData> shortPractice;
+
+  @override
+  Widget build(BuildContext context) => SingleChildScrollView(
+    key: const ValueKey('schoolwork-menu'),
+    padding: const EdgeInsets.fromLTRB(16, 12, 16, 22),
+    child: Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 900),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Semantics(
+              header: true,
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF14395C), Color(0xFF0E2444)],
+                  ),
+                  borderRadius: BorderRadius.circular(22),
+                  border: Border.all(color: const Color(0xFF416487)),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Schularbeit',
+                              maxLines: 1,
+                              softWrap: false,
+                              style: LumoTextStyles.heading1.copyWith(
+                                fontSize: 25,
+                                color: LumoVisualTokens.white,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            '$grade. Klasse',
+                            style: LumoTextStyles.label.copyWith(
+                              color: LumoVisualTokens.goldLight,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    const ExcludeSemantics(
+                      child: Icon(
+                        Icons.description_rounded,
+                        size: 32,
+                        color: LumoVisualTokens.gold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final work = _SchoolworkGroup(
+                  label: 'Schularbeit üben',
+                  details: '30 Aufgaben · 3 Runden · ohne Tipps',
+                  choices: schoolwork,
+                  accent: LumoVisualTokens.gold,
+                );
+                final practice = _SchoolworkGroup(
+                  label: 'Kürzer üben',
+                  choices: shortPractice,
+                  accent: LumoVisualTokens.cyanBright,
+                );
+                final wide =
+                    constraints.maxWidth >= 640 &&
+                    MediaQuery.textScalerOf(context).scale(1) <= 1.3;
+                return wide
+                    ? Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(child: work),
+                          const SizedBox(width: 14),
+                          Expanded(child: practice),
+                        ],
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [work, const SizedBox(height: 14), practice],
+                      );
+              },
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+class _SchoolworkGroup extends StatelessWidget {
+  const _SchoolworkGroup({
+    required this.label,
+    this.details,
+    required this.choices,
+    required this.accent,
+  });
+
+  final String label;
+  final String? details;
+  final List<_ActionData> choices;
+  final Color accent;
+
+  @override
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [
+      Semantics(
+        header: true,
+        child: Text(
+          label,
+          style: LumoTextStyles.heading3.copyWith(
+            color: LumoVisualTokens.white,
+          ),
+        ),
+      ),
+      if (details case final explanation?) ...[
+        const SizedBox(height: 3),
+        Text(
+          explanation,
+          style: LumoTextStyles.label.copyWith(
+            color: LumoVisualTokens.muted,
+            fontSize: 14,
+          ),
+        ),
+      ],
+      for (final choice in choices)
+        Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Material(
+            color: const Color(0xFF122C4C),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+              side: const BorderSide(color: Color(0xFF3A587A)),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Semantics(
+              button: true,
+              child: InkWell(
+                key: ValueKey('schoolwork-${choice.title}'),
+                onTap: choice.onTap,
+                child: Container(
+                  constraints: const BoxConstraints(minHeight: 60),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 10,
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(choice.icon, color: accent, size: 23),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              choice.title,
+                              style: LumoTextStyles.label.copyWith(
+                                color: LumoVisualTokens.white,
+                                fontSize: 16,
+                              ),
+                            ),
+                            Text(
+                              choice.description,
+                              style: LumoTextStyles.label.copyWith(
+                                color: LumoVisualTokens.muted,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Icon(Icons.chevron_right_rounded, color: accent),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+    ],
+  );
 }
 
 class _ActionPage extends StatelessWidget {

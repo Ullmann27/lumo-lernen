@@ -32,74 +32,92 @@ class IqStartView extends StatelessWidget {
   final int? lastPoints;
 
   @override
-  Widget build(BuildContext context) => LayoutBuilder(builder: (context, c) {
-        final wide = _isWide(c);
-        final reduced = LumoMotion.reduced(context);
-        final hero = IqHeroHeader(reduced: reduced, scale: c.maxWidth >= 600 ? 1.2 : 1);
-        final details = _Details(lastPoints: lastPoints);
-        return Column(
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(4, 4, 0, 0),
-                child: IqRoundButton(
-                  key: const ValueKey('iq-back'),
-                  icon: Icons.arrow_back_rounded,
-                  label: 'Zurück',
-                  onPressed: onBack,
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (context, c) {
+      final wide = _isWide(c);
+      final reduced = LumoMotion.reduced(context);
+      final compact = c.maxWidth < 480 || c.maxHeight < 560;
+      final hero = IqHeroHeader(
+        reduced: reduced,
+        compact: compact,
+        scale: c.maxWidth >= 600 ? 1.2 : 1,
+      );
+      final start = IqPrimaryButton(
+        key: const ValueKey('iq-start-button'),
+        label: '24 Rätsel starten',
+        icon: Icons.play_arrow_rounded,
+        height: 60,
+        onPressed: onStart,
+      );
+      final explore = IqPrimaryButton(
+        key: const ValueKey('iq-extended-button'),
+        label: '36 Rätsel entdecken',
+        icon: Icons.explore_rounded,
+        height: 52,
+        outlined: true,
+        fontSize: 15,
+        onPressed: onStartExtended,
+      );
+      final details = _Details(lastPoints: lastPoints);
+      return Column(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(4, 4, 0, 0),
+              child: IqRoundButton(
+                key: const ValueKey('iq-back'),
+                icon: Icons.arrow_back_rounded,
+                label: 'Zurück',
+                onPressed: onBack,
+              ),
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: wide ? 1000 : 560),
+                  child: wide
+                      ? Row(
+                          crossAxisAlignment: compact
+                              ? CrossAxisAlignment.start
+                              : CrossAxisAlignment.center,
+                          children: [
+                            Expanded(child: hero),
+                            const SizedBox(width: 24),
+                            Expanded(child: details),
+                          ],
+                        )
+                      : Column(
+                          children: [hero, const SizedBox(height: 14), details],
+                        ),
                 ),
               ),
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                child: Center(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: wide ? 1000 : 560),
-                    child: wide
-                        ? Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(child: hero),
-                              const SizedBox(width: 24),
-                              Expanded(child: details),
-                            ],
-                          )
-                        : Column(children: [hero, const SizedBox(height: 14), details]),
+          ),
+          IqBottomBar(
+            maxWidth: wide ? 700 : 520,
+            child: onStartExtended == null
+                ? start
+                : wide
+                ? Row(
+                    children: [
+                      Expanded(child: start),
+                      const SizedBox(width: 10),
+                      Expanded(child: explore),
+                    ],
+                  )
+                : Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [start, const SizedBox(height: 8), explore],
                   ),
-                ),
-              ),
-            ),
-            IqBottomBar(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IqPrimaryButton(
-                    key: const ValueKey('iq-start-button'),
-                    label: 'Test starten',
-                    icon: Icons.play_arrow_rounded,
-                    height: 62,
-                    onPressed: onStart,
-                  ),
-                  if (onStartExtended != null) ...[
-                    const SizedBox(height: 8),
-                    IqPrimaryButton(
-                      key: const ValueKey('iq-extended-button'),
-                      label: 'Entdecker-Runde · 36 Rätsel',
-                      icon: Icons.explore_rounded,
-                      height: 52,
-                      outlined: true,
-                      fontSize: 15,
-                      onPressed: onStartExtended,
-                    ),
-                  ],
-                ],
-              ),
-            ),
-          ],
-        );
-      });
+          ),
+        ],
+      );
+    },
+  );
 }
 
 /// Identical premium Lumo hero for both Knobeltest and Denkprofil.
@@ -108,6 +126,7 @@ class IqHeroHeader extends StatelessWidget {
     super.key,
     required this.reduced,
     this.scale = 1,
+    this.compact = false,
     this.title = 'Lumo Knobel-Test',
     this.subtitle = 'Spielerisches Denk-Abenteuer',
   });
@@ -116,12 +135,55 @@ class IqHeroHeader extends StatelessWidget {
   final String subtitle;
 
   final bool reduced;
+  final bool compact;
 
   /// Größer auf breiten Bildschirmen.
   final double scale;
 
   @override
-  Widget build(BuildContext context) => Column(
+  Widget build(BuildContext context) => compact ? _compactHero() : _fullHero();
+
+  Widget _compactHero() => IqPanel(
+        padding: const EdgeInsets.fromLTRB(14, 10, 10, 10),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Semantics(
+                    header: true,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        title,
+                        maxLines: 1,
+                        softWrap: false,
+                        style: iqText(24, weight: FontWeight.w900),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: iqText(14, color: LumoVisualTokens.cyanBright),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 6),
+            LumoCharacter(
+              pose: LumoDesignFoxPose.thumbWink,
+              size: 100,
+              reduceMotion: reduced,
+              intro: !reduced,
+            ),
+          ],
+        ),
+      );
+
+  Widget _fullHero() => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
@@ -232,14 +294,14 @@ class _Floating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
-        child: IqPulse(
-          period: Duration(milliseconds: period),
-          builder: (context, t) => Transform.translate(
-            offset: Offset(0, (t - .5) * 12),
-            child: IqFigureView(figure, size: size),
-          ),
-        ),
-      );
+    child: IqPulse(
+      period: Duration(milliseconds: period),
+      builder: (context, t) => Transform.translate(
+        offset: Offset(0, (t - .5) * 12),
+        child: IqFigureView(figure, size: size),
+      ),
+    ),
+  );
 }
 
 class _Details extends StatelessWidget {
@@ -253,31 +315,44 @@ class _Details extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        const Align(
+          alignment: Alignment.centerLeft,
+          child: IqChip(
+            label: '24 Rätsel · ca. 10 Minuten · ohne Zeitdruck',
+            icon: Icons.schedule_rounded,
+          ),
+        ),
+        const SizedBox(height: 10),
         LumoEntrance(
           child: IqPanel(
-            strong: true,
+            padding: const EdgeInsets.all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Sechs Knobel-Bereiche', style: iqText(16, weight: FontWeight.w900)),
-                const SizedBox(height: 10),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [for (final area in IqArea.values) _AreaChip(area)],
+                Text(
+                  'Sechs Knobel-Bereiche',
+                  style: iqText(16, weight: FontWeight.w900),
+                ),
+                const SizedBox(height: 8),
+                LayoutBuilder(
+                  builder: (context, bounds) {
+                    final wide =
+                        bounds.maxWidth >= 244 &&
+                        MediaQuery.textScalerOf(context).scale(1) <= 1.5;
+                    final width = wide
+                        ? (bounds.maxWidth - 7) / 2
+                        : bounds.maxWidth;
+                    return Wrap(
+                      spacing: 7,
+                      runSpacing: 7,
+                      children: [
+                        for (final area in IqArea.values)
+                          SizedBox(width: width, child: _AreaChip(area)),
+                      ],
+                    );
+                  },
                 ),
               ],
-            ),
-          ),
-        ),
-        const SizedBox(height: 12),
-        LumoEntrance(
-          index: 1,
-          child: Align(
-            alignment: Alignment.center,
-            child: IqChip(
-              label: '24 Rätsel · ca. 10 Minuten · ohne Zeitdruck',
-              icon: Icons.schedule_rounded,
             ),
           ),
         ),
@@ -311,11 +386,31 @@ class _AreaChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = iqAreaStyle(area);
-    return IqSkillChip(
-      label: area.title,
-      description: area.skill,
-      icon: style.icon,
-      color: style.color,
+    return Semantics(
+      label: '${area.title}. ${area.skill}',
+      excludeSemantics: true,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: style.color.withValues(alpha: .12),
+          border: Border.all(color: style.color.withValues(alpha: .42)),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 8),
+          child: Row(
+            children: [
+              Icon(style.icon, size: 19, color: style.color),
+              const SizedBox(width: 5),
+              Expanded(
+                child: Text(
+                  area.title,
+                  style: iqText(13, weight: FontWeight.w900),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
