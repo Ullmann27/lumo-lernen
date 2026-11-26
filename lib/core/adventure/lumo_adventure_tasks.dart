@@ -961,15 +961,31 @@ class LumoAdventureTasks {
       subject: 'Sachunterricht',
       unit: 'Österreich-Reise',
       prompt: askCapital
-          ? 'Lumo fliegt mit dem Ballon über ${state[0]}. '
+          ? 'Lumo fliegt mit dem Ballon über ${_stateAccusative(state[0])}. '
               'Wie heißt die Landeshauptstadt?'
           : 'Lumo landet in ${state[1]}. In welchem Bundesland ist das?',
       answer: answer,
       choices: _choicesWith(answer, others),
-      explanation: '${state[1]} ist die Landeshauptstadt von ${state[0]}.',
+      explanation:
+          '${state[1]} ist die Landeshauptstadt ${_stateGenitive(state[0])}.',
       visual: 'science',
     );
   }
+
+  /// Die Steiermark und das Burgenland stehen mit Artikel: „über die
+  /// Steiermark“, „die Landeshauptstadt des Burgenlandes“. Die übrigen
+  /// Bundesländer stehen ohne Artikel („über Tirol“, „von Tirol“).
+  static String _stateAccusative(String state) => switch (state) {
+        'Steiermark' => 'die Steiermark',
+        'Burgenland' => 'das Burgenland',
+        _ => state,
+      };
+
+  static String _stateGenitive(String state) => switch (state) {
+        'Steiermark' => 'der Steiermark',
+        'Burgenland' => 'des Burgenlandes',
+        _ => 'von $state',
+      };
 
   // ─── Logik ─────────────────────────────────────────────────────────
 

@@ -98,4 +98,21 @@ void main() {
     expect(source, isNot(contains('Pflaume')));
     expect(source, contains("AdventureNoun('der', 'Erdapfel', 'Erd-ap-fel', 2)"));
   });
+
+  test('Österreich-Reise: Steiermark und Burgenland mit Artikel', () {
+    // Vorher: „Lumo fliegt mit dem Ballon über Steiermark.“ und
+    // „Graz ist die Landeshauptstadt von Steiermark.“
+    final seen = <String>{};
+    for (var seed = 0; seed < 600; seed++) {
+      final task = generator(seed).generate(
+          subject: 'Sachunterricht', unit: 'Österreich-Reise', grade: 3);
+      final text = '${task.prompt} ${task.explanation}';
+      expect(text, isNot(matches(RegExp(
+          r'(über|von|in|nach|aus) (Steiermark|Burgenland)\b'))),
+          reason: text);
+      if (text.contains('Steiermark')) seen.add('Steiermark');
+      if (text.contains('Burgenland')) seen.add('Burgenland');
+    }
+    expect(seen, {'Steiermark', 'Burgenland'});
+  });
 }
