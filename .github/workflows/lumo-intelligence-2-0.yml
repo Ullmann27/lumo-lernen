@@ -241,6 +241,23 @@ jobs:
               godot --headless --path build/lumo-godot-qa \
               --script res://scripts/tests/kart_signature_race_regression.gd -- --track="$track"
           done
+      - name: Rivalen, Tunnel und Produktionsfahrzeuge in den reparierten Spielpfaden prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          for probe in kart_adventure_regression kart_production_vehicle_regression kart_fleet_regression; do
+            XDG_DATA_HOME="$RUNNER_TEMP/lumo-release-$probe" \
+              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+                --timeout 900 --required PASS --log "build-proof/GODOT-$probe.txt" -- \
+                godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
+                --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd"
+          done
+          XDG_DATA_HOME="$RUNNER_TEMP/lumo-release-rival-ai" \
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 1500 --required '[KartRivalAI] PASS' --log build-proof/GODOT-kart_rival_ai_regression.txt -- \
+              godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
+              --path build/lumo-godot-qa --script res://scripts/tests/kart_rival_ai_regression.gd \
+              -- --tracks=jungle_emerald_3600,jungle_temple
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
