@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
+import 'package:lumo_lernen/core/legacy_learning_data.dart';
 import 'package:lumo_lernen/domain/backup/local_backup.dart';
 import 'package:lumo_lernen/features/journal/journal_repository.dart';
 import 'package:lumo_lernen/features/journal/lumo_journal_screen.dart';
@@ -59,6 +61,36 @@ void main() {
     expect(prefs.getString(key), '{kaputt');
   });
 
+  test('wartender Schreibvorgang verliert bei Profilwechsel die Freigabe',
+      () async {
+    final app = LumoAppState();
+    addTearDown(app.dispose);
+    await app.school.setActiveStudent('school-a');
+    final owner = await app.captureLearningProfile();
+    final entered = Completer<void>();
+    final release = Completer<void>();
+    final barrier = LearningStorage.run((prefs) async {
+      entered.complete();
+      await release.future;
+    });
+    await entered.future;
+    var currentProfile = true;
+    final save = app.runJournalStorage(owner, () => a.add(
+      text: 'Nicht mehr freigegebener Entwurf', title: '',
+      isCurrent: () => currentProfile,
+    ));
+    final rejected = expectLater(save, throwsStateError);
+    // Invalidate while waiting for serialized storage, before any write.
+    currentProfile = false;
+    release.complete();
+    await barrier;
+    await rejected;
+    await app.school.setActiveStudent('school-b');
+    expect(await a.load(isCurrent: current), isEmpty);
+    expect(await b.load(isCurrent: current), isEmpty);
+    expect((await device.load(isCurrent: current)).single.text, 'Altbestand');
+  });
+
   test('Sicherung erhält beide Journale und lehnt fremden Besitz ab', () async {
     await a.add(text: 'A', title: '', isCurrent: current);
     await b.add(text: 'B', title: '', isCurrent: current);
@@ -71,6 +103,16 @@ void main() {
       keyB: prefs.getString(keyB)!,
     };
     final archive = LocalBackup.create(preferences: values, nativeFiles: []);
+    expect(
+      () => LocalBackup.create(preferences: {
+        ...values,
+        keyA: jsonEncode({
+          'version': 1, 'ownerId': 'school-a',
+          'entries': [{'id': 'x', 'text': 'X', 'createdAt': 'invalid'}],
+        }),
+      }, nativeFiles: []),
+      throwsFormatException,
+    );
     final restored = LocalBackup.parse(archive.bytes);
     expect(restored.preferences, values);
     expect(

@@ -70,13 +70,25 @@ class JournalRepository {
 
   static List<JournalEntry> _decodeEntries(Object? data) {
     if (data is! List) throw const FormatException('Ungültiges Journal.');
-    return [
-      for (final row in data)
-        if (row is Map<String, dynamic>)
-          JournalEntry.fromJson(row)
-        else
-          throw const FormatException('Ungültiger Journaleintrag.'),
-    ];
+    final result = <JournalEntry>[];
+    for (final row in data) {
+      if (row is! Map<String, dynamic> ||
+          row['id'] is! String ||
+          (row['id'] as String).isEmpty ||
+          row['text'] is! String ||
+          row['createdAt'] is! int ||
+          (row['title'] != null && row['title'] is! String) ||
+          (row['wordCount'] != null &&
+              (row['wordCount'] is! int || (row['wordCount'] as int) < 0))) {
+        throw const FormatException('Ungültiger Journaleintrag.');
+      }
+      try {
+        result.add(JournalEntry.fromJson(row));
+      } catch (_) {
+        throw const FormatException('Ungültiger Journaleintrag.');
+      }
+    }
+    return result;
   }
 
   static List<JournalEntry> _decodeScoped(String key, Object? data) {

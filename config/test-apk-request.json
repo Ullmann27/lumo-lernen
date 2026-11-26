@@ -1,5 +1,5 @@
 {
-  "request": 70,
-  "version": "0.15.6+2089",
-  "note": "24 Karts, Werkstattzoom, Waldheim, Sternenstadt, Gefühls-Kompass und leise Menümusik. Die Lernwerkstätten trennen gemischte Antwortkarten von der freien Zähleingabe. Unabhängige Lösungen, Klassenwechsel und der Verweis auf den Schreibtrainer sind geprüft. Zusätzlich: getrennte Schuljournale, unveränderte Alt-Einträge im Gerätejournal, Profilwechsel und Sicherungsvalidierung; neue fokussierte Regressionstests vor Android-Bau. Zusätzlich: Lernwerkstatt-Regressionskorrektur und 3D-Memory-Kompaktlayout aus den Produktionszweigen zusammengeführt."
+  "request": 71,
+  "version": "0.15.7+2090",
+  "note": "24 Karts, Werkstattzoom, Waldheim, Sternenstadt, Gefühls-Kompass und leise Menümusik. Die Lernwerkstätten trennen gemischte Antwortkarten von der freien Zähleingabe. Unabhängige Lösungen, Klassenwechsel und der Verweis auf den Schreibtrainer sind geprüft. Zusätzlich: getrennte Schuljournale, unveränderte Alt-Einträge im Gerätejournal, Profilwechsel und Sicherungsvalidierung; neue fokussierte Regressionstests vor Android-Bau. Zusätzlich: Lernwerkstatt-Regressionskorrektur und 3D-Memory-Kompaktlayout aus den Produktionszweigen zusammengeführt. Korrektur der belegten CI-Blocker: alter Journal-Aufruf im Tutor-Reset-Test und korrekte Manifest-Testfixture; zusätzliche Profil-, Layout-, Lernfluss- und Sicherungsprüfungen."
 }

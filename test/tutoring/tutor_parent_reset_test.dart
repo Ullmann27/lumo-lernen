@@ -86,7 +86,10 @@ void main() {
     await _seed(app, 'reset-a');
     await app.recordLumoCardsResult(won: true);
     await WritingProgressRepository().recordCompletedWord('Testwort');
-    await const JournalRepository().add(text: 'Fiktiver Testeintrag', title: 'Test');
+    await const JournalRepository(schoolOwnerId: 'reset-a').add(
+        text: 'Fiktiver Testeintrag', title: 'Test', isCurrent: () => true);
+    await const JournalRepository(schoolOwnerId: null).add(
+        text: 'Alter Gerätejournal-Eintrag', title: 'Alt', isCurrent: () => true);
     final owner = await app.captureLearningProfile();
     final prefs = await SharedPreferences.getInstance();
     final before = {

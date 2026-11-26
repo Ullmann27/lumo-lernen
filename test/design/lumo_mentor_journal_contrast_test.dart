@@ -53,9 +53,14 @@ void main() {
         ),
         home: LumoJournalScreen(appState: state),
       ));
-      await tester.pump(const Duration(milliseconds: 300));
+      final add = find.descendant(
+          of: find.byType(AppBar), matching: find.byIcon(Icons.add_rounded));
+      for (var i = 0; i < 40 && add.evaluate().isEmpty; i++) {
+        await tester.pump(const Duration(milliseconds: 50));
+      }
       expect(tester.takeException(), isNull);
-      await tester.tap(find.byIcon(Icons.add_rounded));
+      expect(add, findsOneWidget);
+      await tester.tap(add);
       await tester.pump();
       final fields = find.byType(TextField);
       expect(fields, findsNWidgets(2));

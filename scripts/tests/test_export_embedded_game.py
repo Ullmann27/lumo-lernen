@@ -483,13 +483,19 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
 
     def test_current_reviewed_pin_still_rejects_changed_manifest_glb(self):
         source = json.loads((MODULE.ROOT / 'config/godot-source.json').read_text())
+        # The fixture contains tiny synthetic GLBs, not the production assets.
+        # Approve only its original manifest digest for this test, then tamper
+        # with a GLB. Exercise the current pin's real verification path.
+        fixture_digest = hashlib.sha256(
+            (self.repo / MODULE.PRODUCTION_MESHY_MANIFEST).read_bytes()).hexdigest()
         self.generate_outputs()
         outputs = MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard')
         original = {name: (self.repo / name).read_bytes() for name in outputs}
         target = self.repo / self.all_rows[0]['path']
         target.write_bytes(target.read_bytes() + b'tamper')
-        with self.assertRaisesRegex(RuntimeError, 'manifest GLB mismatch'):
-            self.cleanup(source=source)
+        with patch.object(MODULE, 'PRODUCTION_MESHY_MANIFEST_SHA256', fixture_digest):
+            with self.assertRaisesRegex(RuntimeError, 'manifest GLB mismatch'):
+                self.cleanup(source=source)
         self.assertEqual(
             {name: (self.repo / name).read_bytes() for name in outputs}, original)
 
