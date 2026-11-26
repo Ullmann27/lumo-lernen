@@ -266,7 +266,12 @@ class SourceSelectorsTest(unittest.TestCase):
     def test_learning_route_selectors(self):
         hub = self.source('lib/features/sections/lumo_learning_hub.dart')
         self.assertIn("'Wähle ein Thema. Danach startet die echte Lernaufgabe.'", hub)
-        self.assertIn("label: '$title\\n$status'", hub)
+        # Schulwissen-Kacheln (badge == null, z. B. „Plus bis 10“) beginnen mit
+        # dem Titel; die Probe tippt per Textanfang. Vertiefung/Expertenwelt
+        # tragen ihr Abzeichen zwischen Titel und Status (Team A4).
+        self.assertIn(
+            "label: badge == null ? '$title\\n$status' : '$title\\n$badge\\n$status'", hub)
+        self.assertIn('LumoLearningLevel.schulwissen => null,', hub)
         registry = self.source('lib/features/learning_modules/learning_module_registry.dart')
         self.assertIn("case 'm1_plus10':\n        return PlusBis10Screen", registry)
         screen_ = self.source('lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart')
