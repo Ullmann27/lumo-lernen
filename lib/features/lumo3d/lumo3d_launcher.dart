@@ -216,6 +216,8 @@ Future<bool> launchLumo3D(
       'stars': appState?.state.stars ?? 0,
       'lifetimeStars': lifetimeStars,
       'childKey': childKey,
+      // The native Kart mixer must receive the same explicit app sound policy.
+      'soundEnabled': appState?.state.settings.soundEnabled ?? true,
       if (checkedWorldReceipt != null)
         'worldLearningReceipt': checkedWorldReceipt,
       'reduceAnimations':

@@ -508,6 +508,7 @@ class MainActivity : FlutterActivity() {
                 }
             }
             options.put("reduceAnimations", call.argument<Boolean>("reduceAnimations") ?: false)
+            options.put("soundEnabled", call.argument<Boolean>("soundEnabled") ?: true)
             val callerSession = options.getString("sessionId")
                 // Der Kartentisch kehrt wie Kart und Lumo Lauf in die Spieleauswahl zurück.
                 .takeIf { game in setOf("learning", "connect_four", "memory", "quiz", "world") }

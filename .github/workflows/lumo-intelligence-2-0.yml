@@ -56,6 +56,7 @@ jobs:
             test/learning_loop_restart_scenario_test.dart \
             test/learning/honest_practice_flow_test.dart \
             test/cross_grade_second_chance_test.dart \
+            test/lumo3d_launcher_lifecycle_test.dart \
             test/design/lumo_mentor_journal_contrast_test.dart \
             test/local_backup_format_test.dart \
             test/features/report_screen_test.dart \
@@ -246,6 +247,16 @@ jobs:
           # wird der idempotente Import genau einmal wiederholt.
           godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
             || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
+      - name: Kart – dauerhaft gespeicherte Fahrzeugkonfiguration und echte Motor-PCM prüfen
+        if: matrix.group == 'controls' && steps.reuse.outputs.valid != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          XDG_DATA_HOME="$RUNNER_TEMP/lumo-kart-continuity" \
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 900 --required "[KartContinuity] PASS" --log build-proof/GODOT-kart-continuity.txt -- \
+              godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
+              --path build/lumo-godot-qa --script res://scripts/tests/kart_vehicle_persistence_audio_regression.gd
       - name: Fold-Steuerung, Streckendetails, Kartenrunde und Grafikwahl prüfen
         if: matrix.group == 'controls' && steps.reuse.outputs.valid != 'true'
         shell: bash

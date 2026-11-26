@@ -175,6 +175,7 @@ void main() {
       containsPair('scene', 'jump'), containsPair('grade', 3),
       containsPair('subject', 'Deutsch'), containsPair('stars', 27),
       containsPair('lifetimeStars', greaterThanOrEqualTo(27)),
+      containsPair('soundEnabled', state.state.settings.soundEnabled),
       containsPair('childKey', matches(r'^p_[0-9a-f]{32}$'))));
     expect(finished, isFalse);
     returned.complete(<String, Object?>{'destination': 'games'});
