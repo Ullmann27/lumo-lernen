@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,6 +13,14 @@ TestResult _result(String subject, int correct, int day) => TestResult(
       total: kLumoTestQuestions,
       finishedAt: DateTime(2026, 10, day),
     );
+
+class _PendingResults extends TestResultRepository {
+  final pending = <String, Completer<TestResultSummary>>{};
+
+  @override
+  Future<TestResultSummary> load(String childName) =>
+      (pending[childName] = Completer<TestResultSummary>()).future;
+}
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
@@ -86,4 +96,25 @@ void main() {
     expect(find.text('Mathe – Mathe-Test'), findsOneWidget);
     expect(find.text('4. Oktober 2026'), findsOneWidget);
   });
+  testWidgets('Ein verspätetes Ergebnis gehört nur zum geöffneten Profil', (tester) async {
+    final repo = _PendingResults();
+    final app = LumoAppState();
+    app.update(app.state.copyWith(childName: 'Mia', grade: 2));
+    await tester.binding.setSurfaceSize(const Size(392, 1200));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(MaterialApp(home: Scaffold(body: LumoTestsScreen(
+      appState: app, onSection: (_) {}, results: repo,
+    ))));
+    app.update(app.state.copyWith(childName: 'Ben'));
+    await tester.pump();
+    repo.pending['Ben']!.complete(TestResultSummary(last: _result('Deutsch', 7, 2)));
+    await tester.pump();
+    repo.pending['Mia']!.complete(TestResultSummary(last: _result('Mathematik', 4, 1)));
+    await tester.pump();
+    expect(find.text('7 / 10 richtig!'), findsOneWidget);
+    expect(find.text('4 / 10 richtig!'), findsNothing);
+    await tester.pumpWidget(const SizedBox.shrink());
+    app.dispose();
+  });
+
 }

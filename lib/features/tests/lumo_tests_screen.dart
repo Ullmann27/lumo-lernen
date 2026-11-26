@@ -125,23 +125,69 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
   List<_TestCategory> get _visible =>
       _showAll ? const [..._categories, _mixed] : _categories;
 
+  late (LumoAppState, int, String, int, bool) _owner;
+  int _resultsRevision = 0;
+  (LumoAppState, int, String, int, bool) get _currentOwner {
+    final app = widget.appState;
+    return (app, app.profileGeneration, app.state.childName, app.state.grade, app.resetting);
+  }
+
   @override
   void initState() {
     super.initState();
-    _loadResults();
-    _loadIq();
+    widget.appState.addListener(_profileChanged);
+    _reloadResults();
+  }
+
+  @override
+  void didUpdateWidget(LumoTestsScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.appState != widget.appState) {
+      oldWidget.appState.removeListener(_profileChanged);
+      widget.appState.addListener(_profileChanged);
+      _reloadResults();
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.appState.removeListener(_profileChanged);
+    super.dispose();
+  }
+
+  void _profileChanged() {
+    if (_currentOwner != _owner) setState(_reloadResults);
+  }
+
+  void _reloadResults() {
+    _owner = _currentOwner;
+    _resultsRevision++;
+    _summary = const TestResultSummary();
+    _iqLast = null;
+    if (!widget.appState.resetting) {
+      _loadResults();
+      _loadIq();
+    }
   }
 
   Future<void> _loadResults() async {
+    final revision = _resultsRevision;
     final summary = await widget.results.load(widget.appState.state.childName);
-    if (mounted) setState(() => _summary = summary);
+    if (mounted && _resultsRevision == revision) setState(() => _summary = summary);
   }
 
-  /// Das letzte echte Ergebnis des Knobel-Tests für die Karte.
   Future<void> _loadIq() async {
+    final revision = _resultsRevision;
     final id = await IqTestScreen.studentIdFor(widget.appState);
+    if (!mounted || _resultsRevision != revision) return;
     final last = await widget.iqResults.latest(id);
-    if (mounted) setState(() => _iqLast = last);
+    if (mounted && _resultsRevision == revision) setState(() => _iqLast = last);
+  }
+
+  void _openEmotions() {
+    Navigator.of(context).push<void>(MaterialPageRoute<void>(
+      builder: (_) => EmotionTestScreen(appState: widget.appState),
+    ));
   }
 
   Future<void> _openIq() async {
@@ -204,9 +250,7 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
               subtitle: const Text('EQ-Entdeckertest · Vier Geschichten zum Mitfühlen und Mitdenken.',
                   style: TextStyle(color: Color(0xffcee3db), fontSize: 15)),
               trailing: const Icon(Icons.chevron_right_rounded, color: Colors.white),
-              onTap: () => Navigator.of(context).push<void>(MaterialPageRoute<void>(
-                builder: (_) => EmotionTestScreen(appState: widget.appState),
-              )),
+              onTap: _openEmotions,
             ),
           ),
         ),
@@ -305,52 +349,44 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
   }
 
   Widget _buildHero() {
-    return LayoutBuilder(builder: (context, constraints) {
-      final width = constraints.maxWidth;
-      final height = (width * .46).clamp(160.0, 260.0);
-      final foxSize = height * 1.12;
-      final Widget fox = LumoCharacter(
-        pose: LumoDesignFoxPose.trophyWink,
-        size: foxSize,
-        reduceMotion: _reduceMotion,
-        // Antippen: Lumo wackelt kitzlig.
-        onTap: () {},
-      );
-      return SizedBox(
-        height: height,
-        child: Stack(clipBehavior: Clip.none, children: [
-          Positioned(
-            left: (width - foxSize) / 2 - width * .02,
-            bottom: -foxSize * .06,
-            child: RepaintBoundary(child: fox),
-          ),
-          Positioned(
-            left: 12,
-            top: height * .1,
-            width: width * .32,
-            child: Transform.rotate(
-              angle: -.06,
-              child: const LumoHeroBubble(
-                title: 'Teste dein Wissen!',
-                text: 'Du kannst das! Schritt für Schritt zum Profi!',
-              ),
-            ),
-          ),
-          Positioned(
-            right: 6,
-            bottom: height * .1,
-            width: width * .24,
-            child: Transform.rotate(
-              angle: -.12,
-              child: const LumoHeroBubble(
-                text: 'Wissen macht stärker!',
-                handwritten: true,
-              ),
-            ),
-          ),
-        ]),
-      );
-    });
+    final shortcut = TextButton.styleFrom(
+      minimumSize: const Size(0, 48),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      foregroundColor: const Color(0xfff6f1de),
+      backgroundColor: const Color(0xff254853),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+    );
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(colors: [Color(0xff122e41), Color(0xff294d58)]),
+          borderRadius: BorderRadius.circular(22),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(18, 12, 12, 12),
+          child: Row(children: [
+            Expanded(child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Deine Tests', style: TextStyle(fontFamily: 'Nunito',
+                    fontSize: 28, height: 1.1, fontWeight: FontWeight.w900, color: Colors.white)),
+                const SizedBox(height: 8),
+                Wrap(spacing: 6, runSpacing: 6, children: [
+                  TextButton(style: shortcut, onPressed: _openIq,
+                    key: const ValueKey('tests-shortcut-puzzles'), child: const Text('Knobeln')),
+                  TextButton(style: shortcut, onPressed: _openEmotions,
+                    key: const ValueKey('tests-shortcut-emotions'), child: const Text('Gefühle')),
+                ]),
+              ],
+            )),
+            const SizedBox(width: 6),
+            RepaintBoundary(child: LumoCharacter(pose: LumoDesignFoxPose.trophyWink,
+                size: 86, reduceMotion: _reduceMotion, idleHops: false)),
+          ]),
+        ),
+      ),
+    );
   }
 
   Widget _buildCategoryCard() {
@@ -379,7 +415,7 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
                 borderRadius: BorderRadius.circular(8),
                 onTap: () => setState(() => _showAll = !_showAll),
                 child: Padding(
-                  padding: const EdgeInsets.all(4),
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 15),
                   child: Row(mainAxisSize: MainAxisSize.min, children: [
                     Text(
                       _showAll ? 'Weniger' : 'Alle anzeigen',
@@ -459,7 +495,7 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
         key: ValueKey('test-category-${category.subject}'),
         onTap: () => setState(() => _selected = category),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 220),
+          duration: _reduceMotion ? Duration.zero : const Duration(milliseconds: 220),
           padding: const EdgeInsets.fromLTRB(3, 6, 3, 6),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
@@ -592,82 +628,46 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
 
   Widget _buildTestCard() {
     final category = _selected;
+    final picture = ClipRRect(
+      borderRadius: BorderRadius.circular(14),
+      child: SizedBox(
+        width: 62, height: 62,
+        child: category.subject == 'Mathematik'
+            ? Image.asset('assets/lumo_design/cards/test_rechnen.png', fit: BoxFit.cover)
+            : ColoredBox(color: category.color, child: Icon(category.icon, color: Colors.white, size: 32)),
+      ),
+    );
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
       child: LumoGlassCard(
-        padding: const EdgeInsets.all(10),
-        radius: 22,
-        child: Row(children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(14),
-            child: SizedBox(
-              width: 84,
-              height: 66,
-              child: category.subject == 'Mathematik'
-                  ? Image.asset('assets/lumo_design/cards/test_rechnen.png',
-                      fit: BoxFit.cover)
-                  : DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                          Color.lerp(category.color, Colors.white, .2)!,
-                          Color.lerp(category.color, Colors.black, .35)!,
-                        ]),
-                      ),
-                      child: Icon(category.icon, color: Colors.white, size: 38),
-                    ),
-            ),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: AnimatedBuilder(
-              animation: widget.appState,
-              builder: (context, _) => Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    category.testTitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: LumoVisualTokens.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                  Text(
-                    category.description,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: LumoVisualTokens.muted,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  const Wrap(spacing: 8, runSpacing: 2, children: [
-                    _InfoChip(
-                        icon: Icons.description_outlined,
-                        text: '$kLumoTestQuestions Fragen'),
-                    _InfoChip(icon: Icons.schedule_rounded, text: 'ca. 5 Min.'),
-                  ]),
-                  const SizedBox(height: 2),
-                  _InfoChip(
-                    icon: Icons.school_rounded,
-                    text: 'Klasse ${_gradeFor(widget.appState.state.testLevel)}'
-                        ' · ohne Hilfe',
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(width: 6),
-          _GlowButton(
+        padding: const EdgeInsets.all(14), radius: 22,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Row(children: [
+            picture,
+            const SizedBox(width: 12),
+            Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(category.testTitle, style: const TextStyle(fontFamily: 'Nunito',
+                  color: Colors.white, fontSize: 19, fontWeight: FontWeight.w900)),
+              Text(category.description, style: const TextStyle(fontFamily: 'Nunito',
+                  color: LumoVisualTokens.muted, fontSize: 14)),
+            ])),
+          ]),
+          const SizedBox(height: 10),
+          AnimatedBuilder(animation: widget.appState, builder: (context, _) => Wrap(
+            spacing: 12, runSpacing: 4, children: [
+              const _InfoChip(icon: Icons.description_outlined, text: '$kLumoTestQuestions Fragen'),
+              const _InfoChip(icon: Icons.schedule_rounded, text: 'ca. 5 Min.'),
+              _InfoChip(icon: Icons.school_rounded,
+                  text: 'Klasse ${_gradeFor(widget.appState.state.testLevel)} · ohne Hilfe'),
+            ],
+          )),
+          const SizedBox(height: 10),
+          FilledButton(
             key: const ValueKey('tests-start'),
-            label: 'Starten',
-            onTap: () => _start(category),
+            style: FilledButton.styleFrom(minimumSize: const Size(0, 48),
+              backgroundColor: const Color(0xffffcd71), foregroundColor: const Color(0xff272f36),
+              textStyle: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900, fontSize: 17)),
+            onPressed: () => _start(category), child: const Text('Starten'),
           ),
         ]),
       ),
