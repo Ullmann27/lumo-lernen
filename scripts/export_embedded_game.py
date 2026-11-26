@@ -285,6 +285,9 @@ PRODUCTION_MESHY_ALLOWED_REVISIONS = frozenset((
     # 2082 changes World/table scripts, tests, docs and CI; every asset blob
     # is unchanged from c814. Manifest hashes and exact cleanup checks remain.
     '62108c0355f860ab9a0a020ecb5f3f941f1032e9',
+    # 2083: Git trees compared all 16 original production GLBs and manifest.
+    # Their blobs are unchanged; this pin retains exactly the same hash guard.
+    '94477ade6339133bb15125d719b50af80d615ea0',
 ))
 PRODUCTION_MESHY_MANIFEST = 'assets/kart/production/meshy/manifest.json'
 PRODUCTION_MESHY_VEHICLE_IDS = frozenset((

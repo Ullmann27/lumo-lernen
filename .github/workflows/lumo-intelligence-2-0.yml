@@ -1,13 +1,13 @@
 name: "Lumo Intelligence 2.0 (2083) – Kandidat für Fable-5.2-Abnahme"
 # Baut eine installierbare, signierte Test-APK aus genau diesem Integrationsstand
-# (opus/lumo-intelligence-2-0-20261126). Abgeleitet aus der erfolgreichen 2082-Pipeline;
+# (integration/intelligence-2083-20261126). Abgeleitet aus der erfolgreichen 2082-Pipeline;
 # frühere APKs, main und die 2082-Pipeline bleiben unverändert.
 # Ausgelöst nur durch config/intelligence-2-0-apk-request.json. Ergebnis: Workflow-Artefakt.
 # Paket bleibt dev.ullmann.lumo.lumo_lernen.coachpreview (prepare_android.py --side-by-side
 # erzeugt genau diese bestehende App-ID), Schlüssel tools/lumo-debug.keystore wie 2078.
 on:
   push:
-    branches: [opus/lumo-intelligence-2-0-20261126]
+    branches: [integration/intelligence-2083-20261126]
     paths:
       - config/intelligence-2-0-apk-request.json
 
@@ -57,6 +57,8 @@ jobs:
             test/parents \
             test/qa \
             test/tutoring \
+            test/features/homework_englisch_lesen_sachunterricht_test.dart \
+            test/games/lernspiel_freischaltung_ui_test.dart \
             2>&1 | tee intelligence-proof/FLUTTER-FOCUSED-TESTS.txt
       - name: Tatsächliche Prüfergebnisse sichern
         if: always()
@@ -106,6 +108,7 @@ jobs:
           python3 -m unittest discover -s scripts/tests -p test_verify_native_start_diagnostics.py -v
           python3 -m unittest discover -s tools/android_qa/tests -p test_native_start_diagnostics.py -v
           python3 -m unittest discover -s tools/android_qa/tests -p test_intro_dialog.py -v
+          python3 -m unittest discover -s tools/android_qa/tests -p test_parent_insight_android_probe.py -v
           python3 -m unittest discover -s tools/android_qa/tests -p test_local_backup_android_probe.py -v
           python3 -m unittest scripts.tests.test_prepare_android -v
           python3 -m unittest scripts.tests.test_export_embedded_game -v \
@@ -241,6 +244,21 @@ jobs:
               godot --headless --path build/lumo-godot-qa \
               --script res://scripts/tests/kart_signature_race_regression.gd -- --track="$track"
           done
+      - name: Neue Figuren, Rennen, NPCs und vollständige Tischpartien prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          for probe in lumo_figure_animation_regression kart_body_motion_regression \
+            kart_fahrgefuehl_regression kart_rival_ai_regression \
+            lumo_world_sonnenhafen_npc_regression lumo_world_sonnenhafen_mission_regression \
+            lumo_world_sonnenhafen_save_regression cards_durchspiel_regression \
+            chess_durchspiel_regression star_collect_durchspiel_regression; do
+            XDG_DATA_HOME="$RUNNER_TEMP/lumo-2083-$probe" \
+              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 1500 --required PASS --log "build-proof/GODOT-$probe.txt" -- \
+              godot --headless --single-threaded-scene --audio-driver Dummy \
+              --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd"
+          done
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
@@ -260,6 +278,12 @@ jobs:
               --script "$PWD/.github/probes/lumo_kart_driver_package_probe.gd" -- "$phase" \
               | tee "build-proof/KART-DRIVER-PCK-${phase}.txt"
           done
+          python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+            --timeout 180 --required '[Intelligence2083Pack] PASS' \
+            --log build-proof/GODOT-2083-PACK.txt -- \
+            godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
+              --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
+              --script "$PWD/.github/probes/lumo_2083_pack_probe.gd"
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
@@ -434,6 +458,7 @@ jobs:
           script: |
             .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour
             .probe-venv/bin/python .github/probes/lumo_local_backup_android_probe.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour/local-backup
+            .probe-venv/bin/python .github/probes/lumo_parent_insight_android_probe.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour/parent-insight
       - name: Beobachtete native Spielstarts verbindlich prüfen
         run: python3 scripts/verify_native_start_diagnostics.py tour/native-starts.json --out tour/NATIVE-GAME-STARTS.json
       - name: Abgeschlossene Android-Prüfbelege zum selben Kandidaten bereitstellen
@@ -445,6 +470,9 @@ jobs:
           from pathlib import Path
           import zipfile
 
+          parent = json.loads(Path('tour/parent-insight/parent-insight-result.json').read_text())
+          if parent.get('status') != 'PASS' or not all(step.get('ok') is True for step in parent.get('steps', [])):
+              raise RuntimeError('Live parent insight acceptance did not pass')
           backup = json.loads(Path('tour/local-backup/backup-result.json').read_text())
           if backup.get('status') != 'PASS':
               raise RuntimeError('The real Android backup roundtrip has not passed')
