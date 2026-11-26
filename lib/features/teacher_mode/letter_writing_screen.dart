@@ -173,16 +173,33 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
         child: Column(
           children: [
             _buildTopBar(),
+            // Füllt die Höhe wie bisher; reicht sie bei großer Schrift oder
+            // kleinem Handy nicht, scrollt die Seite statt überzulaufen.
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _buildHeader(),
-                    Expanded(child: Center(child: _buildBigDemo())),
-                    _buildActionButtons(),
-                  ],
+              child: LayoutBuilder(
+                builder: (context, constraints) => SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                        minHeight: (constraints.maxHeight - 40)
+                            .clamp(0.0, double.infinity)),
+                    child: IntrinsicHeight(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _buildHeader(),
+                          Expanded(
+                            child: Center(
+                              child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: _buildBigDemo()),
+                            ),
+                          ),
+                          _buildActionButtons(),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -274,13 +291,16 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
         children: [
           const Icon(Icons.school_rounded, color: Colors.white, size: 18),
           const SizedBox(width: 8),
-          Text('Heute schreiben wir: $_letter',
+          Flexible(
+            child: Text('Heute schreiben wir: $_letter',
+              textAlign: TextAlign.center,
               style: const TextStyle(
                   fontFamily: 'Nunito',
                   color: Colors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 0.5)),
+          ),
         ],
       ),
     );
@@ -353,12 +373,15 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
               children: [
                 Icon(Icons.edit_rounded, color: Colors.white, size: 24),
                 SizedBox(width: 10),
-                Text('Jetzt schreiben üben',
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 18,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white)),
+                Flexible(
+                  child: Text('Jetzt schreiben üben',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white)),
+                ),
                 SizedBox(width: 10),
                 Icon(Icons.arrow_forward_ios_rounded,
                     color: Colors.white, size: 18),
@@ -370,18 +393,20 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
       const SizedBox(height: 10),
       GestureDetector(
         onTap: _nextLetter,
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Überspringen → Nächster Buchstabe',
+        behavior: HitTestBehavior.opaque,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 48),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: Center(
+              child: Text('Überspringen → Nächster Buchstabe',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: 'Nunito',
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
                       color: Colors.grey.shade600)),
-            ],
+            ),
           ),
         ),
       ),
@@ -504,17 +529,23 @@ class _LetterPracticeFullScreenState
     return Scaffold(
       backgroundColor: const Color(0xFFFFFBEB),
       body: SafeArea(
-        child: Column(
-          children: [
-            _buildTopBar(),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: _buildWritingCanvas(),
+        // Die Schreibfläche darf nicht scrollen (Striche). Damit sie bei sehr
+        // großer Schrift auf kleinen Handys Platz behält, wachsen Kopfzeile
+        // und Knöpfe höchstens bis zum 1,4-Fachen.
+        child: MediaQuery.withClampedTextScaling(
+          maxScaleFactor: 1.4,
+          child: Column(
+            children: [
+              _buildTopBar(),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: _buildWritingCanvas(),
+                ),
               ),
-            ),
-            _buildBottomActions(),
-          ],
+              _buildBottomActions(),
+            ],
+          ),
         ),
       ),
     );
