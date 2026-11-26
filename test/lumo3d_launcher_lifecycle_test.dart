@@ -386,12 +386,17 @@ void main() {
   });
 
   launcherTestWidgets(
-    'null native response is not a confirmed successful return',
+    'missing and unknown destinations are not confirmed successful returns',
     (tester) async {
+      Map<String, Object?>? response;
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-          .setMockMethodCallHandler(_bridge, (_) async => null);
+          .setMockMethodCallHandler(_bridge, (_) async => response);
       final context = await _mount(tester);
       expect(await launchLumo3D(context), isFalse);
+      response = {'destination': 'invalid'};
+      expect(await launchLumo3D(context), isFalse);
+      response = {'destination': 'games'};
+      expect(await launchLumo3D(context), isTrue);
     },
   );
 

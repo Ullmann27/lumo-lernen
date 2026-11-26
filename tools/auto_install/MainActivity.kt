@@ -558,11 +558,17 @@ class MainActivity : FlutterActivity() {
                 Log.w("LumoHost", "Ignoring a return from another launch session")
                 return
             }
+            // A canceled/crashed Activity must not be reported as a normal
+            // return to games. Both destinations are written explicitly by
+            // the game hosts, including their normal Android Back handling.
+            val destination = data?.getStringExtra("destination")?.takeIf {
+                resultCode == RESULT_OK && (it == "learn" || it == "games")
+            }
             val startId = pendingStartId
             pendingStartId = null
             if (startId != null) {
                 val outcome = when {
-                    resultCode == RESULT_OK && data?.hasExtra("destination") == true -> "returned"
+                    destination != null -> "returned"
                     engineProcessRunning() -> "closed"
                     else -> "process_ended"
                 }
@@ -571,8 +577,7 @@ class MainActivity : FlutterActivity() {
                 // Godot meldet „geladen“ nur als Logzeile [Router] loaded:<szene>.
                 Thread({ try { refreshLoadTimes(readOwnLog()) } catch (_: Exception) {} }, "LumoStartLoadTime").start()
             }
-            val destination = if (data?.getStringExtra("destination") == "learn") "learn" else "games"
-            val callerOwned = resultCode == RESULT_OK && callerSession != null && returnedSession == callerSession
+            val callerOwned = callerSession != null && returnedSession == callerSession
             val pid = data?.getIntExtra("gamePid", -1)?.takeIf { it > 0 }
             // Engine globals need a fresh process. Do not enable another launch while
             // the previous engine's delayed shutdown can still kill that process.
@@ -581,7 +586,7 @@ class MainActivity : FlutterActivity() {
                 if (engineProcessRunning(pid) && attempt < 100) {
                     Handler(Looper.getMainLooper()).postDelayed({ completeWhenStopped(attempt + 1) }, 100)
                 } else {
-                    if (callerOwned) {
+                    if (destination != null && callerOwned) {
                         try {
                             GameEventStore.completeCallerReturn(this, destination, callerSession!!)
                         } catch (error: Exception) {
@@ -592,13 +597,17 @@ class MainActivity : FlutterActivity() {
                             return
                         }
                     }
-                    val learningResult = data?.getStringExtra("learningResult")
-                    val response = mutableMapOf<String, Any>("destination" to destination)
-                    if (learningResult != null) response["learningResult"] = learningResult
-                    if (callerOwned && destination == "learn") {
-                        data?.getStringExtra("worldMission")?.takeIf { it.length <= 2000 }?.let {
-                            response["worldMission"] = it
+                    val response = destination?.let { target ->
+                        val confirmed = mutableMapOf<String, Any>("destination" to target)
+                        data?.getStringExtra("learningResult")?.let {
+                            confirmed["learningResult"] = it
                         }
+                        if (callerOwned && destination == "learn") {
+                            data?.getStringExtra("worldMission")?.takeIf { it.length <= 2000 }?.let {
+                                confirmed["worldMission"] = it
+                            }
+                        }
+                        confirmed
                     }
                     callback.success(response)
                     pendingGame = null

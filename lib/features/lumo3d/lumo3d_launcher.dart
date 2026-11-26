@@ -273,7 +273,7 @@ Future<bool> launchLumo3D(
     // MainActivity returns a destination map on actual Activity return.
     // Null/malformed replies must not masquerade as successful game returns.
     final destination = response?['destination'];
-    if (destination is! String || destination.isEmpty) {
+    if (destination != 'games' && destination != 'learn') {
       if (context.mounted) {
         _showLaunchMessage(
           context,
