@@ -96,7 +96,7 @@ Generator-Kacheln: je 120 Aufgaben über `ExerciseFactory.nextExact`, geprüft a
 | Lernatelier | 1 | – | academy-activity-Englisch | academy-activity-Englisch | CurriculumActivitiesScreen | eigenes Modul | – | – | 1 | ok |
 | Lernatelier | 1 | – | academy-activity-Sachunterricht | academy-activity-Sachunterricht | CurriculumActivitiesScreen | eigenes Modul | – | – | 1 | ok |
 | Lernatelier | 1 | – | academy-tool-d1_schreibcoach | academy-tool-d1_schreibcoach | LumoWritingCoachScreen | eigenes Modul | – | – | 1 | ok |
-| Lernatelier | 1 | – | academy-tool-d1_buchstaben_alle | academy-tool-d1_buchstaben_alle | LetterWritingScreen | eigenes Modul | – | – | 1 | Layout-Überlauf 412dp |
+| Lernatelier | 1 | – | academy-tool-d1_buchstaben_alle | academy-tool-d1_buchstaben_alle | LetterWritingScreen | eigenes Modul | – | – | 1 | ok |
 | Lernatelier | 1 | – | academy-tool-d1_woerter | academy-tool-d1_woerter | LumoWritingWordCoachScreen | eigenes Modul | – | – | 1 | ok |
 | Lernatelier | 1 | – | akademie-learning-lab | akademie-learning-lab | LearningLabHub | eigenes Modul | – | – | 1 | ok |
 | Lernatelier | 1 | – | akademie-guided-learning | akademie-guided-learning | GuidedLearningHub | eigenes Modul | – | – | 1 | ok |
