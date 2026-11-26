@@ -71,7 +71,7 @@ class Attempt {
     const classifier = CompetencyClassifier();
     String classify(String text) =>
         classifier.classify(subject: subject, unit: unit, prompt: text);
-    return classify(source) == competency && classify(target) == competency;
+    return classify(source) == classify(target);
   }
 
   /// Selbstständig richtig gelöste Vergleichsaufgabe nach einer Hilfe.
