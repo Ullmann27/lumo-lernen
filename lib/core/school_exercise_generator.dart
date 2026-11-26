@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'adventure/lumo_adventure_tasks.dart';
+import 'curriculum/learning_level.dart';
 import 'curriculum/math_unit_order.dart';
 import 'german_task_templates.dart';
 import 'english_vocabulary_extensions.dart';
@@ -338,13 +339,19 @@ class ExerciseFactory {
     final cappedGrade = grade.clamp(1, 4).toInt();
     final chosenSubject = _chooseSubject(subject, weakSkills,
         grade: cappedGrade, gradedOnly: gradedOnly);
-    final units = Curriculum.unitsForGrade(chosenSubject, cappedGrade);
-    final availableUnit = units.contains(unit) ||
+    final allUnits = Curriculum.unitsForGrade(chosenSubject, cappedGrade);
+    final availableUnit = allUnits.contains(unit) ||
         (chosenSubject == 'Mathematik' && MathTaskTemplates.supportsUnit(cappedGrade, unit)) ||
         (chosenSubject == 'Deutsch' && GermanTaskTemplates.supportsUnit(cappedGrade, unit));
+    // Lumo Expertenwelt (über den Lehrplan hinaus) nur nach ausdrücklicher
+    // Auswahl: gemischte Runden, Tests und Schularbeiten ziehen allein aus
+    // Schulwissen und Vertiefung der Schulstufe.
+    final units = LearningLevels.withoutExpert(chosenSubject, allUnits, cappedGrade);
     var selectionPool = units;
     if ((unit == 'Alle' || !availableUnit) && _random.nextInt(4) != 0) {
-      final currentUnits = Curriculum.unitsForGrade(chosenSubject, cappedGrade, currentGradeOnly: true);
+      final currentUnits = LearningLevels.withoutExpert(chosenSubject,
+          Curriculum.unitsForGrade(chosenSubject, cappedGrade, currentGradeOnly: true),
+          cappedGrade);
       if (currentUnits.isNotEmpty) selectionPool = currentUnits;
     }
     var candidateUnits = unit == 'Alle' || !availableUnit
