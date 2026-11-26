@@ -35,6 +35,7 @@ import '../core/lumo_ai_proxy_client.dart';
 import '../core/lumo_companion_agent.dart';
 import '../core/lumo_voice.dart';
 import '../core/lumo_sound.dart';
+import '../core/lumo_music.dart';
 import '../core/lumo_interaction_feedback_policy.dart';
 import '../core/user_profile.dart';
 import '../core/embedded_game_service.dart';
@@ -48,6 +49,7 @@ class AppShell extends StatefulWidget {
     this.profile,
     this.initialSection,
     this.deepLinkRequestId = 0,
+    this.menuMusic,
   });
 
   final UserProfile? profile;
@@ -62,6 +64,9 @@ class AppShell extends StatefulWidget {
   /// the same section after the child has navigated elsewhere.
   final int deepLinkRequestId;
 
+  /// Lets widget tests exercise the real scope with mocked native playback.
+  final LumoMusic? menuMusic;
+
   @override
   State<AppShell> createState() => _AppShellState();
 }
@@ -71,6 +76,12 @@ class _AppShellState extends State<AppShell>
   final _appState = LumoAppState();
   final _learningNavigation = LearningNavigation();
   final _coreConversation = LearningConversationEntry();
+  final _menuMusicOwner = Object();
+  late final LumoMusic? _menuMusic = widget.menuMusic ??
+      (LumoMusic.nativeMenuEnabled ? LumoMusic.instance : null);
+  bool _menuRouteCurrent = false;
+  bool _menuForeground = false;
+  LumoSection? _pendingMenuSection;
   GlobalKey _coreSubtreeKey = GlobalKey(debugLabel: 'core-learning-content');
   String? _coreSubtreeScope;
   int _browsingProfileGeneration = 0;
@@ -104,7 +115,12 @@ class _AppShellState extends State<AppShell>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    final binding = WidgetsBinding.instance;
+    binding.addObserver(this);
+    _menuForeground = binding.lifecycleState == null ||
+        binding.lifecycleState == AppLifecycleState.resumed;
+    _pendingMenuSection = widget.initialSection;
+    _appState.addListener(_syncMenuMusic);
     final profile = widget.profile;
     if (profile != null) {
       // 2026-06-04: LumoCompanionAgent angeschlossen. Vorher war die Greeting
@@ -160,6 +176,8 @@ class _AppShellState extends State<AppShell>
     if (oldWidget.deepLinkRequestId == widget.deepLinkRequestId) return;
     final target = widget.initialSection;
     if (target == null) return;
+    _pendingMenuSection = target;
+    _syncMenuMusic();
     final request = widget.deepLinkRequestId;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || request != widget.deepLinkRequestId) return;
@@ -171,6 +189,8 @@ class _AppShellState extends State<AppShell>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _menuRouteCurrent = ModalRoute.isCurrentOf(context) ?? true;
+    _syncMenuMusic();
     if (_criticalTileArtWarmupStarted) return;
     _criticalTileArtWarmupStarted = true;
     // The bundled dashboard bitmaps are frequently first decoded only
@@ -374,6 +394,8 @@ class _AppShellState extends State<AppShell>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
+    _menuForeground = state == AppLifecycleState.resumed;
+    _syncMenuMusic();
     // Wenn App aus Background zurueckkommt: sofort warmup +
     // Keep-Alive-Timer neu starten (im Background war er pausiert).
     if (state == AppLifecycleState.resumed) {
@@ -426,11 +448,31 @@ class _AppShellState extends State<AppShell>
     LumoCompanionRequests.instance.learningEvents
         .removeListener(_recordQuestionAchievement);
     _achievements.dispose();
+    _appState.removeListener(_syncMenuMusic);
+    final music = _menuMusic;
+    if (music != null) unawaited(music.setMenuActive(_menuMusicOwner, false));
     _appState.removeListener(_syncLearningProfile);
     _learningNavigation.dispose();
     _appState.dispose();
     _fadeCtrl.dispose();
     super.dispose();
+  }
+
+  void _syncMenuMusic() {
+    final music = _menuMusic;
+    if (music == null) return;
+    final state = _appState.state;
+    if (_pendingMenuSection == state.section) _pendingMenuSection = null;
+    final active = _menuForeground &&
+        _menuRouteCurrent &&
+        _appState.settingsLoaded &&
+        !_appState.resetting &&
+        state.section == LumoSection.home &&
+        _pendingMenuSection == null &&
+        state.settings.soundEnabled &&
+        !state.settings.calmMode;
+    // The conversation sheet covers this route before it can enable its mic.
+    unawaited(music.setMenuActive(_menuMusicOwner, active));
   }
 
   void _syncLearningProfile() {
@@ -474,6 +516,8 @@ class _AppShellState extends State<AppShell>
     // A faster second tap wins; stale animation callbacks cannot navigate
     // to an outdated page or play its sound.
     final request = ++_navigationRequest;
+    _pendingMenuSection = section;
+    _syncMenuMusic();
     if (_appState.state.section == section) {
       unawaited(_fadeCtrl.forward());
       return;

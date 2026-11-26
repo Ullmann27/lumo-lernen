@@ -1,25 +1,5 @@
-// ════════════════════════════════════════════════════════════════════════
-// LUMO MUSIC — Background-Music-Manager
-// ════════════════════════════════════════════════════════════════════════
-// PR H3 (Heinz 2026-05-23). Geschwister-Klasse zu LumoSound (PR #94),
-// aber dedizierter Player fuer Hintergrund-Loops + Sieg-Jingle. Nutzt
-// die schon vorhandene audioplayers-Dependency.
-//
-// Architektur:
-//   - Singleton mit play(track) / stop() / muted-Toggle
-//   - Ein einziger AudioPlayer (sequenzielles Wechseln zwischen Tracks)
-//   - Lautstaerke fix auf 0.55 (Background, nicht aufdringlich)
-//   - try/catch um jeden Audio-Aufruf - fehlende Datei -> stiller Mute
-//   - Persistiert mute-Status in SharedPreferences ('lumo_music_muted')
-//
-// Verwendung:
-//   await LumoMusic.instance.init();              // einmal in main()
-//   LumoMusic.instance.play(LumoMusicTrack.chillLoop);
-//   LumoMusic.instance.stop();
-//   LumoMusic.instance.muted = true;
-// ════════════════════════════════════════════════════════════════════════
-
 import 'dart:async';
+import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
@@ -28,165 +8,212 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'lumo_asset_paths.dart';
 import 'lumo_voice.dart';
 
-/// Verfuegbare Background-Tracks.
-enum LumoMusicTrack {
-  /// Ruhige Schleife - Hauptmenue / Lumo Cards.
-  chillLoop,
+enum LumoMusicTrack { chillLoop, energeticLoop, victoryJingle }
 
-  /// Lebhafte Schleife - Action-Spiele.
-  energeticLoop,
-
-  /// Kurzer Sieg-Jingle (kein Loop).
-  victoryJingle,
-}
-
+/// Plays bundled music without sharing the speech player or taking its place.
 class LumoMusic {
   LumoMusic._();
   static final LumoMusic instance = LumoMusic._();
 
+  static bool get nativeMenuEnabled =>
+      kIsWeb || !Platform.environment.containsKey('FLUTTER_TEST');
+
   static const String _mutePrefKey = 'lumo_music_muted';
-  static const double _bgVolume = 0.55;
-
-  /// Lautstärke während Lumo spricht (Ducking).
-  static const double duckedVolume = 0.16;
-
-  static String _strip(String fullPath) =>
-      fullPath.startsWith('assets/') ? fullPath.substring(7) : fullPath;
-
-  /// Asset-Pfade ohne 'assets/' (audioplayers AssetSource erwartet das).
-  static final Map<LumoMusicTrack, String> _assetPath = {
-    LumoMusicTrack.chillLoop: _strip(LumoAssetPaths.musicChillLoop),
-    LumoMusicTrack.energeticLoop: _strip(LumoAssetPaths.musicEnergeticLoop),
-    LumoMusicTrack.victoryJingle: _strip(LumoAssetPaths.musicVictoryJingle),
+  static const double _backgroundVolume = 0.12;
+  static const double duckedVolume = 0.03;
+  static const _assets = {
+    LumoMusicTrack.chillLoop: LumoAssetPaths.musicChillLoop,
+    LumoMusicTrack.energeticLoop: LumoAssetPaths.musicEnergeticLoop,
+    LumoMusicTrack.victoryJingle: LumoAssetPaths.musicVictoryJingle,
   };
 
-  AudioPlayer? _player;
-  LumoMusicTrack? _current;
+  Object? _menuOwner;
   bool _muted = false;
+  bool _muteOverridden = false;
   bool _initialized = false;
-  final Set<LumoMusicTrack> _missing = <LumoMusicTrack>{};
-  double _volume = _bgVolume;
-  Timer? _ramp;
-  bool _listening = false;
+  Future<void>? _initializing;
+  Future<void>? _operation;
+  int _revision = 0;
 
-  /// Ziel-Lautstärke abhängig davon, ob Lumo gerade spricht.
-  double get targetVolume =>
-      LumoVoice.instance.status.value == VoiceStatus.speaking
-          ? duckedVolume
-          : _bgVolume;
+  AudioPlayer? _player;
+  LumoMusicTrack? _requested;
+  LumoMusicTrack? _prepared;
+  LumoMusicTrack? _current;
+  bool _loop = true;
+  bool _preparedLoop = false;
+  double _volume = 0.0;
 
-  /// Aktuelle (ggf. gerade gleitende) Musiklautstärke.
+  double get targetVolume => switch (LumoVoice.instance.status.value) {
+        VoiceStatus.preparing || VoiceStatus.speaking => duckedVolume,
+        _ => _backgroundVolume,
+      };
   double get volume => _volume;
-
-  /// Mute-Toggle. Bei true wird laufendes Audio sofort gestoppt.
   bool get muted => _muted;
+  LumoMusicTrack? get current => _current;
+
   set muted(bool value) {
     _muted = value;
-    if (value) stop();
+    _muteOverridden = true;
     unawaited(_persistMute());
+    if (_initialized) unawaited(_schedule());
   }
-
-  /// Aktuell laufender Track (oder null wenn nichts spielt).
-  LumoMusicTrack? get current => _current;
 
   Future<void> _persistMute() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setBool(_mutePrefKey, _muted);
     } catch (_) {
-      // Persistenz scheitern darf die App nicht stoeren.
+      // An audio preference must not determine whether navigation works.
     }
   }
 
-  /// Laedt persistierten Mute-Status. Idempotent.
   Future<void> init() async {
     if (_initialized) return;
-    _initialized = true;
-    _listenToVoice();
+    final pending = _initializing;
+    if (pending != null) return pending;
+    final operation = _loadMute();
+    _initializing = operation;
     try {
-      final prefs = await SharedPreferences.getInstance();
-      _muted = prefs.getBool(_mutePrefKey) ?? false;
-    } catch (_) {
-      _muted = false;
+      await operation;
+    } finally {
+      _initializing = null;
     }
   }
 
-  void _listenToVoice() {
-    if (_listening) return;
-    _listening = true;
+  Future<void> _loadMute() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      if (!_muteOverridden) _muted = prefs.getBool(_mutePrefKey) ?? false;
+    } catch (_) {
+      // Keep the current preference if storage is unavailable.
+    }
+    _initialized = true;
     LumoVoice.instance.status.addListener(_onVoiceChanged);
+    if (_requested != null) await _schedule();
   }
 
   void _onVoiceChanged() {
-    // Absenken zügig (250 ms), Anheben sanft (600 ms).
-    final speaking = LumoVoice.instance.status.value == VoiceStatus.speaking;
-    _rampTo(targetVolume, speaking ? 250 : 600);
+    if (_requested != null && !_muted) {
+      unawaited(_schedule());
+    }
   }
 
-  void _rampTo(double target, int ms) {
-    _ramp?.cancel();
-    if (_player == null || _current == null) {
-      _volume = target;
+  /// Only the active home shell may withdraw its request. A retired shell
+  /// releasing its route must not stop a newer shell's soundtrack.
+  Future<void> setMenuActive(Object owner, bool active) async {
+    if (active) {
+      if (identical(_menuOwner, owner)) return;
+      _menuOwner = owner;
+      await _request(LumoMusicTrack.chillLoop, loop: true);
+    } else if (identical(_menuOwner, owner)) {
+      _menuOwner = null;
+      await _request(null);
+    }
+  }
+
+  Future<void> play(LumoMusicTrack track, {bool loop = true}) {
+    _menuOwner = null;
+    return _request(track, loop: loop);
+  }
+
+  Future<void> stop() {
+    _menuOwner = null;
+    return _request(null);
+  }
+
+  Future<void> _request(LumoMusicTrack? track, {bool loop = true}) {
+    _requested = track;
+    _loop = loop;
+    return _initialized ? _schedule() : init();
+  }
+
+  Future<void> _schedule() {
+    final revision = ++_revision;
+    final previous = _operation;
+    final operation = () async {
+      if (previous != null) await previous;
+      if (revision != _revision) return;
+      try {
+        await _reconcile(revision);
+      } catch (error) {
+        await _releasePlayer();
+        if (kDebugMode) debugPrint('LumoMusic: playback skipped ($error)');
+      }
+    }();
+    _operation = operation;
+    unawaited(operation.whenComplete(() {
+      if (identical(_operation, operation)) _operation = null;
+    }));
+    return operation;
+  }
+
+  Future<void> _reconcile(int revision) async {
+    final track = _muted ? null : _requested;
+    if (track == null) {
+      await _stopPlayer();
       return;
     }
-    final start = _volume;
-    const step = 30;
-    final steps = (ms / step).ceil();
-    var i = 0;
-    _ramp = Timer.periodic(const Duration(milliseconds: step), (t) {
-      i++;
-      final f = (i / steps).clamp(0.0, 1.0);
-      _volume = start + (target - start) * f;
-      unawaited(_player?.setVolume(_volume).catchError((_) {}));
-      if (f >= 1) t.cancel();
-    });
+
+    final player = _player ??= AudioPlayer(playerId: 'lumo-menu-music')
+      ..positionUpdater = null;
+    final loop = _loop;
+    if (_prepared != track || _preparedLoop != loop) {
+      await _stopPlayer();
+      if (revision != _revision) return;
+      await player
+          .setReleaseMode(loop ? ReleaseMode.loop : ReleaseMode.release);
+      if (revision != _revision) return;
+      await player.setSource(AssetSource(_assets[track]!.substring(7)));
+      _prepared = track;
+      _preparedLoop = loop;
+      if (revision != _revision) return;
+    }
+
+    if (_current != track) {
+      // Start muted. If navigation or a lifecycle event retires this request
+      // while native resume is in flight, that playback never becomes audible.
+      await player.setVolume(0.0);
+      if (revision != _revision) return;
+      await player.resume();
+      _current = track;
+      if (revision != _revision) return;
+    }
+    final nextVolume = targetVolume;
+    await player.setVolume(nextVolume);
+    _volume = nextVolume;
   }
 
-  /// Spielt einen Track ab. Bei loop=true wiederholt audioplayers
-  /// nahtlos. Wenn schon der gleiche Track laeuft -> no-op.
-  Future<void> play(LumoMusicTrack track, {bool loop = true}) async {
-    if (_muted) return;
-    if (_missing.contains(track)) return;
-    if (_current == track && _player != null) return;
-    final path = _assetPath[track];
-    if (path == null) return;
+  Future<void> _stopPlayer() async {
+    final player = _player;
+    if (player == null || _current == null) return;
+    await player.setVolume(0.0);
+    _volume = 0.0;
+    await player.stop();
+    _current = null;
+    if (!_preparedLoop) _prepared = null;
+  }
+
+  Future<void> _releasePlayer() async {
+    final player = _player;
+    _player = null;
+    _prepared = null;
+    _current = null;
+    _volume = 0.0;
     try {
-      _player ??= AudioPlayer();
-      await _player!
-          .setReleaseMode(loop ? ReleaseMode.loop : ReleaseMode.release);
-      _listenToVoice();
-      _volume = targetVolume;
-      await _player!.setVolume(_volume);
-      await _player!.play(AssetSource(path));
-      _current = track;
-    } catch (e) {
-      _missing.add(track);
-      if (kDebugMode) {
-        debugPrint('LumoMusic: $track skipped ($e)');
-      }
+      await player?.dispose();
+    } catch (_) {
+      // The caller can continue with a freshly created player on re-entry.
     }
   }
 
-  /// Stoppt das aktuelle Audio (falls etwas laeuft).
-  Future<void> stop() async {
-    _ramp?.cancel();
-    final p = _player;
-    if (p == null) return;
-    try {
-      await p.stop();
-    } catch (_) {}
-    _current = null;
-  }
-
-  /// Schliesst den Player vollstaendig. Wird nicht regulaer aufgerufen,
-  /// bleibt fuer Tests / App-Shutdown verfuegbar.
   Future<void> dispose() async {
-    await stop();
-    try {
-      await _player?.dispose();
-    } catch (_) {}
-    _player = null;
-    _missing.clear();
+    await _initializing;
+    if (_initialized) {
+      LumoVoice.instance.status.removeListener(_onVoiceChanged);
+      await stop();
+    }
+    await _releasePlayer();
     _initialized = false;
+    _muteOverridden = false;
   }
 }
