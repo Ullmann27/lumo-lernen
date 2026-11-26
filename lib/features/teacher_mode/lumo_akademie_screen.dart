@@ -727,14 +727,15 @@ class LumoCurriculum {
                   title: 'Dezimalzahlen',
                   icon: Icons.pin_rounded,
                   gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: 'Zehntel und Hundertstel',
+                  // Über den Lehrplan VS hinaus: nur Lumo Expertenwelt.
+                  shortDesc: 'Lumo Expertenwelt · Zehntel, freiwillig',
                 ),
                 LearningTopic(
                   id: 'm4_bruch_erweitern',
                   title: 'Brüche erweitern',
                   icon: Icons.pie_chart_rounded,
                   gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: 'Knobeln: gleichwertige Brüche',
+                  shortDesc: 'Lumo Expertenwelt · gleichwertige Brüche',
                 ),
                 LearningTopic(
                   id: 'm4_diagramme',
@@ -834,7 +835,7 @@ class LumoCurriculum {
                   title: 'Diagramme lesen',
                   icon: Icons.bar_chart_rounded,
                   gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: 'Daten vergleichen und deuten',
+                  shortDesc: 'Wetter, Natur, Verkehr und Umwelt deuten',
                 ),
                 LearningTopic(
                   id: 's4_geografie',
@@ -1185,12 +1186,24 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
     // implicit discovery redirect. Progress stays separate from the child's
     // official school grade and its XP/wallet records.
     if (_selectedGrade != widget.appState.state.grade) {
-      final unit = AcademyTopicUnits.exerciseUnit(
-        topicId: t.id,
-        title: t.title,
-        subject: s.name,
-        grade: _selectedGrade,
-      );
+      // Schreibthemen bleiben Schreibübungen, auch in einer anderen Klasse
+      // (Prüfbericht Punkt 5): „Alle Buchstaben A-Z“ übt Buchstaben,
+      // „Erste Wörter“ Wörter schreiben – nicht das Lautierungs- oder
+      // Wort-Bild-Quiz. Der Fortschritt bleibt wie jede Übung einer
+      // anderen Klasse getrennt gespeichert.
+      final writingUnit = t.isWriting && t.writingChars.isNotEmpty
+          ? 'Buchstaben nachspuren'
+          : t.id == 'd1_woerter'
+              ? 'Wort schreiben'
+              : null;
+      final subject = writingUnit == null ? s.name : 'Schreiben';
+      final unit = writingUnit ??
+          AcademyTopicUnits.exerciseUnit(
+            topicId: t.id,
+            title: t.title,
+            subject: s.name,
+            grade: _selectedGrade,
+          );
       if (unit == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -1207,7 +1220,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
           profileName: widget.appState.state.childName,
           enrolledGrade: widget.appState.state.grade,
           lessonGrade: _selectedGrade,
-          subject: s.name,
+          subject: subject,
           unit: unit,
         ),
       ));

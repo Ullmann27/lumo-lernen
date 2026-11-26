@@ -30,6 +30,8 @@ const _reviewedLists = <String, String>{
   'mathe-nachzeichnen-quadrat': 'Zeichenaufgabe ohne Auswahl',
   'mathe-nachzeichnen-rechteck': 'Zeichenaufgabe ohne Auswahl',
   'mathe-nachzeichnen-stern': 'Zeichenaufgabe ohne Auswahl',
+  'mathe-diagramm-sammlung': 'aus dem Sachunterricht übernommene feste Liste '
+      'mit Diagramm-Rechenfragen, gelesen und nachgerechnet (2026-11-26)',
 };
 
 /// Muster, deren Karten typische Lesefehler sind und nicht Nachbarwerte:
