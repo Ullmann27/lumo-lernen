@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../domain/games/game_level_catalog.dart';
 import '../domain/games/game_level_model.dart';
+import '../domain/games/game_level_readiness.dart';
 
 /// Persistenz des Spielfortschritts in der Lumo Spielewelt.
 ///
@@ -210,9 +211,10 @@ class GameProgressRepository {
 
   /// Berechnet die Laufzeit-Snapshots aller 50 Level.
   /// Ein Level ist unlocked wenn ID 1 ist, ODER das vorherige Level
-  /// mindestens 1 Stern hat.
+  /// mindestens 1 Stern hat, ODER der Lernstand es belegt ([proven]).
   List<GameLevelRuntime> buildRuntime(Map<int, int> stars,
-      {Set<int> preservedUnlocked = const {}}) {
+      {Set<int> preservedUnlocked = const {},
+      Map<int, GameLevelEvidence> proven = const {}}) {
     final result = <GameLevelRuntime>[];
     var currentMarked = false;
     int? previousPlayableId;
@@ -221,9 +223,11 @@ class GameProgressRepository {
           previousPlayableId == null ? 1 : (stars[previousPlayableId] ?? 0);
       previousPlayableId = level.id;
       final earned = (stars[level.id] ?? 0).clamp(0, level.maxStars);
-      final locked = prevStars <= 0 &&
+      final lockedByPath = prevStars <= 0 &&
           earned <= 0 &&
           !preservedUnlocked.contains(level.id);
+      final evidence = lockedByPath ? proven[level.id] : null;
+      final locked = lockedByPath && evidence == null;
       final isCurrent = !currentMarked && !locked && earned == 0;
       if (isCurrent) currentMarked = true;
       result.add(
@@ -232,6 +236,7 @@ class GameProgressRepository {
           locked: locked,
           starsEarned: earned,
           isCurrent: isCurrent,
+          evidenceNote: evidence?.note,
         ),
       );
     }

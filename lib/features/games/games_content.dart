@@ -19,6 +19,7 @@ import 'spielwelt/spielwelt_routes.dart';
 import '../../widgets/design/lumo_night_scope.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
+import '../../domain/games/game_level_readiness.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../lumo3d/lumo3d_launcher.dart';
@@ -70,6 +71,7 @@ class _GamesContentState extends State<GamesContent> {
 
   Map<int, int> _stars = const <int, int>{};
   Set<int> _preservedLevels = const {};
+  Map<int, GameLevelEvidence> _proven = const {};
   Map<GameId, GameUnlockState> _unlocks = const {};
   bool _loaded = false;
   bool _launchingGame = false;
@@ -99,6 +101,7 @@ class _GamesContentState extends State<GamesContent> {
     }
     final s = await _repo.loadStars(_childId);
     final preserved = await _repo.loadUnlocked(_childId);
+    final proven = await _provenLevels(s);
     final wallet = await RewardWalletRepository.instance.load();
     final unlocks = await const GameUnlockService()
         .load(EarnedProgress(totalEarnedStars: wallet.totalEarnedStars));
@@ -112,6 +115,7 @@ class _GamesContentState extends State<GamesContent> {
     setState(() {
       _stars = s;
       _preservedLevels = preserved;
+      _proven = proven;
       _unlocks = unlocks;
       final grade = options?['grade'];
       if (grade is int && grade >= 1 && grade <= 4) _kartGrade = grade;
@@ -122,6 +126,29 @@ class _GamesContentState extends State<GamesContent> {
       }
       _loaded = true;
     });
+  }
+
+  /// Adaptive Freischaltung aus dem Übungsprotokoll dieses Kindes. Ohne
+  /// sicheren Profilzugriff oder bei einem Lesefehler wird nichts behauptet.
+  Future<Map<int, GameLevelEvidence>> _provenLevels(
+      Map<int, int> stars) async {
+    final app = widget.appState;
+    try {
+      final generation = app.profileGeneration;
+      final owner = await app.captureLearningProfile();
+      if (owner.generation != generation || !app.canUseLearningLease(owner)) {
+        return const {};
+      }
+      final attempts =
+          await app.attemptLog.load(studentId: owner.logStudentId);
+      if (generation != app.profileGeneration ||
+          !app.canUseLearningLease(owner)) {
+        return const {};
+      }
+      return GameLevelReadiness.proven(attempts, stars: stars);
+    } catch (_) {
+      return const {};
+    }
   }
 
   Future<void> _saveKartOptions({int? grade, String? subject}) async {
@@ -499,7 +526,8 @@ class _GamesContentState extends State<GamesContent> {
   @override
   Widget build(BuildContext context) {
     final runtime =
-        _repo.buildRuntime(_stars, preservedUnlocked: _preservedLevels);
+        _repo.buildRuntime(_stars,
+            preservedUnlocked: _preservedLevels, proven: _proven);
     final totalStars = runtime.fold<int>(0, (sum, r) => sum + r.starsEarned);
     final maxStars = GameLevelCatalog.playableLevels.fold<int>(
       0,
@@ -1614,6 +1642,20 @@ class _LevelDetailSheet extends StatelessWidget {
               ],
             ),
           ),
+          if (runtime.evidenceNote != null) ...[
+            const SizedBox(height: 10),
+            Text(
+              runtime.evidenceNote!,
+              key: const ValueKey('level-evidence-note'),
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                color: LumoColors.ink700,
+                height: 1.35,
+              ),
+            ),
+          ],
           const SizedBox(height: 14),
           Row(
             children: List<Widget>.generate(level.maxStars, (i) {
