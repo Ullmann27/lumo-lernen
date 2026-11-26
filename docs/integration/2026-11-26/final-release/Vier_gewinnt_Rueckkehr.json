@@ -1,0 +1,24 @@
+{
+  "status": "PASS LOKAL",
+  "platform": "Linux X11, Godot Compatibility, Flutter-Test-Preferences, Datei-IPC",
+  "native_checks": 170,
+  "simulation_frames": 270,
+  "return_acknowledged": true,
+  "winning_moves": [
+    0,
+    6,
+    1,
+    6,
+    2,
+    5,
+    3
+  ],
+  "wallet_stars_after_reopening": 5,
+  "images": "Frühere Aufnahmeserie. Wiederholung mit gleichen Produktions-Eingaben ohne PNG-Schreibvorgang je Frame.",
+  "sha256": {
+    "native-result.json": "bf61b503e815206949be7fe3a5d5e55db1a793d1be961b495f83beee4f13bb2b",
+    "dart-result.json": "3d2fea7ab2cdd304a68ce36688919be9185cb70de415af1d3aeb338bb1832d40",
+    "dart.log": "b1ed12a62af72e7c434f20ac79a5664c83aa951de2b6128cdfedfdaf7eecfeb1",
+    "godot.log": "78a4a4f67fc17363540a8af4f6dd609898c7827b0e8fd03f777489d4e607d580"
+  }
+}
