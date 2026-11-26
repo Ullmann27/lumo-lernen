@@ -204,6 +204,17 @@ class _ParentReportCardState extends State<ParentReportCard> {
             ]),
             const SizedBox(height: 12),
             LumoTutorEvidenceCard(appState: widget.appState),
+            // Ein nicht geladener Lernstand ist kein leerer Lernstand.
+            if (!widget.appState.learningProfileLoaded) ...[
+              Text(
+                'Der Lernstand dieses Profils ist noch nicht geladen. Die '
+                'Werte unten sind deshalb unvollständig.',
+                key: const ValueKey('parent-report-not-loaded'),
+                style: LumoTextStyles.body.copyWith(
+                    color: LumoVisualTokens.gold, fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(height: 8),
+            ],
             Text(report.summary, style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white)),
             const SizedBox(height: 14),
             Wrap(spacing: 12, runSpacing: 12, children: [

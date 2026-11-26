@@ -222,6 +222,9 @@ void main() {
         reason:
             'A failed load notification must not trigger another automatic load.');
     expect(app.learningProfileLoaded, false);
+    // Nicht geladen ist nicht leer: der Bericht sagt, dass er unvollständig ist.
+    expect(find.byKey(const ValueKey('parent-report-not-loaded')),
+        findsOneWidget);
     expect(find.text('KI-Analyse anfordern'), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());

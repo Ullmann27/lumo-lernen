@@ -12,6 +12,7 @@ import 'package:lumo_lernen/core/attempt_log_repository.dart';
 import 'package:lumo_lernen/domain/backup/local_backup.dart';
 import 'package:lumo_lernen/domain/school/attempt.dart';
 import 'package:lumo_lernen/features/parents/lumo_insight_dashboard.dart';
+import 'package:lumo_lernen/features/settings/parent_report_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'parent_insight_fixtures.dart';
@@ -330,6 +331,22 @@ void main() {
         'wurde, steht hier, was gerade geübt wird und wobei Unterstützung '
         'hilft.'), findsOneWidget);
     await _foto(tester, 'eltern_kennzahlen_alte_sicherung__fold_aussen_1080x2340');
+    await _ende(tester);
+  });
+
+  testWidgets('Elternbericht: geladener Lernstand ohne Unvollständig-Hinweis',
+      (tester) async {
+    final app = await _app(tester, 'kind-bericht');
+    addTearDown(app.dispose);
+    await tester.runAsync(() => _aufnehmen(app, 3));
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+            body: SingleChildScrollView(
+                child: ParentReportCard(appState: app)))));
+    await _frames(tester);
+    expect(app.learningProfileLoaded, isTrue);
+    expect(find.text('Elternbericht'), findsOneWidget);
+    expect(find.byKey(const ValueKey('parent-report-not-loaded')), findsNothing);
     await _ende(tester);
   });
 
