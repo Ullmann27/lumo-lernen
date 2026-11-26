@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -90,7 +91,9 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(loadLumoCaptureFonts);
   setUp(() {
-    SharedPreferences.setMockInitialValues({});
+    SharedPreferences.setMockInitialValues({
+      'lumo_app_settings_v1': jsonEncode(_quiet.toJson()),
+    });
     LumoVoice.instance.isEnabled = false;
     LumoCompanionRequests.instance.clearLearningScope();
   });
@@ -175,7 +178,8 @@ void main() {
       await _tap(tester, unit);
       await _settle(tester);
       expect(_task(tester).parameters['unit'], lesson);
-      expect(_task(tester).options.map((option) => option.payload), [0, 1, 2, 3, 4, 5]);
+      expect(_task(tester).options.map((option) => option.payload),
+          [0, 1, 2, 3, 4, 5]);
       expect(find.byType(DataChartObservations), findsOneWidget);
       expect(find.byType(DataChartAnswer), findsOneWidget);
       expect(tester.takeException(), isNull);
