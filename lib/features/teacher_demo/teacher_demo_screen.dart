@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'demo_class_data.dart';
+import '../../core/school_exercise_generator.dart';
 import 'demo_homework.dart';
 import 'holo_charts.dart';
 import 'holo_widgets.dart';
@@ -515,7 +516,8 @@ class _HomeworkTabState extends State<_HomeworkTab> {
                   for (final u in _units)
                     DropdownMenuItem(
                         value: u,
-                        child: Text(u, overflow: TextOverflow.ellipsis)),
+                        child: Text(Curriculum.prettifyUnit(u),
+                            overflow: TextOverflow.ellipsis)),
                 ],
                 onChanged: (v) => setState(() => _unit = v ?? _unit),
               ),

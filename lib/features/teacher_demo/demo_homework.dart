@@ -4,7 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/german_task_templates.dart';
 import '../../core/math_task_templates.dart';
+import '../../core/school_exercise_generator.dart';
+import '../../core/task_hint_service.dart';
 import '../../domain/school/attempt.dart';
+import '../../domain/tutoring/fach_nachhilfe.dart';
 import '../../domain/school/competency.dart';
 import '../../domain/school/learning_analysis.dart';
 import 'demo_class_data.dart';
@@ -54,9 +57,19 @@ bool checkHomeworkAnswer({required String given, required String expected}) {
 }
 
 /// Fächer der Hausaufgaben mit automatischer Prüfung (Auswahlantworten aus den
-/// Aufgabengeneratoren der App). Weitere Fächer folgen schrittweise, sobald
-/// ihre Aufgaben ohne Bild- oder Schreibfläche prüfbar sind.
-const List<String> homeworkSubjects = ['Mathematik', 'Deutsch'];
+/// Aufgabengeneratoren der App). Englisch, Lesen und Sachunterricht kommen
+/// aus dem Übungsgenerator (gleiche Themen wie im Übungsbereich).
+const List<String> homeworkSubjects = [
+  'Mathematik',
+  'Deutsch',
+  'Englisch',
+  'Lesen',
+  'Sachunterricht',
+];
+
+/// Fächer, deren Hausaufgaben aus dem Übungsgenerator ([ExerciseFactory])
+/// entstehen.
+const Set<String> _ausUebung = {'Englisch', 'Lesen', 'Sachunterricht'};
 
 /// Schulstufen, für die Hausaufgaben gestaltet werden können.
 const List<int> homeworkGrades = [1, 2, 3, 4];
@@ -68,17 +81,109 @@ class HomeworkTask {
     required this.answer,
     required this.choices,
     required this.explanation,
+    this.subject = '',
+    this.unit = '',
+    this.grade = 2,
+    this.hints = const [],
   });
 
   final String prompt;
   final String answer;
   final List<String> choices;
+
+  /// Begründung der Lösung – nur für die Auswertung, nie als Hilfe.
   final String explanation;
+  final String subject;
+  final String unit;
+  final int grade;
+
+  /// Hilfen von Lumo in Reihenfolge: jede eine andere Erklärweise, keine
+  /// verrät die Lösung (Methodenwechsel statt Wiederholung).
+  final List<String> hints;
+
+  /// Lesetext (alles vor der letzten Zeile), z. B. bei Lesen.
+  String get readingText {
+    final zeilen = prompt.split('\n');
+    return zeilen.length < 2
+        ? ''
+        : zeilen.sublist(0, zeilen.length - 1).join('\n').trim();
+  }
+
+  /// Die eigentliche Frage (letzte Zeile).
+  String get question => prompt.split('\n').last.trim();
+
+  /// Aufgabe der Fach-Nachhilfe (Englisch, Lesen, Sachunterricht), sonst null.
+  FachAufgabe? get fach => FachAufgabe.aus(
+      fach: subject,
+      thema: unit,
+      prompt: prompt,
+      antwort: answer,
+      auswahl: choices,
+      erklaerung: explanation,
+      schulstufe: grade);
+
+  /// Bild (Emoji) zu einer Antwort – nur bei Englisch mit deutschen
+  /// Antworten, und dann für alle Antworten gleich (verrät nichts).
+  String? pictureFor(String choice) {
+    final f = fach;
+    if (f == null ||
+        f.fach != FachNachhilfeFach.englisch ||
+        f.richtung != EnglischRichtung.englischDeutsch ||
+        f.istSatz) {
+      return null;
+    }
+    return FachBildkarte.fuer(choice).bild;
+  }
+
+  /// Bild zum gegebenen deutschen Wort („Wie heißt „nass“ auf Englisch?“).
+  String? get promptPicture {
+    final f = fach;
+    if (f == null ||
+        f.fach != FachNachhilfeFach.englisch ||
+        f.richtung != EnglischRichtung.deutschEnglisch ||
+        f.istSatz) {
+      return null;
+    }
+    return FachBildkarte.fuer(f.gefragt ?? '').bild;
+  }
+}
+
+/// Nicht verratende Hilfen zu einer Aufgabe: Fach-Nachhilfe (Englisch,
+/// Lesen, Sachunterricht) oder die Tippstufen des [TaskHintService].
+List<String> homeworkHintsFor(LumoTask task) {
+  final texte = <String>[];
+  void add(String t) {
+    final norm = t.trim();
+    if (norm.isNotEmpty && !texte.contains(norm)) texte.add(norm);
+  }
+
+  final fach = FachAufgabe.ausTask(task);
+  if (fach != null) {
+    for (final v in const FachNachhilfe().hilfeVarianten(fach)) {
+      add(v.text);
+    }
+  } else {
+    for (var level = 1; level <= 3; level++) {
+      add(const TaskHintService().explain(task, level: level));
+    }
+  }
+  return List.unmodifiable(texte);
 }
 
 /// Themen brauchen Bilder oder freie Schreibflächen und sind deshalb (noch)
 /// nicht als Auswahl-Hausaufgabe geeignet.
 const Set<String> _nichtAlsAuswahl = {'Wort-Bild-Zuordnung'};
+
+HomeworkTask _ausLumoTask(LumoTask t) => HomeworkTask(
+      prompt: t.prompt,
+      answer: t.answer,
+      choices: t.choices,
+      explanation: t.explanation,
+      subject: t.subject,
+      unit: t.unit,
+      grade: t.grade,
+      hints: homeworkHintsFor(t),
+    );
 
 HomeworkTask homeworkTaskFor({
   required String subject,
@@ -86,20 +191,56 @@ HomeworkTask homeworkTaskFor({
   required int grade,
   required int seed,
 }) {
+  final stufe = grade.clamp(1, 4).toInt();
+  if (_ausUebung.contains(subject)) {
+    return _ausLumoTask(ExerciseFactory(seed: seed)
+        .nextExact(grade: stufe, subject: subject, unit: unit));
+  }
   if (subject == 'Deutsch') {
     final t = GermanTaskTemplates.generate(grade: grade, unit: unit, seed: seed);
-    return HomeworkTask(
+    return _ausLumoTask(LumoTask(
+        id: 'hausaufgabe',
+        grade: stufe,
+        subject: subject,
+        unit: unit,
         prompt: t.prompt,
-        answer: t.answer,
         choices: t.choices,
-        explanation: t.explanation);
+        answer: t.answer,
+        explanation: t.explanation));
   }
   final t = MathTaskTemplates.generate(grade: grade, unit: unit, seed: seed);
-  return HomeworkTask(
+  return _ausLumoTask(LumoTask(
+      id: 'hausaufgabe',
+      grade: stufe,
+      subject: subject,
+      unit: unit,
       prompt: t.prompt,
-      answer: t.answer,
       choices: t.choices,
-      explanation: t.explanation);
+      answer: t.answer,
+      explanation: t.explanation));
+}
+
+/// Mehrere verschiedene Aufgaben aus dem Übungsgenerator: ein Generator je
+/// Hausaufgabe und Kind (fester Startwert), Wiederholungen werden übersprungen.
+List<HomeworkTask> _uebungsAufgaben(
+    String subject, String unit, int grade, int seed, int count) {
+  final generator = ExerciseFactory(seed: seed);
+  final stufe = grade.clamp(1, 4).toInt();
+  final aufgaben = <HomeworkTask>[];
+  final gesehen = <String>{};
+  for (var versuch = 0;
+      aufgaben.length < count && versuch < count * 8;
+      versuch++) {
+    final LumoTask t;
+    try {
+      t = generator.nextExact(grade: stufe, subject: subject, unit: unit);
+    } on ArgumentError {
+      break; // Thema gibt es (nicht mehr) für diese Stufe: nichts erfinden.
+    }
+    if (!gesehen.add(t.prompt) && versuch < count * 6) continue;
+    aufgaben.add(_ausLumoTask(t));
+  }
+  return aufgaben;
 }
 
 final Map<(String, int), List<String>> _themenCache = {};
@@ -130,6 +271,8 @@ List<String> homeworkUnitsFor(String subject, int grade) {
           final g = mitStufe[a]!.compareTo(mitStufe[b]!);
           return g != 0 ? g : a.compareTo(b);
         });
+    } else if (_ausUebung.contains(subject)) {
+      kandidaten = Curriculum.unitsForGrade(subject, stufe);
     } else {
       return const <String>[];
     }
@@ -140,7 +283,9 @@ List<String> homeworkUnitsFor(String subject, int grade) {
               subject: subject, unit: unit, grade: stufe, seed: seed);
           return t.prompt.trim().isNotEmpty &&
               t.choices.length >= 2 &&
-              t.choices.contains(t.answer);
+              t.choices.contains(t.answer) &&
+              t.hints.isNotEmpty &&
+              (!_ausUebung.contains(subject) || t.fach != null);
         }))
           unit,
     ]);
@@ -193,6 +338,9 @@ class DemoHomework {
   /// [grade] gilt nur für ältere Hausaufgaben ohne eigene Schulstufe.
   List<HomeworkTask> tasksFor(String studentId, {int grade = 2}) {
     final base = _stableHash('$id|$studentId');
+    if (_ausUebung.contains(subject)) {
+      return _uebungsAufgaben(subject, unit, this.grade ?? grade, base, count);
+    }
     return [
       for (var i = 0; i < count; i++)
         homeworkTaskFor(

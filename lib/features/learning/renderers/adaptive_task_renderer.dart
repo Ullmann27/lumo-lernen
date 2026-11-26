@@ -48,6 +48,7 @@ class AdaptiveTaskRenderer extends StatefulWidget {
     this.replaySerial = 0,
     this.guided = false,
     this.feedback,
+    this.nextHelp,
   });
 
   final TaskInstance task;
@@ -74,6 +75,11 @@ class AdaptiveTaskRenderer extends StatefulWidget {
   /// answers, where the child is looking.
   final Widget? feedback;
 
+  /// Methodenwechsel: Sind die eigenen Tippstufen der Aufgabe gezeigt, liefert
+  /// die Übung hier die nächste andere Erklärweise (Titel, Text), statt
+  /// denselben Hinweis zu wiederholen. Null in Tests und Schularbeiten.
+  final (String, String) Function()? nextHelp;
+
   @override
   State<AdaptiveTaskRenderer> createState() => _AdaptiveTaskRendererState();
 }
@@ -83,6 +89,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
   final Set<String> _wrongAnswers = <String>{};
   bool _showGentleHint = false;
   int _localHelpLevel = 0;
+  int _helpPresses = 0;
+  (String, String)? _otherHelp;
   bool _workspaceHelpUsed = false;
   String? _workspaceExplanation;
   String? _workspaceKind;
@@ -102,6 +110,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       _wrongAnswers.clear();
       _showGentleHint = false;
       _localHelpLevel = 0;
+      _helpPresses = 0;
+      _otherHelp = null;
       _workspaceHelpUsed = false;
       _workspaceExplanation = null;
       _workspaceKind = null;
@@ -435,9 +445,19 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                       ),
                     ),
                     onPressed: () {
+                      // Eigene Tippstufen der Aufgabe zuerst; danach eine
+                      // andere Erklärweise statt derselben Stufe noch einmal.
+                      final eigene = task.helpPayload.guidedSteps
+                          .where((step) => step.trim().isNotEmpty)
+                          .length
+                          .clamp(1, 3);
+                      final presses = _helpPresses + 1;
+                      final anders = presses > eigene ? widget.nextHelp?.call() : null;
                       setState(() {
                         _showGentleHint = true;
+                        _helpPresses = presses;
                         _localHelpLevel = (_localHelpLevel + 1).clamp(1, 3);
+                        if (anders != null) _otherHelp = anders;
                       });
                       widget.onInteraction?.call(
                         TaskWorkspaceInteraction(
@@ -463,8 +483,9 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
             child: _LocalHelpBanner(
               task: task,
               wrongCount: _wrongAnswers.length,
-              explanation:
-                  _workspaceKind == 'evidence' ? null : _workspaceExplanation,
+              explanation: _otherHelp?.$2 ??
+                  (_workspaceKind == 'evidence' ? null : _workspaceExplanation),
+              methode: _otherHelp?.$1,
               helpLevel: _helpLevel,
             ),
           ),
@@ -589,12 +610,16 @@ class _LocalHelpBanner extends StatelessWidget {
     required this.wrongCount,
     this.explanation,
     this.helpLevel = 1,
+    this.methode,
   });
 
   final TaskInstance task;
   final int wrongCount;
   final String? explanation;
   final int helpLevel;
+
+  /// Titel der anderen Erklärweise (Methodenwechsel), sonst null.
+  final String? methode;
 
   @override
   Widget build(BuildContext context) {
@@ -683,9 +708,12 @@ class _LocalHelpBanner extends StatelessWidget {
                     ],
                   ),
                   child: Text(
-                    wrongCount == 0
-                        ? '💡 Ein Tipp von Lumo'
-                        : '💡 Noch ein Tipp von Lumo',
+                    methode != null
+                        ? '💡 $methode'
+                        : wrongCount == 0
+                            ? '💡 Ein Tipp von Lumo'
+                            : '💡 Noch ein Tipp von Lumo',
+                    key: const ValueKey('lesson-hint-title'),
                     style: const TextStyle(
                       fontFamily: 'Nunito',
                       fontSize: 12,

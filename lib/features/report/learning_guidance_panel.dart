@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../domain/school/adaptive_practice_plan.dart';
 import '../../domain/school/learning_analysis.dart';
 import '../../domain/school/learning_guidance.dart';
+import '../../domain/tutoring/verstaendnis.dart';
 import '../../widgets/design/lumo_subject_style.dart';
 import '../teacher_demo/holo_widgets.dart';
 
@@ -63,6 +64,13 @@ class LearningGuidancePanel extends StatelessWidget {
             const SizedBox(height: 14),
             _current(g),
             const SizedBox(height: 18),
+            // Vergleichsaufgaben nach Hilfe sind eigene, einzeln belegte
+            // Nachweise: Sie erscheinen ehrlich eingestuft auch bei wenigen
+            // Antworten (eine einzelne nur als erstes Anzeichen).
+            if (g.laterConfirmed.isNotEmpty) ...[
+              _laterConfirmed(g),
+              const SizedBox(height: 18),
+            ],
             if (!g.hasReliableEvidence)
               _Hinweis(
                 key: const ValueKey('guidance-few-data'),
@@ -159,6 +167,27 @@ class LearningGuidancePanel extends StatelessWidget {
                   ],
                 ),
               ),
+        ],
+      );
+
+  Widget _laterConfirmed(LearningGuidance g) => Column(
+        key: const ValueKey('guidance-later-confirmed'),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _heading('Später bestätigt · nach Hilfe allein gelöst',
+              Icons.verified_rounded, HoloPalette.mint),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 8),
+            child: Text(
+                'Nach einer Hilfe bietet Lumo eine ähnliche Aufgabe an, die das '
+                'Kind ganz allein löst. Erst mehrere solche Aufgaben zu '
+                'verschiedenen Aufgaben gelten als bestätigt.',
+                style: _muted),
+          ),
+          for (var i = 0; i < g.laterConfirmed.length; i++)
+            _ConfirmationLine(
+                key: ValueKey('guidance-confirmed-$i'),
+                indiz: g.laterConfirmed[i]),
         ],
       );
 
@@ -264,6 +293,90 @@ class LearningGuidancePanel extends StatelessWidget {
             for (final d in g.development) _DevelopmentRow(development: d),
         ],
       );
+}
+
+class _ConfirmationLine extends StatelessWidget {
+  const _ConfirmationLine({super.key, required this.indiz});
+  final VerstaendnisIndiz indiz;
+
+  @override
+  Widget build(BuildContext context) {
+    final i = indiz;
+    final (label, color, icon) = switch (i.stufe) {
+      VerstaendnisStufe.spaeterBestaetigt =>
+        ('später bestätigt', HoloPalette.mint, Icons.verified_rounded),
+      VerstaendnisStufe.erstesAnzeichen =>
+        ('erstes Anzeichen', HoloPalette.cyan, Icons.trending_up_rounded),
+      VerstaendnisStufe.nochUnsicher ||
+      VerstaendnisStufe.keineDaten =>
+        ('noch unsicher', HoloPalette.amber, Icons.replay_rounded),
+    };
+    final beispiel = i.bezuege.isEmpty ? null : i.bezuege.first;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Semantics(
+        label: '${i.fach}, ${i.kompetenz}: $label. ${i.elternSatz}',
+        excludeSemantics: true,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            LumoSubjectBadge(subject: i.fach, size: 32),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 4,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Text('${i.fach} · ${i.kompetenz}',
+                          style: LearningGuidancePanel._body
+                              .copyWith(fontWeight: FontWeight.w800)),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: color.withValues(alpha: .16),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: color),
+                        ),
+                        child: Row(mainAxisSize: MainAxisSize.min, children: [
+                          Icon(icon, size: 16, color: color),
+                          const SizedBox(width: 4),
+                          Text(label,
+                              style: TextStyle(
+                                  color: color,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w800)),
+                        ]),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Text(i.elternSatz, style: LearningGuidancePanel._body),
+                  if (beispiel != null && beispiel.$1.trim().isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2),
+                      child: Text(
+                          'Zuletzt: Hilfe bei „${_kurz(beispiel.$1)}“, danach '
+                          '„${_kurz(beispiel.$2)}“.',
+                          style: LearningGuidancePanel._muted),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  static String _kurz(String text) {
+    final eine = text.replaceAll(RegExp(r'\s+'), ' ').trim();
+    return eine.length <= 60 ? eine : '${eine.substring(0, 57)}…';
+  }
 }
 
 class _Hinweis extends StatelessWidget {

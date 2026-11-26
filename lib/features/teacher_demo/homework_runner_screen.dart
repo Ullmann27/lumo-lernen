@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/school_exercise_generator.dart';
+
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_character.dart';
 
@@ -32,7 +34,11 @@ class _HomeworkRunnerScreenState extends State<HomeworkRunnerScreen> {
       widget.homework.tasksFor(widget.child.id, grade: widget.child.grade);
   final List<HomeworkItemResult> _results = [];
   late DateTime _startedAt = widget.clock();
-  bool _hintShown = false;
+
+  /// Wie viele Hilfen Lumo zu dieser Aufgabe gezeigt hat (jede eine andere
+  /// Erklärweise).
+  int _hintsShown = 0;
+  bool get _hintShown => _hintsShown > 0;
   String? _picked;
   bool _saving = false;
 
@@ -57,7 +63,7 @@ class _HomeworkRunnerScreenState extends State<HomeworkRunnerScreen> {
       setState(() {
         _results.add(result);
         _picked = null;
-        _hintShown = false;
+        _hintsShown = 0;
         _startedAt = widget.clock();
       });
       if (_finished) _save();
@@ -92,7 +98,7 @@ class _HomeworkRunnerScreenState extends State<HomeworkRunnerScreen> {
             children: [
               Text(
                 '${widget.child.name} · ${widget.homework.subject} · '
-                '${widget.homework.unit}',
+                '${Curriculum.prettifyUnit(widget.homework.unit)}',
                 style: const TextStyle(
                     color: HoloPalette.text,
                     fontSize: 20,
@@ -165,17 +171,7 @@ class _HomeworkRunnerScreenState extends State<HomeworkRunnerScreen> {
         Text('Aufgabe ${_index + 1} von ${_tasks.length}',
             style: const TextStyle(color: HoloPalette.muted)),
         const SizedBox(height: 12),
-        HoloPanel(
-          child: Text(
-            task.prompt,
-            key: const ValueKey('homework-prompt'),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: HoloPalette.text,
-                fontSize: task.prompt.length > 40 ? 22 : 30,
-                fontWeight: FontWeight.w800),
-          ),
-        ),
+        HoloPanel(child: _promptView(task)),
         const SizedBox(height: 14),
         Wrap(
           spacing: 12,
@@ -184,11 +180,18 @@ class _HomeworkRunnerScreenState extends State<HomeworkRunnerScreen> {
           children: [
             for (final c in task.choices)
               SizedBox(
-                // Wörter und Sätze (Deutsch) brauchen mehr Breite als Zahlen.
-                width: task.choices.any((x) => x.length > 8) ? 280 : 140,
+                // Wörter und Sätze brauchen mehr Breite als Zahlen; ganze
+                // Sätze (Lesen, Sachunterricht) stehen untereinander.
+                width: task.choices.any((x) => x.length > 26)
+                    ? double.infinity
+                    : task.choices.any((x) => x.length > 8)
+                        ? 280
+                        : 140,
                 child: HoloButton(
                   key: ValueKey('homework-choice-$c'),
-                  label: c,
+                  label: task.pictureFor(c) == null
+                      ? c
+                      : '${task.pictureFor(c)}  $c',
                   accent: _picked == null
                       ? HoloPalette.cyan
                       : c == task.answer
@@ -200,8 +203,9 @@ class _HomeworkRunnerScreenState extends State<HomeworkRunnerScreen> {
           ],
         ),
         const SizedBox(height: 14),
-        if (_hintShown)
+        if (_hintShown) ...[
           HoloPanel(
+            key: ValueKey('homework-hint-$_hintsShown'),
             accent: HoloPalette.violet,
             shimmer: false,
             child: Row(children: [
@@ -214,22 +218,97 @@ class _HomeworkRunnerScreenState extends State<HomeworkRunnerScreen> {
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: Text('Lumo hilft: ${task.explanation}',
-                    style: const TextStyle(color: HoloPalette.text)),
+                child: Text(
+                    // Nie die Lösung: eine Hilfe der Nachhilfe bzw. ein
+                    // Tippschritt, je Bitte eine andere Erklärweise.
+                    '${_hintsShown == 1 ? 'Lumo hilft' : 'Lumo erklärt es anders'}: '
+                    '${_hint(task)}',
+                    key: const ValueKey('homework-hint-text'),
+                    style: const TextStyle(
+                        color: HoloPalette.text, fontSize: 17, height: 1.35)),
               ),
             ]),
-          )
-        else
+          ),
+          const SizedBox(height: 10),
+        ],
+        if (_hintsShown < _hintCount(task))
           Center(
             child: HoloButton(
               key: const ValueKey('homework-hint'),
-              label: 'Lumo, hilf mir',
-              icon: Icons.lightbulb_rounded,
+              label: _hintShown ? 'Anders erklären' : 'Lumo, hilf mir',
+              icon: _hintShown
+                  ? Icons.swap_horiz_rounded
+                  : Icons.lightbulb_rounded,
               accent: HoloPalette.violet,
               onPressed:
-                  _picked == null ? () => setState(() => _hintShown = true) : null,
+                  _picked == null ? () => setState(() => _hintsShown++) : null,
             ),
           ),
+      ],
+    );
+  }
+
+  int _hintCount(HomeworkTask task) =>
+      task.hints.isEmpty ? 1 : task.hints.length;
+
+  String _hint(HomeworkTask task) => task.hints.isEmpty
+      ? 'Lies die Aufgabe noch einmal langsam und prüfe jede Antwort.'
+      : task.hints[(_hintsShown - 1).clamp(0, task.hints.length - 1)];
+
+  /// Aufgabe: kurze Rechnungen groß, Lesetexte als Lesekarte, Bilder groß.
+  Widget _promptView(HomeworkTask task) {
+    final lesetext = task.readingText;
+    final bild = task.promptPicture ??
+        (lesetext.startsWith('Schau genau:')
+            ? lesetext.replaceFirst('Schau genau:', '').trim()
+            : null);
+    if (lesetext.isEmpty && bild == null) {
+      return Text(
+        task.prompt,
+        key: const ValueKey('homework-prompt'),
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            color: HoloPalette.text,
+            fontSize: task.prompt.length > 40 ? 22 : 30,
+            fontWeight: FontWeight.w800),
+      );
+    }
+    return Column(
+      key: const ValueKey('homework-prompt'),
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (bild != null)
+          Text(bild,
+              key: const ValueKey('homework-picture'),
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 72)),
+        if (lesetext.isNotEmpty && bild == null)
+          Container(
+            key: const ValueKey('homework-reading'),
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: HoloPalette.night,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: HoloPalette.cyan.withValues(alpha: .5)),
+            ),
+            child: Text(
+                lesetext
+                    .replaceFirst(RegExp(r'^Lies:\s*'), '')
+                    .replaceFirst(
+                        RegExp(r'^Die Sätze sind durcheinander:\s*'), ''),
+                style: const TextStyle(
+                    color: HoloPalette.text,
+                    fontSize: 21,
+                    height: 1.5,
+                    fontWeight: FontWeight.w600)),
+          ),
+        const SizedBox(height: 12),
+        Text(bild != null && lesetext.isEmpty ? task.prompt : task.question,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                color: HoloPalette.text,
+                fontSize: 22,
+                fontWeight: FontWeight.w800)),
       ],
     );
   }

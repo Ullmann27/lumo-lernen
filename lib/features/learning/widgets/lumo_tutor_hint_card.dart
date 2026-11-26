@@ -14,9 +14,14 @@ class LumoTutorHintCard extends StatefulWidget {
     required this.text,
     required this.onSpeak,
     this.reduceMotion = false,
+    this.methode,
   });
 
   final String text;
+
+  /// Erklärweise dieser Hilfe (z. B. „Anders erklärt: auf dem Zahlenstrahl“).
+  /// So sieht das Kind, dass Lumo es jetzt anders erklärt.
+  final String? methode;
   final VoidCallback onSpeak;
   final bool reduceMotion;
 
@@ -147,6 +152,19 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
                     ),
                   ],
                 ),
+                if (widget.methode != null) ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    widget.methode!,
+                    key: const ValueKey('lumo-hint-method'),
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xFFFFE08A),
+                    ),
+                  ),
+                ],
                 const SizedBox(height: 7),
                 Text(
                   widget.text,
