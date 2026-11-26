@@ -54,6 +54,7 @@ void main() {
         'Rhythm',
         'Schach',
         'Sternenpost',
+        'Sternenjagd',
         'Lumo Kart',
       ]) {
         expect(find.text(title), findsWidgets, reason: title);
@@ -114,6 +115,7 @@ void main() {
       'rhythm',
       'chess',
       'skypost',
+      'stars',
       'kart',
       'connectFour',
       'quizShow',
@@ -174,6 +176,7 @@ void main() {
           'rhythm',
           'chess',
           'skypost',
+          'stars',
           'kart',
           'connectFour',
           'quizShow',
@@ -190,7 +193,7 @@ void main() {
     },
   );
 
-  for (final scene in ['rhythm', 'world']) {
+  for (final scene in ['rhythm', 'world', 'stars']) {
     testWidgets('$scene portal opens its real native scene after cold start', (
       tester,
     ) async {

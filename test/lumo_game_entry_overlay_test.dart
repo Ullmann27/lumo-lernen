@@ -14,6 +14,7 @@ void main() {
       'rhythm': ('Lumo Rhythm Party', 'assets/lumo_design/gameplay/rhythm.png'),
       'treasure': ('Lumo Schatzsuche', 'assets/lumo_design/gameplay/treasure.png'),
       'jump': ('Lumo Abenteuer', 'assets/lumo_design/bg/bg_games.png'),
+      'stars': ('Lumo Sternenjagd', 'assets/lumo_design/icons/star_gold.png'),
     };
     for (final entry in expected.entries) {
       expect(LumoGameEntryArt.titleFor(entry.key), entry.value.$1);

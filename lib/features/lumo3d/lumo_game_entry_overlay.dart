@@ -22,6 +22,7 @@ class LumoGameEntryArt {
         'run' => 'Lumo Lauf',
         'chess' => 'Lumo Schach',
         'skypost' => 'Lumos Sternenpost',
+        'stars' => 'Lumo Sternenjagd',
         _ => 'Lumo Spielewelt',
       };
 
@@ -32,6 +33,7 @@ class LumoGameEntryArt {
         'settlement' => 'assets/lumo_design/spielwelt/portal_bauwelt.png',
         'chess' => 'assets/lumo_design/spielwelt/cover_chess.jpg',
         'skypost' => 'assets/lumo_design/spielwelt/cover_skypost.jpg',
+        'stars' => 'assets/lumo_design/icons/star_gold.png',
         'puzzle' => 'assets/lumo_design/gameplay/puzzle.png',
         'rhythm' => 'assets/lumo_design/gameplay/rhythm.png',
         'treasure' => 'assets/lumo_design/gameplay/treasure.png',
@@ -53,6 +55,7 @@ class LumoGameEntryArt {
         'run' => '3D-LAUFABENTEUER',
         'chess' => 'SCHACH LERNEN UND SPIELEN',
         'skypost' => '3D-FLUGABENTEUER',
+        'stars' => '3D-STERNENJAGD',
         'jump' => 'WOLKENINSELN',
         _ => 'SPIELWELT',
       };

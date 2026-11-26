@@ -407,7 +407,7 @@ class MainActivity : FlutterActivity() {
                 refuse("invalid_village", "Der Dorfmodus wurde nicht sicher ausgewählt.")
                 return
             }
-            val game = if (requested in setOf("kart", "jump", "run", "skypost", "puzzle", "build", "settlement", "rhythm", "treasure", "world", "learning", "cards", "connect_four", "games", "memory", "quiz", "chess")) requested!! else "kart"
+            val game = if (requested in setOf("kart", "jump", "run", "skypost", "puzzle", "build", "settlement", "rhythm", "treasure", "world", "learning", "cards", "connect_four", "games", "memory", "quiz", "chess", "stars")) requested!! else "kart"
             val options = JSONObject()
                 .put("game", game)
                 .put("grade", (call.argument<Int>("grade") ?: 1).coerceIn(1, 4))

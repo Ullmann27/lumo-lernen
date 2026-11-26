@@ -206,6 +206,13 @@ class _GamesContentState extends State<GamesContent> {
     }
   }
 
+  Future<void> _launchStars() async {
+    if (_launchingGame || !await _allowLaunch() || !mounted) return;
+    LumoCompanionRequests.instance
+        .recordInteraction(LumoInteractionKind.gameRequested);
+    await _launch3D('stars');
+  }
+
   Future<void> _launch3D(String scene, {bool livingVillage = false}) async {
     if (_launchingGame) return;
     setState(() => _launchingGame = true);
@@ -502,6 +509,8 @@ class _GamesContentState extends State<GamesContent> {
           SpielweltPortal.chess(onOpen: _launchChess)
         else if (route.identity == 'skypost')
           SpielweltPortal.skypost(onOpen: () => _launch3D('skypost'))
+        else if (route.identity == 'stars')
+          SpielweltPortal.stars(onOpen: _launchStars)
         else if (route.identity == 'connectFour')
           SpielweltPortal.connectFour(onOpen: _launchConnectFour)
         else if (route.identity == 'quizShow')

@@ -7,7 +7,7 @@ name: "Lumo Intelligence 2.0 – Integration und Android-Abnahme"
 # erzeugt genau diese bestehende App-ID), Schlüssel tools/lumo-debug.keystore wie 2078.
 on:
   push:
-    branches: [opus/lumo-intelligence-2-0-20261126, integration/lumo-final-release-20261126]
+    branches: [opus/lumo-intelligence-2-0-20261126, integration/lumo-final-release-20261126, integration/lumo-completeness-2094-20261126]
     paths:
       - config/intelligence-2-0-apk-request.json
 
@@ -57,6 +57,9 @@ jobs:
             test/learning/honest_practice_flow_test.dart \
             test/cross_grade_second_chance_test.dart \
             test/lumo3d_launcher_lifecycle_test.dart \
+            test/games/spielwelt_routing_test.dart \
+            test/games/spielwelt_semantics_action_test.dart \
+            test/games/games_world_layout_test.dart \
             test/design/lumo_mentor_journal_contrast_test.dart \
             test/local_backup_format_test.dart \
             test/features/report_screen_test.dart \
@@ -292,6 +295,16 @@ jobs:
               --timeout 120 --required '[WorkshopMotorVoices] PASS' --log build-proof/GODOT-workshop-motors.txt -- \
               godot --headless --single-threaded-scene --audio-driver Dummy --path build/lumo-godot-qa \
               --script res://scripts/tests/kart_workshop_motor_voices.gd
+      - name: Direkter Sternenjagd-Start und wiederhergestellter Lernfuchs
+        if: matrix.group == 'core-memory' && steps.reuse.outputs.valid != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          XDG_DATA_HOME="$RUNNER_TEMP/lumo-completeness-2094" \
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 180 --required '[Completeness2094] PASS' --log build-proof/GODOT-completeness-2094.txt -- \
+              godot --headless --single-threaded-scene --audio-driver Dummy \
+              --path build/lumo-godot-qa --script res://scripts/tests/completeness_2094_regression.gd
       - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
         if: matrix.group == 'core-memory' && steps.reuse.outputs.valid != 'true'
         shell: bash

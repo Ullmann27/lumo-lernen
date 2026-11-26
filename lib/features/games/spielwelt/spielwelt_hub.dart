@@ -60,6 +60,12 @@ class SpielweltPortal {
         semanticTitle = 'Lumos Sternenpost',
         specialId = 'skypost';
 
+  const SpielweltPortal.stars({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Lumo Sternenjagd',
+        specialId = 'stars';
+
   final GameDefinition? game;
   final GameUnlockState state;
   final VoidCallback onOpen;
@@ -97,6 +103,7 @@ class SpielweltPortal {
         'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
         'chess' => 'Schach lernen mit Lumo – oder gegen ihn spielen',
         'skypost' => 'Fliegen, Briefe liefern, Rätsel lösen',
+        'stars' => 'Drei Wellen, Sterne fangen und Bestzeit verbessern',
         _ => game?.tagline ?? '',
       };
   bool get playable =>
@@ -373,7 +380,7 @@ class _SpielweltHubState extends State<SpielweltHub> {
                           onPressed: widget.onEnterNative3D,
                           icon: const Icon(Icons.view_in_ar),
                           label: const Text(
-                            'Magische 3D-Spielewelt betreten',
+                            'Mehr 3D-Spiele · Bauwelt & Schätze',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(

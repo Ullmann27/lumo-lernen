@@ -32,7 +32,7 @@ void main() {
 
   test('routing table exposes one unified World and unique covers', () {
     expect(SpielweltRoutes.all.map((r) => r.identity), SpielweltRoutes.identities);
-    expect(SpielweltRoutes.all, hasLength(12));
+    expect(SpielweltRoutes.all, hasLength(13));
     expect(SpielweltRoutes.byIdentity('world').target, 'world');
     expect(SpielweltRoutes.identities, isNot(contains('treasure')));
     expect(SpielweltRoutes.identities, isNot(contains('build')));
@@ -41,6 +41,7 @@ void main() {
         allOf(contains('Schatzinsel'), contains('Dorfwirtschaft'), contains('Baumodus')));
     expect(SpielweltRoutes.byIdentity('chess').target, 'chess');
     expect(SpielweltRoutes.byIdentity('skypost').target, 'skypost');
+    expect(SpielweltRoutes.byIdentity('stars').target, 'stars');
     final covers = [
       for (final route in SpielweltRoutes.all)
         if (route.coverAsset.isNotEmpty) route.coverAsset

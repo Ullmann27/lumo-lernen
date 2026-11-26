@@ -85,8 +85,9 @@ void main() {
       SpielweltPortal.quizShow(onOpen: () => opened++),
       SpielweltPortal.chess(onOpen: () => opened++),
       SpielweltPortal.skypost(onOpen: () => opened++),
+      SpielweltPortal.stars(onOpen: () => opened++),
     ];
-    expect(portals, hasLength(12));
+    expect(portals, hasLength(13));
     expect(portals.map((portal) => portal.identity).toSet(),
         SpielweltRoutes.identities.toSet());
 
@@ -115,7 +116,7 @@ void main() {
           reason: '${portal.identity}: existing InkWell still fires once');
       expect(tester.takeException(), isNull, reason: portal.identity);
     }
-    expect(opened, 24);
+    expect(opened, 26);
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
