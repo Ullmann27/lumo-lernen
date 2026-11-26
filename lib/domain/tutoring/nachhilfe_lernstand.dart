@@ -12,6 +12,7 @@ library;
 import '../school/attempt.dart';
 import '../school/error_patterns.dart';
 import 'lumo_nachhilfe.dart';
+import 'verstaendnis.dart';
 
 enum NachhilfeBefund {
   /// Zu wenige Antworten zu dieser Kompetenz: keine Aussage.
@@ -30,7 +31,9 @@ enum NachhilfeBefund {
   /// Diagnose.
   moeglichesFehlermuster,
 
-  /// Nach Hilfe oder Fehlern später mindestens zweimal ohne Hilfe richtig.
+  /// Nach Hilfe oder Fehlern später mindestens zweimal ohne Hilfe richtig –
+  /// oder mindestens zwei eigenständige Vergleichsaufgaben nach Hilfe zu
+  /// verschiedenen Aufgaben allein gelöst ([VerstaendnisIndiz]).
   spaeterBestaetigt,
 
   /// Von den letzten drei Antworten ohne Hilfe mindestens zwei falsch.
@@ -53,6 +56,8 @@ class NachhilfeLernstand {
     required this.falsch,
     required this.muster,
     required this.befunde,
+    required this.verstaendnis,
+    required this.wenigHilfreicheMethoden,
   });
 
   /// Erst ab so vielen Antworten werden Muster, Bestätigung oder
@@ -68,6 +73,19 @@ class NachhilfeLernstand {
   /// Mindestens zweimal aufgetretene Fehlermuster, häufigstes zuerst.
   final List<(String, int)> muster;
   final Set<NachhilfeBefund> befunde;
+
+  /// Indiz aus eigenständigen Vergleichsaufgaben nach einer Hilfe.
+  final VerstaendnisIndiz verstaendnis;
+
+  /// Erklärweisen, nach denen die Antwort trotz Hilfe falsch war.
+  final Set<String> wenigHilfreicheMethoden;
+
+  /// Rechenwege, die beim letzten Mal nicht geholfen haben: Lumo beginnt mit
+  /// einem anderen Weg (Methodenwechsel statt Wiederholung).
+  Set<NachhilfeWeg> get wenigHilfreicheWege => {
+        for (final w in NachhilfeWeg.values)
+          if (wenigHilfreicheMethoden.contains(w.name)) w,
+      };
 
   bool get aussagekraeftig => !befunde.contains(NachhilfeBefund.fehlendeDaten);
 
@@ -100,6 +118,11 @@ class NachhilfeLernstand {
   /// Ein ruhiger Satz für das Kind – nur bei belastbaren Daten, ohne
   /// Prozentzahlen und ohne Fehler aufzuzählen.
   String? get kindSatz {
+    if (verstaendnis.hatIndiz &&
+        !befunde.contains(NachhilfeBefund.wiederholungNoetig)) {
+      return 'Eine ähnliche Aufgabe hast du nach einer Hilfe schon allein '
+          'geschafft. Das schaffst du wieder.';
+    }
     if (!aussagekraeftig) return null;
     if (befunde.contains(NachhilfeBefund.spaeterBestaetigt)) {
       return 'Solche Aufgaben hast du schon mehrmals allein geschafft. Ein kleiner Tipp reicht bestimmt.';
@@ -174,6 +197,10 @@ class NachhilfeLernstand {
             .length;
         if (danach >= 2) befunde.add(NachhilfeBefund.spaeterBestaetigt);
       }
+      if (VerstaendnisIndiz.aus(liste, kompetenz: kompetenz, fach: fach)
+          .spaeterBestaetigt) {
+        befunde.add(NachhilfeBefund.spaeterBestaetigt);
+      }
       final ohneHilfe = liste.where((a) => !a.hintUsed).toList();
       if (ohneHilfe.length >= 3) {
         final letzte = ohneHilfe.sublist(ohneHilfe.length - 3);
@@ -190,6 +217,11 @@ class NachhilfeLernstand {
       falsch: falsch,
       muster: List.unmodifiable(muster),
       befunde: Set.unmodifiable(befunde),
+      verstaendnis:
+          VerstaendnisIndiz.aus(liste, kompetenz: kompetenz, fach: fach),
+      wenigHilfreicheMethoden: Set.unmodifiable(
+          VerstaendnisIndiz.wenigHilfreicheMethoden(liste,
+              kompetenz: kompetenz, fach: fach)),
     );
   }
 }

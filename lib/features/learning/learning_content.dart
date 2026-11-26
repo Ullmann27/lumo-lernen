@@ -37,8 +37,11 @@ import '../../core/lumo_speech_listener.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/error_detective.dart';
 import '../../domain/school/competency.dart';
+import '../../domain/school/attempt.dart';
+import '../../domain/tutoring/hilfe_folge.dart';
 import '../../domain/tutoring/lumo_nachhilfe.dart';
 import '../../domain/tutoring/nachhilfe_lernstand.dart';
+import '../../domain/tutoring/verstaendnis.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
 import '../tutoring/lumo_nachhilfe_screen.dart';
 import '../tutoring/arithmetic_task_aid.dart';
@@ -317,6 +320,24 @@ class _LearningContentState extends State<LearningContent>
   /// Mistakes of this session that come back as a similar task.
   final TwinTaskQueue<LumoTask> _twins = TwinTaskQueue<LumoTask>();
   bool _isTwin = false;
+
+  /// Lumo erkennt Verständnis: Die Ausgangsaufgabe, nach deren Hilfe diese
+  /// ähnliche Aufgabe kommt. Nur die erste Antwort darauf wird als
+  /// Vergleichsaufgabe nach Hilfe gespeichert.
+  LumoTask? _twinSource;
+
+  /// Erklärweisen dieser Aufgabe für „Hilf mir“ / „Anders erklären“.
+  List<HilfeVariante>? _hilfeFolge;
+  final List<String> _gezeigteMethoden = <String>[];
+  String? _letzteMethode;
+  String? _hilfeTitel;
+
+  /// Antworten seit der zuletzt gezeigten Erklärweise.
+  int _antwortenSeitMethode = 0;
+
+  /// Erklärweisen je Kompetenz, nach denen eine Antwort trotz Hilfe falsch
+  /// war: Bei der nächsten ähnlichen Aufgabe beginnt Lumo mit einer anderen.
+  final Map<String, Set<String>> _methodenOhneErfolg = <String, Set<String>>{};
   bool _twinScheduled = false;
   int _sessionExtension = 0;
   int _sessionAlone = 0;
@@ -792,10 +813,17 @@ class _LearningContentState extends State<LearningContent>
       _resumedAtRound = 0;
     }
     // A mistake from two or three tasks ago comes back as a similar task.
-    final twin = _allowHelp
-        ? _twinFor(_twins.takeFor(_questionNum, lastQuestion: _totalQuestions))
+    final twinSource = _allowHelp
+        ? _twins.takeFor(_questionNum, lastQuestion: _totalQuestions)
         : null;
+    final twin = _twinFor(twinSource);
     _isTwin = twin != null;
+    _twinSource = twin == null ? null : twinSource;
+    _hilfeFolge = null;
+    _gezeigteMethoden.clear();
+    _letzteMethode = null;
+    _hilfeTitel = null;
+    _antwortenSeitMethode = 0;
     // Keep prompt, answer, progress and renderer on the same checked task.
     _task = _adapter.qualityCheckedTask(twin ?? _nextTask());
     _rememberTask(_task);
@@ -1101,10 +1129,11 @@ class _LearningContentState extends State<LearningContent>
     // after all four scene methods have already been tried. Only a displayed
     // scene may change the method attached to its later completion receipt.
     _placeValueLesson?.markTransferHelp();
-    final hint = _requestedHelpLevel == 2
-        ? _buildTutorHint(_lastGivenAnswer ?? '', const []) ??
-            _taskHints.explain(_task, level: 2)
-        : _taskHints.explain(_task, level: _requestedHelpLevel);
+    // Methodenwechsel: jede weitere Bitte bringt eine andere Erklärweise –
+    // nie zweimal hintereinander denselben Hinweis. Erklärweisen, die bei
+    // einer ähnlichen Aufgabe nicht geholfen haben, kommen erst am Ende.
+    final variante = _naechsteHilfe();
+    final hint = variante.text;
     if (_requestedHelpLevel >= 3) {
       if (_task.subject == 'Mathematik') {
         // The strategy, but not the result: the child is still solving.
@@ -1119,7 +1148,10 @@ class _LearningContentState extends State<LearningContent>
       }
     }
     _lumo.think();
-    setState(() => _tutorHint = hint);
+    setState(() {
+      _tutorHint = hint;
+      _hilfeTitel = variante.titel;
+    });
     LumoCompanionRequests.instance
         .recordInteraction(LumoInteractionKind.helpRequested);
     _publishTaskContext(afterPublish: () {
@@ -1146,6 +1178,71 @@ class _LearningContentState extends State<LearningContent>
     LumoCompanionRequests.instance.recordLearningEvent(
         LumoLearningEventKind.hintAccepted,
         context: _publishedTaskContext);
+  }
+
+  String get _kompetenz => const CompetencyClassifier()
+      .classify(subject: _task.subject, unit: _task.unit, prompt: _task.prompt);
+
+  /// Erklärweisen dieser Aufgabe in der Reihenfolge der Hilfeleiter.
+  List<HilfeVariante> _hilfeVarianten() {
+    final rechnung = NachhilfeAufgabe.ausTask(_taskInstance);
+    final folge = HilfeFolge.folge(
+      stufen: HilfeFolge.stufen(
+        _taskHints.explain(_task, level: 1),
+        _buildTutorHint(_lastGivenAnswer ?? '', const []) ??
+            _taskHints.explain(_task, level: 2),
+        _taskHints.explain(_task, level: 3),
+      ),
+      wege: rechnung == null ? const [] : HilfeFolge.rechenwege(rechnung),
+      nachhilfeVerfuegbar: rechnung != null,
+    );
+    return HilfeMethodenwechsel.zuerstNeue(
+        folge,
+        {
+          for (final v in folge)
+            if (_methodenOhneErfolg[_kompetenz]?.contains(v.methode) ?? false)
+              v,
+        });
+  }
+
+  /// Nächste, noch nicht gezeigte Erklärweise (nie dieselbe zweimal
+  /// hintereinander).
+  HilfeVariante _naechsteHilfe() {
+    final folge = _hilfeFolge ??= _hilfeVarianten();
+    final zuletzt = _letzteMethode == null
+        ? null
+        : folge.where((v) => v.methode == _letzteMethode).firstOrNull;
+    final variante = HilfeMethodenwechsel.naechste(folge,
+        gezeigt: folge.where((v) => _gezeigteMethoden.contains(v.methode)),
+        zuletzt: zuletzt)!;
+    _gezeigteMethoden.add(variante.methode);
+    _letzteMethode = variante.methode;
+    _antwortenSeitMethode = 0;
+    // „Anders gesagt“ richtet sich nach der zuletzt gegebenen Antwort.
+    if (variante.methode == HilfeFolge.anders) {
+      return HilfeVariante(
+          methode: variante.methode,
+          titel: variante.titel,
+          text: _buildTutorHint(_lastGivenAnswer ?? '', const []) ??
+              variante.text);
+    }
+    return variante;
+  }
+
+  /// Merkt sich, welche Erklärweisen bei dieser Kompetenz (nicht) geholfen
+  /// haben.
+  void _merkeMethoden({required bool richtig}) {
+    final erste = _antwortenSeitMethode == 0;
+    _antwortenSeitMethode++;
+    if (_gezeigteMethoden.isEmpty) return;
+    final ohneErfolg =
+        _methodenOhneErfolg.putIfAbsent(_kompetenz, () => <String>{});
+    if (!richtig) {
+      ohneErfolg.addAll(_gezeigteMethoden);
+    } else if (erste) {
+      // Gleich danach richtig: Diese Erklärweise hat geholfen.
+      ohneErfolg.remove(_letzteMethode);
+    }
   }
 
   void _workspaceChanged(TaskWorkspaceInteraction event) {
@@ -1444,6 +1541,8 @@ class _LearningContentState extends State<LearningContent>
     final generation = widget.appState.profileGeneration;
     final settings = widget.appState.state.settings;
     final subject = _task.subject, unit = _task.unit;
+    final originalPrompt = _task.prompt;
+    final kompetenz = _kompetenz;
     final stopping = _cancelCoachMedia();
     setState(() => _requestedHelpLevel = math.max(1, _requestedHelpLevel));
     _publishTaskContext(immediately: true);
@@ -1465,9 +1564,17 @@ class _LearningContentState extends State<LearningContent>
     final fehler = tutor.erkenneFehler(aufgabe, _lastGivenAnswer);
     final verlaufsMuster =
         lernstand?.haeufigstesMuster ?? NachhilfeFehlermuster.keines;
+    // Methodenwechsel: Wege, die in dieser Sitzung oder laut Protokoll nicht
+    // geholfen haben, kommen erst später.
+    final schonVersucht = <NachhilfeWeg>{
+      ...?lernstand?.wenigHilfreicheWege,
+      for (final w in NachhilfeWeg.values)
+        if (_methodenOhneErfolg[kompetenz]?.contains(w.name) ?? false) w,
+    };
     final startWeg = fehler == NachhilfeFehlermuster.keines &&
             verlaufsMuster != NachhilfeFehlermuster.keines
-        ? tutor.wegFuer(aufgabe, fehler: verlaufsMuster)
+        ? tutor.wegFuer(aufgabe,
+            fehler: verlaufsMuster, schonVersucht: schonVersucht)
         : null;
     final stufe = lernstand?.startStufe(tutor, versuche: _attemptCount) ??
         tutor.startStufe(versuche: _attemptCount);
@@ -1480,6 +1587,17 @@ class _LearningContentState extends State<LearningContent>
         tutor: tutor,
         reduceMotion: settings.reduceAnimations || settings.calmMode,
         lernstandSatz: lernstand?.kindSatz,
+        schonVersucht: schonVersucht,
+        onWegGesehen: (weg) {
+          if (!mounted ||
+              widget.appState.profileGeneration != generation ||
+              _taskInstance.taskInstanceId != taskId) {
+            return;
+          }
+          _gezeigteMethoden.add(weg.name);
+          _letzteMethode = weg.name;
+          _antwortenSeitMethode = 0;
+        },
         // Nur die eigenständige Prüfaufgabe (Stufe 5) wird als Lernnachweis
         // gespeichert – wie der Zwilling der 3D-Nachhilfe, ohne Sterne/XP.
         onPruefung: (pruefung) {
@@ -1497,6 +1615,10 @@ class _LearningContentState extends State<LearningContent>
             prompt: pruefung.prompt,
             given: '${pruefung.antwort}',
             expected: '${pruefung.ergebnis}',
+            // Vergleichsaufgabe nach der Hilfe, mit Bezug zur Aufgabe.
+            check: Attempt.vergleichNachHilfe,
+            reference: originalPrompt,
+            method: pruefung.weg.name,
           ));
         },
         onSpeak: settings.voiceEnabled
@@ -1685,6 +1807,9 @@ class _LearningContentState extends State<LearningContent>
         given: result['kind'] == 'tutor'
             ? 'Nachhilfe 3D: allein gelöst'
             : 'Holo-Raum: allein gelöst',
+        // Ähnliche Aufgabe nach der Hilfe in 3D, mit Bezug zur Aufgabe.
+        check: Attempt.vergleichNachHilfe,
+        reference: _task.prompt,
       );
     }
   }
@@ -2555,6 +2680,12 @@ class _LearningContentState extends State<LearningContent>
           subject: _task.subject, unit: _task.unit, evidence: evidence));
     }
 
+    // Lumo erkennt Verständnis: Die erste Antwort auf die ähnliche Aufgabe
+    // nach einer Hilfe ist eine Vergleichsaufgabe. Nur ohne jede Hilfe richtig
+    // zählt sie später als Indiz (Attempt.confirmsAfterHelp).
+    final vergleich = _isTwin && _twinSource != null && _totalTaskAttempts == 1;
+    final methode = _letzteMethode;
+    _merkeMethoden(richtig: correct);
     if (correct) {
       widget.appState.correctAnswer(_task.unit,
           stars: rewardDelta.stars, xp: rewardDelta.xp);
@@ -2568,6 +2699,9 @@ class _LearningContentState extends State<LearningContent>
         given: '$answerGiven',
         expected: '${_taskInstance.correctAnswer}',
         durationMs: responseTimeMs,
+        check: vergleich ? Attempt.vergleichNachHilfe : null,
+        reference: vergleich ? _twinSource!.prompt : '',
+        method: methode,
       );
       _playOwnedVoice(_praiseFor(feedback, alone: !hintUsed).message);
       _autoAdvanceTimer = Timer(
@@ -2587,6 +2721,9 @@ class _LearningContentState extends State<LearningContent>
         given: '$answerGiven',
         expected: '${_taskInstance.correctAnswer}',
         durationMs: responseTimeMs,
+        check: vergleich ? Attempt.vergleichNachHilfe : null,
+        reference: vergleich ? _twinSource!.prompt : '',
+        method: methode,
       );
       _playOwnedVoice(_allowHelp
           ? (workedSteps.isNotEmpty
@@ -3392,6 +3529,7 @@ class _LearningContentState extends State<LearningContent>
                                 kind: LumoStageRegionKind.control,
                                 child: LumoTutorHintCard(
                                   text: _tutorHint!,
+                                  methode: _hilfeTitel,
                                   reduceMotion: st.settings.reduceAnimations ||
                                       st.settings.calmMode,
                                   onSpeak: () => unawaited(_speakTutorHint(
@@ -3658,6 +3796,14 @@ class _LearningContentState extends State<LearningContent>
                                   onWritingSubmitted: _answerWriting,
                                   onWritingPraise: _speakWritingPraise,
                                   onShapeTraced: _answerShapeTrace,
+                                  // Methodenwechsel auch beim Tipp in der
+                                  // Aufgabe; nie in Tests/Schularbeiten.
+                                  nextHelp: _allowHelp
+                                      ? () {
+                                          final v = _naechsteHilfe();
+                                          return (v.titel, v.text);
+                                        }
+                                      : null,
                                 ),
                               ),
                             ),

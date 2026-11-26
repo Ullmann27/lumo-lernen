@@ -845,6 +845,9 @@ class LumoAppState extends ChangeNotifier {
     double? score,
     LearningProfileLease? lease,
     String? taskId,
+    String? check,
+    String reference = '',
+    String? method,
   }) {
     if (_disposed || _resetting) return Future<void>.value();
     final source = lease == null
@@ -896,6 +899,9 @@ class LumoAppState extends ChangeNotifier {
             expected: expected,
             durationMs: durationMs,
             score: score,
+            check: check,
+            reference: reference,
+            method: method,
           );
         }
         // Only an explicit identity from an assessed task can enter a mission.
@@ -1096,6 +1102,9 @@ class LumoAppState extends ChangeNotifier {
     required String expected,
     int? durationMs,
     double? score,
+    String? check,
+    String reference = '',
+    String? method,
   }) async {
     final now = DateTime.now();
     _unsavedAttempts.add(Attempt(
@@ -1113,6 +1122,9 @@ class LumoAppState extends ChangeNotifier {
       expected: expected,
       durationMs: durationMs,
       score: score,
+      check: check,
+      reference: reference,
+      method: method,
     ));
     await flushAttemptLog();
   }

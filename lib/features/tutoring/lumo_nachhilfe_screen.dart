@@ -19,9 +19,13 @@ class NachhilfePruefung {
     required this.antwort,
     required this.richtig,
     required this.versuche,
+    required this.weg,
   });
 
   final NachhilfeAufgabe aufgabe;
+
+  /// Rechenweg, mit dem vorher erklärt wurde.
+  final NachhilfeWeg weg;
   final int ergebnis;
   final int antwort;
   final bool richtig;
@@ -53,6 +57,8 @@ class LumoNachhilfeScreen extends StatefulWidget {
     this.onPruefung,
     this.lernstandSatz,
     this.startWeg,
+    this.schonVersucht = const {},
+    this.onWegGesehen,
   });
 
   final NachhilfeAufgabe aufgabe;
@@ -77,6 +83,13 @@ class LumoNachhilfeScreen extends StatefulWidget {
 
   /// Weg aus einem wiederkehrenden Muster im Verlauf (ohne Rückmeldung).
   final NachhilfeWeg? startWeg;
+
+  /// Wege, die bei dieser Kompetenz schon gezeigt wurden und nicht geholfen
+  /// haben: Lumo beginnt mit einem anderen (Methodenwechsel).
+  final Set<NachhilfeWeg> schonVersucht;
+
+  /// Meldet jeden gezeigten Weg (für den Methodenwechsel der Übung).
+  final ValueChanged<NachhilfeWeg>? onWegGesehen;
 
   @override
   State<LumoNachhilfeScreen> createState() => _LumoNachhilfeScreenState();
@@ -120,9 +133,11 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
     super.initState();
     final startWeg = widget.startWeg;
     _weg = startWeg != null &&
-            widget.tutor.wegeFuer(widget.aufgabe).contains(startWeg)
+            widget.tutor.wegeFuer(widget.aufgabe).contains(startWeg) &&
+            !widget.schonVersucht.contains(startWeg)
         ? startWeg
-        : widget.tutor.wegFuer(widget.aufgabe, fehler: widget.fehler);
+        : widget.tutor.wegFuer(widget.aufgabe,
+            fehler: widget.fehler, schonVersucht: widget.schonVersucht);
     _stufe = widget.startStufe;
     _starte();
     if (widget.fehler != NachhilfeFehlermuster.keines) {
@@ -140,6 +155,7 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
 
   void _starte() {
     _gesehen.add(_weg);
+    widget.onWegGesehen?.call(_weg);
     _plan = widget.tutor.plan(widget.aufgabe, _weg, _stufe);
     _schritt = 0;
     _reihe1 = 0;
@@ -409,6 +425,7 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
             antwort: wert,
             richtig: richtig,
             versuche: _pruefVersuche,
+            weg: _weg,
           ));
         }
       }
@@ -433,15 +450,61 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
     });
   }
 
+  /// Nach zwei Fehlversuchen in der Prüfaufgabe: Schritt für Schritt – und
+  /// mit einem anderen Rechenweg als vorher, statt denselben zu wiederholen.
   void _pruefMitLumo() {
     widget.onStopSpeech?.call();
     setState(() {
-      _pruefPhase = false;
+      final neu = _anderesWeg;
       _rueckmeldung = null;
+      if (neu != null && _pruefRichtig == false) {
+        _weg = neu;
+        _gesehen.add(neu);
+        widget.onWegGesehen?.call(neu);
+        _plan = widget.tutor.plan(widget.aufgabe, _weg, _stufe);
+        _rueckmeldung = 'Wir probieren es anders: ${_wegPhrase(neu)}.';
+      }
+      _pruefPhase = false;
       _schritt = 0;
+      _fehlversuche = 0;
+      _fertig = false;
+      _vorgezeigt = false;
+      _reihe1 = 0;
+      _reihe2 = 0;
+      _position = 0;
+      _spruenge.clear();
+      _zerlegung = null;
+      _gewaehlt = null;
+      _stangen = null;
+      _punkte = null;
+      _bild = null;
       _betreteSchritt();
     });
+    if (_rueckmeldung != null) unawaited(_sprich(_rueckmeldung!));
   }
+
+  /// Ein noch nicht gezeigter Weg (null, wenn es keinen anderen gibt).
+  NachhilfeWeg? get _anderesWeg {
+    final wege = widget.tutor.wegeFuer(_plan.aufgabe);
+    for (final w in wege) {
+      if (!_gesehen.contains(w) && !widget.schonVersucht.contains(w)) return w;
+    }
+    for (final w in wege) {
+      if (w != _weg) return w;
+    }
+    return null;
+  }
+
+  static String _wegPhrase(NachhilfeWeg weg) => switch (weg) {
+        NachhilfeWeg.rechenrahmen => 'mit dem Rechenrahmen',
+        NachhilfeWeg.zahlenstrahl => 'auf dem Zahlenstrahl',
+        NachhilfeWeg.zerlegen => 'mit Zerlegen',
+        NachhilfeWeg.verdoppeln => 'mit Verdoppeln',
+        NachhilfeWeg.tauschen => 'mit Tauschen',
+        NachhilfeWeg.stangen => 'mit Zehnerstangen',
+        NachhilfeWeg.punktefeld => 'mit dem Punktefeld',
+        NachhilfeWeg.kernaufgabe => 'mit einer Kernaufgabe',
+      };
 
   void _stufeWaehlen(NachhilfeStufe stufe) {
     widget.onStopSpeech?.call();
@@ -456,7 +519,10 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
     widget.onStopSpeech?.call();
     setState(() {
       final wege = widget.tutor.wegeFuer(widget.aufgabe);
-      final offen = wege.where((w) => !_gesehen.contains(w)).toList();
+      final offen = wege
+          .where((w) =>
+              !_gesehen.contains(w) && !widget.schonVersucht.contains(w))
+          .toList();
       _weg = offen.isNotEmpty
           ? offen.first
           : widget.tutor.naechsterWeg(widget.aufgabe, _weg);

@@ -1,3 +1,4 @@
+import '../tutoring/verstaendnis.dart';
 import 'adaptive_practice_plan.dart';
 import 'attempt.dart';
 import 'learning_analysis.dart';
@@ -117,6 +118,7 @@ class LearningGuidance {
     required this.needs,
     required this.recommendations,
     required this.development,
+    this.laterConfirmed = const [],
   });
 
   /// Präfix der Demo-Kinder in der Lehrkräfte-Demo. Ihre Daten gehören nie in
@@ -140,6 +142,12 @@ class LearningGuidance {
   final List<GuidanceCompetency> needs;
   final List<GuidanceRecommendation> recommendations;
   final List<GuidanceDevelopment> development;
+
+  /// „Später bestätigt“: Kompetenzen, bei denen Lumo nach einer Hilfe eine
+  /// ähnliche, eigenständige Aufgabe angeboten hat – mit dem ehrlichen Stand
+  /// (erstes Anzeichen, später bestätigt oder noch unsicher). Eine einzelne
+  /// gelöste Aufgabe gilt nur als erstes Anzeichen.
+  final List<VerstaendnisIndiz> laterConfirmed;
 
   /// Erst ab fünf selbstständigen Antworten insgesamt gibt es Aussagen über
   /// Stärken oder Förderbedarf.
@@ -270,6 +278,8 @@ class LearningGuidance {
       needs: List.unmodifiable(needs),
       recommendations: List.unmodifiable(recommendations),
       development: List.unmodifiable(development.take(maxListed)),
+      laterConfirmed: List.unmodifiable(
+          VerstaendnisIndiz.alle(attempts).take(maxListed)),
     );
   }
 
