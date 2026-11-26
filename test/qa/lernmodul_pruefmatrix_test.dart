@@ -494,7 +494,7 @@ void main() {
           ]);
         }
       }
-      for (final key in const ['iq-test-start', 'cognitive-profile-start']) {
+      for (final key in const ['iq-test-start', 'cognitive-profile-start', 'emotion-test-start']) {
         expect(find.byKey(ValueKey(key)), findsOneWidget, reason: key);
       }
       await tester.pumpWidget(const SizedBox.shrink());
@@ -508,6 +508,11 @@ void main() {
       'Tests', '1-4', 'Denken', 'Denkprofil', 'cognitive-profile-start',
       'CognitiveProfileScreen', 'CognitiveProfileGenerator', 'Logik', '–',
       '–', 'ok', '–',
+    ]);
+    _rows.add([
+      'Tests', '1-4', 'Soziales Lernen', 'Gefühls-Kompass', 'emotion-test-start',
+      'EmotionTestScreen', 'emotionScenesFor', 'Soziales Lernen',
+      '4 Geschichten je Altersgruppe', '–', 'ok', '–',
     ]);
   });
 

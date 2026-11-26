@@ -8,9 +8,9 @@ Generator-Kacheln: je 120 Aufgaben über `ExerciseFactory.nextExact`, geprüft a
 
 | Bereich | Zeilen |
 |---|---|
-| Lernhub | 260 |
+| Lernhub | 261 |
 | Lernatelier | 35 |
-| Tests | 74 |
+| Tests | 75 |
 | Schularbeit | 6 |
 | Akademie-Thema | 85 |
 | Lernspiel | 50 |
@@ -118,6 +118,7 @@ Generator-Kacheln: je 120 Aufgaben über `ExerciseFactory.nextExact`, geprüft a
 | Lernhub | 2 | Mathematik | Längen | learning-unit-Mathematik-Längen | Übung Mathematik/Längen | MathTaskTemplates g2_length | Mathematik | 49 | 2 | ok | Schulwissen |
 | Lernhub | 2 | Mathematik | Formen Nachzeichnen | learning-unit-Mathematik-Formen Nachzeichnen | Übung Mathematik/Formen Nachzeichnen | MathTaskTemplates g1_trace_square+g1_trace_circle+g1_trace_triangle+g2_trace_rectangle+g2_trace_star | Mathematik | 5 | 1-2 | ok | Schulwissen |
 | Lernhub | 2 | Mathematik | Textaufgaben | learning-unit-Mathematik-Textaufgaben | Übung Mathematik/Textaufgaben | MathTaskTemplates g1_word_problem+g2_sub_story+g2_word_problem | Mathematik | 115 | 1-2 | ok | Schulwissen |
+| Lernhub | 2 | Mathematik | Datenwerkstatt | learning-unit-Mathematik-Datenwerkstatt | Übung Mathematik/Datenwerkstatt | MathTaskTemplates g2_data_chart_transfer | Mathematik | 69 | 2 | ok | Schulwissen |
 | Lernhub | 2 | Deutsch | Wortfamilien | learning-unit-Deutsch-Wortfamilien | Übung Deutsch/Wortfamilien | GermanTaskTemplates g2_family | Deutsch | 20 | 2 | ok | Schulwissen |
 | Lernhub | 2 | Deutsch | Einzahl und Mehrzahl | learning-unit-Deutsch-Einzahl und Mehrzahl | MehrzahlScreen | eigenes Lernmodul | – | – | 2 | ok | Schulwissen |
 | Lernhub | 2 | Deutsch | Verkleinerungsform | learning-unit-Deutsch-Verkleinerungsform | Übung Deutsch/Verkleinerungsform | GermanTaskTemplates g2_diminutive | Deutsch | 20 | 2 | ok | Schulwissen |
@@ -314,7 +315,7 @@ Generator-Kacheln: je 120 Aufgaben über `ExerciseFactory.nextExact`, geprüft a
 | Lernatelier | 4 | – | akademie-voluntary-discovery | akademie-voluntary-discovery | GuidedLearningHub | eigenes Modul | – | – | 4 | ok | – |
 | Tests | 1 | Mathematik | Stufe -1 (Kl. 1) | test-category-Mathematik+test-level--1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 19 Rubriken | 1-1 | ok | Schulwissen+Vertiefung |
 | Tests | 1 | Mathematik | Stufe 0 (Kl. 1) | test-category-Mathematik+test-level-0+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 19 Rubriken | 1-1 | ok | Schulwissen+Vertiefung |
-| Tests | 1 | Mathematik | Stufe 1 (Kl. 2) | test-category-Mathematik+test-level-1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 26 Rubriken | 1-2 | ok | Schulwissen+Vertiefung |
+| Tests | 1 | Mathematik | Stufe 1 (Kl. 2) | test-category-Mathematik+test-level-1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 29 Rubriken | 1-2 | ok | Schulwissen+Vertiefung |
 | Tests | 1 | Deutsch | Stufe -1 (Kl. 1) | test-category-Deutsch+test-level--1+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 25 Rubriken | 1-1 | ok | Schulwissen |
 | Tests | 1 | Deutsch | Stufe 0 (Kl. 1) | test-category-Deutsch+test-level-0+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 25 Rubriken | 1-1 | ok | Schulwissen |
 | Tests | 1 | Deutsch | Stufe 1 (Kl. 2) | test-category-Deutsch+test-level-1+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 33 Rubriken | 1-2 | ok | Schulwissen |
@@ -331,8 +332,8 @@ Generator-Kacheln: je 120 Aufgaben über `ExerciseFactory.nextExact`, geprüft a
 | Tests | 1 | Alle | Stufe 0 (Kl. 1) | test-category-Alle+test-level-0+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 58 Rubriken | 1-1 | ok | Schulwissen+Vertiefung |
 | Tests | 1 | Alle | Stufe 1 (Kl. 2) | test-category-Alle+test-level-1+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 66 Rubriken | 1-2 | ok | Schulwissen+Vertiefung |
 | Tests | 2 | Mathematik | Stufe -1 (Kl. 1) | test-category-Mathematik+test-level--1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 19 Rubriken | 1-1 | ok | Schulwissen+Vertiefung |
-| Tests | 2 | Mathematik | Stufe 0 (Kl. 2) | test-category-Mathematik+test-level-0+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 26 Rubriken | 1-2 | ok | Schulwissen+Vertiefung |
-| Tests | 2 | Mathematik | Stufe 1 (Kl. 3) | test-category-Mathematik+test-level-1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 32 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
+| Tests | 2 | Mathematik | Stufe 0 (Kl. 2) | test-category-Mathematik+test-level-0+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 29 Rubriken | 1-2 | ok | Schulwissen+Vertiefung |
+| Tests | 2 | Mathematik | Stufe 1 (Kl. 3) | test-category-Mathematik+test-level-1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 30 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
 | Tests | 2 | Deutsch | Stufe -1 (Kl. 1) | test-category-Deutsch+test-level--1+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 25 Rubriken | 1-1 | ok | Schulwissen |
 | Tests | 2 | Deutsch | Stufe 0 (Kl. 2) | test-category-Deutsch+test-level-0+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 33 Rubriken | 1-2 | ok | Schulwissen |
 | Tests | 2 | Deutsch | Stufe 1 (Kl. 3) | test-category-Deutsch+test-level-1+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 37 Rubriken | 1-3 | ok | Schulwissen |
@@ -346,11 +347,11 @@ Generator-Kacheln: je 120 Aufgaben über `ExerciseFactory.nextExact`, geprüft a
 | Tests | 2 | Logik | Stufe 0 (Kl. 2) | test-category-Logik+test-level-0+tests-start | Übung Logik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Logik | 5 Rubriken | 1-2 | ok | Schulwissen |
 | Tests | 2 | Logik | Stufe 1 (Kl. 3) | test-category-Logik+test-level-1+tests-start | Übung Logik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Logik | 6 Rubriken | 1-3 | ok | Schulwissen |
 | Tests | 2 | Alle | Stufe -1 (Kl. 1) | test-category-Alle+test-level--1+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 59 Rubriken | 1-1 | ok | Schulwissen+Vertiefung |
-| Tests | 2 | Alle | Stufe 0 (Kl. 2) | test-category-Alle+test-level-0+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 61 Rubriken | 1-2 | ok | Schulwissen+Vertiefung |
-| Tests | 2 | Alle | Stufe 1 (Kl. 3) | test-category-Alle+test-level-1+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 69 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
-| Tests | 3 | Mathematik | Stufe -1 (Kl. 2) | test-category-Mathematik+test-level--1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 28 Rubriken | 1-2 | ok | Schulwissen+Vertiefung |
-| Tests | 3 | Mathematik | Stufe 0 (Kl. 3) | test-category-Mathematik+test-level-0+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 33 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
-| Tests | 3 | Mathematik | Stufe 1 (Kl. 4) | test-category-Mathematik+test-level-1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 46 Rubriken | 1-4 | ok | Schulwissen+Vertiefung |
+| Tests | 2 | Alle | Stufe 0 (Kl. 2) | test-category-Alle+test-level-0+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 59 Rubriken | 1-2 | ok | Schulwissen+Vertiefung |
+| Tests | 2 | Alle | Stufe 1 (Kl. 3) | test-category-Alle+test-level-1+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 71 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
+| Tests | 3 | Mathematik | Stufe -1 (Kl. 2) | test-category-Mathematik+test-level--1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 30 Rubriken | 1-2 | ok | Schulwissen+Vertiefung |
+| Tests | 3 | Mathematik | Stufe 0 (Kl. 3) | test-category-Mathematik+test-level-0+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 35 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
+| Tests | 3 | Mathematik | Stufe 1 (Kl. 4) | test-category-Mathematik+test-level-1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 43 Rubriken | 1-4 | ok | Schulwissen+Vertiefung |
 | Tests | 3 | Deutsch | Stufe -1 (Kl. 2) | test-category-Deutsch+test-level--1+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 33 Rubriken | 1-2 | ok | Schulwissen |
 | Tests | 3 | Deutsch | Stufe 0 (Kl. 3) | test-category-Deutsch+test-level-0+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 35 Rubriken | 1-3 | ok | Schulwissen |
 | Tests | 3 | Deutsch | Stufe 1 (Kl. 4) | test-category-Deutsch+test-level-1+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 39 Rubriken | 1-4 | ok | Schulwissen |
@@ -364,11 +365,11 @@ Generator-Kacheln: je 120 Aufgaben über `ExerciseFactory.nextExact`, geprüft a
 | Tests | 3 | Logik | Stufe 0 (Kl. 3) | test-category-Logik+test-level-0+tests-start | Übung Logik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Logik | 6 Rubriken | 1-3 | ok | Schulwissen |
 | Tests | 3 | Logik | Stufe 1 (Kl. 4) | test-category-Logik+test-level-1+tests-start | Übung Logik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Logik | 7 Rubriken | 1-4 | ok | Schulwissen |
 | Tests | 3 | Alle | Stufe -1 (Kl. 2) | test-category-Alle+test-level--1+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 61 Rubriken | 1-2 | ok | Schulwissen+Vertiefung |
-| Tests | 3 | Alle | Stufe 0 (Kl. 3) | test-category-Alle+test-level-0+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 69 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
+| Tests | 3 | Alle | Stufe 0 (Kl. 3) | test-category-Alle+test-level-0+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 72 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
 | Tests | 3 | Alle | Stufe 1 (Kl. 4) | test-category-Alle+test-level-1+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 76 Rubriken | 1-4 | ok | Schulwissen+Vertiefung |
-| Tests | 4 | Mathematik | Stufe -1 (Kl. 3) | test-category-Mathematik+test-level--1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 34 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
-| Tests | 4 | Mathematik | Stufe 0 (Kl. 4) | test-category-Mathematik+test-level-0+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 38 Rubriken | 1-4 | ok | Schulwissen+Vertiefung |
-| Tests | 4 | Mathematik | Stufe 1 (Kl. 4) | test-category-Mathematik+test-level-1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 38 Rubriken | 1-4 | ok | Schulwissen+Vertiefung |
+| Tests | 4 | Mathematik | Stufe -1 (Kl. 3) | test-category-Mathematik+test-level--1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 32 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
+| Tests | 4 | Mathematik | Stufe 0 (Kl. 4) | test-category-Mathematik+test-level-0+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 39 Rubriken | 1-4 | ok | Schulwissen+Vertiefung |
+| Tests | 4 | Mathematik | Stufe 1 (Kl. 4) | test-category-Mathematik+test-level-1+tests-start | Übung Mathematik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | 39 Rubriken | 1-4 | ok | Schulwissen+Vertiefung |
 | Tests | 4 | Deutsch | Stufe -1 (Kl. 3) | test-category-Deutsch+test-level--1+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 36 Rubriken | 1-3 | ok | Schulwissen |
 | Tests | 4 | Deutsch | Stufe 0 (Kl. 4) | test-category-Deutsch+test-level-0+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 44 Rubriken | 1-4 | ok | Schulwissen |
 | Tests | 4 | Deutsch | Stufe 1 (Kl. 4) | test-category-Deutsch+test-level-1+tests-start | Übung Deutsch/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | 44 Rubriken | 1-4 | ok | Schulwissen |
@@ -381,11 +382,12 @@ Generator-Kacheln: je 120 Aufgaben über `ExerciseFactory.nextExact`, geprüft a
 | Tests | 4 | Logik | Stufe -1 (Kl. 3) | test-category-Logik+test-level--1+tests-start | Übung Logik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Logik | 6 Rubriken | 1-3 | ok | Schulwissen |
 | Tests | 4 | Logik | Stufe 0 (Kl. 4) | test-category-Logik+test-level-0+tests-start | Übung Logik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Logik | 7 Rubriken | 1-4 | ok | Schulwissen |
 | Tests | 4 | Logik | Stufe 1 (Kl. 4) | test-category-Logik+test-level-1+tests-start | Übung Logik/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Logik | 7 Rubriken | 1-4 | ok | Schulwissen |
-| Tests | 4 | Alle | Stufe -1 (Kl. 3) | test-category-Alle+test-level--1+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 69 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
-| Tests | 4 | Alle | Stufe 0 (Kl. 4) | test-category-Alle+test-level-0+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 78 Rubriken | 1-4 | ok | Schulwissen+Vertiefung |
-| Tests | 4 | Alle | Stufe 1 (Kl. 4) | test-category-Alle+test-level-1+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 78 Rubriken | 1-4 | ok | Schulwissen+Vertiefung |
+| Tests | 4 | Alle | Stufe -1 (Kl. 3) | test-category-Alle+test-level--1+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 70 Rubriken | 1-3 | ok | Schulwissen+Vertiefung |
+| Tests | 4 | Alle | Stufe 0 (Kl. 4) | test-category-Alle+test-level-0+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 75 Rubriken | 1-4 | ok | Schulwissen+Vertiefung |
+| Tests | 4 | Alle | Stufe 1 (Kl. 4) | test-category-Alle+test-level-1+tests-start | Übung Alle/Alle (test, 10 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | 75 Rubriken | 1-4 | ok | Schulwissen+Vertiefung |
 | Tests | 1-4 | Knobeln | Lumo Knobel-Test | iq-test-start | IqTestScreen | IqPuzzleGenerator | Logik | – | – | ok | – |
 | Tests | 1-4 | Denken | Denkprofil | cognitive-profile-start | CognitiveProfileScreen | CognitiveProfileGenerator | Logik | – | – | ok | – |
+| Tests | 1-4 | Soziales Lernen | Gefühls-Kompass | emotion-test-start | EmotionTestScreen | emotionScenesFor | Soziales Lernen | 4 Geschichten je Altersgruppe | – | ok | – |
 | Schularbeit | 1-4 | Alle | Gemischter Lerncheck | Text: Gemischter Lerncheck | Übung Alle/Alle (schoolwork, 30 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Englisch+Lesen+Mathematik+Rechtschreibung+Sachunterricht | – | – | ok | Schulwissen+Vertiefung |
 | Schularbeit | 1-4 | Mathematik | Mathe-Schularbeit | Text: Mathe-Schularbeit | Übung Mathematik/Alle (schoolwork, 30 Fragen) | ExerciseFactory.next gradedOnly | Mathematik | – | – | ok | Schulwissen+Vertiefung |
 | Schularbeit | 1-4 | Deutsch | Deutsch-Schularbeit | Text: Deutsch-Schularbeit | Übung Deutsch/Alle (schoolwork, 30 Fragen) | ExerciseFactory.next gradedOnly | Deutsch+Lesen+Rechtschreibung | – | – | ok | Schulwissen |

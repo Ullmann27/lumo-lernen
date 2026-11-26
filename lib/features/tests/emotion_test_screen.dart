@@ -181,6 +181,7 @@ class _EmotionTestScreenState extends State<EmotionTestScreen> {
                       TextButton(
                           onPressed: _next,
                           style: TextButton.styleFrom(
+                              foregroundColor: const Color(0xff285d53),
                               minimumSize: const Size(0, 48)),
                           child: const Text('Diese Geschichte überspringen'))
                     else
