@@ -671,9 +671,11 @@ class ExerciseFactory {
           grade,
           'Logik',
           unit,
-          'Welche Zahl erfüllt alle drei Regeln: größer als $lower, kleiner als $upper und $property?',
+          // „Welche dieser Zahlen“: Mehrere Zahlen erfüllen die Regeln, aber
+          // nur eine davon steht auf den Karten (Prüfbericht Punkt 11).
+          'Welche dieser Zahlen erfüllt alle drei Regeln: größer als $lower, kleiner als $upper und $property?',
           '$answer',
-          '$answer liegt zwischen $lower und $upper. $reason Nur diese Antwort erfüllt alle drei Regeln.',
+          '$answer liegt zwischen $lower und $upper. $reason Von den Zahlen auf den Karten erfüllt nur diese alle drei Regeln.',
           // Falsche Karten verletzen je eine Regel: die Grenzen selbst,
           // Zahlen dazwischen ohne die Eigenschaft, passende Zahlen außerhalb.
           customChoices: MathTaskTemplates.numberChoices(
