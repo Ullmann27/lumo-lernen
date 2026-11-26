@@ -8,6 +8,7 @@ import '../../domain/iq/iq_puzzle.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import 'cognitive_profile_screen.dart';
+import 'emotion_test_screen.dart';
 import 'iq/iq_tests_card.dart';
 import 'iq_test_screen.dart';
 
@@ -185,13 +186,31 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
         _buildHero(),
         _buildCategoryCard(),
         _buildTestCard(),
+        _buildLastResult(),
         IqTestsCard(
           key: const ValueKey('iq-test-start'),
           last: _iqLast,
           onOpen: _openIq,
         ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
+          child: Card(
+            color: const Color(0xff193f46),
+            child: ListTile(
+              key: const ValueKey('emotion-test-start'),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+              leading: const Icon(Icons.diversity_1_rounded, color: Color(0xffa5ded0)),
+              title: const Text('Gefühls-Kompass', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 20)),
+              subtitle: const Text('EQ-Entdeckertest · Vier Geschichten zum Mitfühlen und Mitdenken.',
+                  style: TextStyle(color: Color(0xffcee3db), fontSize: 15)),
+              trailing: const Icon(Icons.chevron_right_rounded, color: Colors.white),
+              onTap: () => Navigator.of(context).push<void>(MaterialPageRoute<void>(
+                builder: (_) => EmotionTestScreen(appState: widget.appState),
+              )),
+            ),
+          ),
+        ),
         _buildCognitiveProfileCard(),
-        _buildLastResult(),
       ],
     );
     return widget.drawBackground
@@ -518,8 +537,8 @@ class _LumoTestsScreenState extends State<LumoTestsScreen> {
         key: ValueKey('test-level-$level'),
         onTap: () => widget.appState.update(state.copyWith(testLevel: level)),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 220),
-          height: 36,
+          duration: _reduceMotion ? Duration.zero : const Duration(milliseconds: 220),
+          height: 48,
           decoration: BoxDecoration(
             color: selected
                 ? const Color(0xFF0F6B73)
