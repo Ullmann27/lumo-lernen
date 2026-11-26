@@ -985,7 +985,15 @@ class _LearningContentState extends State<LearningContent>
       return null;
     }
     final kind = _varietyGuard.promptPattern(source.prompt);
+    // Eine Vergleichsaufgabe prüft dieselbe Kompetenz (z. B. „Addition ohne
+    // Zehnerübergang“), sonst gingen Verständnis-Indiz und Methodenwechsel,
+    // die je Kompetenz geführt werden, ins Leere.
+    const classifier = CompetencyClassifier();
+    String competencyOf(LumoTask task) => classifier.classify(
+        subject: task.subject, unit: task.unit, prompt: task.prompt);
+    final competency = competencyOf(source);
     final st = widget.appState.state;
+    LumoTask? sameCompetency;
     LumoTask? sameUnit;
     for (var attempt = 0; attempt < 60; attempt++) {
       final candidate = _factory.nextExact(
@@ -1002,13 +1010,16 @@ class _LearningContentState extends State<LearningContent>
               candidate.answer == source.answer)) {
         continue;
       }
-      if (candidate.visual == source.visual &&
+      final matchesCompetency = competencyOf(candidate) == competency;
+      if (matchesCompetency &&
+          candidate.visual == source.visual &&
           _varietyGuard.promptPattern(candidate.prompt) == kind) {
         return candidate;
       }
+      if (matchesCompetency) sameCompetency ??= candidate;
       sameUnit ??= candidate;
     }
-    return sameUnit;
+    return sameCompetency ?? sameUnit;
   }
 
   /// Ähnliche Aufgaben für die Fach-Nachhilfe (Beispiel und Prüfaufgabe):
