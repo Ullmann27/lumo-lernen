@@ -35,6 +35,16 @@ abstract final class KartFleetCatalog {
     KartFleetEntry('koloss', 'Koloss', 'Schwergewicht', 66),
     KartFleetEntry('phantom', 'Phantom', 'Drift-Profi', 88),
     KartFleetEntry('stella', 'Stella', 'Champion', 120),
+    KartFleetEntry('kupferpfeil', 'Kupferpfeil', 'Klassiker', 124),
+    KartFleetEntry('duenenspur', 'Dünenspur', 'Wüsten-Rallye', 128),
+    KartFleetEntry('schneewacht', 'Schneewacht', 'Winter-Rallye', 132),
+    KartFleetEntry('kristallfalter', 'Kristallfalter', 'Aerokart', 136),
+    KartFleetEntry('hafenflitzer', 'Hafenflitzer', 'Hafen-Sprint', 140),
+    KartFleetEntry('glutstrom', 'Glutstrom', 'Vulkan-Sport', 144),
+    KartFleetEntry('wolkenkurier', 'Wolkenkurier', 'Kurvenkart', 148),
+    KartFleetEntry('mooslaeufer', 'Moosläufer', 'Wald-Gelände', 152),
+    KartFleetEntry('mondsprint', 'Mondsprint', 'Weltraum-Sport', 156),
+    KartFleetEntry('werkmeister', 'Werkmeister', 'Werkstatt-Kart', 160),
   ];
 
   /// Freigeschaltete Karts, das zuletzt verdiente zuerst.

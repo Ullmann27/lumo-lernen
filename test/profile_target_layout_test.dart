@@ -211,8 +211,13 @@ void main() {
     expect(KartFleetCatalog.unlocked(47).first.id, 'blitz');
     expect(KartFleetCatalog.unlocked(47).length, 10);
     expect(KartFleetCatalog.next(47)!.id, 'terra');
-    expect(KartFleetCatalog.unlocked(120).length, KartFleetCatalog.all.length);
-    expect(KartFleetCatalog.next(120), isNull);
+    expect(KartFleetCatalog.all.length, 24);
+    expect(KartFleetCatalog.unlocked(120).length, 14);
+    expect(KartFleetCatalog.next(120)!.id, 'kupferpfeil');
+    expect(KartFleetCatalog.unlocked(159).length, 23);
+    expect(KartFleetCatalog.next(159)!.id, 'werkmeister');
+    expect(KartFleetCatalog.unlocked(160).length, 24);
+    expect(KartFleetCatalog.next(160), isNull);
     // Schwellen steigen nie ab; jede Kennung ist eindeutig.
     final stars = KartFleetCatalog.all.map((k) => k.unlockStars).toList();
     expect(stars, [...stars]..sort());
