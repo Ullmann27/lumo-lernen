@@ -1,0 +1,209 @@
+/* Lumo-Werbevideo: Farben, Schrift und Bausteine aus der App
+   (lib/app/app_theme.dart, docs/DESIGN_ZIEL_2026-10-04.md). */
+@font-face { font-family: Nunito; font-weight: 400; src: url('../../../assets/fonts/Nunito-Regular.ttf'); }
+@font-face { font-family: Nunito; font-weight: 700; src: url('../../../assets/fonts/Nunito-Bold.ttf'); }
+@font-face { font-family: Nunito; font-weight: 800; src: url('../../../assets/fonts/Nunito-ExtraBold.ttf'); }
+@font-face { font-family: Nunito; font-weight: 900; src: url('../../../assets/fonts/Nunito-Black.ttf'); }
+
+:root {
+  --bg: #03193F; --nav: #061839; --card: #0B2A55; --row: #1F3F6C;
+  --cyan: #37D2FD; --cyan2: #53DDFD; --gold: #FFB800; --gold2: #FFD166;
+  --ink: #F7FBFF; --ink2: #C8DDF0; --ink3: #91A9C4; --green: #34D399;
+  --W: 1920px; --H: 1080px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; animation-play-state: paused !important; }
+html, body { background: #000; overflow: hidden; }
+body { font-family: Nunito, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+body.port { --W: 1080px; --H: 1920px; }
+#stage { position: relative; width: var(--W); height: var(--H); overflow: hidden; background: var(--bg); }
+.port .land-only, .land .port-only { display: none !important; }
+
+/* ---------- Szene ---------- */
+.scene { position: absolute; inset: 0; overflow: hidden; display: none; animation: sceneIn .55s both ease-out; }
+.scene.on { display: block; }
+.scene.cut { animation-duration: .2s; }
+@keyframes sceneIn { from { opacity: 0; } to { opacity: 1; } }
+.bg { position: absolute; inset: -6%; background-size: cover; background-position: center;
+  animation: kb var(--dur, 12s) both linear; }
+@keyframes kb { from { transform: scale(1.02) translate(0, 0); } to { transform: scale(1.14) translate(-1.5%, -1.2%); } }
+.veil { position: absolute; inset: 0;
+  background: radial-gradient(120% 90% at 50% 40%, rgba(3,25,63,.50) 0%, rgba(3,25,63,.86) 70%, rgba(2,14,40,.96) 100%); }
+.veil.soft { background: radial-gradient(120% 90% at 50% 45%, rgba(3,25,63,.18) 0%, rgba(3,25,63,.62) 75%, rgba(2,14,40,.9) 100%); }
+.stars { position: absolute; inset: 0; pointer-events: none; }
+.stars i { position: absolute; border-radius: 50%; background: #fff; box-shadow: 0 0 8px 2px rgba(83,221,253,.8);
+  animation: tw var(--p, 3s) var(--d, 0s) infinite ease-in-out; }
+@keyframes tw { 0%, 100% { opacity: .15; transform: scale(.6); } 50% { opacity: 1; transform: scale(1.15); } }
+
+/* ---------- Bewegungen ---------- */
+.a { animation-duration: .7s; animation-delay: var(--d, 0s); animation-fill-mode: both; animation-timing-function: cubic-bezier(.2,.9,.25,1); }
+.up { animation-name: up; }
+.down { animation-name: down; }
+.left { animation-name: fromLeft; }
+.right { animation-name: fromRight; }
+.fade { animation-name: fade; }
+.pop { animation-name: pop; animation-timing-function: cubic-bezier(.3,1.5,.5,1); }
+.drive { animation-name: drive; animation-duration: 1.5s; animation-timing-function: cubic-bezier(.15,.85,.3,1); }
+@keyframes up { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
+@keyframes down { from { opacity: 0; transform: translateY(-60px); } to { opacity: 1; transform: none; } }
+@keyframes fromLeft { from { opacity: 0; transform: translateX(-90px); } to { opacity: 1; transform: none; } }
+@keyframes fromRight { from { opacity: 0; transform: translateX(90px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { from { opacity: 0; transform: scale(.55); } to { opacity: 1; transform: scale(1); } }
+@keyframes drive { from { opacity: 0; transform: translateX(130%) rotate(4deg); } 70% { transform: translateX(-3%) rotate(-1.5deg); } to { opacity: 1; transform: none; } }
+/* Lumo lebt: atmen, schweben, wippen (Design-Ziel 2b.2). */
+.alive { animation: alive 2.5s infinite ease-in-out; transform-origin: 50% 90%; }
+@keyframes alive { 0%, 100% { transform: translateY(0) scale(1) rotate(-.6deg); } 50% { transform: translateY(-9px) scale(1.022) rotate(.8deg); } }
+.hop { animation: hop 1.2s var(--d, 0s) both cubic-bezier(.3,1.4,.5,1); transform-origin: 50% 100%; }
+@keyframes hop { 0% { transform: none; } 18% { transform: scale(1.08,.9); } 45% { transform: translateY(-70px) scale(.95,1.07); } 72% { transform: scale(1.05,.94); } 100% { transform: none; } }
+
+/* ---------- Text ---------- */
+.kicker { display: inline-block; font-weight: 800; font-size: 30px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--cyan2); text-shadow: 0 0 18px rgba(55,210,253,.55); }
+h1 { font-weight: 900; font-size: 86px; line-height: 1.04; letter-spacing: -.01em; text-shadow: 0 6px 30px rgba(0,0,0,.55); }
+h1 em { font-style: normal; color: var(--gold2); text-shadow: 0 0 26px rgba(255,184,0,.45), 0 6px 30px rgba(0,0,0,.55); }
+h1 b { color: var(--cyan2); font-weight: 900; text-shadow: 0 0 26px rgba(55,210,253,.5), 0 6px 30px rgba(0,0,0,.55); }
+.sub { font-weight: 700; font-size: 38px; line-height: 1.25; color: var(--ink2); margin-top: 22px; text-shadow: 0 3px 16px rgba(0,0,0,.6); }
+.port h1 { font-size: 80px; }
+.port .sub { font-size: 38px; }
+
+.glass { background: linear-gradient(180deg, rgba(11,42,85,.90), rgba(6,24,57,.92)); border: 2px solid rgba(55,210,253,.55);
+  border-radius: 28px; box-shadow: 0 0 26px rgba(55,210,253,.22), 0 16px 34px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.12); }
+.gold { background: linear-gradient(180deg, #FFD166 0%, #FFB800 62%, #F39A00 100%); color: #2A1B00; font-weight: 900;
+  border-radius: 999px; box-shadow: 0 0 30px rgba(255,184,0,.45), 0 10px 24px rgba(0,0,0,.4), inset 0 2px 0 rgba(255,255,255,.55); }
+
+.list { margin-top: 34px; display: flex; flex-direction: column; gap: 18px; }
+.list .row { display: flex; align-items: center; gap: 20px; padding: 18px 26px; font-weight: 800; font-size: 34px; line-height: 1.18; }
+.list .row .ic { flex: none; width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(55,210,253,.16); border: 2px solid var(--cyan); color: var(--cyan2); font-weight: 900; font-size: 30px;
+  box-shadow: 0 0 16px rgba(55,210,253,.45); }
+.list .row small { display: block; font-weight: 700; font-size: 26px; color: var(--ink3); margin-top: 2px; }
+.port .list .row { font-size: 34px; padding: 16px 24px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 34px; }
+.chip { padding: 14px 28px; border-radius: 999px; font-weight: 800; font-size: 32px; color: var(--ink);
+  background: rgba(31,63,108,.92); border: 2px solid rgba(55,210,253,.55); box-shadow: 0 0 16px rgba(55,210,253,.2), 0 8px 18px rgba(0,0,0,.35); }
+.chip.c1 { background: linear-gradient(180deg,#FF9D33,#D67920); border-color: #FFC27A; }
+.chip.c2 { background: linear-gradient(180deg,#9B74FF,#5F2FBE); border-color: #C3ABFF; }
+.chip.c3 { background: linear-gradient(180deg,#4E9BF5,#2A62C7); border-color: #A9CEFF; }
+.chip.c4 { background: linear-gradient(180deg,#21BBA6,#167A84); border-color: #8CE8DA; }
+.chip.c5 { background: linear-gradient(180deg,#3FCF7F,#178A52); border-color: #A5F0C6; }
+.chip.c6 { background: linear-gradient(180deg,#E65A9B,#B52E73); border-color: #FFB1D3; }
+
+/* ---------- Geräte und Rahmen ---------- */
+.phone { position: absolute; border-radius: 46px; padding: 11px; background: linear-gradient(160deg, #1b2c52, #050b1c);
+  box-shadow: 0 0 0 2px rgba(83,221,253,.55), 0 0 46px rgba(55,210,253,.35), 0 34px 60px rgba(0,0,0,.6); }
+.phone .screen, .frame .screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 36px; background: var(--bg); }
+.screen img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center;
+  animation: shot .5s var(--d, 0s) both cubic-bezier(.2,.9,.25,1); }
+@keyframes shot { from { opacity: 0; transform: translateX(7%) scale(1.03); } to { opacity: 1; transform: none; } }
+.screen img.scroll { height: auto; animation: shot .5s var(--d, 0s) both cubic-bezier(.2,.9,.25,1), scrollY var(--sd, 5s) var(--ss, 1s) both ease-in-out; }
+@keyframes scrollY { from { translate: 0 0; } to { translate: 0 var(--sy, -30%); } }
+.frame { position: absolute; border-radius: 34px; padding: 9px; background: linear-gradient(160deg, #173a6b, #061839);
+  box-shadow: 0 0 0 2px rgba(83,221,253,.6), 0 0 50px rgba(55,210,253,.35), 0 34px 60px rgba(0,0,0,.6); }
+.frame .screen { border-radius: 26px; }
+.frame .screen img.zoom { animation: shot .5s var(--d, 0s) both cubic-bezier(.2,.9,.25,1), zoom var(--zd, 6s) var(--d, 0s) both linear; }
+@keyframes zoom { from { scale: 1; } to { scale: 1.07; } }
+.tag { position: absolute; left: 22px; bottom: 22px; padding: 10px 24px; font-weight: 900; font-size: 30px; border-radius: 999px;
+  background: rgba(6,24,57,.88); border: 2px solid var(--cyan); color: var(--ink); box-shadow: 0 0 18px rgba(55,210,253,.45);
+  animation: flash var(--len, 2s) var(--d, 0s) both; opacity: 0; }
+@keyframes flash { 0% { opacity: 0; transform: translateY(18px); } 12%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* ---------- Lumo und Sprechblase ---------- */
+.lumo { position: absolute; }
+.lumo img { display: block; width: 100%; filter: drop-shadow(0 18px 22px rgba(0,0,0,.5)); }
+.lumo .glow { position: absolute; left: 10%; right: 10%; bottom: -2%; height: 12%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(55,210,253,.55), rgba(55,210,253,0)); }
+.bubble { position: absolute; padding: 22px 30px; font-weight: 800; font-size: 34px; line-height: 1.2; color: var(--ink);
+  border-radius: 30px; background: linear-gradient(180deg, rgba(14,50,98,.96), rgba(7,28,66,.97));
+  border: 2.5px solid var(--cyan); box-shadow: 0 0 26px rgba(55,210,253,.4), 0 14px 28px rgba(0,0,0,.45); transform-origin: 85% 100%; }
+.bubble::after { content: ''; position: absolute; right: var(--tail, 70px); bottom: -17px; width: 30px; height: 30px; background: #081f48;
+  border-right: 2.5px solid var(--cyan); border-bottom: 2.5px solid var(--cyan); transform: rotate(45deg); }
+.bubble.tl::after { right: auto; left: var(--tail, 70px); }
+.bubble span.who { display: block; font-size: 22px; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan2); margin-bottom: 4px; }
+.bubble.timed { animation: bub var(--len, 3s) var(--d, 0s) both; opacity: 0; }
+@keyframes bub { 0% { opacity: 0; transform: scale(.6); } 7% { opacity: 1; transform: scale(1.04); } 10%, 92% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(.9); } }
+
+/* ---------- Layouts: Gerät/Spiel + Text + Lumo ---------- */
+.txt { position: absolute; }
+.land .txt { left: 1030px; top: 120px; width: 800px; }
+.land .txt.wide { left: 110px; top: 110px; width: 1100px; }
+.land .p1 { left: 110px; top: 100px; width: 406px; height: 880px; }
+.land .p2 { left: 566px; top: 150px; width: 384px; height: 832px; }
+.land .lumo.host { right: 60px; bottom: 30px; width: 330px; }
+.land .bubble.host { right: 390px; bottom: 120px; max-width: 520px; --tail: 40px; }
+.land .bubble.host::after { right: -17px; bottom: 40px; transform: rotate(-45deg); }
+.land .frame.game { left: 80px; top: 150px; width: 1200px; height: 693px; }
+.land .game-scene .txt { left: 1340px; top: 130px; width: 520px; }
+.land .game-scene h1 { font-size: 72px; }
+.land .game-scene .sub { font-size: 32px; }
+.land .game-scene .list .row { font-size: 28px; padding: 14px 20px; gap: 14px; }
+.land .game-scene .list .row .ic { width: 44px; height: 44px; font-size: 24px; }
+.land .game-scene .lumo.host { width: 260px; right: 40px; bottom: 20px; }
+.land .game-scene .bubble.host { right: 300px; bottom: 60px; max-width: 900px; font-size: 32px; }
+
+.port .txt { left: 70px; top: 200px; width: 940px; }
+.port .p1 { left: 291px; top: 590px; width: 498px; height: 1079px; }
+.port .txt.tall + .p1, .port .p1.low { top: 700px; left: 320px; width: 440px; height: 953px; }
+.port .lumo.host { right: 10px; bottom: 150px; width: 330px; }
+.port .bubble.host { left: 50px; bottom: 200px; max-width: 640px; --tail: 60px; }
+.port .frame.game { left: 205px; top: 520px; width: 670px; height: 1173px; }
+.port .frame.game.wide { left: 50px; top: 640px; width: 980px; height: 569px; }
+.port .game-scene .lumo.host { width: 300px; bottom: 130px; }
+
+/* ---------- Nachhilfe-Stufen ---------- */
+.steps { display: flex; flex-direction: column; gap: 14px; margin-top: 30px; }
+.step { position: relative; display: flex; align-items: center; gap: 20px; padding: 14px 24px; border-radius: 24px; font-weight: 800; font-size: 34px;
+  background: rgba(11,42,85,.82); border: 2px solid rgba(55,210,253,.28); color: var(--ink2); }
+.step .n { flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-weight: 900; font-size: 30px;
+  background: #1F3F6C; color: var(--ink); border: 2px solid rgba(55,210,253,.5); }
+.step small { display: block; font-size: 25px; font-weight: 700; color: var(--ink3); }
+.step .hl { position: absolute; inset: -2px; border-radius: 24px; border: 3px solid var(--gold); background: rgba(255,184,0,.14);
+  box-shadow: 0 0 26px rgba(255,184,0,.5); animation: flashHl var(--len, 3.6s) var(--d, 0s) both; opacity: 0; }
+@keyframes flashHl { 0% { opacity: 0; } 6%, 94% { opacity: 1; } 100% { opacity: .0; } }
+.step .n i { position: absolute; left: 24px; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-style: normal;
+  background: linear-gradient(180deg,#FFD166,#FFB800); color: #2A1B00; animation: fade .3s var(--d, 0s) both; }
+.port .steps { gap: 10px; margin-top: 22px; }
+.port .step { font-size: 31px; padding: 9px 20px; }
+.port .step small { display: none; }
+.port .step .n, .port .step .n i { width: 46px; height: 46px; font-size: 26px; }
+.port .step .n i { left: 20px; }
+
+/* ---------- Sterne (Lernen -> Spielen) ---------- */
+.fly { position: absolute; width: 64px; height: 64px; animation: fly 1.5s var(--d, 0s) both cubic-bezier(.45,.05,.3,1); opacity: 0; }
+@keyframes fly { 0% { opacity: 0; transform: translate(var(--x0), var(--y0)) scale(.3) rotate(0); }
+  15% { opacity: 1; } 50% { transform: translate(var(--xm), var(--ym)) scale(1.25) rotate(160deg); }
+  90% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--x1), var(--y1)) scale(.5) rotate(340deg); } }
+.star { width: 100%; height: 100%; background: linear-gradient(180deg,#FFE28A,#FFB800);
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 92%, 50% 70%, 21% 92%, 32% 57%, 2% 35%, 39% 35%); filter: drop-shadow(0 0 10px #FFB800); }
+.starwrap { filter: drop-shadow(0 0 14px rgba(255,184,0,.9)); width: 100%; height: 100%; }
+
+/* ---------- Titel-, Preis- und Schlussszene ---------- */
+.center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.logo { width: 760px; filter: drop-shadow(0 0 30px rgba(55,210,253,.7)); }
+.logo-wrap { position: relative; overflow: hidden; }
+.logo-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 26%; left: -30%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.75), transparent); mix-blend-mode: overlay;
+  animation: sheen 1.3s var(--d, .9s) both ease-in-out; }
+@keyframes sheen { from { left: -30%; } to { left: 110%; } }
+.tagline { font-weight: 800; font-size: 44px; color: var(--cyan2); text-shadow: 0 0 20px rgba(55,210,253,.6); letter-spacing: .02em; }
+.price-card { padding: 46px 70px 50px; text-align: center; }
+.price { font-weight: 900; font-size: 190px; line-height: 1; color: var(--gold2); text-shadow: 0 0 44px rgba(255,184,0,.5), 0 8px 26px rgba(0,0,0,.5); white-space: nowrap; }
+.price-unit { font-weight: 800; font-size: 46px; color: var(--ink); margin-top: 10px; }
+.price-unit span { color: var(--ink2); font-weight: 700; }
+.pill { display: inline-block; padding: 16px 44px; font-size: 40px; }
+.note { font-weight: 800; font-size: 38px; color: var(--ink); }
+.fine { font-weight: 700; font-size: 26px; color: var(--ink3); }
+.port .price { font-size: 180px; }
+.port .logo { width: 700px; }
+
+/* Nachhilfe-Szene im Querformat: fünf Stufen müssen ganz sichtbar bleiben. */
+.land .steps { gap: 11px; margin-top: 26px; width: 640px; }
+.land .step { font-size: 31px; padding: 10px 22px; }
+.land .step small { font-size: 23px; }
+.land .step .n, .land .step .n i { width: 50px; height: 50px; font-size: 27px; }
+.land .step .n i { left: 22px; }
+
+/* Schach: Aufnahmen im Fold-Format (1812×2176). */
+.land .frame.fold.f1 { left: 70px; top: 150px; width: 600px; height: 720px; }
+.land .frame.fold.f2 { left: 700px; top: 200px; width: 600px; height: 720px; }
+.port .frame.fold.f1 { left: 130px; top: 590px; width: 820px; height: 985px; }
