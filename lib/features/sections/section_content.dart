@@ -107,7 +107,8 @@ class SectionContent extends StatelessWidget {
             ),
             _ActionData(
               'Deutsch-Schularbeit',
-              'Lesen, Sprache und Rechtschreibung',
+              '30 Aufgaben: Lesen, Sprache und Rechtschreibung. '
+              'Texte schreibst du im Schreibtrainer.',
               'Starten',
               Icons.edit_document,
               () => _startSession(

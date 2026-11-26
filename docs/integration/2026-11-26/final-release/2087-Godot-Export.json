@@ -1,0 +1,14 @@
+{
+  "status": "PASS LOKAL",
+  "godot": "95cc4159311dc148f560b7205a7e1721f717cf8a",
+  "engine": "4.6.3",
+  "export_preset": "Android",
+  "bytes": 437226384,
+  "sha256": "0117246fe7d99ce49bd1a9c3ff04ec1e19c2b2b5566e56a5d6f02471de3389c8",
+  "checks": {
+    "assets": 281,
+    "race": 22,
+    "world": "PASS"
+  },
+  "scope": "Separater lokaler Import, Android-PCK und echter Start der Laufzeitproben. Diese Prüfsumme gehört zum lokalen Export. Maßgeblich für die APK ist der später darin nachgewiesene PCK-Hash."
+}
