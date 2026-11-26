@@ -149,6 +149,7 @@ class LegacyLumoTaskAdapter {
       difficulty: task.difficulty.clamp(1, task.grade),
       missionTag: task.missionTag,
       chartEntries: replacement.chartEntries,
+      dataChart: replacement.dataChart,
     );
   }
 
@@ -228,6 +229,7 @@ class LegacyLumoTaskAdapter {
       difficulty: task.difficulty,
       missionTag: task.missionTag,
       chartEntries: task.chartEntries,
+      dataChart: task.dataChart,
     );
     return _variedTask(repaired);
   }
@@ -417,6 +419,7 @@ class LegacyLumoTaskAdapter {
       missionTag: task.missionTag,
       chartEntries:
           prompt == null && visual == null ? task.chartEntries : const [],
+      dataChart: prompt == null && visual == null ? task.dataChart : null,
     );
   }
 
@@ -858,6 +861,10 @@ class LegacyLumoTaskAdapter {
         'denominator': denominator,
         'extra': extra,
       };
+    }
+
+    if (task.dataChart case final exercise?) {
+      return <String, Object?>{'dataChart': exercise};
     }
 
     // Säulendiagramm: ein Balken je Wert der Aufgabe, passend beschriftet.

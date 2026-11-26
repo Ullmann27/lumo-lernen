@@ -1,5 +1,8 @@
+import 'data_chart_exercise.dart';
 import 'holo_lesson_catalog.dart';
 import 'shape_question_data.dart';
+
+export 'data_chart_exercise.dart' show BarChartEntry;
 
 /// Deterministische Mathe-Templates für Volksschule 1-4.
 ///
@@ -63,6 +66,15 @@ class MathTaskTemplates {
     MathTaskTemplate(id: 'g2_half_double', grade: 2, unit: 'Verdoppeln und Halbieren', kind: MathTemplateKind.halfDouble, validRangeA: <int>[2, 50], validRangeB: <int>[0, 1], promptPattern: 'halb-doppelt-groesser',
     ),
     MathTaskTemplate(id: 'g2_tens_ones', grade: 2, unit: 'Zehner und Einer', kind: MathTemplateKind.tensOnes, validRangeA: <int>[10, 99], validRangeB: <int>[0, 1], promptPattern: 'zehner-einer',
+    ),
+    MathTaskTemplate(
+      id: 'g2_data_chart_transfer',
+      grade: 2,
+      unit: 'Datenwerkstatt',
+      kind: MathTemplateKind.dataChartTransfer,
+      validRangeA: <int>[0, DataChartExercise.maxCount],
+      validRangeB: <int>[0, DataChartExercise.maxCount],
+      promptPattern: 'diagramm-eintrag-uebertragen',
     ),
 
     MathTaskTemplate(id: 'g3_tables', grade: 3, unit: 'Einmaleins', kind: MathTemplateKind.multiplication, validRangeA: <int>[0, 10], validRangeB: <int>[0, 10], promptPattern: 'einmaleins',
@@ -936,6 +948,43 @@ class MathTaskTemplate {
         return _numberTask(seed, story.prompt, story.answer, story.explanation, 'story_three',
           typical: story.typical,
         );
+      case MathTemplateKind.dataChartTransfer:
+        const scenes = [
+          ('Am Schulhof wurden Tiere gezählt.', ['Bienen', 'Käfer', 'Vögel']),
+          ('Beim Basteln wurden Formen gezählt.', ['Sterne', 'Kreise', 'Herzen']),
+          ('Beim Turnen wurden Geräte gezählt.', ['Bälle', 'Reifen', 'Seile']),
+          ('Im Garten wurden Blumen gezählt.', ['Rosen', 'Tulpen', 'Nelken']),
+        ];
+        final (scene, labels) = scenes[_positive(_mixSeed(seed + 31), scenes.length)];
+        final target = _positive(_mixSeed(seed + 43), labels.length);
+        final values = <int?>[a, b, _positive(_mixSeed(seed + 67), 6)];
+        if (_positive(_mixSeed(seed + 47), 4) == 0) {
+          values[(target + 1) % labels.length] = null;
+        }
+        final exercise = DataChartExercise(
+          rows: List<BarChartEntry>.unmodifiable([
+            for (var i = 0; i < labels.length; i++)
+              (label: labels[i], value: values[i]),
+          ]),
+          requestedRow: target,
+          pictogram: _positive(_mixSeed(seed + 71), 2) == 0,
+          horizontal: _positive(_mixSeed(seed + 95), 2) == 0,
+        );
+        final count = exercise.requested.value!;
+        final label = exercise.requested.label;
+        return MathConcreteTask(
+          unit: unit,
+          prompt: '$scene Ergänze ${exercise.horizontal ? 'den' : 'die'} ${exercise.targetName} für „$label“.',
+          answer: '$count',
+          choices: [for (var i = 0; i <= DataChartExercise.maxCount; i++) '$i'],
+          explanation: count == 0
+              ? 'Für „$label“ wurde gezählt und nichts gefunden. Die richtige Anzahl ist 0.'
+              : 'Für „$label“ ist jedes gezählte Stück ein Kästchen im Diagramm. Die richtige Anzahl ist $count.',
+          visual: 'data_chart_transfer',
+          difficulty: grade,
+          promptPattern: promptPattern,
+          dataChart: exercise,
+        );
       case MathTemplateKind.chartRead:
         // Vier Tage, vier Fragearten: meiste, wenigste, Unterschied, Summe.
         // Früher war jede Aufgabe „Montag a, Dienstag b, wie viele
@@ -1294,9 +1343,6 @@ class MathTaskTemplate {
   }
 }
 
-/// A named observation. A missing observation has no numeric value.
-typedef BarChartEntry = ({String label, int? value});
-
 class MathConcreteTask {
   const MathConcreteTask({
     required this.unit,
@@ -1308,6 +1354,7 @@ class MathConcreteTask {
     required this.difficulty,
     required this.promptPattern,
     this.chartEntries = const [],
+    this.dataChart,
   });
 
   final String unit;
@@ -1319,6 +1366,7 @@ class MathConcreteTask {
   final int difficulty;
   final String promptPattern;
   final List<BarChartEntry> chartEntries;
+  final DataChartExercise? dataChart;
 }
 
 enum MathTemplateKind {
@@ -1354,6 +1402,7 @@ enum MathTemplateKind {
   chartRead,
   // Feste, aus dem Sachunterricht übernommene Diagramm-Rechenfragen.
   chartCollection,
+  dataChartTransfer,
   compare,
   // AT-Lehrplan-Erweiterungen 2026-06-03 (Klassen 3 + 4):
   massConversion,

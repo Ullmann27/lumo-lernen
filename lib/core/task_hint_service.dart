@@ -8,6 +8,15 @@ class TaskHintService {
   const TaskHintService();
 
   String explain(LumoTask task, {int level = 1}) {
+    if (task.dataChart case final exercise?) {
+      return switch (level) {
+        1 => 'Suche die Zeile „${exercise.requested.label}“ ${exercise.pictogram ? 'im Bilddiagramm' : 'in der Tabelle'}.',
+        2 => exercise.pictogram
+            ? 'Zähle nur die Kästchen dieser Zeile. Steht dort 0, wurde gezählt und nichts gefunden.'
+            : 'Lies die Zahl rechts in derselben Tabellenzeile. „Fehlt“ bedeutet, dass gar nicht gezählt wurde.',
+        _ => 'Füge für jedes gezählte Stück ein Kästchen hinzu. Wenn du 0 gelesen hast, trage ausdrücklich Null ein.',
+      };
+    }
     // Fractional values need their own unit before any integer counting or
     // ten-bridge strategy is considered. Hints use only the visible givens.
     final fraction = _fractionHint(task, level);

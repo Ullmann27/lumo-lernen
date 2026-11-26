@@ -4,10 +4,12 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../core/data_chart_exercise.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_answer_crystal.dart';
 import '../../../widgets/design/lumo_motion.dart';
+import '../widgets/data_chart_workbench.dart';
 import '../widgets/interactive_task_workspace.dart';
 import '../../shared/widgets/lumo_premium_effects.dart';
 import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
@@ -144,6 +146,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
   @override
   Widget build(BuildContext context) {
     final task = widget.task;
+    final dataChart = task.visualPayload.data['dataChart'] as DataChartExercise?;
 
     if (task.taskType == TaskType.writingCanvas) {
       return Column(
@@ -364,7 +367,9 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         LumoStageTarget(
           id: 'task-workspace',
           kind: LumoStageRegionKind.obstacle,
-          child: widget.allowRetry
+          child: dataChart != null
+              ? DataChartObservations(exercise: dataChart)
+              : widget.allowRetry
               ? InteractiveTaskWorkspace(
                   key: ValueKey('task-workspace-${task.taskInstanceId}'),
                   task: task,
@@ -394,7 +399,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
           const SizedBox(height: 14),
         ],
         // The worked solution directly above already says what to do.
-        if (!(widget.guided && !_solved)) ...[
+        if (dataChart == null && !(widget.guided && !_solved)) ...[
           Text(
             'Wähle die richtige Antwort:',
             style: LumoTextStyles.label.copyWith(
@@ -408,7 +413,15 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         LumoStageTarget(
           id: 'answers',
           kind: LumoStageRegionKind.answers,
-          child: _OptionGrid(
+          child: dataChart != null
+              ? DataChartAnswer(
+                  key: ValueKey(task.taskInstanceId),
+                  exercise: dataChart,
+                  enabled: !(_solved || (!widget.allowRetry && _wrongAnswers.isNotEmpty)),
+                  rejectedValues: _wrongAnswers,
+                  onSubmit: (value) => _pick(task.options.firstWhere((option) => option.payload == value)),
+                )
+              : _OptionGrid(
             task: task,
             picked: _picked,
             wrongAnswers: _wrongAnswers,

@@ -2,11 +2,13 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../../core/data_chart_exercise.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_motion.dart';
 import '../../../widgets/design/lumo_task_object_art.dart';
 import '../lab/learning_manipulatives.dart';
+import 'data_chart_workbench.dart';
 import 'inquiry_workbench.dart';
 import 'language_example_board.dart';
 import 'math_explanation_film.dart';
@@ -88,6 +90,9 @@ class InteractiveTaskWorkspace extends StatefulWidget {
 
   static String goalFor(TaskInstance task) {
     final data = task.visualPayload.data;
+    if (data['dataChart'] is DataChartExercise) {
+      return 'Zählwerte aus einer Tabelle oder einem Bilddiagramm übertragen.';
+    }
     if (task.subject == LearningSubject.mathematik &&
         task.parameters['visual'] == 'time_fact') {
       return 'Zeitspannen vergleichen, ordnen oder berechnen.';
@@ -562,6 +567,10 @@ class _InteractiveTaskWorkspaceState extends State<InteractiveTaskWorkspace> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.task.visualPayload.data['dataChart']
+        case final DataChartExercise exercise) {
+      return DataChartObservations(exercise: exercise);
+    }
     final example = LanguageExample.forUnit(
         widget.task.parameters['unit']?.toString() ?? '', widget.task.subject);
     final grade = widget.task.parameters['grade'];

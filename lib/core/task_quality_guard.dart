@@ -2,6 +2,7 @@ import 'primary_school_word_data.dart';
 import 'school_exercise_generator.dart';
 import 'checked_task_patterns.dart';
 import 'math_task_templates.dart';
+import 'data_chart_exercise.dart';
 
 /// Deterministic quality gate for generated school tasks.
 /// It blocks tasks with unclear answer logic before they reach the UI.
@@ -85,6 +86,20 @@ class TaskQualityGuard {
 
   List<String> _mathPropertyProblems(LumoTask task) {
     if (task.subject != 'Mathematik') return const [];
+    if (task.visual == 'data_chart_transfer') {
+      final chart = task.dataChart;
+      if (chart == null || chart.requestedRow < 0 || chart.requestedRow >= chart.rows.length ||
+          chart.rows.any((row) => row.label.isEmpty ||
+              (row.value != null && (row.value! < 0 || row.value! > DataChartExercise.maxCount))) ||
+          chart.rows.map((row) => row.label).toSet().length != chart.rows.length ||
+          chart.requested.value == null || '${chart.requested.value}' != task.answer ||
+          task.choices.toSet().length != DataChartExercise.maxCount + 1 ||
+          task.choices.any((choice) => int.tryParse(choice) == null ||
+              int.parse(choice) < 0 || int.parse(choice) > DataChartExercise.maxCount)) {
+        return const ['invalid_chart_transfer_data'];
+      }
+      return const [];
+    }
     final prompt = task.prompt.trim();
     final answer = task.answer.trim();
     final compare = comparePromptPattern.firstMatch(prompt);

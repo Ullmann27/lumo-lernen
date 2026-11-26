@@ -3,6 +3,7 @@ import 'dart:math';
 import 'adventure/lumo_adventure_tasks.dart';
 import 'curriculum/learning_level.dart';
 import 'curriculum/math_unit_order.dart';
+import 'data_chart_exercise.dart' show DataChartExercise;
 import 'german_task_templates.dart';
 import 'english_vocabulary_extensions.dart';
 import 'math_task_templates.dart';
@@ -29,6 +30,7 @@ class LumoTask {
     this.difficulty = 1,
     this.missionTag = 'normal',
     this.chartEntries = const [],
+    this.dataChart,
   });
 
   final String id;
@@ -44,6 +46,7 @@ class LumoTask {
   final int difficulty;
   final String missionTag;
   final List<BarChartEntry> chartEntries;
+  final DataChartExercise? dataChart;
 }
 
 class Curriculum {
@@ -783,6 +786,7 @@ class ExerciseFactory {
       visual: generated.visual,
       difficulty: generated.difficulty,
       chartEntries: generated.chartEntries,
+      dataChart: generated.dataChart,
     );
   }
 

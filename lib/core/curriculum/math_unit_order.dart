@@ -90,6 +90,7 @@ class MathUnitOrder {
     ('Platzhalter-Rätsel', puzzles),
     ('Zahlenrätsel', puzzles),
     ('Blitzlicht', puzzles),
+    ('Datenwerkstatt', puzzles),
     ('Diagramme lesen', puzzles),
     ('Mittelwert', puzzles),
   ];
@@ -102,6 +103,7 @@ class MathUnitOrder {
   };
 
   static const Map<String, String> _examples = <String, String>{
+    'Datenwerkstatt': 'Zählwerte als Säulen oder Balken darstellen',
     'Plus bis 10': 'z. B. 4 + 3',
     'Minus bis 10': 'z. B. 9 − 5',
     'Plus bis 20': 'z. B. 8 + 6 · Zehnerübergang',

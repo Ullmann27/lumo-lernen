@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app/app_state.dart';
+import '../../core/data_chart_exercise.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/lumo_learning_session_contract.dart';
 import '../../core/task_hint_service.dart';
@@ -16,6 +17,7 @@ import '../../widgets/fox/lumo_companion_requests.dart';
 import 'adapters/legacy_lumo_task_adapter.dart';
 import 'renderers/shape_trace_task_renderer.dart';
 import 'renderers/writing_task_renderer.dart';
+import 'widgets/data_chart_workbench.dart';
 import 'widgets/interactive_task_workspace.dart';
 import 'widgets/cross_grade_visual_scene.dart';
 import '../../widgets/design/lumo_answer_crystal.dart';
@@ -955,6 +957,17 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
                         _answerProposal(),
                         const SizedBox(height: 16),
                       ],
+
+                      if (_taskInstance.visualPayload.data['dataChart']
+                          case final DataChartExercise exercise)
+                        DataChartAnswer(
+                          key: ValueKey('cross-grade-chart-${_taskInstance.taskInstanceId}'),
+                          exercise: exercise,
+                          enabled: _canWork,
+                          rejectedValues: {if (_firstWrongChoice != null) _firstWrongChoice!},
+                          onSubmit: (value) => _answer('$value'),
+                        )
+                      else
                       for (var i = 0; i < choices.length; i++) ...[
                         if (widget.subject == 'Mathematik' &&
                             choices[i].length <= 14)
