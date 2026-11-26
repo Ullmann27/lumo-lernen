@@ -5,6 +5,19 @@ const EXPANSION_ITEMS := [
 	"thunder_star", "frost_crystal", "fire_meteor", "star_fortress", "whirlwind",
 	"gravity_wave", "star_decoy", "turbo_xl", "arc_trap", "time_bloom",
 ]
+const MESHY_FLEET := [
+	"comet", "gecko_velo", "boru_rally", "glider", "turbo", "nala_comet", "zuri_volt",
+	"iva_aurora", "noa_tide", "terra", "blitz", "phantom", "stella", "koloss",
+]
+const GARAGE_OPTIONS := {
+	"engine": 8, "tires": 12, "wing": 10, "exhaust": 8, "suspension": 7, "paint": 24, "neon": 12,
+}
+const WORKSHOP_NODES := [
+	"Engine_Torque", "Tire_Touring", "Tire_Sand", "Tire_Gravel", "Tire_Winter", "Wing_Tail",
+	"Wing_Jump", "ExhaustTip_Rally", "ExhaustTip_Slate", "ExhaustTip_Copper", "ExhaustTip_Vent",
+	"ExhaustTip_Slash",
+]
+const WORKSHOP_MODEL := "res://assets/kart/production/parts/parts_workshop.glb"
 
 var failures: int = 0
 
@@ -18,19 +31,20 @@ func _check(condition: bool, operation: String) -> void:
 func _run() -> void:
 	var arguments := OS.get_cmdline_user_args()
 	var phase := "all" if arguments.is_empty() else str(arguments[0])
-	if arguments.size() > 1 or phase not in ["all", "assets", "race"]:
-		push_error("Expected one PCK probe phase: assets or race")
+	var console_assets := arguments.size() == 2 and arguments[1] == "--console-assets" and phase != "race"
+	if (arguments.size() > 1 and not console_assets) or phase not in ["all", "assets", "race"]:
+		push_error("Expected PCK probe phase: assets or race, with optional --console-assets for assets")
 		quit(2)
 		return
 	print("[Kart-PCK] phase ", phase)
 	if phase in ["all", "assets"]:
-		_check_assets()
+		_check_assets(console_assets)
 	if phase in ["all", "race"]:
 		await _check_race()
 	quit(int(failures != 0))
 
 
-func _check_assets() -> void:
+func _check_assets(console_assets: bool) -> void:
 	_check(load("res://scenes/learning/holo_lesson.tscn") is PackedScene, "packaged interactive learning lesson")
 	_check(load("res://scenes/learning/tutor_world.tscn") is PackedScene, "packaged interactive tutoring world")
 	for script_path in [
@@ -94,6 +108,8 @@ func _check_assets() -> void:
 			var mesh := body.find_child("LOD%d" % level, true, false) as MeshInstance3D
 			_check(mesh != null and mesh.mesh != null, "%s packaged shell LOD%d" % [id, level])
 		body.free()
+	if console_assets:
+		_check_console_assets(catalog)
 	for id in ["bridge", "mill", "orchard", "signal_gate", "slider", "station", "turbine", "workshop", "wind_whale"]:
 		var path := "res://assets/kart/production/windwerk/%s" % id
 		_check(load(path + ".glb") is PackedScene and load(path + ".webp") is Texture2D, "%s Windwerk module and portrait" % id)
@@ -106,6 +122,55 @@ func _check_assets() -> void:
 	for motif in memory.MOTIFS:
 		var card_face := load("res://assets/games/memory/collection/%s.webp" % motif) as Texture2D
 		_check(card_face != null and card_face.get_width() >= 768, "%s high-resolution Memory card" % motif)
+
+
+func _check_console_assets(catalog: GDScript) -> void:
+	var fleet_ids: Dictionary = {}
+	for entry in catalog.KARTS:
+		fleet_ids[entry.id] = true
+	_check(catalog.KARTS.size() == 24 and fleet_ids.size() == 24, "all 24 unique selectable vehicle bodies")
+	for id in MESHY_FLEET:
+		var path := "res://assets/kart/production/meshy/%s.glb" % id
+		_check(fleet_ids.has(id) and ResourceLoader.exists(path, "PackedScene"), "%s original Meshy close model" % id)
+	for platform in ["comet", "glider", "turbo"]:
+		for level in range(3):
+			var suffix := "" if level == 0 else "_lod%d" % level
+			var path := "res://assets/kart/production/karts/aurora_%s%s.glb" % [platform, suffix]
+			_check(load(path) is PackedScene, "%s mechanical chassis LOD%d" % [platform, level])
+	for prop in ["meshy_tool_workbench", "meshy_turntable"]:
+		_check(ResourceLoader.exists("res://assets/kart/production/garage/%s.glb" % prop, "PackedScene"), "%s workshop prop" % prop)
+
+	var tuning = load("res://scripts/games/kart_tuning.gd")
+	var workshop := load(WORKSHOP_MODEL) as PackedScene
+	_check(tuning != null and workshop != null, "runtime tuning and imported workshop GLB")
+	if tuning == null or workshop == null:
+		return
+	var assembly := workshop.instantiate()
+	var loaded_nodes: Array[String] = []
+	for slot in GARAGE_OPTIONS:
+		var options: Array = tuning.options(slot)
+		var option_ids: Dictionary = {}
+		for option in options:
+			option_ids[option.id] = true
+			if option.get("file") != WORKSHOP_MODEL:
+				continue
+			var name := str(option.get("node", ""))
+			loaded_nodes.append(name)
+			var part := assembly.find_child(name, true, false) as Node3D
+			var direct_mesh := part as MeshInstance3D
+			var has_geometry := direct_mesh != null and direct_mesh.mesh != null
+			if part != null and not has_geometry:
+				has_geometry = not part.find_children("*", "MeshInstance3D", true, false).is_empty()
+			_check(has_geometry, "%s mountable workshop mesh" % name)
+			var sample := "res://assets/kart/production/parts/thumbs/%s.png" % name
+			_check(load(sample) is Texture2D, "%s workshop selection portrait" % name)
+		_check(options.size() == GARAGE_OPTIONS[slot] and option_ids.size() == options.size(), "%s complete unique workshop choices including stock" % slot)
+	assembly.free()
+	var expected_nodes: Array[String] = []
+	expected_nodes.assign(WORKSHOP_NODES)
+	loaded_nodes.sort()
+	expected_nodes.sort()
+	_check(loaded_nodes == expected_nodes, "all twelve workshop meshes are reachable through tuning")
 
 
 func _check_race() -> void:

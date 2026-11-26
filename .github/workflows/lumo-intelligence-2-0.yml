@@ -216,11 +216,13 @@ jobs:
           for probe in lumo_world_quest_integrity_regression lumo_world_first_entry_regression \
             lumo_world_kart_ground_regression lumo_world_open_world_integration_regression \
             lumo_world_kart_persistence_regression lumo_world_routines_regression \
-            lumo_world_routines_integration_regression; do
-            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-              --timeout 600 --required "PASS" --log "build-proof/GODOT-${probe}.txt" -- \
-              godot --headless --path build/lumo-godot-qa \
-              --script "res://scripts/tests/${probe}.gd"
+            lumo_world_routines_integration_regression lumo_world_waldheim_regression \
+            lumo_world_sternenstadt_regression; do
+            XDG_DATA_HOME="$RUNNER_TEMP/lumo-world-$probe" \
+              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+                --timeout 600 --required "PASS" --log "build-proof/GODOT-${probe}.txt" -- \
+                godot --headless --path build/lumo-godot-qa \
+                --script "res://scripts/tests/${probe}.gd"
           done
       - name: Intelligence 2.0 – neue Strecken, Spiele und Welt (gepinnter Godot-Stand)
         shell: bash
@@ -287,16 +289,18 @@ jobs:
           # Separate processes release the asset audit's resources before the full race scene.
           # Both phases are mandatory and inspect the same PCK extracted from the ARM64 APK.
           for phase in assets race; do
+            probe_arguments=("$phase")
+            if [ "$phase" = assets ]; then probe_arguments+=(--console-assets); fi
             timeout 90 godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
               --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
-              --script "$PWD/.github/probes/lumo_kart_driver_package_probe.gd" -- "$phase" \
+              --script "$PWD/.github/probes/lumo_kart_driver_package_probe.gd" -- "${probe_arguments[@]}" \
               | tee "build-proof/KART-DRIVER-PCK-${phase}.txt"
           done
           python3 build/lumo-godot-qa/tools/run_godot_probe.py \
             --timeout 120 --required '[Intelligence2083Pack] PASS' --log build-proof/GODOT-RUNTIME-DATA-PCK.txt -- \
             godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
             --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
-            --script "$PWD/.github/probes/lumo_2083_pack_probe.gd"
+            --script "$PWD/.github/probes/lumo_2083_pack_probe.gd" -- --console-world
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
