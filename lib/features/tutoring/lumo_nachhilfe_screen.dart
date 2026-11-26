@@ -669,7 +669,7 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
       );
 
   /// Fold innen und Tablet: die schon gegangenen Schritte bleiben neben dem
-  /// Material lesbar (höchstens die letzten vier), statt leerer Fläche.
+  /// Material lesbar (höchstens die letzten drei), statt leerer Fläche.
   List<Widget> _wegBisher() {
     if (_pruefPhase) return const [];
     final fertig = _plan.schritte
@@ -677,7 +677,7 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
         .toList(growable: false);
     if (fertig.isEmpty) return const [];
     final zeigen =
-        fertig.length > 4 ? fertig.sublist(fertig.length - 4) : fertig;
+        fertig.length > 3 ? fertig.sublist(fertig.length - 3) : fertig;
     return [
       const SizedBox(height: 16),
       Container(
