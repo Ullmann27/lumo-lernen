@@ -335,7 +335,8 @@ class ExerciseFactory {
   }) {
     _childName = childName;
     final cappedGrade = grade.clamp(1, 4).toInt();
-    final chosenSubject = _chooseSubject(subject, weakSkills);
+    final chosenSubject =
+        _chooseSubject(subject, weakSkills, grade: cappedGrade);
     final units = Curriculum.unitsForGrade(chosenSubject, cappedGrade);
     final availableUnit = units.contains(unit) ||
         (chosenSubject == 'Mathematik' && MathTaskTemplates.supportsUnit(cappedGrade, unit)) ||
@@ -437,15 +438,30 @@ class ExerciseFactory {
     return tasks;
   }
 
-  String _chooseSubject(String requested, Map<String, int> weakSkills) {
+  static const _mixedSubjects = <String>[
+    'Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Sachunterricht',
+    'Schreiben', 'Englisch',
+  ];
+
+  String _chooseSubject(String requested, Map<String, int> weakSkills,
+      {required int grade}) {
     if (requested != 'Alle') return Curriculum.subjects.containsKey(requested) ? requested : 'Mathematik';
+    const base = _mixedSubjects;
     if (weakSkills.isNotEmpty && _random.nextDouble() < .60) {
       final weakUnit = weakSkills.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
-      for (final subject in Curriculum.subjects.entries) {
-        if (subject.value.contains(weakUnit.first.key)) return subject.key;
-      }
+      // Weak skills are stored by unit name only. Several subjects share
+      // names (Tiere, Körper and Wetter in Englisch and Sachunterricht), so
+      // the first match in map order sent a Sachunterricht weakness to
+      // English practice almost every time. Choose fairly among all
+      // subjects that really offer this unit in the child's grade.
+      final owners = <String>[
+        for (final subject in Curriculum.subjects.keys)
+          if (Curriculum.unitsForGrade(subject, grade)
+              .contains(weakUnit.first.key))
+            subject,
+      ];
+      if (owners.isNotEmpty) return owners[_random.nextInt(owners.length)];
     }
-    final base = <String>['Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Sachunterricht', 'Schreiben', 'Englisch'];
     return base[_random.nextInt(base.length)];
   }
 

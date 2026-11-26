@@ -64,4 +64,34 @@ void main() {
       expect(prompts.where(calendarKnowledge.hasMatch), isNotEmpty);
     });
   });
+
+  group('Schwächen mit gleichem Einheitsnamen wechseln nicht das Fach', () {
+    // Schwächen werden nur unter dem Einheitsnamen gespeichert. „Tiere“,
+    // „Körper“ und „Wetter“ gibt es in Englisch und im Sachunterricht.
+    // Früher landete jede solche Schwäche fast immer im Englisch.
+    for (var grade = 1; grade <= 4; grade++) {
+      test('Klasse $grade: gemischte Übung verteilt geteilte Schwächen fair',
+          () {
+        final counts = <String, int>{};
+        for (var seed = 0; seed < 1500; seed++) {
+          final task = ExerciseFactory(seed: seed * 37 + grade).next(
+            grade: grade,
+            weakSkills: const {'Tiere': 5},
+          );
+          if (task.unit == 'Tiere') {
+            counts[task.subject] = (counts[task.subject] ?? 0) + 1;
+          }
+        }
+        final english = counts['Englisch'] ?? 0;
+        final science = counts['Sachunterricht'] ?? 0;
+        expect(english + science, greaterThan(40), reason: '$counts');
+        // Beide Fächer bieten „Tiere“ an: keines darf dominieren. (Vorher
+        // Klasse 1: 130 × Englisch, 7 × Sachunterricht.)
+        expect(science, greaterThan((english + science) * .2),
+            reason: 'Sachunterricht-Schwäche wird nicht geübt: $counts');
+        expect(english, greaterThan((english + science) * .2),
+            reason: '$counts');
+      });
+    }
+  });
 }
