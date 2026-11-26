@@ -33,10 +33,10 @@ void main() {
       ));
       await tester.pump(const Duration(milliseconds: 48));
 
-      final first = tester.getTopLeft(find.text('Gesamt'));
-      final second = tester.getTopLeft(find.text('Streak'));
+      final first = tester.getTopLeft(find.text('Antworten'));
+      final second = tester.getTopLeft(find.text('Lerntage in Folge'));
       final third = tester.getTopLeft(find.text('Stärken'));
-      final fourth = tester.getTopLeft(find.text('Übung'));
+      final fourth = tester.getTopLeft(find.text('Förderbedarf'));
 
       expect((first.dy - second.dy).abs(), lessThan(3),
           reason: 'First pair shares one row at width $width');

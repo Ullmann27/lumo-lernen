@@ -151,28 +151,40 @@ class LearningGuidance {
 
   static bool isDemoStudent(String id) => id.startsWith(demoStudentPrefix);
 
+  /// Die echten Antworten genau eines Kindes, wie sie alle Elternauswertungen
+  /// zählen: ohne Demo-Kinder, andere Profile, doppelte Einträge,
+  /// Zukunftszeiten und reine Messfächer (Knobel-Test).
+  static List<Attempt> relevantAttempts(
+    Iterable<Attempt> source, {
+    required String studentId,
+    required DateTime now,
+  }) {
+    final seen = <String>{};
+    final attempts = <Attempt>[];
+    if (studentId.trim().isEmpty || isDemoStudent(studentId)) return attempts;
+    for (final a in source) {
+      if (a.studentId != studentId ||
+          a.id.trim().isEmpty ||
+          a.subject.trim().isEmpty ||
+          a.competency.trim().isEmpty ||
+          LearningAnalysis.assessmentSubjects.contains(a.subject) ||
+          a.at.isAfter(now) ||
+          !seen.add(a.id)) {
+        continue;
+      }
+      attempts.add(a);
+    }
+    return attempts;
+  }
+
   factory LearningGuidance.fromAttempts(
     Iterable<Attempt> source, {
     required String studentId,
     required DateTime now,
   }) {
     final asOf = now;
-    final seen = <String>{};
-    final attempts = <Attempt>[];
-    if (studentId.trim().isNotEmpty && !isDemoStudent(studentId)) {
-      for (final a in source) {
-        if (a.studentId != studentId ||
-            a.id.trim().isEmpty ||
-            a.subject.trim().isEmpty ||
-            a.competency.trim().isEmpty ||
-            LearningAnalysis.assessmentSubjects.contains(a.subject) ||
-            a.at.isAfter(asOf) ||
-            !seen.add(a.id)) {
-          continue;
-        }
-        attempts.add(a);
-      }
-    }
+    final attempts =
+        relevantAttempts(source, studentId: studentId, now: asOf);
     final independentTotal = attempts.where((a) => !a.hintUsed).length;
 
     // Gerade geübt: Themen der letzten sieben Tage, neueste zuerst.

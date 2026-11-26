@@ -21,8 +21,10 @@ import '../../app/app_theme.dart';
 import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
 import '../../domain/school/adaptive_practice_plan.dart';
+import '../../domain/school/learning_analysis.dart';
 import '../../domain/school/learning_chart_data.dart';
 import '../../domain/school/learning_guidance.dart';
+import '../../domain/school/parent_insight_metrics.dart';
 import '../report/learning_analytics_panel.dart';
 import '../report/adaptive_practice_plan_card.dart';
 import '../report/learning_guidance_panel.dart';
@@ -45,14 +47,21 @@ class LumoInsightDashboard extends StatefulWidget {
   State<LumoInsightDashboard> createState() => _LumoInsightDashboardState();
 }
 
+/// Alles, was das Dashboard zeigt, aus genau einem Profil und einem Ladevorgang.
+typedef _InsightData = ({
+  AdaptivePracticePlan plan,
+  LearningChartData chart,
+  LearningGuidance guidance,
+  ParentInsightMetrics metrics,
+  LearningDna dna,
+});
+
 class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
   final _dnaEngine = const LearningDnaEngine();
   final _aiProxy = const LumoAiProxyClient();
-  LearningDna? _dna;
-  bool _loading = true;
   bool _showFullDna = false;
   int _dataRevision = 0;
-  Future<(AdaptivePracticePlan, LearningChartData, LearningGuidance)?>? _planData;
+  Future<_InsightData?>? _data;
 
   // 2026-06-04: KI-Wochenanalyse direkt im Insight-Dashboard.
   // Bisher war diese Funktion nur in parent_report_card.dart versteckt.
@@ -87,17 +96,10 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
   }
 
   void _build() {
-    final state = widget.appState.state;
-    final dna = _dnaEngine.compute(
-      state: state,
-      skills: widget.appState.learningSkills(),
-    );
     if (!mounted) return;
     setState(() {
       _dataRevision++;
-      _dna = dna;
-      _planData = _loadPlan(widget.appState);
-      _loading = false;
+      _data = _load(widget.appState);
       _aiInsight = null;
       _aiError = null;
       _aiLoading = false;
@@ -129,70 +131,129 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
         scene: LumoScene.library,
         dimmed: true,
         child: SafeArea(
-            child: _loading
-                ? const Center(
-                    child: CircularProgressIndicator(
-                        color: LumoVisualTokens.gold))
-                : SingleChildScrollView(
-                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        _hero(),
-                        const SizedBox(height: 16),
-                        _statsRow(),
-                        const SizedBox(height: 16),
-                        // Echte, profilgebundene Auswertung zuerst: was das
-                        // Kind gerade übt und welche Unterstützung hilft.
-                        _adaptivePlan(),
-                        const SizedBox(height: 16),
-                        _lumoSays(),
-                        const SizedBox(height: 16),
-                        if (_dna!.nextRecommendation != null) ...[
-                          _nextRecCard(),
-                          const SizedBox(height: 16),
-                        ],
-                        LumoInsightHeatmap(entries: _allEntries()),
-                        const SizedBox(height: 16),
-                        if (_dna!.errorBreakdown.isNotEmpty) ...[
-                          _errorTop3(),
-                          const SizedBox(height: 16),
-                        ],
-                        // 2026-06-04 KI-Wochenanalyse: ChatGPT-Berater fuer Eltern.
-                        _aiAnalysisSection(),
-                        const SizedBox(height: 16),
-                        _toggleFullDna(),
-                        if (_showFullDna) ...[
-                          const SizedBox(height: 12),
-                          LearningDnaParentCard(dna: _dna!),
-                        ],
-                      ],
-                    ),
-                  )),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _hero(),
+                const SizedBox(height: 16),
+                // Neue Profilgeneration = neuer Zustand: nie Zahlen eines
+                // anderen Kindes, auch nicht während des Ladens.
+                FutureBuilder<_InsightData?>(
+                  key: ValueKey(widget.appState.profileGeneration),
+                  future: _data,
+                  builder: (context, snapshot) {
+                    final data = snapshot.data;
+                    if (data == null) {
+                      return _notLoaded(
+                          loading: snapshot.connectionState !=
+                              ConnectionState.done);
+                    }
+                    return _content(data);
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
       ), // close LumoSceneBackground
     );
   }
 
-  Future<(AdaptivePracticePlan, LearningChartData, LearningGuidance)?> _loadPlan(LumoAppState app) async {
+  Widget _notLoaded({required bool loading}) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _statsRow(null, loading: loading),
+          const SizedBox(height: 16),
+          if (loading)
+            const Center(
+                child: CircularProgressIndicator(color: LumoVisualTokens.gold))
+          else
+            Center(
+              child: TextButton(
+                key: const ValueKey('insight-retry'),
+                style: TextButton.styleFrom(
+                  foregroundColor: LumoVisualTokens.cyanBright,
+                  minimumSize: const Size(48, 48),
+                ),
+                onPressed: _build,
+                child: const Text('Erneut versuchen'),
+              ),
+            ),
+        ],
+      );
+
+  Widget _content(_InsightData data) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _statsRow(data.metrics),
+          const SizedBox(height: 16),
+          // Echte, profilgebundene Auswertung zuerst: was das
+          // Kind gerade übt und welche Unterstützung hilft.
+          _adaptivePlan(data),
+          const SizedBox(height: 16),
+          _lumoSays(data.metrics),
+          const SizedBox(height: 16),
+          // Der Lernplan oben ist die Empfehlung aus dem Protokoll. Die
+          // ältere Themen-Empfehlung erscheint nur, wenn es dort noch keine
+          // gibt – nie zwei widersprüchliche Vorschläge.
+          if (data.guidance.recommendations.isEmpty &&
+              data.dna.nextRecommendation != null) ...[
+            _nextRecCard(data.dna),
+            const SizedBox(height: 16),
+          ],
+          LumoInsightHeatmap(entries: data.dna.skillObservations),
+          const SizedBox(height: 16),
+          if (data.dna.errorBreakdown.isNotEmpty) ...[
+            _errorTop3(data.dna),
+            const SizedBox(height: 16),
+          ],
+          // 2026-06-04 KI-Wochenanalyse: ChatGPT-Berater fuer Eltern.
+          _aiAnalysisSection(data.dna),
+          const SizedBox(height: 16),
+          _toggleFullDna(),
+          if (_showFullDna) ...[
+            const SizedBox(height: 12),
+            LearningDnaParentCard(dna: data.dna),
+          ],
+        ],
+      );
+
+  /// Lädt Aufgabenprotokoll und Themenzähler desselben Profils. Solange das
+  /// läuft, zeigt das Dashboard „wird geladen“ statt 0; ein Lesefehler wird
+  /// als solcher gezeigt, nie als leeres oder fremdes Profil.
+  Future<_InsightData?> _load(LumoAppState app) async {
     try {
       final generation = app.profileGeneration;
       final owner = await app.captureLearningProfile();
       if (owner.generation != generation || !app.canUseLearningLease(owner)) {
         return null;
       }
+      // Nur lesen: Die Zähler dieses Profils, unabhängig davon, ob die App
+      // sie für einen anderen Bildschirm schon geladen hat.
+      await owner.profile.load();
       final attempts = await app.attemptLog.load(studentId: owner.logStudentId);
       if (!mounted || !identical(app, widget.appState) ||
           generation != app.profileGeneration || !app.canUseLearningLease(owner)) {
         return null;
       }
       final asOf = DateTime.now();
+      final skills = owner.profile.skills;
       return (
-        AdaptivePracticePlan.fromAttempts(attempts,
+        plan: AdaptivePracticePlan.fromAttempts(attempts,
             studentId: owner.logStudentId, now: asOf),
-        LearningChartData.fromAttempts(attempts,
+        chart: LearningChartData.fromAttempts(attempts,
             studentId: owner.logStudentId, now: asOf),
-        LearningGuidance.fromAttempts(attempts,
+        guidance: LearningGuidance.fromAttempts(attempts,
             studentId: owner.logStudentId, now: asOf),
+        metrics: ParentInsightMetrics.from(
+            attempts: attempts,
+            studentId: owner.logStudentId,
+            now: asOf,
+            skills: skills,
+            daily: owner.profile.daily),
+        dna: _dnaEngine.compute(state: app.state, skills: skills),
       );
     } catch (_) {
       // Do not show an empty or previous child's report on storage failure.
@@ -200,61 +261,34 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     }
   }
 
-  Widget _adaptivePlan() => FutureBuilder<(AdaptivePracticePlan, LearningChartData, LearningGuidance)?>(
-        key: ValueKey(widget.appState.profileGeneration),
-        future: _planData,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(child: CircularProgressIndicator(
-                color: LumoVisualTokens.gold));
-          }
-          final evidence = snapshot.data;
-          if (evidence == null) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text('Lernplan konnte nicht sicher geladen werden.',
-                    style: TextStyle(color: LumoVisualTokens.white)),
-                TextButton(onPressed: _build,
-                    child: const Text('Erneut versuchen')),
-              ],
-            );
-          }
-          final (plan, chartData, guidance) = evidence;
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              LearningGuidancePanel(
-                guidance: guidance,
-                canPractice: (r) => LearningRouteLauncher.canStart(
-                    widget.appState, r.subject, r.unit),
-                onPractice: (r) => LearningRouteLauncher.start(
-                    context, widget.appState,
-                    subject: r.subject, unit: r.unit, guided: r.guided),
-              ),
-              const SizedBox(height: 16),
-              LearningAnalyticsPanel(data: chartData),
-              const SizedBox(height: 16),
-              AdaptivePracticePlanCard(plan: plan),
-              const SizedBox(height: 8),
-              OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: LumoVisualTokens.white,
-                  minimumSize: const Size(48, 48),
-                ),
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(
-                    builder: (_) => LernberichtScreen(appState: widget.appState))),
-                icon: const Icon(Icons.insights_rounded),
-                label: const Text('Echten Lernverlauf ansehen'),
-              ),
-            ],
-          );
-        },
+  Widget _adaptivePlan(_InsightData data) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          LearningGuidancePanel(
+            guidance: data.guidance,
+            canPractice: (r) => LearningRouteLauncher.canStart(
+                widget.appState, r.subject, r.unit),
+            onPractice: (r) => LearningRouteLauncher.start(
+                context, widget.appState,
+                subject: r.subject, unit: r.unit, guided: r.guided),
+          ),
+          const SizedBox(height: 16),
+          LearningAnalyticsPanel(data: data.chart),
+          const SizedBox(height: 16),
+          AdaptivePracticePlanCard(plan: data.plan),
+          const SizedBox(height: 8),
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(
+              foregroundColor: LumoVisualTokens.white,
+              minimumSize: const Size(48, 48),
+            ),
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(
+                builder: (_) => LernberichtScreen(appState: widget.appState))),
+            icon: const Icon(Icons.insights_rounded),
+            label: const Text('Echten Lernverlauf ansehen'),
+          ),
+        ],
       );
-
-  List<DnaSkillEntry> _allEntries() {
-    return _dna!.skillObservations;
-  }
 
   Widget _hero() {
     final name = widget.appState.state.childName;
@@ -330,102 +364,258 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     );
   }
 
-  Widget _statsRow() {
-    final answered = _dna!.totalCorrect + _dna!.totalIncorrect;
-    final streak = widget.appState.learningStreakDays();
-    final strengths = _dna!.strengths.length;
-    final weaknesses = _dna!.weaknesses.length;
+  /// Die vier Kennzahlen. [metrics] ist `null`, solange die Daten laden
+  /// ([loading]) oder nicht gelesen werden konnten: dann „…“ bzw. „–“, nie 0.
+  Widget _statsRow(ParentInsightMetrics? metrics, {bool loading = false}) {
+    final m = metrics;
+    final missing = loading ? '…' : '–';
+    final missingHint = loading ? 'wird geladen' : 'nicht geladen';
+    final tiles = <Widget>[
+      _statCard(
+        key: 'answers',
+        label: 'Antworten',
+        value: m == null ? missing : '${m.answers}',
+        hint: m == null
+            ? missingHint
+            : m.answers == 0
+                ? 'noch keine'
+                : m.olderAnswers > 0
+                    ? 'inkl. ${m.olderAnswers} ältere'
+                    : '${m.loggedIndependent} ohne Hilfe',
+        icon: Icons.task_alt_rounded,
+        color: const Color(0xFF60A5FA),
+      ),
+      _statCard(
+        key: 'streak',
+        label: 'Lerntage in Folge',
+        value: m == null ? missing : '${m.streakDays}',
+        hint: m == null ? missingHint : _lastPracticeHint(m.lastPracticeDay),
+        icon: Icons.local_fire_department_rounded,
+        color: const Color(0xFFFF9F5A),
+      ),
+      _statCard(
+        key: 'strengths',
+        label: 'Stärken',
+        value: m == null ? missing : m.strengths?.toString() ?? '–',
+        hint: m == null
+            ? missingHint
+            : m.strengths == null
+                ? 'noch offen'
+                : 'ab 85 % ohne Hilfe',
+        icon: Icons.star_rounded,
+        color: const Color(0xFF34D399),
+      ),
+      _statCard(
+        key: 'needs',
+        label: 'Förderbedarf',
+        value: m == null ? missing : m.needs?.toString() ?? '–',
+        hint: m == null
+            ? missingHint
+            : m.needs == null
+                ? 'noch offen'
+                : 'unter 85 % ohne Hilfe',
+        icon: Icons.flag_rounded,
+        color: const Color(0xFFF472B6),
+      ),
+    ];
 
-    // Two spacious tiles on phones, four on an unfolded display.
-    // Short viewports can scroll naturally with the existing page; no
-    // independent scrollable is introduced in the parent dashboard.
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        const gap = 8.0;
-        final columns = constraints.maxWidth >= 640
-            ? 4
-            : constraints.maxWidth >= 260
-                ? 2
-                : 1;
-        final tileWidth =
-            (constraints.maxWidth - gap * (columns - 1)) / columns;
-        return Wrap(
-          key: const ValueKey('insight-stats-grid'),
-          spacing: gap,
-          runSpacing: gap,
-          children: [
-            SizedBox(
-                width: tileWidth,
-                child: _statCard(
-                    'Gesamt', '$answered', Icons.task_alt_rounded,
-                    const Color(0xFF60A5FA))),
-            SizedBox(
-                width: tileWidth,
-                child: _statCard(
-                    'Streak', '$streak T.',
-                    Icons.local_fire_department_rounded,
-                    const Color(0xFFFF9F5A))),
-            SizedBox(
-                width: tileWidth,
-                child: _statCard(
-                    'Stärken', '$strengths', Icons.star_rounded,
-                    const Color(0xFF34D399))),
-            SizedBox(
-                width: tileWidth,
-                child: _statCard(
-                    'Übung', '$weaknesses', Icons.flag_rounded,
-                    const Color(0xFFF472B6))),
-          ],
-        );
-      },
-    );
-  }
-
-  Widget _statCard(String label, String value, IconData icon, Color color) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(8, 10, 8, 10),
-      decoration: BoxDecoration(
-        color: const Color(0xE60B2A55),
-        borderRadius: BorderRadius.circular(LumoRadius.md),
-        border: Border.all(color: color.withOpacity(0.40), width: 1.2),
-        boxShadow: [
-          BoxShadow(
-            color: color.withOpacity(0.16),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
+    // Two spacious tiles on phones, four on an unfolded display. Each row
+    // keeps equal tile heights; short viewports scroll with the page.
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        LayoutBuilder(
+          builder: (context, constraints) {
+            const gap = 8.0;
+            final columns = constraints.maxWidth >= 640
+                ? 4
+                : constraints.maxWidth >= 260
+                    ? 2
+                    : 1;
+            return Column(
+              key: const ValueKey('insight-stats-grid'),
+              children: [
+                for (var start = 0; start < tiles.length; start += columns) ...[
+                  if (start > 0) const SizedBox(height: gap),
+                  IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        for (var i = start;
+                            i < start + columns && i < tiles.length;
+                            i++) ...[
+                          if (i > start) const SizedBox(width: gap),
+                          Expanded(child: tiles[i]),
+                        ],
+                      ],
+                    ),
+                  ),
+                ],
+              ],
+            );
+          },
+        ),
+        const SizedBox(height: 8),
+        Text(
+          _statsBasis(m, loading: loading),
+          key: const ValueKey('insight-stats-basis'),
+          style: const TextStyle(
+            fontFamily: 'Nunito',
+            fontSize: 12.5,
+            fontWeight: FontWeight.w700,
+            color: LumoVisualTokens.muted,
+            height: 1.35,
           ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Icon(icon, color: color, size: 26),
-          const SizedBox(height: 2),
-          Text(value,
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 18,
-                fontWeight: FontWeight.w900,
-                color: color,
-                height: 1.0,
-              )),
-          const SizedBox(height: 2),
-          Text(label,
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 11,
-                fontWeight: FontWeight.w700,
-                color: color.withOpacity(0.85),
-              )),
-        ],
+        ),
+      ],
+    );
+  }
+
+  /// Klar benannte Grundlage der Kennzahlen, damit sie zu „Auf einen Blick“
+  /// passen und ältere Zähler nachvollziehbar bleiben.
+  String _statsBasis(ParentInsightMetrics? m, {required bool loading}) {
+    if (m == null) {
+      return loading
+          ? 'Kennzahlen werden geladen …'
+          : 'Die Kennzahlen konnten nicht sicher geladen werden.';
+    }
+    if (m.isEmpty) return 'Noch keine Antworten in diesem Profil.';
+    final out = StringBuffer(m.loggedAnswers == 0
+        ? 'Noch keine Antworten im Aufgabenprotokoll dieses Profils.'
+        : 'Grundlage wie „Auf einen Blick“: ${m.loggedAnswers} '
+            '${m.loggedAnswers == 1 ? 'Antwort' : 'Antworten'} im '
+            'Aufgabenprotokoll dieses Profils, davon ${m.loggedIndependent} '
+            'ohne Hilfe.');
+    if (m.olderAnswers > 0) {
+      out.write(' Dazu ${m.olderAnswers} ältere '
+          '${m.olderAnswers == 1 ? 'Antwort' : 'Antworten'} ohne Datum aus '
+          'der Zeit vor dem Aufgabenprotokoll: zählen bei „Antworten“ mit, '
+          'nicht bei Stärken und Förderbedarf.');
+    }
+    if (m.strengths == null) {
+      out.write(' Stärken und Förderbedarf gibt es ab '
+          '${LearningAnalysis.minReliable} Antworten ohne Hilfe zu einer '
+          'Kompetenz.');
+    }
+    return out.toString();
+  }
+
+  static String _lastPracticeHint(DateTime? last) {
+    if (last == null) return 'noch keine';
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final day = DateTime(last.year, last.month, last.day);
+    if (day == today) return 'zuletzt heute';
+    if (day == DateTime(today.year, today.month, today.day - 1)) {
+      return 'zuletzt gestern';
+    }
+    return 'zuletzt am ${day.day}.${day.month}.';
+  }
+
+  Widget _statCard({
+    required String key,
+    required String label,
+    required String value,
+    required String hint,
+    required IconData icon,
+    required Color color,
+  }) {
+    return Semantics(
+      key: ValueKey('insight-stat-$key'),
+      container: true,
+      label: '$label: $value, $hint',
+      child: ExcludeSemantics(
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(8, 10, 8, 10),
+          decoration: BoxDecoration(
+            color: const Color(0xE60B2A55),
+            borderRadius: BorderRadius.circular(LumoRadius.md),
+            border: Border.all(color: color.withOpacity(0.40), width: 1.2),
+            boxShadow: [
+              BoxShadow(
+                color: color.withOpacity(0.16),
+                blurRadius: 8,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              Icon(icon, color: color, size: 26),
+              const SizedBox(height: 2),
+              Text(value,
+                  key: ValueKey('insight-stat-$key-value'),
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    color: color,
+                    height: 1.0,
+                  )),
+              const SizedBox(height: 2),
+              Text(label,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    color: color.withOpacity(0.85),
+                  )),
+              const SizedBox(height: 2),
+              Text(hint,
+                  key: ValueKey('insight-stat-$key-hint'),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 10.5,
+                    fontWeight: FontWeight.w600,
+                    color: LumoVisualTokens.muted,
+                    height: 1.2,
+                  )),
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  Widget _lumoSays() {
-    final text = _dna!.recentProgress.trim().isEmpty
-        ? 'Sobald euer Kind ein paar Aufgaben löst, fasse ich hier den Fortschritt zusammen.'
-        : _dna!.recentProgress;
+  /// Lumos Kurzfassung aus denselben Zahlen wie die Kennzahlen oben.
+  Widget _lumoSays(ParentInsightMetrics m) {
+    final String text;
+    if (m.isEmpty) {
+      text = 'Sobald euer Kind ein paar Aufgaben löst, fasse ich hier den '
+          'Fortschritt zusammen.';
+    } else {
+      final out = StringBuffer();
+      if (m.loggedAnswers == 0) {
+        out.write('Bisher nur ältere Antworten ohne Datum. Neue Antworten '
+            'zeige ich oben unter „Auf einen Blick“.');
+      } else if (m.loggedIndependent == 0) {
+        out.write('${m.loggedAnswers} protokollierte '
+            '${m.loggedAnswers == 1 ? 'Antwort' : 'Antworten'}, alle mit '
+            'Hilfe – noch kein Nachweis ohne Hilfe.');
+      } else {
+        final percent =
+            (m.loggedIndependentCorrect * 100 / m.loggedIndependent).round();
+        out.write('Von ${m.loggedIndependent} '
+            '${m.loggedIndependent == 1 ? 'Antwort' : 'Antworten'} ohne Hilfe '
+            '${m.loggedIndependentCorrect == 1 ? 'war' : 'waren'} '
+            '${m.loggedIndependentCorrect} richtig ($percent %).');
+        if (m.loggedAssisted > 0) {
+          out.write(' ${m.loggedAssisted} mit Hilfe zählen nicht als '
+              'Nachweis.');
+        }
+        if (m.loggedIndependent < 10) out.write(' Kleine Stichprobe.');
+      }
+      if (m.olderAnswers > 0 && m.loggedAnswers > 0) {
+        out.write(' Dazu ${m.olderAnswers} ältere '
+            '${m.olderAnswers == 1 ? 'Antwort' : 'Antworten'} ohne Datum.');
+      }
+      out.write(' Übungsbeobachtungen, keine Kompetenzdiagnose.');
+      text = out.toString();
+    }
     return Container(
+      key: const ValueKey('insight-lumo-says'),
       padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
       decoration: BoxDecoration(
         color: const Color(0xE614355F),
@@ -458,8 +648,8 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     );
   }
 
-  Widget _nextRecCard() {
-    final rec = _dna!.nextRecommendation!;
+  Widget _nextRecCard(LearningDna dna) {
+    final rec = dna.nextRecommendation!;
     return Container(
       padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
       decoration: BoxDecoration(
@@ -522,8 +712,8 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     );
   }
 
-  Widget _errorTop3() {
-    final entries = _dna!.errorBreakdown.entries.toList()
+  Widget _errorTop3(LearningDna dna) {
+    final entries = dna.errorBreakdown.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
     final top = entries.take(3).toList();
     return Container(
@@ -600,7 +790,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
   /// LumoAiProxyClient (parentAdvisor-Kontext) und zeigt 3-5 Saetze
   /// paedagogische Einschaetzung zurueck. Daten-sparsam: kein Background-
   /// Call, Eltern muessen aktiv tippen.
-  Future<void> _requestAiAnalysis() async {
+  Future<void> _requestAiAnalysis(LearningDna dna) async {
     if (_aiLoading) return;
     setState(() {
       _aiLoading = true;
@@ -608,7 +798,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     });
     final revision = _dataRevision;
     final state = widget.appState.state.copyWith();
-    final payload = _dna!.parentAnalysisPrompt(grade: state.grade);
+    final payload = dna.parentAnalysisPrompt(grade: state.grade);
     try {
       final response = await _aiProxy.ask(
         settings: state.settings,
@@ -635,7 +825,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
     }
   }
 
-  Widget _aiAnalysisSection() {
+  Widget _aiAnalysisSection(LearningDna dna) {
     return Container(
       padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
       decoration: BoxDecoration(
@@ -675,7 +865,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                 )
               else
                 FilledButton.icon(
-                  onPressed: _requestAiAnalysis,
+                  onPressed: () => _requestAiAnalysis(dna),
                   icon: const Icon(Icons.auto_awesome_rounded, size: 16),
                   label: Text(
                     _aiInsight == null && _aiError == null
@@ -716,7 +906,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
               title: 'Lumo-KI gerade nicht erreichbar',
               message: _aiError,
               actionLabel: 'Nochmal versuchen',
-              onAction: _requestAiAnalysis,
+              onAction: () => _requestAiAnalysis(dna),
             )
           else
             const Text(
