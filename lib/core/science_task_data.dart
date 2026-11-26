@@ -464,11 +464,7 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       'Verkehr',
       'Warum lässt du beim Radfahren Abstand?',
       'damit du rechtzeitig bremsen kannst',
-      [
-        'damit du nichts siehst',
-        'damit du schneller auffährst',
-        'damit dein Helm unnötig wird'
-      ],
+      ['damit du den Helm nicht brauchst', 'damit du schneller auffahren kannst', 'damit du weniger von der Straße siehst'],
       'Mit Abstand hast du mehr Zeit zu reagieren und zu bremsen.'),
   ScienceQuestion.item(
       2,
@@ -613,22 +609,14 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       'Verkehr',
       'Warum braucht ein fahrendes Auto einen Bremsweg?',
       'Es kann nicht sofort zum Stillstand kommen.',
-      [
-        'Jede Straße ist gleich lang.',
-        'Autos brauchen keinen Abstand.',
-        'Nur die Farbe bestimmt das Bremsen.'
-      ],
+      ['Nur die Farbe des Autos bestimmt das Bremsen.', 'Jede Straße ist gleich lang.', 'Autos brauchen nie Abstand zu anderen.'],
       'Bis ein Auto steht, legt es einen Weg zurück. Geschwindigkeit und Straßenverhältnisse beeinflussen ihn.'),
   ScienceQuestion.item(
       3,
       'Pflanzen',
       'Warum sind Wurzeln für eine Pflanze wichtig?',
-      'Sie nehmen Wasser auf und verankern die Pflanze.',
-      [
-        'Sie ersetzen jede Blüte.',
-        'Sie machen Licht.',
-        'Sie treiben das Fahrrad an.'
-      ],
+      'Sie halten die Pflanze und nehmen Wasser auf.',
+      ['Sie treiben die Pflanze wie ein Motor an.', 'Sie ersetzen bei jeder Pflanze die Blüte.', 'Sie machen in der dunklen Erde Licht für die Pflanze.'],
       'Viele Wurzeln nehmen Wasser und Mineralstoffe auf und geben Halt im Boden.'),
   ScienceQuestion.item(
       3,
@@ -664,22 +652,14 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       'Stromkreise',
       'Womit üben Kinder einen einfachen Stromkreis sicher unter Anleitung?',
       'mit einer geeigneten kleinen Batterie',
-      [
-        'mit einer Steckdose',
-        'mit einer offenen Netzleitung',
-        'mit einem beschädigten Ladekabel'
-      ],
+      ['mit einem beschädigten alten Ladekabel', 'mit einer offenen Stromleitung im Haus', 'mit einer Steckdose'],
       'Für Schulversuche verwenden wir unter Anleitung sichere Kleinspannung. Steckdosen und Netzleitungen sind kein Experimentiermaterial.'),
   ScienceQuestion.item(
       4,
       'Stromkreise',
       'Warum sind elektrische Kabel außen oft mit Kunststoff umhüllt?',
       'Kunststoff isoliert den leitenden Draht.',
-      [
-        'Kunststoff erzeugt den ganzen Strom.',
-        'Kunststoff ersetzt die Batterie.',
-        'Kunststoff macht Kabel essbar.'
-      ],
+      ['Kunststoff erzeugt den ganzen Strom selbst.', 'Kunststoff ersetzt die Batterie.', 'Kunststoff macht Kabel essbar.'],
       'Die isolierende Hülle schützt vor Kontakt mit dem leitenden Metall.'),
   ScienceQuestion.item(
       4,
