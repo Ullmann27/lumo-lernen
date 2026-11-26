@@ -16,7 +16,8 @@ permissions:
 
 concurrency:
   group: lumo-intelligence-2-0-${{ github.ref }}
-  cancel-in-progress: true
+  # Ein nachfolgender Auftrag wartet auch während der Emulator- und Downloadprüfung.
+  cancel-in-progress: false
 
 jobs:
   intelligence-tests:
