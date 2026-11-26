@@ -220,7 +220,11 @@ class _DataChartAnswerState extends State<DataChartAnswer> {
                 ? () => widget.onSubmit(draft)
                 : null,
             style: FilledButton.styleFrom(
-                minimumSize: const Size.fromHeight(48), backgroundColor: _fill),
+              minimumSize: const Size.fromHeight(48),
+              backgroundColor: _fill,
+              disabledBackgroundColor: const Color(0xFFDFE9ED),
+              disabledForegroundColor: const Color(0xFF48616F),
+            ),
             child: Text(exercise.tallyToTable ? 'Prüfen' : 'Eintrag prüfen'),
           ),
         ],
@@ -231,10 +235,14 @@ class _DataChartAnswerState extends State<DataChartAnswer> {
   Widget _table() {
     final exercise = widget.exercise;
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      const Row(children: [
-        Expanded(child: Text('Name', style: _strong)),
-        Text('Anzahl', style: _strong),
-      ]),
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        child: Row(children: [
+          Expanded(child: Text('Name', style: _strong)),
+          Expanded(
+              child: Text('Anzahl', style: _strong, textAlign: TextAlign.end)),
+        ]),
+      ),
       const SizedBox(height: 3),
       for (var i = 0; i < exercise.rows.length; i++)
         Container(
@@ -245,7 +253,7 @@ class _DataChartAnswerState extends State<DataChartAnswer> {
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
           child: Row(children: [
             Expanded(child: Text(exercise.rows[i].label, style: _strong)),
-            Flexible(
+            Expanded(
               child: Text(
                 i == exercise.requestedRow
                     ? _draft?.toString() ?? 'Offen'

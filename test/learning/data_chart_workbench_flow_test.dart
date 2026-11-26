@@ -253,6 +253,8 @@ void main() {
         final answerCell =
             find.byKey(ValueKey('data-table-${data.requested.label}'));
         expect(tester.widget<Text>(answerCell).data, '2');
+        expect(tester.getRect(answerCell).right,
+            tester.getRect(find.text('Anzahl')).right);
       } else {
         await _button(tester, 'add');
         expect(find.text('Dein Eintrag für ${data.requested.label}: 2'),
