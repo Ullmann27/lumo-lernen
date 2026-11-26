@@ -598,13 +598,16 @@ class _GamesContentState extends State<GamesContent> {
                     child: LumoNightScope(
                       child: Material(
                         type: MaterialType.transparency,
-                        child: ExpansionTile(
+                        child: Column(
                           key: const PageStorageKey('games-original-3d'),
-                          leading: const Icon(Icons.explore_rounded,
-                              color: LumoVisualTokens.cyanBright),
-                          title: const Text('Originale 3D-Abenteuer'),
-                          subtitle: const Text('Bauwelt, Schatzsuche und Dorfwirtschaft'),
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
+                            const ListTile(
+                              leading: Icon(Icons.explore_rounded,
+                                  color: LumoVisualTokens.cyanBright),
+                              title: Text('Originale 3D-Abenteuer'),
+                              subtitle: Text('Bauwelt, Schatzsuche und Dorfwirtschaft'),
+                            ),
                             ListTile(
                               key: const ValueKey('spielwelt-original-build'),
                               leading: const Icon(Icons.construction_rounded),

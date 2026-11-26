@@ -244,6 +244,7 @@ jobs:
           SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
           git clone --filter=blob:none https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
           git -C build/lumo-godot-qa checkout --detach "$SOURCE"
+          python3 build/lumo-godot-qa/tools/verify_nextgen_learning_import.py
           # Der Erstimport stürzt in Godot 4.6.3 auf vollen CI-Rechnern ab, wenn
           # Szenen-Benachrichtigungen aus Arbeits-Threads kommen. Wie im Bauskript
           # läuft der Importer deshalb mit --single-threaded-scene; zusätzlich
@@ -305,6 +306,16 @@ jobs:
               --timeout 180 --required '[Completeness2094] PASS' --log build-proof/GODOT-completeness-2094.txt -- \
               godot --headless --single-threaded-scene --audio-driver Dummy \
               --path build/lumo-godot-qa --script res://scripts/tests/completeness_2094_regression.gd
+      - name: Wiederhergestellte Meshy-Weltmodelle und unveränderte Dorfidentität prüfen
+        if: matrix.group == 'core-memory' && steps.reuse.outputs.valid != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          XDG_DATA_HOME="$RUNNER_TEMP/lumo-world-meshy" \
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 180 --required '[WorldMeshy] PASS' --log build-proof/GODOT-world-meshy.txt -- \
+              godot --headless --single-threaded-scene --audio-driver Dummy \
+              --path build/lumo-godot-qa --script res://scripts/tests/lumo_world_meshy_detail_regression.gd
       - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
         if: matrix.group == 'core-memory' && steps.reuse.outputs.valid != 'true'
         shell: bash
