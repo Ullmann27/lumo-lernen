@@ -213,6 +213,41 @@ void main() {
     expect(b.cosmos.totalItems, 1);
   });
 
+  test('a damaged attempt log stops the learning reset before any data changes',
+      () async {
+    final app = LumoAppState();
+    addTearDown(app.dispose);
+    await app.school.setActiveStudent('student-a');
+    await app.recordLearningAnswer(
+      subject: 'Mathematik',
+      unit: 'Plus bis 10',
+      correct: true,
+      requireSaved: true,
+    );
+    await app.grantCosmosReward(
+      subjectId: 'plus',
+      isMath: true,
+      isPerfect: false,
+      requireSaved: true,
+    );
+    final lease = await app.captureLearningProfile();
+    final prefs = await SharedPreferences.getInstance();
+    const logKey = 'lumo_attempt_log_v1';
+    final damaged = '${prefs.getString(logKey)!}{';
+    await prefs.setString(logKey, damaged);
+    Map<String, Object?> snapshot() => {
+          for (final key in prefs.getKeys()) key: prefs.get(key),
+        };
+    final saved = snapshot();
+
+    await expectLater(app.resetLearningProfile(), throwsA(isA<StateError>()));
+
+    await prefs.reload();
+    expect(snapshot(), saved);
+    expect(app.canUseLearningLease(lease), isTrue);
+    expect(app.learningDailyDone(), 1);
+  });
+
   test(
       'a first local identity write failure can retry the same accepted module answer',
       () async {
@@ -283,6 +318,8 @@ void main() {
       () async {
     final store = _PausedStore('flutter.lumo_school_active_student_v1');
     SharedPreferencesStorePlatform.instance = store;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('lumo_attempt_log_v1', '{beschädigt');
     final app = LumoAppState(walletRepository: RewardWalletRepository());
     addTearDown(() {
       if (!store.release.isCompleted) store.release.complete();
@@ -298,6 +335,7 @@ void main() {
     expect(await app.school.activeStudentId(), isNull);
     final disk = await store.getAll();
     expect(disk['flutter.lumo_school_active_student_v1'], isNull);
+    expect(disk['flutter.lumo_attempt_log_v1'], isNull);
     expect(app.learningSkills(), isEmpty);
   });
 }

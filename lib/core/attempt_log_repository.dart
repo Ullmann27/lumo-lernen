@@ -99,4 +99,9 @@ class AttemptLogRepository {
         await LearningStorage.write(prefs, _key,
             jsonEncode(kept.map((attempt) => attempt.toJson()).toList()));
       });
+
+  /// Prüft vor einem Profilreset, ob das gespeicherte Protokoll lesbar ist.
+  Future<void> validateProfileClear() => LearningStorage.run((prefs) async {
+        _read(prefs, forWrite: true);
+      });
 }

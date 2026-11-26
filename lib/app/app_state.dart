@@ -1739,7 +1739,9 @@ class LumoAppState extends ChangeNotifier {
   Future<void> resetLearningProfile() async {
     if (_disposed || _resetting) return;
     final owner = await captureLearningProfile();
-    if (!canUseLearningLease(owner)) return;
+    if (_disposed || !canUseLearningLease(owner)) return;
+    await attemptLog.validateProfileClear();
+    if (_disposed || !canUseLearningLease(owner)) return;
     final id = owner.studentId;
     if (!_resolvingLegacy.add(id)) return;
     owner._session.epoch++;
