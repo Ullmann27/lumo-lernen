@@ -301,13 +301,18 @@ void main() {
   });
 
   group('BarChartMiniVisual', () {
-    testWidgets('zeigt Hinweis bei leerem Payload', (tester) async {
-      // Wichtig: NICHT erfundene Demo-Werte zeigen, sondern Hinweis.
+    testWidgets('leere Bilddaten übernehmen keine Zahlen aus der Frage',
+        (tester) async {
       await tester.pumpWidget(wrap(BarChartMiniVisual(
-        task: buildTask(type: VisualType.barChart, prompt: 'Diagramm:'),
+        task: buildTask(
+          type: VisualType.barChart,
+          prompt: 'Diagramm: Was geschah 2026?',
+        ),
       )));
       expect(find.byType(BarChartMiniVisual), findsOneWidget);
-      expect(find.text('Schau die Aufgabe an und überlege die Zahlen.'), findsOneWidget);
+      expect(find.text('Schau die Aufgabe an und überlege die Zahlen.'),
+          findsOneWidget);
+      expect(find.text('2026'), findsNothing);
     });
 
     testWidgets('rendert echte Daten', (tester) async {
@@ -350,7 +355,7 @@ void main() {
       expect(tester.takeException(), isNull);
     });
 
-    testWidgets('ohne Bilddaten: alle Zahlen der Aufgabe, keine erfundenen Tage',
+    testWidgets('leere Bilddaten übernehmen keine Zahlen aus der Frage',
         (tester) async {
       await tester.pumpWidget(wrap(SimpleBarChartVisual(
         task: buildTask(
@@ -358,12 +363,56 @@ void main() {
           prompt: 'Drei Kinder sammeln Sterne: 12, 18 und 21.',
         ),
       )));
-      for (var index = 0; index < 3; index++) {
-        expect(find.byKey(ValueKey('chart-bar-$index')), findsOneWidget);
-      }
-      expect(find.byKey(const ValueKey('chart-bar-3')), findsNothing);
-      expect(find.text('Mo'), findsNothing);
+      expect(find.text('Keine Diagrammdaten verfügbar.'), findsOneWidget);
+      expect(find.byKey(const ValueKey('chart-bar-0')), findsNothing);
+      expect(find.text('12'), findsNothing);
       expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Null, kleine Zahl und fehlender Wert auf derselben Achse',
+        (tester) async {
+      await tester.pumpWidget(wrap(SimpleBarChartVisual(
+        task: buildTask(
+          type: VisualType.simpleBarChart,
+          data: {
+            'bars': [0, 1, null, 50],
+            'labels': ['Montag', 'Dienstag', 'Mittwoch ohne Zählung', 'Donnerstag'],
+          },
+        ),
+      )));
+      expect(find.text('0'), findsOneWidget);
+      expect(find.text('Fehlt'), findsOneWidget);
+      expect(find.text('Mittwoch ohne Zählung'), findsOneWidget);
+      expect(find.bySemanticsLabel('Montag: 0'), findsOneWidget);
+      expect(find.bySemanticsLabel('Mittwoch ohne Zählung: kein Wert erfasst'),
+          findsOneWidget);
+      expect(find.byKey(const ValueKey('chart-value-0')), findsNothing);
+      expect(find.byKey(const ValueKey('chart-value-2')), findsNothing);
+      final smallBar = find.byKey(const ValueKey('chart-value-1'));
+      final largeBar = find.byKey(const ValueKey('chart-value-3'));
+      expect(tester.getSize(smallBar).height, 2);
+      expect(tester.getSize(largeBar).height, 100);
+      final baselineY = tester.getBottomLeft(smallBar).dy;
+      for (var i = 0; i < 4; i++) {
+        final baseline = find.byKey(ValueKey('chart-baseline-$i'));
+        expect(tester.getTopLeft(baseline).dy, baselineY);
+      }
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('zeigt keine verschobenen Balken bei abweichender Datenlänge',
+        (tester) async {
+      await tester.pumpWidget(wrap(SimpleBarChartVisual(
+        task: buildTask(
+          type: VisualType.simpleBarChart,
+          data: {
+            'bars': [null, 5],
+            'labels': ['Mo'],
+          },
+        ),
+      )));
+      expect(find.text('Keine Diagrammdaten verfügbar.'), findsOneWidget);
+      expect(find.text('5'), findsNothing);
     });
   });
 

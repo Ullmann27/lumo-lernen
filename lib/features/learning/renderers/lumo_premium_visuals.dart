@@ -677,12 +677,7 @@ class BarChartMiniVisual extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
     final raw = data['bars'];
-    final extracted = raw is List
-        ? raw.map((e) => _readInt(e) ?? 0).toList(growable: false)
-        : _digitsFromPrompt(task.prompt);
-    // Bei leerem Datensatz Mini-Hinweis statt erfundene Demo-Werte zeigen.
-    // Demo-Werte wuerden die Aufgabe verfaelschen.
-    if (extracted.isEmpty) {
+    if (raw is! List || raw.isEmpty || raw.any((v) => v is! int || v < 0)) {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
         decoration: _stageDecoration(LumoColors.blue),
@@ -706,7 +701,7 @@ class BarChartMiniVisual extends StatelessWidget {
         ),
       );
     }
-    final bars = extracted;
+    final bars = raw.cast<int>();
     final maxValue = bars.fold<int>(1, (a, b) => b > a ? b : a);
     final colors = <Color>[
       const Color(0xFFFF7A2F),
@@ -1910,14 +1905,13 @@ class NumberCompareVisual extends StatelessWidget {
 
 /// Einfaches Säulendiagramm mit einem Balken je Wert der Aufgabe.
 ///
-/// Die Werte und Beschriftungen kommen aus den Bilddaten (`bars`, `labels`).
-/// Fehlen sie, zeigt das Bild alle Zahlen der Aufgabe und nummeriert die
-/// Balken. Früher zeigte es immer nur die ersten zwei Zahlen als „Mo“ und
-/// „Di“ – beim Mittelwert aus drei Kindern fehlte der dritte Wert.
+/// Jeder beschrifteten Kategorie ist eine Zählung oder ein fehlender Wert
+/// zugeordnet. Alle Balken beginnen an derselben Grundlinie.
 class SimpleBarChartVisual extends StatelessWidget {
   const SimpleBarChartVisual({super.key, required this.task});
   final TaskInstance task;
 
+  static const _ink = Color(0xFF064E3B);
   static const _colors = <Color>[
     Color(0xFF60A5FA),
     Color(0xFFEC4899),
@@ -1931,17 +1925,20 @@ class SimpleBarChartVisual extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = task.visualPayload.data;
     final rawBars = data['bars'];
-    final bars = rawBars is List
-        ? rawBars.map(_readInt).whereType<int>().toList(growable: false)
-        : _digitsFromPrompt(task.prompt);
-    if (bars.isEmpty || bars.length > _colors.length) {
-      return const SizedBox.shrink();
-    }
     final rawLabels = data['labels'];
-    final labels = rawLabels is List && rawLabels.length == bars.length
-        ? <String>[for (final label in rawLabels) '$label']
-        : <String>[for (var i = 0; i < bars.length; i++) '${i + 1}'];
-    final maxVal = bars.fold<int>(1, (a, b) => b > a ? b : a);
+    if (rawBars is! List ||
+        rawLabels is! List ||
+        rawBars.isEmpty ||
+        rawBars.length > _colors.length ||
+        rawBars.length != rawLabels.length ||
+        rawBars.any((value) => value != null && (value is! int || value < 0)) ||
+        rawLabels.any((label) => label is! String || label.trim().isEmpty)) {
+      return const Text('Keine Diagrammdaten verfügbar.');
+    }
+    final bars = rawBars.cast<int?>();
+    final labels = rawLabels.cast<String>();
+    final maxVal = bars.whereType<int>().fold<int>(1, (a, b) => b > a ? b : a);
+    final labelHeight = MediaQuery.textScalerOf(context).scale(12) * 2.5 + 6;
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 14, 12, 14),
       decoration: _stageDecoration(const Color(0xFF22C55E)),
@@ -1953,9 +1950,10 @@ class SimpleBarChartVisual extends StatelessWidget {
               child: _bar(
                 i,
                 bars[i],
-                (bars[i] / maxVal * 100).clamp(8.0, 100.0),
+                (bars[i] ?? 0) / maxVal * 100,
                 _colors[i],
                 labels[i],
+                labelHeight,
               ),
             ),
         ],
@@ -1963,52 +1961,64 @@ class SimpleBarChartVisual extends StatelessWidget {
     );
   }
 
-  Widget _bar(int index, int value, double h, Color c, String label) {
+  Widget _bar(
+    int index,
+    int? value,
+    double height,
+    Color color,
+    String label,
+    double labelHeight,
+  ) {
     return Semantics(
       key: ValueKey('chart-bar-$index'),
-      label: '$label: $value',
+      label: '$label: ${value ?? 'kein Wert erfasst'}',
       excludeSemantics: true,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            '$value',
-            style: TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 18,
-              fontWeight: FontWeight.w900,
-              color: c,
-            ),
-          ),
-          const SizedBox(height: 4),
-          FractionallySizedBox(
-            widthFactor: .7,
-            child: Container(
-              height: h,
-              decoration: BoxDecoration(
-                color: c,
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(8)),
-                boxShadow: [
-                  BoxShadow(
-                      color: c.withOpacity(0.35),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4)),
-                ],
-              ),
-            ),
-          ),
-          Container(height: 3, color: const Color(0xFF065F46)),
-          const SizedBox(height: 6),
           FittedBox(
             fit: BoxFit.scaleDown,
             child: Text(
+              value == null ? 'Fehlt' : '$value',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: value == null ? 14 : 18,
+                fontWeight: FontWeight.w900,
+                color: _ink,
+              ),
+            ),
+          ),
+          const SizedBox(height: 4),
+          if (height > 0)
+            FractionallySizedBox(
+              widthFactor: .7,
+              child: Container(
+                key: ValueKey('chart-value-$index'),
+                height: height,
+                decoration: BoxDecoration(
+                  color: color,
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(8)),
+                ),
+              ),
+            ),
+          Container(
+            key: ValueKey('chart-baseline-$index'),
+            height: 3,
+            color: _ink,
+          ),
+          const SizedBox(height: 6),
+          SizedBox(
+            height: labelHeight,
+            child: Text(
               label,
+              textAlign: TextAlign.center,
+              maxLines: 2,
               style: const TextStyle(
                 fontFamily: 'Nunito',
                 fontSize: 12,
                 fontWeight: FontWeight.w800,
-                color: Color(0xFF065F46),
+                color: _ink,
               ),
             ),
           ),

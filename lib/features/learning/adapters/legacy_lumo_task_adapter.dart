@@ -148,6 +148,7 @@ class LegacyLumoTaskAdapter {
       visual: replacement.visual,
       difficulty: task.difficulty.clamp(1, task.grade),
       missionTag: task.missionTag,
+      chartEntries: replacement.chartEntries,
     );
   }
 
@@ -226,6 +227,7 @@ class LegacyLumoTaskAdapter {
       visual: task.visual,
       difficulty: task.difficulty,
       missionTag: task.missionTag,
+      chartEntries: task.chartEntries,
     );
     return _variedTask(repaired);
   }
@@ -413,6 +415,8 @@ class LegacyLumoTaskAdapter {
       visual: visual ?? task.visual,
       difficulty: task.difficulty,
       missionTag: task.missionTag,
+      chartEntries:
+          prompt == null && visual == null ? task.chartEntries : const [],
     );
   }
 
@@ -858,6 +862,15 @@ class LegacyLumoTaskAdapter {
 
     // Säulendiagramm: ein Balken je Wert der Aufgabe, passend beschriftet.
     if (task.visual == 'chart') {
+      if (task.chartEntries.isNotEmpty) {
+        return <String, Object?>{
+          'bars': <int?>[for (final entry in task.chartEntries) entry.value],
+          'labels': <String>[for (final entry in task.chartEntries) entry.label],
+        };
+      }
+
+      // Older tasks may still store the data in two reviewed prompt formats.
+      // Only parse the declared data sentence, never numbers from the question.
       final children = RegExp(
               r'^(?:Knobelaufgabe: )?Drei Kinder sammeln Sterne: (\d+), (\d+) und (\d+)\.')
           .firstMatch(task.prompt.trim());
@@ -871,13 +884,22 @@ class LegacyLumoTaskAdapter {
         'Montag': 'Mo', 'Dienstag': 'Di', 'Mittwoch': 'Mi', 'Donnerstag': 'Do',
         'Freitag': 'Fr', 'Samstag': 'Sa', 'Sonntag': 'So',
       };
-      final entries = RegExp('(${days.keys.join('|')}) (\\d+)')
-          .allMatches(task.prompt)
-          .toList(growable: false);
-      if (task.prompt.startsWith('Diagramm:') && entries.length >= 2) {
+      const prefix = 'Diagramm:';
+      final dataEnd = task.prompt.indexOf('.');
+      if (task.prompt.startsWith(prefix) && dataEnd > prefix.length) {
+        final entryPattern = RegExp(
+            '^(${days.keys.join('|')}) (\\d+)(?: Kinder)?\$');
+        final entries = task.prompt
+            .substring(prefix.length, dataEnd)
+            .split(',')
+            .map((line) => entryPattern.firstMatch(line.trim()))
+            .toList(growable: false);
+        if (entries.length < 2 || entries.any((entry) => entry == null)) {
+          return const <String, Object?>{};
+        }
         return <String, Object?>{
-          'bars': <int>[for (final entry in entries) int.parse(entry[2]!)],
-          'labels': <String>[for (final entry in entries) days[entry[1]]!],
+          'bars': <int?>[for (final entry in entries) int.tryParse(entry![2]!)],
+          'labels': <String>[for (final entry in entries) days[entry![1]]!],
         };
       }
       return const <String, Object?>{};

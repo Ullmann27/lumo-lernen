@@ -22,6 +22,7 @@ void main() {
     String subject = 'Mathematik',
     List<String> choices = const <String>['a', 'b', 'c'],
     bool requireValidTask = false,
+    List<BarChartEntry> chartEntries = const [],
   }) {
     final task = LumoTask(
       id: 'test-id',
@@ -33,6 +34,7 @@ void main() {
       answer: answer,
       explanation: 'Erklaerung',
       visual: visual,
+      chartEntries: chartEntries,
     );
     if (requireValidTask) {
       // Test the parser, not a replacement task from the quality guard.
@@ -91,7 +93,7 @@ void main() {
   // Fachprüfung Mathematik S12: Das Diagramm zum Mittelwert braucht alle
   // drei Werte und die Beschriftung „Kind 1/2/3“ statt „Mo“/„Di“.
   group('chart parser', () {
-    test('Mittelwert: drei Balken fuer drei Kinder', () {
+    test('Alte Mittelwert-Aufgaben liefern drei Balken für drei Kinder', () {
       final template = MathTaskTemplates.templates
           .singleWhere((item) => item.id == 'g4_average');
       for (var seed = 0; seed < 60; seed++) {
@@ -116,13 +118,72 @@ void main() {
       final data = dataFor(
         visual: 'chart',
         prompt:
-            'Diagramm: Montag 12 Kinder, Dienstag 11 Kinder. Wie viele zusammen?',
+            'Diagramm: Montag 12 Kinder, Dienstag 11 Kinder. Am Freitag 5 Kinder. '
+            'Wie viele waren an den ersten beiden Tagen zusammen?',
         answer: '23',
         choices: const ['23', '13', '33', '1'],
         requireValidTask: true,
       );
       expect(data['bars'], [12, 11]);
       expect(data['labels'], ['Mo', 'Di']);
+    });
+
+    test('echte Aufgaben geben ihre Daten vom Generator bis zur Grafik weiter',
+        () {
+      for (final unit in ['Diagramme lesen', 'Mittelwert']) {
+        final factory = ExerciseFactory(seed: 25);
+        var charts = 0;
+        for (var number = 0; number < 64; number++) {
+          final task = factory.nextExact(
+            grade: 4,
+            subject: 'Mathematik',
+            unit: unit,
+            currentGradeOnly: true,
+          );
+          if (task.visual != 'chart') continue;
+          charts++;
+          final expectedCount = unit == 'Mittelwert' ? 3 : 4;
+          expect(task.chartEntries, hasLength(expectedCount),
+              reason: task.prompt);
+          final instance = adapter.toTaskInstance(
+            task: task,
+            childId: 'chart-audit-test',
+            difficulty: 4,
+          );
+          final payload = instance.visualPayload;
+          expect(payload.type, VisualType.simpleBarChart);
+          expect(payload.data['bars'],
+              task.chartEntries.map((entry) => entry.value).toList());
+          expect(payload.data['labels'],
+              task.chartEntries.map((entry) => entry.label).toList());
+          final observations = RegExp(r'\d+')
+              .allMatches(task.prompt.split('.').first)
+              .map((match) => int.parse(match.group(0)!));
+          expect(payload.data['bars'], observations.toList(),
+              reason: task.prompt);
+        }
+        expect(charts, greaterThan(0), reason: unit);
+      }
+    });
+
+    test('typisierte Beobachtungen erhalten eine Null und einen fehlenden Wert',
+        () {
+      final data = dataFor(
+        visual: 'chart',
+        prompt: 'Diagramm: Montag 0, Dienstag 1, Donnerstag 50 Kinder. '
+            'Am Mittwoch wurde nicht gezählt. An welchem Tag waren die meisten Kinder da?',
+        answer: 'Donnerstag',
+        choices: const ['Montag', 'Dienstag', 'Donnerstag'],
+        chartEntries: const [
+          (label: 'Mo', value: 0),
+          (label: 'Di', value: 1),
+          (label: 'Mi', value: null),
+          (label: 'Do', value: 50),
+        ],
+        requireValidTask: true,
+      );
+      expect(data['bars'], [0, 1, null, 50]);
+      expect(data['labels'], ['Mo', 'Di', 'Mi', 'Do']);
     });
   });
 

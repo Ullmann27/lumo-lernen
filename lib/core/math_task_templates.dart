@@ -949,13 +949,18 @@ class MathTaskTemplate {
           }
         }
         final data = 'Diagramm: ${<String>[for (var i = 0; i < 4; i++) '${days[i]} ${values[i]}'].join(', ')} Kinder.';
+        const labels = ['Mo', 'Di', 'Mi', 'Do'];
+        final chartEntries = List<BarChartEntry>.unmodifiable([
+          for (var i = 0; i < labels.length; i++)
+            (label: labels[i], value: values[i]),
+        ]);
         final sorted = <int>[...values]..sort();
         final question = _positive(_mixSeed(seed + 79), 4);
         if (question == 0 || question == 1) {
           final wanted = question == 0 ? sorted.last : sorted.first;
           return _choice(seed, '$data An welchem Tag waren die ${question == 0 ? 'meisten' : 'wenigsten'} Kinder da?', days[values.indexOf(wanted)], days,
               'Vergleiche alle vier Balken: $wanted ist die ${question == 0 ? 'größte' : 'kleinste'} Zahl. Das war am ${days[values.indexOf(wanted)]}.', 'chart',
-              keepOrder: true);
+              keepOrder: true, chartEntries: chartEntries);
         }
         if (question == 2) {
           final first = _positive(_mixSeed(seed + 83), 4);
@@ -965,12 +970,14 @@ class MathTaskTemplate {
           final difference = values[more] - values[less];
           return _numberTask(seed, '$data Wie viele Kinder waren am ${days[more]} mehr da als am ${days[less]}?', difference,
               'Lies beide Balken ab und rechne den Unterschied: ${values[more]} − ${values[less]} = $difference.', 'chart',
-              typical: <int>[values[more] + values[less], values[more], values[less], difference + 10, difference - 10]);
+              typical: <int>[values[more] + values[less], values[more], values[less], difference + 10, difference - 10],
+              chartEntries: chartEntries);
         }
         final sum = values.reduce((x, y) => x + y);
         return _numberTask(seed, '$data Wie viele Kinder waren es an allen vier Tagen zusammen?', sum,
             'Zähle alle vier Balken zusammen: ${values.join(' + ')} = $sum.', 'chart',
-            typical: <int>[sum - 10, sum + 10, sum - values.last, sorted.last, sum - 100, sum + 100]);
+            typical: <int>[sum - 10, sum + 10, sum - values.last, sorted.last, sum - 100, sum + 100],
+            chartEntries: chartEntries);
       case MathTemplateKind.compare:
         // Befund M7: Im Zahlenraum bis zur Million gab es nur Vergleiche.
         // Jede vierte Aufgabe fragt nach dem Stellenwert einer Ziffer,
@@ -1101,6 +1108,10 @@ class MathTaskTemplate {
           'chart',
           // Typisch: nur addiert, einen der drei Werte genannt, durch 2 geteilt.
           typical: <int>[v1, v2, v3, sum ~/ 2, sum, mean + 3, mean - 3],
+          chartEntries: List<BarChartEntry>.unmodifiable([
+            for (var i = 0; i < values.length; i++)
+              (label: 'Kind ${i + 1}', value: values[i]),
+          ]),
         );
       case MathTemplateKind.shapeTrace:
         // 2026-06-05 Iter 20: Form-Nachzeichnen.
@@ -1197,6 +1208,7 @@ class MathTaskTemplate {
     int? max,
     Set<int> blocked = const <int>{},
     String suffix = '',
+    List<BarChartEntry> chartEntries = const [],
   }) {
     return _choice(
       seed,
@@ -1216,6 +1228,7 @@ class MathTaskTemplate {
       explanation,
       visual,
       keepOrder: true,
+      chartEntries: chartEntries,
     );
   }
 
@@ -1226,6 +1239,7 @@ class MathTaskTemplate {
   /// stehen.
   MathConcreteTask _choice(int seed, String prompt, String answer, List<String> rawChoices, String explanation, String visual, {
     bool keepOrder = false,
+    List<BarChartEntry> chartEntries = const [],
   }) {
     final choices = <String>[if (!keepOrder || !rawChoices.contains(answer)) answer];
     for (final choice in rawChoices) {
@@ -1250,6 +1264,7 @@ class MathTaskTemplate {
       visual: visual,
       difficulty: grade,
       promptPattern: promptPattern,
+      chartEntries: chartEntries,
     );
   }
 
@@ -1279,6 +1294,9 @@ class MathTaskTemplate {
   }
 }
 
+/// A named observation. A missing observation has no numeric value.
+typedef BarChartEntry = ({String label, int? value});
+
 class MathConcreteTask {
   const MathConcreteTask({
     required this.unit,
@@ -1289,6 +1307,7 @@ class MathConcreteTask {
     required this.visual,
     required this.difficulty,
     required this.promptPattern,
+    this.chartEntries = const [],
   });
 
   final String unit;
@@ -1299,6 +1318,7 @@ class MathConcreteTask {
   final String visual;
   final int difficulty;
   final String promptPattern;
+  final List<BarChartEntry> chartEntries;
 }
 
 enum MathTemplateKind {

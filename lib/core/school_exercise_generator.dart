@@ -28,6 +28,7 @@ class LumoTask {
     this.visual = 'auto',
     this.difficulty = 1,
     this.missionTag = 'normal',
+    this.chartEntries = const [],
   });
 
   final String id;
@@ -42,6 +43,7 @@ class LumoTask {
   final String visual;
   final int difficulty;
   final String missionTag;
+  final List<BarChartEntry> chartEntries;
 }
 
 class Curriculum {
@@ -780,6 +782,7 @@ class ExerciseFactory {
       explanation: generated.explanation,
       visual: generated.visual,
       difficulty: generated.difficulty,
+      chartEntries: generated.chartEntries,
     );
   }
 
