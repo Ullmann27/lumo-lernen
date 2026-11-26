@@ -11,7 +11,7 @@ from pathlib import Path
 import re
 
 
-REQUIRED = ('run', 'quiz', 'memory', 'chess', 'kart', 'cards', 'world')
+REQUIRED = ('run', 'quiz', 'memory', 'chess', 'kart', 'cards', 'world', 'stars')
 FATAL_ISSUES = ('script_error', 'fatal', 'android_runtime', 'fatal_signal',
                 'boot_load_error', 'process_died')
 

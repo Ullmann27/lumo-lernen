@@ -69,6 +69,8 @@ class PlanTests(unittest.TestCase):
         self.assertTrue({'run', 'quiz', 'cards', 'settlement', 'build', 'kart', 'chess', 'world'} <= planned)
         self.assertEqual(planned | set(diag.NOT_COVERED), allowed)
         self.assertEqual(diag.PLAN[0][1], 'run')
+        star = next(entry for entry in diag.PLAN if entry[0] == 'stars')
+        self.assertEqual(star[1:3], ('stars', 'ui'))
 
     def test_intent_extras_match_launch3d_fields(self):
         options = diag.launch_options('settlement')
@@ -97,6 +99,9 @@ class PlanTests(unittest.TestCase):
         self.assertIn(f"semanticTitle: '{world[3]}'", hub)
         portal = (ROOT / 'lib/features/games/spielwelt/spielwelt_hub.dart').read_text()
         self.assertIn(f"'world' => '{world[4]}'", portal)
+        stars = next(entry for entry in diag.PLAN if entry[0] == 'stars')
+        self.assertIn(f"semanticTitle: '{stars[3]}'", hub)
+        self.assertIn(f"'stars' => '{stars[4]}'", portal)
         self.assertEqual(diag.portal_label(world[3], world[4]),
                          'Lumo World. Dein Dorf, deine Freunde und neue Abenteuer Spielen')
 

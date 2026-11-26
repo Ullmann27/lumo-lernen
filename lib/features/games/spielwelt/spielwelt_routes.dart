@@ -166,7 +166,7 @@ class SpielweltRoutes {
       identity: 'stars',
       title: 'Sternenjagd',
       semanticTitle: 'Lumo Sternenjagd',
-      tagline: 'Fange Sterne in drei Wellen und verbessere deine Bestzeit!',
+      tagline: 'Drei Wellen, Sterne fangen und Bestzeit verbessern',
       coverAsset: 'assets/lumo_design/icons/star_gold.png',
       kind: SpielweltTargetKind.nativeScene,
       target: 'stars',

@@ -43,7 +43,7 @@ ISSUE_PATTERNS = {
 # ('<semanticTitle>. <tagline> <Status>') bzw. sichtbare Knopftexte.
 # Szenen laut Whitelist in tools/auto_install/MainActivity.kt (launch3D):
 # kart jump run puzzle build settlement rhythm treasure learning cards
-# connect_four games memory quiz.
+# connect_four games memory quiz chess skypost world stars.
 PLAN = (
     ('run', 'run', 'ui', 'Lumo Lauf', 'Spring. Laufe. Sei mutig!'),
     ('quiz', 'quiz', 'ui', 'Wer wird Lumo-Meister?', '20 Fragen · 3 Joker · bis 5.000 Sterne'),
@@ -51,18 +51,20 @@ PLAN = (
     ('chess', 'chess', 'ui', 'Lumo Schach',
      'Schach lernen mit Lumo – oder gegen ihn spielen'),
     ('kart', 'kart', 'ui', 'Lumo Kart', 'Fahre mit Lumo um die Wette!'),
-    ('run-intent', 'run', 'intent', None, None),
+    ('stars', 'stars', 'ui', 'Lumo Sternenjagd',
+     'Drei Wellen, Sterne fangen und Bestzeit verbessern'),
     ('cards', 'cards', 'ui', 'Lumo Karten', 'Sammeln. Spielen. Staunen!'),
+    ('world', 'world', 'ui', 'Lumo World', 'Dein Dorf, deine Freunde und neue Abenteuer'),
+    ('puzzle', 'puzzle', 'ui', 'Puzzle', 'Stück für Stück die Welt entdecken!'),
+    ('rhythm', 'rhythm', 'ui', 'Rhythm Party', 'Fühl den Beat!'),
+    ('treasure', 'treasure', 'ui', 'Schatzsuche', 'Rätsel. Hinweise. Schätze!'),
     ('settlement', 'settlement', 'ui', 'Dorf & Wirtschaft',
      'Versorge dein Dorf, baue Häuser und hilf deinen Nachbarn!'),
     ('build', 'build', 'ui', 'Bauwelt',
      'Bauen. Gestalten. Deiner Fantasie sind keine Grenzen gesetzt!'),
     ('run-abenteuer', 'run', 'ui-button', 'Auf ins Abenteuer!', None),
-    ('puzzle', 'puzzle', 'ui', 'Puzzle', 'Stück für Stück die Welt entdecken!'),
-    ('rhythm', 'rhythm', 'ui', 'Rhythm Party', 'Fühl den Beat!'),
-    ('treasure', 'treasure', 'ui', 'Schatzsuche', 'Rätsel. Hinweise. Schätze!'),
-    ('world', 'world', 'ui', 'Lumo World', 'Dein Dorf, deine Freunde und neue Abenteuer'),
-    ('games', 'games', 'ui-button', 'Magische 3D-Spielewelt betreten', None),
+    ('games', 'games', 'ui-button', 'Mehr 3D-Spiele · Bauwelt & Schätze', None),
+    ('run-intent', 'run', 'intent', None, None),
     ('jump-intent', 'jump', 'intent', None, None),
 )
 NOT_COVERED = {
