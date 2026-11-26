@@ -81,7 +81,7 @@ def android_evidence(order):
               'steps': [{'step': name, 'ok': True} for name in publisher.BACKUP_STEPS]}
     next(row for row in backup['steps'] if row['step'] == 'apk-identity')['installed_sha256'] = '2' * 64
     native = {'status': 'DONE', 'package': publisher.PACKAGE, 'scenes': []}
-    for name in ('run', 'quiz', 'memory', 'chess', 'kart', 'cards', 'world'):
+    for name in ('run', 'quiz', 'memory', 'chess', 'kart', 'cards', 'stars', 'world'):
         native['scenes'].append({'id': name, 'scene': name, 'path': 'ui', 'tapped': True,
             'router_loaded': True, 'game_process_alive_at_end': True, 'app_alive_at_end': True,
             'native_pid_at_end': 321, 'native_process_name': publisher.PACKAGE + ':lumo_game',
@@ -198,6 +198,12 @@ class ReviewedPublishTests(unittest.TestCase):
     def test_precomputed_pass_cannot_replace_world_observation(self):
         docs = android_evidence(self.order)
         docs[2]['scenes'][-1]['skipped'] = True
+        with self.assertRaises(ValueError):
+            publisher.verify_android(self.order, metadata(self.order)[2], *docs)
+
+    def test_precomputed_pass_cannot_replace_stars_observation(self):
+        docs = android_evidence(self.order)
+        docs[2]['scenes'] = [row for row in docs[2]['scenes'] if row['id'] != 'stars']
         with self.assertRaises(ValueError):
             publisher.verify_android(self.order, metadata(self.order)[2], *docs)
 

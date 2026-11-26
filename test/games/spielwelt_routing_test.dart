@@ -145,9 +145,15 @@ void main() {
         await tester.tap(find.text('Originale 3D-Abenteuer'));
         await tester.pump(const Duration(milliseconds: 350));
         final tile = find.byKey(ValueKey('spielwelt-original-$scene'));
+        // A built ListTile can still be clipped by the surrounding sliver.
+        // Center it and lay out the actual viewport before sending a pointer.
         await tester.scrollUntilVisible(tile, 180,
             scrollable: find.byType(Scrollable).first);
-        await tester.tap(tile);
+        await tester.pump();
+        await Scrollable.ensureVisible(tester.element(tile), alignment: 0.5);
+        await tester.pump();
+        expect(tile.hitTestable(), findsOneWidget, reason: scene);
+        await tester.tap(tile.hitTestable());
         await tester.runAsync(
             () => Future<void>.delayed(const Duration(milliseconds: 300)));
         await tester.pump(const Duration(milliseconds: 800));
