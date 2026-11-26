@@ -107,7 +107,7 @@ class VerstaendnisIndiz {
   }) {
     final liste = alle
         .where((a) =>
-            a.check == Attempt.vergleichNachHilfe &&
+            a.isComparableAfterHelp &&
             a.competency == kompetenz &&
             (fach == null || a.subject == fach))
         .toList()
@@ -121,10 +121,7 @@ class VerstaendnisIndiz {
       if (gesehen.add('${a.reference}|${a.prompt}')) eindeutig.add(a);
     }
     final allein = eindeutig.where((a) => a.confirmsAfterHelp).toList();
-    final ausgang = {
-      for (final a in allein)
-        a.reference.trim().isEmpty ? 'ohne:${a.id}' : a.reference.trim(),
-    };
+    final ausgang = {for (final a in allein) a.reference.trim()};
     final VerstaendnisStufe stufe;
     if (eindeutig.isEmpty) {
       stufe = VerstaendnisStufe.keineDaten;
@@ -155,7 +152,7 @@ class VerstaendnisIndiz {
   static List<VerstaendnisIndiz> alle(Iterable<Attempt> attempts) {
     final gruppen = <(String, String)>{
       for (final a in attempts)
-        if (a.check == Attempt.vergleichNachHilfe) (a.subject, a.competency),
+        if (a.isComparableAfterHelp) (a.subject, a.competency),
     };
     final liste = [
       for (final (fach, kompetenz) in gruppen)
@@ -180,14 +177,15 @@ class VerstaendnisIndiz {
         .where((a) =>
             a.competency == kompetenz &&
             (fach == null || a.subject == fach) &&
-            a.method != null)
+            a.method != null &&
+            (a.check != Attempt.vergleichNachHilfe || a.isComparableAfterHelp))
         .toList()
       ..sort((x, y) => x.at.compareTo(y.at));
     final ergebnis = <String>{};
     for (final a in liste) {
       if (!a.correct) {
         ergebnis.add(a.method!);
-      } else if (!a.hintUsed || a.check == Attempt.vergleichNachHilfe) {
+      } else if (!a.hintUsed || a.isComparableAfterHelp) {
         // Danach allein geschafft: diese Methode hat geholfen.
         ergebnis.remove(a.method);
       }

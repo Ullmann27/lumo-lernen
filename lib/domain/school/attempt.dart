@@ -1,3 +1,5 @@
+import 'competency.dart';
+
 /// Eine einzelne beantwortete Aufgabe. Grundlage für Lernbericht,
 /// Schwächenanalyse und später den Lehrerbereich.
 ///
@@ -60,9 +62,20 @@ class Attempt {
   /// diese nicht zum Ziel geführt hat.
   final String? method;
 
+  /// Eine neue Aufgabe zur Kompetenz der dokumentierten Ausgangsaufgabe.
+  bool get isComparableAfterHelp {
+    if (check != vergleichNachHilfe) return false;
+    final source = reference.trim();
+    final target = prompt.trim();
+    if (source.isEmpty || target.isEmpty || source == target) return false;
+    const classifier = CompetencyClassifier();
+    String classify(String text) =>
+        classifier.classify(subject: subject, unit: unit, prompt: text);
+    return classify(source) == competency && classify(target) == competency;
+  }
+
   /// Selbstständig richtig gelöste Vergleichsaufgabe nach einer Hilfe.
-  bool get confirmsAfterHelp =>
-      check == vergleichNachHilfe && correct && !hintUsed;
+  bool get confirmsAfterHelp => isComparableAfterHelp && correct && !hintUsed;
 
   Map<String, dynamic> toJson() => {
         'id': id,

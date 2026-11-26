@@ -134,6 +134,22 @@ void main() {
       expect(i.stufe, VerstaendnisStufe.keineDaten);
     });
 
+    test('Aufgaben anderer Kompetenz und ohne gültigen Bezug bestätigen nichts',
+        () {
+      final attempts = [
+        _vergleich('7 + 6 = ?', '2 + 3 = ?'),
+        _vergleich('9 + 3 = ?', '1 + 5 = ?', minute: 30),
+        _vergleich('6 + 8 = ?', ''),
+        _vergleich('8 + 5 = ?', '8 + 5 = ?'),
+      ];
+      expect(attempts.any((a) => a.confirmsAfterHelp), isFalse);
+      expect(VerstaendnisIndiz.alle(attempts), isEmpty);
+      final evidence = VerstaendnisIndiz.aus(attempts, kompetenz: _komp);
+      expect(evidence.stufe, VerstaendnisStufe.keineDaten);
+      expect(evidence.vergleiche, 0);
+      expect(evidence.bezuege, isEmpty);
+    });
+
     test('zweimal dieselbe Ausgangsaufgabe: noch nicht bestätigt', () {
       final i = VerstaendnisIndiz.aus([
         _vergleich('7 + 6 = ?', '8 + 5 = ?'),

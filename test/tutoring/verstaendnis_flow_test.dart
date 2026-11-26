@@ -15,6 +15,7 @@ import 'package:lumo_lernen/core/lumo_voice_clips.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/domain/school/attempt.dart';
+import 'package:lumo_lernen/domain/school/competency.dart';
 import 'package:lumo_lernen/domain/tutoring/verstaendnis.dart';
 import 'package:lumo_lernen/features/learning/learning_content.dart';
 import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
@@ -177,6 +178,10 @@ void main() {
     expect(vergleich.single.prompt, twin.prompt);
     expect(vergleich.single.reference, source.prompt,
         reason: 'nachvollziehbar: worauf sich der Nachweis bezieht');
+    expect(
+        vergleich.single.competency,
+        const CompetencyClassifier().classify(
+            subject: 'Mathematik', unit: 'Plus bis 10', prompt: source.prompt));
     expect(vergleich.single.correct, isTrue);
     expect(vergleich.single.hintUsed, isFalse);
     expect(vergleich.single.confirmsAfterHelp, isTrue);

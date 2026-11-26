@@ -974,9 +974,8 @@ class _LearningContentState extends State<LearningContent>
     ));
   }
 
-  /// A new task of the same unit and, where the generator offers one, the
-  /// same kind as the [source] mistake. It deliberately bypasses the
-  /// no-repeat memory: a similar task is exactly what is wanted here.
+  /// A different task for the same competency in the same unit, preferably
+  /// with the same task pattern. It deliberately bypasses the no-repeat memory.
   LumoTask? _twinFor(LumoTask? source) {
     if (source == null) return null;
     final grade = source.grade.clamp(1, 4).toInt();
@@ -994,7 +993,6 @@ class _LearningContentState extends State<LearningContent>
     final competency = competencyOf(source);
     final st = widget.appState.state;
     LumoTask? sameCompetency;
-    LumoTask? sameUnit;
     for (var attempt = 0; attempt < 60; attempt++) {
       final candidate = _factory.nextExact(
         grade: grade,
@@ -1004,22 +1002,20 @@ class _LearningContentState extends State<LearningContent>
         childName: st.childName,
       );
       if (!_taskQualityGuard.validate(candidate) ||
+          candidate.subject != source.subject ||
           candidate.unit != source.unit ||
           candidate.handwriting != source.handwriting ||
-          (candidate.prompt == source.prompt &&
-              candidate.answer == source.answer)) {
+          candidate.prompt.trim() == source.prompt.trim() ||
+          competencyOf(candidate) != competency) {
         continue;
       }
-      final matchesCompetency = competencyOf(candidate) == competency;
-      if (matchesCompetency &&
-          candidate.visual == source.visual &&
+      if (candidate.visual == source.visual &&
           _varietyGuard.promptPattern(candidate.prompt) == kind) {
         return candidate;
       }
-      if (matchesCompetency) sameCompetency ??= candidate;
-      sameUnit ??= candidate;
+      sameCompetency ??= candidate;
     }
-    return sameCompetency ?? sameUnit;
+    return sameCompetency;
   }
 
   /// Ähnliche Aufgaben für die Fach-Nachhilfe (Beispiel und Prüfaufgabe):
