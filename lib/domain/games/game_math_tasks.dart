@@ -50,6 +50,17 @@ abstract class GameMathTasks {
   static MathConcreteTask _starsPath(GameLevel level, int index) {
     final random = Random(level.id * 1000 + index * 17);
     final grade = level.gradeFloor;
+    final id = level.id;
+    // Auch die falschen Karten bleiben im Zahlenraum der Stufe. Früher
+    // zeigte „Minus bis 10“ z. B. 15 bei 8 − 7 (Plus statt Minus) und
+    // „Plus bis 100“ Karten bis 200.
+    final range = switch (id) {
+      1 || 11 => 5,
+      3 => 7,
+      16 || 17 => 20,
+      39 || 45 || 41 || 42 || 46 => 100,
+      _ => 10,
+    };
     // Die Karten kommen aus derselben Quelle wie beim Üben: Die Lösung
     // liegt der Größe nach an wechselnder Stelle, falsche Karten sind
     // typische Fehler. Früher war sie immer die zweitkleinste Karte.
@@ -57,7 +68,7 @@ abstract class GameMathTasks {
         {String visual = 'dots', List<int> typical = const <int>[]}) {
       final shuffled = MathTaskTemplates.numberChoices(
           answer, random.nextInt(1 << 30),
-          typical: typical, max: grade == 1 ? 20 : null);
+          typical: typical, max: range);
       return MathConcreteTask(
           unit: level.title,
           prompt: prompt,
@@ -69,7 +80,6 @@ abstract class GameMathTasks {
           promptPattern: 'game-level-${level.id}');
     }
 
-    final id = level.id;
     if (id == 4) {
       final count = 2 + random.nextInt(8);
       return numeric(
@@ -143,13 +153,7 @@ abstract class GameMathTasks {
       );
     }
     final subtract = [11, 12, 17, 45].contains(id);
-    final cap = switch (id) {
-      1 || 11 => 5,
-      3 => 7,
-      16 || 17 => 20,
-      39 || 45 => 100,
-      _ => 10,
-    };
+    final cap = range;
     final a = 1 + random.nextInt(cap - 1);
     final b = subtract ? 1 + random.nextInt(a) : 1 + random.nextInt(cap - a);
     final answer = subtract ? a - b : a + b;
