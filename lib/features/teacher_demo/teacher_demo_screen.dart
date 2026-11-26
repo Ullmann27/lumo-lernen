@@ -318,8 +318,8 @@ class _DemoChildDetailScreenState extends State<DemoChildDetailScreen> {
           color: selected ? HoloPalette.deep : HoloPalette.text,
           fontWeight: FontWeight.w700),
       selectedColor: subject == null ? HoloPalette.cyan : HoloPalette.subject(subject),
-      backgroundColor: Colors.white.withValues(alpha: .08),
-      side: BorderSide(color: HoloPalette.cyan.withValues(alpha: .5)),
+      backgroundColor: HoloPalette.night,
+      side: BorderSide(color: HoloPalette.cyan.withValues(alpha: .65)),
       onSelected: (_) => setState(() => _subject = subject),
     );
   }
@@ -458,10 +458,15 @@ class _HomeworkTabState extends State<_HomeworkTab> {
                     selected: _subject == subject,
                     showCheckmark: false,
                     materialTapTargetSize: MaterialTapTargetSize.padded,
-                    selectedColor: HoloPalette.cyan.withValues(alpha: .35),
-                    backgroundColor: Colors.white.withValues(alpha: .08),
-                    labelStyle: const TextStyle(
-                        color: HoloPalette.text, fontWeight: FontWeight.w700),
+                    selectedColor: HoloPalette.cyan,
+                    backgroundColor: HoloPalette.night,
+                    side: BorderSide(
+                        color: HoloPalette.cyan.withValues(alpha: .65)),
+                    labelStyle: TextStyle(
+                        color: _subject == subject
+                            ? HoloPalette.deep
+                            : HoloPalette.text,
+                        fontWeight: FontWeight.w800),
                     onSelected: (_) => setState(() {
                       _subject = subject;
                       _themaPassend();
@@ -479,10 +484,15 @@ class _HomeworkTabState extends State<_HomeworkTab> {
                     selected: _grade == grade,
                     showCheckmark: false,
                     materialTapTargetSize: MaterialTapTargetSize.padded,
-                    selectedColor: HoloPalette.cyan.withValues(alpha: .35),
-                    backgroundColor: Colors.white.withValues(alpha: .08),
-                    labelStyle: const TextStyle(
-                        color: HoloPalette.text, fontWeight: FontWeight.w700),
+                    selectedColor: HoloPalette.cyan,
+                    backgroundColor: HoloPalette.night,
+                    side: BorderSide(
+                        color: HoloPalette.cyan.withValues(alpha: .65)),
+                    labelStyle: TextStyle(
+                        color: _grade == grade
+                            ? HoloPalette.deep
+                            : HoloPalette.text,
+                        fontWeight: FontWeight.w800),
                     onSelected: (_) => setState(() {
                       _grade = grade;
                       _themaPassend();
@@ -500,7 +510,7 @@ class _HomeworkTabState extends State<_HomeworkTab> {
                     .bodyLarge
                     ?.copyWith(color: HoloPalette.text, fontSize: 16),
                 decoration: const InputDecoration(
-                    labelText: 'Untergruppe', labelStyle: label),
+                    labelText: 'Thema', labelStyle: label),
                 items: [
                   for (final u in _units)
                     DropdownMenuItem(
@@ -550,9 +560,16 @@ class _HomeworkTabState extends State<_HomeworkTab> {
                     label: Text(r.child.name),
                     selected: _kids.contains(r.child.id),
                     materialTapTargetSize: MaterialTapTargetSize.padded,
-                    selectedColor: HoloPalette.cyan.withValues(alpha: .35),
-                    backgroundColor: Colors.white.withValues(alpha: .08),
-                    labelStyle: const TextStyle(color: HoloPalette.text),
+                    selectedColor: HoloPalette.cyan,
+                    checkmarkColor: HoloPalette.deep,
+                    backgroundColor: HoloPalette.night,
+                    side: BorderSide(
+                        color: HoloPalette.cyan.withValues(alpha: .65)),
+                    labelStyle: TextStyle(
+                        color: _kids.contains(r.child.id)
+                            ? HoloPalette.deep
+                            : HoloPalette.text,
+                        fontWeight: FontWeight.w700),
                     onSelected: (on) => setState(() =>
                         on ? _kids.add(r.child.id) : _kids.remove(r.child.id)),
                   ),

@@ -122,11 +122,14 @@ class _HoloPanelState extends State<HoloPanel>
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
+          // Etwas dichteres Glas: Text bleibt auch über hellen Szenen gut
+          // lesbar, der Akzent leuchtet nur noch an der Kante oben links.
           colors: [
-            widget.accent.withValues(alpha: .16),
-            HoloPalette.night.withValues(alpha: .82),
-            HoloPalette.deep.withValues(alpha: .9),
+            widget.accent.withValues(alpha: .14),
+            HoloPalette.night.withValues(alpha: .9),
+            HoloPalette.deep.withValues(alpha: .95),
           ],
+          stops: const [0, .35, 1],
         ),
         boxShadow: [
           BoxShadow(
@@ -337,7 +340,10 @@ class HoloSectionTitle extends StatelessWidget {
             Icon(icon, color: HoloPalette.cyan, size: 20),
             const SizedBox(width: 8),
           ],
+          // Der Titel bekommt den meisten Platz; der Leuchtstrich füllt nur
+          // den Rest (vorher brach ein kurzer Titel schon bei halber Breite).
           Flexible(
+            flex: 5,
             child: Text(
               title,
               style: const TextStyle(

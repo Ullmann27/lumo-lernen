@@ -113,7 +113,7 @@ void main() {
             expect(
                 tester.getRect(greeting).top,
                 greaterThan(
-                    tester.getRect(find.text('🦊 Lumo Insight')).bottom),
+                    tester.getRect(find.text('Lumo Insight')).bottom),
                 reason: 'The local greeting must remain below the toolbar.');
           }
           final button =

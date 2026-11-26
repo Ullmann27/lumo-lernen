@@ -35,7 +35,7 @@ void main() {
 
       final first = tester.getTopLeft(find.text('Gesamt'));
       final second = tester.getTopLeft(find.text('Streak'));
-      final third = tester.getTopLeft(find.text('Staerken'));
+      final third = tester.getTopLeft(find.text('Stärken'));
       final fourth = tester.getTopLeft(find.text('Übung'));
 
       expect((first.dy - second.dy).abs(), lessThan(3),

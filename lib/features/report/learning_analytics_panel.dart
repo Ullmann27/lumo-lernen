@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../domain/school/learning_chart_data.dart';
+import '../../widgets/design/lumo_subject_style.dart';
 import '../teacher_demo/holo_widgets.dart';
 
 /// Shared live charts for parents and teachers. Receives only an owner-scoped
@@ -162,13 +163,8 @@ class _LearningAnalyticsPanelState extends State<LearningAnalyticsPanel> {
     );
   }
 
-  Color _subjectColor(String subject) => switch (subject) {
-    'Mathematik' => HoloPalette.cyan,
-    'Deutsch' || 'Lesen' || 'Schreiben' => HoloPalette.amber,
-    'Englisch' => HoloPalette.violet,
-    'Sachkunde' || 'Sachunterricht' => HoloPalette.mint,
-    _ => HoloPalette.blue,
-  };
+  /// Einheitliche Fachfarbe (wie Symbole im Eltern- und Lehrkräftebereich).
+  Color _subjectColor(String subject) => LumoSubjectStyle.of(subject).color;
 
   String _percent(double? rate) =>
       rate == null ? 'Keine Messung' : '${(rate * 100).round()} %';
@@ -201,9 +197,15 @@ class _LearningAnalyticsPanelState extends State<LearningAnalyticsPanel> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(entry.subject, style: body.copyWith(
-                        color: _subjectColor(entry.subject),
-                        fontWeight: FontWeight.w800)),
+                    Row(children: [
+                      LumoSubjectBadge(subject: entry.subject, size: 30),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(entry.subject, style: body.copyWith(
+                            color: _subjectColor(entry.subject),
+                            fontWeight: FontWeight.w800)),
+                      ),
+                    ]),
                     const SizedBox(height: 6),
                     Text(entry.independent == 0
                         ? 'Noch keine Antworten ohne Hilfe'

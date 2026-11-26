@@ -84,3 +84,82 @@ class LumoSubjectBadge extends StatelessWidget {
     );
   }
 }
+
+/// Goldene Hauptschaltfläche im LUMO-Stil (mindestens 52 dp hoch): leuchtendes
+/// Gold mit dunkler Schrift, leicht erhaben. Für die eine wichtigste Aktion
+/// einer Karte, z. B. „Jetzt üben“.
+class LumoGoldButton extends StatelessWidget {
+  const LumoGoldButton({
+    super.key,
+    required this.label,
+    required this.onPressed,
+    this.icon = Icons.play_arrow_rounded,
+  });
+
+  final String label;
+  final VoidCallback? onPressed;
+  final IconData icon;
+
+  static const _ink = Color(0xFF10243A);
+
+  @override
+  Widget build(BuildContext context) {
+    final enabled = onPressed != null;
+    return Semantics(
+      button: true,
+      enabled: enabled,
+      label: label,
+      excludeSemantics: true,
+      child: Opacity(
+        opacity: enabled ? 1 : .5,
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 52, minWidth: 48),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(99),
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFFFFE69A), Color(0xFFFFC94A), Color(0xFFE9A92D)],
+            ),
+            border: Border.all(color: const Color(0xFFFFF3C4), width: 1.4),
+            boxShadow: const [
+              BoxShadow(
+                  color: Color(0x66FFC94A), blurRadius: 14, spreadRadius: -3),
+              BoxShadow(
+                  color: Color(0x99000000), blurRadius: 8, offset: Offset(0, 4)),
+            ],
+          ),
+          child: Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(99),
+              onTap: onPressed,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(icon, color: _ink, size: 24),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        label,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: _ink,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

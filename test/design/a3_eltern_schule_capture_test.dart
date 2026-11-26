@@ -11,6 +11,10 @@ import 'package:lumo_lernen/core/attempt_log_repository.dart';
 import 'package:lumo_lernen/domain/school/attempt.dart';
 import 'package:lumo_lernen/features/parents/lumo_insight_dashboard.dart';
 import 'package:lumo_lernen/features/teacher/teacher_student_screen.dart';
+import 'package:lumo_lernen/features/teacher_demo/demo_class_data.dart';
+import 'package:lumo_lernen/features/teacher_demo/demo_homework.dart';
+import 'package:lumo_lernen/features/teacher_demo/homework_runner_screen.dart';
+import 'package:lumo_lernen/features/teacher_demo/teacher_demo_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Abnahmebilder Eltern- und Lehrkräftebereich (Fold7 außen 1080×2340, innen
@@ -178,6 +182,50 @@ void main() {
         }
         await _foto(tester, '${name}__$geraet', 2.625);
       }
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump(const Duration(seconds: 1));
+    });
+
+    testWidgets('Hausaufgaben · $geraet', (tester) async {
+      final store = DemoHomeworkStore();
+      await zeige(tester, TeacherDemoScreen(store: store));
+      await tester.tap(find.text('Hausaufgaben'));
+      await _frames(tester);
+      final deutsch = find.byKey(const ValueKey('homework-subject-Deutsch'));
+      if (deutsch.evaluate().isNotEmpty) {
+        await tester.tap(deutsch);
+        await _frames(tester, 20);
+        await tester.tap(find.byKey(const ValueKey('homework-grade-3')));
+        await _frames(tester, 20);
+      }
+      await _foto(tester, 'hausaufgabe_1_gestalten__$geraet', 2.625);
+      final child = demoChildren.first;
+      final hw = DemoHomework(
+        id: 'hw-bild',
+        subject: 'Mathematik',
+        unit: 'Plus bis 20',
+        count: 2,
+        due: DateTime.now().add(const Duration(days: 2)),
+        note: 'Rechne in Ruhe.',
+        studentIds: [child.id],
+        createdAt: DateTime.now(),
+      );
+      await zeige(tester,
+          HomeworkRunnerScreen(homework: hw, child: child, store: store));
+      final hilfe = find.byKey(const ValueKey('homework-hint'));
+      if (hilfe.evaluate().isNotEmpty) {
+        await tester.tap(hilfe);
+        await _frames(tester, 20);
+      }
+      await _foto(tester, 'hausaufgabe_2_kind_hilfe__$geraet', 2.625);
+      for (final t in hw.tasksFor(child.id, grade: child.grade)) {
+        final c = find.byKey(ValueKey('homework-choice-${t.answer}'));
+        if (c.evaluate().isEmpty) break;
+        await tester.tap(c.first);
+        await _frames(tester, 70);
+      }
+      await _frames(tester, 40);
+      await _foto(tester, 'hausaufgabe_3_geschafft__$geraet', 2.625);
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump(const Duration(seconds: 1));
     });

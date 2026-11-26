@@ -450,12 +450,9 @@ class _RecommendationCardState extends State<_RecommendationCard> {
                   runSpacing: 10,
                   children: [
                     if (startbar)
-                      HoloButton(
+                      LumoGoldButton(
                         key: ValueKey('guidance-practice-$i'),
                         label: r.guided ? 'Mit Lumo gemeinsam üben' : 'Jetzt üben',
-                        icon: Icons.play_arrow_rounded,
-                        accent: HoloPalette.amber,
-                        shimmer: false,
                         onPressed: () => widget.onPractice!(r),
                       ),
                     if (widget.onAssign != null)

@@ -148,6 +148,45 @@ void main() {
     });
   });
 
+  testWidgets('Aufgabenwechsel ist animiert; die alte Aufgabe nimmt keine Tipps an',
+      (tester) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(900, 2400);
+    addTearDown(tester.view.reset);
+    final store = DemoHomeworkStore();
+    final hw = DemoHomework(
+      id: 'hw-anim',
+      subject: 'Mathematik',
+      grade: 2,
+      unit: 'Plus bis 20',
+      count: 2,
+      due: _now,
+      note: '',
+      studentIds: ['${demoStudentPrefix}1'],
+      createdAt: _now,
+    );
+    final child = demoChildren.first;
+    final tasks = hw.tasksFor(child.id);
+    await tester.pumpWidget(MaterialApp(
+        home: HomeworkRunnerScreen(homework: hw, child: child, store: store)));
+    await tester.pump();
+    await tester.tap(find.byKey(ValueKey('homework-choice-${tasks[0].answer}')).first);
+    await tester.pump(const Duration(milliseconds: 900));
+    await tester.pump(const Duration(milliseconds: 100));
+    IgnorePointer schutz(String key) => tester.widget<IgnorePointer>(find
+        .ancestor(
+            of: find.byKey(ValueKey(key)), matching: find.byType(IgnorePointer))
+        .first);
+    expect(find.byKey(const ValueKey('aufgabe-0')), findsOneWidget,
+        reason: 'Die alte Aufgabe blendet noch aus');
+    expect(schutz('aufgabe-0').ignoring, isTrue);
+    expect(schutz('aufgabe-1').ignoring, isFalse);
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(find.byKey(const ValueKey('aufgabe-0')), findsNothing);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(seconds: 1));
+  });
+
   group('Echte Zuweisung je Fach und Klasse', () {
     for (var grade = 1; grade <= 4; grade++) {
       test('$grade. Klasse: jedes angebotene Thema ist im Übungsbereich lösbar '

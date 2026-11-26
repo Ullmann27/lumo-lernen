@@ -31,7 +31,8 @@ import '../report/lernbericht_screen.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/premium/lumo_empty_error_state.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
+import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/fox/lumo_character.dart';
 import '../learning/learning_dna_card.dart';
 import 'widgets/lumo_insight_heatmap.dart';
 
@@ -112,7 +113,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
         elevation: 0,
         leading: const BackButton(color: LumoVisualTokens.white),
         title: const Text(
-          '🦊 Lumo Insight',
+          'Lumo Insight',
           style: TextStyle(
             fontFamily: 'Nunito',
             fontSize: 22,
@@ -122,13 +123,16 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
         ),
       ),
       extendBodyBehindAppBar: true,
-      body: LumoMagicBackground(
-        intensity: 1.0,
-        starCount: 22,
+      // LUMO-Stil: dunkelblaue Bibliotheksszene wie Lernbericht und
+      // Lehrkräftebereich statt des früheren Orange-Verlaufs.
+      body: LumoSceneBackground(
+        scene: LumoScene.library,
+        dimmed: true,
         child: SafeArea(
             child: _loading
                 ? const Center(
-                    child: CircularProgressIndicator(color: LumoColors.orange))
+                    child: CircularProgressIndicator(
+                        color: LumoVisualTokens.gold))
                 : SingleChildScrollView(
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
                     child: Column(
@@ -165,7 +169,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                       ],
                     ),
                   )),
-      ), // close LumoMagicBackground
+      ), // close LumoSceneBackground
     );
   }
 
@@ -202,7 +206,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
             return const Center(child: CircularProgressIndicator(
-                color: LumoColors.orange));
+                color: LumoVisualTokens.gold));
           }
           final evidence = snapshot.data;
           if (evidence == null) {
@@ -258,23 +262,38 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+          colors: [Color(0xF2123B6B), Color(0xF20B2A5C), Color(0xF2081F45)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
+        border: Border.all(color: LumoVisualTokens.gold, width: 1.6),
         boxShadow: [
           BoxShadow(
-            color: LumoColors.orange.withOpacity(0.30),
-            blurRadius: 18,
-            offset: const Offset(0, 8),
-            spreadRadius: -4,
+            color: LumoVisualTokens.gold.withValues(alpha: .25),
+            blurRadius: 20,
+            spreadRadius: -6,
+          ),
+          const BoxShadow(
+            color: Color(0x99000000),
+            blurRadius: 16,
+            offset: Offset(0, 8),
           ),
         ],
       ),
       child: Row(
         children: [
-          const Text('🦊', style: TextStyle(fontSize: 44)),
+          // Der echte Lumo atmet, blinzelt und schaut; bei reduzierter
+          // Bewegung steht er still.
+          LumoCharacter(
+            key: const ValueKey('insight-hero-lumo'),
+            pose: LumoDesignFoxPose.armsOpen,
+            size: 76,
+            intro: false,
+            idleHops: false,
+            reduceMotion: widget.appState.state.settings.reduceAnimations ||
+                MediaQuery.disableAnimationsOf(context),
+          ),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
@@ -283,7 +302,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                 Text(
                   name.isEmpty
                       ? 'Hallo Eltern!'
-                      : 'Hallo, $name lernt fleissig!',
+                      : 'Hallo, $name lernt fleißig!',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 18,
@@ -293,7 +312,8 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                 ),
                 const SizedBox(height: 4),
                 const Text(
-                  'Hier sehen Sie genau, wo Lumo helfen kann.',
+                  'Hier sehen Sie, was gerade geübt wird und wobei '
+                  'Unterstützung hilft.',
                   style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 13,
@@ -337,26 +357,31 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
             SizedBox(
                 width: tileWidth,
                 child: _statCard(
-                    'Gesamt', '$answered', '📝', const Color(0xFF60A5FA))),
+                    'Gesamt', '$answered', Icons.task_alt_rounded,
+                    const Color(0xFF60A5FA))),
             SizedBox(
                 width: tileWidth,
                 child: _statCard(
-                    'Streak', '$streak T.', '🔥', const Color(0xFFFF7A2F))),
+                    'Streak', '$streak T.',
+                    Icons.local_fire_department_rounded,
+                    const Color(0xFFFF9F5A))),
             SizedBox(
                 width: tileWidth,
                 child: _statCard(
-                    'Staerken', '$strengths', '💪', const Color(0xFF34D399))),
+                    'Stärken', '$strengths', Icons.star_rounded,
+                    const Color(0xFF34D399))),
             SizedBox(
                 width: tileWidth,
                 child: _statCard(
-                    'Übung', '$weaknesses', '🎯', const Color(0xFFF472B6))),
+                    'Übung', '$weaknesses', Icons.flag_rounded,
+                    const Color(0xFFF472B6))),
           ],
         );
       },
     );
   }
 
-  Widget _statCard(String label, String value, String emoji, Color color) {
+  Widget _statCard(String label, String value, IconData icon, Color color) {
     return Container(
       padding: const EdgeInsets.fromLTRB(8, 10, 8, 10),
       decoration: BoxDecoration(
@@ -373,7 +398,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
       ),
       child: Column(
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 22)),
+          Icon(icon, color: color, size: 26),
           const SizedBox(height: 2),
           Text(value,
               style: TextStyle(
@@ -398,7 +423,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
 
   Widget _lumoSays() {
     final text = _dna!.recentProgress.trim().isEmpty
-        ? 'Sobald euer Kind ein paar Aufgaben loest, fasse ich hier den Fortschritt zusammen.'
+        ? 'Sobald euer Kind ein paar Aufgaben löst, fasse ich hier den Fortschritt zusammen.'
         : _dna!.recentProgress;
     return Container(
       padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
@@ -412,7 +437,8 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
         children: [
           const Padding(
             padding: EdgeInsets.only(top: 2),
-            child: Text('💬', style: TextStyle(fontSize: 22)),
+            child: Icon(Icons.chat_bubble_rounded,
+                color: Color(0xFFFCD34D), size: 24),
           ),
           const SizedBox(width: 10),
           Expanded(
@@ -451,14 +477,15 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('🎯', style: TextStyle(fontSize: 28)),
+          const Icon(Icons.tips_and_updates_rounded,
+              color: LumoVisualTokens.gold, size: 30),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Lumo schlaegt vor: ${rec.title}',
+                  'Lumo schlägt vor: ${rec.title}',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 15,
@@ -511,7 +538,8 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
         children: [
           const Row(
             children: [
-              Text('🕵️', style: TextStyle(fontSize: 20)),
+              Icon(Icons.manage_search_rounded,
+                  color: Color(0xFFFCA5A5), size: 22),
               SizedBox(width: 8),
               Text(
                 'Wo Lumo aktuell oft helfen muss',
@@ -624,7 +652,8 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
         children: [
           Row(
             children: [
-              const Text('🤖', style: TextStyle(fontSize: 22)),
+              const Icon(Icons.auto_awesome_rounded,
+                  color: Color(0xFFC4B5FD), size: 24),
               const SizedBox(width: 8),
               const Expanded(
                 child: Text(
@@ -696,7 +725,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                 fontFamily: 'Nunito',
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF6B21A8),
+                color: LumoVisualTokens.muted,
                 height: 1.4,
               ),
             ),
@@ -711,15 +740,15 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
         onPressed: () => setState(() => _showFullDna = !_showFullDna),
         icon: Icon(
           _showFullDna ? Icons.expand_less : Icons.expand_more,
-          color: LumoColors.orange,
+          color: LumoVisualTokens.cyanBright,
         ),
         label: Text(
-          _showFullDna ? 'Detail-DNA ausblenden' : 'Vollstaendige DNA anzeigen',
+          _showFullDna ? 'Detail-DNA ausblenden' : 'Vollständige DNA anzeigen',
           style: const TextStyle(
             fontFamily: 'Nunito',
             fontSize: 13,
             fontWeight: FontWeight.w800,
-            color: LumoColors.orange,
+            color: LumoVisualTokens.cyanBright,
           ),
         ),
       ),
