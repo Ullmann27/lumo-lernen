@@ -24,6 +24,6 @@ run race --script res://scripts/tests/kart_production_race_capture.gd &   # schr
 run world --script res://scripts/tests/lumo_world_capture.gd -- --out="$O/world" &
 wait
 LUMO_CAPTURE_DIR=$O/run LUMO_RUN_QUICK=1 LUMO_RUN_SKIP_MEASURE=1 run run --script res://scripts/tests/lumo_run_capture.gd &
-run skypost --script res://scripts/tests/sky_post_world_probe.gd -- out="$O/skypost" size=1280x720 &
+mkdir -p "$O/skypost"; run skypost --script res://scripts/tests/sky_post_world_probe.gd -- out="$O/skypost" size=1280x720 &
 LUMO_CAPTURE_DIR=$O/quiz run quiz --script res://scripts/tests/quiz_studio_runtime.gd -- --capture --fixture &
 wait

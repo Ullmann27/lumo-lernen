@@ -52,7 +52,7 @@ SHOTS = {
 for _name, (_file, _kind) in json.loads((Path(__file__).parent / 'capture' / 'godot_auswahl.json').read_text()).items():
     SHOTS[_name] = (G / _file, _kind)
 
-SIZE = {'phone': (720, 1560), 'land': (1600, 924), 'port': (900, 1576)}
+SIZE = {'phone': (720, 1560), 'land': (1600, 924), 'port': (900, 1576), 'fold': (1000, 1200)}
 
 
 def fit(im, kind):

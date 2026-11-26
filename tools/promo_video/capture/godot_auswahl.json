@@ -1,1 +1,50 @@
-{}
+{
+ "cards_1_land": [
+  "cards/quer_10_stich_partie.png",
+  "land"
+ ],
+ "cards_1_port": [
+  "cards/hoch_10_stich_partie.png",
+  "port"
+ ],
+ "cards_2_land": [
+  "cards/quer_21_leiter_anlegen.png",
+  "land"
+ ],
+ "cards_2_port": [
+  "cards/hoch_21_leiter_anlegen.png",
+  "port"
+ ],
+ "cards_3_land": [
+  "cards/quer_31_quartett_quartett.png",
+  "land"
+ ],
+ "cards_3_port": [
+  "cards/hoch_31_quartett_quartett.png",
+  "port"
+ ],
+ "cards_4_land": [
+  "cards/quer_40_punktlandung.png",
+  "land"
+ ],
+ "cards_4_port": [
+  "cards/hoch_40_punktlandung.png",
+  "port"
+ ],
+ "chess_1": [
+  "chess/01_start_fold.png",
+  "fold"
+ ],
+ "chess_2": [
+  "chess/03_lernen_bauer_fold.png",
+  "fold"
+ ],
+ "chess_3": [
+  "chess/04_lernen_springer_fold.png",
+  "fold"
+ ],
+ "chess_4": [
+  "chess/05_probespiel_hinweis_fold.png",
+  "fold"
+ ]
+}

@@ -207,3 +207,8 @@ h1 b { color: var(--cyan2); font-weight: 900; text-shadow: 0 0 26px rgba(55,210,
 .land .frame.fold.f1 { left: 70px; top: 150px; width: 600px; height: 720px; }
 .land .frame.fold.f2 { left: 700px; top: 200px; width: 600px; height: 720px; }
 .port .frame.fold.f1 { left: 130px; top: 590px; width: 820px; height: 985px; }
+
+/* Hochformat: Spielrahmen unter Titel, Chips und Unterzeile. */
+.port .game-scene .chips { gap: 10px; margin-top: 24px; flex-wrap: nowrap; }
+.port .game-scene .chip { font-size: 27px; padding: 10px 18px; white-space: nowrap; }
+.port .frame.game { left: 229px; top: 600px; width: 622px; height: 1090px; }
