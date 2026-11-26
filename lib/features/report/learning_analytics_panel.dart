@@ -220,8 +220,10 @@ class _LearningAnalyticsPanelState extends State<LearningAnalyticsPanel> {
                       ),
                     ],
                     const SizedBox(height: 8),
-                    Text('Mit Hilfe: ${entry.assisted}/${entry.total} '
-                        '(${_percent(entry.helpRate)})', style: body),
+                    // Hilfenutzung ist keine Kompetenzangabe: als Anzahl
+                    // formuliert, damit kein Prozentwert als Leistung gelesen wird.
+                    Text('Hilfe genutzt bei ${entry.assisted} von '
+                        '${entry.total} Antworten', style: body),
                     const SizedBox(height: 5),
                     LinearProgressIndicator(
                       value: entry.helpRate,

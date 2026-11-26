@@ -74,7 +74,10 @@ void main() {
     expect(find.text('5 protokollierte Antworten · 0 ohne Hilfe · 5 mit Hilfe'),
         findsOneWidget);
     expect(find.text('Noch keine selbstständigen Antworten.'), findsOneWidget);
-    expect(find.textContaining('(100 %)'), findsNothing);
+    // Keine Prozentangabe, die als Kompetenz gelesen werden könnte; die
+    // Hilfenutzung bleibt sichtbar, aber als Anzahl.
+    expect(find.textContaining(RegExp(r'\(\d+ %\)')), findsNothing);
+    expect(find.textContaining('Hilfe genutzt bei'), findsWidgets);
     expect(tester.takeException(), isNull);
   });
 
