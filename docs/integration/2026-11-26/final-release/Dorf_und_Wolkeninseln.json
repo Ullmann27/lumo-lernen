@@ -1,0 +1,17 @@
+[
+  {
+    "test": "build_campaign_map_regression",
+    "marker": "[CampaignMap] PASS checks=54",
+    "sha256": "ae47eafff7f1c0677bff1b91aede8468d2e166119da68df8d180bb42fff4242e"
+  },
+  {
+    "test": "jump_expeditions_regression",
+    "marker": "[JumpExpeditions] PASS 29 checks: three physical courses, four stages, real menu selection and preserved progress",
+    "sha256": "01bcf0c2fd01934876bbba6b6f7407deb1ddb43ea9096c27184d6cff8053307c"
+  },
+  {
+    "test": "village_host_launch_regression",
+    "marker": "[VillageHost] PASS Flutter village request, native boot scene and child context",
+    "sha256": "eed48526c4379e14d7a6b5056218989982667585409b74ff1af1013044a08103"
+  }
+]
