@@ -203,8 +203,13 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
             _nextRecCard(data.dna),
             const SizedBox(height: 16),
           ],
-          LumoInsightHeatmap(entries: data.dna.skillObservations),
-          const SizedBox(height: 16),
+          // Themenübersicht aus den Themenzählern. Ohne Zähler, aber mit
+          // Protokollantworten (z. B. Elternaufgaben) stünde dort fälschlich
+          // „Noch keine Daten“; dann trägt „Auf einen Blick“ die Auswertung.
+          if (data.dna.skillObservations.isNotEmpty || data.metrics.isEmpty) ...[
+            LumoInsightHeatmap(entries: data.dna.skillObservations),
+            const SizedBox(height: 16),
+          ],
           if (data.dna.errorBreakdown.isNotEmpty) ...[
             _errorTop3(data.dna),
             const SizedBox(height: 16),
@@ -379,9 +384,11 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
             ? missingHint
             : m.answers == 0
                 ? 'noch keine'
-                : m.olderAnswers > 0
-                    ? 'inkl. ${m.olderAnswers} ältere'
-                    : '${m.loggedIndependent} ohne Hilfe',
+                : m.olderAnswers == m.answers
+                    ? 'ältere, ohne Datum'
+                    : m.olderAnswers > 0
+                        ? 'inkl. ${m.olderAnswers} ältere'
+                        : '${m.loggedIndependent} ohne Hilfe',
         icon: Icons.task_alt_rounded,
         color: const Color(0xFF60A5FA),
       ),
@@ -456,15 +463,23 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
           },
         ),
         const SizedBox(height: 8),
-        Text(
-          _statsBasis(m, loading: loading),
-          key: const ValueKey('insight-stats-basis'),
-          style: const TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 12.5,
-            fontWeight: FontWeight.w700,
-            color: LumoVisualTokens.muted,
-            height: 1.35,
+        // Eigene dunkle Fläche: gut lesbar auf der bewegten Bibliotheksszene.
+        Container(
+          padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+          decoration: BoxDecoration(
+            color: const Color(0xCC081F45),
+            borderRadius: BorderRadius.circular(LumoRadius.md),
+          ),
+          child: Text(
+            _statsBasis(m, loading: loading),
+            key: const ValueKey('insight-stats-basis'),
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 12.5,
+              fontWeight: FontWeight.w700,
+              color: LumoVisualTokens.muted,
+              height: 1.35,
+            ),
           ),
         ),
       ],
@@ -487,10 +502,10 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
             'Aufgabenprotokoll dieses Profils, davon ${m.loggedIndependent} '
             'ohne Hilfe.');
     if (m.olderAnswers > 0) {
-      out.write(' Dazu ${m.olderAnswers} ältere '
-          '${m.olderAnswers == 1 ? 'Antwort' : 'Antworten'} ohne Datum aus '
-          'der Zeit vor dem Aufgabenprotokoll: zählen bei „Antworten“ mit, '
-          'nicht bei Stärken und Förderbedarf.');
+      out.write(' ${m.loggedAnswers == 0 ? '' : 'Dazu '}${m.olderAnswers} '
+          'ältere ${m.olderAnswers == 1 ? 'Antwort' : 'Antworten'} ohne Datum '
+          'aus der Zeit vor dem Protokoll: zählen bei „Antworten“ mit, nicht '
+          'bei Stärken und Förderbedarf.');
     }
     if (m.strengths == null) {
       out.write(' Stärken und Förderbedarf gibt es ab '
