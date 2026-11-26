@@ -42,7 +42,8 @@ void main() {
     expect(stand.befunde, {NachhilfeBefund.fehlendeDaten});
     expect(stand.aussagekraeftig, isFalse);
     expect(stand.muster, isEmpty,
-        reason: 'Zwei gleiche Fehler bei zwei Antworten sind noch kein Muster.');
+        reason:
+            'Zwei gleiche Fehler bei zwei Antworten sind noch kein Muster.');
     expect(stand.kindSatz, isNull);
     expect(stand.startStufe(tutor, versuche: 1), NachhilfeStufe.hinweis);
     expect(NachhilfeLernstand.aus(const [], kompetenz: _komp).befunde,

@@ -36,7 +36,9 @@ import '../../core/lumo_learning_dialogue_intent.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/error_detective.dart';
+import '../../domain/school/competency.dart';
 import '../../domain/tutoring/lumo_nachhilfe.dart';
+import '../../domain/tutoring/nachhilfe_lernstand.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
 import '../tutoring/lumo_nachhilfe_screen.dart';
 import '../tutoring/arithmetic_task_aid.dart';
@@ -1441,26 +1443,29 @@ class _LearningContentState extends State<LearningContent>
     final taskId = _taskInstance.taskInstanceId;
     final generation = widget.appState.profileGeneration;
     final settings = widget.appState.state.settings;
-    final fehler = tutor.erkenneFehler(aufgabe, _lastGivenAnswer);
-    final stufe = NachhilfeStufeInfo.ausHilfeStufe(
-      _localTutorEngine.decideHelpLevel(
-        attemptCount: _attemptCount,
-        hasRepeatedWeakness: false,
-        premiumEnabled: true,
-      ),
-    );
+    final subject = _task.subject, unit = _task.unit;
     final stopping = _cancelCoachMedia();
     setState(() => _requestedHelpLevel = math.max(1, _requestedHelpLevel));
     _publishTaskContext(immediately: true);
     LumoCompanionRequests.instance.recordLearningEvent(
         LumoLearningEventKind.hintRequested,
         context: _publishedTaskContext);
+    // Lernstand aus den vorhandenen Antworten dieser Kompetenz: wiederkehrende
+    // mögliche Muster oder später bestätigtes Verständnis wählen Stufe und
+    // Weg. Bei wenigen Antworten wird nichts behauptet.
+    final lernstand = await _nachhilfeLernstand(subject, unit, _task.prompt);
     await stopping;
     if (!mounted ||
         widget.appState.profileGeneration != generation ||
         _taskInstance.taskInstanceId != taskId) {
       return;
     }
+    final antwortFehler = tutor.erkenneFehler(aufgabe, _lastGivenAnswer);
+    final fehler = antwortFehler != NachhilfeFehlermuster.keines
+        ? antwortFehler
+        : (lernstand?.haeufigstesMuster ?? NachhilfeFehlermuster.keines);
+    final stufe = lernstand?.startStufe(tutor, versuche: _attemptCount) ??
+        tutor.startStufe(versuche: _attemptCount);
     await Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (_) => LumoNachhilfeScreen(
         aufgabe: aufgabe,
@@ -1468,6 +1473,26 @@ class _LearningContentState extends State<LearningContent>
         startStufe: stufe,
         tutor: tutor,
         reduceMotion: settings.reduceAnimations || settings.calmMode,
+        lernstandSatz: lernstand?.kindSatz,
+        // Nur die eigenständige Prüfaufgabe (Stufe 5) wird als Lernnachweis
+        // gespeichert – wie der Zwilling der 3D-Nachhilfe, ohne Sterne/XP.
+        onPruefung: (pruefung) {
+          if (!mounted ||
+              widget.appState.profileGeneration != generation ||
+              _taskInstance.taskInstanceId != taskId ||
+              !_allowHelp) {
+            return;
+          }
+          unawaited(widget.appState.recordLearningAnswer(
+            subject: subject,
+            unit: unit,
+            correct: pruefung.richtig,
+            hintUsed: !pruefung.selbststaendig,
+            prompt: pruefung.prompt,
+            given: '${pruefung.antwort}',
+            expected: '${pruefung.ergebnis}',
+          ));
+        },
         onSpeak: settings.voiceEnabled
             ? (text) => _voice.speak(text, style: VoiceStyle.explain)
             : null,
@@ -1484,6 +1509,30 @@ class _LearningContentState extends State<LearningContent>
         widget.appState.profileGeneration == generation &&
         _taskInstance.taskInstanceId == taskId) {
       _publishTaskContext();
+    }
+  }
+
+  /// Lernstand der Kompetenz dieser Aufgabe aus dem Antwortprotokoll des
+  /// aktiven Kindes. Fehler beim Lesen lassen die Nachhilfe ohne Lernstand
+  /// starten (keine Behauptung ohne Daten).
+  Future<NachhilfeLernstand?> _nachhilfeLernstand(
+      String subject, String unit, String prompt) async {
+    final app = widget.appState;
+    Future<NachhilfeLernstand?> laden() async {
+      final owner = await app.captureLearningProfile();
+      if (!app.canUseLearningLease(owner)) return null;
+      final attempts = await app.attemptLog.load(studentId: owner.logStudentId);
+      return NachhilfeLernstand.aus(attempts,
+          fach: subject,
+          kompetenz: const CompetencyClassifier()
+              .classify(subject: subject, unit: unit, prompt: prompt));
+    }
+
+    try {
+      // Die Hilfe wartet nie lange auf den Speicher.
+      return await laden().timeout(const Duration(seconds: 2));
+    } catch (_) {
+      return null;
     }
   }
 

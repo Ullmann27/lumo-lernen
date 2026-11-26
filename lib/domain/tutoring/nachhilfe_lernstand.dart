@@ -161,11 +161,12 @@ class NachhilfeLernstand {
         for (final e in zaehler.entries)
           if (e.value >= 2) (e.key, e.value)
       ]..sort((x, y) => y.$2.compareTo(x.$2));
-      if (muster.isNotEmpty) befunde.add(NachhilfeBefund.moeglichesFehlermuster);
+      if (muster.isNotEmpty) {
+        befunde.add(NachhilfeBefund.moeglichesFehlermuster);
+      }
       // Später bestätigt: nach der letzten Hilfe oder dem letzten Fehler noch
       // mindestens zweimal ohne Hilfe richtig.
-      final letzteHilfe =
-          liste.lastIndexWhere((a) => a.hintUsed || !a.correct);
+      final letzteHilfe = liste.lastIndexWhere((a) => a.hintUsed || !a.correct);
       if (letzteHilfe >= 0) {
         final danach = liste
             .skip(letzteHilfe + 1)

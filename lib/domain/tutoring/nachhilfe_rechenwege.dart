@@ -14,8 +14,7 @@ part of 'lumo_nachhilfe.dart';
 
 bool _istKern(int n) => n == 1 || n == 2 || n == 5 || n == 10;
 
-String _stangenWort(int n) =>
-    n == 1 ? 'eine Zehnerstange' : '$n Zehnerstangen';
+String _stangenWort(int n) => n == 1 ? 'eine Zehnerstange' : '$n Zehnerstangen';
 
 String _zehnerWort(int n) => switch (n) {
       1 => 'einen Zehner',
@@ -36,12 +35,15 @@ String _muenzenText(int zehner, int einer) {
   final teile = <String>[
     if (zehner > 0)
       zehner == 1 ? 'eine Zehn-Cent-Münze' : '$zehner Zehn-Cent-Münzen',
-    if (einer > 0) einer == 1 ? 'eine Ein-Cent-Münze' : '$einer Ein-Cent-Münzen',
+    if (einer > 0)
+      einer == 1 ? 'eine Ein-Cent-Münze' : '$einer Ein-Cent-Münzen',
   ];
   return teile.join(' und ');
 }
 
 String _reihenWort(int n) => n == 1 ? '1 Reihe' : '$n Reihen';
+
+String _punkteWort(int n) => n == 1 ? '1 Punkt' : '$n Punkten';
 
 String _wuerfelWort(int n) => n == 1 ? '1 Würfel' : '$n Würfel';
 
@@ -50,8 +52,8 @@ String _nochUebrig(int n) => n == 1 ? 'ist noch 1 übrig' : 'sind noch $n übrig
 
 /// Zeichnet ein Punktefeld: [sichtbar] Reihen, davon [markiert] als
 /// bekannter Teil, dazu [geister] gedachte Reihen.
-typedef _Feld = NachhilfeAktion Function(int sichtbar, int markiert,
-    int geister);
+typedef _Feld = NachhilfeAktion Function(
+    int sichtbar, int markiert, int geister);
 
 /// Bausteine der anderen Erklärung (Stufe 2).
 class _Alltag {
@@ -142,7 +144,8 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
 
   NachhilfeWeg _wegFuerFehler(NachhilfeAufgabe x, NachhilfeFehlermuster fehler,
       List<NachhilfeWeg> wege) {
-    final material = x.typ.bis100 ? NachhilfeWeg.stangen : NachhilfeWeg.rechenrahmen;
+    final material =
+        x.typ.bis100 ? NachhilfeWeg.stangen : NachhilfeWeg.rechenrahmen;
     final wunsch = switch (fehler) {
       NachhilfeFehlermuster.einsDaneben => NachhilfeWeg.zahlenstrahl,
       NachhilfeFehlermuster.rechenzeichen => material,
@@ -300,7 +303,8 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
       NachhilfeStufe.vorzeigen => 'Genauso geht $o. Probier es jetzt selbst.',
       NachhilfeStufe.ueben => 'Super! Jetzt schaffst du auch $o.',
     };
-    final lob = w == NachhilfeWeg.tauschen && aufgabe.typ == NachhilfeTyp.einmaleins
+    final lob = w == NachhilfeWeg.tauschen &&
+            aufgabe.typ == NachhilfeTyp.einmaleins
         ? 'Schlau gedreht! Gleich viele Punkte – und eine Aufgabe, die du kennst.'
         : lobFuer(w);
     return NachhilfePlan(
@@ -347,7 +351,8 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
         _alsNeu(teil[i], i == 0 ? NachhilfeAkteur.lumo : NachhilfeAkteur.kind),
     ];
     if (mitFrage &&
-        !schritte.any((s) => s.akteur == NachhilfeAkteur.kind && s.frage != null)) {
+        !schritte
+            .any((s) => s.akteur == NachhilfeAkteur.kind && s.frage != null)) {
       final klein = _kleineAufgabe(x);
       if (klein != null) {
         schritte.add(NachhilfeSchritt(
@@ -416,30 +421,33 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
         final erg = _Kern('ergebnis',
             kind: '${x.text} = ${x.ergebnis}.',
             lumo: '${x.text} = ${x.ergebnis}.',
-            aktion:
-                NachhilfeAktion.ergebnis(x.ergebnis, _ergebnisOptionen(x.ergebnis)),
+            aktion: NachhilfeAktion.ergebnis(
+                x.ergebnis, _ergebnisOptionen(x.ergebnis)),
             nurLumo: true);
         NachhilfeAktion feld(int s, int m, int g) => NachhilfeAktion.punkte(
             zeilen: r, spalten: c, sichtbar: s, markiert: m, geister: g);
-        if (w == NachhilfeWeg.punktefeld) return [..._kernReihen(r, c, feld), erg];
+        if (w == NachhilfeWeg.punktefeld) {
+          return [..._kernReihen(r, c, feld), erg];
+        }
         if (w == NachhilfeWeg.tauschen && r != c) {
-          NachhilfeAktion gedreht(int s, int m, int g) => NachhilfeAktion.punkte(
-              zeilen: r,
-              spalten: c,
-              sichtbar: s,
-              markiert: m,
-              geister: g,
-              gedreht: true);
+          NachhilfeAktion gedreht(int s, int m, int g) =>
+              NachhilfeAktion.punkte(
+                  zeilen: r,
+                  spalten: c,
+                  sichtbar: s,
+                  markiert: m,
+                  geister: g,
+                  gedreht: true);
           return [
             _Kern('start',
-                kind: '$r · $c heißt: ${_reihenWort(r)} mit je $c Punkten.',
-                lumo: '$r · $c heißt: ${_reihenWort(r)} mit je $c Punkten.',
+                kind: '$r · $c heißt: ${_reihenWort(r)} mit je ${_punkteWort(c)}.',
+                lumo: '$r · $c heißt: ${_reihenWort(r)} mit je ${_punkteWort(c)}.',
                 aktion: feld(r, 0, 0),
                 nurLumo: true),
             _Kern('drehen',
                 kind: 'Lumo dreht das Feld.',
                 lumo:
-                    'Ich drehe das Feld. Jetzt sind es ${_reihenWort(c)} mit je $r Punkten. Es sind gleich viele Punkte: $r · $c ist dasselbe wie $c · $r.',
+                    'Ich drehe das Feld. Jetzt sind es ${_reihenWort(c)} mit je ${_punkteWort(r)}. Es sind gleich viele Punkte: $r · $c ist dasselbe wie $c · $r.',
                 aktion: gedreht(c, 0, 0),
                 nurLumo: true,
                 auftrag: 'Dreh das Feld: $r · $c ist dasselbe wie $c · $r.'),
@@ -457,7 +465,8 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
   List<_Kern> _kernMinus20(NachhilfeAufgabe x, NachhilfeWeg w) {
     final a = x.a, b = x.b, e = x.ergebnis;
     final oben = a > 10 ? 10 : a, unten = a > 10 ? a - 10 : 0;
-    final fuenf = unten == 0 && oben > 5 ? ' Fünf rote und ${oben - 5} weiße.' : '';
+    final fuenf =
+        unten == 0 && oben > 5 ? ' Fünf rote und ${oben - 5} weiße.' : '';
     final start = _Kern('erste',
         kind: unten > 0
             ? 'Schieb $a Perlen nach links: 10 oben und $unten unten.'
@@ -570,7 +579,8 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
   _Kern _ergebnisSchluss(NachhilfeAufgabe x) => _Kern('ergebnis',
       kind: '${x.text} = ${x.ergebnis}.',
       lumo: '${x.text} = ${x.ergebnis}.',
-      aktion: NachhilfeAktion.ergebnis(x.ergebnis, _ergebnisOptionen(x.ergebnis)),
+      aktion:
+          NachhilfeAktion.ergebnis(x.ergebnis, _ergebnisOptionen(x.ergebnis)),
       nurLumo: true);
 
   String _zehnerschritte(int start, int anzahl, {required bool plus}) {
@@ -616,13 +626,15 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
             lumo:
                 'Von $wert bis $zehner ${fehlt == 1 ? 'fehlt 1 Würfel' : 'fehlen $fehlt Würfel'}. Ich lege ${_wuerfelWort(fehlt)} dazu.',
             frage: fehlt,
-            hilfe: 'Zähl die leeren Plätze: $ae Würfel liegen schon, 10 passen hinein.',
+            hilfe:
+                'Zähl die leeren Plätze: $ae Würfel liegen schon, 10 passen hinein.',
             auftrag: 'Leg so viele Einer dazu, bis der Zehner voll ist.',
             aktion: NachhilfeAktion.stangen(
                 zehner: z, einer: 10, dazuEiner: uebrig)));
         schritte.add(_Kern('buendeln',
             kind: '10 Würfel sind eine neue Zehnerstange.',
-            lumo: '10 Würfel sind eine neue Zehnerstange. Jetzt sind es $zehner.',
+            lumo:
+                '10 Würfel sind eine neue Zehnerstange. Jetzt sind es $zehner.',
             auftrag: '10 Würfel werden eine neue Zehnerstange.',
             aktion: NachhilfeAktion.stangen(
                 zehner: z + 1, einer: 0, dazuEiner: uebrig),
@@ -642,11 +654,14 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
         }
       } else if (be > 0) {
         schritte.add(_Kern('einer',
-            kind: 'Leg ${be == 1 ? 'den Einerwürfel' : 'die $be Einerwürfel'} dazu. Wie viel ist $wert + $be?',
-            lumo: 'Ich lege ${be == 1 ? 'den Einerwürfel' : 'die $be Einerwürfel'} dazu: $wert + $be = $e.',
+            kind:
+                'Leg ${be == 1 ? 'den Einerwürfel' : 'die $be Einerwürfel'} dazu. Wie viel ist $wert + $be?',
+            lumo:
+                'Ich lege ${be == 1 ? 'den Einerwürfel' : 'die $be Einerwürfel'} dazu: $wert + $be = $e.',
             frage: e,
             hilfe: 'Die Zehner bleiben. Rechne nur die Einer: $ae + $be.',
-            auftrag: 'Leg noch ${be == 1 ? 'den Einerwürfel' : 'die $be Einerwürfel'} dazu.',
+            auftrag:
+                'Leg noch ${be == 1 ? 'den Einerwürfel' : 'die $be Einerwürfel'} dazu.',
             aktion: NachhilfeAktion.stangen(zehner: z, einer: ae + be)));
       }
       return [...schritte, _ergebnisSchluss(x)];
@@ -710,8 +725,10 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
               zehner: z - 1, einer: 10, wegZehner: wz, wegEiner: ae),
           nurLumo: true));
       schritte.add(_Kern('rest',
-          kind: 'Nimm noch ${_wuerfelWort(fehlt)} weg. Wie viel ist $zehner − $fehlt?',
-          lumo: 'Ich nehme noch ${_wuerfelWort(fehlt)} weg: $zehner − $fehlt = $e.',
+          kind:
+              'Nimm noch ${_wuerfelWort(fehlt)} weg. Wie viel ist $zehner − $fehlt?',
+          lumo:
+              'Ich nehme noch ${_wuerfelWort(fehlt)} weg: $zehner − $fehlt = $e.',
           frage: e,
           hilfe: 'Von den 10 Würfeln bleiben ${10 - fehlt} liegen.',
           auftrag: 'Nimm noch ${_wuerfelWort(fehlt)} weg.',
@@ -730,8 +747,8 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
           kind: '${x.text} ist dasselbe wie ${getauscht.text}.',
           lumo:
               '${x.text} ist dasselbe wie ${getauscht.text}. Ich fange mit der großen Zahl ${x.b} an: ${_stangenText(bz, be)}.',
-          aktion: NachhilfeAktion.stangen(
-              zehner: bz, einer: be, dazuEiner: x.a),
+          aktion:
+              NachhilfeAktion.stangen(zehner: bz, einer: be, dazuEiner: x.a),
           nurLumo: true),
       ..._kernStangen(getauscht, mitStart: false)
           .where((k) => k.id != 'ergebnis'),
@@ -758,9 +775,11 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
       schritte.add(_Kern('zehner',
           kind:
               'Spring ${bz == 1 ? 'einen Zehnersprung' : '$bz Zehnersprünge'} $vor. Wo landet Lumo?',
-          lumo: 'Ich springe ${_zehnerWort(bz)} $vor: $a $op ${10 * bz} = $neu.',
+          lumo:
+              'Ich springe ${_zehnerWort(bz)} $vor: $a $op ${10 * bz} = $neu.',
           frage: neu,
-          hilfe: 'Jeder große Sprung ist 10: ${_zehnerschritte(a, bz, plus: plus)}',
+          hilfe:
+              'Jeder große Sprung ist 10: ${_zehnerschritte(a, bz, plus: plus)}',
           auftrag: 'Spring ${_zehnerWort(bz)} $vor.',
           aktion: NachhilfeAktion.huepfen(a, neu)));
       wert = neu;
@@ -772,7 +791,8 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
       final zehner = plus ? wert + fehlt : wert - fehlt;
       final uebrig = be - fehlt;
       schritte.add(_Kern('bisZehn',
-          kind: 'Spring $vor bis zur $zehner. Wie viele kleine Sprünge sind das?',
+          kind:
+              'Spring $vor bis zur $zehner. Wie viele kleine Sprünge sind das?',
           lumo: fehlt == 1
               ? 'Bis zur $zehner ist es 1 kleiner Sprung.'
               : 'Bis zur $zehner sind es $fehlt kleine Sprünge.',
@@ -782,7 +802,8 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
           aktion: NachhilfeAktion.huepfen(wert, zehner)));
       if (uebrig > 0) {
         schritte.add(_Kern('rest',
-            kind: 'Von den $be kleinen Sprüngen fehlen noch $uebrig. Spring $uebrig $vor. Wo landet Lumo?',
+            kind:
+                'Von den $be kleinen Sprüngen fehlen noch $uebrig. Spring $uebrig $vor. Wo landet Lumo?',
             lumo: 'Noch $uebrig $vor: $zehner $op $uebrig = $e.',
             frage: e,
             hilfe: 'Von der $zehner aus $uebrig kleine Sprünge $vor.',
@@ -808,9 +829,9 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
 
   List<_Kern> _kernReihen(int r, int c, _Feld feld) => [
         _Kern('start',
-            kind: '$r · $c heißt: $r Reihen mit je $c Punkten.',
+            kind: '$r · $c heißt: $r Reihen mit je ${_punkteWort(c)}.',
             lumo:
-                '$r · $c heißt: $r Reihen mit je $c Punkten. In der ersten Reihe sind $c.',
+                '$r · $c heißt: $r Reihen mit je ${_punkteWort(c)}. In der ersten Reihe sind $c.',
             aktion: feld(1, 1, 0),
             nurLumo: true),
         for (var i = 2; i <= r; i++)
@@ -827,10 +848,10 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
     final k = <_Kern>[];
     if (mitStart) {
       k.add(_Kern('start',
-          kind: '$r · $c heißt: ${_reihenWort(r)} mit je $c Punkten.',
+          kind: '$r · $c heißt: ${_reihenWort(r)} mit je ${_punkteWort(c)}.',
           lumo: r == 2
-              ? '2 · $c heißt: 2 Reihen mit je $c Punkten. In der ersten Reihe sind $c.'
-              : '$r · $c heißt: ${_reihenWort(r)} mit je $c Punkten.',
+              ? '2 · $c heißt: 2 Reihen mit je ${_punkteWort(c)}. In der ersten Reihe sind $c.'
+              : '$r · $c heißt: ${_reihenWort(r)} mit je ${_punkteWort(c)}.',
           aktion: feld(r == 2 ? 1 : r, 0, 0),
           nurLumo: true));
     }
@@ -890,22 +911,26 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
             aktion: feld(3, 3, 0)));
       case 4:
         k.add(_Kern('kern',
-            kind: 'Stell dir eine Reihe mehr vor: 5 Reihen. Wie viel ist 5 · $c?',
+            kind:
+                'Stell dir eine Reihe mehr vor: 5 Reihen. Wie viel ist 5 · $c?',
             lumo: 'Ich stelle mir eine Reihe mehr vor: 5 · $c = $fuenf.',
             frage: fuenf,
             hilfe: '5 · $c ist die Hälfte von 10 · $c = $zehn.',
             auftrag: 'Stell dir 5 Reihen vor: 5 · $c.',
             aktion: feld(4, 0, 1)));
         k.add(_Kern('weg',
-            kind: 'Eine Reihe ist zu viel. Nimm sie weg: Wie viel ist $fuenf − $c?',
-            lumo: 'Eine Reihe ist zu viel. Ich nehme sie weg: $fuenf − $c = ${4 * c}.',
+            kind:
+                'Eine Reihe ist zu viel. Nimm sie weg: Wie viel ist $fuenf − $c?',
+            lumo:
+                'Eine Reihe ist zu viel. Ich nehme sie weg: $fuenf − $c = ${4 * c}.',
             frage: 4 * c,
             hilfe: 'Geh von $fuenf aus $c zurück.',
             auftrag: 'Eine Reihe ist zu viel. Nimm sie weg: $fuenf − $c.',
             aktion: feld(4, 4, 0)));
       case 5:
         k.add(_Kern('zehn',
-            kind: 'Stell dir 10 Reihen vor. 10 · $c sind $c Zehner. Wie viel ist 10 · $c?',
+            kind:
+                'Stell dir 10 Reihen vor. 10 · $c sind $c Zehner. Wie viel ist 10 · $c?',
             lumo: 'Ich stelle mir 10 Reihen vor: 10 · $c = $zehn.',
             frage: zehn,
             hilfe: '$c Zehner: Hänge an die $c eine 0 an.',
@@ -964,8 +989,10 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
       case 9:
         k.add(kern10(1));
         k.add(_Kern('weg',
-            kind: 'Eine Reihe ist zu viel. Nimm sie weg: Wie viel ist $zehn − $c?',
-            lumo: 'Eine Reihe ist zu viel. Ich nehme sie weg: $zehn − $c = ${9 * c}.',
+            kind:
+                'Eine Reihe ist zu viel. Nimm sie weg: Wie viel ist $zehn − $c?',
+            lumo:
+                'Eine Reihe ist zu viel. Ich nehme sie weg: $zehn − $c = ${9 * c}.',
             frage: 9 * c,
             hilfe: 'Geh von $zehn aus $c zurück.',
             auftrag: 'Eine Reihe ist zu viel. Nimm sie weg: $zehn − $c.',
@@ -989,7 +1016,8 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
   String _ankerTipp(int r, int c) => switch (r) {
         1 => '1 · $c ist nur eine einzige Reihe mit $c Punkten.',
         2 => '2 · $c ist das Doppelte von $c: zweimal die $c.',
-        3 => '3 · $c sind 3 Reihen mit je $c. Kennst du 2 · $c? Dann kommt noch eine Reihe dazu.',
+        3 =>
+          '3 · $c sind 3 Reihen mit je $c. Kennst du 2 · $c? Dann kommt noch eine Reihe dazu.',
         4 => '4 · $c ist eine Reihe weniger als 5 · $c. Kennst du 5 · $c?',
         5 => '5 · $c ist die Hälfte von 10 · $c.',
         6 => '6 · $c ist eine Reihe mehr als 5 · $c. Kennst du 5 · $c?',
@@ -1117,7 +1145,8 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
             'Stell dir Geld vor: $a Cent sind ${_muenzenText(az, ae)}. Du bekommst $b Cent dazu: ${_muenzenText(bz, be)}.';
         final bild = NachhilfeAktion.bild(NachhilfeMotiv.muenzen, a: a, b: b);
         if (bz > 0) {
-          roh = _Alltag('$anfang Leg zuerst die Zehn-Cent-Münzen zusammen.', bild,
+          roh = _Alltag(
+              '$anfang Leg zuerst die Zehn-Cent-Münzen zusammen.', bild,
               frage: az + bz,
               fragetext: 'Wie viele Zehn-Cent-Münzen hast du dann?',
               hilfe: '$az Zehn-Cent-Münzen und noch $bz.');
@@ -1163,16 +1192,16 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
         }
       case NachhilfeTyp.einmaleins:
         final r = a, c = b;
-        final summe = r <= 6
-            ? List.filled(r, '$c').join(' + ')
-            : '$c + $c + … ($r-mal)';
+        final summe =
+            r <= 6 ? List.filled(r, '$c').join(' + ') : '$c + $c + … ($r-mal)';
         final anfang =
             'Auf einem Teller liegen $c Erdbeeren. $r Teller sind $r-mal die $c: $summe.';
         final bild = NachhilfeAktion.bild(NachhilfeMotiv.teller, a: r, b: c);
         roh = switch (r) {
           1 => _Alltag('$anfang Es gibt nur einen Teller.', bild),
           2 => _Alltag('$anfang Das ist das Doppelte von $c.', bild),
-          3 => _Alltag('$anfang Zuerst 2 Teller, dann kommt noch einer dazu.', bild,
+          3 => _Alltag(
+              '$anfang Zuerst 2 Teller, dann kommt noch einer dazu.', bild,
               frage: 2 * c,
               fragetext: 'Wie viele Erdbeeren sind auf 2 Tellern?',
               hilfe: 'Das Doppelte von $c: $c + $c.'),

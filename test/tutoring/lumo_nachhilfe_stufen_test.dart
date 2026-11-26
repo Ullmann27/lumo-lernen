@@ -86,8 +86,7 @@ void _pruefePlan(NachhilfeAufgabe original, NachhilfePlan plan, String label) {
     expect(plan.schritte.first.akteur, NachhilfeAkteur.lumo, reason: label);
   }
   if (plan.stufe == NachhilfeStufe.vorzeigen) {
-    expect(plan.schritte.every((s) => s.akteur == NachhilfeAkteur.lumo),
-        isTrue,
+    expect(plan.schritte.every((s) => s.akteur == NachhilfeAkteur.lumo), isTrue,
         reason: label);
   }
   NachhilfeAktion? letzteStangen, letztePunkte, letzterSprung, letztePerlen;
@@ -117,13 +116,15 @@ void _pruefePlan(NachhilfeAufgabe original, NachhilfePlan plan, String label) {
         expect(w.wert('einer'), lessThanOrEqualTo(10), reason: label);
         letzteStangen = w;
       case 'punkte':
-        final zeilen = w.wert('gedreht') == 1 ? w.wert('spalten') : w.wert('zeilen');
+        final zeilen =
+            w.wert('gedreht') == 1 ? w.wert('spalten') : w.wert('zeilen');
         expect(w.wert('zeilen'), x.a, reason: label);
         expect(w.wert('spalten'), x.b, reason: label);
         expect(w.wert('sichtbar'), inInclusiveRange(1, zeilen), reason: label);
         expect(w.wert('markiert'), inInclusiveRange(0, w.wert('sichtbar')),
             reason: label);
-        expect(zeilen + w.wert('geister'), lessThanOrEqualTo(10), reason: label);
+        expect(zeilen + w.wert('geister'), lessThanOrEqualTo(10),
+            reason: label);
         letztePunkte = w;
       case 'huepfen':
         expect(w.wert('von'), inInclusiveRange(0, 100), reason: label);
@@ -134,7 +135,8 @@ void _pruefePlan(NachhilfeAufgabe original, NachhilfePlan plan, String label) {
         expect(w.wert('reihe2'), inInclusiveRange(0, 10), reason: label);
         letztePerlen = w;
       case 'zerlegen':
-        expect(w.wert('teil1') + w.wert('teil2'), w.wert('ganz'), reason: label);
+        expect(w.wert('teil1') + w.wert('teil2'), w.wert('ganz'),
+            reason: label);
       case 'ergebnis':
         expect(w.wert('richtig'), e, reason: label);
         expect(w.optionen, contains(e), reason: label);
@@ -251,19 +253,23 @@ void main() {
     test('Minus, Kopfrechnen und Einmaleins', () {
       final m = NachhilfeAufgabe.subtraktionBis100(62, 25)!;
       expect(_tutor.erkenneFehler(m, 43), NachhilfeFehlermuster.einerUmgedreht);
-      expect(_tutor.erkenneFehler(m, 47), NachhilfeFehlermuster.zehnerVergessen);
+      expect(
+          _tutor.erkenneFehler(m, 47), NachhilfeFehlermuster.zehnerVergessen);
       expect(_tutor.erkenneFehler(m, 87), NachhilfeFehlermuster.rechenzeichen);
       expect(_tutor.erkenneFehler(m, 73), NachhilfeFehlermuster.zifferndreher);
       expect(_tutor.erkenneFehler(m, 37), NachhilfeFehlermuster.keines);
       final p = NachhilfeAufgabe.additionBis100(37, 25)!;
-      expect(_tutor.erkenneFehler(p, 52), NachhilfeFehlermuster.zehnerVergessen);
+      expect(
+          _tutor.erkenneFehler(p, 52), NachhilfeFehlermuster.zehnerVergessen);
       expect(_tutor.erkenneFehler(p, 61), NachhilfeFehlermuster.einsDaneben);
       expect(_tutor.erkenneFehler(NachhilfeAufgabe.subtraktion(13, 5)!, 12),
           NachhilfeFehlermuster.einerUmgedreht);
       final mal = NachhilfeAufgabe.mal(6, 7)!;
       expect(_tutor.erkenneFehler(mal, 13), NachhilfeFehlermuster.plusStattMal);
-      expect(_tutor.erkenneFehler(mal, 35), NachhilfeFehlermuster.reiheVerrutscht);
-      expect(_tutor.erkenneFehler(mal, 49), NachhilfeFehlermuster.reiheVerrutscht);
+      expect(
+          _tutor.erkenneFehler(mal, 35), NachhilfeFehlermuster.reiheVerrutscht);
+      expect(
+          _tutor.erkenneFehler(mal, 49), NachhilfeFehlermuster.reiheVerrutscht);
       expect(_tutor.erkenneFehler(mal, '−'), NachhilfeFehlermuster.keines);
       expect(NachhilfeFehlermuster.einerUmgedreht.rueckmeldung, isNotEmpty);
     });
@@ -315,8 +321,8 @@ void main() {
 
   group('Stufe 2 – andere Erklärung mit Alltagsbeispiel', () {
     test('Eierkarton, Münzen, Teller – mit einer Zwischenfrage', () {
-      NachhilfePlan p(NachhilfeAufgabe x) =>
-          _tutor.plan(x, _tutor.wegeFuer(x).first, NachhilfeStufe.andereErklaerung);
+      NachhilfePlan p(NachhilfeAufgabe x) => _tutor.plan(
+          x, _tutor.wegeFuer(x).first, NachhilfeStufe.andereErklaerung);
       final eier = p(NachhilfeAufgabe.addition(8, 5)!);
       expect(eier.schritte.first.text, contains('Eierkarton'));
       expect(eier.schritte.last.frage, 2);
@@ -334,7 +340,8 @@ void main() {
   });
 
   group('Stufe 3 – Lumo zeigt am Material', () {
-    test('Zehnerstangen bewegen sich Schritt für Schritt, an einem Zwilling', () {
+    test('Zehnerstangen bewegen sich Schritt für Schritt, an einem Zwilling',
+        () {
       final original = NachhilfeAufgabe.additionBis100(37, 25)!;
       final plan =
           _tutor.plan(original, NachhilfeWeg.stangen, NachhilfeStufe.vorzeigen);
@@ -392,7 +399,8 @@ void main() {
       expect(plan.abschluss, contains('35 + 7'));
     });
 
-    test('kurze Aufgaben bekommen eine kleine Teilaufgabe statt der Lösung', () {
+    test('kurze Aufgaben bekommen eine kleine Teilaufgabe statt der Lösung',
+        () {
       final plan = _tutor.plan(NachhilfeAufgabe.additionBis100(45, 30)!,
           NachhilfeWeg.stangen, NachhilfeStufe.teilschritt);
       expect(plan.schritte.last.id, 'klein');
