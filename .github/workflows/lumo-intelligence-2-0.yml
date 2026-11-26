@@ -55,6 +55,7 @@ jobs:
             test/domain/school_analysis_test.dart \
             test/learning_loop_restart_scenario_test.dart \
             test/learning/honest_practice_flow_test.dart \
+            test/cross_grade_second_chance_test.dart \
             test/design/lumo_mentor_journal_contrast_test.dart \
             test/local_backup_format_test.dart \
             test/features/report_screen_test.dart \

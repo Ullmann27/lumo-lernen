@@ -31,9 +31,14 @@ void main() {
       await tester.scrollUntilVisible(
           find.byKey(ValueKey('cross-grade-choice-$i')), 200,
           scrollable: find.byType(Scrollable).first);
-      final button = tester.widget<OutlinedButton>(
-          find.byKey(ValueKey('cross-grade-choice-$i')));
-      choices.add((button.child! as Text).data!);
+      // The live answer crystal wraps the visible label in a FittedBox
+      // for narrow displays. Keep testing the actual tappable button and
+      // its displayed text, not its private presentation hierarchy.
+      final choice = find.byKey(ValueKey('cross-grade-choice-$i'));
+      expect(tester.widget<OutlinedButton>(choice).onPressed, isNotNull);
+      final label = find.descendant(of: choice, matching: find.byType(Text));
+      expect(label, findsOneWidget);
+      choices.add(tester.widget<Text>(label).data!);
     }
     final wrong = choices.indexWhere((s) => s != '$answer');
     final correct = choices.indexOf('$answer');
