@@ -275,6 +275,22 @@ jobs:
                 godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
                 --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd"
           done
+      - name: Elternlautstärke bei Neustart und Bauteilklang prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          for action in mute unmute; do
+            XDG_DATA_HOME="$RUNNER_TEMP/lumo-parent-audio" \
+              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+                --timeout 120 --required '[ParentMuteRestart] PASS' --log "build-proof/GODOT-parent-$action.txt" -- \
+                godot --headless --single-threaded-scene --audio-driver Dummy --path build/lumo-godot-qa \
+                --script res://scripts/tests/parent_mute_restart_regression.gd -- "--$action"
+          done
+          XDG_DATA_HOME="$RUNNER_TEMP/lumo-workshop-audio" \
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 120 --required '[WorkshopMotorVoices] PASS' --log build-proof/GODOT-workshop-motors.txt -- \
+              godot --headless --single-threaded-scene --audio-driver Dummy --path build/lumo-godot-qa \
+              --script res://scripts/tests/kart_workshop_motor_voices.gd
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
