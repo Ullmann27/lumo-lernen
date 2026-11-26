@@ -19,19 +19,19 @@
 
 | Umfang | Stand | Nachweis oder offene Abnahme |
 | --- | --- | --- |
-| Diagramme im Sachunterricht | INTEGRIERT, GERÄTEPRÜFUNG OFFEN | Beobachtete Null im Igel-Beispiel explizit mit Null und ohne Kästchen. |
-| Laufzeitdaten im Export | INTEGRIERT, GERÄTEPRÜFUNG OFFEN | Vertrag für alle Exportprofile. Der Android-Workflow prüft die tatsächlich eingebetteten JSON-Daten und Tiermodelle. |
-| Adaptive Lernhilfe, Eltern und Schule, Profile | INTEGRIERT, GERÄTEPRÜFUNG OFFEN | Fachtests, Kennzahlen, Lernen mit lokalem Profil und Sicherung im Kandidaten wiederholen. Keine gemessene Lernverbesserung ableiten. |
-| Kart-Rivalen auf Dschungelherz, Tunnel und Turbo | FEHLERHAFT | Bekannte Ausfälle in der 2083-Basis. Reparatur und ganze Rennläufe sind Freigabepunkte. |
-| Fahrzeuglack, Garage und Rückkehr aus dem Rennen | FEHLERHAFT | 2083 als Ausgangspunkt. Vollständige Fahrzeugmodelle und Werkstatt in der echten Oberfläche sowie Rückkehr prüfen. |
-| World-Kart, Missionen und Sonnenhafen | FEHLERHAFT | Bodenkontakt und Wiederherstellung aus älteren Spielständen prüfen. Das Quellinventar hat 15 Missionen und drei separate Botengänge. |
+| Diagramme im Sachunterricht | INTEGRIERT, GERÄTEPRÜFUNG OFFEN | Beobachtete Null im Igel-Beispiel explizit mit Null und ohne Kästchen. 26 lokale Prüfungen der Fachfragen grün. |
+| Laufzeitdaten im Export | INTEGRIERT, GERÄTEPRÜFUNG OFFEN | Vertrag für alle Exportprofile. Ein lokaler Export des Android-PCK hat die Laufzeitdaten vollständig bestanden. Der Android-Workflow wiederholt die Prüfung am eingebetteten Paket. |
+| Adaptive Lernhilfe, Eltern und Schule, Profile | INTEGRIERT, GERÄTEPRÜFUNG OFFEN | 47 lokale Prüfungen der Vergleichsaufgaben und Nachhilfeflüsse grün. Kennzahlen, Lernen mit lokalem Profil und Sicherung am Kandidaten wiederholen. Keine gemessene Lernverbesserung ableiten. |
+| Kart-Rivalen auf Dschungelherz, Tunnel und Turbo | INTEGRIERT, GERÄTEPRÜFUNG OFFEN | Elf Abenteuer-Routen bestehen den Tunnelvertrag. Der gezielte Prüflauf für 30 Anfahrstellungen auf Dschungelherz zeigt nach der Reparatur keinen Stillstand. Vollständige Rennläufe sind Teil der Freigabe. |
+| Fahrzeuglack, Garage und Rückkehr aus dem Rennen | INTEGRIERT, GERÄTEPRÜFUNG OFFEN | 512 native Fahrzeugprüfungen bestanden. Derselbe Comet ist in der Werkstatt mit Serienlack und Feuerrot sichtbar. Android-Rückkehr und Schmalseitenlayout aktualisieren. [Vergleich aus Godot](2084-werkstatt-lack.jpg) |
+| World-Kart, Missionen und Sonnenhafen | INTEGRIERT, GERÄTEPRÜFUNG OFFEN | Lokal bestanden 68 Bodenkontakt-, 193 Ersteintritts- und 99 Sonnenhafen-Prüfungen. Das Quellinventar hat 15 Missionen und drei separate Botengänge. |
 | Waldheim und Ausbau auf 30 Missionen | NICHT IMPLEMENTIERT | Waldheim ist als Ziel vorgesehen. Das Soll von 30 vollständig geprüften Missionen ist offen. |
 | Fahrzeug-, Teile- und Effektausbau | NICHT IMPLEMENTIERT | Zielgrößen 24 Fahrzeuge und neue Teilekategorien erst nach Laufzeit- und Modellprüfung ausweisen. Die 14 vorhandenen Meshy-Karts bleiben im Bestand. |
 | Übrige Spiele | INTEGRIERT, GERÄTEPRÜFUNG OFFEN | Starts, volle Spielrunden, Rückwege und Fortschritt je Route getrennt erfassen. Ein Start zählt als Startbeleg. |
 | Galaxy Z Fold7, Tablet und thermischer Dauertest | INTEGRIERT, GERÄTEPRÜFUNG OFFEN | Bildschirmformate in Software prüfen. Für FPS, Speicher und Thermik sind Messungen am physischen Gerät erforderlich. |
 | Signiertes Android-Update | FEHLERHAFT | 2083 erreichte die Android-Stufe nicht. 2084 erhält einen neuen, exakten Flutter-/Godot-Pin und prüft `dev.ullmann.lumo.lumo_lernen.coachpreview`, ARM64 und das vorhandene Familienzertifikat. |
 
-Die Einträge beschreiben den Stand vor dem Zwischenbuild. Testergebnisse für den neuen Stand müssen mit genau seinem APK-Quellpin verknüpft werden.
+Die lokalen Prüfungen stammen aus den jeweiligen Integrationstests vor dem Zwischenbuild. Ergebnisse für die Android-APK müssen mit genau ihrem Quellpin verknüpft werden.
 
 ## Abnahme am Gerät
 
