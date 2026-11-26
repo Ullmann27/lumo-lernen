@@ -67,9 +67,364 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
+          overwrite: true
           name: LUMO-INTELLIGENCE-TESTS-${{ github.run_id }}
           path: intelligence-proof/
           if-no-files-found: warn
+
+  flutter-full:
+    name: Flutter – vollständige Testsuite
+    needs: intelligence-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Abhängigkeiten und Prüfverzeichnis vorbereiten
+        run: |
+          set -euo pipefail
+          mkdir -p build-proof
+          flutter pub get --enforce-lockfile
+      - name: Flutter – Analyse und vollständige Testsuite
+        shell: bash
+        env:
+          LUMO_ROOM_SCREENSHOT_DIR: build-proof/room
+        run: |
+          set -euo pipefail
+          flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings \
+            | tee build-proof/FLUTTER-ANALYSIS.txt
+          flutter test --no-pub --reporter expanded --timeout=60s --concurrency=2 \
+            | tee build-proof/FLUTTER-CORE-TESTS.txt
+      - name: Prüfbelege dieses Auftrags sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          overwrite: true
+          name: LUMO-QA-flutter-full-${{ github.run_id }}
+          path: |
+            build-proof/
+            .ci-results/achievements/*.png
+          if-no-files-found: warn
+          compression-level: 0
+
+  native-contracts:
+    name: Android – Sprach-, Lern- und Sicherungsverträge
+    needs: intelligence-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Prüfverzeichnis vorbereiten
+        run: mkdir -p build-proof
+      - name: Native Sprache, Lerndialog und Datensicherung – JVM-Verträge
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 https://services.gradle.org/distributions/gradle-9.1.0-bin.zip \
+            -o "$RUNNER_TEMP/lumo-contract-gradle.zip"
+          printf '%s  %s\n' a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806 \
+            "$RUNNER_TEMP/lumo-contract-gradle.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/lumo-contract-gradle.zip" -d "$RUNNER_TEMP/lumo-contract-gradle"
+          export LUMO_KOTLIN_LIB_DIR="$RUNNER_TEMP/lumo-contract-gradle/gradle-9.1.0/lib"
+          python3 -m unittest scripts.tests.test_english_lesson_speech \
+            scripts.tests.test_speech_envelope_contract scripts.tests.test_learning_dialog_logic \
+            scripts.tests.test_studio_learning_contract \
+            scripts.tests.test_local_backup_transaction -v \
+            2>&1 | tee build-proof/NATIVE-SPEECH-DIALOG-TESTS.txt
+      - name: Prüfbelege dieses Auftrags sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          overwrite: true
+          name: LUMO-QA-native-contracts-${{ github.run_id }}
+          path: |
+            build-proof/
+          if-no-files-found: warn
+          compression-level: 0
+
+  native-qa:
+    name: Godot – ${{ matrix.group }}
+    needs: intelligence-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [controls, core-memory, world, racing]
+    env:
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Exakten Prüfschlüssel berechnen
+        id: identity
+        env:
+          QA_GROUP: ${{ matrix.group }}
+          QA_BRANCH: ${{ github.ref }}
+          WORKFLOW_HASH: ${{ hashFiles('.github/workflows/lumo-intelligence-2-0.yml', 'scripts/install_godot_for_build.sh') }}
+        run: |
+          set -euo pipefail
+          mkdir -p build-proof
+          pin="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          [[ "$pin" =~ ^[0-9a-f]{40}$ ]]
+          engine="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["engine"])')"
+          test "$engine" = 4.6.3
+          # Do not reuse evidence if the hosted runner image is not identifiable.
+          key=""
+          if [ -n "${ImageOS:-}" ] && [ -n "${ImageVersion:-}" ]; then
+            digest="$(printf '%s\n' "$pin" "$engine" "$QA_BRANCH" "$QA_GROUP" "$WORKFLOW_HASH" "$RUNNER_OS" "$RUNNER_ARCH" "$ImageOS" "$ImageVersion" | sha256sum | cut -d ' ' -f1)"
+            key="lumo-native-proof-v1-$QA_GROUP-$digest"
+          fi
+          printf 'key=%s\n' "$key" >> "$GITHUB_OUTPUT"
+          printf 'godot=%s\n' "$pin" >> "$GITHUB_OUTPUT"
+      - name: Nur exakt passende erfolgreiche Godot-Prüfbelege wiederherstellen
+        id: cached
+        if: steps.identity.outputs.key != ''
+        continue-on-error: true
+        uses: actions/cache/restore@v4
+        with:
+          path: build-proof
+          key: ${{ steps.identity.outputs.key }}
+      - name: Cachebelege auf Identität und Integrität prüfen
+        id: reuse
+        env:
+          CACHE_KEY: ${{ steps.identity.outputs.key }}
+          GODOT_PIN: ${{ steps.identity.outputs.godot }}
+          EXACT_HIT: ${{ steps.cached.outputs.cache-hit }}
+        run: |
+          set -euo pipefail
+          valid=false
+          if [ -n "$CACHE_KEY" ] && [ "$EXACT_HIT" = true ] &&
+             [ -f build-proof/QA-CACHE-KEY.txt ] && [ -f build-proof/QA-GODOT-COMMIT.txt ] &&
+             [ -f build-proof/QA-SHA256SUMS.txt ] &&
+             [ "$(cat build-proof/QA-CACHE-KEY.txt)" = "$CACHE_KEY" ] &&
+             [ "$(cat build-proof/QA-GODOT-COMMIT.txt)" = "$GODOT_PIN" ] &&
+             (cd build-proof && sha256sum --check --strict QA-SHA256SUMS.txt); then
+            valid=true
+            printf 'Reused successful exact-source Godot checks: %s\n' "$CACHE_KEY" >> "$GITHUB_STEP_SUMMARY"
+          else
+            rm -rf build-proof
+            mkdir -p build-proof
+          fi
+          printf 'valid=%s\n' "$valid" >> "$GITHUB_OUTPUT"
+      - name: Godot und Schriftressourcen einrichten
+        if: steps.reuse.outputs.valid != 'true'
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          bash scripts/install_godot_for_build.sh
+      - name: Godot – exakten Quellstand und Szenen importieren
+        if: steps.reuse.outputs.valid != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          git clone --filter=blob:none https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
+          git -C build/lumo-godot-qa checkout --detach "$SOURCE"
+          # Der Erstimport stürzt in Godot 4.6.3 auf vollen CI-Rechnern ab, wenn
+          # Szenen-Benachrichtigungen aus Arbeits-Threads kommen. Wie im Bauskript
+          # läuft der Importer deshalb mit --single-threaded-scene; zusätzlich
+          # wird der idempotente Import genau einmal wiederholt.
+          godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
+            || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
+      - name: Fold-Steuerung, Streckendetails, Kartenrunde und Grafikwahl prüfen
+        if: matrix.group == 'controls' && steps.reuse.outputs.valid != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          failed=0
+          for entry in kart_hud_controls_regression:KART_HUD_CONTROLS_OK \
+            kart_detail_layer_regression:PASS kart_racecraft_regression:PASS \
+            cards_punktlandung_reveal_regression:PASS kart_quality_persistence_regression:PASS; do
+            probe="${entry%:*}"
+            required="${entry#*:}"
+            XDG_DATA_HOME="$RUNNER_TEMP/lumo-fold-$probe" \
+              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+                --timeout 1200 --required "$required" --log "build-proof/GODOT-$probe.txt" -- \
+                godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
+                --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd" || failed=1
+          done
+          exit "$failed"
+      - name: Elternlautstärke bei Neustart und Bauteilklang prüfen
+        if: matrix.group == 'controls' && steps.reuse.outputs.valid != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          for action in mute unmute; do
+            XDG_DATA_HOME="$RUNNER_TEMP/lumo-parent-audio" \
+              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+                --timeout 120 --required '[ParentMuteRestart] PASS' --log "build-proof/GODOT-parent-$action.txt" -- \
+                godot --headless --single-threaded-scene --audio-driver Dummy --path build/lumo-godot-qa \
+                --script res://scripts/tests/parent_mute_restart_regression.gd -- "--$action"
+          done
+          XDG_DATA_HOME="$RUNNER_TEMP/lumo-workshop-audio" \
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 120 --required '[WorkshopMotorVoices] PASS' --log build-proof/GODOT-workshop-motors.txt -- \
+              godot --headless --single-threaded-scene --audio-driver Dummy --path build/lumo-godot-qa \
+              --script res://scripts/tests/kart_workshop_motor_voices.gd
+      - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
+        if: matrix.group == 'core-memory' && steps.reuse.outputs.valid != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Gleiche strenge Aufruf- und Zeitgrenzen wie der separate native Prüflauf.
+          for probe in table_turn_flow_regression cards_rules_regression chess_rules_regression; do
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 900 --required PASS --log "build-proof/GODOT-${probe}.txt" -- \
+              godot --headless --single-threaded-scene --audio-driver Dummy \
+              --path build/lumo-godot-qa --script "res://scripts/tests/${probe}.gd"
+          done
+          python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+            --timeout 1200 --required CARDS_TABLE_RUNTIME_PASS \
+            --log build-proof/GODOT-cards_table_regression.txt -- \
+            godot --headless --single-threaded-scene --audio-driver Dummy \
+            --path build/lumo-godot-qa --script res://scripts/tests/cards_table_regression.gd
+          python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+            --timeout 1800 --required CHESS_TABLE_PASS \
+            --log build-proof/GODOT-chess_table_regression.txt -- \
+            godot --headless --single-threaded-scene --audio-driver Dummy \
+            --path build/lumo-godot-qa --script res://scripts/tests/chess_table_regression.gd -- --scene=chess
+          for probe in kart_neon_home_regression kart_garage_landscape_regression kart_race_kinds_regression \
+            kart_result_reachability_regression native_table_boot_regression \
+            learning_android_host_capability_regression native_learning_boot_regression; do
+            echo "::group::$probe"
+            timeout 600 godot --headless --path build/lumo-godot-qa \
+              --script "res://scripts/tests/$probe.gd" | tee "build-proof/GODOT-${probe}.txt"
+            echo "::endgroup::"
+          done
+          for probe in lumo_kart_production_driver_regression lumo_opponent_roster_regression \
+            kart_extra_drivers_regression \
+            learning_holo_lesson_regression lumo_run_stunt_relay_regression \
+            kart_arena_battle_regression parcours_menu_entry_regression parcours_race_regression \
+            lumo_run_regression lumo_run_flow_regression quiz_studio_escape_regression; do
+            echo "::group::$probe"
+            # Der Lauf-Test spielt 30 ganze Dschungelherz-Läufe mit den echten
+            # Teilschritten des Spiels (rund 18 s je Lauf im CI): 600 s reichten nur
+            # bis Lauf 24 (Lauf 44551761545, Abbruch mit 124 ohne Fehlschlag).
+            limit=600
+            if [ "$probe" = lumo_run_regression ]; then limit=1500; fi
+            timeout "$limit" godot --headless --path build/lumo-godot-qa \
+              --script "res://scripts/tests/$probe.gd" | tee "build-proof/GODOT-${probe}.txt"
+            echo "::endgroup::"
+          done
+          echo "::group::learning_tutor_regression (validation, invalid, return, voice)"
+          timeout 600 godot --headless --path build/lumo-godot-qa \
+            --script res://scripts/tests/learning_tutor_regression.gd -- \
+            --part=validation,invalid,return,voice | tee build-proof/GODOT-learning_tutor_regression.txt
+          echo "::endgroup::"
+      - name: 3D-Memory – kompakte Bedienung und sichtbare Karten prüfen
+        if: matrix.group == 'core-memory' && steps.reuse.outputs.valid != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          export XDG_DATA_HOME="$RUNNER_TEMP/lumo-memory-compact"
+          export LUMO_MEMORY_CAPTURE_DIR="$PWD/build-proof/memory-compact"
+          python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+            --timeout 900 --required MEMORY_COMPACT_PASS --log build-proof/GODOT-memory-compact.txt -- \
+            godot --headless --single-threaded-scene --audio-driver Dummy \
+            --path build/lumo-godot-qa --script res://scripts/tests/memory_compact_layout_regression.gd
+      - name: World – integrierte Missionen, Kart, Figuren und Spielstand
+        if: matrix.group == 'world' && steps.reuse.outputs.valid != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          for probe in lumo_world_quest_integrity_regression lumo_world_first_entry_regression \
+            lumo_world_kart_ground_regression lumo_world_open_world_integration_regression \
+            lumo_world_kart_persistence_regression lumo_world_routines_regression \
+            lumo_world_routines_integration_regression lumo_world_waldheim_regression \
+            lumo_world_sternenstadt_regression; do
+            XDG_DATA_HOME="$RUNNER_TEMP/lumo-world-$probe" \
+              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+                --timeout 600 --required "PASS" --log "build-proof/GODOT-${probe}.txt" -- \
+                godot --headless --path build/lumo-godot-qa \
+                --script "res://scripts/tests/${probe}.gd"
+          done
+      - name: Intelligence 2.0 – neue Strecken, Spiele und Welt (gepinnter Godot-Stand)
+        if: matrix.group == 'racing' && steps.reuse.outputs.valid != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Team B1: drei Signatur-Strecken. Vertrag und Welt (alle Grafikprofile) headless.
+          for probe in kart_track_contract kart_signature_world_regression; do
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 1200 --required PASS --log "build-proof/GODOT-${probe}.txt" -- \
+              godot --headless --path build/lumo-godot-qa \
+              --script "res://scripts/tests/${probe}.gd"
+          done
+          # Ganzes Rennen je Strecke: zwei Runden, fünf erkennbare KI-Rivalen, nur sichtbare Bedienung.
+          for track in vulkanexpress_3100 wolkensturm_3300 kristallflut_2800; do
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 1500 --required '[SignatureRace] PASS' \
+              --log "build-proof/GODOT-kart_signature_race-${track}.txt" -- \
+              godot --headless --path build/lumo-godot-qa \
+              --script res://scripts/tests/kart_signature_race_regression.gd -- --track="$track"
+          done
+      - name: Rivalen, Tunnel und Produktionsfahrzeuge in den reparierten Spielpfaden prüfen
+        if: matrix.group == 'racing' && steps.reuse.outputs.valid != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          for probe in kart_adventure_regression kart_production_vehicle_regression kart_fleet_regression; do
+            XDG_DATA_HOME="$RUNNER_TEMP/lumo-release-$probe" \
+              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+                --timeout 900 --required PASS --log "build-proof/GODOT-$probe.txt" -- \
+                godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
+                --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd"
+          done
+          XDG_DATA_HOME="$RUNNER_TEMP/lumo-release-rival-ai" \
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 1500 --required '[KartRivalAI] PASS' --log build-proof/GODOT-kart_rival_ai_regression.txt -- \
+              godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
+              --path build/lumo-godot-qa --script res://scripts/tests/kart_rival_ai_regression.gd \
+              -- --tracks=jungle_emerald_3600,jungle_temple
+      - name: Erfolgreiche Prüfung mit exaktem Quellstand bescheinigen
+        if: steps.reuse.outputs.valid != 'true'
+        env:
+          CACHE_KEY: ${{ steps.identity.outputs.key }}
+          GODOT_PIN: ${{ steps.identity.outputs.godot }}
+        run: |
+          set -euo pipefail
+          test "$(git -C build/lumo-godot-qa rev-parse HEAD)" = "$GODOT_PIN"
+          printf '%s\n' "$CACHE_KEY" > build-proof/QA-CACHE-KEY.txt
+          printf '%s\n' "$GODOT_PIN" > build-proof/QA-GODOT-COMMIT.txt
+          printf '%s\n' "$GITHUB_RUN_ID" > build-proof/QA-ORIGINAL-RUN.txt
+          (cd build-proof && find . -type f ! -name QA-SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > QA-SHA256SUMS.txt)
+      - name: Nur erfolgreiche exakte Godot-Prüfung speichern
+        if: steps.reuse.outputs.valid != 'true' && steps.identity.outputs.key != ''
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: build-proof
+          key: ${{ steps.identity.outputs.key }}
+      - name: Prüfbelege dieses Auftrags sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          overwrite: true
+          name: LUMO-QA-godot-${{ matrix.group }}-${{ github.run_id }}
+          path: |
+            build-proof/
+          if-no-files-found: warn
+          compression-level: 0
 
   apk:
     needs: intelligence-tests
@@ -130,188 +485,15 @@ jobs:
           sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
           bash scripts/install_ndk_for_build.sh build-proof/ndk
           bash scripts/install_godot_for_build.sh
-      - name: Native Sprache, Lerndialog und Datensicherung – JVM-Verträge
-        shell: bash
-        run: |
-          set -euo pipefail
-          curl -fL --retry 3 https://services.gradle.org/distributions/gradle-9.1.0-bin.zip \
-            -o "$RUNNER_TEMP/lumo-contract-gradle.zip"
-          printf '%s  %s\n' a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806 \
-            "$RUNNER_TEMP/lumo-contract-gradle.zip" | sha256sum -c -
-          unzip -q "$RUNNER_TEMP/lumo-contract-gradle.zip" -d "$RUNNER_TEMP/lumo-contract-gradle"
-          export LUMO_KOTLIN_LIB_DIR="$RUNNER_TEMP/lumo-contract-gradle/gradle-9.1.0/lib"
-          python3 -m unittest scripts.tests.test_english_lesson_speech \
-            scripts.tests.test_speech_envelope_contract scripts.tests.test_learning_dialog_logic \
-            scripts.tests.test_studio_learning_contract \
-            scripts.tests.test_local_backup_transaction -v \
-            2>&1 | tee build-proof/NATIVE-SPEECH-DIALOG-TESTS.txt
-      - name: Godot – exakten Quellstand und Szenen importieren
+      - name: Gepinnte Godot-Quelle für Paketidentität und Nachweise laden
         shell: bash
         run: |
           set -euo pipefail
           SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
           git clone --filter=blob:none https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
           git -C build/lumo-godot-qa checkout --detach "$SOURCE"
+          test "$(git -C build/lumo-godot-qa rev-parse HEAD)" = "$SOURCE"
           python3 scripts/verify_kart_fleet_mirror.py build/lumo-godot-qa
-          # Der Erstimport stürzt in Godot 4.6.3 auf vollen CI-Rechnern ab, wenn
-          # Szenen-Benachrichtigungen aus Arbeits-Threads kommen. Wie im Bauskript
-          # läuft der Importer deshalb mit --single-threaded-scene; zusätzlich
-          # wird der idempotente Import genau einmal wiederholt.
-          godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
-            || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
-      - name: Fold-Steuerung, Streckendetails, Kartenrunde und Grafikwahl prüfen
-        shell: bash
-        run: |
-          set -euo pipefail
-          failed=0
-          for entry in kart_hud_controls_regression:KART_HUD_CONTROLS_OK \
-            kart_detail_layer_regression:PASS kart_racecraft_regression:PASS \
-            cards_punktlandung_reveal_regression:PASS kart_quality_persistence_regression:PASS; do
-            probe="${entry%:*}"
-            required="${entry#*:}"
-            XDG_DATA_HOME="$RUNNER_TEMP/lumo-fold-$probe" \
-              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-                --timeout 1200 --required "$required" --log "build-proof/GODOT-$probe.txt" -- \
-                godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
-                --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd" || failed=1
-          done
-          exit "$failed"
-      - name: Elternlautstärke bei Neustart und Bauteilklang prüfen
-        shell: bash
-        run: |
-          set -euo pipefail
-          for action in mute unmute; do
-            XDG_DATA_HOME="$RUNNER_TEMP/lumo-parent-audio" \
-              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-                --timeout 120 --required '[ParentMuteRestart] PASS' --log "build-proof/GODOT-parent-$action.txt" -- \
-                godot --headless --single-threaded-scene --audio-driver Dummy --path build/lumo-godot-qa \
-                --script res://scripts/tests/parent_mute_restart_regression.gd -- "--$action"
-          done
-          XDG_DATA_HOME="$RUNNER_TEMP/lumo-workshop-audio" \
-            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-              --timeout 120 --required '[WorkshopMotorVoices] PASS' --log build-proof/GODOT-workshop-motors.txt -- \
-              godot --headless --single-threaded-scene --audio-driver Dummy --path build/lumo-godot-qa \
-              --script res://scripts/tests/kart_workshop_motor_voices.gd
-      - name: Flutter – Analyse und vollständige Testsuite
-        shell: bash
-        env:
-          LUMO_ROOM_SCREENSHOT_DIR: build-proof/room
-        run: |
-          set -euo pipefail
-          flutter analyze --no-pub --no-fatal-infos --no-fatal-warnings \
-            | tee build-proof/FLUTTER-ANALYSIS.txt
-          flutter test --no-pub --reporter expanded --timeout=60s --concurrency=2 \
-            | tee build-proof/FLUTTER-CORE-TESTS.txt
-      - name: Godot – gepinnter Spielstand startet und besteht seine Kernprüfungen
-        shell: bash
-        run: |
-          set -euo pipefail
-          # Gleiche strenge Aufruf- und Zeitgrenzen wie der separate native Prüflauf.
-          for probe in table_turn_flow_regression cards_rules_regression chess_rules_regression; do
-            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-              --timeout 900 --required PASS --log "build-proof/GODOT-${probe}.txt" -- \
-              godot --headless --single-threaded-scene --audio-driver Dummy \
-              --path build/lumo-godot-qa --script "res://scripts/tests/${probe}.gd"
-          done
-          python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-            --timeout 1200 --required CARDS_TABLE_RUNTIME_PASS \
-            --log build-proof/GODOT-cards_table_regression.txt -- \
-            godot --headless --single-threaded-scene --audio-driver Dummy \
-            --path build/lumo-godot-qa --script res://scripts/tests/cards_table_regression.gd
-          python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-            --timeout 1800 --required CHESS_TABLE_PASS \
-            --log build-proof/GODOT-chess_table_regression.txt -- \
-            godot --headless --single-threaded-scene --audio-driver Dummy \
-            --path build/lumo-godot-qa --script res://scripts/tests/chess_table_regression.gd -- --scene=chess
-          for probe in kart_neon_home_regression kart_garage_landscape_regression kart_race_kinds_regression \
-            kart_result_reachability_regression native_table_boot_regression \
-            learning_android_host_capability_regression native_learning_boot_regression; do
-            echo "::group::$probe"
-            timeout 600 godot --headless --path build/lumo-godot-qa \
-              --script "res://scripts/tests/$probe.gd" | tee "build-proof/GODOT-${probe}.txt"
-            echo "::endgroup::"
-          done
-          for probe in lumo_kart_production_driver_regression lumo_opponent_roster_regression \
-            kart_extra_drivers_regression \
-            learning_holo_lesson_regression lumo_run_stunt_relay_regression \
-            kart_arena_battle_regression parcours_menu_entry_regression parcours_race_regression \
-            lumo_run_regression lumo_run_flow_regression quiz_studio_escape_regression; do
-            echo "::group::$probe"
-            # Der Lauf-Test spielt 30 ganze Dschungelherz-Läufe mit den echten
-            # Teilschritten des Spiels (rund 18 s je Lauf im CI): 600 s reichten nur
-            # bis Lauf 24 (Lauf 44551761545, Abbruch mit 124 ohne Fehlschlag).
-            limit=600
-            if [ "$probe" = lumo_run_regression ]; then limit=1500; fi
-            timeout "$limit" godot --headless --path build/lumo-godot-qa \
-              --script "res://scripts/tests/$probe.gd" | tee "build-proof/GODOT-${probe}.txt"
-            echo "::endgroup::"
-          done
-          echo "::group::learning_tutor_regression (validation, invalid, return, voice)"
-          timeout 600 godot --headless --path build/lumo-godot-qa \
-            --script res://scripts/tests/learning_tutor_regression.gd -- \
-            --part=validation,invalid,return,voice | tee build-proof/GODOT-learning_tutor_regression.txt
-          echo "::endgroup::"
-      - name: 3D-Memory – kompakte Bedienung und sichtbare Karten prüfen
-        shell: bash
-        run: |
-          set -euo pipefail
-          export XDG_DATA_HOME="$RUNNER_TEMP/lumo-memory-compact"
-          export LUMO_MEMORY_CAPTURE_DIR="$PWD/build-proof/memory-compact"
-          python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-            --timeout 900 --required MEMORY_COMPACT_PASS --log build-proof/GODOT-memory-compact.txt -- \
-            godot --headless --single-threaded-scene --audio-driver Dummy \
-            --path build/lumo-godot-qa --script res://scripts/tests/memory_compact_layout_regression.gd
-      - name: World – integrierte Missionen, Kart, Figuren und Spielstand
-        shell: bash
-        run: |
-          set -euo pipefail
-          for probe in lumo_world_quest_integrity_regression lumo_world_first_entry_regression \
-            lumo_world_kart_ground_regression lumo_world_open_world_integration_regression \
-            lumo_world_kart_persistence_regression lumo_world_routines_regression \
-            lumo_world_routines_integration_regression lumo_world_waldheim_regression \
-            lumo_world_sternenstadt_regression; do
-            XDG_DATA_HOME="$RUNNER_TEMP/lumo-world-$probe" \
-              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-                --timeout 600 --required "PASS" --log "build-proof/GODOT-${probe}.txt" -- \
-                godot --headless --path build/lumo-godot-qa \
-                --script "res://scripts/tests/${probe}.gd"
-          done
-      - name: Intelligence 2.0 – neue Strecken, Spiele und Welt (gepinnter Godot-Stand)
-        shell: bash
-        run: |
-          set -euo pipefail
-          # Team B1: drei Signatur-Strecken. Vertrag und Welt (alle Grafikprofile) headless.
-          for probe in kart_track_contract kart_signature_world_regression; do
-            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-              --timeout 1200 --required PASS --log "build-proof/GODOT-${probe}.txt" -- \
-              godot --headless --path build/lumo-godot-qa \
-              --script "res://scripts/tests/${probe}.gd"
-          done
-          # Ganzes Rennen je Strecke: zwei Runden, fünf erkennbare KI-Rivalen, nur sichtbare Bedienung.
-          for track in vulkanexpress_3100 wolkensturm_3300 kristallflut_2800; do
-            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-              --timeout 1500 --required '[SignatureRace] PASS' \
-              --log "build-proof/GODOT-kart_signature_race-${track}.txt" -- \
-              godot --headless --path build/lumo-godot-qa \
-              --script res://scripts/tests/kart_signature_race_regression.gd -- --track="$track"
-          done
-      - name: Rivalen, Tunnel und Produktionsfahrzeuge in den reparierten Spielpfaden prüfen
-        shell: bash
-        run: |
-          set -euo pipefail
-          for probe in kart_adventure_regression kart_production_vehicle_regression kart_fleet_regression; do
-            XDG_DATA_HOME="$RUNNER_TEMP/lumo-release-$probe" \
-              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-                --timeout 900 --required PASS --log "build-proof/GODOT-$probe.txt" -- \
-                godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
-                --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd"
-          done
-          XDG_DATA_HOME="$RUNNER_TEMP/lumo-release-rival-ai" \
-            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-              --timeout 1500 --required '[KartRivalAI] PASS' --log build-proof/GODOT-kart_rival_ai_regression.txt -- \
-              godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
-              --path build/lumo-godot-qa --script res://scripts/tests/kart_rival_ai_regression.gd \
-              -- --tracks=jungle_emerald_3600,jungle_temple
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
@@ -411,6 +593,7 @@ jobs:
       - name: APK für den Android-Emulator sichern
         uses: actions/upload-artifact@v4
         with:
+          overwrite: true
           name: LUMO-EMULATOR-APK-${{ github.run_id }}
           path: dist/x86_64/
           if-no-files-found: error
@@ -439,6 +622,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
+          overwrite: true
           name: LUMO-TEST-APK-${{ github.run_id }}
           # Nur die APK und die kleinen Belege; die APK ist bereits komprimiert.
           path: |
@@ -568,6 +752,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
+          overwrite: true
           name: LUMO-ANDROID-TOUR-${{ github.run_id }}
           path: |
             tour/
@@ -576,12 +761,13 @@ jobs:
 
   publish:
     name: Abgenommenen ARM64-Build veröffentlichen
-    needs: [apk, android-tour]
-    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref_name == 'integration/lumo-final-release-20261126'
+    needs: [intelligence-tests, flutter-full, native-contracts, native-qa, apk, android-tour]
+    if: success() && github.repository == 'Ullmann27/lumo-lernen' && github.ref_name == 'integration/lumo-final-release-20261126'
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     permissions:
       contents: write
+      actions: read
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -599,6 +785,44 @@ jobs:
         with:
           name: LUMO-TEST-APK-${{ github.run_id }}
           path: candidate
+      - name: Unabhängige QA-Belege aus diesem Lauf abrufen
+        if: steps.order.outputs.publish == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          pattern: LUMO-QA-*-${{ github.run_id }}
+          path: qa-evidence
+      - name: Lern-Fokusbelege aus diesem Lauf abrufen
+        if: steps.order.outputs.publish == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: LUMO-INTELLIGENCE-TESTS-${{ github.run_id }}
+          path: qa-evidence/focus
+      - name: Prüfbelege zusammenführen ohne APK erneut zu bauen
+        if: steps.order.outputs.publish == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          from zipfile import ZipFile, ZIP_DEFLATED
+          evidence = Path('qa-evidence')
+          groups = ('flutter-full', 'native-contracts', 'godot-controls', 'godot-core-memory', 'godot-world', 'godot-racing')
+          run = os.environ['GITHUB_RUN_ID']
+          for group in groups:
+              directory = evidence / f'LUMO-QA-{group}-{run}'
+              if not directory.is_dir() or not any(p.is_file() for p in directory.rglob('*')):
+                  raise RuntimeError(f'Missing successful QA artifact: {group}')
+          if not (evidence / 'focus').is_dir() or not any(p.is_file() for p in (evidence / 'focus').rglob('*')):
+              raise RuntimeError('Missing learning focus evidence')
+          target = Path('candidate/release/LUMO-INTEGRATIONSBELEGE.zip')
+          if not target.is_file():
+              raise RuntimeError('Missing package integration evidence')
+          with ZipFile(target, 'a', ZIP_DEFLATED) as archive:
+              for file in sorted(evidence.rglob('*')):
+                  if file.is_file():
+                      archive.write(file, 'independent-qa/' + str(file.relative_to(evidence)))
+          PY
       - name: Unveränderte APK aus diesem Lauf veröffentlichen und öffentlich nachprüfen
         if: steps.order.outputs.publish == 'true'
         run: |
