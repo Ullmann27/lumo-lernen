@@ -1,8 +1,17 @@
 /// Lumo-Nachhilfe: lokale, prüfbare Tutor-Logik für eine konkrete Aufgabe.
 ///
+/// Fünf Hilfestufen (Auftrag Heinz, Abschnitt 5): kleiner Hinweis → andere
+/// Erklärung mit Alltagsbeispiel → Lumo zeigt es sichtbar am Material →
+/// gemeinsames Bearbeiten (das Kind löst jeden Zwischenschritt selbst) →
+/// Verständnisprüfung an einer ähnlichen, eigenständigen Aufgabe.
+///
+/// Themen: Plus und Minus bis 20 mit Zehnerübergang, Kopfrechnen bis 100
+/// (Zehnerstangen, Einerwürfel, Zahlenstrahl) und das kleine Einmaleins
+/// (Punktefeld, Kernaufgaben, Nachbaraufgaben, Tauschaufgabe).
+///
 /// Die Nachhilfe arbeitet mit den vorhandenen Verträgen der App:
-/// - Hilfestufen bilden [LumoTutorHelpLevel] ab (Hinweis → Teilschritt →
-///   Vorzeigen → Selbst üben),
+/// - Hilfestufen bilden [LumoTutorHelpLevel] ab; die 3D-Szene kennt weiter
+///   genau die vier Stufen aus [NachhilfeStufeInfo.fuer3D],
 /// - Lösungswege verweisen auf die bestehenden [RechentricksKind],
 /// - Fehlermuster benutzen die vorhandenen [ErrorType]-Werte.
 ///
@@ -15,10 +24,53 @@ import '../../core/lumo_tutor_contracts.dart';
 import '../../core/math/lumo_rechentricks.dart';
 import '../learning/lumo_learning_domain.dart';
 
+part 'nachhilfe_rechenwege.dart';
+
 /// Aufgabentypen, für die es eine durchgeplante Nachhilfe gibt.
 enum NachhilfeTyp {
   /// „a + b = ?“ im Zahlenraum 20 (Generatoren g1_add_20, g2_add_20).
   additionBis20,
+
+  /// „a − b = ?“ im Zahlenraum 20, auch mit Zehnerübergang (13 − 5).
+  subtraktionBis20,
+
+  /// Kopfrechnen „a + b = ?“ mit Ergebnis von 21 bis 100.
+  additionBis100,
+
+  /// Kopfrechnen „a − b = ?“ mit 21 ≤ a ≤ 100.
+  subtraktionBis100,
+
+  /// Kleines Einmaleins „a · b = ?“ mit 1 ≤ a, b ≤ 10.
+  einmaleins,
+}
+
+extension NachhilfeTypInfo on NachhilfeTyp {
+  /// Rechenzeichen, wie die Schule es schreibt.
+  String get zeichen => switch (this) {
+        NachhilfeTyp.additionBis20 || NachhilfeTyp.additionBis100 => '+',
+        NachhilfeTyp.subtraktionBis20 || NachhilfeTyp.subtraktionBis100 => '−',
+        NachhilfeTyp.einmaleins => '·',
+      };
+
+  bool get istPlus =>
+      this == NachhilfeTyp.additionBis20 || this == NachhilfeTyp.additionBis100;
+
+  bool get istMinus =>
+      this == NachhilfeTyp.subtraktionBis20 ||
+      this == NachhilfeTyp.subtraktionBis100;
+
+  /// Zahlenraum 100: Zehnerstangen und Einerwürfel statt Rechenrahmen.
+  bool get bis100 =>
+      this == NachhilfeTyp.additionBis100 ||
+      this == NachhilfeTyp.subtraktionBis100;
+
+  String get schluessel => switch (this) {
+        NachhilfeTyp.additionBis20 => 'addition_20',
+        NachhilfeTyp.subtraktionBis20 => 'subtraktion_20',
+        NachhilfeTyp.additionBis100 => 'addition_100',
+        NachhilfeTyp.subtraktionBis100 => 'subtraktion_100',
+        NachhilfeTyp.einmaleins => 'einmaleins',
+      };
 }
 
 /// Lösungswege. Jeder Weg ist eine eigenständige Vorstellung derselben Rechnung.
@@ -35,12 +87,40 @@ enum NachhilfeWeg {
   /// Nachbaraufgabe: Verdoppeln und eins dazu (nur bei Nachbarzahlen).
   verdoppeln,
 
-  /// Tauschaufgabe: mit der größeren Zahl beginnen.
+  /// Tauschaufgabe: mit der größeren Zahl beginnen; beim Einmaleins das
+  /// Punktefeld drehen.
   tauschen,
+
+  /// Zahlenraum 100: Zehnerstangen und Einerwürfel, erst die Zehner.
+  stangen,
+
+  /// Einmaleins: Punktefeld Reihe für Reihe aufbauen und weiterzählen.
+  punktefeld,
+
+  /// Einmaleins: von einer Kernaufgabe (1·, 2·, 5·, 10·) ableiten.
+  kernaufgabe,
 }
 
-/// Abgestufte Hilfe. Jede Stufe gibt etwas mehr Hilfe als die vorige.
-enum NachhilfeStufe { hinweis, teilschritt, vorzeigen, ueben }
+/// Abgestufte Hilfe in der Reihenfolge der Hilfeleiter.
+///
+/// Die Namen sind Teil des 3D-Vertrags (Godot `tutor_plan.gd`): hinweis,
+/// teilschritt, vorzeigen und ueben dürfen nicht umbenannt werden.
+enum NachhilfeStufe {
+  /// 1. Kleiner Hinweis: Denkanstoß ohne Lösung.
+  hinweis,
+
+  /// 2. Andere Erklärung: andere Worte, vertrautes Alltagsbeispiel.
+  andereErklaerung,
+
+  /// 3. Lumo zeigt es sichtbar am Material (an einer Zwillingsaufgabe).
+  vorzeigen,
+
+  /// 4. Gemeinsam: das Kind löst jeden Zwischenschritt selbst.
+  teilschritt,
+
+  /// 5. Verständnisprüfung an einer ähnlichen, eigenständigen Aufgabe.
+  ueben,
+}
 
 /// Typische Fehlvorstellungen, aus der Antwort des Kindes ablesbar.
 enum NachhilfeFehlermuster {
@@ -57,6 +137,16 @@ enum NachhilfeFehlermuster {
 
   /// Ziffern vertauscht (31 statt 13).
   zifferndreher,
+
+  /// Minus mit Übergang: kleinere Einerziffer von der größeren abgezogen
+  /// (62 − 25 → 43).
+  einerUmgedreht,
+
+  /// Einmaleins: die beiden Zahlen zusammengezählt statt mal genommen.
+  plusStattMal,
+
+  /// Einmaleins: in der Malreihe um eine Reihe verrutscht (6 · 7 → 35).
+  reiheVerrutscht,
 }
 
 /// Wer den Schritt ausführt.
@@ -69,6 +159,9 @@ extension NachhilfeWegInfo on NachhilfeWeg {
         NachhilfeWeg.zerlegen => 'Zerlegen',
         NachhilfeWeg.verdoppeln => 'Verdoppeln',
         NachhilfeWeg.tauschen => 'Tauschen',
+        NachhilfeWeg.stangen => 'Zehnerstangen',
+        NachhilfeWeg.punktefeld => 'Reihe für Reihe',
+        NachhilfeWeg.kernaufgabe => 'Kernaufgabe',
       };
 
   String get schluessel => name;
@@ -80,6 +173,9 @@ extension NachhilfeWegInfo on NachhilfeWeg {
         NachhilfeWeg.zerlegen => RechentricksKind.bridgeTen,
         NachhilfeWeg.verdoppeln => RechentricksKind.neighborTask,
         NachhilfeWeg.tauschen => RechentricksKind.swapNumbers,
+        NachhilfeWeg.stangen => RechentricksKind.stepByStep,
+        NachhilfeWeg.punktefeld => RechentricksKind.stepByStep,
+        NachhilfeWeg.kernaufgabe => RechentricksKind.neighborTask,
       };
 
   /// Passende lokale Visualisierung aus dem Tutor-Vertrag.
@@ -89,19 +185,43 @@ extension NachhilfeWegInfo on NachhilfeWeg {
         NachhilfeWeg.zerlegen => LumoTutorVisualType.tenFrame,
         NachhilfeWeg.verdoppeln => LumoTutorVisualType.tenFrame,
         NachhilfeWeg.tauschen => LumoTutorVisualType.numberLine,
+        NachhilfeWeg.stangen => LumoTutorVisualType.quantityDots,
+        NachhilfeWeg.punktefeld => LumoTutorVisualType.quantityDots,
+        NachhilfeWeg.kernaufgabe => LumoTutorVisualType.quantityDots,
       };
 }
 
 extension NachhilfeStufeInfo on NachhilfeStufe {
   String get titel => switch (this) {
-        NachhilfeStufe.hinweis => 'Tipp',
-        NachhilfeStufe.teilschritt => 'Gemeinsam',
+        NachhilfeStufe.hinweis => 'Kleiner Tipp',
+        NachhilfeStufe.andereErklaerung => 'Anders erklärt',
         NachhilfeStufe.vorzeigen => 'Lumo zeigt',
-        NachhilfeStufe.ueben => 'Selbst üben',
+        NachhilfeStufe.teilschritt => 'Gemeinsam',
+        NachhilfeStufe.ueben => 'Selbst prüfen',
       };
+
+  /// Die vier Stufen, die die 3D-Szene kennt und streng prüft.
+  static const List<NachhilfeStufe> fuer3D = [
+    NachhilfeStufe.hinweis,
+    NachhilfeStufe.teilschritt,
+    NachhilfeStufe.vorzeigen,
+    NachhilfeStufe.ueben,
+  ];
+
+  /// Startstufe der 3D-Szene: die andere Erklärung gibt es nur in 2D.
+  NachhilfeStufe get in3D =>
+      this == NachhilfeStufe.andereErklaerung ? NachhilfeStufe.hinweis : this;
+
+  /// Arbeitet die Stufe an der Originalaufgabe? Dann wird ihr Ergebnis
+  /// weder genannt noch abgefragt.
+  bool get anOriginal =>
+      this == NachhilfeStufe.hinweis ||
+      this == NachhilfeStufe.andereErklaerung ||
+      this == NachhilfeStufe.teilschritt;
 
   LumoTutorHelpLevel get hilfeStufe => switch (this) {
         NachhilfeStufe.hinweis => LumoTutorHelpLevel.hintOnly,
+        NachhilfeStufe.andereErklaerung => LumoTutorHelpLevel.hintOnly,
         NachhilfeStufe.teilschritt => LumoTutorHelpLevel.guidedStep,
         NachhilfeStufe.vorzeigen => LumoTutorHelpLevel.visualExplanation,
         NachhilfeStufe.ueben => LumoTutorHelpLevel.fullMiniLesson,
@@ -124,6 +244,9 @@ extension NachhilfeFehlermusterInfo on NachhilfeFehlermuster {
         NachhilfeFehlermuster.rechenzeichen => ErrorType.plusMinusConfusion,
         NachhilfeFehlermuster.zehnerVergessen => ErrorType.tenTransitionWeak,
         NachhilfeFehlermuster.zifferndreher => ErrorType.placeValueWeak,
+        NachhilfeFehlermuster.einerUmgedreht => ErrorType.tenTransitionWeak,
+        NachhilfeFehlermuster.plusStattMal => ErrorType.quantityError,
+        NachhilfeFehlermuster.reiheVerrutscht => ErrorType.countingError,
       };
 
   /// Kurzer, nicht beschämender Satz an das Kind.
@@ -137,6 +260,12 @@ extension NachhilfeFehlermusterInfo on NachhilfeFehlermuster {
           'Die volle Zehnerreihe ist wichtig. Wir machen sie zusammen voll.',
         NachhilfeFehlermuster.zifferndreher =>
           'Die Ziffern sind richtig, nur die Reihenfolge nicht: erst der Zehner, dann die Einer.',
+        NachhilfeFehlermuster.einerUmgedreht =>
+          'Oben sind zu wenige Einer. Dann machen wir einen Zehner auf – umdrehen gilt nicht.',
+        NachhilfeFehlermuster.plusStattMal =>
+          'Mal heißt nicht zusammenzählen. Mal heißt: gleich lange Reihen.',
+        NachhilfeFehlermuster.reiheVerrutscht =>
+          'Ganz knapp! Du bist um eine Reihe verrutscht. Wir zählen die Reihen genau.',
       };
 }
 
@@ -148,36 +277,89 @@ class NachhilfeAufgabe {
   final int a;
   final int b;
 
-  /// Prüft Bereichsgrenzen; außerhalb gibt es keine Nachhilfe-Aufgabe.
+  /// Plus im Zahlenraum 20. Prüft Bereichsgrenzen; außerhalb gibt es keine
+  /// Nachhilfe-Aufgabe. (Vertrag der 3D-Szene: nur dieser Typ geht in 3D.)
   static NachhilfeAufgabe? addition(int a, int b) {
     if (a < 1 || b < 1 || a + b > 20) return null;
     return NachhilfeAufgabe._(NachhilfeTyp.additionBis20, a, b);
   }
+
+  /// Minus im Zahlenraum 20 (z. B. 13 − 5).
+  static NachhilfeAufgabe? subtraktion(int a, int b) {
+    if (b < 1 || a > 20 || b > a) return null;
+    return NachhilfeAufgabe._(NachhilfeTyp.subtraktionBis20, a, b);
+  }
+
+  /// Kopfrechnen Plus mit Ergebnis von 21 bis 100 (z. B. 37 + 25).
+  static NachhilfeAufgabe? additionBis100(int a, int b) {
+    if (a < 1 || b < 1 || a + b <= 20 || a + b > 100) return null;
+    return NachhilfeAufgabe._(NachhilfeTyp.additionBis100, a, b);
+  }
+
+  /// Kopfrechnen Minus von 21 bis 100 (z. B. 62 − 25).
+  static NachhilfeAufgabe? subtraktionBis100(int a, int b) {
+    if (a <= 20 || a > 100 || b < 1 || b > a) return null;
+    return NachhilfeAufgabe._(NachhilfeTyp.subtraktionBis100, a, b);
+  }
+
+  /// Kleines Einmaleins: [a] Reihen mit je [b] Punkten.
+  static NachhilfeAufgabe? mal(int a, int b) {
+    if (a < 1 || b < 1 || a > 10 || b > 10) return null;
+    return NachhilfeAufgabe._(NachhilfeTyp.einmaleins, a, b);
+  }
+
+  /// Passender Typ für eine reine Rechnung; sonst null.
+  static NachhilfeAufgabe? rechnung(String operation, int a, int b) =>
+      switch (operation) {
+        'addition' => addition(a, b) ?? additionBis100(a, b),
+        'subtraction' => subtraktion(a, b) ?? subtraktionBis100(a, b),
+        'multiplication' => mal(a, b),
+        _ => null,
+      };
 
   /// Liest nur die vom Adapter geprüften Daten und vergleicht sie mit der
   /// hinterlegten Lösung. Textaufgaben oder unklare Fälle liefern null.
   static NachhilfeAufgabe? ausTask(TaskInstance task) {
     if (task.subject != LearningSubject.mathematik) return null;
     final data = task.visualPayload.data;
-    if (data['operation'] != 'addition') return null;
+    final operation = data['operation'];
+    if (operation is! String) return null;
     final a = data['left'];
     final b = data['right'];
     if (a is! int || b is! int) return null;
-    final aufgabe = addition(a, b);
+    final aufgabe = rechnung(operation, a, b);
     if (aufgabe == null) return null;
     final loesung = task.correctAnswer;
     final erwartet = loesung is int ? loesung : int.tryParse('$loesung'.trim());
     if (erwartet != aufgabe.ergebnis) return null;
-    if (!RegExp('(^|\\D)$a\\s*\\+\\s*$b(\\D|\$)').hasMatch(task.prompt)) {
+    final zeichen = switch (aufgabe.typ.zeichen) {
+      '+' => r'\+',
+      '−' => '[-−–]',
+      _ => '[×·*x]',
+    };
+    if (!RegExp('(^|\\D)$a\\s*$zeichen\\s*$b(\\D|\$)').hasMatch(task.prompt)) {
       return null;
     }
     return aufgabe;
   }
 
-  int get ergebnis => a + b;
+  int get ergebnis => switch (typ) {
+        NachhilfeTyp.additionBis20 || NachhilfeTyp.additionBis100 => a + b,
+        NachhilfeTyp.subtraktionBis20 ||
+        NachhilfeTyp.subtraktionBis100 =>
+          a - b,
+        NachhilfeTyp.einmaleins => a * b,
+      };
 
-  /// Überschreitet die Rechnung die 10 (z. B. 8 + 5)?
-  bool get zehnerUebergang => a < 10 && a + b > 10;
+  /// Überschreitet die Rechnung einen Zehner (8 + 5, 13 − 5, 37 + 25,
+  /// 62 − 25)? Beim Einmaleins gibt es keinen Zehnerübergang.
+  bool get zehnerUebergang => switch (typ) {
+        NachhilfeTyp.additionBis20 => a < 10 && a + b > 10,
+        NachhilfeTyp.subtraktionBis20 => a > 10 && a - b < 10,
+        NachhilfeTyp.additionBis100 => a % 10 + b % 10 >= 10,
+        NachhilfeTyp.subtraktionBis100 => a % 10 < b % 10,
+        NachhilfeTyp.einmaleins => false,
+      };
 
   /// So viel fehlt der ersten Zahl bis zur 10.
   int get bisZehn => 10 - a;
@@ -185,7 +367,7 @@ class NachhilfeAufgabe {
   /// Rest der zweiten Zahl nach dem Auffüllen bis 10.
   int get rest => b - bisZehn;
 
-  String get text => '$a + $b';
+  String get text => '$a ${typ.zeichen} $b';
 
   @override
   bool operator ==(Object other) =>
@@ -227,6 +409,52 @@ class NachhilfeAktion {
   /// Nur hinschauen: Lumo zeigt auf das Material, nichts wird verändert.
   factory NachhilfeAktion.zeigen() => NachhilfeAktion._('zeigen', const {});
 
+  /// Zehnerstangen und Einerwürfel (Zahlenraum 100), Zielzustand absolut:
+  /// liegend [zehner]/[einer], daneben zum Dazulegen [dazuZehner]/[dazuEiner],
+  /// zur Seite genommen [wegZehner]/[wegEiner]. Eine aufgemachte Stange
+  /// zählt danach als zehn Einer.
+  factory NachhilfeAktion.stangen({
+    required int zehner,
+    required int einer,
+    int dazuZehner = 0,
+    int dazuEiner = 0,
+    int wegZehner = 0,
+    int wegEiner = 0,
+  }) =>
+      NachhilfeAktion._('stangen', {
+        'zehner': zehner,
+        'einer': einer,
+        'dazuZehner': dazuZehner,
+        'dazuEiner': dazuEiner,
+        'wegZehner': wegZehner,
+        'wegEiner': wegEiner,
+      });
+
+  /// Punktefeld fürs Einmaleins: [zeilen] Reihen mit je [spalten] Punkten.
+  /// Gedreht zeigt dasselbe Feld [spalten] Reihen mit je [zeilen] Punkten.
+  /// [sichtbar], [markiert] (bekannter Teil) und [geister] (gedachte Reihen,
+  /// z. B. bis 10 · b) zählen angezeigte Reihen von oben.
+  factory NachhilfeAktion.punkte({
+    required int zeilen,
+    required int spalten,
+    required int sichtbar,
+    int markiert = 0,
+    int geister = 0,
+    bool gedreht = false,
+  }) =>
+      NachhilfeAktion._('punkte', {
+        'zeilen': zeilen,
+        'spalten': spalten,
+        'sichtbar': sichtbar,
+        'markiert': markiert,
+        'geister': geister,
+        'gedreht': gedreht ? 1 : 0,
+      });
+
+  /// Bild zur anderen Erklärung (Eierkarton, Münzen, Teller …).
+  factory NachhilfeAktion.bild(NachhilfeMotiv motiv, {int a = 0, int b = 0}) =>
+      NachhilfeAktion._('bild', {'motiv': motiv.index, 'a': a, 'b': b});
+
   final String art;
   final Map<String, int> werte;
   final List<int> optionen;
@@ -245,12 +473,17 @@ class NachhilfeAktion {
       };
 }
 
+/// Alltagsbilder der anderen Erklärung.
+enum NachhilfeMotiv { eierkarton, packung, muenzen, teller, finger }
+
 class NachhilfeSchritt {
   const NachhilfeSchritt({
     required this.id,
     required this.akteur,
     required this.text,
     required this.aktion,
+    this.frage,
+    this.hilfe,
   });
 
   final String id;
@@ -260,11 +493,20 @@ class NachhilfeSchritt {
   final String text;
   final NachhilfeAktion aktion;
 
+  /// Zwischenergebnis, das das Kind selbst eintippt, bevor das Material sich
+  /// bewegt. Nie das Ergebnis einer Originalaufgabe.
+  final int? frage;
+
+  /// Kleinere Hilfe genau für diesen Schritt (nach einer falschen Eingabe).
+  final String? hilfe;
+
   Map<String, Object> toJson() => <String, Object>{
         'id': id,
         'wer': akteur.name,
         'text': text,
         'aktion': aktion.toJson(),
+        if (frage != null) 'frage': frage!,
+        if (hilfe != null) 'hilfe': hilfe!,
       };
 }
 
@@ -318,6 +560,7 @@ class LumoNachhilfe {
 
   /// Verfügbare Wege in sinnvoller Reihenfolge.
   List<NachhilfeWeg> wegeFuer(NachhilfeAufgabe aufgabe) {
+    if (aufgabe.typ != NachhilfeTyp.additionBis20) return _wegeNeu(aufgabe);
     final wege = <NachhilfeWeg>[];
     if (aufgabe.a < aufgabe.b && aufgabe.b - aufgabe.a > 1) {
       wege.add(NachhilfeWeg.tauschen);
@@ -336,10 +579,14 @@ class LumoNachhilfe {
   /// Erkennt typische Fehlvorstellungen aus der falschen Antwort.
   NachhilfeFehlermuster erkenneFehler(
       NachhilfeAufgabe aufgabe, Object? antwort) {
-    final wert =
-        antwort is int ? antwort : int.tryParse('${antwort ?? ''}'.trim());
+    final wert = antwort is int
+        ? antwort
+        : int.tryParse('${antwort ?? ''}'.trim().replaceAll('−', '-'));
     final richtig = aufgabe.ergebnis;
     if (wert == null || wert == richtig) return NachhilfeFehlermuster.keines;
+    if (aufgabe.typ != NachhilfeTyp.additionBis20) {
+      return _fehlerNeu(aufgabe, wert);
+    }
     if (richtig >= 10 && wert >= 10) {
       final gedreht = int.tryParse('$richtig'.split('').reversed.join());
       if (gedreht == wert && gedreht != richtig) {
@@ -365,6 +612,14 @@ class LumoNachhilfe {
     Set<NachhilfeWeg> schonVersucht = const {},
   }) {
     final wege = wegeFuer(aufgabe);
+    if (aufgabe.typ != NachhilfeTyp.additionBis20) {
+      final passend = _wegFuerFehler(aufgabe, fehler, wege);
+      if (!schonVersucht.contains(passend)) return passend;
+      for (final weg in wege) {
+        if (!schonVersucht.contains(weg)) return weg;
+      }
+      return wege.first;
+    }
     final bevorzugt = switch (fehler) {
       // Zählfehler: Sprünge statt Einzelobjekte sichtbar machen.
       NachhilfeFehlermuster.einsDaneben => NachhilfeWeg.zahlenstrahl,
@@ -376,7 +631,11 @@ class LumoNachhilfe {
           : NachhilfeWeg.rechenrahmen,
       // Zifferndreher: volle Zehnerreihe + Einer am Rechenrahmen.
       NachhilfeFehlermuster.zifferndreher => NachhilfeWeg.rechenrahmen,
-      NachhilfeFehlermuster.keines => wege.first,
+      NachhilfeFehlermuster.keines ||
+      NachhilfeFehlermuster.einerUmgedreht ||
+      NachhilfeFehlermuster.plusStattMal ||
+      NachhilfeFehlermuster.reiheVerrutscht =>
+        wege.first,
     };
     if (wege.contains(bevorzugt) && !schonVersucht.contains(bevorzugt)) {
       return bevorzugt;
@@ -394,11 +653,13 @@ class LumoNachhilfe {
     return wege[(index + 1) % wege.length];
   }
 
-  /// Startstufe aus der vorhandenen Tutor-Engine-Logik (Versuche/Schwäche).
+  /// Startstufe auf der Hilfeleiter: erst ein kleiner Tipp; nach zwei
+  /// Versuchen andere Worte; nach drei Versuchen oder bei einer belegten
+  /// wiederkehrenden Schwäche zeigt Lumo es sichtbar vor.
   NachhilfeStufe startStufe(
       {required int versuche, bool wiederholteSchwaeche = false}) {
     if (versuche >= 3 || wiederholteSchwaeche) return NachhilfeStufe.vorzeigen;
-    if (versuche == 2) return NachhilfeStufe.teilschritt;
+    if (versuche == 2) return NachhilfeStufe.andereErklaerung;
     return NachhilfeStufe.hinweis;
   }
 
@@ -412,6 +673,9 @@ class LumoNachhilfe {
   /// Zwillingsaufgabe mit gleicher Struktur (gleicher Weg passt, gleicher
   /// Zehnerübergang), aber anderem Ergebnis. [variante] wählt deterministisch.
   NachhilfeAufgabe zwilling(NachhilfeAufgabe aufgabe, {int variante = 0}) {
+    if (aufgabe.typ != NachhilfeTyp.additionBis20) {
+      return _zwillingNeu(aufgabe, variante);
+    }
     final nachbar = (aufgabe.a - aufgabe.b).abs() == 1;
     List<NachhilfeAufgabe> suche({required bool streng}) {
       final kandidaten = <NachhilfeAufgabe>[];
@@ -452,14 +716,22 @@ class LumoNachhilfe {
   /// Baut den vollständigen Ablauf für Weg und Stufe.
   NachhilfePlan plan(
       NachhilfeAufgabe original, NachhilfeWeg weg, NachhilfeStufe stufe) {
+    if (original.typ != NachhilfeTyp.additionBis20 ||
+        stufe == NachhilfeStufe.andereErklaerung) {
+      return _planNeu(original, weg, stufe);
+    }
     final aufgabe = switch (stufe) {
-      NachhilfeStufe.hinweis || NachhilfeStufe.teilschritt => original,
+      NachhilfeStufe.andereErklaerung ||
+      NachhilfeStufe.hinweis ||
+      NachhilfeStufe.teilschritt =>
+        original,
       NachhilfeStufe.vorzeigen => zwilling(original),
       NachhilfeStufe.ueben => zwilling(original, variante: 1),
     };
     final kern = _kernSchritte(aufgabe, weg);
     final schritte = <NachhilfeSchritt>[];
     switch (stufe) {
+      case NachhilfeStufe.andereErklaerung:
       case NachhilfeStufe.hinweis:
         // Nur der Einstieg am Material; danach rechnet das Kind selbst.
         schritte.add(_als(kern.first, NachhilfeAkteur.lumo));
@@ -517,6 +789,12 @@ class LumoNachhilfe {
           'Clever! Du hast eine Verdopplung benutzt und nur eins dazugetan.',
         NachhilfeWeg.tauschen =>
           'Schlau getauscht! Mit der großen Zahl anfangen spart Arbeit.',
+        NachhilfeWeg.stangen =>
+          'Stark! Erst die Zehner, dann die Einer – Stück für Stück.',
+        NachhilfeWeg.punktefeld =>
+          'Super! Du hast Reihe für Reihe weitergezählt.',
+        NachhilfeWeg.kernaufgabe =>
+          'Clever! Du hast eine Malaufgabe benutzt, die du schon kennst.',
       };
 
   String _einleitung(NachhilfeAufgabe original, NachhilfeAufgabe aufgabe,
@@ -527,8 +805,12 @@ class LumoNachhilfe {
       NachhilfeWeg.zerlegen => 'mit Zerlegen',
       NachhilfeWeg.verdoppeln => 'mit Verdoppeln',
       NachhilfeWeg.tauschen => 'mit Tauschen',
+      NachhilfeWeg.stangen => 'mit Zehnerstangen',
+      NachhilfeWeg.punktefeld => 'mit dem Punktefeld',
+      NachhilfeWeg.kernaufgabe => 'mit einer Kernaufgabe',
     };
     return switch (stufe) {
+      NachhilfeStufe.andereErklaerung ||
       NachhilfeStufe.hinweis =>
         'Ich gebe dir einen Tipp für ${original.text} $material.',
       NachhilfeStufe.teilschritt =>
@@ -559,7 +841,11 @@ class LumoNachhilfe {
         'Teile die ${aufgabe.b} so, dass die ${aufgabe.a} genau 10 wird.',
       NachhilfeWeg.verdoppeln =>
         'Kennst du ${_kleiner(aufgabe)} + ${_kleiner(aufgabe)}? Dann fehlt nur noch eins.',
-      NachhilfeWeg.tauschen => 'Fang mit der größeren Zahl an.',
+      NachhilfeWeg.tauschen ||
+      NachhilfeWeg.stangen ||
+      NachhilfeWeg.punktefeld ||
+      NachhilfeWeg.kernaufgabe =>
+        'Fang mit der größeren Zahl an.',
     };
   }
 
@@ -609,6 +895,11 @@ class LumoNachhilfe {
       aktion: NachhilfeAktion.huepfen(0, a),
     );
     switch (weg) {
+      case NachhilfeWeg.stangen:
+      case NachhilfeWeg.punktefeld:
+      case NachhilfeWeg.kernaufgabe:
+        // Gibt es bei Plus bis 20 nicht (siehe wegeFuer).
+        return _kernSchritte(aufg, NachhilfeWeg.rechenrahmen);
       case NachhilfeWeg.tauschen:
         final gross = a > b ? a : b, klein = a > b ? b : a;
         return [
@@ -769,10 +1060,27 @@ class LumoNachhilfe {
 /// Ich-Form für Lumos Vorzeigen.
 class _Kern {
   const _Kern(this.id,
-      {required this.kind, required this.lumo, required this.aktion});
+      {required this.kind,
+      required this.lumo,
+      required this.aktion,
+      this.frage,
+      this.hilfe,
+      this.nurLumo = false,
+      this.auftrag});
 
   final String id;
   final String kind;
   final String lumo;
   final NachhilfeAktion aktion;
+
+  /// Zwischenergebnis, das das Kind eintippt (nur Zahlenraum 100/Einmaleins).
+  final int? frage;
+  final String? hilfe;
+
+  /// Reine Vorführung (Bündeln, Feld drehen): immer Lumos Handgriff.
+  final bool nurLumo;
+
+  /// Aufforderung ohne Frage für das Ende von „Gemeinsam“: diesen letzten
+  /// Schritt rechnet das Kind in seiner Aufgabe.
+  final String? auftrag;
 }

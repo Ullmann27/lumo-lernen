@@ -48,8 +48,14 @@ void main() {
       expect(
           NachhilfeAufgabe.ausTask(_task('Wie viele Äpfel?', 13, data: data)),
           isNull);
+      // Seit dem Fünf-Stufen-Auftrag (Abschnitt 5) gibt es auch für Minus eine
+      // Nachhilfe; die Prüfung von Daten, Lösung und Text bleibt gleich streng.
       expect(
           NachhilfeAufgabe.ausTask(_task('9 - 4 = ?', 5,
+              data: {'operation': 'subtraction', 'left': 9, 'right': 4})),
+          NachhilfeAufgabe.subtraktion(9, 4));
+      expect(
+          NachhilfeAufgabe.ausTask(_task('9 - 4 = ?', 6,
               data: {'operation': 'subtraction', 'left': 9, 'right': 4})),
           isNull);
       expect(
@@ -144,14 +150,21 @@ void main() {
   });
 
   group('Hilfestufen', () {
-    test('Leiter Hinweis → Teilschritt → Vorzeigen → Üben', () {
+    // Neue Hilfeleiter laut Auftrag (Abschnitt 5): Tipp → andere Erklärung →
+    // Lumo zeigt → gemeinsam → Verständnisprüfung. Die 3D-Szene behält ihre
+    // vier Stufen (siehe fuer3D).
+    test('Leiter Tipp → Anders erklärt → Lumo zeigt → Gemeinsam → Prüfen', () {
       expect(tutor.naechsteStufe(NachhilfeStufe.hinweis),
-          NachhilfeStufe.teilschritt);
-      expect(tutor.naechsteStufe(NachhilfeStufe.teilschritt),
+          NachhilfeStufe.andereErklaerung);
+      expect(tutor.naechsteStufe(NachhilfeStufe.andereErklaerung),
           NachhilfeStufe.vorzeigen);
+      expect(tutor.naechsteStufe(NachhilfeStufe.vorzeigen),
+          NachhilfeStufe.teilschritt);
       expect(
-          tutor.naechsteStufe(NachhilfeStufe.vorzeigen), NachhilfeStufe.ueben);
+          tutor.naechsteStufe(NachhilfeStufe.teilschritt), NachhilfeStufe.ueben);
       expect(tutor.naechsteStufe(NachhilfeStufe.ueben), isNull);
+      expect(NachhilfeStufeInfo.fuer3D.map((s) => s.name),
+          ['hinweis', 'teilschritt', 'vorzeigen', 'ueben']);
     });
 
     test('Startstufe folgt der bestehenden Tutor-Engine', () {
@@ -165,9 +178,11 @@ void main() {
       expect(aus(1), NachhilfeStufe.hinweis);
       expect(aus(2), NachhilfeStufe.teilschritt);
       expect(aus(3), NachhilfeStufe.vorzeigen);
-      for (final stufe in NachhilfeStufe.values) {
+      for (final stufe in NachhilfeStufeInfo.fuer3D) {
         expect(NachhilfeStufeInfo.ausHilfeStufe(stufe.hilfeStufe), stufe);
       }
+      expect(NachhilfeStufe.andereErklaerung.hilfeStufe,
+          LumoTutorHelpLevel.hintOnly);
     });
 
     test(
@@ -229,8 +244,7 @@ void main() {
             final plan = tutor.plan(original, weg, stufe);
             final label = '$a+$b ${weg.name} ${stufe.name}';
             expect(plan.schritte, isNotEmpty, reason: label);
-            if (stufe == NachhilfeStufe.hinweis ||
-                stufe == NachhilfeStufe.teilschritt) {
+            if (stufe.anOriginal) {
               expect(plan.aufgabe, original, reason: label);
               expect(
                   plan.schritte.any((s) => s.aktion.art == 'ergebnis'), isFalse,
@@ -270,6 +284,7 @@ void main() {
                   expect(x.optionen, contains(plan.aufgabe.ergebnis),
                       reason: label);
                 case 'zeigen':
+                case 'bild':
                   break;
                 default:
                   fail('unbekannte Aktion ${x.art} bei $label');
@@ -278,7 +293,8 @@ void main() {
             // Der letzte Material-Zustand stellt das Ergebnis dar.
             final perlen =
                 plan.schritte.where((s) => s.aktion.art == 'perlen').toList();
-            if (stufe.index >= NachhilfeStufe.vorzeigen.index &&
+            if ((stufe == NachhilfeStufe.vorzeigen ||
+                    stufe == NachhilfeStufe.ueben) &&
                 perlen.isNotEmpty) {
               final letzte = perlen.last.aktion;
               expect(letzte.wert('reihe1') + letzte.wert('reihe2'),
@@ -302,7 +318,7 @@ void main() {
     expect(options['a'], 8);
     expect(options['b'], 5);
     expect(options['wege'], ['rechenrahmen', 'zahlenstrahl', 'zerlegen']);
-    expect(options['plaene'], hasLength(3 * NachhilfeStufe.values.length));
+    expect(options['plaene'], hasLength(3 * NachhilfeStufeInfo.fuer3D.length));
     expect(options['fehler'], 'zehnerVergessen');
     final roundTrip = jsonDecode(jsonEncode(options)) as Map<String, dynamic>;
     expect(roundTrip['startStufe'], 'teilschritt');

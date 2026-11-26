@@ -425,6 +425,9 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
         NachhilfeWeg.zerlegen => Icons.call_split_rounded,
         NachhilfeWeg.verdoppeln => Icons.filter_2_rounded,
         NachhilfeWeg.tauschen => Icons.swap_horiz_rounded,
+        NachhilfeWeg.stangen => Icons.view_week_rounded,
+        NachhilfeWeg.punktefeld => Icons.grid_on_rounded,
+        NachhilfeWeg.kernaufgabe => Icons.star_rounded,
       };
 
   Widget _lumoBlase(NachhilfeSchritt? s) {

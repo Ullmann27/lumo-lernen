@@ -584,11 +584,14 @@ class NativeLearningActivity {
     NachhilfeFehlermuster fehler = NachhilfeFehlermuster.keines,
     LumoNachhilfe tutor = const LumoNachhilfe(),
   }) {
+    // Die Godot-Szene prüft genau Plus bis 20 mit vier Stufen; andere
+    // Themen und die andere Erklärung bleiben in der 2D-Nachhilfe.
+    if (original.typ != NachhilfeTyp.additionBis20) return null;
     final wege = tutor.wegeFuer(original);
     if (!wege.contains(startWeg)) return null;
     final plaene = <Object>[
       for (final weg in wege)
-        for (final stufe in NachhilfeStufe.values)
+        for (final stufe in NachhilfeStufeInfo.fuer3D)
           tutor.plan(original, weg, stufe).toJson(),
     ];
     return NativeLearningActivity._('tutor', {
@@ -599,7 +602,7 @@ class NativeLearningActivity {
       'prompt': '${original.text} = ?',
       'wege': [for (final weg in wege) weg.schluessel],
       'startWeg': startWeg.schluessel,
-      'startStufe': startStufe.name,
+      'startStufe': startStufe.in3D.name,
       'fehler': fehler.name,
       'rueckmeldung': fehler.rueckmeldung,
       'plaene': plaene,
