@@ -44,7 +44,7 @@ void main() {
         () {
       final theme = RegExp(
           r'Frost|Regen|Niederschlag|Sonne|Sommer|Tageslicht|Gewitter|Grad|Wetter|Kresse|'
-          r'Vögel|Müll|Wasser|Autos|Schulweg|Helm|Zebrastreifen');
+          r'Vögel|Müll|Wasser|Autos|Schulweg|Helm|Zebrastreifen|Wind|Igel');
       final tasks = _bank(4, 'Diagramme lesen');
       expect(tasks.length, greaterThanOrEqualTo(12));
       for (final task in tasks) {
