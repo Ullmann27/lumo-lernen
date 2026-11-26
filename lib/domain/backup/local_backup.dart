@@ -5,6 +5,7 @@ import 'package:crypto/crypto.dart';
 
 import '../../core/app_settings.dart';
 import '../../core/reward_wallet_repository.dart';
+import '../../features/journal/journal_repository.dart';
 import '../logic/logic_learning_profile.dart';
 import '../logic/trail_puzzle.dart';
 
@@ -213,6 +214,10 @@ class LocalBackupPolicy {
             'Die gespeicherten Sterne oder Ergebnis-IDs sind beschädigt.');
       }
       RewardWallet.fromJson(value);
+    }
+    for (final key in prefs.keys) {
+      if (!key.startsWith(JournalRepository.schoolPrefix)) continue;
+      JournalRepository.validateSchoolBackup(key, document(key));
     }
     if (prefs.containsKey('lumo_journal_entries')) {
       final value = document('lumo_journal_entries');

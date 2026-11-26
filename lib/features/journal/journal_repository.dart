@@ -7,7 +7,12 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import 'dart:convert';
+import 'dart:math';
+
+import 'package:crypto/crypto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../core/legacy_learning_data.dart';
 
 class JournalEntry {
   const JournalEntry({
@@ -43,61 +48,116 @@ class JournalEntry {
   }
 }
 
+/// The legacy device journal is available only without a selected school
+/// child. Every school child has an independent stable storage key.
 class JournalRepository {
-  const JournalRepository();
+  const JournalRepository({required this.schoolOwnerId});
 
-  static const _key = 'lumo_journal_entries';
+  final String? schoolOwnerId;
+  static const deviceKey = 'lumo_journal_entries';
+  static const schoolPrefix = 'lumo_journal_entries_v2.';
   static const _maxEntries = 50;
 
-  Future<List<JournalEntry>> load() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final raw = prefs.getString(_key);
-      if (raw == null || raw.isEmpty) return const [];
-      final list = jsonDecode(raw) as List<dynamic>;
-      return list
-          .whereType<Map<String, dynamic>>()
-          .map(JournalEntry.fromJson)
-          .toList();
-    } catch (_) {
-      return const [];
+  static String schoolKey(String owner) {
+    if (owner.trim().isEmpty || owner.length > 300) {
+      throw const FormatException('Ungültiges Kinderprofil.');
+    }
+    return schoolPrefix + sha256.convert(utf8.encode(owner)).toString();
+  }
+
+  String get _key =>
+      schoolOwnerId == null ? deviceKey : schoolKey(schoolOwnerId!);
+
+  static List<JournalEntry> _decodeEntries(Object? data) {
+    if (data is! List) throw const FormatException('Ungültiges Journal.');
+    return [
+      for (final row in data)
+        if (row is Map<String, dynamic>)
+          JournalEntry.fromJson(row)
+        else
+          throw const FormatException('Ungültiger Journaleintrag.'),
+    ];
+  }
+
+  static List<JournalEntry> _decodeScoped(String key, Object? data) {
+    if (data is! Map<String, dynamic> ||
+        data['version'] != 1 ||
+        data['ownerId'] is! String ||
+        schoolKey(data['ownerId'] as String) != key) {
+      throw const FormatException('Das Journal gehört zu einem anderen Profil.');
+    }
+    return _decodeEntries(data['entries']);
+  }
+
+  /// Also used by portable-backup validation. Never infer ownership from
+  /// an old entry's content, name, timestamp or the currently selected child.
+  static void validateSchoolBackup(String key, Object? data) {
+    _decodeScoped(key, data);
+  }
+
+  List<JournalEntry> _read(SharedPreferences prefs) {
+    final raw = prefs.getString(_key);
+    if (raw == null) return const [];
+    final decoded = jsonDecode(raw);
+    return schoolOwnerId == null
+        ? _decodeEntries(decoded)
+        : _decodeScoped(_key, decoded);
+  }
+
+  static void _checkCurrent(bool Function() isCurrent) {
+    if (!isCurrent()) {
+      throw StateError('Das Kinderprofil hat gewechselt.');
     }
   }
 
-  Future<void> save(List<JournalEntry> entries) async {
-    final prefs = await SharedPreferences.getInstance();
-    // Neueste zuerst, dann FIFO-trimmen
-    final sorted = List<JournalEntry>.from(entries)
-      ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
-    final trimmed = sorted.take(_maxEntries).toList();
-    await prefs.setString(
-      _key,
-      jsonEncode(trimmed.map((e) => e.toJson()).toList()),
-    );
-  }
+  Future<List<JournalEntry>> load({
+    required bool Function() isCurrent,
+  }) =>
+      LearningStorage.run((prefs) async {
+        _checkCurrent(isCurrent);
+        final entries = _read(prefs);
+        _checkCurrent(isCurrent);
+        return List.unmodifiable(entries);
+      });
 
   Future<JournalEntry> add({
     required String text,
     required String title,
-  }) async {
-    final entries = await load();
-    final entry = JournalEntry(
-      id: 'j_${DateTime.now().millisecondsSinceEpoch}',
-      text: text,
-      title: title.trim().isEmpty ? _deriveTitleFromText(text) : title.trim(),
-      createdAt: DateTime.now(),
-      wordCount:
-          text.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length,
-    );
-    final updated = [entry, ...entries];
-    await save(updated);
-    return entry;
-  }
+    required bool Function() isCurrent,
+  }) =>
+      LearningStorage.run((prefs) async {
+        _checkCurrent(isCurrent);
+        // Invalid existing data must never turn into an empty replacement.
+        final entries = _read(prefs);
+        final now = DateTime.now();
+        final random = Random.secure();
+        final suffix = List.generate(12,
+                (_) => random.nextInt(256).toRadixString(16).padLeft(2, '0'))
+            .join();
+        final entry = JournalEntry(
+          id: 'j_' + now.microsecondsSinceEpoch.toString() + '_' + suffix,
+          text: text,
+          title: title.trim().isEmpty ? _deriveTitleFromText(text) : title.trim(),
+          createdAt: now,
+          wordCount: text.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length,
+        );
+        final sorted = [entry, ...entries]
+          ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+        final rows = sorted.take(_maxEntries).map((e) => e.toJson()).toList();
+        final Object document = schoolOwnerId == null
+            ? rows
+            : {'version': 1, 'ownerId': schoolOwnerId, 'entries': rows};
+        _checkCurrent(isCurrent);
+        await LearningStorage.write(prefs, _key, jsonEncode(document));
+        // A durable write belongs to its captured key even if selection changes
+        // before Android replies. The UI rechecks its lease.
+        return entry;
+      });
 
   String _deriveTitleFromText(String text) {
     final firstLine = text.trim().split('\n').first.trim();
     if (firstLine.isEmpty) return 'Mein Tagebuch';
     final words = firstLine.split(RegExp(r'\s+')).take(5).join(' ');
-    return words.length > 40 ? '${words.substring(0, 40)}…' : words;
+    return words.length > 40 ? words.substring(0, 40) + '…' : words;
   }
 }

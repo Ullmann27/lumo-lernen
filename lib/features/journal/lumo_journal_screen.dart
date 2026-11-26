@@ -28,33 +28,148 @@ class LumoJournalScreen extends StatefulWidget {
 }
 
 class _LumoJournalScreenState extends State<LumoJournalScreen> {
-  final _repo = const JournalRepository();
+  late final LumoAppState _app;
+  late final int _generation;
+  LearningProfileLease? _owner;
+  JournalRepository? _repo;
   List<JournalEntry> _entries = const [];
   bool _writing = false;
   bool _loading = true;
+  bool _saving = false;
+  bool _profileChanged = false;
+  String? _error;
+
+  bool get _sameProfile => mounted &&
+      !_profileChanged &&
+      identical(_app, widget.appState) &&
+      _app.profileGeneration == _generation &&
+      !_app.resetting;
+
+  bool get _current {
+    final owner = _owner;
+    return _sameProfile && owner != null &&
+        _app.canUseLearningLease(owner) &&
+        _app.school.cachedActiveStudentId ==
+            (owner.logStudentId == 'self' ? null : owner.studentId);
+  }
 
   @override
   void initState() {
     super.initState();
-    _reload();
+    _app = widget.appState;
+    _generation = _app.profileGeneration;
+    _app.addListener(_checkProfile);
+    _open(_app.captureLearningProfile());
+  }
+
+  @override
+  void didUpdateWidget(covariant LumoJournalScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _checkProfile();
+  }
+
+  @override
+  void dispose() {
+    _app.removeListener(_checkProfile);
+    super.dispose();
+  }
+
+  void _checkProfile() {
+    if (!mounted || _profileChanged) return;
+    if (!_sameProfile || (_owner != null && !_current)) {
+      setState(() {
+        _profileChanged = true;
+        _entries = const [];
+        _owner = null;
+        _repo = null;
+        _writing = false;
+        _loading = false;
+        _saving = false;
+      });
+    }
+  }
+
+  Future<void> _open(Future<LearningProfileLease> captured) async {
+    try {
+      final owner = await captured;
+      if (!_sameProfile) return;
+      _owner = owner;
+      if (!_current) {
+        _checkProfile();
+        return;
+      }
+      _repo = JournalRepository(
+          schoolOwnerId: owner.logStudentId == 'self' ? null : owner.studentId);
+      await _reload();
+    } catch (_) {
+      if (!_sameProfile) return;
+      setState(() {
+        _loading = false;
+        _error = 'Dein Journal konnte nicht sicher geöffnet werden. '
+            'Bitte öffne es erneut.';
+      });
+    }
   }
 
   Future<void> _reload() async {
-    setState(() => _loading = true);
-    final entries = await _repo.load();
-    if (!mounted) return;
+    final owner = _owner;
+    final repo = _repo;
+    if (!_current || owner == null || repo == null) return;
     setState(() {
-      _entries = entries;
-      _loading = false;
+      _loading = true;
+      _error = null;
     });
+    try {
+      final entries = await _app.runJournalStorage(
+          owner, () => repo.load(isCurrent: () => _current));
+      if (!_current) return;
+      setState(() {
+        _entries = entries;
+        _loading = false;
+      });
+    } catch (_) {
+      if (!_current) return;
+      setState(() {
+        _entries = const [];
+        _loading = false;
+        _error = 'Dein Journal konnte nicht sicher gelesen werden. '
+            'Deine gespeicherten Texte bleiben erhalten.';
+      });
+    }
   }
 
   Future<void> _saveEntry(String title, String text) async {
-    await _repo.add(title: title, text: text);
-    HapticFeedback.mediumImpact();
-    setState(() => _writing = false);
-    await _reload();
+    final owner = _owner;
+    final repo = _repo;
+    if (!_current || _saving || owner == null || repo == null) return;
+    setState(() => _saving = true);
+    try {
+      await _app.runJournalStorage(owner, () => repo.add(
+          title: title, text: text,
+          isCurrent: () => _current && !_app.backupBusy));
+      if (!_current) return;
+      HapticFeedback.mediumImpact();
+      setState(() => _writing = false);
+      await _reload();
+    } catch (_) {
+      if (!_current) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Dein Text konnte nicht gespeichert werden. '
+            'Bitte versuche es erneut.'),
+      ));
+    } finally {
+      if (_current) setState(() => _saving = false);
+    }
   }
+
+  Widget _notice(String message) => Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Text(message,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.white, fontSize: 18)),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +189,7 @@ class _LumoJournalScreenState extends State<LumoJournalScreen> {
           ),
         ),
         actions: [
-          if (!_writing)
+          if (_current && !_loading && _error == null && !_writing)
             IconButton(
               icon: const Icon(Icons.add_rounded, size: 28),
               onPressed: () => setState(() => _writing = true),
@@ -85,19 +200,24 @@ class _LumoJournalScreenState extends State<LumoJournalScreen> {
         scene: LumoScene.library,
         dimmed: true,
         child: SafeArea(
-          child: _writing
-              ? _Editor(
-                  onSave: _saveEntry,
-                  onCancel: () => setState(() => _writing = false),
-                )
+          child: !_sameProfile || (_owner != null && !_current)
+              ? _notice('Das Kinderprofil hat gewechselt. '
+                  'Bitte öffne das Journal erneut.')
               : _loading
                   ? const Center(
-                      child: CircularProgressIndicator(
-                          color: Colors.white))
-                  : _EntriesList(
-                      entries: _entries,
-                      onNew: () => setState(() => _writing = true),
-                    ),
+                      child: CircularProgressIndicator(color: Colors.white))
+                  : _error != null
+                      ? _notice(_error!)
+                      : _writing
+                          ? _Editor(
+                              saving: _saving,
+                              onSave: _saveEntry,
+                              onCancel: () => setState(() => _writing = false),
+                            )
+                          : _EntriesList(
+                              entries: _entries,
+                              onNew: () => setState(() => _writing = true),
+                            ),
         ),
       ),
     );
@@ -107,7 +227,9 @@ class _LumoJournalScreenState extends State<LumoJournalScreen> {
 // ── EDITOR ────────────────────────────────────────────────────────────
 
 class _Editor extends StatefulWidget {
-  const _Editor({required this.onSave, required this.onCancel});
+  const _Editor({required this.onSave, required this.onCancel,
+      required this.saving});
+  final bool saving;
   final void Function(String title, String text) onSave;
   final VoidCallback onCancel;
 
@@ -252,7 +374,7 @@ class _EditorState extends State<_Editor> {
             children: [
               Expanded(
                 child: GestureDetector(
-                  onTap: widget.onCancel,
+                  onTap: widget.saving ? null : widget.onCancel,
                   child: Container(
                     padding:
                         const EdgeInsets.symmetric(vertical: 13),
@@ -325,7 +447,7 @@ class _EditorState extends State<_Editor> {
           if (_praise?.canSave ?? false) ...[
             const SizedBox(height: 10),
             GestureDetector(
-              onTap: () => widget.onSave(
+              onTap: widget.saving ? null : () => widget.onSave(
                   _titleCtrl.text, _textCtrl.text),
               child: Container(
                 width: double.infinity,

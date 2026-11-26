@@ -688,6 +688,21 @@ class LumoAppState extends ChangeNotifier {
       lease.generation == _profileGeneration &&
       identical(_activeLearningSession, lease._session);
 
+  /// Journal I/O participates in the same drain as backups and full resets.
+  /// A pending operation keeps its captured owner; no new write may start
+  /// while a backup or reset is freezing storage.
+  Future<T> runJournalStorage<T>(
+      LearningProfileLease lease, Future<T> Function() operation) {
+    if (_disposed || _resetting || _backupBusy ||
+        !canUseLearningLease(lease) ||
+        lease.generation != _profileGeneration ||
+        school.cachedActiveStudentId !=
+            (lease.logStudentId == 'self' ? null : lease.studentId)) {
+      return Future<T>.error(StateError('Journalprofil nicht verfügbar.'));
+    }
+    return _trackLearning(Future<T>.sync(operation));
+  }
+
   Future<T> _trackLearning<T>(Future<T> operation) {
     _learningOperations.add(operation);
     unawaited(
