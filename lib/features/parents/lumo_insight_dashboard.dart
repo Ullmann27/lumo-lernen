@@ -470,15 +470,22 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
             color: const Color(0xCC081F45),
             borderRadius: BorderRadius.circular(LumoRadius.md),
           ),
-          child: Text(
-            _statsBasis(m, loading: loading),
-            key: const ValueKey('insight-stats-basis'),
-            style: const TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 12.5,
-              fontWeight: FontWeight.w700,
-              color: LumoVisualTokens.muted,
-              height: 1.35,
+          child: Semantics(
+            identifier: 'insight-stats-basis',
+            container: true,
+            label: _statsBasis(m, loading: loading),
+            child: ExcludeSemantics(
+              child: Text(
+                _statsBasis(m, loading: loading),
+                key: const ValueKey('insight-stats-basis'),
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12.5,
+                  fontWeight: FontWeight.w700,
+                  color: LumoVisualTokens.muted,
+                  height: 1.35,
+                ),
+              ),
             ),
           ),
         ),
@@ -537,6 +544,9 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
   }) {
     return Semantics(
       key: ValueKey('insight-stat-$key'),
+      // Stabiler Bezeichner für die Android-Probe (resource-id) und
+      // Vorlesefunktion; die Beschriftung ist der sichtbare Kachelinhalt.
+      identifier: 'insight-stat-$key',
       container: true,
       label: '$label: $value, $hint',
       child: ExcludeSemantics(
