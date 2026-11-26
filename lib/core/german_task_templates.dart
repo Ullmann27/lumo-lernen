@@ -518,10 +518,38 @@ class GermanTaskTemplate {
             'article');
       case GermanTemplateKind.wordFamily:
         final family = _families[_positive(seed, _families.length)];
+        // Eine andere echte Wortfamilie als Ablenker: Sonst war die Lösung
+        // in 9 von 10 Aufgaben die längste Karte (drei Wörter mit Stamm
+        // gegen kurze Einzelwörter) und ohne Nachdenken zu finden.
+        final otherFamilies = <String>[
+          for (final other in _families)
+            if (other.root != family.root &&
+                !family.distractors.contains(other.answer) &&
+                !other.answer.toLowerCase().contains(family.root))
+              other.answer,
+        ];
+        // Mindestens so lang wie die Lösung, damit die Länge nichts verrät.
+        final asLong = otherFamilies
+            .where((answer) => answer.length >= family.answer.length)
+            .toList();
+        final pool = asLong.isNotEmpty
+            ? asLong
+            : (otherFamilies..sort((a, b) => b.length.compareTo(a.length)))
+                .take(3)
+                .toList();
+        final otherFamily = pool[_positive(seed * 31 + 29, pool.length)];
+        final hasFamilyDistractor = family.distractors.any((d) =>
+            _families.any((other) => other.answer == d));
+        final distractors = hasFamilyDistractor
+            ? family.distractors
+            : <String>[
+                ...family.distractors.take(family.distractors.length - 1),
+                otherFamily,
+              ];
         return _choice(
             'Welche Wörter gehören zur Wortfamilie „${family.root}“?',
             family.answer,
-            <String>[family.answer, ...family.distractors],
+            <String>[family.answer, ...distractors],
             'Wortfamilien haben denselben Wortstamm.',
             'family');
       case GermanTemplateKind.plural:
@@ -730,10 +758,30 @@ class GermanTaskTemplate {
             'direct_speech');
       case GermanTemplateKind.commas:
         final item = _commas[_positive(seed, _commas.length)];
+        // Typischer Fehler „Komma vor und“ mit gleich vielen Kommas wie die
+        // Lösung. Ohne ihn hatte nur die Lösung zwei Kommas und war fast
+        // immer die längste Karte.
+        int commas(String text) => ','.allMatches(text).length;
+        final firstComma = item.answer.indexOf(', ');
+        final beforeAnd = firstComma < 0
+            ? null
+            : (item.answer.replaceRange(firstComma, firstComma + 1, ''))
+                .replaceFirst(' und ', ', und ');
+        final needsTwin = item.distractors
+                .every((d) => commas(d) < commas(item.answer)) &&
+            beforeAnd != null &&
+            beforeAnd != item.answer &&
+            !item.distractors.contains(beforeAnd);
+        final commaDistractors = needsTwin
+            ? <String>[
+                ...item.distractors.take(item.distractors.length - 1),
+                beforeAnd,
+              ]
+            : item.distractors;
         return _choice(
             'Wo steht das Komma richtig?',
             item.answer,
-            <String>[item.answer, ...item.distractors],
+            <String>[item.answer, ...commaDistractors],
             'Bei Aufzählungen trennen Kommas die einzelnen Wörter.',
             'comma');
       case GermanTemplateKind.compounds:

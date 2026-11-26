@@ -926,6 +926,11 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
     // original writing/story flows; all other units use the local generator.
     for (final s in _currentGrade.subjects.where((s) => s.name == subject)) {
       for (final topic in s.topics) {
+        // Writing modules keep their own entries (Lernwerkzeuge, Schreiben).
+        // A quiz tile such as „Buchstaben-Lautierung“ or
+        // „Wort-Bild-Zuordnung“ must open that quiz, not letter tracing or
+        // the word dictation that merely share a reviewed topic synonym.
+        if (topic.isWriting || topic.id == 'd1_woerter') continue;
         if (AcademyTopicUnits.exerciseUnit(
                 topicId: topic.id,
                 title: topic.title,

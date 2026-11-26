@@ -332,10 +332,12 @@ class ExerciseFactory {
     Map<String, int> weakSkills = const <String, int>{},
     Set<String> avoidUnits = const <String>{},
     String? childName,
+    bool gradedOnly = false,
   }) {
     _childName = childName;
     final cappedGrade = grade.clamp(1, 4).toInt();
-    final chosenSubject = _chooseSubject(subject, weakSkills);
+    final chosenSubject = _chooseSubject(subject, weakSkills,
+        grade: cappedGrade, gradedOnly: gradedOnly);
     final units = Curriculum.unitsForGrade(chosenSubject, cappedGrade);
     final availableUnit = units.contains(unit) ||
         (chosenSubject == 'Mathematik' && MathTaskTemplates.supportsUnit(cappedGrade, unit)) ||
@@ -370,6 +372,7 @@ class ExerciseFactory {
     required Map<String, int> weakSkills,
     required Set<String> avoidUnits,
     required Set<String> seen,
+    bool gradedOnly = false,
   }) {
     LumoTask? oldestFallback;
     for (var attempt = 0; attempt < 40; attempt++) {
@@ -377,7 +380,8 @@ class ExerciseFactory {
           grade: grade,
           subject: subject,
           weakSkills: weakSkills,
-          avoidUnits: avoidUnits);
+          avoidUnits: avoidUnits,
+          gradedOnly: gradedOnly);
       oldestFallback ??= task;
       final signature =
           '${task.prompt.trim().toLowerCase()}|${task.answer.trim().toLowerCase()}';
@@ -393,6 +397,7 @@ class ExerciseFactory {
     required int count,
     String subject = 'Alle',
     Map<String, int> weakSkills = const <String, int>{},
+    bool gradedOnly = false,
   }) {
     final tasks = <LumoTask>[];
     final usedUnits = <String>{};
@@ -400,7 +405,7 @@ class ExerciseFactory {
     for (var i = 0; i < count; i++) {
       final task = _nextFreshForSession(
           grade: grade, subject: subject, weakSkills: weakSkills,
-          avoidUnits: usedUnits, seen: seen);
+          avoidUnits: usedUnits, seen: seen, gradedOnly: gradedOnly);
       tasks.add(task);
       usedUnits.add(task.unit);
       if (usedUnits.length > 12) usedUnits.clear();
@@ -437,15 +442,37 @@ class ExerciseFactory {
     return tasks;
   }
 
-  String _chooseSubject(String requested, Map<String, int> weakSkills) {
+  /// Subjects of a mixed session. Writing practice is ungraded (a real
+  /// attempt always leads on), so a test or Schularbeit ([gradedOnly]) must
+  /// not draw it: it would occupy a planned question that can never count
+  /// as correct, and a flawless child would score 8 of 10.
+  static const _mixedSubjects = <String>[
+    'Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Sachunterricht',
+    'Schreiben', 'Englisch',
+  ];
+
+  String _chooseSubject(String requested, Map<String, int> weakSkills,
+      {required int grade, bool gradedOnly = false}) {
     if (requested != 'Alle') return Curriculum.subjects.containsKey(requested) ? requested : 'Mathematik';
+    final base = gradedOnly
+        ? _mixedSubjects.where((s) => s != 'Schreiben').toList()
+        : _mixedSubjects;
     if (weakSkills.isNotEmpty && _random.nextDouble() < .60) {
       final weakUnit = weakSkills.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
-      for (final subject in Curriculum.subjects.entries) {
-        if (subject.value.contains(weakUnit.first.key)) return subject.key;
-      }
+      // Weak skills are stored by unit name only. Several subjects share
+      // names (Tiere, Körper and Wetter in Englisch and Sachunterricht), so
+      // the first match in map order sent a Sachunterricht weakness to
+      // English practice almost every time. Choose fairly among all
+      // subjects that really offer this unit in the child's grade.
+      final owners = <String>[
+        for (final subject in Curriculum.subjects.keys)
+          if (!(gradedOnly && subject == 'Schreiben') &&
+              Curriculum.unitsForGrade(subject, grade)
+              .contains(weakUnit.first.key))
+            subject,
+      ];
+      if (owners.isNotEmpty) return owners[_random.nextInt(owners.length)];
     }
-    final base = <String>['Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Sachunterricht', 'Schreiben', 'Englisch'];
     return base[_random.nextInt(base.length)];
   }
 

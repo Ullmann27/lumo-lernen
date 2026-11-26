@@ -98,4 +98,59 @@ void main() {
     expect(source, isNot(contains('Pflaume')));
     expect(source, contains("AdventureNoun('der', 'Erdapfel', 'Erd-ap-fel', 2)"));
   });
+
+  test('Österreich-Reise: Steiermark und Burgenland mit Artikel', () {
+    // Vorher: „Lumo fliegt mit dem Ballon über Steiermark.“ und
+    // „Graz ist die Landeshauptstadt von Steiermark.“
+    final seen = <String>{};
+    for (var seed = 0; seed < 600; seed++) {
+      final task = generator(seed).generate(
+          subject: 'Sachunterricht', unit: 'Österreich-Reise', grade: 3);
+      final text = '${task.prompt} ${task.explanation}';
+      expect(text, isNot(matches(RegExp(
+          r'(über|von|in|nach|aus) (Steiermark|Burgenland)\b'))),
+          reason: text);
+      if (text.contains('Steiermark')) seen.add('Steiermark');
+      if (text.contains('Burgenland')) seen.add('Burgenland');
+    }
+    expect(seen, {'Steiermark', 'Burgenland'});
+  });
+
+  test('Rechengeschichten Klasse 4: „von allen Nüssen“ mit Dativ-n', () {
+    var seen = 0;
+    for (var seed = 0; seed < 1500; seed++) {
+      final task = generator(seed).generate(
+          subject: 'Mathematik', unit: 'Rechengeschichten', grade: 4);
+      if (!task.prompt.contains('Packungen')) continue;
+      seen++;
+      // Dativ Plural endet auf -n (Ausnahme: Plural auf -s wie Ballons).
+      expect(task.prompt, contains('Von allen'), reason: task.prompt);
+      expect(task.prompt,
+          isNot(matches(RegExp(r'[Vv]on allen \S*[^ns] '))),
+          reason: task.prompt);
+    }
+    expect(seen, greaterThan(20));
+  });
+
+  test('Geheimcode: die Anzahl der Zahlen verrät das Wort nicht', () {
+    // Vorher hatte in 40 % der Aufgaben nur die Lösung so viele Buchstaben,
+    // wie der Code Zahlen hat (6 Zahlen, nur KUCHEN mit 6 Buchstaben).
+    for (var grade = 2; grade <= 4; grade++) {
+      var total = 0, onlyLength = 0;
+      for (var seed = 0; seed < 800; seed++) {
+        final task = generator(seed).generate(
+            subject: 'Logik', unit: 'Geheimcode', grade: grade);
+        final numbers =
+            RegExp(r'heißt ([\d-]+)\?').firstMatch(task.prompt)!.group(1)!;
+        final length = numbers.split('-').length;
+        expect(task.answer.length, length, reason: task.prompt);
+        total++;
+        if (task.choices.where((c) => c.length == length).length == 1) {
+          onlyLength++;
+        }
+      }
+      expect(onlyLength / total, lessThan(.1),
+          reason: 'Klasse $grade: $onlyLength von $total per Länge lösbar');
+    }
+  });
 }
