@@ -189,6 +189,9 @@ void main() {
               'Von 33 Antworten ohne Hilfe waren 23 richtig (70 %).'),
           findsOneWidget);
       expect(find.textContaining('Noch keine Antwortdaten'), findsNothing);
+      final ki = tester.getSize(find.widgetWithText(FilledButton, 'KI fragen'));
+      expect(ki.height, greaterThanOrEqualTo(48));
+      expect(ki.width, greaterThanOrEqualTo(48));
       // Keine leere Themenübersicht neben 36 protokollierten Antworten.
       expect(find.text('Noch keine Daten'), findsNothing);
       await _foto(tester, 'eltern_kennzahlen_36__$geraet');

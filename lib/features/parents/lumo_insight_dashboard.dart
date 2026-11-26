@@ -895,8 +895,8 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                     backgroundColor: const Color(0xFF7C3AED),
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                    minimumSize: Size.zero,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    // Touch-Fläche mindestens 48 × 48 dp.
+                    minimumSize: const Size(48, 48),
                   ),
                 ),
             ],
