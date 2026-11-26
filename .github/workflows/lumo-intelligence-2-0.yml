@@ -1,13 +1,13 @@
-name: "Lumo Intelligence 2.0 (2083) – Kandidat für Fable-5.2-Abnahme"
+name: "Lumo Intelligence 2.0 – Integration und Android-Abnahme"
 # Baut eine installierbare, signierte Test-APK aus genau diesem Integrationsstand
-# (opus/lumo-intelligence-2-0-20261126). Abgeleitet aus der erfolgreichen 2082-Pipeline;
+# Abgeleitet aus der erfolgreichen 2082-Pipeline;
 # frühere APKs, main und die 2082-Pipeline bleiben unverändert.
 # Ausgelöst nur durch config/intelligence-2-0-apk-request.json. Ergebnis: Workflow-Artefakt.
 # Paket bleibt dev.ullmann.lumo.lumo_lernen.coachpreview (prepare_android.py --side-by-side
 # erzeugt genau diese bestehende App-ID), Schlüssel tools/lumo-debug.keystore wie 2078.
 on:
   push:
-    branches: [opus/lumo-intelligence-2-0-20261126]
+    branches: [opus/lumo-intelligence-2-0-20261126, integration/lumo-final-release-20261126]
     paths:
       - config/intelligence-2-0-apk-request.json
 
@@ -70,7 +70,7 @@ jobs:
     needs: intelligence-tests
     name: Signierte Test-APK bauen
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
+    timeout-minutes: 150
     env:
       CI: 'true'
       FLUTTER_SUPPRESS_ANALYTICS: 'true'
@@ -260,6 +260,11 @@ jobs:
               --script "$PWD/.github/probes/lumo_kart_driver_package_probe.gd" -- "$phase" \
               | tee "build-proof/KART-DRIVER-PCK-${phase}.txt"
           done
+          python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+            --timeout 120 --required '[Intelligence2083Pack] PASS' --log build-proof/GODOT-RUNTIME-DATA-PCK.txt -- \
+            godot --headless --path "$RUNNER_TEMP/lumo-pck-runtime" \
+            --main-pack "$RUNNER_TEMP/lumo-pck-runtime/lumo_game.pck" \
+            --script "$PWD/.github/probes/lumo_2083_pack_probe.gd"
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > build-proof/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
           VERSION="$(grep '^version:' pubspec.yaml | cut -d' ' -f2)"
@@ -351,7 +356,8 @@ jobs:
           EXPECTED_CERT=a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
           test "$PKG" = dev.ullmann.lumo.lumo_lernen.coachpreview
           test "$CERT" = "$EXPECTED_CERT"
-          test "$VC" -eq 2083
+          EXPECTED_VC="$(python3 -c 'import json; print(json.load(open("build-proof/CANDIDATE-SOURCE.json"))["versionCode"])')"
+          test "$VC" -eq "$EXPECTED_VC"
           SHA="$(sha256sum "$APK" | cut -d' ' -f1)"
           SIZE="$(stat -c %s "$APK")"
           printf 'package=%s\nversionCode=%s\ncert_sha256=%s\napk=%s\napk_sha256=%s\napk_bytes=%s\n' "$PKG" "$VC" "$CERT" "$LUMO_APK_NAME" "$SHA" "$SIZE" | tee build-proof/APK-IDENTITY-ABSCHLUSS.txt
