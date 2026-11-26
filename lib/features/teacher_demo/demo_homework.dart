@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../core/german_task_templates.dart';
 import '../../core/math_task_templates.dart';
 import '../../domain/school/attempt.dart';
 import '../../domain/school/competency.dart';
@@ -52,6 +53,100 @@ bool checkHomeworkAnswer({required String given, required String expected}) {
   return given.trim().isNotEmpty && norm(given) == norm(expected);
 }
 
+/// Fächer der Hausaufgaben mit automatischer Prüfung (Auswahlantworten aus den
+/// Aufgabengeneratoren der App). Weitere Fächer folgen schrittweise, sobald
+/// ihre Aufgaben ohne Bild- oder Schreibfläche prüfbar sind.
+const List<String> homeworkSubjects = ['Mathematik', 'Deutsch'];
+
+/// Schulstufen, für die Hausaufgaben gestaltet werden können.
+const List<int> homeworkGrades = [1, 2, 3, 4];
+
+/// Eine automatisch prüfbare Hausaufgaben-Aufgabe.
+class HomeworkTask {
+  const HomeworkTask({
+    required this.prompt,
+    required this.answer,
+    required this.choices,
+    required this.explanation,
+  });
+
+  final String prompt;
+  final String answer;
+  final List<String> choices;
+  final String explanation;
+}
+
+/// Themen brauchen Bilder oder freie Schreibflächen und sind deshalb (noch)
+/// nicht als Auswahl-Hausaufgabe geeignet.
+const Set<String> _nichtAlsAuswahl = {'Wort-Bild-Zuordnung'};
+
+HomeworkTask homeworkTaskFor({
+  required String subject,
+  required String unit,
+  required int grade,
+  required int seed,
+}) {
+  if (subject == 'Deutsch') {
+    final t = GermanTaskTemplates.generate(grade: grade, unit: unit, seed: seed);
+    return HomeworkTask(
+        prompt: t.prompt,
+        answer: t.answer,
+        choices: t.choices,
+        explanation: t.explanation);
+  }
+  final t = MathTaskTemplates.generate(grade: grade, unit: unit, seed: seed);
+  return HomeworkTask(
+      prompt: t.prompt,
+      answer: t.answer,
+      choices: t.choices,
+      explanation: t.explanation);
+}
+
+final Map<(String, int), List<String>> _themenCache = {};
+
+/// Themen, aus denen für [subject] und Schulstufe [grade] eine Hausaufgabe
+/// entstehen kann: eigene Aufgabenfamilie bis zu dieser Stufe, und jede
+/// Probeaufgabe hat Text, mindestens zwei Antworten und die Lösung darunter.
+List<String> homeworkUnitsFor(String subject, int grade) {
+  final stufe = grade.clamp(1, 4).toInt();
+  return _themenCache.putIfAbsent((subject, stufe), () {
+    final List<String> kandidaten;
+    if (subject == 'Mathematik') {
+      kandidaten = [
+        for (final u in homeworkMathUnits)
+          if (MathTaskTemplates.templates
+              .any((t) => t.unit == u && t.grade <= stufe))
+            u,
+      ];
+    } else if (subject == 'Deutsch') {
+      final mitStufe = <String, int>{};
+      for (final t in GermanTaskTemplates.templates) {
+        if (t.grade > stufe || _nichtAlsAuswahl.contains(t.unit)) continue;
+        mitStufe.update(t.unit, (g) => g < t.grade ? g : t.grade,
+            ifAbsent: () => t.grade);
+      }
+      kandidaten = mitStufe.keys.toList()
+        ..sort((a, b) {
+          final g = mitStufe[a]!.compareTo(mitStufe[b]!);
+          return g != 0 ? g : a.compareTo(b);
+        });
+    } else {
+      return const <String>[];
+    }
+    return List<String>.unmodifiable([
+      for (final unit in kandidaten)
+        if (List.generate(8, (i) => i * 7919 + 13).every((seed) {
+          final t = homeworkTaskFor(
+              subject: subject, unit: unit, grade: stufe, seed: seed);
+          return t.prompt.trim().isNotEmpty &&
+              t.choices.length >= 2 &&
+              t.choices.contains(t.answer);
+        }))
+          unit,
+    ]);
+  });
+}
+
 int _stableHash(String value) {
   var h = 17;
   for (final unit in value.codeUnits) {
@@ -72,6 +167,7 @@ class DemoHomework {
     required this.studentIds,
     required this.createdAt,
     this.results = const {},
+    this.grade,
   });
 
   final String id;
@@ -86,15 +182,24 @@ class DemoHomework {
   /// Ergebnisse je Kind (Demo-Schüler-ID).
   final Map<String, List<HomeworkItemResult>> results;
 
+  /// Schulstufe der Aufgaben. Ältere gespeicherte Hausaufgaben haben keine
+  /// und nutzen weiter die Schulstufe des Kindes.
+  final int? grade;
+
   bool isDoneBy(String studentId) =>
       (results[studentId]?.length ?? 0) >= count;
 
   /// Aufgaben der Hausaufgabe, stabil je Kind aus dem Aufgabengenerator.
-  List<MathConcreteTask> tasksFor(String studentId, {int grade = 2}) {
+  /// [grade] gilt nur für ältere Hausaufgaben ohne eigene Schulstufe.
+  List<HomeworkTask> tasksFor(String studentId, {int grade = 2}) {
     final base = _stableHash('$id|$studentId');
     return [
       for (var i = 0; i < count; i++)
-        MathTaskTemplates.generate(grade: grade, unit: unit, seed: base + i * 31),
+        homeworkTaskFor(
+            subject: subject,
+            unit: unit,
+            grade: this.grade ?? grade,
+            seed: base + i * 31),
     ];
   }
 
@@ -109,6 +214,7 @@ class DemoHomework {
         studentIds: studentIds,
         createdAt: createdAt,
         results: {...results, studentId: items},
+        grade: grade,
       );
 
   Map<String, Object?> toJson() => {
@@ -120,6 +226,7 @@ class DemoHomework {
         'note': note,
         'kids': studentIds,
         'at': createdAt.toIso8601String(),
+        if (grade != null) 'g': grade,
         'res': {
           for (final e in results.entries)
             e.key: [for (final r in e.value) r.toJson()],
@@ -158,6 +265,10 @@ class DemoHomework {
       studentIds: kids,
       createdAt: at,
       results: res,
+      grade: switch (raw['g']) {
+        final num g when g >= 1 && g <= 4 => g.toInt(),
+        _ => null,
+      },
     );
   }
 }

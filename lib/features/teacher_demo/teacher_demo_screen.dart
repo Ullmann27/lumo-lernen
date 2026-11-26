@@ -5,6 +5,7 @@ import 'demo_homework.dart';
 import 'holo_charts.dart';
 import 'holo_widgets.dart';
 import 'homework_runner_screen.dart';
+import '../../widgets/design/lumo_subject_style.dart';
 
 /// Lehrkräfte-Demo: Klassenübersicht mit Demo-Kindern, holografische
 /// Auswertung und selbst gestaltete Hausaufgaben mit automatischer Prüfung.
@@ -379,8 +380,18 @@ class _HomeworkTab extends StatefulWidget {
 }
 
 class _HomeworkTabState extends State<_HomeworkTab> {
+  String _subject = homeworkSubjects.first;
+  late int _grade = widget.reports.first.child.grade;
   late String _unit =
       widget.reports.first.suggestedHomeworkUnit ?? homeworkMathUnits.first;
+
+  List<String> get _units => homeworkUnitsFor(_subject, _grade);
+
+  /// Fach oder Stufe gewechselt: bekanntes Thema behalten, sonst das erste.
+  void _themaPassend() {
+    final units = _units;
+    if (!units.contains(_unit) && units.isNotEmpty) _unit = units.first;
+  }
   int _count = 6;
   int _dueDays = 2;
   final _note = TextEditingController();
@@ -395,7 +406,8 @@ class _HomeworkTabState extends State<_HomeworkTab> {
   Future<void> _create() async {
     final hw = DemoHomework(
       id: 'hw-${widget.homework.length + 1}-${DateTime.now().microsecondsSinceEpoch}',
-      subject: 'Mathematik',
+      subject: _subject,
+      grade: _grade,
       unit: _unit,
       count: _count,
       due: DateTime(widget.now.year, widget.now.month, widget.now.day)
@@ -409,7 +421,8 @@ class _HomeworkTabState extends State<_HomeworkTab> {
     await widget.onChanged();
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Hausaufgabe „${hw.unit}“ zugewiesen (Demo, lokal).')));
+        content: Text('Hausaufgabe ${hw.subject} „${hw.unit}“ '
+            '(${hw.grade}. Schulstufe) zugewiesen (Demo, lokal).')));
   }
 
   Future<void> _solve(DemoHomework hw, DemoChild child) async {
@@ -434,11 +447,53 @@ class _HomeworkTabState extends State<_HomeworkTab> {
             children: [
               const HoloSectionTitle('Neue Hausaufgabe gestalten',
                   icon: Icons.edit_calendar_rounded),
-              const Text('Fach: Mathematik (automatisch geprüft)', style: label),
+              const Text('Fach (automatisch geprüft)', style: label),
+              const SizedBox(height: 6),
+              Wrap(spacing: 8, runSpacing: 8, children: [
+                for (final subject in homeworkSubjects)
+                  ChoiceChip(
+                    key: ValueKey('homework-subject-$subject'),
+                    avatar: LumoSubjectBadge(subject: subject, size: 26),
+                    label: Text(subject),
+                    selected: _subject == subject,
+                    showCheckmark: false,
+                    materialTapTargetSize: MaterialTapTargetSize.padded,
+                    selectedColor: HoloPalette.cyan.withValues(alpha: .35),
+                    backgroundColor: Colors.white.withValues(alpha: .08),
+                    labelStyle: const TextStyle(
+                        color: HoloPalette.text, fontWeight: FontWeight.w700),
+                    onSelected: (_) => setState(() {
+                      _subject = subject;
+                      _themaPassend();
+                    }),
+                  ),
+              ]),
+              const SizedBox(height: 10),
+              const Text('Schulstufe', style: label),
+              const SizedBox(height: 6),
+              Wrap(spacing: 8, runSpacing: 8, children: [
+                for (final grade in homeworkGrades)
+                  ChoiceChip(
+                    key: ValueKey('homework-grade-$grade'),
+                    label: Text('$grade. Stufe'),
+                    selected: _grade == grade,
+                    showCheckmark: false,
+                    materialTapTargetSize: MaterialTapTargetSize.padded,
+                    selectedColor: HoloPalette.cyan.withValues(alpha: .35),
+                    backgroundColor: Colors.white.withValues(alpha: .08),
+                    labelStyle: const TextStyle(
+                        color: HoloPalette.text, fontWeight: FontWeight.w700),
+                    onSelected: (_) => setState(() {
+                      _grade = grade;
+                      _themaPassend();
+                    }),
+                  ),
+              ]),
               const SizedBox(height: 8),
               DropdownButtonFormField<String>(
-                key: const ValueKey('homework-unit'),
-                initialValue: _unit,
+                key: ValueKey('homework-unit-$_subject-$_grade'),
+                initialValue: _units.contains(_unit) ? _unit : null,
+                isExpanded: true,
                 dropdownColor: HoloPalette.night,
                 style: Theme.of(context)
                     .textTheme
@@ -447,8 +502,10 @@ class _HomeworkTabState extends State<_HomeworkTab> {
                 decoration: const InputDecoration(
                     labelText: 'Untergruppe', labelStyle: label),
                 items: [
-                  for (final u in homeworkMathUnits)
-                    DropdownMenuItem(value: u, child: Text(u)),
+                  for (final u in _units)
+                    DropdownMenuItem(
+                        value: u,
+                        child: Text(u, overflow: TextOverflow.ellipsis)),
                 ],
                 onChanged: (v) => setState(() => _unit = v ?? _unit),
               ),
@@ -505,7 +562,9 @@ class _HomeworkTabState extends State<_HomeworkTab> {
                 key: const ValueKey('homework-create'),
                 label: 'Hausaufgabe zuweisen',
                 icon: Icons.send_rounded,
-                onPressed: _kids.isEmpty ? null : _create,
+                onPressed: _kids.isEmpty || !_units.contains(_unit)
+                    ? null
+                    : _create,
               ),
             ],
           ),
@@ -527,8 +586,16 @@ class _HomeworkTabState extends State<_HomeworkTab> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HoloSectionTitle('Hausaufgabe: ${hw.unit} · ${hw.count} Aufgaben · fällig $due',
-              icon: Icons.assignment_rounded),
+          Row(children: [
+            LumoSubjectBadge(subject: hw.subject, size: 34),
+            const SizedBox(width: 10),
+            Expanded(
+              child: HoloSectionTitle(
+                  'Hausaufgabe: ${hw.subject} · ${hw.unit}'
+                  '${hw.grade == null ? '' : ' · ${hw.grade}. Stufe'}'
+                  ' · ${hw.count} Aufgaben · fällig $due'),
+            ),
+          ]),
           if (hw.note.isNotEmpty)
             Text('Hinweis: ${hw.note}',
                 style: const TextStyle(color: HoloPalette.muted)),

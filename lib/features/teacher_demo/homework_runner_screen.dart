@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/math_task_templates.dart';
 import 'demo_class_data.dart';
 import 'demo_homework.dart';
 import 'holo_widgets.dart';
@@ -26,7 +25,7 @@ class HomeworkRunnerScreen extends StatefulWidget {
 }
 
 class _HomeworkRunnerScreenState extends State<HomeworkRunnerScreen> {
-  late final List<MathConcreteTask> _tasks =
+  late final List<HomeworkTask> _tasks =
       widget.homework.tasksFor(widget.child.id, grade: widget.child.grade);
   final List<HomeworkItemResult> _results = [];
   late DateTime _startedAt = widget.clock();
@@ -87,7 +86,8 @@ class _HomeworkRunnerScreenState extends State<HomeworkRunnerScreen> {
             padding: const EdgeInsets.all(18),
             children: [
               Text(
-                '${widget.child.name} · ${widget.homework.unit}',
+                '${widget.child.name} · ${widget.homework.subject} · '
+                '${widget.homework.unit}',
                 style: const TextStyle(
                     color: HoloPalette.text,
                     fontSize: 20,
@@ -140,9 +140,9 @@ class _HomeworkRunnerScreenState extends State<HomeworkRunnerScreen> {
             task.prompt,
             key: const ValueKey('homework-prompt'),
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
                 color: HoloPalette.text,
-                fontSize: 30,
+                fontSize: task.prompt.length > 40 ? 22 : 30,
                 fontWeight: FontWeight.w800),
           ),
         ),
@@ -154,7 +154,8 @@ class _HomeworkRunnerScreenState extends State<HomeworkRunnerScreen> {
           children: [
             for (final c in task.choices)
               SizedBox(
-                width: 140,
+                // Wörter und Sätze (Deutsch) brauchen mehr Breite als Zahlen.
+                width: task.choices.any((x) => x.length > 8) ? 280 : 140,
                 child: HoloButton(
                   key: ValueKey('homework-choice-$c'),
                   label: c,

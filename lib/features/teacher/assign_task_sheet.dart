@@ -5,6 +5,15 @@ import '../../domain/school/school_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import 'teacher_widgets.dart';
 
+/// Fächer, die eine Klasse dieser Schulstufe als Aufgabe bekommen kann: nur
+/// Fächer mit Übungsthemen für diese Stufe (sonst bliebe „Zuweisen“ wirkungslos).
+List<String> assignableSubjects(int grade) => [
+      for (final subject in Curriculum.subjects.keys)
+        if (Curriculum.exerciseSubjectsForGrade(grade).contains(subject) &&
+            Curriculum.unitsForGrade(subject, grade).isNotEmpty)
+          subject,
+    ];
+
 /// Vorbelegung, z. B. aus der Empfehlung der Lernanalyse.
 class AssignPreset {
   const AssignPreset({this.subject, this.unit, this.studentId, this.groupId});
@@ -76,9 +85,8 @@ class _AssignSheetState extends State<_AssignSheet> {
     } else {
       _kind = AssignmentTargetKind.wholeClass;
     }
-    _subject = Curriculum.subjects.containsKey(p.subject)
-        ? p.subject!
-        : Curriculum.subjects.keys.first;
+    final faecher = assignableSubjects(widget.schoolClass.grade);
+    _subject = faecher.contains(p.subject) ? p.subject! : faecher.first;
     final units = _units;
     _unit = units.contains(p.unit) ? p.unit! : (units.isEmpty ? '' : units.first);
   }
@@ -159,9 +167,12 @@ class _AssignSheetState extends State<_AssignSheet> {
                   _targetId = t.$4;
                 },
               ),
-              _label('Fach'),
+              _label('Fach · ${widget.schoolClass.grade}. Klasse'),
               _chips<String>(
-                options: [for (final s in Curriculum.subjects.keys) (s, s)],
+                options: [
+                  for (final s in assignableSubjects(widget.schoolClass.grade))
+                    (s, s)
+                ],
                 selected: _subject,
                 onPick: (s) {
                   _subject = s;
