@@ -5,7 +5,12 @@
 ///   11-20 Minus + Zahlenstrahl + Zehnerübergang (Klasse 1-2)
 ///   21-30 Lesen + Silben + Wort-Bild (Klasse 1-2)
 ///   31-40 Sachaufgaben + Logik (Klasse 2-3)
-///   41-50 gemischte Herausforderungen (Klasse 3-4)
+///   41-50 gemischte Herausforderungen (Klasse 2-4)
+///
+/// Einstufung laut Lehrplan (Heinz, 26.11.2026): Plus/Minus bis 100 und das
+/// Einmaleins (auch 3er- und 10er-Reihe) gehören in die 2. Schulstufe,
+/// schriftliches Plus und Minus in die 3. Die Level-IDs und ihre Reihenfolge
+/// bleiben, damit Sterne, Freigaben und Spielstände erhalten bleiben.
 library;
 
 import 'game_level_model.dart';
@@ -294,7 +299,7 @@ abstract class GameLevelCatalog {
     GameLevel(
         id: 39,
         title: 'Plus bis 100',
-        gradeFloor: 3,
+        gradeFloor: 2,
         miniType: GameMiniType.starsPath,
         subject: 'Mathe',
         learningGoal: 'Plus im Hunderterraum'),
@@ -311,14 +316,14 @@ abstract class GameLevelCatalog {
     GameLevel(
         id: 41,
         title: 'Einmaleins Start',
-        gradeFloor: 3,
+        gradeFloor: 2,
         miniType: GameMiniType.starsPath,
         subject: 'Mathe',
         learningGoal: '2er- und 5er-Reihe'),
     GameLevel(
         id: 42,
         title: 'Einmaleins 3er',
-        gradeFloor: 3,
+        gradeFloor: 2,
         miniType: GameMiniType.starsPath,
         subject: 'Mathe',
         learningGoal: '3er-Reihe Einmaleins'),
@@ -339,14 +344,14 @@ abstract class GameLevelCatalog {
     GameLevel(
         id: 45,
         title: 'Minus bis 100',
-        gradeFloor: 3,
+        gradeFloor: 2,
         miniType: GameMiniType.starsPath,
         subject: 'Mathe',
         learningGoal: 'Minus im Hunderterraum'),
     GameLevel(
         id: 46,
         title: 'Einmaleins 10er',
-        gradeFloor: 4,
+        gradeFloor: 2,
         miniType: GameMiniType.starsPath,
         subject: 'Mathe',
         learningGoal: '10er- und 4er-Reihe'),
@@ -360,14 +365,14 @@ abstract class GameLevelCatalog {
     GameLevel(
         id: 48,
         title: 'Schriftliches Plus',
-        gradeFloor: 4,
+        gradeFloor: 3,
         miniType: GameMiniType.starsPath,
         subject: 'Mathe',
         learningGoal: 'Schriftliche Addition'),
     GameLevel(
         id: 49,
         title: 'Schriftliches Minus',
-        gradeFloor: 4,
+        gradeFloor: 3,
         miniType: GameMiniType.starsPath,
         subject: 'Mathe',
         learningGoal: 'Schriftliche Subtraktion'),

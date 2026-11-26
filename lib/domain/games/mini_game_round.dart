@@ -120,7 +120,8 @@ class MiniGameRound {
       this.index = 0,
       this.finishRequested = false,
       this.rewarded = false,
-      this.revision = 1});
+      this.revision = 1,
+      this.legacyCards = false});
 
   final String owner, id;
   final int seed, index, revision;
@@ -128,6 +129,13 @@ class MiniGameRound {
   final List<MiniGameLearningTask> tasks;
   final List<MiniGameResponse> responses;
   final bool finishRequested, rewarded;
+
+  /// Runde aus der Zeit vor der Kartenbegrenzung auf den Zahlenraum
+  /// (Speicherstand ohne `cards`). Sie behält ihre damaligen Antwortkarten.
+  final bool legacyCards;
+
+  /// Aktuelle Kartenfassung im Speicherstand.
+  static const int cardsVersion = 2;
 
   MiniGameLearningTask get task => tasks[index];
   MiniGameResponse get response => responses[index];
@@ -234,7 +242,8 @@ class MiniGameRound {
           index: index ?? this.index,
           revision: revision + 1,
           finishRequested: finishRequested ?? this.finishRequested,
-          rewarded: rewarded ?? this.rewarded);
+          rewarded: rewarded ?? this.rewarded,
+          legacyCards: legacyCards);
 
   Map<String, Object?> toJson() => {
         'schema': 1,
@@ -247,6 +256,7 @@ class MiniGameRound {
         'finishRequested': finishRequested,
         'rewarded': rewarded,
         'responses': [for (final response in responses) response.toJson()],
+        if (!legacyCards) 'cards': cardsVersion,
       };
 
   static MiniGameRound read(String text,
@@ -269,11 +279,14 @@ class MiniGameRound {
         (raw['revision'] as int) >= 1000000000 ||
         raw['finishRequested'] is! bool ||
         raw['rewarded'] is! bool ||
-        raw['responses'] is! List) {
+        raw['responses'] is! List ||
+        (raw.containsKey('cards') && raw['cards'] != cardsVersion)) {
       throw const FormatException(
           'Die angefangene Lernspiel-Runde ist ungültig.');
     }
-    final tasks = MiniGameLearningDeck.build(level, raw['seed'] as int);
+    final legacyCards = !raw.containsKey('cards');
+    final tasks = MiniGameLearningDeck.build(level, raw['seed'] as int,
+        legacyCards: legacyCards);
     final stored = raw['responses'] as List;
     if (stored.length != tasks.length || raw['index'] as int >= tasks.length) {
       throw const FormatException(
@@ -289,6 +302,7 @@ class MiniGameRound {
         revision: raw['revision'] as int,
         finishRequested: raw['finishRequested'] as bool,
         rewarded: raw['rewarded'] as bool,
+        legacyCards: legacyCards,
         responses: List.generate(
             tasks.length, (i) => MiniGameResponse.read(stored[i], tasks[i])));
     for (var i = 0; i < tasks.length; i++) {

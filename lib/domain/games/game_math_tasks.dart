@@ -6,11 +6,15 @@ import 'game_level_model.dart';
 /// The fixed game level determines the learning goal, including when an
 /// older child revisits it. No fallback to an unrelated classroom topic.
 abstract class GameMathTasks {
-  static MathConcreteTask starsPath(GameLevel level, int index) {
+  /// [legacyCards] liefert die Antwortkarten wie bis Build 2082 (Ablenker in
+  /// Klasse 1 bis 20, sonst unbegrenzt). Nur zum Wiederherstellen von Runden,
+  /// die vor der Begrenzung auf den Zahlenraum gespeichert wurden.
+  static MathConcreteTask starsPath(GameLevel level, int index,
+      {bool legacyCards = false}) {
     if (level.miniType != GameMiniType.starsPath || index < 0) {
       throw ArgumentError('Diese Stufe gehört nicht zum Rechenpfad.');
     }
-    final task = _starsPath(level, index);
+    final task = _starsPath(level, index, legacyCards);
     if (!isValidStarsTask(level, task)) {
       throw StateError('Die Rechenaufgabe wurde nicht freigegeben.');
     }
@@ -47,9 +51,21 @@ abstract class GameMathTasks {
     return false;
   }
 
-  static MathConcreteTask _starsPath(GameLevel level, int index) {
+  static MathConcreteTask _starsPath(
+      GameLevel level, int index, bool legacyCards) {
     final random = Random(level.id * 1000 + index * 17);
     final grade = level.gradeFloor;
+    final id = level.id;
+    // Auch die falschen Karten bleiben im Zahlenraum der Stufe. Früher
+    // zeigte „Minus bis 10“ z. B. 15 bei 8 − 7 (Plus statt Minus) und
+    // „Plus bis 100“ Karten bis 200.
+    final range = switch (id) {
+      1 || 11 => 5,
+      3 => 7,
+      16 || 17 => 20,
+      39 || 45 || 41 || 42 || 46 => 100,
+      _ => 10,
+    };
     // Die Karten kommen aus derselben Quelle wie beim Üben: Die Lösung
     // liegt der Größe nach an wechselnder Stelle, falsche Karten sind
     // typische Fehler. Früher war sie immer die zweitkleinste Karte.
@@ -57,7 +73,10 @@ abstract class GameMathTasks {
         {String visual = 'dots', List<int> typical = const <int>[]}) {
       final shuffled = MathTaskTemplates.numberChoices(
           answer, random.nextInt(1 << 30),
-          typical: typical, max: grade == 1 ? 20 : null);
+          typical: typical,
+          // Bis Build 2082 waren alle betroffenen Stufen außer Klasse 1
+          // höher eingestuft; ihre Karten waren dort unbegrenzt.
+          max: legacyCards ? (grade == 1 ? 20 : null) : range);
       return MathConcreteTask(
           unit: level.title,
           prompt: prompt,
@@ -69,7 +88,6 @@ abstract class GameMathTasks {
           promptPattern: 'game-level-${level.id}');
     }
 
-    final id = level.id;
     if (id == 4) {
       final count = 2 + random.nextInt(8);
       return numeric(
@@ -143,13 +161,7 @@ abstract class GameMathTasks {
       );
     }
     final subtract = [11, 12, 17, 45].contains(id);
-    final cap = switch (id) {
-      1 || 11 => 5,
-      3 => 7,
-      16 || 17 => 20,
-      39 || 45 => 100,
-      _ => 10,
-    };
+    final cap = range;
     final a = 1 + random.nextInt(cap - 1);
     final b = subtract ? 1 + random.nextInt(a) : 1 + random.nextInt(cap - a);
     final answer = subtract ? a - b : a + b;
