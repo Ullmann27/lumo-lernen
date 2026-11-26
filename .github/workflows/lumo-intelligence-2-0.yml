@@ -2,7 +2,7 @@ name: "Lumo Intelligence 2.0 – Integration und Android-Abnahme"
 # Baut eine installierbare, signierte Test-APK aus genau diesem Integrationsstand
 # Abgeleitet aus der erfolgreichen 2082-Pipeline;
 # frühere APKs, main und die 2082-Pipeline bleiben unverändert.
-# Ausgelöst nur durch config/intelligence-2-0-apk-request.json. Ergebnis: Workflow-Artefakt.
+# Ausgelöst nur durch config/intelligence-2-0-apk-request.json. Die signierte APK bleibt als Artefakt verfügbar.
 # Paket bleibt dev.ullmann.lumo.lumo_lernen.coachpreview (prepare_android.py --side-by-side
 # erzeugt genau diese bestehende App-ID), Schlüssel tools/lumo-debug.keystore wie 2078.
 on:
@@ -475,7 +475,6 @@ jobs:
                   if path.is_file():
                       archive.write(path, str(path))
           PY_ANDROID_EVIDENCE
-          # Abschluss 24.11.: kein Release/Tag; Belege nur als Workflow-Artefakt.
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -484,3 +483,57 @@ jobs:
             tour/
             LUMO-ANDROID-PRUEFBELEGE.zip
 
+
+  publish:
+    name: Abgenommenen ARM64-Build veröffentlichen
+    needs: [apk, android-tour]
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref_name == 'integration/lumo-final-release-20261126'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Veröffentlichungsauftrag lesen
+        id: order
+        run: |
+          set -euo pipefail
+          jq -r '"publish=" + ((.publish == true) | tostring)' \
+            config/intelligence-2-0-apk-request.json >> "$GITHUB_OUTPUT"
+      - uses: actions/download-artifact@v4
+        if: steps.order.outputs.publish == 'true'
+        with:
+          name: LUMO-TEST-APK-${{ github.run_id }}
+          path: candidate
+      - name: Unveränderte APK aus diesem Lauf veröffentlichen und öffentlich nachprüfen
+        if: steps.order.outputs.publish == 'true'
+        run: |
+          set -euo pipefail
+          cd candidate/release
+          VERSION="$(jq -r '.version' ../../config/intelligence-2-0-apk-request.json)"
+          [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+\+[1-9][0-9]*$ ]]
+          APK="Lumo-Lernen-Test-${VERSION/+/-}.apk"
+          TAG="lumo-test-${VERSION/+/-}-$GITHUB_RUN_ID"
+          sha256sum --check --strict SHA256SUMS.txt
+          DIGEST="$(sha256sum "$APK" | cut -d ' ' -f1)"
+          test "$DIGEST" = "$(jq -r .sha256 BUILD-PROVENANCE.json)"
+          test "$GITHUB_SHA" = "$(jq -r .flutter_source_commit BUILD-PROVENANCE.json)"
+          test "$(jq -r .revision ../../config/godot-source.json)" = "$(jq -r .godot.revision BUILD-PROVENANCE.json)"
+          test "$VERSION" = "$(jq -r '.versionName + "+" + (.versionCode | tostring)' BUILD-PROVENANCE.json)"
+          test "$(stat -c %s "$APK")" = "$(jq -r .bytes BUILD-PROVENANCE.json)"
+          test "$(jq -r '.abis | join(",")' BUILD-PROVENANCE.json)" = arm64-v8a
+          test "$(jq -r .package BUILD-PROVENANCE.json)" = dev.ullmann.lumo.lumo_lernen.coachpreview
+          test "$(jq -r .signingCertificateSha256 BUILD-PROVENANCE.json)" = a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+          gh release create "$TAG" "$APK" SHA256SUMS.txt APK-VERIFICATION.json \
+            BUILD-PROVENANCE.json SPLIT-APK-IDENTITY.json LUMO-INTEGRATIONSBELEGE.zip \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Lumo Test-APK $VERSION" \
+            --notes "Signierte ARM64-Test-APK. Abnahme und Herkunft: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+            --prerelease --latest=false
+          URL="https://github.com/$GITHUB_REPOSITORY/releases/download/$TAG/$APK"
+          curl --fail --silent --show-error --location --retry 4 "$URL" -o "$RUNNER_TEMP/lumo-public.apk"
+          test "$(sha256sum "$RUNNER_TEMP/lumo-public.apk" | cut -d ' ' -f1)" = "$DIGEST"
+          printf '[Android-Download](%s) · SHA-256 `%s`\n' "$URL" "$DIGEST" >> "$GITHUB_STEP_SUMMARY"
