@@ -1848,6 +1848,9 @@ class _LearningContentState extends State<LearningContent>
             weakSkills: st.weakSkills,
             avoidUnits: avoidUnits,
             childName: st.childName,
+            // Tests and Schularbeiten count every planned question; the
+            // ungraded writing trainer cannot be one of them.
+            gradedOnly: !_allowHelp,
           );
 
     // Nachhilfelehrer-Bypass: wenn KI-Vorrat vorhanden ist und das
