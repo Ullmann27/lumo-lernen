@@ -16,10 +16,31 @@ void main() {
         // shapeTrace ist Form-Nachzeichnen (Demo+Trace, kein Multiple-Choice),
         // hat absichtlich kleine Range [0..4] = 5 Formen, nicht > 30 Varianten.
         if (template.kind == MathTemplateKind.shapeTrace) continue;
+        // chartCollection hat keine Zahlenbereiche, sondern eine feste
+        // Sammlung (aus dem Sachunterricht verschobene Rechendiagramme);
+        // ihre Vielfalt prüft der nächste Test direkt an der Sammlung.
+        if (template.kind == MathTemplateKind.chartCollection) continue;
         final variants = (template.validRangeA.last - template.validRangeA.first + 1) *
             (template.validRangeB.last - template.validRangeB.first + 1);
         expect(variants, greaterThan(30), reason: template.id);
       }
+    });
+
+    test('Diagramm-Sammlung Kl. 4: viele verschiedene, lösbare Fragen', () {
+      expect(chartCollectionTasks.length, greaterThanOrEqualTo(15));
+      expect(chartCollectionTasks.map((item) => item.$1).toSet(),
+          hasLength(chartCollectionTasks.length));
+      for (final (prompt, answer, distractors, _) in chartCollectionTasks) {
+        expect(distractors, isNot(contains(answer)), reason: prompt);
+        expect({answer, ...distractors}, hasLength(distractors.length + 1),
+            reason: prompt);
+      }
+      final template = MathTaskTemplates.templates
+          .singleWhere((template) => template.id == 'g4_chart_collection');
+      final prompts = <String>{
+        for (var seed = 0; seed < 600; seed++) template.concretize(seed).prompt,
+      };
+      expect(prompts, hasLength(chartCollectionTasks.length));
     });
 
     test('new story templates generate genuinely distinct, correct tasks', () {
