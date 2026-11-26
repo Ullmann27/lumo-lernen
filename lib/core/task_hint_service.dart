@@ -9,6 +9,13 @@ class TaskHintService {
 
   String explain(LumoTask task, {int level = 1}) {
     if (task.dataChart case final exercise?) {
+      if (exercise.tallyToTable) {
+        return switch (level) {
+          1 => 'Such die Zeile „${exercise.requested.label}“.',
+          2 => 'Zähle die Striche in der Zeile. Der schräge Strich zählt mit.',
+          _ => 'Trage die Zahl ein. Gezählt und nichts gefunden heißt 0.',
+        };
+      }
       return switch (level) {
         1 => 'Suche die Zeile „${exercise.requested.label}“ ${exercise.pictogram ? 'im Bilddiagramm' : 'in der Tabelle'}.',
         2 => exercise.pictogram

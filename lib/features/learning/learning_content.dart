@@ -1011,8 +1011,11 @@ class _LearningContentState extends State<LearningContent>
       }
       if (source.dataChart case final chart?) {
         final next = candidate.dataChart;
-        if (next == null || next.horizontal != chart.horizontal ||
-            next.pictogram != chart.pictogram || candidate.answer == source.answer) {
+        if (next == null ||
+            next.tallyToTable != chart.tallyToTable ||
+            next.horizontal != chart.horizontal ||
+            next.pictogram != chart.pictogram ||
+            candidate.answer == source.answer) {
           continue;
         }
       }
@@ -2585,7 +2588,11 @@ class _LearningContentState extends State<LearningContent>
 
   /// What the child does once the solution is explained.
   String get _guidedCallToAction {
-    if (_task.dataChart != null) return 'Trage die Anzahl ein und prüfe deinen Eintrag.';
+    if (_task.dataChart case final chart?) {
+      return chart.tallyToTable
+          ? 'Wähle die Zahl. Tippe auf Prüfen.'
+          : 'Trage die Anzahl ein und prüfe deinen Eintrag.';
+    }
     if (_taskInstance.options.isNotEmpty) {
       return 'Tippe jetzt die richtige Antwort an.';
     }

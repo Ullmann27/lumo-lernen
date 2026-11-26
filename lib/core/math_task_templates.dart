@@ -38,6 +38,15 @@ class MathTaskTemplates {
     ),
     MathTaskTemplate(id: 'g1_symmetry', grade: 1, unit: 'Symmetrie', kind: MathTemplateKind.symmetry, validRangeA: <int>[0, 7], validRangeB: <int>[0, 7], promptPattern: 'symmetrie-form',
     ),
+    MathTaskTemplate(
+      id: 'g1_tally_to_table',
+      grade: 1,
+      unit: 'Strichlisten und Tabellen',
+      kind: MathTemplateKind.dataChartTransfer,
+      validRangeA: <int>[0, DataChartExercise.maxCount],
+      validRangeB: <int>[0, DataChartExercise.maxCount],
+      promptPattern: 'striche-in-tabelle-uebertragen',
+    ),
 
     MathTaskTemplate(id: 'g2_add_20', grade: 2, unit: 'Plus bis 20', kind: MathTemplateKind.addition, validRangeA: <int>[2, 18], validRangeB: <int>[1, 12], promptPattern: 'plus-bis-20',
     ),
@@ -957,29 +966,38 @@ class MathTaskTemplate {
         ];
         final (scene, labels) = scenes[_positive(_mixSeed(seed + 31), scenes.length)];
         final target = _positive(_mixSeed(seed + 43), labels.length);
-        final values = <int?>[a, b, _positive(_mixSeed(seed + 67), 6)];
+        final values = <int?>[
+          a, b, _positive(_mixSeed(seed + 67), DataChartExercise.maxCount + 1),
+        ];
         if (_positive(_mixSeed(seed + 47), 4) == 0) {
           values[(target + 1) % labels.length] = null;
         }
+        final tallyToTable = grade == 1;
         final exercise = DataChartExercise(
           rows: List<BarChartEntry>.unmodifiable([
             for (var i = 0; i < labels.length; i++)
               (label: labels[i], value: values[i]),
           ]),
           requestedRow: target,
-          pictogram: _positive(_mixSeed(seed + 71), 2) == 0,
-          horizontal: _positive(_mixSeed(seed + 95), 2) == 0,
+          pictogram: !tallyToTable && _positive(_mixSeed(seed + 71), 2) == 0,
+          horizontal: !tallyToTable && _positive(_mixSeed(seed + 95), 2) == 0,
+          tallyToTable: tallyToTable,
         );
         final count = exercise.requested.value!;
         final label = exercise.requested.label;
         return MathConcreteTask(
           unit: unit,
-          prompt: '$scene Ergänze ${exercise.horizontal ? 'den' : 'die'} ${exercise.targetName} für „$label“.',
+          prompt: tallyToTable
+              ? 'Zähle die Striche bei „$label“. Trage die Zahl ein.'
+              : '$scene Ergänze ${exercise.horizontal ? 'den' : 'die'} ${exercise.targetName} für „$label“.',
           answer: '$count',
           choices: [for (var i = 0; i <= DataChartExercise.maxCount; i++) '$i'],
-          explanation: count == 0
-              ? 'Für „$label“ wurde gezählt und nichts gefunden. Die richtige Anzahl ist 0.'
-              : 'Für „$label“ ist jedes gezählte Stück ein Kästchen im Diagramm. Die richtige Anzahl ist $count.',
+          explanation: tallyToTable
+              ? (count == 0 ? 'Bei „$label“ wurde gezählt. Es gab nichts. Das ist 0.'
+                  : 'Bei „$label“ zählst du ${count == 1 ? 'einen Strich' : '$count Striche'}. Trage $count ein.')
+              : count == 0
+                  ? 'Für „$label“ wurde gezählt und nichts gefunden. Die richtige Anzahl ist 0.'
+                  : 'Für „$label“ ist jedes gezählte Stück ein Kästchen im Diagramm. Die richtige Anzahl ist $count.',
           visual: 'data_chart_transfer',
           difficulty: grade,
           promptPattern: promptPattern,

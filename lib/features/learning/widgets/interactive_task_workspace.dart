@@ -90,8 +90,10 @@ class InteractiveTaskWorkspace extends StatefulWidget {
 
   static String goalFor(TaskInstance task) {
     final data = task.visualPayload.data;
-    if (data['dataChart'] is DataChartExercise) {
-      return 'Zählwerte aus einer Tabelle oder einem Bilddiagramm übertragen.';
+    if (data['dataChart'] case final DataChartExercise exercise) {
+      return exercise.tallyToTable
+          ? 'Zähle und trage die Zahl in die Tabelle ein.'
+          : 'Zählwerte aus einer Tabelle oder einem Bilddiagramm übertragen.';
     }
     if (task.subject == LearningSubject.mathematik &&
         task.parameters['visual'] == 'time_fact') {

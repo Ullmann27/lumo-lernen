@@ -7,6 +7,7 @@ class DataChartExercise {
     required this.requestedRow,
     required this.pictogram,
     required this.horizontal,
+    this.tallyToTable = false,
   });
 
   static const maxCount = 5;
@@ -14,8 +15,13 @@ class DataChartExercise {
   final int requestedRow;
   final bool pictogram;
   final bool horizontal;
+  final bool tallyToTable;
 
   BarChartEntry get requested => rows[requestedRow];
-  String get sourceName => pictogram ? 'Bilddiagramm' : 'Tabelle';
+  String get sourceName => tallyToTable
+      ? 'Strichliste'
+      : pictogram
+          ? 'Bilddiagramm'
+          : 'Tabelle';
   String get targetName => horizontal ? 'Balken' : 'Säule';
 }
