@@ -68,6 +68,14 @@ void main() {
       await tester.pump();
     }
 
+    for (final choice in ['Eule', 'Mondschlüssel']) {
+      final option = find.text(choice);
+      await tester.scrollUntilVisible(option, 200,
+          scrollable: find.byType(Scrollable).first);
+      await tester.tap(option);
+      await tester.pump();
+    }
+
     // Additional companion and magic-item selections lengthen the lazy ListView.
     // Scroll the real action into view before opening the reader.
     final startButton = find.byKey(const ValueKey('lumo-story-generate'));
@@ -81,6 +89,9 @@ void main() {
       find.byType(LumoStoryReaderScreen),
     );
     expect(reader.story.gradeLevel, 3);
+    final narrative = reader.story.pages.map((page) => page.text).join(' ');
+    expect(narrative, contains('Eule'));
+    expect(narrative, contains('Mondschlüssel'));
     expect(appState.state.grade, 1);
     expect(tester.takeException(), isNull);
   });

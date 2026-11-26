@@ -214,7 +214,9 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launch3D(String scene, {bool livingVillage = false}) async {
-    if (_launchingGame) return;
+    if (_launchingGame || widget.appState.backupBusy) return;
+    if (!await _allowLaunch() || !mounted ||
+        _launchingGame || widget.appState.backupBusy) return;
     setState(() => _launchingGame = true);
     HapticFeedback.mediumImpact();
     final state = widget.appState.state;
@@ -223,9 +225,10 @@ class _GamesContentState extends State<GamesContent> {
         context,
         scene: scene,
         livingVillage: livingVillage,
-        grade: _kartGrade ?? state.grade,
-        subject: _kartSubject ??
-            (state.subject == 'Deutsch' ? 'Deutsch' : 'Mathematik'),
+        grade: scene == 'kart' ? (_kartGrade ?? state.grade) : state.grade,
+        subject: scene == 'kart'
+            ? (_kartSubject ?? (state.subject == 'Deutsch' ? 'Deutsch' : 'Mathematik'))
+            : (state.subject == 'Deutsch' ? 'Deutsch' : 'Mathematik'),
         appState: widget.appState,
       );
       if (launched) await widget.onGameReturn?.call();
@@ -587,6 +590,48 @@ class _GamesContentState extends State<GamesContent> {
                           widget.onSection?.call(LumoSection.profile),
                       onSettings: () =>
                           widget.onSection?.call(LumoSection.settings),
+                    ),
+                  ),
+                  // Retain the original native campaigns as distinct, directly
+                  // reachable adventures. The village shares the existing save path.
+                  SliverToBoxAdapter(
+                    child: LumoNightScope(
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: ExpansionTile(
+                          key: const PageStorageKey('games-original-3d'),
+                          leading: const Icon(Icons.explore_rounded,
+                              color: LumoVisualTokens.cyanBright),
+                          title: const Text('Originale 3D-Abenteuer'),
+                          subtitle: const Text('Bauwelt, Schatzsuche und Dorfwirtschaft'),
+                          children: [
+                            ListTile(
+                              key: const ValueKey('spielwelt-original-build'),
+                              leading: const Icon(Icons.construction_rounded),
+                              title: const Text('Bauwelt · 12 Kapitel'),
+                              subtitle: const Text('Die eigenständige Baukampagne'),
+                              trailing: const Icon(Icons.play_arrow_rounded),
+                              onTap: () => _openGame(GameId.build, () => _launch3D('build')),
+                            ),
+                            ListTile(
+                              key: const ValueKey('spielwelt-original-treasure'),
+                              leading: const Icon(Icons.diamond_outlined),
+                              title: const Text('Schatzsuche'),
+                              subtitle: const Text('Das ursprüngliche Inselabenteuer'),
+                              trailing: const Icon(Icons.play_arrow_rounded),
+                              onTap: () => _openGame(GameId.treasure, () => _launch3D('treasure')),
+                            ),
+                            ListTile(
+                              key: const ValueKey('spielwelt-original-settlement'),
+                              leading: const Icon(Icons.home_work_rounded),
+                              title: const Text('Dorf & Wirtschaft'),
+                              subtitle: const Text('Dein bestehendes Dorf weiterentwickeln'),
+                              trailing: const Icon(Icons.play_arrow_rounded),
+                              onTap: () => _launch3D('settlement', livingVillage: true),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   // Retain the original card game, local games and the Flame

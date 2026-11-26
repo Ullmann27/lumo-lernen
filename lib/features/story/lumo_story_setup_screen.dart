@@ -34,6 +34,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
   String _companion = 'Lumo';
   String _magicItem = 'Sternenkompass';
   late int _gradeLevel;
+  bool _openingStory = false;
 
   @override
   void initState() {
@@ -43,47 +44,87 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
         .toInt();
   }
 
-  bool get _canStart => _hero != null && _location != null && _theme != null;
+  bool get _canStart =>
+      !_openingStory && _hero != null && _location != null && _theme != null;
+
+  bool _currentOwner(int generation, ModalRoute<dynamic>? route) =>
+      mounted &&
+      !widget.appState.resetting &&
+      !widget.appState.backupBusy &&
+      widget.appState.profileGeneration == generation &&
+      (route == null || route.isCurrent);
 
   Future<void> _startStory() async {
-    // Re-use the established child/grade-isolated memory store.
-    final childId = widget.appState.state.childName.trim().toLowerCase();
-    final signature = [_hero!, _location!, _theme!, _companion, _magicItem]
+    if (!_canStart) return;
+    final app = widget.appState;
+    final generation = app.profileGeneration;
+    final route = ModalRoute.of(context);
+    if (!_currentOwner(generation, route)) return;
+    // Snapshot the whole creative selection before any asynchronous work.
+    final hero = _hero!;
+    final location = _location!;
+    final theme = _theme!;
+    final companion = _companion;
+    final magicItem = _magicItem;
+    final grade = _gradeLevel;
+    final childId = app.state.childName.trim().toLowerCase();
+    final signature = [hero, location, theme, companion, magicItem]
         .map((part) => part.trim().toLowerCase())
         .join('|');
-    final recent = await _storyMemory.loadRecent(
-      childId: childId, grade: _gradeLevel);
-    if (!mounted) return;
-    final variants = recent.where((key) => key.startsWith('$signature|v'));
-    final lastVariant = variants.isEmpty
-        ? -1
-        : int.tryParse(variants.last.split('|v').last) ?? -1;
-    final variationSeed = (lastVariant + 1) % 12;
-    final story = LumoStoryGenerator.instance.generateReadingAdventure(
-      hero: _hero!,
-      location: _location!,
-      theme: _theme!,
-      gradeLevel: _gradeLevel,
-      companion: _companion,
-      magicItem: _magicItem,
-      variationSeed: variationSeed,
-    );
-    await _storyMemory.remember(
-      childId: childId,
-      grade: _gradeLevel,
-      signature: '$signature|v$variationSeed',
-    );
-    if (!mounted) return;
-    await _openReader(story);
+    setState(() => _openingStory = true);
+    try {
+      final recent =
+          await _storyMemory.loadRecent(childId: childId, grade: grade);
+      if (!_currentOwner(generation, route)) return;
+      final variants = recent.where((key) => key.startsWith('$signature|v'));
+      final lastVariant = variants.isEmpty
+          ? -1
+          : int.tryParse(variants.last.split('|v').last) ?? -1;
+      final variationSeed = (lastVariant + 1) % 12;
+      final story = LumoStoryGenerator.instance.generateReadingAdventure(
+        hero: hero,
+        location: location,
+        theme: theme,
+        gradeLevel: grade,
+        companion: companion,
+        magicItem: magicItem,
+        variationSeed: variationSeed,
+      );
+      await _storyMemory.remember(
+        childId: childId,
+        grade: grade,
+        signature: '$signature|v$variationSeed',
+      );
+      if (!_currentOwner(generation, route)) return;
+      await _openReader(story);
+    } catch (_) {
+      if (_currentOwner(generation, route)) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Das Abenteuer konnte nicht geöffnet werden. Versuch es noch einmal.'),
+        ));
+      }
+    } finally {
+      if (mounted) setState(() => _openingStory = false);
+    }
   }
 
   Future<void> _surprise() async {
-    final story =
-        LumoStoryGenerator.instance.generateReadingAdventure(
-          hero: 'Fuchs', location: 'Zauberwald', theme: 'Geheimnis',
-          gradeLevel: _gradeLevel,
-          variationSeed: DateTime.now().millisecondsSinceEpoch % 12);
-    await _openReader(story);
+    final generation = widget.appState.profileGeneration;
+    final route = ModalRoute.of(context);
+    if (_openingStory || !_currentOwner(generation, route)) return;
+    setState(() => _openingStory = true);
+    try {
+      final story = LumoStoryGenerator.instance.generateReadingAdventure(
+        hero: 'Fuchs', location: 'Zauberwald', theme: 'Geheimnis',
+        gradeLevel: _gradeLevel,
+        companion: _companion,
+        magicItem: _magicItem,
+        variationSeed: DateTime.now().millisecondsSinceEpoch % 12,
+      );
+      await _openReader(story);
+    } finally {
+      if (mounted) setState(() => _openingStory = false);
+    }
   }
 
   Future<void> _openReader(LumoStory story) async {
@@ -158,7 +199,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                     const SizedBox(height: 10),
                     FilledButton.icon(
                       key: const ValueKey('lumo-story-surprise'),
-                      onPressed: _surprise,
+                      onPressed: _openingStory ? null : _surprise,
                       icon: const Icon(Icons.casino_rounded),
                       label: const Text('Überraschung!'),
                       style: FilledButton.styleFrom(
@@ -229,6 +270,24 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                 LumoTokens.colors.gold,
               ),
               const SizedBox(height: LumoTokens.space20),
+              _SectionLabel('4. Wer begleitet dich?'),
+              const SizedBox(height: 8),
+              _buildChips(
+                const ['Lumo', 'Sternenroboter', 'Eule', 'Delfin'],
+                _companion,
+                (v) => setState(() => _companion = v),
+                LumoTokens.colors.lumoLila,
+              ),
+              const SizedBox(height: LumoTokens.space20),
+              _SectionLabel('5. Welchen Zaubergegenstand?'),
+              const SizedBox(height: 8),
+              _buildChips(
+                const ['Sternenkompass', 'Zauberbuch', 'Leuchtkristall', 'Mondschlüssel'],
+                _magicItem,
+                (v) => setState(() => _magicItem = v),
+                LumoTokens.colors.gold,
+              ),
+              const SizedBox(height: LumoTokens.space20),
               const SizedBox(height: 6),
               LumoGlassCard(
                 padding: const EdgeInsets.all(14),
@@ -283,7 +342,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
             button: !pinned,
             selected: _gradeLevel == g,
             child: InkWell(
-              onTap: pinned ? null : () => setState(() => _gradeLevel = g),
+              onTap: pinned || _openingStory ? null : () => setState(() => _gradeLevel = g),
               borderRadius: BorderRadius.circular(14),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 180),
@@ -323,10 +382,15 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
       runSpacing: 8,
       children: options.map((o) {
         final sel = o == selected;
-        return GestureDetector(
-          onTap: () => onTap(o),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 180),
+        return Semantics(
+          button: true,
+          selected: sel,
+          child: InkWell(
+            onTap: _openingStory ? null : () => onTap(o),
+            borderRadius: LumoTokens.brPill,
+            child: AnimatedContainer(
+              constraints: const BoxConstraints(minHeight: 48, minWidth: 48),
+              duration: const Duration(milliseconds: 180),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             decoration: BoxDecoration(
               color: sel ? accent : LumoVisualTokens.navigation,
@@ -346,6 +410,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
             child: Text(o,
                 style: LumoTokens.typo.titleMedium.copyWith(
                     color: LumoVisualTokens.white)),
+            ),
           ),
         );
       }).toList(),

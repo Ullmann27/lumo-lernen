@@ -40,6 +40,8 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   bool _speechReady = false;
   bool _speechListening = false;
   bool _speechInitStarted = false;
+  // Explicit, view-local opt-in. Never persisted and never opened on resume.
+  bool _continuousConversation = false;
   String _answer =
       'Ich bin Lumo. Frag mich etwas zu Mathe, Deutsch, Lesen, Englisch, Sachunterricht, Natur oder einer Geschichte.';
   String _source = 'local_ready';
@@ -92,6 +94,8 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   void deactivate() {
     _attached = false;
     _questionGeneration++;
+    _continuousConversation = false;
+    _cancelListening();
     super.deactivate();
   }
 
@@ -118,6 +122,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     _foreground = state == AppLifecycleState.resumed;
     if (!_foreground) {
+      _continuousConversation = false;
       _questionGeneration++;
       _conversation.pause();
       _cancelListening();
@@ -134,6 +139,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
 
   void _situationChanged() {
     if (_conversation.handlingCurrentLessonAction) return;
+    _continuousConversation = false;
     final changedTask = _displayScope != _contextEngine.conversationScope;
     _displayScope = _contextEngine.conversationScope;
     _questionGeneration++;
@@ -192,11 +198,33 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     setState(() {
       _speechListening = _speech.listening;
       _speechError = _speech.error;
+      if (_speech.error != null) _continuousConversation = false;
     });
   }
 
+  void _endContinuous() {
+    if (_continuousConversation && mounted) {
+      setState(() => _continuousConversation = false);
+    }
+  }
+
+  Future<void> _toggleContinuous() async {
+    if (!_canInteract) return;
+    if (_continuousConversation) {
+      _stopConversation();
+      return;
+    }
+    final settings = widget.appState.state.settings;
+    if (_contextEngine.isAssessment || !settings.microphoneEnabled ||
+        !settings.voiceEnabled || _speechListening || _speech.starting ||
+        _speech.awaitingFinalResult) return;
+    setState(() => _continuousConversation = true);
+    await _startVoiceQuestion();
+  }
+
   Future<void> _startVoiceQuestion() async {
-    if (_speechListening || !_canInteract) return;
+    if (_speechListening || _speech.starting || _speech.awaitingFinalResult ||
+        !_canInteract) return;
     final generation = ++_questionGeneration;
     final preparing = _conversation.prepareListening();
     final voiceRevision = LumoVoice.instance.requestRevision;
@@ -212,16 +240,21 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     if (!isCurrent()) return;
     final settings = widget.appState.state.settings;
     if (!settings.microphoneEnabled) {
+      _endContinuous();
       setState(
           () => _speechError = 'Mikrofon ist im Elternbereich ausgeschaltet.');
       return;
     }
 
-    if (!await preparing || !isCurrent()) return;
+    if (!await preparing || !isCurrent()) {
+      if (mounted && generation == _questionGeneration) _endContinuous();
+      return;
+    }
     await _ensureSpeechReady();
     if (!isCurrent() ||
         !_speechReady ||
         !widget.appState.state.settings.microphoneEnabled) {
+      if (mounted && generation == _questionGeneration) _endContinuous();
       return;
     }
 
@@ -244,12 +277,18 @@ class _LumoAgentContentState extends State<LumoAgentContent>
         onFinalResult: (words) {
           if (isCurrent()) unawaited(_finishVoiceQuestion(words));
         },
+        // Silence or an incomplete transcript never triggers an endless
+        // automatic recording loop. A fresh explicit tap is required.
+        onNoMatch: () {
+          if (isCurrent()) _endContinuous();
+        },
       );
     } catch (e) {
       if (!isCurrent()) return;
       setState(() {
         _speechListening = false;
         _speechError = 'Sprachaufnahme konnte nicht starten: $e';
+        _continuousConversation = false;
       });
     }
   }
@@ -279,7 +318,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
       return;
     }
     setState(() => _speechListening = false);
-    await _ask(words);
+    await _ask(words, true);
   }
 
   Future<void> _stopVoiceQuestion() async {
@@ -293,10 +332,12 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     // it again here could create two turns from a single microphone tap.
   }
 
-  Future<void> _ask([String? raw]) async {
+  Future<void> _ask([String? raw, bool fromMicrophone = false]) async {
     final question = (raw ?? _controller.text).trim();
     if (question.isEmpty || !_canInteract) return;
+    if (!fromMicrophone) _endContinuous();
     final generation = ++_questionGeneration;
+    final scope = _contextEngine.conversationScope;
     FocusManager.instance.primaryFocus?.unfocus();
 
     setState(() {
@@ -308,7 +349,10 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     final response = await _conversation.ask(question);
     if (!_canInteract || generation != _questionGeneration) return;
     if (response.source == 'cancelled') {
-      setState(() => _loading = false);
+      setState(() {
+        _loading = false;
+        _continuousConversation = false;
+      });
       return;
     }
     _controller.clear();
@@ -320,19 +364,56 @@ class _LumoAgentContentState extends State<LumoAgentContent>
       _loading = false;
       _liveSpeech = '';
     });
-    _applyReply(response.reply, blocked: response.blocked);
+    final mayContinue = fromMicrophone && _continuousConversation &&
+        !response.blocked && !_contextEngine.isAssessment &&
+        response.source != 'local_stopped' &&
+        response.source != 'local_try_myself' &&
+        response.source != 'local_assessment_no_help';
+    if (!mayContinue) _endContinuous();
+    final playback = _applyReply(response.reply, blocked: response.blocked);
+    if (!mayContinue) {
+      unawaited(playback.then<void>((_) {}));
+      return;
+    }
+    // Only the exact owned, completed audio response can reopen the mic.
+    // A stale/failed/silent response, another speaker, changed task, parent
+    // permission, background, or Stop must never start a new capture.
+    final completed = await playback;
+    if (!_canInteract || generation != _questionGeneration ||
+        scope != _contextEngine.conversationScope || !_continuousConversation) return;
+    final settings = widget.appState.state.settings;
+    if (!completed || !_conversation.responseMaySpeak ||
+        !settings.microphoneEnabled || !settings.voiceEnabled ||
+        _contextEngine.isAssessment) {
+      _endContinuous();
+      return;
+    }
+    await _startVoiceQuestion();
   }
 
-  void _applyReply(String reply, {required bool blocked}) {
+  Future<bool> _applyReply(String reply, {required bool blocked}) async {
     widget.appState.update(widget.appState.state.copyWith(
       lumoMessage: reply,
       mood: blocked ? LumoMood.comfort : LumoMood.greet,
     ));
     if (_conversation.responseMaySpeak &&
         widget.appState.state.settings.voiceEnabled) {
-      unawaited(_conversation.speak(reply,
-          style: blocked ? VoiceStyle.comfort : VoiceStyle.explain));
+      final voice = LumoVoice.instance;
+      final before = voice.completedPlaybackCount;
+      final previousRevision = voice.requestRevision;
+      try {
+        final playback = _conversation.speak(reply,
+            style: blocked ? VoiceStyle.comfort : VoiceStyle.explain);
+        final revision = voice.requestRevision;
+        await playback;
+        return revision != previousRevision &&
+            revision == voice.requestRevision &&
+            voice.completedPlaybackCount > before;
+      } catch (_) {
+        return false;
+      }
     }
+    return false;
   }
 
   void _quickAsk(String text) => _ask(text);
@@ -344,6 +425,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
     if (!mounted) return;
     setState(() {
       _loading = false;
+      _continuousConversation = false;
       _speechListening = false;
       _liveSpeech = '';
       _answer = 'Ich habe aufgehört. Du kannst in Ruhe weitermachen.';
@@ -424,6 +506,32 @@ class _LumoAgentContentState extends State<LumoAgentContent>
                       onMic: _startVoiceQuestion,
                       onStopMic: _stopVoiceQuestion,
                     ),
+                    if (!_contextEngine.isAssessment) ...[
+                      const SizedBox(height: 8),
+                      OutlinedButton.icon(
+                        key: const ValueKey('lumo-continuous-conversation'),
+                        onPressed: _continuousConversation ||
+                                (settings.microphoneEnabled &&
+                                    settings.voiceEnabled && !_speechListening)
+                            ? _toggleContinuous
+                            : null,
+                        style: OutlinedButton.styleFrom(
+                            minimumSize: const Size(48, 48)),
+                        icon: Icon(_continuousConversation
+                            ? Icons.stop_circle_outlined
+                            : Icons.record_voice_over_rounded),
+                        label: Text(_continuousConversation
+                            ? 'Gespräch beenden'
+                            : 'Freisprechen starten'),
+                      ),
+                      Text(
+                        _continuousConversation
+                            ? 'Lumo hört nach seiner Antwort wieder zu. Stopp beendet das Gespräch.'
+                            : 'Lumo und du sprechen abwechselnd. Das Mikrofon ist nur beim Zuhören aktiv.',
+                        style: LumoTextStyles.caption.copyWith(
+                            color: LumoVisualTokens.muted),
+                      ),
+                    ],
                     const SizedBox(height: 14),
                     if (_contextEngine.task != null)
                       Wrap(spacing: 8, runSpacing: 8, children: [
