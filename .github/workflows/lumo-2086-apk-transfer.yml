@@ -1,0 +1,56 @@
+name: "Lumo 2086 – Original-APK in geprüften Transferteilen"
+on:
+  push:
+    branches: [qa/lumo-2086-apk-transfer-20261126]
+    paths:
+      - .github/workflows/lumo-2086-apk-transfer.yml
+      - scripts/lumo_2086_apk_transfer.py
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-2086-apk-transfer
+  cancel-in-progress: false
+
+jobs:
+  transfer:
+    name: Originale APK unverändert zur internen Prüfung bereitstellen
+    if: github.repository == 'Ullmann27/lumo-lernen'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Originalartefakt, APK-Bytes und drei Transferteile prüfen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/lumo_2086_apk_transfer.py
+      - name: Geprüften Teil 1 und identisches Manifest sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2086-APK-PART-01-${{ github.run_id }}-${{ github.run_attempt }}
+          path: apk-transfer/parts/part-01/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+      - name: Geprüften Teil 2 und identisches Manifest sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2086-APK-PART-02-${{ github.run_id }}-${{ github.run_attempt }}
+          path: apk-transfer/parts/part-02/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+      - name: Geprüften Teil 3 und identisches Manifest sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-2086-APK-PART-03-${{ github.run_id }}-${{ github.run_attempt }}
+          path: apk-transfer/parts/part-03/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+
