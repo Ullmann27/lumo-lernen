@@ -145,6 +145,53 @@ jobs:
             scripts.tests.test_studio_learning_contract \
             scripts.tests.test_local_backup_transaction -v \
             2>&1 | tee build-proof/NATIVE-SPEECH-DIALOG-TESTS.txt
+      - name: Godot – exakten Quellstand und Szenen importieren
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          git clone --filter=blob:none https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
+          git -C build/lumo-godot-qa checkout --detach "$SOURCE"
+          python3 scripts/verify_kart_fleet_mirror.py build/lumo-godot-qa
+          # Der Erstimport stürzt in Godot 4.6.3 auf vollen CI-Rechnern ab, wenn
+          # Szenen-Benachrichtigungen aus Arbeits-Threads kommen. Wie im Bauskript
+          # läuft der Importer deshalb mit --single-threaded-scene; zusätzlich
+          # wird der idempotente Import genau einmal wiederholt.
+          godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
+            || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
+      - name: Fold-Steuerung, Streckendetails, Kartenrunde und Grafikwahl prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          failed=0
+          for entry in kart_hud_controls_regression:KART_HUD_CONTROLS_OK \
+            kart_detail_layer_regression:PASS kart_racecraft_regression:PASS \
+            cards_punktlandung_reveal_regression:PASS kart_quality_persistence_regression:PASS; do
+            probe="${entry%:*}"
+            required="${entry#*:}"
+            XDG_DATA_HOME="$RUNNER_TEMP/lumo-fold-$probe" \
+              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+                --timeout 1200 --required "$required" --log "build-proof/GODOT-$probe.txt" -- \
+                godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
+                --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd" || failed=1
+          done
+          exit "$failed"
+      - name: Elternlautstärke bei Neustart und Bauteilklang prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          for action in mute unmute; do
+            XDG_DATA_HOME="$RUNNER_TEMP/lumo-parent-audio" \
+              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+                --timeout 120 --required '[ParentMuteRestart] PASS' --log "build-proof/GODOT-parent-$action.txt" -- \
+                godot --headless --single-threaded-scene --audio-driver Dummy --path build/lumo-godot-qa \
+                --script res://scripts/tests/parent_mute_restart_regression.gd -- "--$action"
+          done
+          XDG_DATA_HOME="$RUNNER_TEMP/lumo-workshop-audio" \
+            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+              --timeout 120 --required '[WorkshopMotorVoices] PASS' --log build-proof/GODOT-workshop-motors.txt -- \
+              godot --headless --single-threaded-scene --audio-driver Dummy --path build/lumo-godot-qa \
+              --script res://scripts/tests/kart_workshop_motor_voices.gd
       - name: Flutter – Analyse und vollständige Testsuite
         shell: bash
         env:
@@ -159,16 +206,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          SOURCE="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
-          git clone --filter=blob:none https://github.com/Ullmann27/lumo-godot.git build/lumo-godot-qa
-          git -C build/lumo-godot-qa checkout --detach "$SOURCE"
-          python3 scripts/verify_kart_fleet_mirror.py build/lumo-godot-qa
-          # Der Erstimport stürzt in Godot 4.6.3 auf vollen CI-Rechnern ab, wenn
-          # Szenen-Benachrichtigungen aus Arbeits-Threads kommen. Wie im Bauskript
-          # läuft der Importer deshalb mit --single-threaded-scene; zusätzlich
-          # wird der idempotente Import genau einmal wiederholt.
-          godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit \
-            || godot --headless --single-threaded-scene --path build/lumo-godot-qa --editor --import --quit
           # Gleiche strenge Aufruf- und Zeitgrenzen wie der separate native Prüflauf.
           for probe in table_turn_flow_regression cards_rules_regression chess_rules_regression; do
             python3 build/lumo-godot-qa/tools/run_godot_probe.py \
@@ -275,37 +312,6 @@ jobs:
               godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
               --path build/lumo-godot-qa --script res://scripts/tests/kart_rival_ai_regression.gd \
               -- --tracks=jungle_emerald_3600,jungle_temple
-      - name: Fold-Steuerung, Streckendetails, Kartenrunde und Grafikwahl prüfen
-        shell: bash
-        run: |
-          set -euo pipefail
-          for entry in kart_hud_controls_regression:KART_HUD_CONTROLS_OK \
-            kart_detail_layer_regression:PASS kart_racecraft_regression:PASS \
-            cards_punktlandung_reveal_regression:PASS kart_quality_persistence_regression:PASS; do
-            probe="${entry%:*}"
-            required="${entry#*:}"
-            XDG_DATA_HOME="$RUNNER_TEMP/lumo-fold-$probe" \
-              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-                --timeout 1200 --required "$required" --log "build-proof/GODOT-$probe.txt" -- \
-                godot --headless --single-threaded-scene --audio-driver Dummy --resolution 1280x720 \
-                --path build/lumo-godot-qa --script "res://scripts/tests/$probe.gd"
-          done
-      - name: Elternlautstärke bei Neustart und Bauteilklang prüfen
-        shell: bash
-        run: |
-          set -euo pipefail
-          for action in mute unmute; do
-            XDG_DATA_HOME="$RUNNER_TEMP/lumo-parent-audio" \
-              python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-                --timeout 120 --required '[ParentMuteRestart] PASS' --log "build-proof/GODOT-parent-$action.txt" -- \
-                godot --headless --single-threaded-scene --audio-driver Dummy --path build/lumo-godot-qa \
-                --script res://scripts/tests/parent_mute_restart_regression.gd -- "--$action"
-          done
-          XDG_DATA_HOME="$RUNNER_TEMP/lumo-workshop-audio" \
-            python3 build/lumo-godot-qa/tools/run_godot_probe.py \
-              --timeout 120 --required '[WorkshopMotorVoices] PASS' --log build-proof/GODOT-workshop-motors.txt -- \
-              godot --headless --single-threaded-scene --audio-driver Dummy --path build/lumo-godot-qa \
-              --script res://scripts/tests/kart_workshop_motor_voices.gd
       - name: Eine signierte Flutter-Godot-APK bauen
         shell: bash
         run: |
