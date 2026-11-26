@@ -134,10 +134,8 @@ abstract final class MiniGameLearningDeck {
     final tasks = switch (level.miniType) {
       GameMiniType.colorBoxes => _boxes(level, seed),
       GameMiniType.letterFill => _letters(level, seed),
-      GameMiniType.starsPath =>
-        List.generate(taskCount(level), (index) => _math(level, index)),
-      GameMiniType.numberHouse =>
-        List.generate(taskCount(level), (index) => _house(level, index)),
+      GameMiniType.starsPath => _distinct(level, seed, _math),
+      GameMiniType.numberHouse => _distinct(level, seed, _house),
       _ => List.generate(taskCount(level), (index) => _lesson(level, index)),
     };
     if (tasks.length != taskCount(level) ||
@@ -146,6 +144,58 @@ abstract final class MiniGameLearningDeck {
       throw StateError('Die Lernspiel-Runde wurde nicht freigegeben.');
     }
     return List.unmodifiable(tasks);
+  }
+
+  /// A round never repeats a task, and the saved [seed] picks the round.
+  /// The generators are deterministic per variant number; before, every
+  /// round of a level was identical and „Plus bis 5“ showed 3 + 2 and 4 + 1
+  /// alternately in all five positions. The goal of the level is unchanged.
+  static List<MiniGameLearningTask> _distinct(GameLevel level, int seed,
+      MiniGameLearningTask Function(GameLevel, int) build) {
+    final count = taskCount(level);
+    final start = (seed % 97) * count;
+    final seen = <String>{};
+    final tasks = <MiniGameLearningTask>[];
+    for (var position = 0; position < count; position++) {
+      MiniGameLearningTask? chosen;
+      for (var variant = start + position;
+          variant < start + position + 40 * count;
+          variant += count) {
+        final candidate = build(level, variant);
+        if (seen.add('${candidate.prompt}|${candidate.cue}|'
+            '${candidate.count}|${candidate.answer}')) {
+          chosen = candidate;
+          break;
+        }
+      }
+      // A level with fewer distinct tasks than positions repeats the first
+      // variant rather than failing the round.
+      chosen ??= build(level, start + position);
+      tasks.add(MiniGameLearningTask(
+        id: _id(level, position),
+        prompt: chosen.prompt,
+        answer: chosen.answer,
+        choices: chosen.choices,
+        explanation: chosen.explanation,
+        hints: chosen.hints,
+        subject: chosen.subject,
+        input: chosen.input,
+        visual: chosen.visual,
+        house: chosen.house,
+        initialBoxes: chosen.initialBoxes,
+        targetCount: chosen.targetCount,
+        word: chosen.word,
+        gapIndex: chosen.gapIndex,
+        picture: chosen.picture,
+        cue: chosen.cue,
+        speech: chosen.speech,
+        hour: chosen.hour,
+        minute: chosen.minute,
+        numbers: chosen.numbers,
+        count: chosen.count,
+      ));
+    }
+    return tasks;
   }
 
   static String _id(GameLevel level, int index) =>
