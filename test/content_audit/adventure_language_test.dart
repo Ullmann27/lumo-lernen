@@ -131,4 +131,26 @@ void main() {
     }
     expect(seen, greaterThan(20));
   });
+
+  test('Geheimcode: die Anzahl der Zahlen verrät das Wort nicht', () {
+    // Vorher hatte in 40 % der Aufgaben nur die Lösung so viele Buchstaben,
+    // wie der Code Zahlen hat (6 Zahlen, nur KUCHEN mit 6 Buchstaben).
+    for (var grade = 2; grade <= 4; grade++) {
+      var total = 0, onlyLength = 0;
+      for (var seed = 0; seed < 800; seed++) {
+        final task = generator(seed).generate(
+            subject: 'Logik', unit: 'Geheimcode', grade: grade);
+        final numbers =
+            RegExp(r'heißt ([\d-]+)\?').firstMatch(task.prompt)!.group(1)!;
+        final length = numbers.split('-').length;
+        expect(task.answer.length, length, reason: task.prompt);
+        total++;
+        if (task.choices.where((c) => c.length == length).length == 1) {
+          onlyLength++;
+        }
+      }
+      expect(onlyLength / total, lessThan(.1),
+          reason: 'Klasse $grade: $onlyLength von $total per Länge lösbar');
+    }
+  });
 }

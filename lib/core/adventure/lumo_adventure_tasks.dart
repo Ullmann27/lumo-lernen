@@ -1069,17 +1069,29 @@ class LumoAdventureTasks {
     String encode(String w) => w.split('').map((c) => '${code(c)}').join('-');
     final pool = <String>{...adventureCodeWords, ..._extraCodeWords}
       ..remove(word);
-    final sameStart = pool.where((w) => w[0] == word[0]).toList()
-      ..shuffle(_random);
-    final similarLength = pool
-        .where((w) => w[0] != word[0] && (w.length - word.length).abs() <= 1)
-        .toList()
-      ..shuffle(_random);
-    // Ab Klasse 2 zuerst Wörter mit demselben Anfang: dann muss man
-    // weiterlesen. In Klasse 1 genügen Wörter ähnlicher Länge.
+    List<String> pick(bool Function(String) test) =>
+        pool.where(test).toList()..shuffle(_random);
+    final sameLength = word.length;
+    // Gleich lange Wörter zuerst: Sonst verrät schon die Anzahl der Zahlen
+    // das Wort (vorher in 40 % der Aufgaben, z. B. 6 Zahlen und nur
+    // KUCHEN hat 6 Buchstaben). Ab Klasse 2 dabei zuerst Wörter mit
+    // demselben Anfang, dann muss man weiterlesen.
+    final sameStartSameLength =
+        pick((w) => w[0] == word[0] && w.length == sameLength);
+    final otherStartSameLength =
+        pick((w) => w[0] != word[0] && w.length == sameLength);
+    final sameStart = pick((w) => w[0] == word[0] && w.length != sameLength);
+    final similarLength = pick((w) =>
+        w[0] != word[0] && (w.length - sameLength).abs() == 1);
     final others = g >= 2
-        ? <String>[...sameStart, ...similarLength]
-        : <String>[...similarLength, ...sameStart];
+        ? <String>[
+            ...sameStartSameLength, ...otherStartSameLength, ...sameStart,
+            ...similarLength,
+          ]
+        : <String>[
+            ...otherStartSameLength, ...sameStartSameLength, ...similarLength,
+            ...sameStart,
+          ];
     final rule = shift == 0
         ? 'Im Code ist A = 1, B = 2, C = 3 und so weiter bis Z = 26.'
         : 'Lumo hat den Code verschoben: Jetzt ist A = 2, B = 3, C = 4 und so weiter bis Z = 27.';
