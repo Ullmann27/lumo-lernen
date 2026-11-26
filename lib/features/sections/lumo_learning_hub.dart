@@ -148,9 +148,22 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
         ? <String>[]
         : Curriculum.unitsForGrade(subject.name, grade, currentGradeOnly: true);
     final accessible = MediaQuery.textScalerOf(context).scale(1);
+    final compact = MediaQuery.sizeOf(context).width < 460;
+    final gradeStatus = Text(
+      grade == widget.grade
+          ? '$grade. Klasse · aus deinem Profil'
+          : '$grade. Klasse · frei lernen',
+      key: const ValueKey('learning-profile-grade'),
+      style: TextStyle(
+        fontFamily: 'Nunito',
+        fontSize: 13,
+        fontWeight: FontWeight.w800,
+        color: subject == null ? const Color(0xFFD4EAF5) : Colors.white,
+      ),
+    );
     return ListView(
       key: const PageStorageKey<String>('lumo-1992-learning-hub'),
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 36),
+      padding: EdgeInsets.fromLTRB(16, subject == null ? 12 : 16, 16, 36),
       children: [
         DecoratedBox(
           decoration: BoxDecoration(
@@ -163,7 +176,9 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
             borderRadius: BorderRadius.circular(24),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(18),
+            padding: subject == null
+                ? const EdgeInsets.fromLTRB(14, 10, 14, 10)
+                : const EdgeInsets.all(18),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -173,67 +188,60 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                           Text(
-                            subject == null
-                                ? 'Was möchtest du lernen?'
-                                : subject.name,
-                            style: const TextStyle(
+                            subject?.name ??
+                                (compact
+                                    ? 'Fach wählen'
+                                    : 'Was möchtest du lernen?'),
+                            style: TextStyle(
                                 fontFamily: 'Nunito',
-                                fontSize: 23,
+                                fontSize: subject == null && compact ? 18 : 23,
                                 fontWeight: FontWeight.w900,
                                 color: Colors.white),
                           ),
-                          const SizedBox(height: 6),
-                          Text(
-                            subject == null
-                                ? 'Ein Fach auswählen. Danach siehst du die passenden Themen.'
-                                : 'Wähle ein Thema. Danach startet die echte Lernaufgabe.',
-                            style: const TextStyle(
-                                fontFamily: 'Nunito',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                                color: Color(0xFFD4EAF5)),
-                          ),
-                          const SizedBox(height: 12),
-                          DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(.12),
-                              borderRadius: BorderRadius.circular(12),
+                          if (subject != null) ...[
+                            const SizedBox(height: 6),
+                            const Text(
+                              'Wähle ein Thema. Danach startet die echte Lernaufgabe.',
+                              style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color(0xFFD4EAF5)),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 8),
-                              child: Text(
-                                  grade == widget.grade
-                                      ? '$grade. Klasse · aus deinem Profil'
-                                      : '$grade. Klasse · frei lernen',
-                                  key: const ValueKey('learning-profile-grade'),
-                                  style: const TextStyle(
-                                      fontFamily: 'Nunito',
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.white)),
+                          ],
+                          SizedBox(height: subject == null ? 4 : 12),
+                          if (subject == null)
+                            gradeStatus
+                          else
+                            DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(.12),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 8),
+                                child: gradeStatus,
+                              ),
                             ),
-                          ),
                         ])),
-                    if (subject == null &&
-                        MediaQuery.sizeOf(context).width >= 360 &&
-                        accessible <= 1.3)
-                      const ExcludeSemantics(
+                    if (subject == null && accessible <= 1.3)
+                      ExcludeSemantics(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           child: Image(
-                            key: ValueKey('learning-hub-lumo'),
-                            image: AssetImage(
+                            key: const ValueKey('learning-hub-lumo'),
+                            image: const AssetImage(
                                 'assets/lumo_design/characters/fox_point.webp'),
-                            width: 89,
-                            height: 112,
+                            width: compact ? 58 : 72,
+                            height: compact ? 56 : 72,
                             fit: BoxFit.contain,
                           ),
                         ),
                       ),
                   ]),
                   if (subject == null) ...[
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 8),
                     Row(children: [
                       for (var level = 1; level <= 4; level++) ...[
                         if (level > 1) const SizedBox(width: 6),
@@ -260,45 +268,37 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                       ],
                     ]),
                   ],
-                  // Other grades and all learning paths belong with the grade, and
-                  // stay reachable without scrolling past the subject cards.
-                  if (subject == null) ...[
-                    const SizedBox(height: 12),
-                    OutlinedButton.icon(
-                      key: const ValueKey('learning-advanced-entry'),
-                      onPressed: widget.onAdvanced,
-                      icon: const Icon(Icons.tune_rounded),
-                      label: const Text('Lernwerkzeuge & Geschichten'),
-                      style: OutlinedButton.styleFrom(
-                          foregroundColor: LumoVisualTokens.cyanBright,
-                          minimumSize: const Size.fromHeight(52)),
-                    ),
-                  ],
                 ]),
           ),
         ),
-        const SizedBox(height: 16),
-        if (widget.tools != null) ...[
-          widget.tools!,
-          const SizedBox(height: 16)
-        ],
+        SizedBox(height: subject == null ? 12 : 16),
         if (subject == null) ...[
-          const Text('Fächer',
-              style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w900,
-                  color: LumoVisualTokens.white)),
-          const SizedBox(height: 10),
           LayoutBuilder(builder: (context, constraints) {
             final cols =
-                constraints.maxWidth >= 740 && accessible <= 1.3 ? 4 : 2;
+                constraints.maxWidth >= 640 && accessible <= 1.3 ? 4 : 2;
             final width = (constraints.maxWidth - (cols - 1) * 10) / cols;
             return Wrap(spacing: 10, runSpacing: 10, children: [
               for (final entry in _main)
-                SizedBox(width: width, child: _subjectCard(entry, grade)),
+                SizedBox(
+                  width: width,
+                  child: _subjectCard(entry, grade, compact: width < 155),
+                ),
             ]);
           }),
+          const SizedBox(height: 14),
+          OutlinedButton.icon(
+            key: const ValueKey('learning-advanced-entry'),
+            onPressed: widget.onAdvanced,
+            icon: const Icon(Icons.tune_rounded),
+            label: const Text('Lernwerkzeuge & Geschichten'),
+            style: OutlinedButton.styleFrom(
+                foregroundColor: LumoVisualTokens.cyanBright,
+                minimumSize: const Size.fromHeight(52)),
+          ),
+          if (widget.tools != null) ...[
+            const SizedBox(height: 12),
+            widget.tools!,
+          ],
           const SizedBox(height: 14),
           Theme(
             data: Theme.of(context).copyWith(
@@ -340,6 +340,10 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
             ),
           ),
         ] else ...[
+          if (widget.tools != null) ...[
+            widget.tools!,
+            const SizedBox(height: 16),
+          ],
           OutlinedButton.icon(
             key: const ValueKey('learning-back-to-subjects'),
             onPressed: _navigation.backToSubjects,
@@ -632,7 +636,7 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
     );
   }
 
-  Widget _subjectCard(_Subject subject, int grade) {
+  Widget _subjectCard(_Subject subject, int grade, {required bool compact}) {
     final (bright, deep) =
         _cardColors[subject.name] ?? (subject.accent, const Color(0xFF142E4F));
     final (practiced, total) = _topicProgress(subject.name, grade);
@@ -674,7 +678,8 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
             ),
             child: Container(
               constraints: const BoxConstraints(minHeight: 150),
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.symmetric(
+                  horizontal: compact ? 8 : 12, vertical: 12),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,

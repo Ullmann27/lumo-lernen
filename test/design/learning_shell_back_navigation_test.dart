@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_shell.dart';
 import 'package:lumo_lernen/app/app_state.dart';
+import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
@@ -11,9 +12,13 @@ import 'package:lumo_lernen/core/user_profile.dart';
 import 'package:lumo_lernen/features/learning/learning_content.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
 import 'package:lumo_lernen/features/home/home_content.dart';
+import 'package:lumo_lernen/features/sections/lumo_learning_hub.dart';
+
+import '../helpers/lumo_capture.dart' show loadLumoCaptureFonts;
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  setUpAll(loadLumoCaptureFonts);
   setUp(() async {
     SharedPreferences.setMockInitialValues({
       'lumo_app_settings_v1': jsonEncode(const AppSettings(
@@ -32,6 +37,70 @@ void main() {
     for (var i = 0; i < 6; i++) {
       await tester.pump(const Duration(milliseconds: 200));
     }
+  }
+
+  for (final dimensions in [
+    const Size(344, 882),
+    const Size(412, 915),
+    const Size(690, 829),
+  ]) {
+    testWidgets('vier Fächer sofort erreichbar bei ${dimensions.width} dp',
+        (tester) async {
+      tester.view.devicePixelRatio = 1;
+      tester.view.physicalSize = dimensions;
+      addTearDown(tester.view.resetDevicePixelRatio);
+      addTearDown(tester.view.resetPhysicalSize);
+      await tester.binding.setSurfaceSize(dimensions);
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final date = DateTime(2026, 10, 23);
+      await tester.pumpWidget(MaterialApp(
+        theme: LumoAppTheme.light(),
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            disableAnimations: true,
+            padding: const EdgeInsets.only(top: 24, bottom: 16),
+          ),
+          child: child!,
+        ),
+        home: AppShell(
+          profile: UserProfile(
+            id: 'learning-first-screen',
+            name: 'Mia',
+            age: 8,
+            grade: 2,
+            createdAt: date,
+            lastActiveAt: date,
+          ),
+          initialSection: LumoSection.learn,
+        ),
+      ));
+      await frames(tester);
+
+      final scrollable = find.descendant(
+        of: find.byType(LumoLearningHub),
+        matching: find.byType(Scrollable),
+      );
+      final viewport = tester.getRect(scrollable);
+      for (final subject in [
+        'Mathematik',
+        'Deutsch',
+        'Englisch',
+        'Sachunterricht',
+      ]) {
+        final card = find.byKey(ValueKey('learning-subject-$subject'));
+        final bounds = tester.getRect(card);
+        expect(bounds.top, greaterThanOrEqualTo(viewport.top), reason: subject);
+        expect(bounds.bottom, lessThanOrEqualTo(viewport.bottom), reason: subject);
+        expect(card.hitTestable(), findsOneWidget, reason: subject);
+      }
+      await tester.tap(find.byKey(const ValueKey('learning-subject-Sachunterricht')));
+      await frames(tester);
+      expect(find.text('Themen · Sachunterricht'), findsOneWidget);
+      expect(find.text('2. Klasse · aus deinem Profil'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+      await frames(tester);
+    });
   }
 
   testWidgets(
