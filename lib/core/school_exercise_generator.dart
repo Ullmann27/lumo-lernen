@@ -338,7 +338,7 @@ class ExerciseFactory {
     _childName = childName;
     final cappedGrade = grade.clamp(1, 4).toInt();
     final chosenSubject = _chooseSubject(subject, weakSkills,
-        grade: cappedGrade, gradedOnly: gradedOnly);
+        grade: cappedGrade, gradedOnly: gradedOnly, unit: unit);
     final allUnits = Curriculum.unitsForGrade(chosenSubject, cappedGrade);
     final availableUnit = allUnits.contains(unit) ||
         (chosenSubject == 'Mathematik' && MathTaskTemplates.supportsUnit(cappedGrade, unit)) ||
@@ -458,8 +458,39 @@ class ExerciseFactory {
     'Schreiben', 'Englisch',
   ];
 
+  /// Lernbereiche eines Schulfachs in Tests und Schularbeiten. Lumo führt
+  /// Lesen und Rechtschreibung als eigene Bereiche, im Lehrplan gehören sie
+  /// zum Fach Deutsch. Eine Deutsch-Schularbeit prüft deshalb Sprache, Lesen
+  /// und Rechtschreibung; das unbewertete Schreibtraining bleibt draußen.
+  static const Map<String, List<String>> gradedSubjectAreas =
+      <String, List<String>>{
+    'Deutsch': <String>['Deutsch', 'Lesen', 'Rechtschreibung'],
+  };
+
+  /// Fächer, aus denen ein Test oder eine Schularbeit für [subject] zieht.
+  static List<String> gradedSubjectsFor(String subject) =>
+      gradedSubjectAreas[subject] ?? <String>[subject];
+
   String _chooseSubject(String requested, Map<String, int> weakSkills,
-      {required int grade, bool gradedOnly = false}) {
+      {required int grade, bool gradedOnly = false, String unit = 'Alle'}) {
+    final areas = gradedSubjectAreas[requested];
+    if (gradedOnly && unit == 'Alle' && areas != null) {
+      // Hälfte Sprache, je ein Viertel Lesen und Rechtschreibung; eine
+      // Schwäche in einem der Bereiche wird bevorzugt geübt.
+      if (weakSkills.isNotEmpty && _random.nextDouble() < .5) {
+        final weakest = (weakSkills.entries.toList()
+              ..sort((a, b) => b.value.compareTo(a.value)))
+            .first
+            .key;
+        final owners = <String>[
+          for (final area in areas)
+            if (Curriculum.unitsForGrade(area, grade).contains(weakest)) area,
+        ];
+        if (owners.isNotEmpty) return owners[_random.nextInt(owners.length)];
+      }
+      final roll = _random.nextInt(4);
+      return roll < 2 ? areas.first : areas[roll - 1];
+    }
     if (requested != 'Alle') return Curriculum.subjects.containsKey(requested) ? requested : 'Mathematik';
     final base = gradedOnly
         ? _mixedSubjects.where((s) => s != 'Schreiben').toList()

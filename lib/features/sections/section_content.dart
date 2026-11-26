@@ -120,7 +120,9 @@ class SectionContent extends StatelessWidget {
             ),
             _ActionData(
               'Deutsch-Schularbeit',
-              '30 Aufgaben: Lesen, Sprache, Rechtschreibung und Schreiben.',
+              // Schreiben (Texte verfassen) wird nicht automatisch bewertet
+              // und kommt deshalb nicht in die Schularbeit.
+              '30 Aufgaben: Lesen, Sprache und Rechtschreibung. Texte schreibst du im Schreibtrainer.',
               'Starten',
               Icons.edit_document,
               () => _startSession(
