@@ -3,10 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/curriculum/learning_level.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/features/learning/learning_content.dart';
 import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
+import 'package:lumo_lernen/features/sections/lumo_learning_hub.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Drei pädagogische Ebenen (Entscheidung Heinz, 26.11.2026): Schulwissen,
@@ -177,6 +179,115 @@ void main() {
           unit: 'Dezimalzahlen',
           seed: 3);
       expect(skill, endsWith('mathematik.dezimalzahlen'));
+    });
+  });
+
+  group('Lernhub Mathematik: drei Ebenen, alte Fortschritte bleiben', () {
+    Future<String?> openMath(WidgetTester tester, int grade,
+        Map<String, SkillRecord> skills, void Function(String) started) async {
+      await tester.binding.setSurfaceSize(const Size(412, 915));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: LumoLearningHub(
+            grade: grade,
+            skills: skills,
+            onStartUnit: (_, unit) => started(unit),
+            onReading: () {},
+            onPracticalSubject: (_) {},
+            onAdvanced: () {},
+          ),
+        ),
+      ));
+      final status = tester
+          .widget<Text>(
+              find.byKey(const ValueKey('learning-subject-progress-Mathematik')))
+          .data;
+      await tester.tap(find.byKey(const ValueKey('learning-subject-Mathematik')));
+      await tester.pump();
+      return status;
+    }
+
+    double top(WidgetTester tester, String key) =>
+        tester.getTopLeft(find.byKey(ValueKey(key), skipOffstage: false)).dy;
+
+    testWidgets('Klasse 4: Expertenwelt unter eigener Überschrift, mit '
+        'gespeichertem Fortschritt aus dem alten Format', (tester) async {
+      // So liegt ein Fortschritt von vor der Einführung der Ebenen im
+      // Speicher: Fach und Einheit, keine Ebene.
+      final legacy = SkillRecord.fromJson(<String, dynamic>{
+        'skillId': 'mathematik::dezimalzahlen',
+        'subject': 'Mathematik',
+        'unit': 'Dezimalzahlen',
+        'correct': 4,
+        'wrong': 1,
+        'hintCount': 0,
+        'currentStreak': 2,
+        'currentMisses': 0,
+        'difficulty': 4,
+        'lastSeen': '2026-11-20T10:00:00.000',
+      });
+      String? started;
+      final subjectStatus = await openMath(
+          tester, 4, {legacy.skillId: legacy}, (unit) => started = unit);
+      // Die Fachkarte zählt nur die Lehrplanthemen der Schulstufe.
+      expect(subjectStatus, 'Noch nicht begonnen');
+      for (final level in LumoLearningLevel.values) {
+        expect(find.byKey(ValueKey('learning-level-${level.name}'),
+            skipOffstage: false), findsOneWidget, reason: level.name);
+      }
+      final expertTop = top(tester, 'learning-level-expertenwelt');
+      expect(top(tester, 'learning-level-schulwissen'),
+          lessThan(top(tester, 'learning-level-vertiefung')));
+      expect(top(tester, 'learning-level-vertiefung'), lessThan(expertTop));
+      for (final unit in ['Dezimalzahlen', 'Mittelwert', 'Brüche erweitern']) {
+        expect(top(tester, 'learning-unit-Mathematik-$unit'),
+            greaterThan(expertTop), reason: unit);
+        expect(
+            tester
+                .widget<Text>(find.byKey(
+                    ValueKey('learning-unit-level-Mathematik-$unit'),
+                    skipOffstage: false))
+                .data,
+            'Lumo Expertenwelt · freiwillig');
+      }
+      expect(top(tester, 'learning-unit-Mathematik-Sachaufgaben drei Schritte'),
+          lessThan(expertTop));
+      expect(top(tester, 'learning-unit-Mathematik-Schriftliche Division'),
+          lessThan(top(tester, 'learning-level-vertiefung')));
+      final progress = tester
+          .widget<Text>(find.byKey(
+              const ValueKey('learning-unit-progress-Mathematik-Dezimalzahlen'),
+              skipOffstage: false))
+          .data!;
+      expect(progress, isNot('Noch nicht geübt'));
+      final card =
+          find.byKey(const ValueKey('learning-unit-Mathematik-Dezimalzahlen'));
+      await tester.scrollUntilVisible(card, 300,
+          scrollable: find.byType(Scrollable).first, maxScrolls: 60);
+      await tester.pump();
+      expect(tester.getSize(card).height, greaterThanOrEqualTo(48));
+      await tester.tap(card);
+      expect(started, 'Dezimalzahlen');
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Klasse 3: Brüche sind ein freiwilliger Blick voraus',
+        (tester) async {
+      await openMath(tester, 3, const {}, (_) {});
+      expect(top(tester, 'learning-unit-Mathematik-Brüche Vorbereitung'),
+          greaterThan(top(tester, 'learning-level-expertenwelt')));
+      expect(find.byKey(const ValueKey('learning-unit-group-Brüche'),
+          skipOffstage: false), findsNothing);
+    });
+
+    testWidgets('Klasse 1: kein Expertenbereich, Vertiefung mit Rätseln',
+        (tester) async {
+      await openMath(tester, 1, const {}, (_) {});
+      expect(find.byKey(const ValueKey('learning-level-expertenwelt'),
+          skipOffstage: false), findsNothing);
+      expect(top(tester, 'learning-unit-Mathematik-Zahlenrätsel'),
+          greaterThan(top(tester, 'learning-level-vertiefung')));
     });
   });
 }

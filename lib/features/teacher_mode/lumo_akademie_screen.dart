@@ -727,14 +727,15 @@ class LumoCurriculum {
                   title: 'Dezimalzahlen',
                   icon: Icons.pin_rounded,
                   gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
-                  shortDesc: 'Zehntel und Hundertstel',
+                  // Über den Lehrplan VS hinaus: nur Lumo Expertenwelt.
+                  shortDesc: 'Lumo Expertenwelt · Zehntel, freiwillig',
                 ),
                 LearningTopic(
                   id: 'm4_bruch_erweitern',
                   title: 'Brüche erweitern',
                   icon: Icons.pie_chart_rounded,
                   gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: 'Knobeln: gleichwertige Brüche',
+                  shortDesc: 'Lumo Expertenwelt · gleichwertige Brüche',
                 ),
                 LearningTopic(
                   id: 'm4_diagramme',
@@ -834,7 +835,7 @@ class LumoCurriculum {
                   title: 'Diagramme lesen',
                   icon: Icons.bar_chart_rounded,
                   gradient: [Color(0xFF10A894), Color(0xFF34D399)],
-                  shortDesc: 'Daten vergleichen und deuten',
+                  shortDesc: 'Wetter, Natur, Verkehr und Umwelt deuten',
                 ),
                 LearningTopic(
                   id: 's4_geografie',

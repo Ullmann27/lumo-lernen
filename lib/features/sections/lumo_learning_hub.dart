@@ -2,6 +2,7 @@ import '../../domain/learning/skill_evidence.dart';
 import 'package:flutter/material.dart';
 import '../learning/learning_navigation.dart';
 
+import '../../core/curriculum/learning_level.dart';
 import '../../core/curriculum/math_unit_order.dart';
 import '../../core/progress_repository.dart';
 import '../../core/school_exercise_generator.dart';
@@ -112,10 +113,12 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
 
   bool _expanded = false;
 
-  /// Topics of the enrolled grade with at least one correct answer.
+  /// Topics of the enrolled grade with at least one correct answer. The
+  /// voluntary Lumo Expertenwelt is not part of the grade's school topics.
   (int, int) _topicProgress(String subject, int grade) {
-    final units =
-        Curriculum.unitsForGrade(subject, grade, currentGradeOnly: true);
+    final units = LearningLevels.withoutExpert(subject,
+        Curriculum.unitsForGrade(subject, grade, currentGradeOnly: true),
+        grade);
     final practiced = units
         .where((unit) => widget.skills.values.any((skill) =>
             skill.subject == subject &&
@@ -374,27 +377,40 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
           // One column for the whole register: the grouped list is short
           // enough to build at once, so every topic is reachable by scrolling
           // to it, also the ones at the end of the school order.
+          // Mathematik in drei Ebenen: Schulwissen (in Schulbuch-Gruppen),
+          // Vertiefung und die freiwillige Lumo Expertenwelt.
           if (subject.name == 'Mathematik')
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                for (final (group, groupUnits)
-                    in MathUnitOrder.grouped(units)) ...[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(4, 8, 4, 8),
-                    child: Text(group,
-                        key: ValueKey('learning-unit-group-$group'),
-                        style: const TextStyle(
-                            color: LumoVisualTokens.cyanBright,
-                            fontFamily: 'Nunito',
-                            fontWeight: FontWeight.w800,
-                            fontSize: 15)),
-                  ),
-                  for (final unit in groupUnits)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: _unitCard(subject, unit),
-                    ),
+                for (final (level, levelUnits)
+                    in LearningLevels.grouped(subject.name, units, grade)) ...[
+                  _levelHeader(level, grade),
+                  if (level == LumoLearningLevel.schulwissen)
+                    for (final (group, groupUnits)
+                        in MathUnitOrder.grouped(levelUnits)) ...[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(4, 8, 4, 8),
+                        child: Text(group,
+                            key: ValueKey('learning-unit-group-$group'),
+                            style: const TextStyle(
+                                color: LumoVisualTokens.cyanBright,
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w800,
+                                fontSize: 15)),
+                      ),
+                      for (final unit in groupUnits)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: _unitCard(subject, unit),
+                        ),
+                    ]
+                  else
+                    for (final unit in levelUnits)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: _unitCard(subject, unit, level: level),
+                      ),
                 ],
               ],
             )
@@ -420,7 +436,64 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
     return null;
   }
 
-  Widget _unitCard(_Subject subject, String unit) {
+  /// Überschrift einer Lernebene mit kurzer Erklärung für Kind und Eltern.
+  Widget _levelHeader(LumoLearningLevel level, int grade) {
+    final expert = level == LumoLearningLevel.expertenwelt;
+    final color =
+        expert ? const Color(0xFFFFD36B) : LumoVisualTokens.cyanBright;
+    final title = level == LumoLearningLevel.schulwissen
+        ? '${level.title} · $grade. Klasse'
+        : level.title;
+    return Semantics(
+      header: true,
+      label: '$title. ${level.description}',
+      excludeSemantics: true,
+      child: Container(
+        key: ValueKey('learning-level-${level.name}'),
+        margin: const EdgeInsets.fromLTRB(0, 14, 0, 4),
+        padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+        decoration: BoxDecoration(
+          color: color.withOpacity(.10),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: color.withOpacity(.55)),
+        ),
+        child: Row(children: [
+          Icon(
+              switch (level) {
+                LumoLearningLevel.schulwissen => Icons.school_rounded,
+                LumoLearningLevel.vertiefung => Icons.trending_up_rounded,
+                LumoLearningLevel.expertenwelt => Icons.auto_awesome_rounded,
+              },
+              color: color,
+              size: 24),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title,
+                    style: TextStyle(
+                        color: color,
+                        fontFamily: 'Nunito',
+                        fontWeight: FontWeight.w900,
+                        fontSize: 16)),
+                const SizedBox(height: 2),
+                Text(level.description,
+                    style: const TextStyle(
+                        color: Color(0xFFE2F1FF),
+                        fontFamily: 'Nunito',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12.5)),
+              ],
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
+
+  Widget _unitCard(_Subject subject, String unit,
+      {LumoLearningLevel level = LumoLearningLevel.schulwissen}) {
     final (bright, deep) =
         _cardColors[subject.name] ?? (subject.accent, const Color(0xFF142E4F));
     final record = _skillFor(subject.name, unit);
@@ -442,8 +515,13 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
             : (evidence.independentCorrect /
                     (SkillEvidence.secureIndependentCorrect + 1))
                 .clamp(0.0, .86);
+    final badge = switch (level) {
+      LumoLearningLevel.schulwissen => null,
+      LumoLearningLevel.vertiefung => 'Vertiefung',
+      LumoLearningLevel.expertenwelt => 'Lumo Expertenwelt · freiwillig',
+    };
     return Semantics(
-      label: '$title\n$status',
+      label: badge == null ? '$title\n$status' : '$title\n$badge\n$status',
       button: true,
       onTap: () => widget.onStartUnit(subject.name, unit),
       excludeSemantics: true,
@@ -497,6 +575,17 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                           fontFamily: 'Nunito',
                           fontWeight: FontWeight.w800,
                           fontSize: 15)),
+                  if (badge != null)
+                    Text(badge,
+                        key: ValueKey(
+                            'learning-unit-level-${subject.name}-$unit'),
+                        style: TextStyle(
+                            color: level == LumoLearningLevel.expertenwelt
+                                ? const Color(0xFFFFD36B)
+                                : LumoVisualTokens.cyanBright,
+                            fontFamily: 'Nunito',
+                            fontWeight: FontWeight.w800,
+                            fontSize: 12)),
                   if (example != null)
                     Text(example,
                         key: ValueKey(
