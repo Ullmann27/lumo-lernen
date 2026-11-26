@@ -32,6 +32,14 @@ const _reviewedLists = <String, String>{
   'mathe-nachzeichnen-stern': 'Zeichenaufgabe ohne Auswahl',
 };
 
+/// Muster, deren Karten typische Lesefehler sind und nicht Nachbarwerte:
+/// Die Lage nach Größe ist dort kein Lösungsweg.
+const _rankExempt = <String, String>{
+  'mathe-uhrzeit-viertel-halbe':
+      'Uhr ablesen: Karten = nächste Stunde, vertauschte Zeiger, falsche '
+          'Viertelstunde; die Zeit steht nur im Bild',
+};
+
 int _int(String text) => int.parse(text.replaceAll(RegExp(r'[\s\u00a0.]'), ''));
 
 String _euro(int cents) => cents % 100 == 0
@@ -394,12 +402,29 @@ String _grouped(int value) {
 
 String _norm(String text) => text.replaceAll('\u00a0', ' ').trim();
 
+/// Vergleichswert einer Karte: ganze Zahl (mit gleicher Einheit) oder
+/// Uhrzeit in Minuten; sonst null (Text, Bruch, Rest).
+int? _comparable(String card) {
+  final text = _norm(card).replaceAll(' ', '');
+  final time = RegExp(r'^(\d{1,2}):(\d{2})Uhr$').firstMatch(text);
+  if (time != null) {
+    return int.parse(time.group(1)!) * 60 + int.parse(time.group(2)!);
+  }
+  final number = RegExp(
+          r'^(\d+)(?:,(\d{2}))?(€|Uhr|cm|cm²|Scheine?|Münzen?|Minuten)?$')
+      .firstMatch(text);
+  if (number == null) return null;
+  return int.parse(number.group(1)!) * 100 +
+      (number.group(2) == null ? 0 : int.parse(number.group(2)!));
+}
 
 void main() {
   const guard = TaskQualityGuard();
   const limits = <int, int>{1: 20, 2: 100, 3: 1000, 4: 1000000};
   final coverage = <String, int>{};
   final solved = <String, int>{};
+  // Lage der Lösung unter den Karten, nach Größe sortiert (Befund S1).
+  final ranks = <String, List<int>>{};
 
   for (var grade = 1; grade <= 4; grade++) {
     test('Klasse $grade: alle Mathe-Rubriken, je $_seeds Startwerte', () {
@@ -434,6 +459,12 @@ void main() {
               break;
             }
           }
+          final values = [for (final c in task.choices) _comparable(c)];
+          if (task.choices.length == 4 && !values.contains(null)) {
+            final sorted = [...values]..sort();
+            final answerValue = _comparable(task.answer)!;
+            (ranks[pattern] ??= [0, 0, 0, 0])[sorted.indexOf(answerValue)]++;
+          }
           final expected = solve(task.prompt, pattern);
           if (expected == null) continue;
           solved[pattern] = (solved[pattern] ?? 0) + 1;
@@ -445,6 +476,26 @@ void main() {
       expect(errors, isEmpty, reason: errors.take(15).join('\n'));
     });
   }
+
+  test('die Lösung ist nicht an ihrer Lage unter den Karten erkennbar', () {
+    // Gleichverteilt wäre die Lösung in 50 % der Aufgaben die kleinste oder
+    // größte Karte. Früher war sie bei Uhr-Abenteuer immer die zweit-
+    // früheste Uhrzeit und bei den übrigen Abenteuern in rund 85 % eine
+    // mittlere Karte.
+    final skewed = <String>[];
+    for (final entry in ranks.entries) {
+      if (_rankExempt.containsKey(entry.key)) continue;
+      final counts = entry.value;
+      final total = counts.fold<int>(0, (a, b) => a + b);
+      if (total < 200) continue;
+      final outer = (counts[0] + counts[3]) / total;
+      if (outer < .3 || counts.any((c) => c < total * .05)) {
+        skewed.add('${entry.key}: $counts');
+      }
+    }
+    expect(skewed, isEmpty, reason: skewed.join('\n'));
+    expect(ranks.length, greaterThan(30));
+  });
 
   test('jedes Aufgabenmuster ist nachgerechnet oder als Liste gelesen', () {
     final unknown = <String>[];

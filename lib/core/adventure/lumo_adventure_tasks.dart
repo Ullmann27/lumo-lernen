@@ -158,11 +158,28 @@ class LumoAdventureTasks {
       answer + 10, answer - 10, answer + 1, answer - 1,
       answer + 2, answer - 2, answer + 3, answer - 3,
     ]..shuffle(_random);
-    for (final c in candidates) {
-      if (c >= 0 && (max == null || c <= max)) options.add(c);
-      if (options.length == 4) break;
-    }
+    options.addAll(_spreadAround(answer, [
+      for (final c in candidates)
+        if (c >= 0 && (max == null || c <= max)) c,
+    ]));
     return _shuffle(options.map((n) => '$n').toList());
+  }
+
+  /// Drei falsche Werte so, dass die Lösung gleich oft die kleinste, eine
+  /// mittlere oder die größte Karte ist. Feste Muster (immer −10, +10, +60
+  /// Minuten; Nachbarzahlen) machten die Lösung fast immer zur zweit-
+  /// kleinsten Karte: Wer das merkt, löst ohne zu rechnen.
+  List<int> _spreadAround(int answer, Iterable<int> candidates) {
+    final below = <int>[], above = <int>[];
+    for (final c in candidates) {
+      if (c < answer && !below.contains(c)) below.add(c);
+      if (c > answer && !above.contains(c)) above.add(c);
+    }
+    final low = (3 - above.length).clamp(0, 3);
+    final high = below.length.clamp(0, 3);
+    final belowCount =
+        low >= high ? high : low + _random.nextInt(high - low + 1);
+    return [...below.take(belowCount), ...above.take(3 - belowCount)];
   }
 
   List<String> _choicesWith(String answer, Iterable<String> others) {
@@ -536,11 +553,10 @@ class LumoAdventureTasks {
     final firstText = count == 1
         ? '${first[0]} (${_euro(p1)})'
         : '$count-mal ${first[0]} (je ${_euro(p1)})';
-    final wrong = <String>{
-      for (final delta in [10, -10, 50, -50, 100, -100])
-        if (change + delta > 0) _euro(change + delta),
-    }.toList()
-      ..shuffle(_random);
+    final wrong = _spreadAround(change, [
+      for (final delta in [10, -10, 50, -50, 100, -100]..shuffle(_random))
+        if (change + delta > 0) change + delta,
+    ]).map(_euro).toList();
     return AdventureTask(
       subject: 'Mathematik',
       unit: 'Marktstand',
@@ -623,11 +639,14 @@ class LumoAdventureTasks {
         prompt: 'Lumos Kart-Turnier beginnt um $start Uhr und dauert $hours '
             '${hours == 1 ? 'Stunde' : 'Stunden'}. Um wie viel Uhr ist es aus?',
         answer: '$end Uhr',
+        // Typische Fehler: Startzeit genannt, eine Stunde verzählt.
         choices: _choicesWith('$end Uhr', [
-          '${end + 1} Uhr',
-          '${end - 1} Uhr',
-          '${start + hours + 2} Uhr',
-          '$start Uhr',
+          for (final hour in _spreadAround(end, [
+            for (final h in [start, end + 1, end - 1, end + 2, end - 2]
+              ..shuffle(_random))
+              if (h >= 1) h,
+          ]))
+            '$hour Uhr',
         ]),
         explanation: 'Von $start Uhr $hours '
             '${hours == 1 ? 'Stunde' : 'Stunden'} weiter: '
@@ -647,11 +666,13 @@ class LumoAdventureTasks {
       prompt: '$hero startet um ${fmt(startH * 60 + startM)} Uhr eine Wanderung '
           'auf die Alm. Sie dauert $dur Minuten. Um wie viel Uhr kommt $hero an?',
       answer: '$answer Uhr',
+      // Typische Fehler: zehn Minuten verzählt, Stunde statt Minuten.
       choices: _choicesWith('$answer Uhr', [
-        '${fmt(total + 10)} Uhr',
-        '${fmt(total - 10)} Uhr',
-        '${fmt(total + 60)} Uhr',
-        '${fmt(total - 15)} Uhr',
+        for (final minutes in _spreadAround(total, [
+          total + 10, total - 10, total + 60, total - 60, total - 15,
+          total + 15,
+        ]..shuffle(_random)))
+          '${fmt(minutes)} Uhr',
       ]),
       explanation: '${fmt(startH * 60 + startM)} Uhr + $dur Minuten = $answer Uhr.',
     );
