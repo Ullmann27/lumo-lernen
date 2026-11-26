@@ -1,0 +1,39 @@
+name: LUMO historical audit evaluation
+on:
+  push:
+    branches: [integration/lumo-completeness-2094-20261126]
+    paths:
+      - scripts/evaluate_historical_coverage.py
+      - .github/workflows/lumo-historical-evaluation.yml
+permissions:
+  contents: read
+  actions: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 45860285113
+          name: LUMO-HISTORICAL-COVERAGE-flutter-45860285113
+          path: flutter-audit
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 45860285113
+          name: LUMO-HISTORICAL-COVERAGE-godot-45860285113
+          path: godot-audit
+      - name: Deduplicate and classify exact archived findings
+        run: |
+          set -euo pipefail
+          python3 scripts/evaluate_historical_coverage.py flutter-audit godot-audit | tee evaluation.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-HISTORICAL-EVALUATION-${{ github.run_id }}
+          path: evaluation.txt
+          if-no-files-found: error
