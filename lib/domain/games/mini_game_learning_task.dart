@@ -118,7 +118,9 @@ abstract final class MiniGameLearningDeck {
           ? 10
           : 5;
 
-  static List<MiniGameLearningTask> build(GameLevel level, int seed) {
+  /// [legacyCards]: Antwortkarten wie bis Build 2082, nur für alte Runden.
+  static List<MiniGameLearningTask> build(GameLevel level, int seed,
+      {bool legacyCards = false}) {
     final catalog = GameLevelCatalog.byId(level.id);
     if (catalog == null ||
         catalog.miniType != level.miniType ||
@@ -134,7 +136,8 @@ abstract final class MiniGameLearningDeck {
     final tasks = switch (level.miniType) {
       GameMiniType.colorBoxes => _boxes(level, seed),
       GameMiniType.letterFill => _letters(level, seed),
-      GameMiniType.starsPath => _distinct(level, seed, _math),
+      GameMiniType.starsPath => _distinct(level, seed,
+          (level, index) => _math(level, index, legacyCards: legacyCards)),
       GameMiniType.numberHouse => _distinct(level, seed, _house),
       _ => List.generate(taskCount(level), (index) => _lesson(level, index)),
     };
@@ -252,8 +255,10 @@ abstract final class MiniGameLearningDeck {
         data: {'a': a, 'b': b, 'operation': operation});
   }
 
-  static MiniGameLearningTask _math(GameLevel level, int index) {
-    final task = GameMathTasks.starsPath(level, index);
+  static MiniGameLearningTask _math(GameLevel level, int index,
+      {bool legacyCards = false}) {
+    final task =
+        GameMathTasks.starsPath(level, index, legacyCards: legacyCards);
     final counting = level.id == 4;
     var visual = _arithmeticVisual(task.prompt);
     if (level.id == 6) {

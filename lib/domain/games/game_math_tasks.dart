@@ -6,11 +6,15 @@ import 'game_level_model.dart';
 /// The fixed game level determines the learning goal, including when an
 /// older child revisits it. No fallback to an unrelated classroom topic.
 abstract class GameMathTasks {
-  static MathConcreteTask starsPath(GameLevel level, int index) {
+  /// [legacyCards] liefert die Antwortkarten wie bis Build 2082 (Ablenker in
+  /// Klasse 1 bis 20, sonst unbegrenzt). Nur zum Wiederherstellen von Runden,
+  /// die vor der Begrenzung auf den Zahlenraum gespeichert wurden.
+  static MathConcreteTask starsPath(GameLevel level, int index,
+      {bool legacyCards = false}) {
     if (level.miniType != GameMiniType.starsPath || index < 0) {
       throw ArgumentError('Diese Stufe gehört nicht zum Rechenpfad.');
     }
-    final task = _starsPath(level, index);
+    final task = _starsPath(level, index, legacyCards);
     if (!isValidStarsTask(level, task)) {
       throw StateError('Die Rechenaufgabe wurde nicht freigegeben.');
     }
@@ -47,7 +51,8 @@ abstract class GameMathTasks {
     return false;
   }
 
-  static MathConcreteTask _starsPath(GameLevel level, int index) {
+  static MathConcreteTask _starsPath(
+      GameLevel level, int index, bool legacyCards) {
     final random = Random(level.id * 1000 + index * 17);
     final grade = level.gradeFloor;
     final id = level.id;
@@ -68,7 +73,10 @@ abstract class GameMathTasks {
         {String visual = 'dots', List<int> typical = const <int>[]}) {
       final shuffled = MathTaskTemplates.numberChoices(
           answer, random.nextInt(1 << 30),
-          typical: typical, max: range);
+          typical: typical,
+          // Bis Build 2082 waren alle betroffenen Stufen außer Klasse 1
+          // höher eingestuft; ihre Karten waren dort unbegrenzt.
+          max: legacyCards ? (grade == 1 ? 20 : null) : range);
       return MathConcreteTask(
           unit: level.title,
           prompt: prompt,

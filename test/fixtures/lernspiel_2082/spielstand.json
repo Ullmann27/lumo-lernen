@@ -1,0 +1,99 @@
+{
+  "beschreibung": "Spielstand im Format von Build 2082 (vor Einstufungs-Korrektur und Karten-Zahlenraum), erzeugt mit dem alten Code.",
+  "owner": "ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12",
+  "childId": "local_mia_2",
+  "prefs": {
+    "lumo.games.stars.local_mia_2": "{\"1\":2,\"2\":3,\"3\":1,\"4\":2,\"5\":3,\"6\":1,\"7\":2,\"8\":3,\"9\":1,\"10\":2,\"11\":3,\"12\":1,\"13\":2,\"14\":3,\"15\":1,\"16\":2,\"17\":3,\"18\":1,\"19\":2,\"20\":3,\"21\":1,\"22\":2,\"23\":3,\"24\":1,\"25\":2,\"26\":3,\"27\":1,\"28\":2,\"29\":3,\"30\":1,\"31\":2,\"32\":3,\"33\":1,\"34\":2,\"35\":3,\"36\":1,\"37\":2,\"38\":3,\"39\":1,\"40\":2}",
+    "lumo.games.curriculum50.local_mia_2": "[1,2,3,4,5,6,7,8,9]"
+  },
+  "rounds": {
+    "12": {
+      "snapshot": "{\"schema\":1,\"owner\":\"ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12\",\"id\":\"00000000000000000000000000000001\",\"seed\":4,\"levelId\":12,\"index\":0,\"revision\":2,\"finishRequested\":false,\"rewarded\":false,\"responses\":[{\"attempts\":[\"14\"],\"help\":0,\"selected\":\"14\",\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]}]}",
+      "shownChoices": [
+        "0",
+        "1",
+        "14",
+        "2"
+      ],
+      "prompt": "7 − 7 = ?",
+      "wrong": "14"
+    },
+    "16": {
+      "snapshot": "{\"schema\":1,\"owner\":\"ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12\",\"id\":\"00000000000000000000000000000002\",\"seed\":1,\"levelId\":16,\"index\":0,\"revision\":2,\"finishRequested\":false,\"rewarded\":false,\"responses\":[{\"attempts\":[\"30\"],\"help\":0,\"selected\":\"30\",\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]}]}",
+      "shownChoices": [
+        "30",
+        "10",
+        "20",
+        "16"
+      ],
+      "prompt": "18 + 2 = ?",
+      "wrong": "30"
+    },
+    "17": {
+      "snapshot": "{\"schema\":1,\"owner\":\"ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12\",\"id\":\"00000000000000000000000000000003\",\"seed\":7,\"levelId\":17,\"index\":0,\"revision\":2,\"finishRequested\":false,\"rewarded\":false,\"responses\":[{\"attempts\":[\"27\"],\"help\":0,\"selected\":\"27\",\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]}]}",
+      "shownChoices": [
+        "7",
+        "27",
+        "8",
+        "9"
+      ],
+      "prompt": "17 − 10 = ?",
+      "wrong": "27"
+    },
+    "39": {
+      "snapshot": "{\"schema\":1,\"owner\":\"ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12\",\"id\":\"00000000000000000000000000000004\",\"seed\":1,\"levelId\":39,\"index\":0,\"revision\":2,\"finishRequested\":false,\"rewarded\":false,\"responses\":[{\"attempts\":[\"108\"],\"help\":0,\"selected\":\"108\",\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]}]}",
+      "shownChoices": [
+        "90",
+        "108",
+        "99",
+        "98"
+      ],
+      "prompt": "94 + 4 = ?",
+      "wrong": "108"
+    },
+    "45": {
+      "snapshot": "{\"schema\":1,\"owner\":\"ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12\",\"id\":\"00000000000000000000000000000005\",\"seed\":2,\"levelId\":45,\"index\":0,\"revision\":2,\"finishRequested\":false,\"rewarded\":false,\"responses\":[{\"attempts\":[\"152\"],\"help\":0,\"selected\":\"152\",\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]}]}",
+      "shownChoices": [
+        "32",
+        "152",
+        "41",
+        "42"
+      ],
+      "prompt": "97 − 55 = ?",
+      "wrong": "152"
+    },
+    "46": {
+      "snapshot": "{\"schema\":1,\"owner\":\"ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12\",\"id\":\"00000000000000000000000000000006\",\"seed\":6,\"levelId\":46,\"index\":0,\"revision\":2,\"finishRequested\":false,\"rewarded\":false,\"responses\":[{\"attempts\":[\"110\"],\"help\":0,\"selected\":\"110\",\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]}]}",
+      "shownChoices": [
+        "110",
+        "200",
+        "100",
+        "90"
+      ],
+      "prompt": "10 × 10 = ?",
+      "wrong": "110"
+    },
+    "1": {
+      "snapshot": "{\"schema\":1,\"owner\":\"ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12\",\"id\":\"00000000000000000000000000000007\",\"seed\":3,\"levelId\":1,\"index\":0,\"revision\":2,\"finishRequested\":false,\"rewarded\":false,\"responses\":[{\"attempts\":[\"6\"],\"help\":0,\"selected\":\"6\",\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]}]}",
+      "shownChoices": [
+        "6",
+        "3",
+        "7",
+        "5"
+      ],
+      "prompt": "4 + 1 = ?",
+      "wrong": "6"
+    },
+    "11": {
+      "snapshot": "{\"schema\":1,\"owner\":\"ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12cd34ef56ab12\",\"id\":\"00000000000000000000000000000008\",\"seed\":6,\"levelId\":11,\"index\":0,\"revision\":2,\"finishRequested\":false,\"rewarded\":false,\"responses\":[{\"attempts\":[\"6\"],\"help\":0,\"selected\":\"6\",\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]},{\"attempts\":[],\"help\":0,\"selected\":null,\"boxes\":[],\"order\":[]}]}",
+      "shownChoices": [
+        "4",
+        "6",
+        "3",
+        "2"
+      ],
+      "prompt": "4 − 2 = ?",
+      "wrong": "6"
+    }
+  }
+}
