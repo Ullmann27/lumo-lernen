@@ -991,7 +991,7 @@ class MathTaskTemplate {
               ? 'Zähle die Striche bei „$label“. Trage die Zahl ein.'
               : '$scene Ergänze ${exercise.horizontal ? 'den' : 'die'} ${exercise.targetName} für „$label“.',
           answer: '$count',
-          choices: [for (var i = 0; i <= DataChartExercise.maxCount; i++) '$i'],
+          choices: _numericChoices(count, seed, max: DataChartExercise.maxCount),
           explanation: tallyToTable
               ? (count == 0 ? 'Bei „$label“ wurde gezählt. Es gab nichts. Das ist 0.'
                   : 'Bei „$label“ zählst du ${count == 1 ? 'einen Strich' : '$count Striche'}. Trage $count ein.')

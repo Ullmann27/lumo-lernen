@@ -93,7 +93,7 @@ class TaskQualityGuard {
               (row.value != null && (row.value! < 0 || row.value! > DataChartExercise.maxCount))) ||
           chart.rows.map((row) => row.label).toSet().length != chart.rows.length ||
           chart.requested.value == null || '${chart.requested.value}' != task.answer ||
-          task.choices.toSet().length != DataChartExercise.maxCount + 1 ||
+          task.choices.toSet().length != 4 ||
           task.choices.any((choice) => int.tryParse(choice) == null ||
               int.parse(choice) < 0 || int.parse(choice) > DataChartExercise.maxCount)) {
         return const ['invalid_chart_transfer_data'];

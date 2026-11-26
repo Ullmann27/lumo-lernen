@@ -1,5 +1,6 @@
 import '../../../core/primary_school_word_data.dart';
 import '../../../core/checked_task_patterns.dart';
+import '../../../core/data_chart_exercise.dart' show DataChartExercise;
 import '../../../core/math_task_templates.dart';
 import '../../../core/safe_fallback_pool.dart';
 import '../../../core/school_exercise_generator.dart';
@@ -54,6 +55,11 @@ class LegacyLumoTaskAdapter {
         : fixedTask.choices.firstWhere(
             (choice) => _qualityGuard.matchesAnswer(fixedTask, choice));
     final correctAnswer = _payload(correctLabel);
+    // Cards belong to the generator's multiple-choice contract. The data
+    // workbench lets children enter any number on its counting scale.
+    final inputs = fixedTask.dataChart == null
+        ? fixedTask.choices
+        : <String>[for (var n = 0; n <= DataChartExercise.maxCount; n++) '$n'];
 
     final rawSeed = '${fixedTask.id}|$childId|${fixedTask.prompt}|${fixedTask.answer}';
     final seedHash = SeedMemoryService.stableSeedHash(rawSeed);
@@ -77,7 +83,7 @@ class LegacyLumoTaskAdapter {
         if (isShapeTrace) 'shape': _shapeFromAnswer(fixedTask.answer),
       },
       prompt: fixedTask.prompt,
-      options: fixedTask.choices
+      options: inputs
           .map((choice) => AnswerOption(
                 id: choice,
                 label: choice,

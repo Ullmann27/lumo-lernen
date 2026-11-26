@@ -94,6 +94,10 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
   String? _loadError;
   String? _saveError;
 
+  List<String> get _answerChoices => _task.dataChart == null
+      ? _task.choices
+      : [for (final option in _taskInstance.options) option.label];
+
   bool get _reduced =>
       _quiet ||
       widget.appState?.state.settings.reduceAnimations == true ||
@@ -296,14 +300,14 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
         stepId: '${_completed ? 'review' : 'work'}:$_workspaceStep',
         objectIds: [
           'cross-grade-question',
-          for (var i = 0; i < _task.choices.length; i++)
+          for (var i = 0; i < _answerChoices.length; i++)
             'cross-grade-choice-$i',
           ..._workspaceObjectIds,
         ],
         explanation: _workspaceMessage,
         errorType:
             _firstWrongChoice == null ? null : 'confirmed_answer_mismatch',
-        answerChoices: _task.choices,
+        answerChoices: _answerChoices,
         allowedActions: {
           ...lumoDefaultLearningActions,
           if (_workspaceObjectIds.isNotEmpty) ...{
@@ -311,7 +315,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
             LumoLearningAction.point,
             LumoLearningAction.highlight,
           },
-          if (_canWork && _task.choices.isNotEmpty)
+          if (_canWork && _answerChoices.isNotEmpty)
             LumoLearningAction.proposeAnswer,
         },
         isExplanation: _showSupport && !_supportStopped,
@@ -535,7 +539,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
         !LumoCompanionRequests.instance.isCurrentLearningIdentity(identity))
       return null;
     final proposed = _proposalController.text.trim().toLowerCase();
-    final matches = _task.choices
+    final matches = _answerChoices
         .where((choice) => choice.trim().toLowerCase() == proposed)
         .toList();
     return matches.length == 1 ? matches.single : null;
@@ -606,7 +610,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
 
   Future<void> _answer(String choice) async {
     if (!_foreground || _nativeOpen) return;
-    if (!_canWork || !_task.choices.contains(choice)) return;
+    if (!_canWork || !_answerChoices.contains(choice)) return;
     if (choice == _firstWrongChoice) return;
     final correct = choice == _task.answer;
     // The first wrong attempt is unfinished: offer a hint, without writing
@@ -772,7 +776,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen>
         )),
       );
     }
-    final choices = _task.choices;
+    final choices = _answerChoices;
     final selected = _selected;
     return PopScope(
         canPop: !_saving,
