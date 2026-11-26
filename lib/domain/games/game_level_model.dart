@@ -114,6 +114,7 @@ class GameLevelRuntime {
     required this.locked,
     required this.starsEarned,
     this.isCurrent = false,
+    this.evidenceNote,
   });
 
   final GameLevel level;
@@ -124,6 +125,9 @@ class GameLevelRuntime {
 
   /// Markiert das aktive (naechste freie) Level fuer den Lumo-Avatar.
   final bool isCurrent;
+
+  /// Gesetzt, wenn das Level nur dank nachgewiesenem Lernstand offen ist.
+  final String? evidenceNote;
 
   bool get isCompleted => starsEarned > 0;
   bool get isPerfect => starsEarned >= level.maxStars;
