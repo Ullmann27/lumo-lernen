@@ -504,7 +504,8 @@ class _TiereScreenState extends State<TiereScreen>
           ],
         ),
         child: hideAnswer
-            ? const Text('🔊', style: TextStyle(fontSize: 140, height: 1.0))
+            ? const Icon(Icons.volume_up_rounded,
+                size: 108, color: Color(0xFF75401C), semanticLabel: 'Tierlaut')
             : LumoTaskObjectArt(
                 name: _correctTier.name,
                 emoji: _correctTier.emoji,
