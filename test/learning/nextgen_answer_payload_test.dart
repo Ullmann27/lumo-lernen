@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/math_task_templates.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
@@ -7,6 +8,8 @@ import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/domain/tutoring/native_learning_activity.dart';
 import 'package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart';
 import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
+
+import '../helpers/lumo_capture.dart' show loadLumoCaptureFonts;
 
 const _adapter = LegacyLumoTaskAdapter();
 
@@ -47,6 +50,43 @@ TaskInstance _checked(LumoTask source) {
 }
 
 void main() {
+  setUpAll(loadLumoCaptureFonts);
+
+  testWidgets('Fold cover keeps whole words on tappable answer crystals',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(344, 882));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final answers = <AdaptiveTaskAnswer>[];
+    final task = _checked(_source(
+      'Wann war die größte Zahl zu sehen?',
+      'Dienstag',
+      ['Montag', 'Dienstag', 'Donnerstag'],
+    ));
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: AdaptiveTaskRenderer(task: task, onAnswered: answers.add),
+        ),
+      ),
+    ));
+    final crystal = find.byKey(const ValueKey('math-crystal-Dienstag'));
+    final text = find.descendant(of: crystal, matching: find.text('Dienstag'));
+    final paragraph = tester.renderObject<RenderParagraph>(text);
+    expect(paragraph.getBoxesForSelection(const TextSelection(
+      baseOffset: 0,
+      extentOffset: 8,
+    )), hasLength(1));
+    expect(tester.getRect(text).width, lessThan(tester.getRect(crystal).width));
+    expect(tester.getSize(crystal).height, greaterThanOrEqualTo(48));
+    await tester.ensureVisible(crystal);
+    await tester.pump();
+    await tester.tap(crystal);
+    expect(answers.single.answer, 'Dienstag');
+    expect(answers.single.correct, isTrue);
+    expect(tester.takeException(), isNull);
+  });
+
   test(
     'decimal, currency and time choices keep distinct scoring identities',
     () {

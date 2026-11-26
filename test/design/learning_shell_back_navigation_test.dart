@@ -10,6 +10,7 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/core/user_profile.dart';
 import 'package:lumo_lernen/features/learning/learning_content.dart';
+import 'package:lumo_lernen/features/learning_modules/tiere/tiere_screen.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
 import 'package:lumo_lernen/features/home/home_content.dart';
 import 'package:lumo_lernen/features/sections/lumo_learning_hub.dart';
@@ -97,6 +98,77 @@ void main() {
       await frames(tester);
       expect(find.text('Themen · Sachunterricht'), findsOneWidget);
       expect(find.text('2. Klasse · aus deinem Profil'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+      await frames(tester);
+    });
+  }
+
+  for (final openedTools in [false, true]) {
+    testWidgets('Fold cover opens Tiere from the first view (Atelier: $openedTools)',
+        (tester) async {
+      const size = Size(344, 882);
+      tester.view.devicePixelRatio = 1;
+      tester.view.physicalSize = size;
+      addTearDown(tester.view.resetDevicePixelRatio);
+      addTearDown(tester.view.resetPhysicalSize);
+      await tester.binding.setSurfaceSize(size);
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final date = DateTime(2026, 10, 23);
+      await tester.pumpWidget(MaterialApp(
+        theme: LumoAppTheme.light(),
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            disableAnimations: true,
+            padding: const EdgeInsets.only(top: 24, bottom: 16),
+          ),
+          child: child!,
+        ),
+        home: AppShell(
+          profile: UserProfile(
+            id: 'animals-first-screen',
+            name: 'Mia',
+            age: 7,
+            grade: 1,
+            createdAt: date,
+            lastActiveAt: date,
+          ),
+          initialSection: LumoSection.learn,
+        ),
+      ));
+      await frames(tester);
+      final hub = find.byType(LumoLearningHub);
+      if (openedTools) {
+        final tools = find.byKey(const ValueKey('learning-advanced-entry'));
+        await tester.ensureVisible(tools);
+        await frames(tester);
+        await tester.tap(tools);
+        await frames(tester);
+        expect(find.text('Dein Lernatelier'), findsOneWidget);
+        await tester.drag(hub, const Offset(0, 1200));
+        await frames(tester);
+      }
+      final subject = find.byKey(const ValueKey('learning-subject-Sachunterricht'));
+      expect(subject.hitTestable(), findsOneWidget);
+      await tester.tap(subject);
+      await frames(tester);
+      expect(find.text('Dein Lernatelier'), findsNothing);
+      final animals = find.byKey(const ValueKey('learning-unit-Sachunterricht-Tiere'));
+      final viewport = tester.getRect(find.descendant(
+        of: hub, matching: find.byType(Scrollable),
+      ));
+      expect(animals.hitTestable(), findsOneWidget);
+      expect(tester.getRect(animals).bottom, lessThanOrEqualTo(viewport.bottom));
+      expect(tester.getSize(animals).height, greaterThanOrEqualTo(48));
+      await tester.tap(animals);
+      await frames(tester);
+      expect(find.byType(TiereScreen), findsOneWidget);
+      await tester.binding.handlePopRoute();
+      await frames(tester);
+      expect(animals.hitTestable(), findsOneWidget);
+      await tester.tap(find.byKey(const ValueKey('learning-back-to-subjects')));
+      await frames(tester);
+      expect(subject.hitTestable(), findsOneWidget);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox.shrink());
       await frames(tester);

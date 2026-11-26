@@ -144,9 +144,16 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
   Widget build(BuildContext context) {
     final grade = _navigation.gradeFor(widget.grade);
     final subject = _selected;
-    final units = subject == null
+    final availableUnits = subject == null
         ? <String>[]
         : Curriculum.unitsForGrade(subject.name, grade, currentGradeOnly: true);
+    final units = subject?.name == 'Sachunterricht'
+        ? <String>{
+            ...Curriculum.subjects['Sachunterricht']!
+                .where(availableUnits.contains),
+            ...availableUnits,
+          }
+        : availableUnits;
     final accessible = MediaQuery.textScalerOf(context).scale(1);
     final compact = MediaQuery.sizeOf(context).width < 460;
     final gradeStatus = Text(
@@ -198,17 +205,6 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                                 fontWeight: FontWeight.w900,
                                 color: Colors.white),
                           ),
-                          if (subject != null) ...[
-                            const SizedBox(height: 6),
-                            const Text(
-                              'Wähle ein Thema. Danach startet die echte Lernaufgabe.',
-                              style: TextStyle(
-                                  fontFamily: 'Nunito',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xFFD4EAF5)),
-                            ),
-                          ],
                           SizedBox(height: subject == null ? 4 : 12),
                           if (subject == null)
                             gradeStatus
@@ -340,10 +336,6 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
             ),
           ),
         ] else ...[
-          if (widget.tools != null) ...[
-            widget.tools!,
-            const SizedBox(height: 16),
-          ],
           OutlinedButton.icon(
             key: const ValueKey('learning-back-to-subjects'),
             onPressed: _navigation.backToSubjects,
@@ -506,6 +498,11 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
     final isMath = subject.name == 'Mathematik';
     final example = isMath ? MathUnitOrder.exampleOf(unit) : null;
     final symbol = isMath ? MathUnitOrder.symbolOf(unit) : null;
+    final icon = switch ((subject.name, unit)) {
+      ('Sachunterricht', 'Tiere') => Icons.pets_rounded,
+      ('Sachunterricht', 'Pflanzen') => Icons.park_rounded,
+      _ => subject.icon,
+    };
     // No percentage: a stage that is backed by counted answers. "Sicher"
     // needs enough tasks solved alone on at least two different days.
     final evidence = record?.evidence;
@@ -556,7 +553,7 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                   width: 46,
                   height: 46,
                   child: symbol == null
-                      ? Icon(subject.icon, color: Colors.white, size: 25)
+                      ? Icon(icon, color: Colors.white, size: 25)
                       : Center(
                           child: Text(symbol,
                               style: const TextStyle(

@@ -112,7 +112,12 @@ class LumoAnswerCrystal extends StatelessWidget {
                               : states.contains(WidgetState.hovered)
                                   ? accent.withValues(alpha: .12)
                                   : null)),
-                  child: Text(label,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      label,
+                      maxLines: 1,
+                      softWrap: false,
                       textAlign: TextAlign.center,
                       style: const TextStyle(shadows: [
                         Shadow(
@@ -120,7 +125,9 @@ class LumoAnswerCrystal extends StatelessWidget {
                             blurRadius: 4,
                             offset: Offset(0, 2)),
                         Shadow(color: Color(0x9953DDFD), blurRadius: 9),
-                      ])),
+                      ]),
+                    ),
+                  ),
                 ),
                 if (state != LumoCrystalState.neutral)
                   Positioned(
