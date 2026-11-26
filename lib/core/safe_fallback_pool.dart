@@ -93,8 +93,8 @@ class SafeFallbackPool {
         'auto', unit: 'Schlussfolgern'),
     ],
     'Regeln kombinieren': [
-      _Fb('Welche Zahl erfüllt alle drei Regeln: größer als 10, kleiner als 18 und gerade?',
-        '14', ['14', '10', '13', '18'], 'Nur die Antwort 14 erfüllt alle drei Regeln.',
+      _Fb('Welche dieser Zahlen erfüllt alle drei Regeln: größer als 10, kleiner als 18 und gerade?',
+        '14', ['14', '10', '13', '18'], 'Von den Zahlen auf den Karten erfüllt nur 14 alle drei Regeln.',
         'auto', unit: 'Regeln kombinieren'),
     ],
   };

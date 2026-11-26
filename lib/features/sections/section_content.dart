@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/curriculum/learning_level.dart';
 import '../../core/lumo_companion_engine.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/lumo_speech_listener.dart';
@@ -119,7 +120,9 @@ class SectionContent extends StatelessWidget {
             ),
             _ActionData(
               'Deutsch-Schularbeit',
-              '30 Aufgaben: Lesen, Sprache, Rechtschreibung und Schreiben.',
+              // Schreiben (Texte verfassen) wird nicht automatisch bewertet
+              // und kommt deshalb nicht in die Schularbeit.
+              '30 Aufgaben: Lesen, Sprache und Rechtschreibung. Texte schreibst du im Schreibtrainer.',
               'Starten',
               Icons.edit_document,
               () => _startSession(
@@ -190,7 +193,9 @@ class SectionContent extends StatelessWidget {
             for (final unit in units)
               _ActionData(
                 Curriculum.prettifyUnit(unit),
-                'Aufgaben mit Antworten und verständlichen Erklärungen.',
+                LearningLevels.isExpert('Mathematik', unit, mathGrade)
+                    ? 'Lumo Expertenwelt: freiwillig, über den Lehrplan hinaus.'
+                    : 'Aufgaben mit Antworten und verständlichen Erklärungen.',
                 'Aufgabe starten',
                 Icons.calculate_rounded,
                 () => _startSession(

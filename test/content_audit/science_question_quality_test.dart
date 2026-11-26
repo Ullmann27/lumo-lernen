@@ -2,6 +2,7 @@
 // alberne Ablenker (S-M11), Dubletten (S-M12), an der Form erkennbare
 // Berufsantworten (S-M7), fehlende Österreich-Bezüge im Verkehr (S-M10).
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lumo_lernen/core/math_task_templates.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 
 class _Seen {
@@ -114,7 +115,15 @@ void main() {
         'Stängel');
     expect(byPrompt('Was bedeckt und schützt deinen ganzen Körper?').answer,
         'die Haut');
-    expect(byPrompt('Was zeigt ein Säulendiagramm?').answer, 'Werte als Säulen');
+    // Seit 26.11.2026 in Mathematik Kl. 4 „Diagramme lesen“ (Entscheidung
+    // Heinz: Diagramme lesen und damit rechnen ist Mathematik).
+    expect(
+        chartCollectionTasks
+            .singleWhere((task) => task.$1 == 'Was zeigt ein Säulendiagramm?')
+            .$2,
+        'Werte als Säulen');
+    expect(all.any((q) => q.prompt == 'Was zeigt ein Säulendiagramm?'),
+        isFalse);
     expect(byPrompt('Was braucht ein einfacher Stromkreis?').answer,
         'Batterie, Kabel und Lampe');
   });

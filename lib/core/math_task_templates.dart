@@ -108,6 +108,10 @@ class MathTaskTemplates {
     ),
     MathTaskTemplate(id: 'g4_chart', grade: 4, unit: 'Diagramme lesen', kind: MathTemplateKind.chartRead, validRangeA: <int>[4, 40], validRangeB: <int>[4, 40], promptPattern: 'diagramm-lesen',
     ),
+    // Rechenfragen zu Diagrammen und Tabellen aus dem Sachunterricht
+    // (Entscheidung Heinz 26.11.2026: Rechnen mit Diagrammen ist Mathematik).
+    MathTaskTemplate(id: 'g4_chart_collection', grade: 4, unit: 'Diagramme lesen', kind: MathTemplateKind.chartCollection, validRangeA: <int>[0, 0], validRangeB: <int>[0, 0], promptPattern: 'diagramm-sammlung',
+    ),
     MathTaskTemplate(id: 'g4_compare', grade: 4, unit: 'Vergleichen', kind: MathTemplateKind.compare, validRangeA: <int>[1, 999], validRangeB: <int>[1, 999], promptPattern: 'zahlen-vergleichen',
     ),
     // Neue Klasse-4-Lehrplan-Templates (AT Lehrplan 2023):
@@ -1070,6 +1074,12 @@ class MathTaskTemplate {
           'fraction_expand',
           keepOrder: true,
         );
+      case MathTemplateKind.chartCollection:
+        final item = chartCollectionTasks[
+            _positive(_mixSeed(seed + 61), chartCollectionTasks.length)];
+        // Kein Säulenbild: Die Daten stehen vollständig im Aufgabentext.
+        return _choice(seed, item.$1, item.$2, <String>[item.$2, ...item.$3],
+            item.$4, 'chart_text');
       case MathTemplateKind.average:
         // Gerecht teilen: drei Werte mit ganzzahligem Mittel. Früher war die
         // Lösung immer „zweite Zahl minus 1“ und die Werte standen stets
@@ -1322,6 +1332,8 @@ enum MathTemplateKind {
   decimals,
   wordProblemThreeStep,
   chartRead,
+  // Feste, aus dem Sachunterricht übernommene Diagramm-Rechenfragen.
+  chartCollection,
   compare,
   // AT-Lehrplan-Erweiterungen 2026-06-03 (Klassen 3 + 4):
   massConversion,
@@ -2099,3 +2111,120 @@ _StepStory _s3Zug(int a, int b, int c) {
     <int>[a + b - c, a + b + entering, a + b - c - entering, a + b + wagons - c + entering],
   );
 }
+
+/// Klasse 4, „Diagramme lesen“: Rechenfragen zu Diagrammen und Tabellen,
+/// die bis 26.11.2026 im Sachunterricht standen (Entscheidung Heinz:
+/// Rechnen mit Diagrammen gehört in die Mathematik; Lehrplan VS 2023,
+/// „Säulen- und Balkendiagramme sowie Piktogramme interpretieren“). Die
+/// Fragen sind unverändert übernommen; die Ablenker der Zahlenfragen sind
+/// typische Fehler (einen Wert vergessen, falsch gerechnet) und liegen der
+/// Größe nach verteilt um die Lösung.
+const List<(String, String, List<String>, String)> chartCollectionTasks =
+    <(String, String, List<String>, String)>[
+  (
+    'Ein Säulendiagramm zeigt gelesene Bücher: Montag 4, Dienstag 7, Mittwoch 5. An welchem Tag wurden die meisten Bücher gelesen?',
+    'Dienstag',
+    <String>['Montag', 'Mittwoch', 'An allen Tagen gleich viele'],
+    'Die höchste Säule zeigt den größten Wert: 7 ist mehr als 5 und 4.',
+  ),
+  (
+    'Eine Strichliste zeigt Lieblingstiere: Hund 5 Striche, Katze 3 Striche, Hase 2 Striche. Wie viele Kinder wurden befragt?',
+    '10',
+    <String>['5', '7', '8'],
+    'Jeder Strich ist ein Kind. Zusammen sind es 5 + 3 + 2 = 10 Kinder.',
+  ),
+  (
+    'Im Diagramm hat die Klasse 4a 12 kg Altpapier gesammelt, die Klasse 4b 8 kg. Wie viel mehr hat die 4a gesammelt?',
+    '4 kg',
+    <String>['20 kg', '8 kg', '2 kg'],
+    'Für den Unterschied rechnest du minus: 12 kg − 8 kg = 4 kg.',
+  ),
+  (
+    'In einem Bilddiagramm steht eine Sonne für 2 Sonnentage. Beim Mai sind 4 Sonnen gezeichnet. Wie viele Sonnentage sind das?',
+    '8',
+    <String>['4', '6', '16'],
+    'Lies zuerst die Legende: 1 Sonne bedeutet 2 Tage. 4 Sonnen sind 4 · 2 = 8 Tage.',
+  ),
+  (
+    'Eine Tabelle zeigt die Temperatur: in der Früh 4 Grad, zu Mittag 11 Grad. Um wie viel Grad ist es wärmer geworden?',
+    'um 7 Grad',
+    <String>['um 15 Grad', 'um 4 Grad', 'um 11 Grad'],
+    'Der Unterschied ist 11 − 4 = 7. Es ist um 7 Grad wärmer geworden.',
+  ),
+  (
+    'Ein Thermometer zeigt morgens 7 Grad und mittags 14 Grad. Wie groß ist der Unterschied?',
+    '7 Grad',
+    <String>['14 Grad', '21 Grad', '3 Grad'],
+    '14 minus 7 ergibt einen Temperaturunterschied von 7 Grad.',
+  ),
+  (
+    'Wozu hat ein Diagramm eine Überschrift?',
+    'Sie sagt, worum es im Diagramm geht.',
+    <String>[
+      'Sie macht alle Säulen gleich hoch.',
+      'Sie ersetzt alle Zahlen im Diagramm.',
+      'Sie ist nur Schmuck für das Blatt.',
+    ],
+    'Lies immer zuerst die Überschrift und die Beschriftung. Dann weißt du, was die Zahlen bedeuten.',
+  ),
+  (
+    'Was zeigt ein Säulendiagramm?',
+    'Werte als Säulen',
+    <String>['nur bunte Wörter', 'nur Landkarten', 'nur Uhrzeiten am Tag'],
+    'Die Höhe der Säulen macht Mengen vergleichbar.',
+  ),
+  (
+    'Welche Säule zeigt den größten Wert?',
+    'die höchste Säule',
+    <String>['die kürzeste Säule', 'die linke immer', 'die bunte immer'],
+    'Höhere Säule bedeutet größerer Wert.',
+  ),
+  (
+    'Ein Säulendiagramm zeigt Regentage: März 9, April 12, Mai 7. In welchem Monat gab es die wenigsten Regentage?',
+    'Mai',
+    <String>['März', 'April', 'In allen gleich viele'],
+    '7 ist die kleinste Zahl, also Mai.',
+  ),
+  (
+    'Eine Tabelle zeigt Besucher im Schwimmbad: Samstag 340, Sonntag 410. Wie viele Besucher waren es zusammen?',
+    '750',
+    <String>['740', '760', '850'],
+    '340 + 410 = 750.',
+  ),
+  (
+    'Ein Diagramm zeigt Schulwege: 14 Kinder gehen zu Fuß, 6 fahren mit dem Rad, 4 mit dem Bus. Wie viele Kinder kommen nicht zu Fuß?',
+    '10',
+    <String>['14', '20', '24'],
+    '6 + 4 = 10 Kinder kommen mit Rad oder Bus.',
+  ),
+  (
+    'Eine Strichliste zeigt Lieblingsobst: Apfel 8, Banane 5, Birne 3. Wie viele Stimmen mehr bekam der Apfel als die Birne?',
+    '5',
+    <String>['2', '3', '11'],
+    '8 − 3 = 5.',
+  ),
+  (
+    'Lies das Diagramm. Ein 🟦 ist ein Regentag.\nApril: 🟦🟦🟦🟦🟦🟦🟦🟦\nMai: 🟦🟦🟦🟦🟦\nWie viele Regentage hatte der April mehr als der Mai?',
+    '3 Regentage',
+    <String>['5 Regentage', '8 Regentage', '13 Regentage'],
+    'Zähle die Kästchen: April 8, Mai 5. 8 minus 5 ergibt 3.',
+  ),
+  (
+    'Lies das Diagramm. Ein 🟦 ist ein Buch.\n4a: 🟦🟦🟦🟦🟦🟦\n4b: 🟦🟦🟦🟦🟦🟦🟦🟦🟦\n4c: 🟦🟦🟦🟦\nWelche Klasse hat die meisten Bücher gelesen?',
+    'die 4b',
+    <String>['die 4a', 'die 4c', 'alle gleich viel'],
+    'Die längste Reihe gehört zur 4b: 9 Bücher.',
+  ),
+  (
+    'Lies das Diagramm. Ein 🟦 ist ein Kind.\nmit dem Rad: 🟦🟦🟦🟦🟦🟦\nzu Fuß: 🟦🟦🟦🟦🟦🟦🟦🟦🟦\nWie viele Kinder sind es zusammen?',
+    '15 Kinder',
+    <String>['3 Kinder', '9 Kinder', '6 Kinder'],
+    'Zähle beide Reihen: 6 plus 9 ergibt 15 Kinder.',
+  ),
+  (
+    'Lies das Diagramm. Ein 🟦 sind 5 Besucher.\nMontag: 🟦🟦🟦🟦\nDienstag: 🟦🟦🟦🟦🟦\nWie viele Besucher kamen am Dienstag?',
+    '25 Besucher',
+    <String>['5 Besucher', '20 Besucher', '9 Besucher'],
+    'Am Dienstag sind es 5 Kästchen. 5 mal 5 ergibt 25 Besucher.',
+  ),
+];

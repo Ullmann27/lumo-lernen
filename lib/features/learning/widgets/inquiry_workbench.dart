@@ -24,7 +24,8 @@ class InquiryWorkbench extends StatefulWidget {
     }
     if (task.subject == LearningSubject.logik &&
         unit == 'Regeln kombinieren' &&
-        text.startsWith('welche zahl erfüllt alle drei regeln:')) {
+        (text.startsWith('welche dieser zahlen erfüllt alle drei regeln:') ||
+            text.startsWith('welche zahl erfüllt alle drei regeln:'))) {
       return 'rules';
     }
     if (task.subject != LearningSubject.sachkunde) return null;

@@ -20,6 +20,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/adventure/lumo_adventure_tasks.dart';
 import 'package:lumo_lernen/core/curriculum/academy_topic_units.dart';
+import 'package:lumo_lernen/core/curriculum/learning_level.dart';
 import 'package:lumo_lernen/core/curriculum/primary_activity_catalog.dart';
 import 'package:lumo_lernen/core/german_task_templates.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
@@ -49,6 +50,7 @@ const _header = <String>[
   'Varianten',
   'Schwierigkeit',
   'Befund',
+  'Ebene',
 ];
 
 final _rows = <List<String>>[];
@@ -288,6 +290,7 @@ void main() {
             '${activities.length}',
             '$grade',
             activities.isEmpty ? 'FEHLER: leer' : 'ok',
+            '–',
           ]);
           if (activities.isEmpty) _defects.add('$grade/$subject leer');
           continue;
@@ -304,6 +307,7 @@ void main() {
             'Lernhub', '$grade', subject, 'Mit Lumo laut lesen',
             'learning-active-reading', reading, 'Lesebereich (Geschichten)',
             '–', '–', '$grade', reading == 'Lesebereich' ? 'ok' : 'FEHLER',
+            '–',
           ]);
         }
         final units = Curriculum.unitsForGrade(subject, grade,
@@ -346,6 +350,7 @@ void main() {
             'Lernhub', '$grade', subject, unit,
             'learning-unit-$subject-$unit', opened, source, taskSubject,
             variants, difficulty, verdict,
+            LearningLevels.levelOf(subject, unit, grade).title,
           ]);
         }
         app.update(app.state.copyWith(section: LumoSection.learn));
@@ -386,6 +391,7 @@ void main() {
               : overflow
                   ? 'Layout-Überlauf 412dp'
                   : 'ok',
+          '–',
         ]);
         if (overflow) _layout.add('$grade/$tool → $opened');
         if (opened == 'NICHTS') _defects.add('$grade/Werkzeug $tool');
@@ -439,6 +445,8 @@ void main() {
           final units = <String>{};
           var maxDifficulty = 0;
           var handwriting = 0;
+          // Lumo Expertenwelt nie ohne ausdrückliche Auswahl im Test.
+          final levels = <LumoLearningLevel>{};
           for (var seed = 0; seed < 30; seed++) {
             final factory = ExerciseFactory(seed: seed * 101 + grade);
             for (var i = 0; i < 10; i++) {
@@ -453,15 +461,21 @@ void main() {
                 maxDifficulty = task.difficulty;
               }
               if (task.handwriting) handwriting++;
+              levels.add(
+                  LearningLevels.levelOf(task.subject, task.unit, taskGrade));
             }
           }
-          final pure = st.subject == 'Alle' || subjects.every((s) => s == st.subject);
+          // Ein Fachtest bleibt im Fach; Deutsch umfasst laut Lehrplan auch
+          // Lesen und Rechtschreibung.
+          final pure = st.subject == 'Alle' ||
+              subjects.every(ExerciseFactory.gradedSubjectsFor(st.subject).contains);
           final ok = section == LumoSection.exercises &&
               st.sessionKind == LumoSessionKind.test &&
               st.testLevel == level &&
               st.subject == category &&
               pure &&
               handwriting == 0 &&
+              !levels.contains(LumoLearningLevel.expertenwelt) &&
               maxDifficulty <= taskGrade;
           if (!ok) _defects.add('Test $grade/$category/$level');
           _rows.add([
@@ -473,6 +487,10 @@ void main() {
             '${units.length} Rubriken',
             '1-$maxDifficulty',
             ok ? 'ok' : 'FEHLER',
+            [
+              for (final level in LumoLearningLevel.values)
+                if (levels.contains(level)) level.title,
+            ].join('+'),
           ]);
         }
       }
@@ -484,12 +502,12 @@ void main() {
     }
     _rows.add([
       'Tests', '1-4', 'Knobeln', 'Lumo Knobel-Test', 'iq-test-start',
-      'IqTestScreen', 'IqPuzzleGenerator', 'Logik', '–', '–', 'ok',
+      'IqTestScreen', 'IqPuzzleGenerator', 'Logik', '–', '–', 'ok', '–',
     ]);
     _rows.add([
       'Tests', '1-4', 'Denken', 'Denkprofil', 'cognitive-profile-start',
       'CognitiveProfileScreen', 'CognitiveProfileGenerator', 'Logik', '–',
-      '–', 'ok',
+      '–', 'ok', '–',
     ]);
   });
 
@@ -529,12 +547,34 @@ void main() {
         LumoSessionKind.exerciseSet => 20,
         _ => 0,
       };
+      final graded = st.sessionKind != LumoSessionKind.exerciseSet;
+      final subjects = <String>{};
+      final levels = <LumoLearningLevel>{};
+      for (var seed = 0; seed < 20; seed++) {
+        final factory = ExerciseFactory(seed: seed * 53 + 3);
+        for (var i = 0; i < total; i++) {
+          final task = factory.next(
+              grade: 3,
+              subject: st.subject,
+              unit: st.unit,
+              gradedOnly: graded);
+          subjects.add(task.subject);
+          levels.add(LearningLevels.levelOf(task.subject, task.unit, 3));
+        }
+      }
+      final ok = section == LumoSection.exercises &&
+          !(graded && levels.contains(LumoLearningLevel.expertenwelt));
+      if (!ok) _defects.add('Schularbeit $card');
       _rows.add([
         'Schularbeit', '1-4', st.subject, card, 'Text: $card',
         'Übung ${st.subject}/${st.unit} (${st.sessionKind.name}, $total Fragen)',
-        'ExerciseFactory.next${st.sessionKind == LumoSessionKind.exerciseSet ? '' : ' gradedOnly'}',
-        st.subject, '–', '–',
-        section == LumoSection.exercises ? 'ok' : 'FEHLER',
+        'ExerciseFactory.next${graded ? ' gradedOnly' : ''}',
+        (subjects.toList()..sort()).join('+'), '–', '–',
+        ok ? 'ok' : 'FEHLER',
+        [
+          for (final level in LumoLearningLevel.values)
+            if (levels.contains(level)) level.title,
+        ].join('+'),
       ]);
     }
   });
@@ -562,6 +602,9 @@ void main() {
             topic.id, target,
             unit != null ? _sourceFor(level.grade, subject.name, unit) : '–',
             '–', '–', '${level.grade}', 'ok',
+            unit != null
+                ? LearningLevels.levelOf(subject.name, unit, level.grade).title
+                : '–',
           ]);
         }
       }
@@ -570,7 +613,7 @@ void main() {
       _rows.add([
         'Lernspiel', '${game.gradeFloor}', game.subject, game.title,
         'level-${game.id}', game.miniType.name, 'MiniGameLearningDeck',
-        '–', '–', '${game.gradeFloor}', 'ok',
+        '–', '–', '${game.gradeFloor}', 'ok', '–',
       ]);
     }
   });
@@ -605,6 +648,11 @@ void main() {
           '`ExerciseFactory.nextExact`, geprüft auf Fach, Klasse, Rubrik und '
           '`TaskQualityGuard`. „Varianten“ = verschiedene Aufgaben (Text + '
           'Lösung) unter $_samples.')
+      ..writeln()
+      ..writeln('„Ebene“: Schulwissen, Vertiefung oder Lumo Expertenwelt '
+          '(`lib/core/curriculum/learning_level.dart`). Tests und '
+          'Schularbeiten ziehen nie aus der Expertenwelt; bei Tests und '
+          'Schularbeit-Karten stehen die tatsächlich gezogenen Ebenen.')
       ..writeln();
     final counts = <String, int>{};
     for (final row in _rows) {

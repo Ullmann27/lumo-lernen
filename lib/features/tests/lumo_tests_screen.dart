@@ -71,7 +71,7 @@ const _categories = <_TestCategory>[
     title: 'Deutsch',
     subject: 'Deutsch',
     testTitle: 'Deutsch-Test',
-    description: 'Lesen, Wörter und Satzverständnis',
+    description: 'Lesen, Sprache und Rechtschreibung',
     icon: Icons.menu_book_rounded,
     color: Color(0xFF7A3FE0),
     message: 'Deutsch-Test\nist bereit.\nLangsam lesen.',

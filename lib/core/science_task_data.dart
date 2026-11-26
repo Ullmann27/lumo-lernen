@@ -464,11 +464,7 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       'Verkehr',
       'Warum lässt du beim Radfahren Abstand?',
       'damit du rechtzeitig bremsen kannst',
-      [
-        'damit du nichts siehst',
-        'damit du schneller auffährst',
-        'damit dein Helm unnötig wird'
-      ],
+      ['damit du den Helm nicht brauchst', 'damit du schneller auffahren kannst', 'damit du weniger von der Straße siehst'],
       'Mit Abstand hast du mehr Zeit zu reagieren und zu bremsen.'),
   ScienceQuestion.item(
       2,
@@ -613,22 +609,14 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       'Verkehr',
       'Warum braucht ein fahrendes Auto einen Bremsweg?',
       'Es kann nicht sofort zum Stillstand kommen.',
-      [
-        'Jede Straße ist gleich lang.',
-        'Autos brauchen keinen Abstand.',
-        'Nur die Farbe bestimmt das Bremsen.'
-      ],
+      ['Nur die Farbe des Autos bestimmt das Bremsen.', 'Jede Straße ist gleich lang.', 'Autos brauchen nie Abstand zu anderen.'],
       'Bis ein Auto steht, legt es einen Weg zurück. Geschwindigkeit und Straßenverhältnisse beeinflussen ihn.'),
   ScienceQuestion.item(
       3,
       'Pflanzen',
       'Warum sind Wurzeln für eine Pflanze wichtig?',
-      'Sie nehmen Wasser auf und verankern die Pflanze.',
-      [
-        'Sie ersetzen jede Blüte.',
-        'Sie machen Licht.',
-        'Sie treiben das Fahrrad an.'
-      ],
+      'Sie halten die Pflanze und nehmen Wasser auf.',
+      ['Sie treiben die Pflanze wie ein Motor an.', 'Sie ersetzen bei jeder Pflanze die Blüte.', 'Sie machen in der dunklen Erde Licht für die Pflanze.'],
       'Viele Wurzeln nehmen Wasser und Mineralstoffe auf und geben Halt im Boden.'),
   ScienceQuestion.item(
       3,
@@ -664,22 +652,14 @@ const scienceExtensionQuestions = <ScienceQuestion>[
       'Stromkreise',
       'Womit üben Kinder einen einfachen Stromkreis sicher unter Anleitung?',
       'mit einer geeigneten kleinen Batterie',
-      [
-        'mit einer Steckdose',
-        'mit einer offenen Netzleitung',
-        'mit einem beschädigten Ladekabel'
-      ],
+      ['mit einem beschädigten alten Ladekabel', 'mit einer offenen Stromleitung im Haus', 'mit einer Steckdose'],
       'Für Schulversuche verwenden wir unter Anleitung sichere Kleinspannung. Steckdosen und Netzleitungen sind kein Experimentiermaterial.'),
   ScienceQuestion.item(
       4,
       'Stromkreise',
       'Warum sind elektrische Kabel außen oft mit Kunststoff umhüllt?',
       'Kunststoff isoliert den leitenden Draht.',
-      [
-        'Kunststoff erzeugt den ganzen Strom.',
-        'Kunststoff ersetzt die Batterie.',
-        'Kunststoff macht Kabel essbar.'
-      ],
+      ['Kunststoff erzeugt den ganzen Strom selbst.', 'Kunststoff ersetzt die Batterie.', 'Kunststoff macht Kabel essbar.'],
       'Die isolierende Hülle schützt vor Kontakt mit dem leitenden Metall.'),
   ScienceQuestion.item(
       4,
@@ -826,50 +806,4 @@ const scienceExtensionQuestions = <ScienceQuestion>[
         'Wasser braucht niemand.'
       ],
       'Menschen, Tiere und Pflanzen brauchen sauberes Wasser. Darum drehen wir den Wasserhahn beim Zähneputzen zu.'),
-  ScienceQuestion.item(
-      4,
-      'Diagramme lesen',
-      'Ein Säulendiagramm zeigt gelesene Bücher: Montag 4, Dienstag 7, Mittwoch 5. An welchem Tag wurden die meisten Bücher gelesen?',
-      'Dienstag',
-      ['Montag', 'Mittwoch', 'An allen Tagen gleich viele'],
-      'Die höchste Säule zeigt den größten Wert: 7 ist mehr als 5 und 4.'),
-  ScienceQuestion.item(
-      4,
-      'Diagramme lesen',
-      'Eine Strichliste zeigt Lieblingstiere: Hund 5 Striche, Katze 3 Striche, Hase 2 Striche. Wie viele Kinder wurden befragt?',
-      '10',
-      ['5', '8', '12'],
-      'Jeder Strich ist ein Kind. Zusammen sind es 5 + 3 + 2 = 10 Kinder.'),
-  ScienceQuestion.item(
-      4,
-      'Diagramme lesen',
-      'Im Diagramm hat die Klasse 4a 12 kg Altpapier gesammelt, die Klasse 4b 8 kg. Wie viel mehr hat die 4a gesammelt?',
-      '4 kg',
-      ['20 kg', '8 kg', '2 kg'],
-      'Für den Unterschied rechnest du minus: 12 kg - 8 kg = 4 kg.'),
-  ScienceQuestion.item(
-      4,
-      'Diagramme lesen',
-      'In einem Bilddiagramm steht eine Sonne für 2 Sonnentage. Beim Mai sind 4 Sonnen gezeichnet. Wie viele Sonnentage sind das?',
-      '8',
-      ['4', '6', '2'],
-      'Lies zuerst die Legende: 1 Sonne bedeutet 2 Tage. 4 Sonnen sind 4 · 2 = 8 Tage.'),
-  ScienceQuestion.item(
-      4,
-      'Diagramme lesen',
-      'Eine Tabelle zeigt die Temperatur: in der Früh 4 Grad, zu Mittag 11 Grad. Um wie viel Grad ist es wärmer geworden?',
-      'um 7 Grad',
-      ['um 15 Grad', 'um 4 Grad', 'um 11 Grad'],
-      'Der Unterschied ist 11 - 4 = 7. Es ist um 7 Grad wärmer geworden.'),
-  ScienceQuestion.item(
-      4,
-      'Diagramme lesen',
-      'Wozu hat ein Diagramm eine Überschrift?',
-      'Sie sagt, worum es im Diagramm geht.',
-      [
-        'Sie macht die Säulen höher.',
-        'Sie ersetzt alle Zahlen.',
-        'Sie ist nur Schmuck.'
-      ],
-      'Lies immer zuerst die Überschrift und die Beschriftung. Dann weißt du, was die Zahlen bedeuten.'),
 ];

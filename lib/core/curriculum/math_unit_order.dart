@@ -12,10 +12,10 @@ class MathUnitOrder {
   static const String plusMinus = 'Plus und Minus';
   static const String timesDivide = 'Mal und Geteilt';
   static const String written = 'Schriftlich rechnen';
-  static const String fractions = 'Brüche und Dezimalzahlen';
+  static const String fractions = 'Brüche';
   static const String sizes = 'Geld, Zeit und Größen';
   static const String shapes = 'Formen und Geometrie';
-  static const String puzzles = 'Knobeln und Sachaufgaben';
+  static const String puzzles = 'Sachaufgaben und Daten';
 
   /// Group headings in display order.
   static const List<String> groups = <String>[
