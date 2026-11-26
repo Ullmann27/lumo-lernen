@@ -15,6 +15,7 @@ import 'lumo_premium_visuals.dart';
 import 'shape_trace_task_renderer.dart';
 import 'writing_task_renderer.dart';
 import 'reading_passage_card.dart';
+import 'pictogram_task_prompt.dart';
 import '../../../widgets/design/lumo_task_object_art.dart';
 
 class AdaptiveTaskAnswer {
@@ -312,6 +313,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                                 ].contains(task.parameters['unit']) &&
                                 task.prompt.contains('\n'))
                               ReadingPassageCard(prompt: task.prompt)
+                            else if (PictogramTaskPrompt.supports(task.prompt))
+                              PictogramTaskPrompt(prompt: task.prompt)
                             else
                               Text(
                                 LumoTaskObjectArt.matchWordImage(
