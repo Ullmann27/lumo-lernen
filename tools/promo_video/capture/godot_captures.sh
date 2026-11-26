@@ -20,10 +20,10 @@ for t in vulkanexpress_3100 wolkensturm_3300 kristallflut_2800; do
     --at=120,520,980,1500 --size=1920x1080 --profile=high
 done
 wait
-run race --script res://scripts/tests/kart_production_race_capture.gd &   # schreibt nach evidence/lumo_kart_runtime/review/
+run race --script res://scripts/tests/kart_production_race_capture.gd   # schreibt nach evidence/lumo_kart_runtime/review/
+mkdir -p "$O/race"; cp evidence/lumo_kart_runtime/review/candy_cloud_entry.png "$O/race/"
 run world --script res://scripts/tests/lumo_world_capture.gd -- --out="$O/world" &
 wait
-LUMO_CAPTURE_DIR=$O/run LUMO_RUN_QUICK=1 LUMO_RUN_SKIP_MEASURE=1 run run --script res://scripts/tests/lumo_run_capture.gd &
 mkdir -p "$O/skypost"; run skypost --script res://scripts/tests/sky_post_world_probe.gd -- out="$O/skypost" size=1280x720 &
 LUMO_CAPTURE_DIR=$O/quiz run quiz --script res://scripts/tests/quiz_studio_runtime.gd -- --capture --fixture &
 wait

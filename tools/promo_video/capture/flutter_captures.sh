@@ -6,7 +6,7 @@ set -euo pipefail
 F=$(realpath -m "${1:?Zielordner fehlt}")
 cd "$(dirname "$0")/../../.."
 LUMO_TOUR_DIR=$F/tour LUMO_NACHHILFE_CAPTURES=$F/nachhilfe A5_CAPTURES=$F/a5 A6_CAPTURES=$F/a6 A3_CAPTURES=$F/a3 \
-LUMO_LOGIC_CAPTURES=$F/logic LUMO_HUB_CAPTURES=$F/hub LUMO_LESSON_CAPTURES=$F/lesson \
+LUMO_CONNECT_CAPTURES=$F/c4 LUMO_LOGIC_CAPTURES=$F/logic LUMO_HUB_CAPTURES=$F/hub LUMO_LESSON_CAPTURES=$F/lesson \
 flutter test \
   test/design/app_tour_capture_test.dart \
   test/tutoring/lumo_nachhilfe_capture_test.dart \
@@ -15,4 +15,5 @@ flutter test \
   test/design/a3_eltern_schule_capture_test.dart \
   test/games/logic_games_ui_test.dart \
   test/games/spielwelt_hub_capture_test.dart \
-  test/design/lesson_premium_capture_test.dart
+  test/design/lesson_premium_capture_test.dart \
+  test/design/connect_four_visual_test.dart

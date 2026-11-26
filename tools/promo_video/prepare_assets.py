@@ -45,6 +45,7 @@ SHOTS = {
     'eltern_3': (F / f'a3/eltern_3_lernplan{A}', 'phone'),
     'eltern_ha1': (F / f'a3/hausaufgabe_2_kind_hilfe{A}', 'phone'),
     'eltern_ha2': (F / f'a3/hausaufgabe_3_geschafft{A}', 'phone'),
+    'more_c4': (F / 'c4/1280x720.png', 'land'),
     'hub_land': (F / 'hub/tablet-landscape.png', 'land-top'),
     'hub_port': (F / 'hub/phone.png', 'port-top'),
 }

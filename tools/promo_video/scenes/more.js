@@ -8,14 +8,13 @@ const MORE = [
   ['kart_vulkan', 'Neue Strecke: Vulkanexpress'],
   ['kart_wolken', 'Neue Strecke: Wolkensturm'],
   ['kart_flut', 'Neue Strecke: Kristallflut'],
-  ['run', 'Lumo Lauf'],
   ['skypost', 'Sternenpost'],
   ['world', 'Offene Welt Sonnenhafen'],
 ];
 (() => {
   const screen = document.getElementById('more-screen');
   const list = document.getElementById('more-list');
-  const step = 1.2, start = 1.0;
+  const step = 1.3, start = 1.0;
   MORE.forEach(([file, label], i) => {
     const d = start + i * step;
     const img = document.createElement('img');
@@ -30,7 +29,7 @@ const MORE = [
     screen.appendChild(tag);
   });
   const names = ['Memory · Vier gewinnt · Quizshow', 'Lumo Kart mit neuen Strecken', 'Lumo Lauf · Sternenpost', 'Offene Welt Sonnenhafen'];
-  const at = [0, 3, 7, 9];
+  const at = [0, 3, 7, 8];
   names.forEach((n, i) => {
     const row = document.createElement('div');
     row.className = 'row glass a right';
