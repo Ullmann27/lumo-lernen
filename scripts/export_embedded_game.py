@@ -269,10 +269,9 @@ def remove_generated_gate_images(repo: Path, before: set[str], source: dict):
 
 
 # Godot 4.6.3 writes import metadata and one extracted PNG next to each
-# production Meshy GLB in the reviewed 2077 and 2078 game revisions. These
-# files are deterministic importer byproducts, not application source.
-# Cleanup runs only for these immutable pins, after every manifest GLB has
-# been verified byte-for-byte, and removes only newly created outputs.
+# production Meshy GLB. Historical pins retain their reviewed rules. A
+# later pin must carry the exact reviewed manifest and produce textures
+# byte-identical to the embedded PNGs. Only new importer outputs are cleaned.
 PRODUCTION_MESHY_REVISION = '410327bfd5d1a66c54e3d75f772895d320daa5d6'
 PRODUCTION_MESHY_ALLOWED_REVISIONS = frozenset((
     PRODUCTION_MESHY_REVISION,
@@ -297,6 +296,7 @@ PRODUCTION_MESHY_ALLOWED_REVISIONS = frozenset((
     'c328fc8b94237cef7f05b613fceb0aa47e864f95',
 ))
 PRODUCTION_MESHY_MANIFEST = 'assets/kart/production/meshy/manifest.json'
+PRODUCTION_MESHY_MANIFEST_SHA256 = '763df5822780b995ceff8b87d927341374141fb3aa8b3a3d6dda4add49c25f31'
 PRODUCTION_MESHY_VEHICLE_IDS = frozenset((
     'blitz', 'boru_rally', 'comet', 'gecko_velo', 'glider', 'iva_aurora',
     'koloss', 'nala_comet', 'noa_tide', 'phantom', 'stella', 'terra',
@@ -307,16 +307,35 @@ PRODUCTION_MESHY_GARAGE_IDS = frozenset((
 ))
 
 
-def remove_generated_production_meshy_imports(repo: Path, before: set[str], source: dict):
-    """Remove verified importer outputs only for the reviewed immutable pins."""
-    if source.get('revision') not in PRODUCTION_MESHY_ALLOWED_REVISIONS:
-        return
+def embedded_meshy_png_sha256(raw: bytes, gltf: dict, json_length: int, images: list) -> str:
+    """Read the only embedded PNG buffer view in an already verified GLB."""
+    binary_header = 20 + json_length
+    binary_start = binary_header + 8
+    if len(images) != 1 or binary_start > len(raw):
+        raise RuntimeError('Refusing Meshy import cleanup: expected one embedded PNG')
+    bin_length, bin_tag = struct.unpack_from('<2I', raw, binary_header)
+    view = gltf['bufferViews'][images[0]['bufferView']]
+    offset = view.get('byteOffset', 0)
+    length = view['byteLength']
+    if (bin_tag != 0x004e4942 or binary_start + bin_length != len(raw)
+            or view['buffer'] != 0 or offset < 0 or length <= 0 or offset + length > bin_length):
+        raise RuntimeError('Refusing Meshy import cleanup: invalid embedded PNG buffer')
+    return hashlib.sha256(raw[binary_start + offset:binary_start + offset + length]).hexdigest()
 
+
+def remove_generated_production_meshy_imports(repo: Path, before: set[str], source: dict):
+    """Remove the known sidecars of byte-verified production Meshy assets."""
+    historical_pin = source.get('revision') in PRODUCTION_MESHY_ALLOWED_REVISIONS
     manifest_path = repo / PRODUCTION_MESHY_MANIFEST
     if manifest_path.is_symlink() or not manifest_path.is_file():
+        if not historical_pin:
+            return
         raise RuntimeError('Refusing 2077 Meshy import cleanup: missing manifest')
     try:
-        manifest = json.loads(manifest_path.read_text())
+        manifest_raw = manifest_path.read_bytes()
+        if not historical_pin and hashlib.sha256(manifest_raw).hexdigest() != PRODUCTION_MESHY_MANIFEST_SHA256:
+            return
+        manifest = json.loads(manifest_raw)
     except (OSError, json.JSONDecodeError) as error:
         raise RuntimeError('Refusing 2077 Meshy import cleanup: invalid manifest') from error
 
@@ -335,6 +354,7 @@ def remove_generated_production_meshy_imports(repo: Path, before: set[str], sour
 
     allowed_outputs = set()
     expected_paths = set()
+    expected_textures = {}
     for row in rows:
         if not isinstance(row, dict):
             raise RuntimeError('Refusing 2077 Meshy import cleanup: malformed manifest row')
@@ -381,8 +401,11 @@ def remove_generated_production_meshy_imports(repo: Path, before: set[str], sour
             raise RuntimeError('Refusing 2077 Meshy import cleanup: embedded PNG missing')
 
         rel_path = Path(relative)
+        texture_path = str(rel_path.with_name(rel_path.stem + '_0.png'))
         allowed_outputs.add(relative + '.import')
-        allowed_outputs.add(str(rel_path.with_name(rel_path.stem + '_0.png')))
+        allowed_outputs.add(texture_path)
+        if not historical_pin:
+            expected_textures[texture_path] = embedded_meshy_png_sha256(raw, gltf, json_length, embedded)
 
     untracked = git_paths(repo, 'ls-files', '--others', '--exclude-standard')
     generated = (untracked - before) & allowed_outputs
@@ -406,6 +429,8 @@ def remove_generated_production_meshy_imports(repo: Path, before: set[str], sour
             if ('[remap]' not in metadata or 'importer="scene"' not in metadata
                     or f'source_file="res://{source_relative}"' not in metadata):
                 raise RuntimeError('Refusing 2077 Meshy import cleanup: unexpected import metadata')
+            if not historical_pin and 'type="PackedScene"' not in metadata:
+                raise RuntimeError('Refusing Meshy import cleanup: expected scene remap type')
         elif relative.endswith('_0.png'):
             if not 16 <= size <= 100000000:
                 raise RuntimeError('Refusing 2077 Meshy import cleanup: invalid PNG size')
@@ -426,6 +451,11 @@ def remove_generated_production_meshy_imports(repo: Path, before: set[str], sour
                     f'{relative} size={size} prefix={prefix.hex()} '
                     f'tail={tail.hex()} padding={padding}'
                 )
+            if not historical_pin:
+                with path.open('rb') as handle:
+                    actual_sha256 = hashlib.file_digest(handle, 'sha256').hexdigest()
+                if actual_sha256 != expected_textures[relative]:
+                    raise RuntimeError('Refusing Meshy import cleanup: extracted PNG differs from GLB')
         else:
             raise RuntimeError('Refusing 2077 Meshy import cleanup: unrecognised output')
 

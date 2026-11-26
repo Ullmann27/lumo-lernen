@@ -311,10 +311,15 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
         content = json.dumps({
             'asset': {'version': '2.0'},
             'images': [{'name': 'meshTexture', 'mimeType': 'image/png', 'bufferView': 0}],
+            'bufferViews': [{'buffer': 0, 'byteLength': len(self._fixture_png())}],
         }).encode()
         padding = b' ' * ((-len(content)) % 4)
         chunk = content + padding
-        raw = struct.pack('<4s4I', b'glTF', 2, 20 + len(chunk), len(chunk), 0x4e4f534a) + chunk
+        texture = self._fixture_png()
+        raw = (
+            struct.pack('<4s4I', b'glTF', 2, 28 + len(chunk) + len(texture), len(chunk), 0x4e4f534a)
+            + chunk + struct.pack('<2I', len(texture), 0x004e4942) + texture
+        )
         path.write_bytes(raw)
         return {
             'id': identifier,
@@ -328,13 +333,15 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
             glb = self.repo / row['path']
             import_path = glb.with_suffix(glb.suffix + '.import')
             import_path.write_text(
-                '[remap]\nimporter="scene"\n\n[deps]\n'
+                '[remap]\nimporter="scene"\ntype="PackedScene"\n\n[deps]\n'
                 f'source_file="res://{row["path"]}"\n'
             )
             texture_path = glb.with_name(glb.stem + '_0.png')
-            texture_path.write_bytes(
-                b'\x89PNG\r\n\x1a\n' + b'x' * 120 + b'IEND\xaeB\x60\x82'
-            )
+            texture_path.write_bytes(self._fixture_png())
+
+    @staticmethod
+    def _fixture_png():
+        return b'\x89PNG\r\n\x1a\n' + b'x' * 120 + b'IEND\xaeB\x60\x82'
 
     def cleanup(self, before=None, source=None):
         MODULE.remove_generated_production_meshy_imports(
@@ -437,9 +444,8 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
         self.assertEqual(
             {name: (self.repo / name).read_bytes() for name in outputs}, original)
 
-    def test_current_reviewed_pin_cleans_outputs_and_preserves_exact_sources(self):
-        source = json.loads((MODULE.ROOT / 'config/godot-source.json').read_text())
-        self.assertIn(source['revision'], MODULE.PRODUCTION_MESHY_ALLOWED_REVISIONS)
+    def test_historical_release_pin_cleans_outputs_and_preserves_exact_sources(self):
+        source = {'revision': '0c36dbaa2e778dc982550989159bf70efbf1d47c'}
         tracked = MODULE.git_paths(self.repo, 'ls-files')
         original = {name: (self.repo / name).read_bytes() for name in tracked}
         self.generate_outputs()
@@ -452,6 +458,28 @@ class GeneratedProductionMeshyImportsTests(unittest.TestCase):
             {name: (self.repo / name).read_bytes() for name in tracked}, original)
         self.assertEqual(subprocess.check_output(
             ['git', 'diff', '--name-only'], cwd=self.repo, text=True), '')
+
+    def test_new_pin_cleans_only_preapproved_assets_and_fresh_outputs(self):
+        locked_digest = hashlib.sha256((self.repo / MODULE.PRODUCTION_MESHY_MANIFEST).read_bytes()).hexdigest()
+        self.generate_outputs()
+        preexisting = Path(self.all_rows[0]['path'] + '.import')
+        unknown = self.repo / 'other.png'
+        unknown.write_bytes(self._fixture_png())
+        with patch.object(MODULE, 'PRODUCTION_MESHY_MANIFEST_SHA256', locked_digest):
+            self.cleanup(source={'revision': 'c' * 40}, before={str(preexisting)})
+        self.assertEqual(MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard'),
+                         {str(preexisting), 'other.png'})
+
+    def test_new_pin_rejects_valid_png_that_does_not_match_the_embedded_bytes(self):
+        locked_digest = hashlib.sha256((self.repo / MODULE.PRODUCTION_MESHY_MANIFEST).read_bytes()).hexdigest()
+        self.generate_outputs()
+        glb = self.repo / self.all_rows[0]['path']
+        glb.with_name(glb.stem + '_0.png').write_bytes(self._fixture_png().replace(b'x', b'y'))
+        with patch.object(MODULE, 'PRODUCTION_MESHY_MANIFEST_SHA256', locked_digest):
+            with self.assertRaisesRegex(RuntimeError, 'extracted PNG differs from GLB'):
+                self.cleanup(source={'revision': 'c' * 40})
+        self.assertEqual(len(MODULE.git_paths(
+            self.repo, 'ls-files', '--others', '--exclude-standard')), 32)
 
     def test_current_reviewed_pin_still_rejects_changed_manifest_glb(self):
         source = json.loads((MODULE.ROOT / 'config/godot-source.json').read_text())
