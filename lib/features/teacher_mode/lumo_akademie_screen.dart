@@ -1186,12 +1186,24 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
     // implicit discovery redirect. Progress stays separate from the child's
     // official school grade and its XP/wallet records.
     if (_selectedGrade != widget.appState.state.grade) {
-      final unit = AcademyTopicUnits.exerciseUnit(
-        topicId: t.id,
-        title: t.title,
-        subject: s.name,
-        grade: _selectedGrade,
-      );
+      // Schreibthemen bleiben Schreibübungen, auch in einer anderen Klasse
+      // (Prüfbericht Punkt 5): „Alle Buchstaben A-Z“ übt Buchstaben,
+      // „Erste Wörter“ Wörter schreiben – nicht das Lautierungs- oder
+      // Wort-Bild-Quiz. Der Fortschritt bleibt wie jede Übung einer
+      // anderen Klasse getrennt gespeichert.
+      final writingUnit = t.isWriting && t.writingChars.isNotEmpty
+          ? 'Buchstaben nachspuren'
+          : t.id == 'd1_woerter'
+              ? 'Wort schreiben'
+              : null;
+      final subject = writingUnit == null ? s.name : 'Schreiben';
+      final unit = writingUnit ??
+          AcademyTopicUnits.exerciseUnit(
+            topicId: t.id,
+            title: t.title,
+            subject: s.name,
+            grade: _selectedGrade,
+          );
       if (unit == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -1208,7 +1220,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
           profileName: widget.appState.state.childName,
           enrolledGrade: widget.appState.state.grade,
           lessonGrade: _selectedGrade,
-          subject: s.name,
+          subject: subject,
           unit: unit,
         ),
       ));
