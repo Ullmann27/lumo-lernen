@@ -433,6 +433,7 @@ jobs:
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: |
             .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour
+            .probe-venv/bin/python .github/probes/lumo_parent_insight_android_probe.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour/parent-insight || echo "Elternkennzahlen-Probe nicht bestanden (erste Emulatorausführung, nicht blockierend; siehe tour/parent-insight)"
             .probe-venv/bin/python .github/probes/lumo_local_backup_android_probe.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour/local-backup
       - name: Beobachtete native Spielstarts verbindlich prüfen
         run: python3 scripts/verify_native_start_diagnostics.py tour/native-starts.json --out tour/NATIVE-GAME-STARTS.json
@@ -442,6 +443,7 @@ jobs:
           set -euo pipefail
           python3 - <<'PY_ANDROID_EVIDENCE'
           import json
+          import os
           from pathlib import Path
           import zipfile
 
@@ -455,6 +457,13 @@ jobs:
               raise RuntimeError('Incomplete Android backup evidence')
           if not Path('tour/NATIVE-GAME-STARTS.json').is_file():
               raise RuntimeError('Missing mandatory native game gate evidence')
+          # Elternkennzahlen (Intelligence 2.0): erste echte Emulatorausführung.
+          # Ergebnis wird immer ausgewiesen, blockiert diesen Lauf aber noch nicht.
+          insight = Path('tour/parent-insight/parent-insight-result.json')
+          status = json.loads(insight.read_text()).get('status') if insight.is_file() else 'FEHLT'
+          print(f'Elternkennzahlen-Probe: {status}')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as summary:
+              summary.write(f'Elternkennzahlen-Probe (Emulator): {status}\n')
           with zipfile.ZipFile('LUMO-ANDROID-PRUEFBELEGE.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
               for path in sorted(Path('tour').rglob('*')):
                   if path.is_file():
