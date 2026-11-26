@@ -381,7 +381,10 @@ jobs:
     name: Installierte APK im Android-Emulator prüfen
     needs: apk
     runs-on: ubuntu-24.04
-    timeout-minutes: 75
+    timeout-minutes: 120
+    permissions:
+      contents: read
+      actions: read
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -390,6 +393,12 @@ jobs:
         with:
           name: LUMO-EMULATOR-APK-${{ github.run_id }}
           path: candidate/x86_64
+      - uses: actions/download-artifact@v4
+        with:
+          name: LUMO-EMULATOR-APK-45569841812
+          run-id: 45569841812
+          github-token: ${{ github.token }}
+          path: baseline/x86_64
       - name: Emulator und Prüftools vorbereiten
         run: |
           set -euo pipefail
@@ -429,6 +438,7 @@ jobs:
           LUMO_NATIVE_START_WAIT: '35'
           LUMO_NATIVE_START_BUDGET: '1200'
           LUMO_ANDROID_SKYPOST_PROBE: '1'
+          LUMO_CANDIDATE_SOURCE_SHA: ${{ github.sha }}
         with:
           api-level: 35
           target: google_apis
@@ -441,6 +451,10 @@ jobs:
             .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour
             .probe-venv/bin/python .github/probes/lumo_parent_insight_android_probe.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour/parent-insight || echo "Elternkennzahlen-Probe nicht bestanden (erste Emulatorausführung, nicht blockierend; siehe tour/parent-insight)"
             .probe-venv/bin/python .github/probes/lumo_local_backup_android_probe.py --apk candidate/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/x86_64/BUILD-PROVENANCE.json --sums candidate/ANDROID-TOUR-SHA256SUMS.txt --out tour/local-backup
+            # This runner holds only fictional profiles made by the preceding probes.
+            test "$(adb shell getprop ro.kernel.qemu | tr -d '\r')" = 1
+            adb uninstall dev.ullmann.lumo.lumo_lernen.coachpreview
+            .probe-venv/bin/python .github/probes/lumo_intelligence_update_android_probe.py --baseline baseline/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/x86_64/Lumo-Lernen-Neu.apk --out tour/update
       - name: Beobachtete native Spielstarts verbindlich prüfen
         run: python3 scripts/verify_native_start_diagnostics.py tour/native-starts.json --out tour/NATIVE-GAME-STARTS.json
       - name: Abgeschlossene Android-Prüfbelege zum selben Kandidaten bereitstellen
@@ -461,6 +475,9 @@ jobs:
           passed = {row['step'] for row in backup.get('steps', []) if row.get('ok') is True}
           if not required <= passed:
               raise RuntimeError('Incomplete Android backup evidence')
+          update = json.loads(Path('tour/update/update-result.json').read_text())
+          if update.get('status') != 'PASS' or update.get('offline') is not True:
+              raise RuntimeError('The in-place upgrade and offline checks did not pass')
           if not Path('tour/NATIVE-GAME-STARTS.json').is_file():
               raise RuntimeError('Missing mandatory native game gate evidence')
           # Elternkennzahlen (Intelligence 2.0): erste echte Emulatorausführung.
