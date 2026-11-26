@@ -440,8 +440,10 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
                   gedreht: true);
           return [
             _Kern('start',
-                kind: '$r · $c heißt: ${_reihenWort(r)} mit je ${_punkteWort(c)}.',
-                lumo: '$r · $c heißt: ${_reihenWort(r)} mit je ${_punkteWort(c)}.',
+                kind:
+                    '$r · $c heißt: ${_reihenWort(r)} mit je ${_punkteWort(c)}.',
+                lumo:
+                    '$r · $c heißt: ${_reihenWort(r)} mit je ${_punkteWort(c)}.',
                 aktion: feld(r, 0, 0),
                 nurLumo: true),
             _Kern('drehen',
@@ -1165,14 +1167,11 @@ extension _NachhilfeRechenwege on LumoNachhilfe {
         }
       case NachhilfeTyp.subtraktionBis100:
         final anfang =
-            'Stell dir Geld vor: Du hast $a Cent, das sind ${_muenzenText(az, ae)}. Du kaufst etwas um $b Cent.';
+            'Stell dir Geld vor: Du hast $a Cent – ${_muenzenText(az, ae)}. Du kaufst etwas um $b Cent.';
         final bild = NachhilfeAktion.bild(NachhilfeMotiv.muenzen, a: a, b: -b);
-        final wechseln = x.zehnerUebergang
-            ? ' Für die $be Cent wechselst du danach eine Zehn-Cent-Münze in 10 Ein-Cent-Münzen.'
-            : '';
         if (bz > 0) {
           roh = _Alltag(
-              '$anfang Zuerst zahlst du mit ${bz == 1 ? 'einer Zehn-Cent-Münze' : '$bz Zehn-Cent-Münzen'}.$wechseln',
+              '$anfang Zuerst zahlst du mit ${bz == 1 ? 'einer Zehn-Cent-Münze' : '$bz Zehn-Cent-Münzen'}.',
               bild,
               frage: az - bz,
               fragetext: 'Wie viele Zehn-Cent-Münzen hast du dann noch?',

@@ -281,7 +281,7 @@ class NachhilfeZahlenstrahl extends StatelessWidget {
       return Semantics(
         label: 'Zahlenstrahl von $von bis $bis. Lumo steht auf $position.',
         child: SizedBox(
-          height: 150,
+          height: 204,
           child: Stack(clipBehavior: Clip.none, children: [
             Positioned.fill(
               child: TweenAnimationBuilder<double>(
@@ -303,10 +303,10 @@ class NachhilfeZahlenstrahl extends StatelessWidget {
               key: const ValueKey('nachhilfe-strahl-lumo'),
               duration: _dauer(reduceMotion, 150),
               curve: Curves.easeInOutCubic,
-              left: x(position) - 18,
-              top: 52,
+              left: x(position) - 16,
+              top: 146,
               child: const Icon(Icons.pets_rounded,
-                  color: Color(0xFFFF9F43), size: 36),
+                  color: Color(0xFFFF9F43), size: 32),
             ),
             Positioned(
               left: 0,
@@ -384,7 +384,9 @@ class _StrahlMaler extends CustomPainter {
                 fontWeight: FontWeight.w800)),
         textDirection: TextDirection.ltr,
       )..layout();
-      tp.paint(canvas, Offset(x(z) - tp.width / 2, linieY + 14));
+      // Zehner in der ersten Zeile, Sprungziele darunter: nichts überlappt.
+      tp.paint(canvas,
+          Offset(x(z) - tp.width / 2, linieY + (z % 10 == 0 ? 14 : 32)));
     }
     for (var i = 0; i < spruenge.length; i++) {
       final (a, b) = spruenge[i];
@@ -462,7 +464,8 @@ class NachhilfePunktefeld extends StatelessWidget {
         child: Column(children: [
           Text(
               '$reihen ${reihen == 1 ? 'Reihe' : 'Reihen'} mit je $je ${je == 1 ? 'Punkt' : 'Punkten'}',
-              key: const ValueKey('nachhilfe-punkte-stand'), style: _text),
+              key: const ValueKey('nachhilfe-punkte-stand'),
+              style: _text),
           const SizedBox(height: 8),
           AnimatedContainer(
             duration: _dauer(reduceMotion),

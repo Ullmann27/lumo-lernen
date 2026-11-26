@@ -524,7 +524,12 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
               ],
               _stufenLeiste(),
               const SizedBox(height: 10),
-              if (!_pruefPhase) ...[_wegeLeiste(), const SizedBox(height: 14)],
+              // Die andere Erklärung (Stufe 2) braucht keinen Rechenweg.
+              if (!_pruefPhase &&
+                  _stufe != NachhilfeStufe.andereErklaerung) ...[
+                _wegeLeiste(),
+                const SizedBox(height: 14),
+              ],
               _lumoBlase(s),
               if (_rueckmeldung != null) ...[
                 const SizedBox(height: 10),
@@ -1209,13 +1214,14 @@ class _LumoNachhilfeScreenState extends State<LumoNachhilfeScreen> {
             icon: const Icon(Icons.support_rounded),
             label: Text('Mehr Hilfe: ${naechste.titel}'),
           ),
-        OutlinedButton.icon(
-          key: const ValueKey('nachhilfe-anders'),
-          style: stil(const Color(0xFF12366A)),
-          onPressed: _andersZeigen,
-          icon: const Icon(Icons.swap_horiz_rounded),
-          label: const Text('Anders zeigen'),
-        ),
+        if (_stufe != NachhilfeStufe.andereErklaerung)
+          OutlinedButton.icon(
+            key: const ValueKey('nachhilfe-anders'),
+            style: stil(const Color(0xFF12366A)),
+            onPressed: _andersZeigen,
+            icon: const Icon(Icons.swap_horiz_rounded),
+            label: const Text('Anders zeigen'),
+          ),
         if (_mit3D)
           OutlinedButton.icon(
             key: const ValueKey('nachhilfe-3d'),
