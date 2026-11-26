@@ -210,6 +210,16 @@ jobs:
             --script res://scripts/tests/learning_tutor_regression.gd -- \
             --part=validation,invalid,return,voice | tee build-proof/GODOT-learning_tutor_regression.txt
           echo "::endgroup::"
+      - name: 3D-Memory – kompakte Bedienung und sichtbare Karten prüfen
+        shell: bash
+        run: |
+          set -euo pipefail
+          export XDG_DATA_HOME="$RUNNER_TEMP/lumo-memory-compact"
+          export LUMO_MEMORY_CAPTURE_DIR="$PWD/build-proof/memory-compact"
+          python3 build/lumo-godot-qa/tools/run_godot_probe.py \
+            --timeout 900 --required MEMORY_COMPACT_PASS --log build-proof/GODOT-memory-compact.txt -- \
+            godot --headless --single-threaded-scene --audio-driver Dummy \
+            --path build/lumo-godot-qa --script res://scripts/tests/memory_compact_layout_regression.gd
       - name: World – integrierte Missionen, Kart, Figuren und Spielstand
         shell: bash
         run: |

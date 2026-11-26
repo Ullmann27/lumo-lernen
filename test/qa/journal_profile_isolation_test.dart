@@ -92,21 +92,28 @@ void main() {
     await a.add(text: 'Privat A', title: 'Privat A', isCurrent: current);
     await b.add(text: 'Privat B', title: 'Privat B', isCurrent: current);
     await tester.pumpWidget(MaterialApp(home: LumoJournalScreen(appState: app)));
-    await tester.pumpAndSettle();
+    for (var i = 0; i < 20; i++) {
+      await tester.pump(const Duration(milliseconds: 50));
+    }
     expect(find.text('Privat A'), findsWidgets);
     expect(find.text('Privat B'), findsNothing);
-    await tester.tap(find.byIcon(Icons.add_rounded));
+    await tester.tap(find.descendant(
+      of: find.byType(AppBar), matching: find.byIcon(Icons.add_rounded)));
     await tester.pump();
     expect(find.byType(TextField), findsNWidgets(2));
     await tester.enterText(find.byType(TextField).last, 'Entwurf A');
     await app.school.setActiveStudent('school-b');
-    await tester.pumpAndSettle();
+    for (var i = 0; i < 20; i++) {
+      await tester.pump(const Duration(milliseconds: 50));
+    }
     expect(find.byType(TextField), findsNothing);
     expect(find.textContaining('Das Kinderprofil hat gewechselt'), findsOneWidget);
     expect(find.text('Privat A'), findsNothing);
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pumpWidget(MaterialApp(home: LumoJournalScreen(appState: app)));
-    await tester.pumpAndSettle();
+    for (var i = 0; i < 20; i++) {
+      await tester.pump(const Duration(milliseconds: 50));
+    }
     expect(find.text('Privat B'), findsWidgets);
     expect(find.text('Privat A'), findsNothing);
   });

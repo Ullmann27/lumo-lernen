@@ -15,6 +15,7 @@ import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning/learning_content.dart';
 import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
+import 'package:lumo_lernen/features/learning/widgets/data_chart_workbench.dart';
 import 'package:lumo_lernen/features/learning/widgets/lumo_mistake_help_card.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/widgets/design/lumo_answer_crystal.dart';
@@ -168,15 +169,37 @@ LumoAnswerCrystal _crystal(WidgetTester tester, AnswerOption option) => tester
     .widgetList<LumoAnswerCrystal>(find.byType(LumoAnswerCrystal))
     .singleWhere((crystal) => crystal.label == option.label);
 
-/// Taps a real answer crystal, as a child would.
+/// Submits through the same visible controls the child uses.
 Future<void> _tap(WidgetTester tester, AnswerOption option) async {
-  final target = find
-      .descendant(
-          of: find.byType(AdaptiveTaskRenderer),
-          matching: find.text(option.label))
-      .last;
+  final workbench = find.byType(DataChartAnswer);
+  if (workbench.evaluate().isNotEmpty) {
+    final count = int.parse(_value(option));
+    final exercise = tester.widget<DataChartAnswer>(workbench).exercise;
+    if (exercise.tallyToTable) {
+      await _tapControl(tester, find.byKey(ValueKey('data-table-choice-$count')));
+    } else {
+      final zero = find.byKey(const ValueKey('data-chart-zero'));
+      if (tester.widget<OutlinedButton>(zero).onPressed != null) {
+        await _tapControl(tester, zero);
+      }
+      final add = find.byKey(const ValueKey('data-chart-add'));
+      for (var index = 0; index < count; index++) {
+        await _tapControl(tester, add);
+      }
+    }
+    await _tapControl(tester, find.byKey(const ValueKey('data-chart-submit')));
+    return;
+  }
+  final crystal = find.byKey(ValueKey('math-crystal-${option.label}'));
+  final tile = find.byKey(ValueKey('answer-option-${option.id}'));
+  await _tapControl(tester, crystal.evaluate().isNotEmpty ? crystal : tile);
+}
+
+Future<void> _tapControl(WidgetTester tester, Finder target) async {
+  expect(target, findsOneWidget);
   await tester.ensureVisible(target);
   await tester.pump();
+  expect(target.hitTestable(), findsOneWidget);
   await tester.tap(target);
   await tester.pump();
   await tester.pump(const Duration(milliseconds: 50));
