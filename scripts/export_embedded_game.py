@@ -289,6 +289,9 @@ PRODUCTION_MESHY_ALLOWED_REVISIONS = frozenset((
     # Meshy/garage subtrees (54d73b2b / 11ea80a8), including all 16 GLBs
     # and the manifest. Exact manifest hashes and output checks still apply.
     'dedc588cd0862069fe22863f671877042aa7c53c',
+    # 2085 preserves both production Git trees from the reviewed 2083 pin.
+    # Existing byte, manifest, and temporary-output checks still apply.
+    '0c36dbaa2e778dc982550989159bf70efbf1d47c',
     # 2084 preserves both production Git trees from the reviewed 2083 pin.
     # Existing byte, manifest, and temporary-output checks still apply.
     'c328fc8b94237cef7f05b613fceb0aa47e864f95',
