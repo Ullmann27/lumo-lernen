@@ -283,8 +283,9 @@ class LumoAdventureTasks {
           return _math(
               'Rechengeschichten',
               '$hero kauft $n Packungen. In jeder Packung sind $k $pl. '
-                  '$hero bekommt noch $b $pl dazu. Von allen $pl verschenkt '
-                  '$hero $c. Wie viele $pl hat $hero am Ende?',
+                  // Kein „Von allen Nüsse“: Der Dativ Plural bräuchte -n.
+                  '$hero bekommt noch $b $pl dazu. Dann verschenkt $hero '
+                  '$c davon. Wie viele $pl hat $hero am Ende?',
               n * k + b - c,
               'Erst $n · $k = ${n * k}, dann + $b = ${n * k + b}, '
                   'dann − $c = ${n * k + b - c}.',
