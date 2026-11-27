@@ -141,16 +141,21 @@ void main() {
         await _pumpHub(tester, app);
         // The three restored adventures are direct list entries, not children
         // of a collapsing/expanding animated region.
-        final original = find.byKey(const PageStorageKey('games-original-3d'));
-        expect(original, findsOneWidget);
-        final tile = find.descendant(
-          of: original,
-          matching: find.byKey(ValueKey('spielwelt-original-$scene')),
-        );
-        expect(tile, findsOneWidget);
-        await tester.scrollUntilVisible(tile, 180,
-            scrollable: find.byType(Scrollable).first);
+        final tile = find.byKey(ValueKey('spielwelt-original-$scene'));
+        final outerScroll = find.descendant(
+          of: find.byType(CustomScrollView),
+          matching: find.byType(Scrollable),
+        ).first;
+        // SliverToBoxAdapter builds lazily. Scroll before asserting that the
+        // off-screen section or its descendants exist in the element tree.
+        await tester.scrollUntilVisible(tile, 260,
+            scrollable: outerScroll, maxScrolls: 40);
         await tester.pump();
+        expect(tile, findsOneWidget);
+        expect(find.ancestor(
+          of: tile,
+          matching: find.byKey(const PageStorageKey('games-original-3d')),
+        ), findsOneWidget);
         await Scrollable.ensureVisible(tester.element(tile), alignment: 0.5);
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 100));

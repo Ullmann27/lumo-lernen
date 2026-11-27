@@ -1,0 +1,30 @@
+name: LUMO 2100 focused original adventure touch gate
+on:
+  push:
+    branches: [qa/lumo-2100-routing-20261127]
+permissions:
+  contents: read
+jobs:
+  routing:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Test actual scroll, touch, profile and native launch payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter test --no-pub --reporter expanded --timeout=60s --concurrency=1 test/games/spielwelt_routing_test.dart | tee routing-proof.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: focused-routing-proof
+          path: routing-proof.txt
