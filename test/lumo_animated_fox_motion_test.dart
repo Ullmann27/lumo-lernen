@@ -16,6 +16,8 @@ void main() {
       bool reduced = false,
       bool active = true,
       bool voice = false,
+      double? mouthOverride,
+      bool conversationPerformance = false,
       LumoFoxExpression expression = LumoFoxExpression.idle}) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
@@ -29,6 +31,8 @@ void main() {
               active: active,
               reducedMotion: reduced,
               voiceEnabled: voice,
+              mouthOverride: mouthOverride,
+              conversationPerformance: conversationPerformance,
               expression: expression,
             ),
           ),
@@ -128,6 +132,30 @@ void main() {
     await mount(tester, voice: false);
     LumoVoice.instance.status.value = VoiceStatus.speaking;
     await tester.pump(const Duration(milliseconds: 100));
+    expect(painter(tester).sample.mouth, 0);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('scoped Baby Lumo mouth never falls back to global speech',
+      (tester) async {
+    final voice = LumoVoice.instance;
+    await mount(tester, voice: true, mouthOverride: 0,
+        conversationPerformance: true);
+    voice.status.value = VoiceStatus.speaking;
+    voice.spokenWordRevision.value++;
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(painter(tester).sample.mouth, 0);
+    await mount(tester, mouthOverride: .72,
+        conversationPerformance: true, expression: LumoFoxExpression.explain);
+    expect(painter(tester).sample.mouth, closeTo(.72, .001));
+    await mount(tester, mouthOverride: double.nan);
+    expect(painter(tester).sample.mouth, 0);
+    await mount(tester, mouthOverride: 2);
+    expect(painter(tester).sample.mouth, 1);
+    await mount(tester, mouthOverride: .72, active: false);
+    expect(painter(tester).sample.mouth, 0);
+    await mount(tester, mouthOverride: .72, reduced: true);
     expect(painter(tester).sample.mouth, 0);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
