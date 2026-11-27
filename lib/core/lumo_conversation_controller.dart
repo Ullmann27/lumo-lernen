@@ -440,7 +440,7 @@ class LumoConversationController extends ChangeNotifier {
         voice.requestRevision == before ? null : voice.requestRevision;
     if (_audioRequestRevision != null) {
       _interactionVoiceRevision = _audioRequestRevision;
-      _voiceChanged();
+      if (!_disposed) notifyListeners();
     }
     try {
       await speaking;
@@ -451,8 +451,7 @@ class LumoConversationController extends ChangeNotifier {
         _audioIdentity = null;
         _audioPresentation = null;
         _audioRequestRevision = null;
-        _setPhase(LumoConversationPhase.idle);
-        // Lease release can change the avatar even if phase was already idle.
+        // Lease release can change the avatar even if phase is unchanged.
         if (!_disposed) notifyListeners();
       }
     }

@@ -531,6 +531,7 @@ class _AgentHeader extends StatelessWidget {
       key: const ValueKey('lumo-agent-hologlass-hero'),
       child: LayoutBuilder(builder: (context, bounds) {
         final compact = bounds.maxWidth < 460;
+        final narrow = bounds.maxWidth < 340;
         final fox = LumoBabyConversationAvatar(
           conversation: conversation,
           listening: listening,
@@ -588,11 +589,16 @@ class _AgentHeader extends StatelessWidget {
           return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                  SizedBox(width: 152, child: fox),
-                  const SizedBox(width: 8),
-                  Expanded(child: intro),
-                ]),
+                if (narrow) ...[
+                  Center(child: fox),
+                  const SizedBox(height: 8),
+                  intro,
+                ] else
+                  Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                    SizedBox(width: 152, child: fox),
+                    const SizedBox(width: 8),
+                    Expanded(child: intro),
+                  ]),
                 const SizedBox(height: 10),
                 Align(alignment: Alignment.centerRight, child: parents),
               ]);

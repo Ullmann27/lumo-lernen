@@ -36,7 +36,7 @@ Zeitdaten behaupten. Auf realem Fold und Tablets Bildrate, Wärme,
 Audio/Video-Offset und Lebenszyklus messen.
 
 ## Lokale Prüfung
-flutter test test/lumo_animated_fox_motion_test.dart
+flutter test test/lumo_animated_fox_motion_test.dart test/lumo_conversation_owner_lifecycle_test.dart
 flutter analyze
 
 Zusätzlich bestehende Gesprächs-, Kinderschutz- und Lernkontexttests

@@ -179,7 +179,7 @@ class _LumoAnimatedFoxState extends State<LumoAnimatedFox>
   }
 
   void _voiceChanged() {
-    if (!mounted) return;
+    if (!mounted || widget.mouthOverride != null) return;
     _nativeWords = false;
     if (_speaking && _animate) {
       _word.forward(from: 0);
@@ -272,8 +272,12 @@ class _LumoAnimatedFoxState extends State<LumoAnimatedFox>
     }
     return RepaintBoundary(
       child: AnimatedBuilder(
-        animation: Listenable.merge(
-            [_clock, _transition, _word, LumoVoice.instance.clipMouth]),
+        animation: Listenable.merge([
+          _clock,
+          _transition,
+          _word,
+          if (widget.mouthOverride == null) LumoVoice.instance.clipMouth,
+        ]),
         builder: (context, _) {
           final seconds = (_elapsed - _expressionStart + 60) % 60;
           final clipMouth = LumoVoice.instance.clipMouth.value;

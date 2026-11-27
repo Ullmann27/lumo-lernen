@@ -108,6 +108,25 @@ void main() {
     await voice.stop();
   });
 
+  test('unowned speech cannot move the conversation avatar', () async {
+    // Deliberately simulate a foreign transport notification. The fixture
+    // does not claim to play real audio or validate physical lip sync.
+    try {
+      voice.status.value = VoiceStatus.speaking;
+      voice.mediaAudibility.value = true;
+      voice.clipMouth.value = .8;
+      expect(conversation.avatarAudioActive, isFalse);
+      expect(conversation.avatarMouth, 0);
+      conversation.pause();
+      expect(conversation.avatarAudioActive, isFalse);
+      expect(conversation.avatarMouth, 0);
+    } finally {
+      voice.status.value = VoiceStatus.idle;
+      voice.mediaAudibility.value = false;
+      voice.clipMouth.value = null;
+    }
+  });
+
   test('task change has one bus invalidation, not a second old-owner stop',
       () async {
     bus.publishTask(task());
@@ -208,6 +227,8 @@ void main() {
       ),
     ));
     await tester.pump();
+    expect(find.byKey(const ValueKey('baby-lumo-original-rig')), findsOneWidget);
+    expect(find.byKey(const ValueKey('baby-lumo-dialogue-state')), findsOneWidget);
     bus.publishTask(task(id: 'next-task'));
     final next = bus.learningIdentity.value!;
     present(next);
