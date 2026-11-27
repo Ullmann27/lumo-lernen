@@ -13,6 +13,7 @@ import sys
 import time
 
 from package_notices import bundle_notices
+from lumo_recovered_import_cleanup import cleanup_recovered_imports
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -505,6 +506,7 @@ def export(repo: Path, binary: str):
         remove_generated_sidecars(repo, before)
         remove_generated_gate_images(repo, before, source)
         remove_generated_production_meshy_imports(repo, before, source)
+        cleanup_recovered_imports(repo, before, source)
     remaining = subprocess.check_output(['git', 'status', '--porcelain'], cwd=repo, text=True).strip()
     if remaining:
         raise RuntimeError('Godot import changed sources; refuse exported candidate:\n' + remaining)

@@ -265,7 +265,8 @@ class SourceSelectorsTest(unittest.TestCase):
 
     def test_learning_route_selectors(self):
         hub = self.source('lib/features/sections/lumo_learning_hub.dart')
-        self.assertIn("'Wähle ein Thema. Danach startet die echte Lernaufgabe.'", hub)
+        self.assertIn("Text('Themen · ${subject.name}',", hub)
+        self.assertIn("'Themen · Mathematik' in app_text", self.source('.github/probes/lumo_parent_insight_android_probe.py'))
         # Schulwissen-Kacheln (badge == null, z. B. „Plus bis 10“) beginnen mit
         # dem Titel; die Probe tippt per Textanfang. Vertiefung/Expertenwelt
         # tragen ihr Abzeichen zwischen Titel und Status (Team A4).

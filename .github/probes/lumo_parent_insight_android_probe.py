@@ -209,7 +209,7 @@ def answer_tasks(out: Path) -> dict:
     probe.flutter_tap(out, 'Lernen', 'lernen')
     probe.flutter_tap(out, 'Mathematik', 'fach-mathematik', min_visible_height_px=40)
     for attempt in range(20):
-        if 'Wähle ein Thema.' in app_text(nodes(out, f'thema-liste-{attempt}')):
+        if 'Themen · Mathematik' in app_text(nodes(out, f'thema-liste-{attempt}')):
             break
         time.sleep(1)
     else:

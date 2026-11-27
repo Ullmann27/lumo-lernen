@@ -233,8 +233,7 @@ jobs:
         if: steps.reuse.outputs.valid != 'true'
         run: |
           set -euo pipefail
-          sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          bash scripts/install_ubuntu_ci_packages.sh fonts-noto-color-emoji
           bash scripts/install_godot_for_build.sh
       - name: Godot – exakten Quellstand und Szenen importieren
         if: steps.reuse.outputs.valid != 'true'
@@ -505,6 +504,8 @@ jobs:
           python3 -m unittest scripts.tests.test_prepare_android -v
           python3 -m unittest scripts.tests.test_export_embedded_game -v \
             2>&1 | tee build-proof/GODOT-EXPORT-CONTRACT-TESTS.txt
+          python3 -m unittest scripts.tests.test_recovered_import_cleanup -v \
+            2>&1 | tee build-proof/GODOT-RECOVERED-IMPORT-TESTS.txt
           python3 scripts/verify_test_apk_candidate.py source --expected-commit "$GITHUB_SHA" \
             --out build-proof/CANDIDATE-SOURCE.json
           git rev-parse HEAD > build-proof/FLUTTER-COMMIT.txt
@@ -516,8 +517,7 @@ jobs:
         run: |
           set -euo pipefail
           flutter pub get --enforce-lockfile
-          sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          bash scripts/install_ubuntu_ci_packages.sh fonts-noto-color-emoji
           bash scripts/install_ndk_for_build.sh build-proof/ndk
           bash scripts/install_godot_for_build.sh
       - name: Gepinnte Godot-Quelle für Paketidentität und Nachweise laden
@@ -697,8 +697,7 @@ jobs:
           mkdir -p tour
           cp candidate/x86_64/SPLIT-APK-IDENTITY.json tour/SPLIT-APK-IDENTITY.json
           sudo chmod a+rw /dev/kvm
-          sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr-deu tesseract-ocr-eng
+          bash scripts/install_ubuntu_ci_packages.sh xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr-deu tesseract-ocr-eng
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
           awk '{print $1 "  dist/x86_64/Lumo-Lernen-Neu.apk"}' candidate/x86_64/SHA256SUMS.txt > candidate/ANDROID-TOUR-SHA256SUMS.txt
