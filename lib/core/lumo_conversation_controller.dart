@@ -75,6 +75,36 @@ class LumoConversationController extends ChangeNotifier {
   LumoLearningIdentity? get responseIdentity => _responseIdentity;
   bool get handlingCurrentLessonAction => _ownCompatibleAction;
 
+  /// Visual playback belongs to this conversation only, including free chat
+  /// without a learning-task identity. Another speaker must not animate it.
+  bool get avatarAudioActive {
+    final voice = LumoVoice.instance;
+    return !_disposed &&
+        !_paused &&
+        _ownsAudio &&
+        _audioUtterance != null &&
+        _responseRevision == context.revision &&
+        (_audioIdentity == null ||
+            context.requests.isCurrentLearningIdentity(_audioIdentity!)) &&
+        context.appState.state.settings.voiceEnabled &&
+        voice.isEnabled &&
+        voice.status.value == VoiceStatus.speaking &&
+        voice.mediaAudible;
+  }
+
+  /// Real playback envelope, not inferred phonemes or a synthetic oscillator.
+  double get avatarMouth {
+    final voice = LumoVoice.instance;
+    final value = voice.clipMouth.value;
+    if (!avatarAudioActive ||
+        !voice.mouthEnvelopeAvailable ||
+        value == null ||
+        !value.isFinite) {
+      return 0;
+    }
+    return value.clamp(0.0, 1.0).toDouble();
+  }
+
   static const cancelled =
       LumoAiProxyResponse(reply: '', blocked: false, source: 'cancelled');
 
@@ -410,6 +440,7 @@ class LumoConversationController extends ChangeNotifier {
         voice.requestRevision == before ? null : voice.requestRevision;
     if (_audioRequestRevision != null) {
       _interactionVoiceRevision = _audioRequestRevision;
+      if (!_disposed) notifyListeners();
     }
     try {
       await speaking;
@@ -420,6 +451,8 @@ class LumoConversationController extends ChangeNotifier {
         _audioIdentity = null;
         _audioPresentation = null;
         _audioRequestRevision = null;
+        // Lease release can change the avatar even if phase is unchanged.
+        if (!_disposed) notifyListeners();
       }
     }
   }

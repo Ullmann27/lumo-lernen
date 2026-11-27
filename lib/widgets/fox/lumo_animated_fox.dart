@@ -52,6 +52,8 @@ class LumoAnimatedFox extends StatefulWidget {
     this.reducedMotion = false,
     this.active = true,
     this.voiceEnabled = false,
+    this.mouthOverride,
+    this.conversationPerformance = false,
     this.expression = LumoFoxExpression.idle,
     this.size = 76,
   });
@@ -61,6 +63,11 @@ class LumoAnimatedFox extends StatefulWidget {
   final bool reducedMotion;
   final bool active;
   final bool voiceEnabled;
+
+  /// Non-null disables global TTS and all synthetic mouth motion.
+  /// The conversation supplies only its own audible playback envelope.
+  final double? mouthOverride;
+  final bool conversationPerformance;
   final LumoFoxExpression expression;
   final double size;
 
@@ -145,6 +152,7 @@ class _LumoAnimatedFoxState extends State<LumoAnimatedFox>
   bool get _animate =>
       widget.active && _foreground && TickerMode.of(context) && !_quiet;
   bool get _speaking =>
+      widget.mouthOverride == null &&
       widget.voiceEnabled &&
       LumoVoice.instance.isEnabled &&
       LumoVoice.instance.status.value == VoiceStatus.speaking;
@@ -171,7 +179,7 @@ class _LumoAnimatedFoxState extends State<LumoAnimatedFox>
   }
 
   void _voiceChanged() {
-    if (!mounted) return;
+    if (!mounted || widget.mouthOverride != null) return;
     _nativeWords = false;
     if (_speaking && _animate) {
       _word.forward(from: 0);
@@ -264,19 +272,29 @@ class _LumoAnimatedFoxState extends State<LumoAnimatedFox>
     }
     return RepaintBoundary(
       child: AnimatedBuilder(
-        animation: Listenable.merge(
-            [_clock, _transition, _word, LumoVoice.instance.clipMouth]),
+        animation: Listenable.merge([
+          _clock,
+          _transition,
+          _word,
+          if (widget.mouthOverride == null) LumoVoice.instance.clipMouth,
+        ]),
         builder: (context, _) {
           final seconds = (_elapsed - _expressionStart + 60) % 60;
           final clipMouth = LumoVoice.instance.clipMouth.value;
-          final mouth = !_animate || !_speaking
+          final override = widget.mouthOverride;
+          final mouth = !_animate
               ? 0.0
-              : clipMouth ?? (_nativeWords
-                      ? math.sin(_word.value * math.pi)
-                      :
-                      // Some offline TTS engines report start/end but no word events.
-                      // Their actual speaking status still gates this approximation.
-                      .25 + .65 * math.pow(math.sin(_elapsed * 9), 2));
+              : override != null
+                  ? (override.isFinite
+                      ? override.clamp(0.0, 1.0).toDouble()
+                      : 0.0)
+                  : !_speaking
+                      ? 0.0
+                      : clipMouth ?? (_nativeWords
+                          ? math.sin(_word.value * math.pi)
+                          :
+                          // Legacy non-conversation fox: approximate TTS motion.
+                          .25 + .65 * math.pow(math.sin(_elapsed * 9), 2));
           final sample = LumoFoxMotionSample(
             elapsed: _quiet ? 0 : _elapsed,
             expressionSeconds: seconds,
@@ -284,6 +302,7 @@ class _LumoAnimatedFoxState extends State<LumoAnimatedFox>
             expression: widget.expression,
             mouth: mouth.toDouble(),
             reducedMotion: _quiet,
+            conversationPerformance: widget.conversationPerformance,
           );
           return CustomPaint(
             key: const ValueKey('lumo-animated-fox-paint'),
@@ -313,9 +332,11 @@ class LumoFoxMotionSample {
       required this.moving,
       required this.expression,
       required this.mouth,
-      required this.reducedMotion});
+      required this.reducedMotion,
+      this.conversationPerformance = false});
   final double elapsed, expressionSeconds, mouth;
   final bool moving, reducedMotion;
+  final bool conversationPerformance;
   final LumoFoxExpression expression;
 
   bool get celebrating =>
@@ -323,14 +344,20 @@ class LumoFoxMotionSample {
       expressionSeconds < 1.4 &&
       !reducedMotion;
   double get breath =>
-      reducedMotion || moving ? 1 : 1 + math.sin(elapsed * 1.9) * .006;
+      reducedMotion || moving
+          ? 1
+          : 1 + math.sin(elapsed * 1.9) *
+              (conversationPerformance ? .009 : .006);
   double get headAngle => reducedMotion
       ? 0
       : expression == LumoFoxExpression.think
           ? -.025 + math.sin(elapsed * 1.7) * .008
           : expression == LumoFoxExpression.comfort
               ? .016
-              : math.sin(elapsed * 1.1) * .008;
+              : math.sin(elapsed * 1.1) * .008 +
+                  (conversationPerformance && expression == LumoFoxExpression.explain
+                      ? math.sin(elapsed * 2.4) * .018 * mouth
+                      : 0);
   double get tailAngle => reducedMotion
       ? 0
       : math.sin(elapsed * 2) *
@@ -340,7 +367,8 @@ class LumoFoxMotionSample {
       : expression == LumoFoxExpression.greet && expressionSeconds < 2
           ? -.09 * math.sin(expressionSeconds * math.pi * 3)
           : expression == LumoFoxExpression.explain
-              ? -.05 * (.5 + .5 * math.sin(elapsed * 2))
+              ? -.05 * (.5 + .5 * math.sin(elapsed * 2)) *
+                  (conversationPerformance ? .35 + 1.1 * mouth : 1)
               : 0;
 }
 
@@ -485,6 +513,7 @@ class LumoFoxPainter extends CustomPainter {
       expression: expression,
       mouth: sample.mouth,
       reducedMotion: sample.reducedMotion,
+      conversationPerformance: sample.conversationPerformance,
     );
     final scale = size.height * .94 / 470;
     canvas.saveLayer(

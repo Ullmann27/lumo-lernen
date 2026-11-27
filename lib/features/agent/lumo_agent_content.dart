@@ -6,7 +6,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
-import '../../widgets/fox/lumo_character.dart';
+import '../../widgets/fox/lumo_baby_conversation_avatar.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
@@ -372,6 +372,17 @@ class _LumoAgentContentState extends State<LumoAgentContent>
                         enabled: settings.aiProxyEnabled,
                         reduceMotion:
                             settings.reduceAnimations || settings.calmMode,
+                        conversation: _conversation,
+                        listening: _speechListening,
+                        thinking: _loading,
+                        blocked: _blocked,
+                        onGreet: _source == 'local_ready' &&
+                                _contextEngine.task == null &&
+                                !_contextEngine.isAssessment &&
+                                !_loading &&
+                                !_speechListening
+                            ? () => _ask('Hallo Lumo!')
+                            : null,
                         onSettings: () =>
                             widget.onSection(LumoSection.settings)),
                     const SizedBox(height: 16),
@@ -489,11 +500,19 @@ class _AgentHeader extends StatelessWidget {
       {required this.proxyReady,
       required this.enabled,
       required this.reduceMotion,
+      required this.conversation,
+      required this.listening,
+      required this.thinking,
+      required this.blocked,
+      required this.onGreet,
       required this.onSettings});
 
   final bool proxyReady;
   final bool enabled;
   final bool reduceMotion;
+  final LumoConversationController conversation;
+  final bool listening, thinking, blocked;
+  final VoidCallback? onGreet;
   final VoidCallback onSettings;
 
   @override
@@ -512,12 +531,14 @@ class _AgentHeader extends StatelessWidget {
       key: const ValueKey('lumo-agent-hologlass-hero'),
       child: LayoutBuilder(builder: (context, bounds) {
         final compact = bounds.maxWidth < 460;
-        final fox = LumoCharacter(
-          pose: LumoDesignFoxPose.teacherStick,
-          size: compact ? 100 : 130,
-          idleHops: false,
-          intro: false,
-          reduceMotion: reduceMotion || MediaQuery.disableAnimationsOf(context),
+        final narrow = bounds.maxWidth < 340;
+        final fox = LumoBabyConversationAvatar(
+          conversation: conversation,
+          listening: listening,
+          thinking: thinking,
+          blocked: blocked,
+          size: compact ? 152 : 190,
+          reducedMotion: reduceMotion,
         );
         final intro = Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -541,6 +562,17 @@ class _AgentHeader extends StatelessWidget {
             Text(subtitle,
                 style: const TextStyle(
                     color: LumoVisualTokens.muted, height: 1.38, fontSize: 14)),
+            if (onGreet != null)
+              TextButton.icon(
+                key: const ValueKey('baby-lumo-greeting'),
+                onPressed: onGreet,
+                style: TextButton.styleFrom(
+                  foregroundColor: LumoVisualTokens.cyanBright,
+                  minimumSize: const Size(48, 48),
+                ),
+                icon: const Icon(Icons.waving_hand_rounded),
+                label: const Text('Hallo, Lumo!'),
+              ),
           ],
         );
         final parents = OutlinedButton.icon(
@@ -557,17 +589,22 @@ class _AgentHeader extends StatelessWidget {
           return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                  SizedBox(width: 100, height: 120, child: fox),
-                  const SizedBox(width: 8),
-                  Expanded(child: intro),
-                ]),
+                if (narrow) ...[
+                  Center(child: fox),
+                  const SizedBox(height: 8),
+                  intro,
+                ] else
+                  Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                    SizedBox(width: 152, child: fox),
+                    const SizedBox(width: 8),
+                    Expanded(child: intro),
+                  ]),
                 const SizedBox(height: 10),
                 Align(alignment: Alignment.centerRight, child: parents),
               ]);
         }
         return Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          SizedBox(width: 138, height: 154, child: fox),
+          SizedBox(width: 190, child: fox),
           const SizedBox(width: 14),
           Expanded(child: intro),
           const SizedBox(width: 12),

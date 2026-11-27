@@ -5,7 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/features/agent/lumo_agent_content.dart';
-import 'package:lumo_lernen/widgets/fox/lumo_character.dart';
+import 'package:lumo_lernen/widgets/fox/lumo_animated_fox.dart';
+import 'package:lumo_lernen/widgets/fox/lumo_baby_conversation_avatar.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -50,7 +51,23 @@ void main() {
       await tester.pump(const Duration(milliseconds: 200));
       expect(find.byKey(const ValueKey('lumo-agent-hologlass-hero')),
           findsOneWidget);
-      expect(find.byType(LumoCharacter), findsWidgets);
+      final avatar = find.byType(LumoBabyConversationAvatar);
+      expect(avatar, findsOneWidget);
+      final originalRig = find.descendant(
+        of: avatar,
+        matching: find.byKey(const ValueKey('baby-lumo-original-rig')),
+      );
+      expect(originalRig, findsOneWidget);
+      final rig = tester.widget<LumoAnimatedFox>(originalRig);
+      expect(rig.conversationPerformance, isTrue);
+      expect(rig.reducedMotion, isTrue);
+      expect(rig.mouthOverride, 0.0);
+      expect(find.byKey(const ValueKey('baby-lumo-dialogue-state')),
+          findsOneWidget);
+      final avatarBounds = tester.getRect(avatar);
+      expect(avatarBounds.width, greaterThan(0));
+      expect(avatarBounds.left, greaterThanOrEqualTo(0));
+      expect(avatarBounds.right, lessThanOrEqualTo(target.$1.width));
       expect(find.text('Lumo hilft lokal'), findsOneWidget);
       expect(find.byKey(const ValueKey('lumo-agent-question-field')),
           findsOneWidget);
